@@ -1,0 +1,14 @@
+D:\Proyectos NET\LogicGate\obj\Release\ResolveAssemblyReference.cache
+D:\Proyectos NET\LogicGate\obj\Release\LogicGate.handleLoginMini.resources
+D:\Proyectos NET\LogicGate\obj\Release\LogicGate.Properties.Resources.resources
+D:\Proyectos NET\LogicGate\obj\Release\LogicGate.csproj.GenerateResource.Cache
+D:\Proyectos NET\LogicGate\bin\Release\LogicGate.dll
+D:\Proyectos NET\LogicGate\bin\Release\LogicGate.pdb
+D:\Proyectos NET\LogicGate\bin\Release\WillyWonka.dll
+D:\Proyectos NET\LogicGate\bin\Release\Andzen.dll
+D:\Proyectos NET\LogicGate\bin\Release\SQLink.dll
+D:\Proyectos NET\LogicGate\bin\Release\Andzen.pdb
+D:\Proyectos NET\LogicGate\bin\Release\SQLink.pdb
+D:\Proyectos NET\LogicGate\bin\Release\WillyWonka.pdb
+D:\Proyectos NET\LogicGate\obj\Release\LogicGate.dll
+D:\Proyectos NET\LogicGate\obj\Release\LogicGate.pdb
