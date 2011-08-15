@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAR", "SAR\SAR.csproj", "{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAMI", "..\SAMI\SAMI\SAMI.csproj", "{C48A42CF-38CA-420D-BC67-83B8D8D6E531}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F4DEA488-BBBA-4BDB-8D60-510B9B5B39E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Debug|x86.ActiveCfg = Debug|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Debug|x86.Build.0 = Debug|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Release|Any CPU.ActiveCfg = Release|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Release|x86.ActiveCfg = Release|x86
+		{C48A42CF-38CA-420D-BC67-83B8D8D6E531}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
