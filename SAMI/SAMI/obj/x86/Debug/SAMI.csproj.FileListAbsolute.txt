@@ -10,3 +10,16 @@ D:\Makiwara\SAMI\SAMI\SAMI\bin\Debug\Nexus.pdb
 D:\Makiwara\SAMI\SAMI\SAMI\obj\x86\Debug\SAMI.exe
 D:\Makiwara\SAMI\SAMI\SAMI\obj\x86\Debug\SAMI.pdb
 D:\Makiwara\SAMI\SAMI\SAMI\bin\Debug\SAMI.exe.config
+D:\Makiwara\SAMI\SAMI\bin\Debug\SAMI.exe.config
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.exe
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.pdb
+D:\Makiwara\SAMI\SAMI\bin\Debug\SAMI.exe
+D:\Makiwara\SAMI\SAMI\bin\Debug\SAMI.pdb
+D:\Makiwara\SAMI\SAMI\bin\Debug\Nexus.pdb
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.Form1.resources
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.Properties.Resources.resources
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.XtraForm1.resources
+D:\Makiwara\SAMI\SAMI\obj\x86\Debug\SAMI.exe.licenses

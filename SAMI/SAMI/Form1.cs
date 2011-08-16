@@ -19,5 +19,16 @@ namespace SAMI
             var resultado = db.People.Where( x => x.Name == "Jose Luis").First().PersonPhones.ToList();
             
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
     }
 }
