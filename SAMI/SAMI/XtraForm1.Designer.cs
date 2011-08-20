@@ -104,6 +104,7 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.ultraGanttView1 = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
@@ -174,6 +175,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -258,6 +260,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.ultraGanttView1);
             this.groupControl1.Controls.Add(this.buttonEdit1);
             this.groupControl1.Controls.Add(this.spinEdit1);
             this.groupControl1.Controls.Add(this.comboBoxEdit2);
@@ -868,6 +871,15 @@
             this.labelControl11.TabIndex = 3;
             this.labelControl11.Text = "labelControl11";
             // 
+            // ultraGanttView1
+            // 
+            this.ultraGanttView1.Location = new System.Drawing.Point(121, 8);
+            this.ultraGanttView1.Name = "ultraGanttView1";
+            this.ultraGanttView1.Size = new System.Drawing.Size(600, 338);
+            this.ultraGanttView1.TabIndex = 17;
+            this.ultraGanttView1.Text = "ultraGanttView1";
+            this.ultraGanttView1.VerticalSplitterMinimumResizeWidth = 10;
+            // 
             // XtraForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,6 +964,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1034,5 +1047,6 @@
         private DevExpress.XtraEditors.DateEdit dateEdit2;
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
         private DevExpress.XtraEditors.RadioGroup radioGroup1;
+        private Infragistics.Win.UltraWinGanttView.UltraGanttView ultraGanttView1;
     }
 }
