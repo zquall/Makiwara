@@ -1,0 +1,12 @@
+D:\Makiwara\Nexus\Nexus\obj\Debug\ResolveAssemblyReference.cache
+D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.dll.config
+D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.dll
+D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.pdb
+D:\Makiwara\Nexus\Nexus\obj\Debug\Nexus.dll
+D:\Makiwara\Nexus\Nexus\obj\Debug\Nexus.pdb
+D:\Makiwara\Nexus\bin\Debug\Nexus.dll.config
+D:\Makiwara\Nexus\bin\Debug\Nexus.dll
+D:\Makiwara\Nexus\bin\Debug\Nexus.pdb
+D:\Makiwara\Nexus\obj\Debug\ResolveAssemblyReference.cache
+D:\Makiwara\Nexus\obj\Debug\Nexus.dll
+D:\Makiwara\Nexus\obj\Debug\Nexus.pdb

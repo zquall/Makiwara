@@ -1,0 +1,6 @@
+D:\Makiwara\Nerv\bin\Debug\Nerv.dll.config
+D:\Makiwara\Nerv\bin\Debug\Nerv.dll
+D:\Makiwara\Nerv\bin\Debug\Nerv.pdb
+D:\Makiwara\Nerv\obj\Debug\ResolveAssemblyReference.cache
+D:\Makiwara\Nerv\obj\Debug\Nerv.dll
+D:\Makiwara\Nerv\obj\Debug\Nerv.pdb

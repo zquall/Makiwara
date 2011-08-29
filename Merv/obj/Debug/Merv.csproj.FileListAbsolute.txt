@@ -1,0 +1,7 @@
+D:\Makiwara\Merv\bin\Debug\Merv.dll
+D:\Makiwara\Merv\bin\Debug\Merv.pdb
+D:\Makiwara\Merv\bin\Debug\Nerv.dll
+D:\Makiwara\Merv\bin\Debug\Nerv.pdb
+D:\Makiwara\Merv\obj\Debug\ResolveAssemblyReference.cache
+D:\Makiwara\Merv\obj\Debug\Merv.dll
+D:\Makiwara\Merv\obj\Debug\Merv.pdb

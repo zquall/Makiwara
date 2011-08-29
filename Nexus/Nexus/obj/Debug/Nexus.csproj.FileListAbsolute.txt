@@ -1,6 +1,0 @@
-D:\Makiwara\Nexus\Nexus\obj\Debug\ResolveAssemblyReference.cache
-D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.dll.config
-D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.dll
-D:\Makiwara\Nexus\Nexus\bin\Debug\Nexus.pdb
-D:\Makiwara\Nexus\Nexus\obj\Debug\Nexus.dll
-D:\Makiwara\Nexus\Nexus\obj\Debug\Nexus.pdb

@@ -13,13 +13,13 @@ namespace SAMI
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            var start = DateTime.Now;
-            Application.Run(new Form1());
-            //Application.Run(new XtraForm1());
-            var end = DateTime.Now;
-            var asd = start - end;
+        //    Application.EnableVisualStyles();
+        //    Application.SetCompatibleTextRenderingDefault(false);
+        //    var start = DateTime.Now;
+        //    Application.Run(null);
+        //    //Application.Run(new XtraForm1());
+        //    var end = DateTime.Now;
+        //    var asd = start - end;
         }
     }
 }

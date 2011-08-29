@@ -1,0 +1,7 @@
+D:\Makiwara\Merv\bin\Release\Merv.dll
+D:\Makiwara\Merv\bin\Release\Merv.pdb
+D:\Makiwara\Merv\bin\Release\Nerv.dll
+D:\Makiwara\Merv\bin\Release\Nerv.pdb
+D:\Makiwara\Merv\obj\Release\ResolveAssemblyReference.cache
+D:\Makiwara\Merv\obj\Release\Merv.dll
+D:\Makiwara\Merv\obj\Release\Merv.pdb

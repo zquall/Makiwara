@@ -1,5 +1,0 @@
-D:\Makiwara\SAR\SAR\bin\Debug\SAR.dll
-D:\Makiwara\SAR\SAR\bin\Debug\SAR.pdb
-D:\Makiwara\SAR\SAR\obj\Debug\ResolveAssemblyReference.cache
-D:\Makiwara\SAR\SAR\obj\Debug\SAR.dll
-D:\Makiwara\SAR\SAR\obj\Debug\SAR.pdb
