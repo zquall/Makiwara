@@ -3,7 +3,6 @@
   <EntityContainer Name="NERVEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="KeyAccesses" EntityType="NERVModel.KeyAccess" />
     <EntitySet Name="Latches" EntityType="NERVModel.Latch" />
-    <EntitySet Name="UserAccounts" EntityType="NERVModel.UserAccount" />
     <EntitySet Name="UserGroups" EntityType="NERVModel.UserGroup" />
     <AssociationSet Name="FK_KeyAccess_Latch" Association="NERVModel.FK_KeyAccess_Latch">
       <End Role="Latch" EntitySet="Latches" />
@@ -17,6 +16,7 @@
       <End Role="Latch" EntitySet="Latches" />
       <End Role="Latch1" EntitySet="Latches" />
     </AssociationSet>
+    <EntitySet Name="UserAccounts" EntityType="NERVModel.UserAccount" />
     <AssociationSet Name="FK_UserAccount_UserGroup" Association="NERVModel.FK_UserAccount_UserGroup">
       <End Role="UserGroup" EntitySet="UserGroups" />
       <End Role="UserAccount" EntitySet="UserAccounts" />
@@ -43,19 +43,6 @@
     <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="Latch" ToRole="KeyAccess" />
     <NavigationProperty Name="Latch1" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch" ToRole="Latch1" />
     <NavigationProperty Name="Latch2" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch1" ToRole="Latch" />
-  </EntityType>
-  <EntityType Name="UserAccount">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Account" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Type="Int32" Name="LastCompany" Nullable="false" />
-    <Property Type="Boolean" Name="Status" Nullable="false" />
-    <Property Type="Boolean" Name="IsOnline" Nullable="false" />
-    <Property Type="Int32" Name="UserGroupId" Nullable="false" />
-    <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserAccount" ToRole="UserGroup" />
   </EntityType>
   <EntityType Name="UserGroup">
     <Key>
@@ -103,6 +90,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="UserAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Account" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="EnterpriseId" Nullable="false" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="Boolean" Name="IsOnline" Nullable="false" />
+    <Property Type="Int32" Name="UserGroupId" Nullable="false" />
+    <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserAccount" ToRole="UserGroup" />
+  </EntityType>
   <Association Name="FK_UserAccount_UserGroup">
     <End Type="NERVModel.UserGroup" Role="UserGroup" Multiplicity="1" />
     <End Type="NERVModel.UserAccount" Role="UserAccount" Multiplicity="*" />

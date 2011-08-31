@@ -46,7 +46,7 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Account" Type="varchar" Nullable="false" MaxLength="20" />
     <Property Name="Password" Type="varchar(max)" Nullable="false" />
-    <Property Name="LastCompany" Type="int" Nullable="false" />
+    <Property Name="EnterpriseId" Type="int" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
     <Property Name="IsOnline" Type="bit" Nullable="false" />
     <Property Name="UserGroupId" Type="int" Nullable="false" />

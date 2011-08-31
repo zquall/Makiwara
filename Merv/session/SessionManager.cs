@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nerv;
+using Cypher;
 
 namespace Merv.session
 {   
@@ -16,14 +17,16 @@ namespace Merv.session
         {
             bool result = false;
             NERVEntities nervEntities = new NERVEntities();
-            var accountFounded = nervEntities.UserAccounts.Where(x => x.Account == username).SingleOrDefault();
+            var accountFounded = nervEntities.UserAccounts.Where(x => x.Account.ToUpper() == username.ToUpper()).SingleOrDefault();
             if (accountFounded != null)
             {
-
+                var cypher = new Cryptos(Cryptos.algorithmType.DES);
+                if (cypher.Encrypt(password).Equals(accountFounded.Password))
+                {
+                    saveUserInSession(accountFounded);
+                    result = true;
+                }
             }
-            _LogedUser = "";
-            _LogedUser.ToString();
-
             return result;
         }
 
@@ -36,6 +39,13 @@ namespace Merv.session
                 }
                 return result;
             } 
+        }
+
+        private static void saveUserInSession(UserAccount userAccount)
+        {
+
+            _LogedUser = "";
+            _LogedUser.ToString();
         }
 
     }

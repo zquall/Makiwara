@@ -51,7 +51,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Account" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
-          <Property Name="LastCompany" Type="int" Nullable="false" />
+          <Property Name="EnterpriseId" Type="int" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
           <Property Name="IsOnline" Type="bit" Nullable="false" />
           <Property Name="UserGroupId" Type="int" Nullable="false" />
@@ -119,7 +119,6 @@
         <EntityContainer Name="NERVEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="KeyAccesses" EntityType="NERVModel.KeyAccess" />
           <EntitySet Name="Latches" EntityType="NERVModel.Latch" />
-          <EntitySet Name="UserAccounts" EntityType="NERVModel.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="NERVModel.UserGroup" />
           <AssociationSet Name="FK_KeyAccess_Latch" Association="NERVModel.FK_KeyAccess_Latch">
             <End Role="Latch" EntitySet="Latches" />
@@ -133,6 +132,7 @@
             <End Role="Latch" EntitySet="Latches" />
             <End Role="Latch1" EntitySet="Latches" />
           </AssociationSet>
+          <EntitySet Name="UserAccounts" EntityType="NERVModel.UserAccount" />
           <AssociationSet Name="FK_UserAccount_UserGroup" Association="NERVModel.FK_UserAccount_UserGroup">
             <End Role="UserGroup" EntitySet="UserGroups" />
             <End Role="UserAccount" EntitySet="UserAccounts" />
@@ -159,19 +159,6 @@
           <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="Latch" ToRole="KeyAccess" />
           <NavigationProperty Name="Latch1" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch" ToRole="Latch1" />
           <NavigationProperty Name="Latch2" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch1" ToRole="Latch" />
-        </EntityType>
-        <EntityType Name="UserAccount">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Account" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="LastCompany" Nullable="false" />
-          <Property Type="Boolean" Name="Status" Nullable="false" />
-          <Property Type="Boolean" Name="IsOnline" Nullable="false" />
-          <Property Type="Int32" Name="UserGroupId" Nullable="false" />
-          <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserAccount" ToRole="UserGroup" />
         </EntityType>
         <EntityType Name="UserGroup">
           <Key>
@@ -219,6 +206,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Account" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EnterpriseId" Nullable="false" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="false" />
+          <Property Type="Int32" Name="UserGroupId" Nullable="false" />
+          <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserAccount" ToRole="UserGroup" />
+        </EntityType>
         <Association Name="FK_UserAccount_UserGroup">
           <End Type="NERVModel.UserGroup" Role="UserGroup" Multiplicity="1" />
           <End Type="NERVModel.UserAccount" Role="UserAccount" Multiplicity="*" />
@@ -256,24 +256,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="NERVModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserAccounts">
             <EntityTypeMapping TypeName="NERVModel.UserAccount">
               <MappingFragment StoreEntitySet="UserAccount">
                 <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
                 <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="LastCompany" ColumnName="LastCompany" />
+                <ScalarProperty Name="EnterpriseId" ColumnName="EnterpriseId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserGroups">
-            <EntityTypeMapping TypeName="NERVModel.UserGroup">
-              <MappingFragment StoreEntitySet="UserGroup">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -301,7 +301,6 @@
       <Diagram Name="NervEntityFramework">
         <EntityTypeShape EntityType="NERVModel.KeyAccess" Width="1.5" PointX="3" PointY="0.875" Height="1.9210009765624996" />
         <EntityTypeShape EntityType="NERVModel.Latch" Width="1.5" PointX="0.75" PointY="0.875" Height="1.9210009765624994" />
-        <EntityTypeShape EntityType="NERVModel.UserAccount" Width="1.5" PointX="3" PointY="3.75" Height="2.2496956380208317" />
         <EntityTypeShape EntityType="NERVModel.UserGroup" Width="1.5" PointX="0.75" PointY="4" Height="1.7566536458333317" />
         <AssociationConnector Association="NERVModel.FK_KeyAccess_Latch" >
           <ConnectorPoint PointX="2.25" PointY="1.8355004882812498" />
@@ -310,8 +309,8 @@
         <AssociationConnector Association="NERVModel.FK_KeyAccess_UserGroup" >
           <ConnectorPoint PointX="2.25" PointY="4" />
           <ConnectorPoint PointX="2.625" PointY="3.625" />
-          <ConnectorPoint PointX="2.625" PointY="2.3470027324218754" />
-          <ConnectorPoint PointX="3" PointY="2.3470027324218754" />
+          <ConnectorPoint PointX="2.625" PointY="1.8355004882812498" />
+          <ConnectorPoint PointX="3" PointY="1.8355004882812498" />
         </AssociationConnector>
         <AssociationConnector Association="NERVModel.FK_Latch_Latch" >
           <ConnectorPoint PointX="1.2819230769230767" PointY="2.7960009765624996" />
@@ -319,6 +318,7 @@
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.0460009765624996" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="2.7960009765624996" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="NERVModel.UserAccount" Width="1.5" PointX="3" PointY="3.75" Height="2.2496956380208335" />
         <AssociationConnector Association="NERVModel.FK_UserAccount_UserGroup" >
           <ConnectorPoint PointX="2.25" PointY="4.9095793229166667" />
           <ConnectorPoint PointX="3" PointY="4.9095793229166667" />

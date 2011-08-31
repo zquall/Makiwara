@@ -108,22 +108,6 @@ namespace Nerv
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserAccount> UserAccounts
-        {
-            get
-            {
-                if ((_UserAccounts == null))
-                {
-                    _UserAccounts = base.CreateObjectSet<UserAccount>("UserAccounts");
-                }
-                return _UserAccounts;
-            }
-        }
-        private ObjectSet<UserAccount> _UserAccounts;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserGroup> UserGroups
         {
             get
@@ -136,6 +120,22 @@ namespace Nerv
             }
         }
         private ObjectSet<UserGroup> _UserGroups;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserAccount> UserAccounts
+        {
+            get
+            {
+                if ((_UserAccounts == null))
+                {
+                    _UserAccounts = base.CreateObjectSet<UserAccount>("UserAccounts");
+                }
+                return _UserAccounts;
+            }
+        }
+        private ObjectSet<UserAccount> _UserAccounts;
 
         #endregion
         #region AddTo Methods
@@ -157,19 +157,19 @@ namespace Nerv
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UserAccounts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserAccounts(UserAccount userAccount)
-        {
-            base.AddObject("UserAccounts", userAccount);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserGroups(UserGroup userGroup)
         {
             base.AddObject("UserGroups", userGroup);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserAccounts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserAccounts(UserAccount userAccount)
+        {
+            base.AddObject("UserAccounts", userAccount);
         }
 
         #endregion
@@ -600,17 +600,17 @@ namespace Nerv
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="account">Initial value of the Account property.</param>
         /// <param name="password">Initial value of the Password property.</param>
-        /// <param name="lastCompany">Initial value of the LastCompany property.</param>
+        /// <param name="enterpriseId">Initial value of the EnterpriseId property.</param>
         /// <param name="status">Initial value of the Status property.</param>
         /// <param name="isOnline">Initial value of the IsOnline property.</param>
         /// <param name="userGroupId">Initial value of the UserGroupId property.</param>
-        public static UserAccount CreateUserAccount(global::System.Int32 id, global::System.String account, global::System.String password, global::System.Int32 lastCompany, global::System.Boolean status, global::System.Boolean isOnline, global::System.Int32 userGroupId)
+        public static UserAccount CreateUserAccount(global::System.Int32 id, global::System.String account, global::System.String password, global::System.Int32 enterpriseId, global::System.Boolean status, global::System.Boolean isOnline, global::System.Int32 userGroupId)
         {
             UserAccount userAccount = new UserAccount();
             userAccount.Id = id;
             userAccount.Account = account;
             userAccount.Password = password;
-            userAccount.LastCompany = lastCompany;
+            userAccount.EnterpriseId = enterpriseId;
             userAccount.Status = status;
             userAccount.IsOnline = isOnline;
             userAccount.UserGroupId = userGroupId;
@@ -700,24 +700,24 @@ namespace Nerv
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 LastCompany
+        public global::System.Int32 EnterpriseId
         {
             get
             {
-                return _LastCompany;
+                return _EnterpriseId;
             }
             set
             {
-                OnLastCompanyChanging(value);
-                ReportPropertyChanging("LastCompany");
-                _LastCompany = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LastCompany");
-                OnLastCompanyChanged();
+                OnEnterpriseIdChanging(value);
+                ReportPropertyChanging("EnterpriseId");
+                _EnterpriseId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EnterpriseId");
+                OnEnterpriseIdChanged();
             }
         }
-        private global::System.Int32 _LastCompany;
-        partial void OnLastCompanyChanging(global::System.Int32 value);
-        partial void OnLastCompanyChanged();
+        private global::System.Int32 _EnterpriseId;
+        partial void OnEnterpriseIdChanging(global::System.Int32 value);
+        partial void OnEnterpriseIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

@@ -40,6 +40,10 @@
     <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cypher\Cypher.csproj">
+      <Project>{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}</Project>
+      <Name>Cypher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nerv\Nerv.csproj">
       <Project>{0F15EA41-6115-456E-B894-2E2D9F41E46D}</Project>
       <Name>Nerv</Name>

@@ -1,0 +1,5 @@
+D:\Opus\Cypher\bin\Release\Cypher.dll
+D:\Opus\Cypher\bin\Release\Cypher.pdb
+D:\Opus\Cypher\obj\Release\ResolveAssemblyReference.cache
+D:\Opus\Cypher\obj\Release\Cypher.dll
+D:\Opus\Cypher\obj\Release\Cypher.pdb

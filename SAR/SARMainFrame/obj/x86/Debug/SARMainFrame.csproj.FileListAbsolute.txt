@@ -15,3 +15,5 @@ D:\Makiwara\SAR\SARMainFrame\bin\Debug\Merv.pdb
 D:\Makiwara\SAR\SARMainFrame\bin\Debug\Nerv.pdb
 D:\Makiwara\SAR\SARMainFrame\obj\x86\Debug\SARMainFrame.exe
 D:\Makiwara\SAR\SARMainFrame\obj\x86\Debug\SARMainFrame.pdb
+D:\Makiwara\SAR\SARMainFrame\bin\Debug\Cypher.dll
+D:\Makiwara\SAR\SARMainFrame\bin\Debug\Cypher.pdb
