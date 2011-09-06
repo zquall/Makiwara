@@ -5,13 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
+using DevExpress.XtraEditors;
 
 namespace SARMainFrame
 {
-    public partial class RibbonForm1 : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class Dashboard : DevExpress.XtraEditors.XtraForm
     {
-        public RibbonForm1()
+        public Dashboard()
         {
             InitializeComponent();
         }

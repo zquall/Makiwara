@@ -39,6 +39,7 @@
             this.Name = "SplashLoader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Shown += new System.EventHandler(this.SplashLoader_Shown);
             this.ResumeLayout(false);
 
         }

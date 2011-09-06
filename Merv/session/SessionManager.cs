@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using Nerv;
 using Cypher;
+using Hades.averno;
 
-namespace Merv.session
+namespace Hades.session
 {   
     public static class SessionManager
     {
         // Contains the user that is in session
-        private static string _LogedUser = null;
+        private static UserSession _LogedUser = null;
 
         // Try to login a user with the providen data
         public static bool Login(string username, string password)
@@ -43,9 +44,7 @@ namespace Merv.session
 
         private static void saveUserInSession(UserAccount userAccount)
         {
-
-            _LogedUser = "";
-            _LogedUser.ToString();
+            _LogedUser = new UserSession(userAccount.Id);
         }
 
     }

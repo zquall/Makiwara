@@ -13,7 +13,11 @@ namespace SARMainFrame
     {
         public SplashLoader()
         {
-            InitializeComponent();            
+            InitializeComponent();  
+        }
+        
+        private void SplashLoader_Shown(object sender, EventArgs e)
+        {
             this.Hide();
             loadLogin();
             loadMainFrame();
@@ -22,7 +26,7 @@ namespace SARMainFrame
         private void loadLogin()
         {
             var result = new LoginHandler().ShowDialog();
-            if (result == DialogResult.Abort)
+            if (result == DialogResult.Abort || result == DialogResult.Cancel)
             {
                 Environment.Exit(0);
             }
@@ -30,7 +34,7 @@ namespace SARMainFrame
 
         private void loadMainFrame()
         {
-            if (Merv.session.SessionManager.isLogedIn)
+            if (Hades.session.SessionManager.isLogedIn)
             {
                 // Implement the mainframe loading
             }

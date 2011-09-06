@@ -84,6 +84,7 @@
             this.Controls.Add(this.clientPanel);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
+            this.IsMdiContainer = true;
             this.Name = "RibbonForm1";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;

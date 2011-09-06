@@ -9,7 +9,7 @@ namespace SARMainFrame
 {
     public partial class LoginHandler : Form
     {
-        private int _Retries = 0;
+        private int _Retries = 1;
 
         #region Constructor
 
@@ -48,7 +48,7 @@ namespace SARMainFrame
             // Check if the User and Password TextBox aren't empty
             if (txtUserName.Text.Length > 0 && txtUserPassword.Text.Length > 0)
             {
-                var loginResult = Merv.session.SessionManager.Login(txtUserName.Text, txtUserPassword.Text);               
+                var loginResult = Hades.session.SessionManager.Login(txtUserName.Text, txtUserPassword.Text);               
 
                 if (loginResult)
                 {
@@ -62,11 +62,11 @@ namespace SARMainFrame
                     }
                     else
                     {
+                        lblMessage.Text = "El usuario o contraseña incorrectos, favor verificar los datos. \n";
+                        lblMessage.Text += _Retries + " de 3 intentos.";
+                        lblMessage.ForeColor = Color.DarkRed;
                         _Retries++;
-                    }
-                    lblMessage.Text = "El usuario o contraseña incorrectos, favor verificar los datos. \n";
-                    lblMessage.Text += _Retries + " de 3 intentos.";
-                    lblMessage.ForeColor = Color.DarkRed;                    
+                    }                                       
                 }
             }else 
             {
