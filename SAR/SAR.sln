@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexus", "..\Nexus\Nexus.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cypher", "..\Cypher\Cypher.csproj", "{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shellProject", "..\shellProject\shellProject.csproj", "{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,16 @@ Global
 		{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}.Release|x86.ActiveCfg = Release|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
