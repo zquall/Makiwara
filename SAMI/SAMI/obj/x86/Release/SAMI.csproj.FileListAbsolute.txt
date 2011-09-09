@@ -1,9 +1,0 @@
-D:\Makiwara\SAMI\SAMI\bin\Release\SAMI.exe
-D:\Makiwara\SAMI\SAMI\bin\Release\SAMI.pdb
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\ResolveAssemblyReference.cache
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\SAMI.Properties.Resources.resources
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\GenerateResource.read.1.tlog
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\GenerateResource.write.1.tlog
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\SAMI.exe.licenses
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\SAMI.exe
-D:\Makiwara\SAMI\SAMI\obj\x86\Release\SAMI.pdb
