@@ -1,6 +1,0 @@
-D:\Makiwara\Nerv\bin\Release\Nerv.dll.config
-D:\Makiwara\Nerv\bin\Release\Nerv.dll
-D:\Makiwara\Nerv\bin\Release\Nerv.pdb
-D:\Makiwara\Nerv\obj\Release\ResolveAssemblyReference.cache
-D:\Makiwara\Nerv\obj\Release\Nerv.dll
-D:\Makiwara\Nerv\obj\Release\Nerv.pdb
