@@ -45,7 +45,8 @@
             this.navBarGroup1});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.Size = new System.Drawing.Size(140, 318);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
+            this.navBarControl1.Size = new System.Drawing.Size(140, 497);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "Pit";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
@@ -69,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 318);
+            this.ClientSize = new System.Drawing.Size(980, 497);
             this.Controls.Add(this.navBarControl1);
             this.IsMdiContainer = true;
             this.Name = "Dashboard";

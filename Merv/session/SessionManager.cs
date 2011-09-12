@@ -33,12 +33,7 @@ namespace Hades.session
 
         public static bool isLogedIn { 
             get {
-                bool result = false;
-                if (_LogedUser == null) 
-                {
-                    result = true;
-                }
-                return result;
+                return (_LogedUser == null) ? false : true;
             } 
         }
 

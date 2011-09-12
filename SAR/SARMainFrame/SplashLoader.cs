@@ -36,7 +36,7 @@ namespace SARMainFrame
         {
             if (Hades.session.SessionManager.isLogedIn)
             {
-                // Implement the mainframe loading
+                new Dashboard().Show();
             }
         }
     }

@@ -4,7 +4,9 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{AC126344-7324-4647-94DD-A4D48695D64A}" Name="UML SAMI" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML SAMI.oom"/>
+		<Model Expanded="Yes" ID="{AC126344-7324-4647-94DD-A4D48695D64A}" Loaded="No" Name="UML SAMI" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML SAMI.oom"/>
+		<Model Expanded="Yes" ID="{058AD83A-1D0B-41E7-B715-7E8AF8CCB7D4}" Loaded="No" Name="SoftwareLayers" Type="{5215C79E-A9A1-4738-A627-36DA432EFE29}" URL="/Documentos/SoftwareLayers.eam"/>
+		<Model Expanded="Yes" ID="{058AD83A-1D0B-41E7-B715-7E8AF8CCB7D4}" Name="SoftwareLayers" Selected="Yes" Type="{5215C79E-A9A1-4738-A627-36DA432EFE29}" URL="/Documentos/SoftwareLayers.eam"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
