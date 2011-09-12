@@ -8,8 +8,8 @@
     <ProjectGuid>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Merv</RootNamespace>
-    <AssemblyName>Merv</AssemblyName>
+    <RootNamespace>Hades</RootNamespace>
+    <AssemblyName>Hades</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

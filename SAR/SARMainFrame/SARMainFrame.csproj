@@ -112,7 +112,7 @@
     <None Include="Resources\images\common\ico-project.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Merv\Hades.csproj">
+    <ProjectReference Include="..\..\Hades\Hades.csproj">
       <Project>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</Project>
       <Name>Hades</Name>
     </ProjectReference>
