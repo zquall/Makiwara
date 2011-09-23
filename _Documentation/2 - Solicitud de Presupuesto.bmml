@@ -1,29 +1,50 @@
 <mockup version="1.0" skin="sketch" measuredW="876" measuredH="505">
   <controls>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="656" y="50" w="-1" h="-1" measuredW="81" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="656" y="50" w="-1" h="-1" measuredW="81" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Solicitud%20%23%3A</text>
       </controlProperties>
     </control>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::NumericStepper" x="737" y="50" w="-1" h="-1" measuredW="114" measuredH="26" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::NumericStepper" x="737" y="50" w="-1" h="-1" measuredW="114" measuredH="26" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>0000000001</text>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="656" y="134" w="-1" h="-1" measuredW="106" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="656" y="110" w="-1" h="-1" measuredW="106" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Asesor%20Tecnico%3A</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="656" y="159" w="195" h="25" measuredW="145" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="656" y="133" w="195" h="25" measuredW="145" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Juan%20Jose%20Perez%20Lopez</text>
         <bold>false</bold>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Button" x="656" y="213" w="196" h="-1" measuredW="132" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Button" x="656" y="158" w="196" h="-1" measuredW="132" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Guardar%20Solicitud</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Button" x="656" y="192" w="196" h="-1" measuredW="120" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Clonar%20Solicitud</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::TabBar" x="86" y="256" w="765" h="206" measuredW="507" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Descricion%20del%20Trabajo%2C%20Condiciones%20de%20Trabajo%2C%20Plazos%20y%20Tiempos</text>
+        <verticalScrollbar>false</verticalScrollbar>
+        <selectedIndex>0</selectedIndex>
+        <bold>false</bold>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::DataGrid" x="101" y="293" w="734" h="154" measuredW="655" measuredH="118" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>CANT%2C%20UND%2C%20DESCRIPCION%20DEL%20PROBLEMA%2C%20SOLUCION%20PROPUESTA%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20de%20mortero%20epoxico%0A%2C%2C%2CEUCO%20455MV%20con%20arena%20silica%20en%201%20pulgada%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20d%20mortero%20epoxico</text>
+        <hasHeader>true</hasHeader>
+        <selectedIndex>-1</selectedIndex>
+        <bold>false</bold>
       </controlProperties>
     </control>
     <control controlID="27" controlTypeID="__group__" x="86" y="43" w="-1" h="-1" measuredW="555" measuredH="206" zOrder="1" locked="false" isInGroup="-1">
@@ -99,33 +120,13 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="28" controlTypeID="__group__" x="86" y="256" w="-1" h="-1" measuredW="765" measuredH="206" zOrder="2" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="25" controlTypeID="com.balsamiq.mockups::TabBar" x="0" y="0" w="765" h="206" measuredW="395" measuredH="100" zOrder="0" locked="false" isInGroup="28">
-          <controlProperties>
-            <text>Descricion%20del%20Trabajo%2C%20Condiciones%20de%20Trabajo</text>
-            <verticalScrollbar>false</verticalScrollbar>
-            <selectedIndex>0</selectedIndex>
-            <bold>false</bold>
-          </controlProperties>
-        </control>
-        <control controlID="9" controlTypeID="com.balsamiq.mockups::DataGrid" x="15" y="37" w="734" h="154" measuredW="655" measuredH="118" zOrder="1" locked="false" isInGroup="28">
-          <controlProperties>
-            <text>CANT%2C%20UND%2C%20DESCRIPCION%20DEL%20PROBLEMA%2C%20SOLUCION%20PROPUESTA%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20de%20mortero%20epoxico%0A%2C%2C%2CEUCO%20455MV%20con%20arena%20silica%20en%201%20pulgada%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20d%20mortero%20epoxico</text>
-            <selectedIndex>-1</selectedIndex>
-            <bold>false</bold>
-            <hasHeader>true</hasHeader>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
     <control controlID="30" controlTypeID="com.balsamiq.mockups::TitleWindow" x="71" y="4" w="795" h="491" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <topheight>26</topheight>
         <text>SOLICITUD%20DE%20COTIZACION%20DE%20APLICACIONES</text>
+        <topheight>26</topheight>
       </controlProperties>
     </control>
-    <control controlID="31" controlTypeID="com.balsamiq.mockups::DateChooser" x="656" y="90" w="195" h="-1" measuredW="165" measuredH="29" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::DateChooser" x="656" y="81" w="195" h="-1" measuredW="165" measuredH="29" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%2022%20/%2011%20/%20%202011%20</text>
       </controlProperties>

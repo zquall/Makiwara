@@ -37,9 +37,9 @@
     <control controlID="38" controlTypeID="com.balsamiq.mockups::DataGrid" x="101" y="293" w="734" h="154" measuredW="655" measuredH="118" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <text>CANT%2C%20UND%2C%20DESCRIPCION%20DEL%20PROBLEMA%2C%20SOLUCION%20PROPUESTA%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20de%20mortero%20epoxico%0A%2C%2C%2CEUCO%20455MV%20con%20arena%20silica%20en%201%20pulgada%0A50%2C%20m2%2C%20Secciones%20de%20piso%20destruidas%20por%20erosion%2C%20Escarificado%20y%20aplicacion%20d%20mortero%20epoxico</text>
+        <hasHeader>true</hasHeader>
         <selectedIndex>-1</selectedIndex>
         <bold>false</bold>
-        <hasHeader>true</hasHeader>
       </controlProperties>
     </control>
     <control controlID="27" controlTypeID="__group__" x="86" y="43" w="-1" h="-1" measuredW="555" measuredH="206" zOrder="1" locked="false" isInGroup="-1">
@@ -117,8 +117,8 @@
     </control>
     <control controlID="30" controlTypeID="com.balsamiq.mockups::TitleWindow" x="71" y="4" w="795" h="491" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <topheight>26</topheight>
         <text>SOLICITUD%20DE%20COTIZACION%20DE%20APLICACIONES</text>
+        <topheight>26</topheight>
       </controlProperties>
     </control>
     <control controlID="31" controlTypeID="com.balsamiq.mockups::DateChooser" x="656" y="90" w="195" h="-1" measuredW="165" measuredH="29" zOrder="2" locked="false" isInGroup="-1">

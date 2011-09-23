@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarControlDashboard = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupProject = new DevExpress.XtraNavBar.NavBarGroup();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
-            // navBarControl1
+            // navBarControlDashboard
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
-            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.navBarGroup1});
-            this.navBarControl1.Location = new System.Drawing.Point(0, 0);
-            this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
-            this.navBarControl1.Size = new System.Drawing.Size(140, 497);
-            this.navBarControl1.TabIndex = 0;
-            this.navBarControl1.Text = "Pit";
-            this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
+            this.navBarControlDashboard.ActiveGroup = this.navBarGroupProject;
+            this.navBarControlDashboard.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBarControlDashboard.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroupProject});
+            this.navBarControlDashboard.Location = new System.Drawing.Point(0, 0);
+            this.navBarControlDashboard.Name = "navBarControlDashboard";
+            this.navBarControlDashboard.OptionsNavPane.ExpandedWidth = 140;
+            this.navBarControlDashboard.Size = new System.Drawing.Size(140, 497);
+            this.navBarControlDashboard.TabIndex = 0;
+            this.navBarControlDashboard.Text = "Pit";
+            this.navBarControlDashboard.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
             // 
-            // navBarGroup1
+            // navBarGroupProject
             // 
-            this.navBarGroup1.Caption = "Proyectos";
-            this.navBarGroup1.Expanded = true;
-            this.navBarGroup1.LargeImage = global::SARMainFrame.Properties.Resources.ico_project;
-            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroupProject.Caption = "Proyectos";
+            this.navBarGroupProject.Expanded = true;
+            this.navBarGroupProject.LargeImage = global::SARMainFrame.Properties.Resources.ico_project;
+            this.navBarGroupProject.Name = "navBarGroupProject";
             // 
             // defaultLookAndFeel1
             // 
@@ -71,11 +71,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 497);
-            this.Controls.Add(this.navBarControl1);
+            this.Controls.Add(this.navBarControlDashboard);
             this.IsMdiContainer = true;
             this.Name = "Dashboard";
             this.Text = "Sistema Administrativo";
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.ResumeLayout(false);
 
@@ -83,8 +83,8 @@
 
         #endregion
 
-        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraNavBar.NavBarControl navBarControlDashboard;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupProject;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
     }
