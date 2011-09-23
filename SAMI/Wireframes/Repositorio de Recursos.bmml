@@ -1,0 +1,50 @@
+<mockup version="1.0" skin="sketch" measuredW="705" measuredH="446">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="33" y="32" w="662" h="404" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <topheight>26</topheight>
+        <text>Repositorio%20de%20Recursos</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::ComboBox" x="105" y="69" w="259" h="-1" measuredW="50" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>All</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="48" y="70" w="-1" h="-1" measuredW="42" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tarea</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="52" y="113" w="625" h="212" measuredW="620" measuredH="298" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tipo%2C%20Nombre%2C%20Cantidad%20P%2C%20Costo%2C%20Unidades%2C%20Costo%20Total%2C%20Utilizado%20Real%0AMaterial%2C%20EUCO%20850%2C%202.00%2C%20150%2C%20Gal%2C%20300%2C%200%0AHumano%2C%20Jefe%20de%20Cuadrilla%2C%201%2C%2010%2C%20Horas%2C%20400%2C%200%0AHumano%2C%20Tipo%201%2C%202%2C%20Horas%2C%206%2C%20480%2C%200%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="602" y="379" w="-1" h="-1" measuredW="75" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Aceptar</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="420" y="339" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Total</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="565" y="338" w="106" h="-1" measuredW="22" measuredH="29" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>0</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::TextInput" x="472" y="337" w="91" h="-1" measuredW="46" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>1180</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="512" y="379" w="-1" h="-1" measuredW="78" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
