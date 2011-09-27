@@ -22,10 +22,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("NERVModel", "FK_CurrencyRate_Currency1", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Currency), "CurrencyRate", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.CurrencyRate), true)]
 [assembly: EdmRelationshipAttribute("NERVModel", "FK_Enterprise_Currency", "Currency", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Currency), "Enterprise", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.Enterprise), true)]
 [assembly: EdmRelationshipAttribute("NERVModel", "FK_UserAccount_Enterprise", "Enterprise", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Enterprise), "UserAccount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.UserAccount), true)]
-[assembly: EdmRelationshipAttribute("NERVModel", "FK_KeyAccess_Latch", "Latch", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Latch), "KeyAccess", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.KeyAccess), true)]
 [assembly: EdmRelationshipAttribute("NERVModel", "FK_KeyAccess_UserGroup", "UserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.UserGroup), "KeyAccess", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.KeyAccess), true)]
-[assembly: EdmRelationshipAttribute("NERVModel", "FK_Latch_Latch", "Latch", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Latch), "Latch1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.Latch), true)]
 [assembly: EdmRelationshipAttribute("NERVModel", "FK_UserAccount_UserGroup", "UserGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.UserGroup), "UserAccount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.UserAccount), true)]
+[assembly: EdmRelationshipAttribute("NERVModel", "FK_KeyAccess_Latch", "Latch", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Latch), "KeyAccess", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.KeyAccess), true)]
+[assembly: EdmRelationshipAttribute("NERVModel", "FK_Latch_Latch", "Latch", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nerv.Latch), "Latch1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nerv.Latch), true)]
 
 #endregion
 
@@ -144,22 +144,6 @@ namespace Nerv
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Latch> Latches
-        {
-            get
-            {
-                if ((_Latches == null))
-                {
-                    _Latches = base.CreateObjectSet<Latch>("Latches");
-                }
-                return _Latches;
-            }
-        }
-        private ObjectSet<Latch> _Latches;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserAccount> UserAccounts
         {
             get
@@ -188,6 +172,22 @@ namespace Nerv
             }
         }
         private ObjectSet<UserGroup> _UserGroups;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Latch> Latches
+        {
+            get
+            {
+                if ((_Latches == null))
+                {
+                    _Latches = base.CreateObjectSet<Latch>("Latches");
+                }
+                return _Latches;
+            }
+        }
+        private ObjectSet<Latch> _Latches;
 
         #endregion
         #region AddTo Methods
@@ -225,14 +225,6 @@ namespace Nerv
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Latches EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLatches(Latch latch)
-        {
-            base.AddObject("Latches", latch);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserAccounts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserAccounts(UserAccount userAccount)
@@ -246,6 +238,14 @@ namespace Nerv
         public void AddToUserGroups(UserGroup userGroup)
         {
             base.AddObject("UserGroups", userGroup);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Latches EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLatches(Latch latch)
+        {
+            base.AddObject("Latches", latch);
         }
 
         #endregion
@@ -1109,44 +1109,6 @@ namespace Nerv
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("NERVModel", "FK_KeyAccess_Latch", "Latch")]
-        public Latch Latch
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Latch> LatchReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("NERVModel", "FK_KeyAccess_UserGroup", "UserGroup")]
         public UserGroup UserGroup
         {
@@ -1175,6 +1137,44 @@ namespace Nerv
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserGroup>("NERVModel.FK_KeyAccess_UserGroup", "UserGroup", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("NERVModel", "FK_KeyAccess_Latch", "Latch")]
+        public Latch Latch
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Latch> LatchReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Latch>("NERVModel.FK_KeyAccess_Latch", "Latch", value);
                 }
             }
         }
@@ -1284,6 +1284,30 @@ namespace Nerv
         private global::System.Int32 _LatchParent;
         partial void OnLatchParentChanging(global::System.Int32 value);
         partial void OnLatchParentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Caption
+        {
+            get
+            {
+                return _Caption;
+            }
+            set
+            {
+                OnCaptionChanging(value);
+                ReportPropertyChanging("Caption");
+                _Caption = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Caption");
+                OnCaptionChanged();
+            }
+        }
+        private global::System.String _Caption;
+        partial void OnCaptionChanging(global::System.String value);
+        partial void OnCaptionChanged();
 
         #endregion
     

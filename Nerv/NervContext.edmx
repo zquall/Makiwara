@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NERVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="NERVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="NERVModelStoreContainer">
           <EntitySet Name="Currency" EntityType="NERVModel.Store.Currency" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CurrencyRate" EntityType="NERVModel.Store.CurrencyRate" store:Type="Tables" Schema="dbo" />
@@ -93,6 +93,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="varchar" Nullable="false" MaxLength="25" />
           <Property Name="LatchParent" Type="int" Nullable="false" />
+          <Property Name="Caption" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -210,8 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NERVModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -220,7 +220,6 @@
           <EntitySet Name="CurrencyRates" EntityType="NERVModel.CurrencyRate" />
           <EntitySet Name="Enterprises" EntityType="NERVModel.Enterprise" />
           <EntitySet Name="KeyAccesses" EntityType="NERVModel.KeyAccess" />
-          <EntitySet Name="Latches" EntityType="NERVModel.Latch" />
           <EntitySet Name="UserAccounts" EntityType="NERVModel.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="NERVModel.UserGroup" />
           <AssociationSet Name="FK_CurrencyRate_Currency" Association="NERVModel.FK_CurrencyRate_Currency">
@@ -239,21 +238,22 @@
             <End Role="Enterprise" EntitySet="Enterprises" />
             <End Role="UserAccount" EntitySet="UserAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK_KeyAccess_Latch" Association="NERVModel.FK_KeyAccess_Latch">
-            <End Role="Latch" EntitySet="Latches" />
-            <End Role="KeyAccess" EntitySet="KeyAccesses" />
-          </AssociationSet>
           <AssociationSet Name="FK_KeyAccess_UserGroup" Association="NERVModel.FK_KeyAccess_UserGroup">
             <End Role="UserGroup" EntitySet="UserGroups" />
+            <End Role="KeyAccess" EntitySet="KeyAccesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAccount_UserGroup" Association="NERVModel.FK_UserAccount_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroups" />
+            <End Role="UserAccount" EntitySet="UserAccounts" />
+          </AssociationSet>
+          <EntitySet Name="Latches" EntityType="NERVModel.Latch" />
+          <AssociationSet Name="FK_KeyAccess_Latch" Association="NERVModel.FK_KeyAccess_Latch">
+            <End Role="Latch" EntitySet="Latches" />
             <End Role="KeyAccess" EntitySet="KeyAccesses" />
           </AssociationSet>
           <AssociationSet Name="FK_Latch_Latch" Association="NERVModel.FK_Latch_Latch">
             <End Role="Latch" EntitySet="Latches" />
             <End Role="Latch1" EntitySet="Latches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserAccount_UserGroup" Association="NERVModel.FK_UserAccount_UserGroup">
-            <End Role="UserGroup" EntitySet="UserGroups" />
-            <End Role="UserAccount" EntitySet="UserAccounts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Currency">
@@ -302,19 +302,8 @@
           <Property Name="UserGroupId" Type="Int32" Nullable="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="LatchId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Latch" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="KeyAccess" ToRole="Latch" />
           <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_KeyAccess_UserGroup" FromRole="KeyAccess" ToRole="UserGroup" />
-        </EntityType>
-        <EntityType Name="Latch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="LatchParent" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="Latch" ToRole="KeyAccess" />
-          <NavigationProperty Name="Latch1" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch" ToRole="Latch1" />
-          <NavigationProperty Name="Latch2" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch1" ToRole="Latch" />
+          <NavigationProperty Name="Latch" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="KeyAccess" ToRole="Latch" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -388,18 +377,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KeyAccess_Latch">
-          <End Role="Latch" Type="NERVModel.Latch" Multiplicity="1" />
-          <End Role="KeyAccess" Type="NERVModel.KeyAccess" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Latch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="KeyAccess">
-              <PropertyRef Name="LatchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_KeyAccess_UserGroup">
           <End Role="UserGroup" Type="NERVModel.UserGroup" Multiplicity="1" />
           <End Role="KeyAccess" Type="NERVModel.KeyAccess" Multiplicity="*" />
@@ -412,18 +389,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Latch_Latch">
-          <End Role="Latch" Type="NERVModel.Latch" Multiplicity="1" />
-          <End Role="Latch1" Type="NERVModel.Latch" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Latch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Latch1">
-              <PropertyRef Name="LatchParent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserAccount_UserGroup">
           <End Role="UserGroup" Type="NERVModel.UserGroup" Multiplicity="1" />
           <End Role="UserAccount" Type="NERVModel.UserAccount" Multiplicity="*" />
@@ -433,6 +398,42 @@
             </Principal>
             <Dependent Role="UserAccount">
               <PropertyRef Name="UserGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Latch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LatchParent" Nullable="false" />
+          <Property Type="String" Name="Caption" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="Latch" ToRole="KeyAccess" />
+          <NavigationProperty Name="Latch1" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch" ToRole="Latch1" />
+          <NavigationProperty Name="Latch2" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch1" ToRole="Latch" />
+        </EntityType>
+        <Association Name="FK_KeyAccess_Latch">
+          <End Type="NERVModel.Latch" Role="Latch" Multiplicity="1" />
+          <End Type="NERVModel.KeyAccess" Role="KeyAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Latch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KeyAccess">
+              <PropertyRef Name="LatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Latch_Latch">
+          <End Type="NERVModel.Latch" Role="Latch" Multiplicity="1" />
+          <End Type="NERVModel.Latch" Role="Latch1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Latch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Latch1">
+              <PropertyRef Name="LatchParent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -470,11 +471,6 @@
             <ScalarProperty Name="Value" ColumnName="Value" />
             <ScalarProperty Name="LatchId" ColumnName="LatchId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Latches"><EntityTypeMapping TypeName="NERVModel.Latch"><MappingFragment StoreEntitySet="Latch">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Code" ColumnName="Code" />
-            <ScalarProperty Name="LatchParent" ColumnName="LatchParent" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="UserAccounts"><EntityTypeMapping TypeName="NERVModel.UserAccount"><MappingFragment StoreEntitySet="UserAccount">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Account" ColumnName="Account" />
@@ -489,6 +485,16 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Latches">
+            <EntityTypeMapping TypeName="NERVModel.Latch">
+              <MappingFragment StoreEntitySet="Latch">
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="LatchParent" ColumnName="LatchParent" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -514,7 +520,6 @@
         <EntityTypeShape EntityType="NERVModel.CurrencyRate" Width="1.5" PointX="5" PointY="4.375" Height="2.4140429687499996" IsExpanded="true" />
         <EntityTypeShape EntityType="NERVModel.Enterprise" Width="1.5" PointX="5" PointY="7.5" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="NERVModel.KeyAccess" Width="1.5" PointX="3" PointY="0.875" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.Latch" Width="1.5" PointX="0.75" PointY="0.875" Height="1.9210009765624994" IsExpanded="true" />
         <EntityTypeShape EntityType="NERVModel.UserAccount" Width="1.5" PointX="7.25" PointY="5.5" Height="2.4140429687499996" IsExpanded="true" />
         <EntityTypeShape EntityType="NERVModel.UserGroup" Width="1.5" PointX="0.75" PointY="4" Height="1.7566536458333317" IsExpanded="true" />
         <AssociationConnector Association="NERVModel.FK_CurrencyRate_Currency" ManuallyRouted="false">
@@ -533,20 +538,10 @@
           <ConnectorPoint PointX="6.5" PointY="7.707021484375" />
           <ConnectorPoint PointX="7.25" PointY="7.707021484375" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_KeyAccess_Latch" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="1.8355004882812498" />
-          <ConnectorPoint PointX="3" PointY="1.8355004882812498" />
-        </AssociationConnector>
         <AssociationConnector Association="NERVModel.FK_KeyAccess_UserGroup" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.84375" />
-          <ConnectorPoint PointX="4.40625" PointY="4.84375" />
-          <ConnectorPoint PointX="4.40625" PointY="2.7960009765624996" />
-        </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_Latch_Latch" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2819230769230767" PointY="2.7960009765624996" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.0460009765624996" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.0460009765624996" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="2.7960009765624996" />
+          <ConnectorPoint PointX="1.5" PointY="4" />
+          <ConnectorPoint PointX="1.5" PointY="1.83550048828125" />
+          <ConnectorPoint PointX="3" PointY="1.83550048828125" />
         </AssociationConnector>
         <AssociationConnector Association="NERVModel.FK_UserAccount_UserGroup" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="4.15625" />
@@ -554,6 +549,17 @@
           <ConnectorPoint PointX="4.489583333333333" PointY="4.15625" />
           <ConnectorPoint PointX="8" PointY="4.15625" />
           <ConnectorPoint PointX="8" PointY="5.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NERVModel.Latch" Width="1.5" PointX="5.375" PointY="0.875" Height="2.0853483072916674" />
+        <AssociationConnector Association="NERVModel.FK_KeyAccess_Latch" >
+          <ConnectorPoint PointX="5.375" PointY="1.83550048828125" />
+          <ConnectorPoint PointX="4.5" PointY="1.83550048828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="NERVModel.FK_Latch_Latch" >
+          <ConnectorPoint PointX="5.9069230769230767" PointY="2.9603483072916674" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="3.2103483072916674" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="3.2103483072916674" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="2.9603483072916674" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
