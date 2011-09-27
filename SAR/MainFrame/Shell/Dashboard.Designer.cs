@@ -55,7 +55,7 @@
             // 
             this.navBarGroupProject.Caption = "Proyectos";
             this.navBarGroupProject.Expanded = true;
-            this.navBarGroupProject.LargeImage = global::MainFrame.Shell.Properties.Resources.ico_project;
+            this.navBarGroupProject.LargeImage = global::MainFrame.Properties.Resources.ico_project;
             this.navBarGroupProject.Name = "navBarGroupProject";
             // 
             // themeManager
