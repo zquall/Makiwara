@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SARMainFrame.Properties
+namespace MainFrame.Shell.Properties
 {
 
 

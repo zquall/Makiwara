@@ -1,4 +1,4 @@
-﻿namespace SARMainFrame
+﻿namespace MainFrame.Shell
 {
     partial class Dashboard
     {
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.navBarControlDashboard = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroupProject = new DevExpress.XtraNavBar.NavBarGroup();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -48,19 +48,19 @@
             this.navBarControlDashboard.OptionsNavPane.ExpandedWidth = 140;
             this.navBarControlDashboard.Size = new System.Drawing.Size(140, 497);
             this.navBarControlDashboard.TabIndex = 0;
-            this.navBarControlDashboard.Text = "Pit";
+            this.navBarControlDashboard.Text = "DashBoard";
             this.navBarControlDashboard.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
             // 
             // navBarGroupProject
             // 
             this.navBarGroupProject.Caption = "Proyectos";
             this.navBarGroupProject.Expanded = true;
-            this.navBarGroupProject.LargeImage = global::SARMainFrame.Properties.Resources.ico_project;
+            this.navBarGroupProject.LargeImage = global::MainFrame.Shell.Properties.Resources.ico_project;
             this.navBarGroupProject.Name = "navBarGroupProject";
             // 
-            // defaultLookAndFeel1
+            // themeManager
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Black";
+            this.themeManager.LookAndFeel.SkinName = "Black";
             // 
             // xtraTabbedMdiManager1
             // 
@@ -85,7 +85,7 @@
 
         private DevExpress.XtraNavBar.NavBarControl navBarControlDashboard;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupProject;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel themeManager;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
     }
 }

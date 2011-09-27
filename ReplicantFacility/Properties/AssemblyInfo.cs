@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MainFrame.Shell")]
+[assembly: AssemblyTitle("ReplicantFacility")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MainFrame.Shell")]
+[assembly: AssemblyProduct("ReplicantFacility")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6ac8cc80-1c5c-48ac-b76a-65dcaa04a04c")]
+[assembly: Guid("51fb9346-d99b-4904-849b-114b9df4220b")]
 
 // Version information for an assembly consists of the following four values:
 //

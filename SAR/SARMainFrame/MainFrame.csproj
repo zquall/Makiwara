@@ -51,27 +51,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginHandler.cs">
+    <Compile Include="Shell\LoginHandler.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginHandler.Designer.cs">
+    <Compile Include="Shell\LoginHandler.Designer.cs">
       <DependentUpon>LoginHandler.cs</DependentUpon>
     </Compile>
-    <Compile Include="SplashLoader.cs">
+    <Compile Include="Shell\SplashLoader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SplashLoader.Designer.cs">
+    <Compile Include="Shell\SplashLoader.Designer.cs">
       <DependentUpon>SplashLoader.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dashboard.cs">
+    <Compile Include="Shell\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.cs">
+    <Compile Include="Shell\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="LoginHandler.resx">
+    <EmbeddedResource Include="Shell\LoginHandler.resx">
       <DependentUpon>LoginHandler.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -86,10 +86,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SplashLoader.resx">
+    <EmbeddedResource Include="Shell\SplashLoader.resx">
       <DependentUpon>SplashLoader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="Shell\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
@@ -103,9 +103,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pandorum\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\images\login\shield-64.png" />
     <Content Include="Resources\images\login\shield_ico.ico" />

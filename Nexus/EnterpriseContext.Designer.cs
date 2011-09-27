@@ -18,14 +18,15 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_ApplicationRequest_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "ApplicationRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.ApplicationRequest), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.ApplicationRequest), "ApplicationRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.ApplicationRequestDetail), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_Measure", "Measure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Measure), "ApplicationRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.ApplicationRequestDetail), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_CustomerContact_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_CustomerProject_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "CustomerProject", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerProject), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_CustomerContact_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_PersonPhone_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
-[assembly: EdmRelationshipAttribute("RENTECOSAModel", "FK_PersonPhone_PhoneType", "PhoneType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.PhoneType), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ApplicationRequest_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequest), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.BudgetRequest), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_Measure", "Measure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Measure), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerContact_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerProject_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerContact_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Employee_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_PhoneType", "PhoneType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.PhoneType), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
 
 #endregion
 
@@ -36,32 +37,32 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class RENTECOSAContext : ObjectContext
+    public partial class EnterpriseEntities : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new RENTECOSAContext object using the connection string found in the 'RENTECOSAContext' section of the application configuration file.
+        /// Initializes a new EnterpriseEntities object using the connection string found in the 'EnterpriseEntities' section of the application configuration file.
         /// </summary>
-        public RENTECOSAContext() : base("name=RENTECOSAContext", "RENTECOSAContext")
+        public EnterpriseEntities() : base("name=EnterpriseEntities", "EnterpriseEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new RENTECOSAContext object.
+        /// Initialize a new EnterpriseEntities object.
         /// </summary>
-        public RENTECOSAContext(string connectionString) : base(connectionString, "RENTECOSAContext")
+        public EnterpriseEntities(string connectionString) : base(connectionString, "EnterpriseEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new RENTECOSAContext object.
+        /// Initialize a new EnterpriseEntities object.
         /// </summary>
-        public RENTECOSAContext(EntityConnection connection) : base(connection, "RENTECOSAContext")
+        public EnterpriseEntities(EntityConnection connection) : base(connection, "EnterpriseEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -80,34 +81,34 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ApplicationRequest> ApplicationRequests
+        public ObjectSet<BudgetRequest> BudgetRequests
         {
             get
             {
-                if ((_ApplicationRequests == null))
+                if ((_BudgetRequests == null))
                 {
-                    _ApplicationRequests = base.CreateObjectSet<ApplicationRequest>("ApplicationRequests");
+                    _BudgetRequests = base.CreateObjectSet<BudgetRequest>("BudgetRequests");
                 }
-                return _ApplicationRequests;
+                return _BudgetRequests;
             }
         }
-        private ObjectSet<ApplicationRequest> _ApplicationRequests;
+        private ObjectSet<BudgetRequest> _BudgetRequests;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ApplicationRequestDetail> ApplicationRequestDetails
+        public ObjectSet<BudgetRequestDetail> BudgetRequestDetails
         {
             get
             {
-                if ((_ApplicationRequestDetails == null))
+                if ((_BudgetRequestDetails == null))
                 {
-                    _ApplicationRequestDetails = base.CreateObjectSet<ApplicationRequestDetail>("ApplicationRequestDetails");
+                    _BudgetRequestDetails = base.CreateObjectSet<BudgetRequestDetail>("BudgetRequestDetails");
                 }
-                return _ApplicationRequestDetails;
+                return _BudgetRequestDetails;
             }
         }
-        private ObjectSet<ApplicationRequestDetail> _ApplicationRequestDetails;
+        private ObjectSet<BudgetRequestDetail> _BudgetRequestDetails;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -144,18 +145,18 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CustomerProject> CustomerProjects
+        public ObjectSet<Employee> Employees
         {
             get
             {
-                if ((_CustomerProjects == null))
+                if ((_Employees == null))
                 {
-                    _CustomerProjects = base.CreateObjectSet<CustomerProject>("CustomerProjects");
+                    _Employees = base.CreateObjectSet<Employee>("Employees");
                 }
-                return _CustomerProjects;
+                return _Employees;
             }
         }
-        private ObjectSet<CustomerProject> _CustomerProjects;
+        private ObjectSet<Employee> _Employees;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -220,24 +221,40 @@ namespace Nexus
             }
         }
         private ObjectSet<PhoneType> _PhoneTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Project> Projects
+        {
+            get
+            {
+                if ((_Projects == null))
+                {
+                    _Projects = base.CreateObjectSet<Project>("Projects");
+                }
+                return _Projects;
+            }
+        }
+        private ObjectSet<Project> _Projects;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ApplicationRequests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the BudgetRequests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToApplicationRequests(ApplicationRequest applicationRequest)
+        public void AddToBudgetRequests(BudgetRequest budgetRequest)
         {
-            base.AddObject("ApplicationRequests", applicationRequest);
+            base.AddObject("BudgetRequests", budgetRequest);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ApplicationRequestDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the BudgetRequestDetails EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToApplicationRequestDetails(ApplicationRequestDetail applicationRequestDetail)
+        public void AddToBudgetRequestDetails(BudgetRequestDetail budgetRequestDetail)
         {
-            base.AddObject("ApplicationRequestDetails", applicationRequestDetail);
+            base.AddObject("BudgetRequestDetails", budgetRequestDetail);
         }
     
         /// <summary>
@@ -257,11 +274,11 @@ namespace Nexus
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the CustomerProjects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Employees EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCustomerProjects(CustomerProject customerProject)
+        public void AddToEmployees(Employee employee)
         {
-            base.AddObject("CustomerProjects", customerProject);
+            base.AddObject("Employees", employee);
         }
     
         /// <summary>
@@ -295,6 +312,14 @@ namespace Nexus
         {
             base.AddObject("PhoneTypes", phoneType);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Projects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProjects(Project project)
+        {
+            base.AddObject("Projects", project);
+        }
 
         #endregion
     }
@@ -307,24 +332,26 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="ApplicationRequest")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="BudgetRequest")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ApplicationRequest : EntityObject
+    public partial class BudgetRequest : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new ApplicationRequest object.
+        /// Create a new BudgetRequest object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="customerId">Initial value of the CustomerId property.</param>
-        public static ApplicationRequest CreateApplicationRequest(global::System.Int32 id, global::System.Int32 customerId)
+        /// <param name="projectName">Initial value of the ProjectName property.</param>
+        public static BudgetRequest CreateBudgetRequest(global::System.Int32 id, global::System.Int32 customerId, global::System.String projectName)
         {
-            ApplicationRequest applicationRequest = new ApplicationRequest();
-            applicationRequest.Id = id;
-            applicationRequest.CustomerId = customerId;
-            return applicationRequest;
+            BudgetRequest budgetRequest = new BudgetRequest();
+            budgetRequest.Id = id;
+            budgetRequest.CustomerId = customerId;
+            budgetRequest.ProjectName = projectName;
+            return budgetRequest;
         }
 
         #endregion
@@ -380,6 +407,30 @@ namespace Nexus
         private global::System.Int32 _CustomerId;
         partial void OnCustomerIdChanging(global::System.Int32 value);
         partial void OnCustomerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ProjectName
+        {
+            get
+            {
+                return _ProjectName;
+            }
+            set
+            {
+                OnProjectNameChanging(value);
+                ReportPropertyChanging("ProjectName");
+                _ProjectName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ProjectName");
+                OnProjectNameChanged();
+            }
+        }
+        private global::System.String _ProjectName;
+        partial void OnProjectNameChanging(global::System.String value);
+        partial void OnProjectNameChanged();
 
         #endregion
     
@@ -391,16 +442,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequest_Customer", "Customer")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequest_Customer", "Customer")]
         public Customer Customer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_ApplicationRequest_Customer", "Customer").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_ApplicationRequest_Customer", "Customer").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_ApplicationRequest_Customer", "Customer").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_ApplicationRequest_Customer", "Customer").Value = value;
             }
         }
         /// <summary>
@@ -412,13 +463,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_ApplicationRequest_Customer", "Customer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_ApplicationRequest_Customer", "Customer");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("RENTECOSAModel.FK_ApplicationRequest_Customer", "Customer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("EnterpriseModel.FK_ApplicationRequest_Customer", "Customer", value);
                 }
             }
         }
@@ -429,18 +480,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequestDetail")]
-        public EntityCollection<ApplicationRequestDetail> ApplicationRequestDetails
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequestDetail")]
+        public EntityCollection<BudgetRequestDetail> BudgetRequestDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ApplicationRequestDetail>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequestDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequestDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ApplicationRequestDetail>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequestDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequestDetail", value);
                 }
             }
         }
@@ -451,15 +502,15 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="ApplicationRequestDetail")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="BudgetRequestDetail")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ApplicationRequestDetail : EntityObject
+    public partial class BudgetRequestDetail : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new ApplicationRequestDetail object.
+        /// Create a new BudgetRequestDetail object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="applicationRequestId">Initial value of the ApplicationRequestId property.</param>
@@ -467,16 +518,16 @@ namespace Nexus
         /// <param name="quantity">Initial value of the Quantity property.</param>
         /// <param name="problem">Initial value of the Problem property.</param>
         /// <param name="solution">Initial value of the Solution property.</param>
-        public static ApplicationRequestDetail CreateApplicationRequestDetail(global::System.Int32 id, global::System.Int32 applicationRequestId, global::System.Int32 measureId, global::System.Double quantity, global::System.String problem, global::System.String solution)
+        public static BudgetRequestDetail CreateBudgetRequestDetail(global::System.Int64 id, global::System.Int32 applicationRequestId, global::System.Int32 measureId, global::System.Double quantity, global::System.String problem, global::System.String solution)
         {
-            ApplicationRequestDetail applicationRequestDetail = new ApplicationRequestDetail();
-            applicationRequestDetail.Id = id;
-            applicationRequestDetail.ApplicationRequestId = applicationRequestId;
-            applicationRequestDetail.MeasureId = measureId;
-            applicationRequestDetail.Quantity = quantity;
-            applicationRequestDetail.Problem = problem;
-            applicationRequestDetail.Solution = solution;
-            return applicationRequestDetail;
+            BudgetRequestDetail budgetRequestDetail = new BudgetRequestDetail();
+            budgetRequestDetail.Id = id;
+            budgetRequestDetail.ApplicationRequestId = applicationRequestId;
+            budgetRequestDetail.MeasureId = measureId;
+            budgetRequestDetail.Quantity = quantity;
+            budgetRequestDetail.Problem = problem;
+            budgetRequestDetail.Solution = solution;
+            return budgetRequestDetail;
         }
 
         #endregion
@@ -487,7 +538,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Int64 Id
         {
             get
             {
@@ -505,8 +556,8 @@ namespace Nexus
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
         partial void OnIdChanged();
     
         /// <summary>
@@ -639,16 +690,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest")]
-        public ApplicationRequest ApplicationRequest
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest")]
+        public BudgetRequest BudgetRequest
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BudgetRequest>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BudgetRequest>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest").Value = value;
             }
         }
         /// <summary>
@@ -656,17 +707,17 @@ namespace Nexus
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<ApplicationRequest> ApplicationRequestReference
+        public EntityReference<BudgetRequest> BudgetRequestReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BudgetRequest>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequestDetail_ApplicationRequest", "ApplicationRequest", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BudgetRequest>("EnterpriseModel.FK_ApplicationRequestDetail_ApplicationRequest", "BudgetRequest", value);
                 }
             }
         }
@@ -677,16 +728,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_Measure", "Measure")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_Measure", "Measure")]
         public Measure Measure
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "Measure").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "Measure").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "Measure").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "Measure").Value = value;
             }
         }
         /// <summary>
@@ -698,13 +749,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "Measure");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Measure>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "Measure");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Measure>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "Measure", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Measure>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "Measure", value);
                 }
             }
         }
@@ -715,7 +766,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="Customer")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Customer")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Customer : EntityObject
@@ -825,18 +876,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequest_Customer", "ApplicationRequest")]
-        public EntityCollection<ApplicationRequest> ApplicationRequests
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequest_Customer", "BudgetRequest")]
+        public EntityCollection<BudgetRequest> BudgetRequests
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequest_Customer", "ApplicationRequest");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BudgetRequest>("EnterpriseModel.FK_ApplicationRequest_Customer", "BudgetRequest");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ApplicationRequest>("RENTECOSAModel.FK_ApplicationRequest_Customer", "ApplicationRequest", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BudgetRequest>("EnterpriseModel.FK_ApplicationRequest_Customer", "BudgetRequest", value);
                 }
             }
         }
@@ -847,18 +898,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerContact_Customer", "CustomerContact")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerContact_Customer", "CustomerContact")]
         public EntityCollection<CustomerContact> CustomerContacts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerContact>("RENTECOSAModel.FK_CustomerContact_Customer", "CustomerContact");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerContact>("EnterpriseModel.FK_CustomerContact_Customer", "CustomerContact");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerContact>("RENTECOSAModel.FK_CustomerContact_Customer", "CustomerContact", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerContact>("EnterpriseModel.FK_CustomerContact_Customer", "CustomerContact", value);
                 }
             }
         }
@@ -869,18 +920,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerProject_Customer", "CustomerProject")]
-        public EntityCollection<CustomerProject> CustomerProjects
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerProject_Customer", "Project")]
+        public EntityCollection<Project> Projects
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerProject>("RENTECOSAModel.FK_CustomerProject_Customer", "CustomerProject");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("EnterpriseModel.FK_CustomerProject_Customer", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerProject>("RENTECOSAModel.FK_CustomerProject_Customer", "CustomerProject", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("EnterpriseModel.FK_CustomerProject_Customer", "Project", value);
                 }
             }
         }
@@ -891,7 +942,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="CustomerContact")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="CustomerContact")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class CustomerContact : EntityObject
@@ -1027,16 +1078,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerContact_Customer", "Customer")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerContact_Customer", "Customer")]
         public Customer Customer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerContact_Customer", "Customer").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerContact_Customer", "Customer").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerContact_Customer", "Customer").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerContact_Customer", "Customer").Value = value;
             }
         }
         /// <summary>
@@ -1048,13 +1099,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerContact_Customer", "Customer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerContact_Customer", "Customer");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("RENTECOSAModel.FK_CustomerContact_Customer", "Customer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("EnterpriseModel.FK_CustomerContact_Customer", "Customer", value);
                 }
             }
         }
@@ -1065,16 +1116,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerContact_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerContact_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_CustomerContact_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_CustomerContact_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_CustomerContact_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_CustomerContact_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -1086,13 +1137,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_CustomerContact_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_CustomerContact_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("RENTECOSAModel.FK_CustomerContact_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("EnterpriseModel.FK_CustomerContact_Person", "Person", value);
                 }
             }
         }
@@ -1103,26 +1154,26 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="CustomerProject")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Employee")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CustomerProject : EntityObject
+    public partial class Employee : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CustomerProject object.
+        /// Create a new Employee object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="customerId">Initial value of the CustomerId property.</param>
-        public static CustomerProject CreateCustomerProject(global::System.Int32 id, global::System.String name, global::System.Int32 customerId)
+        /// <param name="personId">Initial value of the PersonId property.</param>
+        /// <param name="userAccountId">Initial value of the UserAccountId property.</param>
+        public static Employee CreateEmployee(global::System.Int32 id, global::System.Int32 personId, global::System.Int32 userAccountId)
         {
-            CustomerProject customerProject = new CustomerProject();
-            customerProject.Id = id;
-            customerProject.Name = name;
-            customerProject.CustomerId = customerId;
-            return customerProject;
+            Employee employee = new Employee();
+            employee.Id = id;
+            employee.PersonId = personId;
+            employee.UserAccountId = userAccountId;
+            return employee;
         }
 
         #endregion
@@ -1160,48 +1211,48 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Name
+        public global::System.Int32 PersonId
         {
             get
             {
-                return _Name;
+                return _PersonId;
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
+                OnPersonIdChanging(value);
+                ReportPropertyChanging("PersonId");
+                _PersonId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PersonId");
+                OnPersonIdChanged();
             }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
+        private global::System.Int32 _PersonId;
+        partial void OnPersonIdChanging(global::System.Int32 value);
+        partial void OnPersonIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 CustomerId
+        public global::System.Int32 UserAccountId
         {
             get
             {
-                return _CustomerId;
+                return _UserAccountId;
             }
             set
             {
-                OnCustomerIdChanging(value);
-                ReportPropertyChanging("CustomerId");
-                _CustomerId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CustomerId");
-                OnCustomerIdChanged();
+                OnUserAccountIdChanging(value);
+                ReportPropertyChanging("UserAccountId");
+                _UserAccountId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserAccountId");
+                OnUserAccountIdChanged();
             }
         }
-        private global::System.Int32 _CustomerId;
-        partial void OnCustomerIdChanging(global::System.Int32 value);
-        partial void OnCustomerIdChanged();
+        private global::System.Int32 _UserAccountId;
+        partial void OnUserAccountIdChanging(global::System.Int32 value);
+        partial void OnUserAccountIdChanged();
 
         #endregion
     
@@ -1213,16 +1264,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerProject_Customer", "Customer")]
-        public Customer Customer
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Employee_Person", "Person")]
+        public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerProject_Customer", "Customer").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_Employee_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerProject_Customer", "Customer").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_Employee_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -1230,17 +1281,17 @@ namespace Nexus
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Customer> CustomerReference
+        public EntityReference<Person> PersonReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("RENTECOSAModel.FK_CustomerProject_Customer", "Customer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_Employee_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("RENTECOSAModel.FK_CustomerProject_Customer", "Customer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("EnterpriseModel.FK_Employee_Person", "Person", value);
                 }
             }
         }
@@ -1251,7 +1302,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="Measure")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Measure")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Measure : EntityObject
@@ -1263,11 +1314,13 @@ namespace Nexus
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Measure CreateMeasure(global::System.Int32 id, global::System.String name)
+        /// <param name="symbol">Initial value of the Symbol property.</param>
+        public static Measure CreateMeasure(global::System.Int32 id, global::System.String name, global::System.String symbol)
         {
             Measure measure = new Measure();
             measure.Id = id;
             measure.Name = name;
+            measure.Symbol = symbol;
             return measure;
         }
 
@@ -1324,6 +1377,30 @@ namespace Nexus
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Symbol
+        {
+            get
+            {
+                return _Symbol;
+            }
+            set
+            {
+                OnSymbolChanging(value);
+                ReportPropertyChanging("Symbol");
+                _Symbol = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Symbol");
+                OnSymbolChanged();
+            }
+        }
+        private global::System.String _Symbol;
+        partial void OnSymbolChanging(global::System.String value);
+        partial void OnSymbolChanged();
 
         #endregion
     
@@ -1335,18 +1412,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_ApplicationRequestDetail_Measure", "ApplicationRequestDetail")]
-        public EntityCollection<ApplicationRequestDetail> ApplicationRequestDetails
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_Measure", "BudgetRequestDetail")]
+        public EntityCollection<BudgetRequestDetail> BudgetRequestDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ApplicationRequestDetail>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "ApplicationRequestDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "BudgetRequestDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ApplicationRequestDetail>("RENTECOSAModel.FK_ApplicationRequestDetail_Measure", "ApplicationRequestDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "BudgetRequestDetail", value);
                 }
             }
         }
@@ -1357,7 +1434,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="Person")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Person")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Person : EntityObject
@@ -1467,18 +1544,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_CustomerContact_Person", "CustomerContact")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerContact_Person", "CustomerContact")]
         public EntityCollection<CustomerContact> CustomerContacts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerContact>("RENTECOSAModel.FK_CustomerContact_Person", "CustomerContact");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CustomerContact>("EnterpriseModel.FK_CustomerContact_Person", "CustomerContact");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerContact>("RENTECOSAModel.FK_CustomerContact_Person", "CustomerContact", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CustomerContact>("EnterpriseModel.FK_CustomerContact_Person", "CustomerContact", value);
                 }
             }
         }
@@ -1489,18 +1566,40 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_PersonPhone_Person", "PersonPhone")]
-        public EntityCollection<PersonPhone> PersonPhones
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Employee_Person", "Employee")]
+        public EntityCollection<Employee> Employees
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PersonPhone>("RENTECOSAModel.FK_PersonPhone_Person", "PersonPhone");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Employee>("EnterpriseModel.FK_Employee_Person", "Employee");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PersonPhone>("RENTECOSAModel.FK_PersonPhone_Person", "PersonPhone", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("EnterpriseModel.FK_Employee_Person", "Employee", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_PersonPhone_Person", "PersonPhone")]
+        public EntityCollection<PersonPhone> PersonPhones
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PersonPhone>("EnterpriseModel.FK_PersonPhone_Person", "PersonPhone");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PersonPhone>("EnterpriseModel.FK_PersonPhone_Person", "PersonPhone", value);
                 }
             }
         }
@@ -1511,7 +1610,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="PersonPhone")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="PersonPhone")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class PersonPhone : EntityObject
@@ -1647,16 +1746,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_PersonPhone_Person", "Person")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_PersonPhone_Person", "Person")]
         public Person Person
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_PersonPhone_Person", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_PersonPhone_Person", "Person").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_PersonPhone_Person", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_PersonPhone_Person", "Person").Value = value;
             }
         }
         /// <summary>
@@ -1668,13 +1767,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("RENTECOSAModel.FK_PersonPhone_Person", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("EnterpriseModel.FK_PersonPhone_Person", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("RENTECOSAModel.FK_PersonPhone_Person", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("EnterpriseModel.FK_PersonPhone_Person", "Person", value);
                 }
             }
         }
@@ -1685,16 +1784,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_PersonPhone_PhoneType", "PhoneType")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_PersonPhone_PhoneType", "PhoneType")]
         public PhoneType PhoneType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PhoneType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("EnterpriseModel.FK_PersonPhone_PhoneType", "PhoneType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PhoneType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("EnterpriseModel.FK_PersonPhone_PhoneType", "PhoneType").Value = value;
             }
         }
         /// <summary>
@@ -1706,13 +1805,13 @@ namespace Nexus
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PhoneType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PhoneType>("EnterpriseModel.FK_PersonPhone_PhoneType", "PhoneType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PhoneType>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PhoneType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PhoneType>("EnterpriseModel.FK_PersonPhone_PhoneType", "PhoneType", value);
                 }
             }
         }
@@ -1723,7 +1822,7 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="RENTECOSAModel", Name="PhoneType")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="PhoneType")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class PhoneType : EntityObject
@@ -1807,18 +1906,166 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RENTECOSAModel", "FK_PersonPhone_PhoneType", "PersonPhone")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_PersonPhone_PhoneType", "PersonPhone")]
         public EntityCollection<PersonPhone> PersonPhones
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PersonPhone>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PersonPhone");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PersonPhone>("EnterpriseModel.FK_PersonPhone_PhoneType", "PersonPhone");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PersonPhone>("RENTECOSAModel.FK_PersonPhone_PhoneType", "PersonPhone", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PersonPhone>("EnterpriseModel.FK_PersonPhone_PhoneType", "PersonPhone", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Project")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Project : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Project object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="customerId">Initial value of the CustomerId property.</param>
+        public static Project CreateProject(global::System.Int32 id, global::System.String name, global::System.Int32 customerId)
+        {
+            Project project = new Project();
+            project.Id = id;
+            project.Name = name;
+            project.CustomerId = customerId;
+            return project;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CustomerId
+        {
+            get
+            {
+                return _CustomerId;
+            }
+            set
+            {
+                OnCustomerIdChanging(value);
+                ReportPropertyChanging("CustomerId");
+                _CustomerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustomerId");
+                OnCustomerIdChanged();
+            }
+        }
+        private global::System.Int32 _CustomerId;
+        partial void OnCustomerIdChanging(global::System.Int32 value);
+        partial void OnCustomerIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_CustomerProject_Customer", "Customer")]
+        public Customer Customer
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerProject_Customer", "Customer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerProject_Customer", "Customer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Customer> CustomerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_CustomerProject_Customer", "Customer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("EnterpriseModel.FK_CustomerProject_Customer", "Customer", value);
                 }
             }
         }

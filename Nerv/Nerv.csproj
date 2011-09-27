@@ -43,21 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NervEntityFramework.Designer.cs">
+    <Compile Include="NervContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NervEntityFramework.edmx</DependentUpon>
+      <DependentUpon>NervContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="NervEntityFramework.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NervEntityFramework.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="NervContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NervContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

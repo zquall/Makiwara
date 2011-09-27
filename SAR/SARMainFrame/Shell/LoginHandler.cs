@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 
 
-namespace SARMainFrame
+namespace MainFrame.Shell
 {
     public partial class LoginHandler : Form
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace SARMainFrame
+namespace MainFrame.Shell
 {
     public partial class Dashboard : DevExpress.XtraEditors.XtraForm
     {
@@ -16,4 +16,8 @@ namespace SARMainFrame
             InitializeComponent();
         }
     }
+
+    #region NavigationBar Loading
+
+    #endregion
 }
