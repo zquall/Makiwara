@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ReplicantRepository.Response;
+using ReplicantRepository.Request;
 
 namespace CORE.Services
 {
@@ -13,27 +14,31 @@ namespace CORE.Services
             
         }
 
-        public MenuResponse getNavigationItemList(string groupCode)
+        public MenuResponse getNavigationItemsByGroupCode(MenuRequest request)
         {
             var response = new MenuResponse();
-            var tmpGroupId = getNavigationGroupByCode(groupCode).NavigationGroup.Id;
-            foreach (var item in Olympus._Nerv.Latches.Where(x => x.LatchParent == tmpGroupId).ToList())
-	        {
-		        NavigationItem tmpNavItem = new NavigationItem();
-                tmpNavItem.Code = item.Code;
-                tmpNavItem.Caption = item.Caption;
-                response.NavigationItemList.Add(tmpNavItem);
-	        }             
+            var navigationGroup = getNavigationGroupByCode(request);
+            if (navigationGroup != null)
+            {
+                response.NavigationItemList = new List<NavigationItem>();
+                foreach (var item in Olympus._Nerv.Latches.Where(x => x.LatchParent == navigationGroup.Id).ToList())
+                {
+                    NavigationItem tmpNavItem = new NavigationItem();
+                    tmpNavItem.Code = item.Code;
+                    tmpNavItem.Caption = item.Caption;
+                    response.NavigationItemList.Add(tmpNavItem);
+                }
+            }                       
             return response;
         }
 
-        public MenuResponse getNavigationGroupByCode(string groupCode)
+        public NavigationGroup getNavigationGroupByCode(MenuRequest request)
         {
-            var response = new MenuResponse();
-            var tmpMenuGroup = Olympus._Nerv.Latches.Where(x => x.Code == groupCode).FirstOrDefault();   
+            var response = new NavigationGroup();
+            var tmpMenuGroup = Olympus._Nerv.Latches.Where(x => x.Code == request.NavigationGroupCode).FirstOrDefault();   
             if (tmpMenuGroup != null)
             {
-                response.NavigationGroup.Id = tmpMenuGroup.Id;
+                response.Id = tmpMenuGroup.Id;
             }
             return response;
         }

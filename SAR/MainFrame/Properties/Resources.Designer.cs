@@ -59,12 +59,5 @@ namespace MainFrame.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static System.Drawing.Bitmap ico_project {
-            get {
-                object obj = ResourceManager.GetObject("ico-project", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

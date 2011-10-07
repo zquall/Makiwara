@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MainFrame.Shell.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v10.1, Version=10.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v10.1, Version=10.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -92,7 +95,9 @@
     <EmbeddedResource Include="Shell\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,6 +118,18 @@
     <ProjectReference Include="..\..\Hades\Hades.csproj">
       <Project>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</Project>
       <Name>Hades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReplicantFacility\ReplicantFacility.csproj">
+      <Project>{D06CB9E6-91A5-48A2-8B26-03F93D2A5AA4}</Project>
+      <Name>ReplicantFacility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReplicantRepository\ReplicantRepository.csproj">
+      <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
+      <Name>ReplicantRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shellProject\shellProject.csproj">
+      <Project>{5FA69ED7-5A89-482F-8C1E-DDEED2D324D7}</Project>
+      <Name>shellProject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,6 +6,7 @@ using Nerv;
 
 namespace CORE.Services
 {
+
     public static class Olympus
     {
         public static NERVEntities _Nerv = new NERVEntities();

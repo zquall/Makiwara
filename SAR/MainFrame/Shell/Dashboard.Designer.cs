@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.navBarControlDashboard = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroupProject = new DevExpress.XtraNavBar.NavBarGroup();
             this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).BeginInit();
             this.SuspendLayout();
             // 
             // navBarControlDashboard
@@ -46,37 +47,40 @@
             this.navBarControlDashboard.Location = new System.Drawing.Point(0, 0);
             this.navBarControlDashboard.Name = "navBarControlDashboard";
             this.navBarControlDashboard.OptionsNavPane.ExpandedWidth = 140;
-            this.navBarControlDashboard.Size = new System.Drawing.Size(140, 497);
+            this.navBarControlDashboard.Size = new System.Drawing.Size(164, 573);
             this.navBarControlDashboard.TabIndex = 0;
             this.navBarControlDashboard.Text = "DashBoard";
             this.navBarControlDashboard.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
+            this.navBarControlDashboard.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControlDashboard_LinkClicked);
             // 
             // navBarGroupProject
             // 
             this.navBarGroupProject.Caption = "Proyectos";
             this.navBarGroupProject.Expanded = true;
-            this.navBarGroupProject.LargeImage = global::MainFrame.Properties.Resources.ico_project;
+            this.navBarGroupProject.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProject.LargeImage")));
             this.navBarGroupProject.Name = "navBarGroupProject";
             // 
             // themeManager
             // 
             this.themeManager.LookAndFeel.SkinName = "Black";
             // 
-            // xtraTabbedMdiManager1
+            // MdiManager
             // 
-            this.xtraTabbedMdiManager1.MdiParent = this;
+            this.MdiManager.MdiParent = this;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 497);
+            this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this.navBarControlDashboard);
             this.IsMdiContainer = true;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Dashboard";
             this.Text = "Sistema Administrativo";
+            this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,6 +90,6 @@
         private DevExpress.XtraNavBar.NavBarControl navBarControlDashboard;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupProject;
         private DevExpress.LookAndFeel.DefaultLookAndFeel themeManager;
-        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
+        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager MdiManager;
     }
 }
