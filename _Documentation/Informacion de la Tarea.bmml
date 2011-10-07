@@ -1,15 +1,56 @@
 <mockup version="1.0" skin="sketch" measuredW="1260" measuredH="809">
   <controls>
-    <control controlID="142" controlTypeID="__group__" x="660" y="34" w="-1" h="-1" measuredW="590" measuredH="370" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="160" controlTypeID="com.balsamiq.mockups::Button" x="319" y="739" w="72" h="-1" measuredW="72" measuredH="28" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Eliminar</text>
+      </controlProperties>
+    </control>
+    <control controlID="161" controlTypeID="__group__" x="35" y="429" w="610" h="370" measuredW="590" measuredH="370" zOrder="4" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="94" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="142">
+        <control controlID="53" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="610" h="370" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="56">
+          <controlProperties>
+            <text>Informaci%F3n%20de%20la%20Tarea</text>
+            <topheight>26</topheight>
+          </controlProperties>
+        </control>
+        <control controlID="54" controlTypeID="com.balsamiq.mockups::Button" x="505" y="312" w="90" h="-1" measuredW="78" measuredH="28" zOrder="1" locked="false" isInGroup="56">
+          <controlProperties>
+            <text>Cancelar</text>
+          </controlProperties>
+        </control>
+        <control controlID="55" controlTypeID="com.balsamiq.mockups::Button" x="387" y="312" w="87" h="-1" measuredW="75" measuredH="28" zOrder="2" locked="false" isInGroup="56">
+          <controlProperties>
+            <text>Aceptar</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="162" controlTypeID="com.balsamiq.mockups::TabBar" x="43" y="463" w="594" h="268" measuredW="354" measuredH="100" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Genral%2C%20Recursos%2C%20Predecesoras%2C%20Notas</text>
+        <selectedIndex>1</selectedIndex>
+      </controlProperties>
+    </control>
+    <control controlID="163" controlTypeID="com.balsamiq.mockups::DataGrid" x="51" y="502" w="574" h="208" measuredW="576" measuredH="208" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tipo%2C%20Nombre%2C%20Cantidad%2C%20Costo%2C%20Unidades%2C%20Costo%20Total%2C%20Utilizado%0AMaterial%2C%20EUCO%20850%2C%202%2C%20150%2C%20Gal%2C%20300%2C%200%0AHumano%2C%20Jefe%20de%20Cuadrilla%2C%201%2C%2010%2C%20Horas%2C%20400%2C%200%0AHumano%2C%20Tipo%201%2C%202%2C%20Horas%2C%206%2C%20480%2C%200%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C</text>
+      </controlProperties>
+    </control>
+    <control controlID="164" controlTypeID="com.balsamiq.mockups::Button" x="311" y="739" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Eliminar</text>
+      </controlProperties>
+    </control>
+    <control controlID="158" controlTypeID="__group__" x="660" y="429" w="-1" h="-1" measuredW="590" measuredH="370" zOrder="2" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="155" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="158">
           <groupChildrenDescriptors>
-            <control controlID="90" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="94">
+            <control controlID="95" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="100">
               <groupChildrenDescriptors>
                 <control controlID="53" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="590" h="370" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="56">
                   <controlProperties>
-                    <topheight>26</topheight>
                     <text>Informaci%F3n%20de%20la%20Tarea</text>
+                    <topheight>26</topheight>
                   </controlProperties>
                 </control>
                 <control controlID="54" controlTypeID="com.balsamiq.mockups::Button" x="488" y="312" w="87" h="-1" measuredW="78" measuredH="28" zOrder="1" locked="false" isInGroup="56">
@@ -24,20 +65,22 @@
                 </control>
               </groupChildrenDescriptors>
             </control>
-            <control controlID="92" controlTypeID="com.balsamiq.mockups::TabBar" x="9" y="34" w="572" h="268" measuredW="354" measuredH="100" zOrder="1" locked="false" isInGroup="94">
+            <control controlID="97" controlTypeID="com.balsamiq.mockups::TabBar" x="9" y="34" w="572" h="268" measuredW="354" measuredH="100" zOrder="1" locked="false" isInGroup="100">
               <controlProperties>
                 <text>Genral%2C%20Recursos%2C%20Predecesoras%2C%20Notas</text>
-                <selectedIndex>2</selectedIndex>
+                <selectedIndex>3</selectedIndex>
               </controlProperties>
             </control>
-            <control controlID="93" controlTypeID="com.balsamiq.mockups::DataGrid" x="25" y="74" w="541" h="208" measuredW="149" measuredH="208" zOrder="2" locked="false" isInGroup="94">
+            <control controlID="99" controlTypeID="com.balsamiq.mockups::TextArea" x="21" y="74" w="546" h="215" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="100">
               <controlProperties>
-                <text>Id%2C%20Nombre%2C%20Tipo%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C</text>
+                <text>Escriba%20sus%20notas%20respecto%20a%20esta%20tarea%20aqu%ED.</text>
+                <verticalScrollbar>true</verticalScrollbar>
+                <value>0</value>
               </controlProperties>
             </control>
           </groupChildrenDescriptors>
         </control>
-        <control controlID="106" controlTypeID="com.balsamiq.mockups::Button" x="275" y="312" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="1" locked="false" isInGroup="142">
+        <control controlID="156" controlTypeID="com.balsamiq.mockups::Button" x="281" y="310" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="1" locked="false" isInGroup="158">
           <controlProperties>
             <text>Eliminar</text>
           </controlProperties>
@@ -50,8 +93,8 @@
           <groupChildrenDescriptors>
             <control controlID="137" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="590" h="370" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="140">
               <controlProperties>
-                <topheight>26</topheight>
                 <text>Informaci%F3n%20de%20la%20Tarea</text>
+                <topheight>26</topheight>
               </controlProperties>
             </control>
             <control controlID="138" controlTypeID="com.balsamiq.mockups::Button" x="488" y="312" w="87" h="-1" measuredW="78" measuredH="28" zOrder="1" locked="false" isInGroup="140">
@@ -134,16 +177,16 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="158" controlTypeID="__group__" x="660" y="429" w="-1" h="-1" measuredW="590" measuredH="370" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="142" controlTypeID="__group__" x="660" y="34" w="-1" h="-1" measuredW="590" measuredH="370" zOrder="1" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="155" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="158">
+        <control controlID="94" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="142">
           <groupChildrenDescriptors>
-            <control controlID="95" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="100">
+            <control controlID="90" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="0" locked="false" isInGroup="94">
               <groupChildrenDescriptors>
                 <control controlID="53" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="590" h="370" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="56">
                   <controlProperties>
-                    <topheight>26</topheight>
                     <text>Informaci%F3n%20de%20la%20Tarea</text>
+                    <topheight>26</topheight>
                   </controlProperties>
                 </control>
                 <control controlID="54" controlTypeID="com.balsamiq.mockups::Button" x="488" y="312" w="87" h="-1" measuredW="78" measuredH="28" zOrder="1" locked="false" isInGroup="56">
@@ -158,67 +201,20 @@
                 </control>
               </groupChildrenDescriptors>
             </control>
-            <control controlID="97" controlTypeID="com.balsamiq.mockups::TabBar" x="9" y="34" w="572" h="268" measuredW="354" measuredH="100" zOrder="1" locked="false" isInGroup="100">
+            <control controlID="92" controlTypeID="com.balsamiq.mockups::TabBar" x="9" y="34" w="572" h="268" measuredW="354" measuredH="100" zOrder="1" locked="false" isInGroup="94">
               <controlProperties>
                 <text>Genral%2C%20Recursos%2C%20Predecesoras%2C%20Notas</text>
-                <selectedIndex>3</selectedIndex>
+                <selectedIndex>2</selectedIndex>
               </controlProperties>
             </control>
-            <control controlID="99" controlTypeID="com.balsamiq.mockups::TextArea" x="21" y="74" w="546" h="215" measuredW="200" measuredH="140" zOrder="2" locked="false" isInGroup="100">
+            <control controlID="93" controlTypeID="com.balsamiq.mockups::DataGrid" x="25" y="74" w="541" h="208" measuredW="149" measuredH="208" zOrder="2" locked="false" isInGroup="94">
               <controlProperties>
-                <text>Escriba%20sus%20notas%20respecto%20a%20esta%20tarea%20aqu%ED.</text>
-                <verticalScrollbar>true</verticalScrollbar>
-                <value>0</value>
+                <text>Id%2C%20Nombre%2C%20Tipo%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C%0A%2C%20%2C</text>
               </controlProperties>
             </control>
           </groupChildrenDescriptors>
         </control>
-        <control controlID="156" controlTypeID="com.balsamiq.mockups::Button" x="281" y="310" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="1" locked="false" isInGroup="158">
-          <controlProperties>
-            <text>Eliminar</text>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="159" controlTypeID="__group__" x="35" y="429" w="-1" h="-1" measuredW="590" measuredH="370" zOrder="3" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="151" controlTypeID="com.balsamiq.mockups::Button" x="284" y="310" w="72" h="-1" measuredW="72" measuredH="28" zOrder="0" locked="false" isInGroup="159">
-          <controlProperties>
-            <text>Eliminar</text>
-          </controlProperties>
-        </control>
-        <control controlID="152" controlTypeID="__group__" x="0" y="0" w="590" h="370" measuredW="590" measuredH="370" zOrder="1" locked="false" isInGroup="159">
-          <groupChildrenDescriptors>
-            <control controlID="53" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="590" h="370" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="56">
-              <controlProperties>
-                <topheight>26</topheight>
-                <text>Informaci%F3n%20de%20la%20Tarea</text>
-              </controlProperties>
-            </control>
-            <control controlID="54" controlTypeID="com.balsamiq.mockups::Button" x="488" y="312" w="87" h="-1" measuredW="78" measuredH="28" zOrder="1" locked="false" isInGroup="56">
-              <controlProperties>
-                <text>Cancelar</text>
-              </controlProperties>
-            </control>
-            <control controlID="55" controlTypeID="com.balsamiq.mockups::Button" x="374" y="312" w="84" h="-1" measuredW="75" measuredH="28" zOrder="2" locked="false" isInGroup="56">
-              <controlProperties>
-                <text>Aceptar</text>
-              </controlProperties>
-            </control>
-          </groupChildrenDescriptors>
-        </control>
-        <control controlID="153" controlTypeID="com.balsamiq.mockups::TabBar" x="8" y="34" w="574" h="268" measuredW="354" measuredH="100" zOrder="2" locked="false" isInGroup="159">
-          <controlProperties>
-            <text>Genral%2C%20Recursos%2C%20Predecesoras%2C%20Notas</text>
-            <selectedIndex>1</selectedIndex>
-          </controlProperties>
-        </control>
-        <control controlID="154" controlTypeID="com.balsamiq.mockups::DataGrid" x="16" y="73" w="558" h="208" measuredW="576" measuredH="208" zOrder="3" locked="false" isInGroup="159">
-          <controlProperties>
-            <text>Tipo%2C%20Nombre%2C%20Cantidad%2C%20Costo%2C%20Unidades%2C%20Costo%20Total%2C%20Utilizado%0AMaterial%2C%20EUCO%20850%2C%202%2C%20150%2C%20Gal%2C%20300%2C%200%0AHumano%2C%20Jefe%20de%20Cuadrilla%2C%201%2C%2010%2C%20Horas%2C%20400%2C%200%0AHumano%2C%20Tipo%201%2C%202%2C%20Horas%2C%206%2C%20480%2C%200%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C%0A%2C%20%2C%20%2C%20%2C%20%2C%20%2C</text>
-          </controlProperties>
-        </control>
-        <control controlID="157" controlTypeID="com.balsamiq.mockups::Button" x="276" y="310" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="4" locked="false" isInGroup="159">
+        <control controlID="106" controlTypeID="com.balsamiq.mockups::Button" x="275" y="312" w="-1" h="-1" measuredW="72" measuredH="28" zOrder="1" locked="false" isInGroup="142">
           <controlProperties>
             <text>Eliminar</text>
           </controlProperties>

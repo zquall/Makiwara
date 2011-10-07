@@ -32,9 +32,9 @@
             this.tabGeneral = new DevExpress.XtraTab.XtraTabPage();
             this.chkCxcApproval = new DevExpress.XtraEditors.CheckEdit();
             this.chkManagementApproval = new DevExpress.XtraEditors.CheckEdit();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtSeller = new DevExpress.XtraEditors.TextEdit();
+            this.txtFamily = new DevExpress.XtraEditors.TextEdit();
+            this.txtClient = new DevExpress.XtraEditors.TextEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.lblFamily = new DevExpress.XtraEditors.LabelControl();
             this.lblSeller = new DevExpress.XtraEditors.LabelControl();
@@ -44,55 +44,55 @@
             this.txtTotal = new DevExpress.XtraEditors.TextEdit();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.textOtherAmount = new DevExpress.XtraEditors.TextEdit();
-            this.spinPercentageOther = new DevExpress.XtraEditors.SpinEdit();
+            this.spinOthersRate = new DevExpress.XtraEditors.SpinEdit();
             this.spinSalesTax = new DevExpress.XtraEditors.SpinEdit();
             this.txtDiscountAmount = new DevExpress.XtraEditors.TextEdit();
             this.spinDiscountRate = new DevExpress.XtraEditors.SpinEdit();
             this.txtSubtotal = new DevExpress.XtraEditors.TextEdit();
-            this.spinTotalUtility = new DevExpress.XtraEditors.SpinEdit();
-            this.spinGuarantee = new DevExpress.XtraEditors.SpinEdit();
-            this.spinContingencies = new DevExpress.XtraEditors.SpinEdit();
+            this.spinTotalUtilityRate = new DevExpress.XtraEditors.SpinEdit();
+            this.spinGuaranteeRate = new DevExpress.XtraEditors.SpinEdit();
+            this.spinContingenciesRate = new DevExpress.XtraEditors.SpinEdit();
             this.lblOtherAmount = new DevExpress.XtraEditors.LabelControl();
-            this.lblPercentageOther = new DevExpress.XtraEditors.LabelControl();
+            this.lblOthersRate = new DevExpress.XtraEditors.LabelControl();
             this.lblSalesTax = new DevExpress.XtraEditors.LabelControl();
             this.lblDiscountAmount = new DevExpress.XtraEditors.LabelControl();
             this.lblDiscountRate = new DevExpress.XtraEditors.LabelControl();
             this.lblSubtotal = new DevExpress.XtraEditors.LabelControl();
-            this.lblTotalUtility = new DevExpress.XtraEditors.LabelControl();
-            this.lblGuarantee = new DevExpress.XtraEditors.LabelControl();
-            this.lblContingencies = new DevExpress.XtraEditors.LabelControl();
+            this.lblTotalUtilityRate = new DevExpress.XtraEditors.LabelControl();
+            this.lblGuaranteeRate = new DevExpress.XtraEditors.LabelControl();
+            this.lblContingenciesRate = new DevExpress.XtraEditors.LabelControl();
             this.tabComments = new DevExpress.XtraTab.XtraTabPage();
             this.memoComments = new DevExpress.XtraEditors.MemoEdit();
             this.cmdCancel = new DevExpress.XtraEditors.SimpleButton();
             this.cmdSave = new DevExpress.XtraEditors.SimpleButton();
             this.lblQuoteNumber = new System.Windows.Forms.Label();
             this.txtQuoteNumber = new DevExpress.XtraEditors.ButtonEdit();
-            this.dtQuoteDate = new DevExpress.XtraEditors.DateEdit();
+            this.dtCreateDate = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkCxcApproval.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkManagementApproval.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeller.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFamily.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtClient.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.tabTotals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOtherAmount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinPercentageOther.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinOthersRate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSalesTax.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscountAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDiscountRate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSubtotal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinTotalUtility.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinGuarantee.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinContingencies.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinTotalUtilityRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinGuaranteeRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinContingenciesRate.Properties)).BeginInit();
             this.tabComments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoComments.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuoteNumber.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtQuoteDate.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtQuoteDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -111,9 +111,9 @@
             // 
             this.tabGeneral.Controls.Add(this.chkCxcApproval);
             this.tabGeneral.Controls.Add(this.chkManagementApproval);
-            this.tabGeneral.Controls.Add(this.textEdit4);
-            this.tabGeneral.Controls.Add(this.textEdit3);
-            this.tabGeneral.Controls.Add(this.textEdit2);
+            this.tabGeneral.Controls.Add(this.txtSeller);
+            this.tabGeneral.Controls.Add(this.txtFamily);
+            this.tabGeneral.Controls.Add(this.txtClient);
             this.tabGeneral.Controls.Add(this.textEdit1);
             this.tabGeneral.Controls.Add(this.lblFamily);
             this.tabGeneral.Controls.Add(this.lblSeller);
@@ -139,26 +139,26 @@
             this.chkManagementApproval.Size = new System.Drawing.Size(177, 18);
             this.chkManagementApproval.TabIndex = 8;
             // 
-            // textEdit4
+            // txtSeller
             // 
-            this.textEdit4.Location = new System.Drawing.Point(90, 70);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(303, 20);
-            this.textEdit4.TabIndex = 7;
+            this.txtSeller.Location = new System.Drawing.Point(90, 70);
+            this.txtSeller.Name = "txtSeller";
+            this.txtSeller.Size = new System.Drawing.Size(303, 20);
+            this.txtSeller.TabIndex = 7;
             // 
-            // textEdit3
+            // txtFamily
             // 
-            this.textEdit3.Location = new System.Drawing.Point(90, 100);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(100, 20);
-            this.textEdit3.TabIndex = 6;
+            this.txtFamily.Location = new System.Drawing.Point(90, 100);
+            this.txtFamily.Name = "txtFamily";
+            this.txtFamily.Size = new System.Drawing.Size(100, 20);
+            this.txtFamily.TabIndex = 6;
             // 
-            // textEdit2
+            // txtClient
             // 
-            this.textEdit2.Location = new System.Drawing.Point(90, 42);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(303, 20);
-            this.textEdit2.TabIndex = 5;
+            this.txtClient.Location = new System.Drawing.Point(90, 42);
+            this.txtClient.Name = "txtClient";
+            this.txtClient.Size = new System.Drawing.Size(303, 20);
+            this.txtClient.TabIndex = 5;
             // 
             // textEdit1
             // 
@@ -204,23 +204,23 @@
             this.tabTotals.Controls.Add(this.txtTotal);
             this.tabTotals.Controls.Add(this.lblTotal);
             this.tabTotals.Controls.Add(this.textOtherAmount);
-            this.tabTotals.Controls.Add(this.spinPercentageOther);
+            this.tabTotals.Controls.Add(this.spinOthersRate);
             this.tabTotals.Controls.Add(this.spinSalesTax);
             this.tabTotals.Controls.Add(this.txtDiscountAmount);
             this.tabTotals.Controls.Add(this.spinDiscountRate);
             this.tabTotals.Controls.Add(this.txtSubtotal);
-            this.tabTotals.Controls.Add(this.spinTotalUtility);
-            this.tabTotals.Controls.Add(this.spinGuarantee);
-            this.tabTotals.Controls.Add(this.spinContingencies);
+            this.tabTotals.Controls.Add(this.spinTotalUtilityRate);
+            this.tabTotals.Controls.Add(this.spinGuaranteeRate);
+            this.tabTotals.Controls.Add(this.spinContingenciesRate);
             this.tabTotals.Controls.Add(this.lblOtherAmount);
-            this.tabTotals.Controls.Add(this.lblPercentageOther);
+            this.tabTotals.Controls.Add(this.lblOthersRate);
             this.tabTotals.Controls.Add(this.lblSalesTax);
             this.tabTotals.Controls.Add(this.lblDiscountAmount);
             this.tabTotals.Controls.Add(this.lblDiscountRate);
             this.tabTotals.Controls.Add(this.lblSubtotal);
-            this.tabTotals.Controls.Add(this.lblTotalUtility);
-            this.tabTotals.Controls.Add(this.lblGuarantee);
-            this.tabTotals.Controls.Add(this.lblContingencies);
+            this.tabTotals.Controls.Add(this.lblTotalUtilityRate);
+            this.tabTotals.Controls.Add(this.lblGuaranteeRate);
+            this.tabTotals.Controls.Add(this.lblContingenciesRate);
             this.tabTotals.Name = "tabTotals";
             this.tabTotals.Size = new System.Drawing.Size(414, 184);
             this.tabTotals.Text = "Totales";
@@ -249,19 +249,19 @@
             this.textOtherAmount.Size = new System.Drawing.Size(100, 20);
             this.textOtherAmount.TabIndex = 17;
             // 
-            // spinPercentageOther
+            // spinOthersRate
             // 
-            this.spinPercentageOther.EditValue = new decimal(new int[] {
+            this.spinOthersRate.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinPercentageOther.Location = new System.Drawing.Point(307, 41);
-            this.spinPercentageOther.Name = "spinPercentageOther";
-            this.spinPercentageOther.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinOthersRate.Location = new System.Drawing.Point(307, 41);
+            this.spinOthersRate.Name = "spinOthersRate";
+            this.spinOthersRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinPercentageOther.Size = new System.Drawing.Size(100, 20);
-            this.spinPercentageOther.TabIndex = 16;
+            this.spinOthersRate.Size = new System.Drawing.Size(100, 20);
+            this.spinOthersRate.TabIndex = 16;
             // 
             // spinSalesTax
             // 
@@ -305,47 +305,47 @@
             this.txtSubtotal.Size = new System.Drawing.Size(100, 20);
             this.txtSubtotal.TabIndex = 12;
             // 
-            // spinTotalUtility
+            // spinTotalUtilityRate
             // 
-            this.spinTotalUtility.EditValue = new decimal(new int[] {
+            this.spinTotalUtilityRate.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinTotalUtility.Location = new System.Drawing.Point(98, 68);
-            this.spinTotalUtility.Name = "spinTotalUtility";
-            this.spinTotalUtility.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinTotalUtilityRate.Location = new System.Drawing.Point(98, 68);
+            this.spinTotalUtilityRate.Name = "spinTotalUtilityRate";
+            this.spinTotalUtilityRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinTotalUtility.Size = new System.Drawing.Size(100, 20);
-            this.spinTotalUtility.TabIndex = 11;
+            this.spinTotalUtilityRate.Size = new System.Drawing.Size(100, 20);
+            this.spinTotalUtilityRate.TabIndex = 11;
             // 
-            // spinGuarantee
+            // spinGuaranteeRate
             // 
-            this.spinGuarantee.EditValue = new decimal(new int[] {
+            this.spinGuaranteeRate.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinGuarantee.Location = new System.Drawing.Point(98, 41);
-            this.spinGuarantee.Name = "spinGuarantee";
-            this.spinGuarantee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinGuaranteeRate.Location = new System.Drawing.Point(98, 41);
+            this.spinGuaranteeRate.Name = "spinGuaranteeRate";
+            this.spinGuaranteeRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinGuarantee.Size = new System.Drawing.Size(100, 20);
-            this.spinGuarantee.TabIndex = 10;
+            this.spinGuaranteeRate.Size = new System.Drawing.Size(100, 20);
+            this.spinGuaranteeRate.TabIndex = 10;
             // 
-            // spinContingencies
+            // spinContingenciesRate
             // 
-            this.spinContingencies.EditValue = new decimal(new int[] {
+            this.spinContingenciesRate.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinContingencies.Location = new System.Drawing.Point(98, 13);
-            this.spinContingencies.Name = "spinContingencies";
-            this.spinContingencies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinContingenciesRate.Location = new System.Drawing.Point(98, 13);
+            this.spinContingenciesRate.Name = "spinContingenciesRate";
+            this.spinContingenciesRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinContingencies.Size = new System.Drawing.Size(100, 20);
-            this.spinContingencies.TabIndex = 9;
+            this.spinContingenciesRate.Size = new System.Drawing.Size(100, 20);
+            this.spinContingenciesRate.TabIndex = 9;
             // 
             // lblOtherAmount
             // 
@@ -355,13 +355,13 @@
             this.lblOtherAmount.TabIndex = 8;
             this.lblOtherAmount.Text = "Monto Otros";
             // 
-            // lblPercentageOther
+            // lblOthersRate
             // 
-            this.lblPercentageOther.Location = new System.Drawing.Point(235, 41);
-            this.lblPercentageOther.Name = "lblPercentageOther";
-            this.lblPercentageOther.Size = new System.Drawing.Size(41, 13);
-            this.lblPercentageOther.TabIndex = 7;
-            this.lblPercentageOther.Text = "% Otros";
+            this.lblOthersRate.Location = new System.Drawing.Point(235, 41);
+            this.lblOthersRate.Name = "lblOthersRate";
+            this.lblOthersRate.Size = new System.Drawing.Size(41, 13);
+            this.lblOthersRate.TabIndex = 7;
+            this.lblOthersRate.Text = "% Otros";
             // 
             // lblSalesTax
             // 
@@ -395,29 +395,29 @@
             this.lblSubtotal.TabIndex = 3;
             this.lblSubtotal.Text = "Subtotal";
             // 
-            // lblTotalUtility
+            // lblTotalUtilityRate
             // 
-            this.lblTotalUtility.Location = new System.Drawing.Point(7, 71);
-            this.lblTotalUtility.Name = "lblTotalUtility";
-            this.lblTotalUtility.Size = new System.Drawing.Size(62, 13);
-            this.lblTotalUtility.TabIndex = 2;
-            this.lblTotalUtility.Text = "Utilidad Total";
+            this.lblTotalUtilityRate.Location = new System.Drawing.Point(7, 71);
+            this.lblTotalUtilityRate.Name = "lblTotalUtilityRate";
+            this.lblTotalUtilityRate.Size = new System.Drawing.Size(62, 13);
+            this.lblTotalUtilityRate.TabIndex = 2;
+            this.lblTotalUtilityRate.Text = "Utilidad Total";
             // 
-            // lblGuarantee
+            // lblGuaranteeRate
             // 
-            this.lblGuarantee.Location = new System.Drawing.Point(7, 41);
-            this.lblGuarantee.Name = "lblGuarantee";
-            this.lblGuarantee.Size = new System.Drawing.Size(41, 13);
-            this.lblGuarantee.TabIndex = 1;
-            this.lblGuarantee.Text = "Garantia";
+            this.lblGuaranteeRate.Location = new System.Drawing.Point(7, 41);
+            this.lblGuaranteeRate.Name = "lblGuaranteeRate";
+            this.lblGuaranteeRate.Size = new System.Drawing.Size(41, 13);
+            this.lblGuaranteeRate.TabIndex = 1;
+            this.lblGuaranteeRate.Text = "Garantia";
             // 
-            // lblContingencies
+            // lblContingenciesRate
             // 
-            this.lblContingencies.Location = new System.Drawing.Point(7, 13);
-            this.lblContingencies.Name = "lblContingencies";
-            this.lblContingencies.Size = new System.Drawing.Size(56, 13);
-            this.lblContingencies.TabIndex = 0;
-            this.lblContingencies.Text = "Imprevistos";
+            this.lblContingenciesRate.Location = new System.Drawing.Point(7, 13);
+            this.lblContingenciesRate.Name = "lblContingenciesRate";
+            this.lblContingenciesRate.Size = new System.Drawing.Size(56, 13);
+            this.lblContingenciesRate.TabIndex = 0;
+            this.lblContingenciesRate.Text = "Imprevistos";
             // 
             // tabComments
             // 
@@ -455,9 +455,9 @@
             this.lblQuoteNumber.AutoSize = true;
             this.lblQuoteNumber.Location = new System.Drawing.Point(6, 9);
             this.lblQuoteNumber.Name = "lblQuoteNumber";
-            this.lblQuoteNumber.Size = new System.Drawing.Size(82, 13);
+            this.lblQuoteNumber.Size = new System.Drawing.Size(72, 13);
             this.lblQuoteNumber.TabIndex = 5;
-            this.lblQuoteNumber.Text = "# de Cotización";
+            this.lblQuoteNumber.Text = "# de Solicitud";
             // 
             // txtQuoteNumber
             // 
@@ -468,17 +468,17 @@
             this.txtQuoteNumber.Size = new System.Drawing.Size(131, 20);
             this.txtQuoteNumber.TabIndex = 6;
             // 
-            // dtQuoteDate
+            // dtCreateDate
             // 
-            this.dtQuoteDate.EditValue = new System.DateTime(2011, 9, 7, 8, 57, 9, 0);
-            this.dtQuoteDate.Location = new System.Drawing.Point(337, 6);
-            this.dtQuoteDate.Name = "dtQuoteDate";
-            this.dtQuoteDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCreateDate.EditValue = new System.DateTime(2011, 9, 7, 8, 57, 9, 0);
+            this.dtCreateDate.Location = new System.Drawing.Point(337, 6);
+            this.dtCreateDate.Name = "dtCreateDate";
+            this.dtCreateDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtQuoteDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCreateDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dtQuoteDate.Size = new System.Drawing.Size(80, 20);
-            this.dtQuoteDate.TabIndex = 7;
+            this.dtCreateDate.Size = new System.Drawing.Size(80, 20);
+            this.dtCreateDate.TabIndex = 7;
             // 
             // CreateProject
             // 
@@ -487,7 +487,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
             this.ClientSize = new System.Drawing.Size(432, 285);
-            this.Controls.Add(this.dtQuoteDate);
+            this.Controls.Add(this.dtCreateDate);
             this.Controls.Add(this.txtQuoteNumber);
             this.Controls.Add(this.lblQuoteNumber);
             this.Controls.Add(this.cmdSave);
@@ -507,27 +507,27 @@
             this.tabGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkCxcApproval.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkManagementApproval.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeller.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFamily.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtClient.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.tabTotals.ResumeLayout(false);
             this.tabTotals.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOtherAmount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinPercentageOther.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinOthersRate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSalesTax.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscountAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDiscountRate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSubtotal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinTotalUtility.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinGuarantee.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinContingencies.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinTotalUtilityRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinGuaranteeRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinContingenciesRate.Properties)).EndInit();
             this.tabComments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoComments.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuoteNumber.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtQuoteDate.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtQuoteDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -537,9 +537,9 @@
 
         private DevExpress.XtraTab.XtraTabControl tabControl;
         private DevExpress.XtraTab.XtraTabPage tabGeneral;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit txtSeller;
+        private DevExpress.XtraEditors.TextEdit txtFamily;
+        private DevExpress.XtraEditors.TextEdit txtClient;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.LabelControl lblFamily;
         private DevExpress.XtraEditors.LabelControl lblSeller;
@@ -551,27 +551,27 @@
         private DevExpress.XtraEditors.SimpleButton cmdSave;
         private System.Windows.Forms.Label lblQuoteNumber;
         private DevExpress.XtraEditors.ButtonEdit txtQuoteNumber;
-        private DevExpress.XtraEditors.DateEdit dtQuoteDate;
+        private DevExpress.XtraEditors.DateEdit dtCreateDate;
         private DevExpress.XtraEditors.TextEdit txtTotal;
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private DevExpress.XtraEditors.TextEdit textOtherAmount;
-        private DevExpress.XtraEditors.SpinEdit spinPercentageOther;
+        private DevExpress.XtraEditors.SpinEdit spinOthersRate;
         private DevExpress.XtraEditors.SpinEdit spinSalesTax;
         private DevExpress.XtraEditors.TextEdit txtDiscountAmount;
         private DevExpress.XtraEditors.SpinEdit spinDiscountRate;
         private DevExpress.XtraEditors.TextEdit txtSubtotal;
-        private DevExpress.XtraEditors.SpinEdit spinTotalUtility;
-        private DevExpress.XtraEditors.SpinEdit spinGuarantee;
-        private DevExpress.XtraEditors.SpinEdit spinContingencies;
+        private DevExpress.XtraEditors.SpinEdit spinTotalUtilityRate;
+        private DevExpress.XtraEditors.SpinEdit spinGuaranteeRate;
+        private DevExpress.XtraEditors.SpinEdit spinContingenciesRate;
         private DevExpress.XtraEditors.LabelControl lblOtherAmount;
-        private DevExpress.XtraEditors.LabelControl lblPercentageOther;
+        private DevExpress.XtraEditors.LabelControl lblOthersRate;
         private DevExpress.XtraEditors.LabelControl lblSalesTax;
         private DevExpress.XtraEditors.LabelControl lblDiscountAmount;
         private DevExpress.XtraEditors.LabelControl lblDiscountRate;
         private DevExpress.XtraEditors.LabelControl lblSubtotal;
-        private DevExpress.XtraEditors.LabelControl lblTotalUtility;
-        private DevExpress.XtraEditors.LabelControl lblGuarantee;
-        private DevExpress.XtraEditors.LabelControl lblContingencies;
+        private DevExpress.XtraEditors.LabelControl lblTotalUtilityRate;
+        private DevExpress.XtraEditors.LabelControl lblGuaranteeRate;
+        private DevExpress.XtraEditors.LabelControl lblContingenciesRate;
         private DevExpress.XtraEditors.MemoEdit memoComments;
         private DevExpress.XtraEditors.CheckEdit chkCxcApproval;
         private DevExpress.XtraEditors.CheckEdit chkManagementApproval;

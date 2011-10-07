@@ -12,9 +12,9 @@
     <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="25" y="180" w="436" h="508" measuredW="452" measuredH="538" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Tarea%2C%20Duracion%2C%20Comienzo%2C%20Fin%2C%20Predecesoras%0A%2C%20%2C%20%2C%20%2C%0ATarea%201%2C%205%2C%2001/01/2011%2C%2010/01/2011%2C%20%0ATarea%202%2C%203%2C%2011/01/2011%2C%2013/01/2011%2C%201%20%0ATarea%203%2C%202%2C%2014/01/2011%2C%2015/01/2011%2C%202%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20%0A%2C%20%2C%20%2C%20%2C%20</text>
+        <borderStyle>square</borderStyle>
         <selectedIndex>-1</selectedIndex>
         <verticalScrollbar>true</verticalScrollbar>
-        <borderStyle>square</borderStyle>
       </controlProperties>
     </control>
     <control controlID="194" controlTypeID="com.balsamiq.mockups::TextInput" x="535" y="115" w="507" h="-1" measuredW="66" measuredH="29" zOrder="22" locked="false" isInGroup="-1">
@@ -37,8 +37,8 @@
     </control>
     <control controlID="197" controlTypeID="com.balsamiq.mockups::Icon" x="177" y="94" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
-        <icon>DocEmptyIcon%7Cmedium</icon>
         <href>Informacion%20de%20la%20Tarea.bmml</href>
+        <icon>DocEmptyIcon%7Cmedium</icon>
       </controlProperties>
     </control>
     <control controlID="198" controlTypeID="com.balsamiq.mockups::Icon" x="223" y="94" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="25" locked="false" isInGroup="-1">
@@ -76,16 +76,16 @@
     </control>
     <control controlID="206" controlTypeID="com.balsamiq.mockups::Icon" x="84" y="100" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="32" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>Buscar%20Proyecto.bmml</href>
         <icon>FolderIcon%7Cmedium</icon>
         <color>255</color>
-        <href>Buscar%20Proyecto.bmml</href>
       </controlProperties>
     </control>
     <control controlID="207" controlTypeID="com.balsamiq.mockups::Icon" x="40" y="100" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="33" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>Crear%20Proyecto.bmml</href>
         <icon>DocEmptyIcon%7Cmedium</icon>
         <color>255</color>
-        <href>Crear%20Proyecto.bmml</href>
       </controlProperties>
     </control>
     <control controlID="200" controlTypeID="com.balsamiq.mockups::Icon" x="274" y="94" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="27" locked="false" isInGroup="-1">
@@ -123,8 +123,8 @@
     </control>
     <control controlID="217" controlTypeID="com.balsamiq.mockups::Icon" x="177" y="140" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="40" locked="false" isInGroup="-1">
       <controlProperties>
-        <icon>DataBaseIcon%7Cmedium</icon>
         <href>Repositorio%20de%20Recursos.bmml</href>
+        <icon>DataBaseIcon%7Cmedium</icon>
       </controlProperties>
     </control>
     <control controlID="218" controlTypeID="com.balsamiq.mockups::Icon" x="125" y="101" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="41" locked="false" isInGroup="-1">
@@ -141,14 +141,14 @@
     </control>
     <control controlID="220" controlTypeID="com.balsamiq.mockups::Icon" x="125" y="140" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="43" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>Calendario.bmml</href>
         <icon>TableIcon%7Cmedium</icon>
         <color>255</color>
-        <href>Calendario.bmml</href>
       </controlProperties>
     </control>
-    <control controlID="208" controlTypeID="com.balsamiq.mockups::Label" x="30" y="685" w="134" h="25" measuredW="107" measuredH="25" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="208" controlTypeID="com.balsamiq.mockups::Label" x="30" y="685" w="134" h="25" measuredW="69" measuredH="25" zOrder="34" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>DAVID%20SIBAJA</text>
+        <text/>
         <state>disabled</state>
       </controlProperties>
     </control>

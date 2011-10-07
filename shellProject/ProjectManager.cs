@@ -22,6 +22,7 @@ namespace shellProject
             cp.Text = "Crear Proyecto";
             cp.MdiParent = this.MdiParent;
             cp.Show();
+
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)

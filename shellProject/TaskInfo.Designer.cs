@@ -35,8 +35,8 @@
             this.lblEndDate = new DevExpress.XtraEditors.LabelControl();
             this.dtStartDate = new DevExpress.XtraEditors.DateEdit();
             this.lblStartDate = new DevExpress.XtraEditors.LabelControl();
-            this.spinPercentComplete = new DevExpress.XtraEditors.SpinEdit();
-            this.lblPercentComplete = new DevExpress.XtraEditors.LabelControl();
+            this.spinCompleteRate = new DevExpress.XtraEditors.SpinEdit();
+            this.lblCompleteRate = new DevExpress.XtraEditors.LabelControl();
             this.spinDuration = new DevExpress.XtraEditors.SpinEdit();
             this.lblDuration = new DevExpress.XtraEditors.LabelControl();
             this.txtTaskName = new DevExpress.XtraEditors.TextEdit();
@@ -61,7 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinPercentComplete.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinCompleteRate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDuration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaskName.Properties)).BeginInit();
             this.tabResources.SuspendLayout();
@@ -90,8 +90,8 @@
             // tabGeneral
             // 
             this.tabGeneral.Controls.Add(this.grpDates);
-            this.tabGeneral.Controls.Add(this.spinPercentComplete);
-            this.tabGeneral.Controls.Add(this.lblPercentComplete);
+            this.tabGeneral.Controls.Add(this.spinCompleteRate);
+            this.tabGeneral.Controls.Add(this.lblCompleteRate);
             this.tabGeneral.Controls.Add(this.spinDuration);
             this.tabGeneral.Controls.Add(this.lblDuration);
             this.tabGeneral.Controls.Add(this.txtTaskName);
@@ -152,27 +152,27 @@
             this.lblStartDate.TabIndex = 0;
             this.lblStartDate.Text = "Fecha de Inicio";
             // 
-            // spinPercentComplete
+            // spinCompleteRate
             // 
-            this.spinPercentComplete.EditValue = new decimal(new int[] {
+            this.spinCompleteRate.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinPercentComplete.Location = new System.Drawing.Point(334, 56);
-            this.spinPercentComplete.Name = "spinPercentComplete";
-            this.spinPercentComplete.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spinCompleteRate.Location = new System.Drawing.Point(334, 56);
+            this.spinCompleteRate.Name = "spinCompleteRate";
+            this.spinCompleteRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinPercentComplete.Size = new System.Drawing.Size(86, 20);
-            this.spinPercentComplete.TabIndex = 5;
+            this.spinCompleteRate.Size = new System.Drawing.Size(86, 20);
+            this.spinCompleteRate.TabIndex = 5;
             // 
-            // lblPercentComplete
+            // lblCompleteRate
             // 
-            this.lblPercentComplete.Location = new System.Drawing.Point(257, 59);
-            this.lblPercentComplete.Name = "lblPercentComplete";
-            this.lblPercentComplete.Size = new System.Drawing.Size(71, 13);
-            this.lblPercentComplete.TabIndex = 4;
-            this.lblPercentComplete.Text = "% Completado";
+            this.lblCompleteRate.Location = new System.Drawing.Point(257, 59);
+            this.lblCompleteRate.Name = "lblCompleteRate";
+            this.lblCompleteRate.Size = new System.Drawing.Size(71, 13);
+            this.lblCompleteRate.TabIndex = 4;
+            this.lblCompleteRate.Text = "% Completado";
             // 
             // spinDuration
             // 
@@ -320,7 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinPercentComplete.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinCompleteRate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDuration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaskName.Properties)).EndInit();
             this.tabResources.ResumeLayout(false);
@@ -345,8 +345,8 @@
         private DevExpress.XtraEditors.GroupControl grpDates;
         private DevExpress.XtraEditors.DateEdit dtStartDate;
         private DevExpress.XtraEditors.LabelControl lblStartDate;
-        private DevExpress.XtraEditors.SpinEdit spinPercentComplete;
-        private DevExpress.XtraEditors.LabelControl lblPercentComplete;
+        private DevExpress.XtraEditors.SpinEdit spinCompleteRate;
+        private DevExpress.XtraEditors.LabelControl lblCompleteRate;
         private DevExpress.XtraEditors.SpinEdit spinDuration;
         private DevExpress.XtraEditors.LabelControl lblDuration;
         private DevExpress.XtraEditors.TextEdit txtTaskName;

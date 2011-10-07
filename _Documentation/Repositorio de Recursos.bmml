@@ -2,8 +2,8 @@
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="33" y="32" w="662" h="404" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <topheight>26</topheight>
         <text>Repositorio%20de%20Recursos</text>
+        <topheight>26</topheight>
       </controlProperties>
     </control>
     <control controlID="1" controlTypeID="com.balsamiq.mockups::ComboBox" x="105" y="69" w="259" h="-1" measuredW="50" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
@@ -26,7 +26,7 @@
         <text>Aceptar</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="420" y="339" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="420" y="339" w="-1" h="-1" measuredW="38" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Total</text>
       </controlProperties>
