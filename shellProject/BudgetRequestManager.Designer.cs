@@ -1,6 +1,6 @@
 ﻿namespace shellProject
 {
-    partial class RequestBugetManager
+    partial class BudgetRequestManager
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.buttonEdit2 = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+            this.btnCustomerName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -45,11 +45,11 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.buttonEdit3 = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.edtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.lblEmployeeName = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -106,12 +106,12 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -213,14 +213,17 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Direccion:";
             // 
-            // buttonEdit1
+            // btnCustomerName
             // 
-            this.buttonEdit1.Location = new System.Drawing.Point(105, 25);
-            this.buttonEdit1.Name = "buttonEdit1";
-            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.btnCustomerName.EditValue = "";
+            this.btnCustomerName.Location = new System.Drawing.Point(105, 25);
+            this.btnCustomerName.Name = "btnCustomerName";
+            this.btnCustomerName.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.btnCustomerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit1.Size = new System.Drawing.Size(348, 20);
-            this.buttonEdit1.TabIndex = 1;
+            this.btnCustomerName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnCustomerName_Properties_ButtonClick);
+            this.btnCustomerName.Size = new System.Drawing.Size(348, 20);
+            this.btnCustomerName.TabIndex = 1;
             // 
             // labelControl12
             // 
@@ -275,7 +278,7 @@
             this.panelControl5.Controls.Add(this.labelControl7);
             this.panelControl5.Controls.Add(this.buttonEdit3);
             this.panelControl5.Controls.Add(this.labelControl8);
-            this.panelControl5.Controls.Add(this.dateEdit1);
+            this.panelControl5.Controls.Add(this.edtDate);
             this.panelControl5.Location = new System.Drawing.Point(479, 12);
             this.panelControl5.Name = "panelControl5";
             this.panelControl5.Size = new System.Drawing.Size(238, 57);
@@ -295,7 +298,7 @@
             this.buttonEdit3.Name = "buttonEdit3";
             this.buttonEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Right),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.buttonEdit3.Size = new System.Drawing.Size(168, 20);
             this.buttonEdit3.TabIndex = 2;
@@ -308,23 +311,31 @@
             this.labelControl8.TabIndex = 4;
             this.labelControl8.Text = "Fecha:";
             // 
-            // dateEdit1
+            // edtDate
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(65, 30);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.edtDate.EditValue = new System.DateTime(2001, 1, 28, 0, 0, 0, 0);
+            this.edtDate.Location = new System.Drawing.Point(65, 30);
+            this.edtDate.Name = "edtDate";
+            this.edtDate.Properties.Appearance.Options.UseTextOptions = true;
+            this.edtDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.edtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.edtDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.edtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.edtDate.Properties.EditFormat.FormatString = "dd/MM/yyy";
+            this.edtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.edtDate.Properties.Mask.EditMask = "dd/MM/yyy";
+            this.edtDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit1.Size = new System.Drawing.Size(168, 20);
-            this.dateEdit1.TabIndex = 3;
+            this.edtDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.edtDate.Size = new System.Drawing.Size(168, 20);
+            this.edtDate.TabIndex = 3;
             // 
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.simpleButton2);
             this.panelControl3.Controls.Add(this.simpleButton1);
-            this.panelControl3.Controls.Add(this.labelControl10);
+            this.panelControl3.Controls.Add(this.lblEmployeeName);
             this.panelControl3.Controls.Add(this.labelControl9);
             this.panelControl3.Location = new System.Drawing.Point(479, 75);
             this.panelControl3.Name = "panelControl3";
@@ -347,13 +358,13 @@
             this.simpleButton1.TabIndex = 7;
             this.simpleButton1.Text = "Clonar Solicitud";
             // 
-            // labelControl10
+            // lblEmployeeName
             // 
-            this.labelControl10.Location = new System.Drawing.Point(87, 5);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(136, 13);
-            this.labelControl10.TabIndex = 6;
-            this.labelControl10.Text = "#################";
+            this.lblEmployeeName.Location = new System.Drawing.Point(87, 5);
+            this.lblEmployeeName.Name = "lblEmployeeName";
+            this.lblEmployeeName.Size = new System.Drawing.Size(136, 13);
+            this.lblEmployeeName.TabIndex = 6;
+            this.lblEmployeeName.Text = "#################";
             // 
             // labelControl9
             // 
@@ -385,7 +396,7 @@
             this.groupControl2.Controls.Add(this.labelControl5);
             this.groupControl2.Controls.Add(this.dropDownButton1);
             this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Controls.Add(this.buttonEdit1);
+            this.groupControl2.Controls.Add(this.btnCustomerName);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl2);
             this.groupControl2.Location = new System.Drawing.Point(12, 12);
@@ -754,7 +765,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.spinEdit4.Size = new System.Drawing.Size(70, 20);
             this.spinEdit4.TabIndex = 13;
-            this.spinEdit4.EditValueChanged += new System.EventHandler(this.spinEdit4_EditValueChanged);
             // 
             // labelControl21
             // 
@@ -763,7 +773,6 @@
             this.labelControl21.Size = new System.Drawing.Size(93, 13);
             this.labelControl21.TabIndex = 12;
             this.labelControl21.Text = "Garantia Solicitada:";
-            this.labelControl21.Click += new System.EventHandler(this.labelControl21_Click);
             // 
             // dateEdit2
             // 
@@ -881,24 +890,24 @@
             this.xtraTabPage4.Size = new System.Drawing.Size(698, 272);
             this.xtraTabPage4.Text = "Documentos Adjuntos";
             // 
-            // RequestBugetManager
+            // BudgetRequestManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 573);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl4);
-            this.Name = "RequestBugetManager";
+            this.Name = "BudgetRequestManager";
             this.Text = "Solicitud de Presupuesto";
             this.Load += new System.EventHandler(this.RequestBugetCell_Load);
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
             this.panelControl5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -974,17 +983,17 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+        private DevExpress.XtraEditors.ButtonEdit btnCustomerName;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit3;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.DateEdit edtDate;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl lblEmployeeName;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl12;

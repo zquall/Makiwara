@@ -58,7 +58,7 @@ namespace MainFrame.Shell
             {
 
                 case "BugetRequest":
-                    RequestBugetManager requestBugetManager = new RequestBugetManager();
+                    BudgetRequestManager requestBugetManager = new BudgetRequestManager();
                     requestBugetManager.MdiParent = this;
                     requestBugetManager.Show();
                     break;

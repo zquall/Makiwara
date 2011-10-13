@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
+using Hades.session;
 
 
 namespace MainFrame.Shell
@@ -48,7 +49,7 @@ namespace MainFrame.Shell
             // Check if the User and Password TextBox aren't empty
             if (txtUserName.Text.Length > 0 && txtUserPassword.Text.Length > 0)
             {
-                var loginResult = Hades.session.SessionManager.Login(txtUserName.Text, txtUserPassword.Text);               
+                var loginResult = SessionManager.Login(txtUserName.Text, txtUserPassword.Text);               
 
                 if (loginResult)
                 {

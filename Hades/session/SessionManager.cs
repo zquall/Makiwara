@@ -5,6 +5,7 @@ using System.Text;
 using Nerv;
 using Cypher;
 using Hades.averno;
+using Nexus;
 
 namespace Hades.session
 {   
@@ -29,18 +30,40 @@ namespace Hades.session
                 }
             }
             return result;
-        }
-
-        public static bool isLogedIn { 
-            get {
-                return (_LogedUser == null) ? false : true;
-            } 
-        }
+        }        
 
         private static void saveUserInSession(UserAccount userAccount)
         {
             _LogedUser = new UserSession(userAccount.Id);
+            _LogedUser.EmployeeSession = getEmployeeSession(_LogedUser);
         }
 
+        private static EmployeeSession getEmployeeSession(UserSession userAccount)
+        {
+            EmployeeSession employeeFromUser = new EmployeeSession();
+            EnterpriseEntities enterpriseEntities = new EnterpriseEntities();
+            var employeeFounded = enterpriseEntities.Employees.Where(x => x.UserAccountId == userAccount.UserId).SingleOrDefault();
+            if (employeeFounded != null) {
+                employeeFromUser.Id = employeeFounded.Id;
+                employeeFromUser.Name = employeeFounded.Person.Name;
+                employeeFromUser.LastName = employeeFounded.Person.LastName;
+            }
+            return employeeFromUser;
+        }
+
+        public static bool isLogedIn
+        {
+            get
+            {
+                return (_LogedUser == null) ? false : true;
+            }
+        }
+        public static string FullName
+        {
+            get
+            {
+                return (_LogedUser.EmployeeSession.FullName == null) ? _LogedUser.EmployeeSession.FullName : "Perfil Incompleto";
+            }
+        }
     }
 }

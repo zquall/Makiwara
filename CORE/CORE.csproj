@@ -42,13 +42,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BudgetRequestService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\Olympus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hades\Hades.csproj">
+      <Project>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</Project>
+      <Name>Hades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nerv\Nerv.csproj">
       <Project>{0F15EA41-6115-456E-B894-2E2D9F41E46D}</Project>
       <Name>Nerv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nexus\Nexus.csproj">
+      <Project>{B7879F8A-7582-4D7D-8FE6-04D14C93B82F}</Project>
+      <Name>Nexus</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
       <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>

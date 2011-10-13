@@ -49,6 +49,10 @@
       <Project>{0F15EA41-6115-456E-B894-2E2D9F41E46D}</Project>
       <Name>Nerv</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nexus\Nexus.csproj">
+      <Project>{B7879F8A-7582-4D7D-8FE6-04D14C93B82F}</Project>
+      <Name>Nexus</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

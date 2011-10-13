@@ -122,6 +122,7 @@
             // 
             // txtUserName
             // 
+            this.txtUserName.EditValue = "zquall";
             this.txtUserName.Location = new System.Drawing.Point(12, 108);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Properties.AutoHeight = false;
@@ -134,6 +135,7 @@
             // 
             // txtUserPassword
             // 
+            this.txtUserPassword.EditValue = "X0wq3p01";
             this.txtUserPassword.Location = new System.Drawing.Point(12, 153);
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.Properties.AutoHeight = false;
