@@ -2238,10 +2238,10 @@ namespace Nexus
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="familyId">Initial value of the FamilyId property.</param>
+        /// <param name="budgetRequestId">Initial value of the BudgetRequestId property.</param>
+        /// <param name="custumerId">Initial value of the CustumerId property.</param>
+        /// <param name="employeeId">Initial value of the EmployeeId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="idBudgetRequest">Initial value of the IdBudgetRequest property.</param>
-        /// <param name="idCustumer">Initial value of the IdCustumer property.</param>
-        /// <param name="idSeller">Initial value of the IdSeller property.</param>
         /// <param name="managementApproval">Initial value of the ManagementApproval property.</param>
         /// <param name="cxcApproval">Initial value of the CxcApproval property.</param>
         /// <param name="createDate">Initial value of the CreateDate property.</param>
@@ -2252,15 +2252,15 @@ namespace Nexus
         /// <param name="salesTax">Initial value of the SalesTax property.</param>
         /// <param name="othersRate">Initial value of the OthersRate property.</param>
         /// <param name="comments">Initial value of the Comments property.</param>
-        public static Project CreateProject(global::System.Int32 id, global::System.Int32 familyId, global::System.String name, global::System.Int32 idBudgetRequest, global::System.Int32 idCustumer, global::System.Int32 idSeller, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments)
+        public static Project CreateProject(global::System.Int32 id, global::System.Int32 familyId, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments)
         {
             Project project = new Project();
             project.Id = id;
             project.FamilyId = familyId;
+            project.BudgetRequestId = budgetRequestId;
+            project.CustumerId = custumerId;
+            project.EmployeeId = employeeId;
             project.Name = name;
-            project.IdBudgetRequest = idBudgetRequest;
-            project.IdCustumer = idCustumer;
-            project.IdSeller = idSeller;
             project.ManagementApproval = managementApproval;
             project.CxcApproval = cxcApproval;
             project.CreateDate = createDate;
@@ -2333,6 +2333,78 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 BudgetRequestId
+        {
+            get
+            {
+                return _BudgetRequestId;
+            }
+            set
+            {
+                OnBudgetRequestIdChanging(value);
+                ReportPropertyChanging("BudgetRequestId");
+                _BudgetRequestId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BudgetRequestId");
+                OnBudgetRequestIdChanged();
+            }
+        }
+        private global::System.Int32 _BudgetRequestId;
+        partial void OnBudgetRequestIdChanging(global::System.Int32 value);
+        partial void OnBudgetRequestIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CustumerId
+        {
+            get
+            {
+                return _CustumerId;
+            }
+            set
+            {
+                OnCustumerIdChanging(value);
+                ReportPropertyChanging("CustumerId");
+                _CustumerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CustumerId");
+                OnCustumerIdChanged();
+            }
+        }
+        private global::System.Int32 _CustumerId;
+        partial void OnCustumerIdChanging(global::System.Int32 value);
+        partial void OnCustumerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EmployeeId
+        {
+            get
+            {
+                return _EmployeeId;
+            }
+            set
+            {
+                OnEmployeeIdChanging(value);
+                ReportPropertyChanging("EmployeeId");
+                _EmployeeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeId");
+                OnEmployeeIdChanged();
+            }
+        }
+        private global::System.Int32 _EmployeeId;
+        partial void OnEmployeeIdChanging(global::System.Int32 value);
+        partial void OnEmployeeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String Name
         {
             get
@@ -2351,78 +2423,6 @@ namespace Nexus
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdBudgetRequest
-        {
-            get
-            {
-                return _IdBudgetRequest;
-            }
-            set
-            {
-                OnIdBudgetRequestChanging(value);
-                ReportPropertyChanging("IdBudgetRequest");
-                _IdBudgetRequest = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdBudgetRequest");
-                OnIdBudgetRequestChanged();
-            }
-        }
-        private global::System.Int32 _IdBudgetRequest;
-        partial void OnIdBudgetRequestChanging(global::System.Int32 value);
-        partial void OnIdBudgetRequestChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdCustumer
-        {
-            get
-            {
-                return _IdCustumer;
-            }
-            set
-            {
-                OnIdCustumerChanging(value);
-                ReportPropertyChanging("IdCustumer");
-                _IdCustumer = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdCustumer");
-                OnIdCustumerChanged();
-            }
-        }
-        private global::System.Int32 _IdCustumer;
-        partial void OnIdCustumerChanging(global::System.Int32 value);
-        partial void OnIdCustumerChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdSeller
-        {
-            get
-            {
-                return _IdSeller;
-            }
-            set
-            {
-                OnIdSellerChanging(value);
-                ReportPropertyChanging("IdSeller");
-                _IdSeller = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdSeller");
-                OnIdSellerChanged();
-            }
-        }
-        private global::System.Int32 _IdSeller;
-        partial void OnIdSellerChanging(global::System.Int32 value);
-        partial void OnIdSellerChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2822,21 +2822,21 @@ namespace Nexus
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="measureId">Initial value of the MeasureId property.</param>
-        /// <param name="idResourceType">Initial value of the IdResourceType property.</param>
-        /// <param name="idTask">Initial value of the IdTask property.</param>
+        /// <param name="resourceTypeId">Initial value of the ResourceTypeId property.</param>
+        /// <param name="taskId">Initial value of the TaskId property.</param>
         /// <param name="code">Initial value of the Code property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="amount">Initial value of the Amount property.</param>
         /// <param name="cost">Initial value of the Cost property.</param>
         /// <param name="totalCost">Initial value of the TotalCost property.</param>
         /// <param name="realUsed">Initial value of the RealUsed property.</param>
-        public static Resource CreateResource(global::System.Int32 id, global::System.Int32 measureId, global::System.Int32 idResourceType, global::System.Int32 idTask, global::System.Int32 code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
+        public static Resource CreateResource(global::System.Int32 id, global::System.Int32 measureId, global::System.Int32 resourceTypeId, global::System.Int32 taskId, global::System.Int32 code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
         {
             Resource resource = new Resource();
             resource.Id = id;
             resource.MeasureId = measureId;
-            resource.IdResourceType = idResourceType;
-            resource.IdTask = idTask;
+            resource.ResourceTypeId = resourceTypeId;
+            resource.TaskId = taskId;
             resource.Code = code;
             resource.Name = name;
             resource.Amount = amount;
@@ -2905,48 +2905,48 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 IdResourceType
+        public global::System.Int32 ResourceTypeId
         {
             get
             {
-                return _IdResourceType;
+                return _ResourceTypeId;
             }
             set
             {
-                OnIdResourceTypeChanging(value);
-                ReportPropertyChanging("IdResourceType");
-                _IdResourceType = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdResourceType");
-                OnIdResourceTypeChanged();
+                OnResourceTypeIdChanging(value);
+                ReportPropertyChanging("ResourceTypeId");
+                _ResourceTypeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ResourceTypeId");
+                OnResourceTypeIdChanged();
             }
         }
-        private global::System.Int32 _IdResourceType;
-        partial void OnIdResourceTypeChanging(global::System.Int32 value);
-        partial void OnIdResourceTypeChanged();
+        private global::System.Int32 _ResourceTypeId;
+        partial void OnResourceTypeIdChanging(global::System.Int32 value);
+        partial void OnResourceTypeIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 IdTask
+        public global::System.Int32 TaskId
         {
             get
             {
-                return _IdTask;
+                return _TaskId;
             }
             set
             {
-                OnIdTaskChanging(value);
-                ReportPropertyChanging("IdTask");
-                _IdTask = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdTask");
-                OnIdTaskChanged();
+                OnTaskIdChanging(value);
+                ReportPropertyChanging("TaskId");
+                _TaskId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TaskId");
+                OnTaskIdChanged();
             }
         }
-        private global::System.Int32 _IdTask;
-        partial void OnIdTaskChanging(global::System.Int32 value);
-        partial void OnIdTaskChanged();
+        private global::System.Int32 _TaskId;
+        partial void OnTaskIdChanging(global::System.Int32 value);
+        partial void OnTaskIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
