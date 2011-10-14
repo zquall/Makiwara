@@ -11,6 +11,7 @@ namespace ReplicantFacility.Factory
     public class BudgetRequestFactory
     {
         private static BudgetRequestService _BudgetRequestService;
+
         public BudgetRequestFactory()
         {
             _BudgetRequestService = _BudgetRequestService ?? new BudgetRequestService();

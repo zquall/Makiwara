@@ -449,7 +449,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Controls.Add(this.groupControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage2.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage2.Text = "Condiciones del Trabajo";
             // 
             // groupControl7
@@ -725,7 +725,7 @@
             this.xtraTabPage3.Controls.Add(this.labelControl14);
             this.xtraTabPage3.Controls.Add(this.labelControl13);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage3.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage3.Text = "Plazos y Tiempos";
             // 
             // groupControl8
@@ -887,7 +887,7 @@
             // xtraTabPage4
             // 
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage4.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage4.Text = "Documentos Adjuntos";
             // 
             // BudgetRequestManager

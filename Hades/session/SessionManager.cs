@@ -58,6 +58,7 @@ namespace Hades.session
                 return (_LogedUser == null) ? false : true;
             }
         }
+
         public static string FullName
         {
             get
