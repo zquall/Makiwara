@@ -79,6 +79,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReplicantFacility\ReplicantFacility.csproj">
+      <Project>{D06CB9E6-91A5-48A2-8B26-03F93D2A5AA4}</Project>
+      <Name>ReplicantFacility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
+      <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
+      <Name>ReplicantRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

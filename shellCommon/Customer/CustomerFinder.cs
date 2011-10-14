@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using ReplicantFacility.Factory;
+using ReplicantRepository.Request;
+using ReplicantRepository.Response;
 
 namespace shellCommon.Customer
 {
@@ -29,8 +32,25 @@ namespace shellCommon.Customer
         #region Search Customers Service Calls
         private void SearchCustomer(string query)
         {
+            var request = new CustomerRequest();
+            request.SearchCustomerQuery = query;
+            ShowSearchResults(new CustomerFactory().searchCustomer(request).CustomerList);
+        }
 
+        private void ShowSearchResults(List<CustomerData> searchResults)
+        {
+            //if (searchResults.Count > 0)
+            //{
+                grdCustomerControl.DataSource = searchResults;
+            //}
         }
         #endregion
+
+        private void txtSearchQuery_EditValueChanged(object sender, EventArgs e)
+        {
+            var tmpTextEdit = sender as TextEdit;
+            SearchCustomer(tmpTextEdit.Text);
+        }
+
     }
 }

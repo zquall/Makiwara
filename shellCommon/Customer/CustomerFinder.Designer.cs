@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.grdCustumerFounds = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtSearchQuery = new DevExpress.XtraEditors.TextEdit();
+            this.grdCustomerControl = new DevExpress.XtraGrid.GridControl();
+            this.grdCustomerView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCustumerFounds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -47,29 +48,45 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Escriba el nombre del cliente que desea buscar";
             // 
-            // textEdit1
+            // txtSearchQuery
             // 
-            this.textEdit1.Location = new System.Drawing.Point(12, 31);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(568, 20);
-            this.textEdit1.TabIndex = 1;
+            this.txtSearchQuery.Location = new System.Drawing.Point(12, 31);
+            this.txtSearchQuery.Name = "txtSearchQuery";
+            this.txtSearchQuery.Size = new System.Drawing.Size(568, 20);
+            this.txtSearchQuery.TabIndex = 1;
+            this.txtSearchQuery.EditValueChanged += new System.EventHandler(this.txtSearchQuery_EditValueChanged);
             // 
-            // gridControl1
+            // grdCustomerControl
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 57);
-            this.gridControl1.MainView = this.grdCustumerFounds;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(568, 172);
-            this.gridControl1.TabIndex = 2;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grdCustumerFounds});
+            this.grdCustomerControl.Location = new System.Drawing.Point(12, 57);
+            this.grdCustomerControl.MainView = this.grdCustomerView;
+            this.grdCustomerControl.Name = "grdCustomerControl";
+            this.grdCustomerControl.Size = new System.Drawing.Size(568, 172);
+            this.grdCustomerControl.TabIndex = 2;
+            this.grdCustomerControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdCustomerView});
             // 
-            // grdCustumerFounds
+            // grdCustomerView
             // 
-            this.grdCustumerFounds.GridControl = this.gridControl1;
-            this.grdCustumerFounds.Name = "grdCustumerFounds";
-            this.grdCustumerFounds.OptionsView.EnableAppearanceEvenRow = true;
-            this.grdCustumerFounds.OptionsView.ShowGroupPanel = false;
+            this.grdCustomerView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colName});
+            this.grdCustomerView.GridControl = this.grdCustomerControl;
+            this.grdCustomerView.Name = "grdCustomerView";
+            this.grdCustomerView.OptionsBehavior.Editable = false;
+            this.grdCustomerView.OptionsBehavior.ReadOnly = true;
+            this.grdCustomerView.OptionsCustomization.AllowColumnMoving = false;
+            this.grdCustomerView.OptionsCustomization.AllowColumnResizing = false;
+            this.grdCustomerView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.grdCustomerView.OptionsView.EnableAppearanceEvenRow = true;
+            this.grdCustomerView.OptionsView.ShowGroupPanel = false;
+            // 
+            // colName
+            // 
+            this.colName.Caption = "Nombre del Cliente";
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
             // 
             // btnOk
             // 
@@ -96,16 +113,16 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.grdCustomerControl);
+            this.Controls.Add(this.txtSearchQuery);
             this.Controls.Add(this.labelControl1);
             this.Name = "CustomerFinder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Buscar Cliente";
             this.Shown += new System.EventHandler(this.CustomerFinder_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCustumerFounds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,10 +131,11 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView grdCustumerFounds;
+        private DevExpress.XtraEditors.TextEdit txtSearchQuery;
+        private DevExpress.XtraGrid.GridControl grdCustomerControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdCustomerView;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnClose;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
     }
 }

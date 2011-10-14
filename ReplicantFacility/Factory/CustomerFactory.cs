@@ -10,15 +10,15 @@ namespace ReplicantFacility.Factory
 {
     public class CustomerFactory
     {
-        private static BudgetRequestService _BudgetRequestService;
+        private static CustomerService _CustomerService;
         public CustomerFactory()
         {
-            _BudgetRequestService = _BudgetRequestService ?? new BudgetRequestService();
+            _CustomerService = _CustomerService ?? new CustomerService();
         }
 
-        public BudgetRequestResponse getNewBudgetRequest()
+        public CustomerResponse searchCustomer(CustomerRequest request)
         {
-            return _BudgetRequestService.getNewBudgetRequest();
+            return _CustomerService.searchCustomer(request);
         }
 
     }
