@@ -38,11 +38,8 @@ namespace shellCommon.Customer
         }
 
         private void ShowSearchResults(List<CustomerData> searchResults)
-        {
-            //if (searchResults.Count > 0)
-            //{
-                grdCustomerControl.DataSource = searchResults;
-            //}
+        {           
+            grdCustomerControl.DataSource = searchResults;
         }
         #endregion
 
@@ -50,6 +47,22 @@ namespace shellCommon.Customer
         {
             var tmpTextEdit = sender as TextEdit;
             SearchCustomer(tmpTextEdit.Text);
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            var dialogResult = new CustomerManager().ShowDialog();
+            if (dialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                // El usuario ha creado un cliente nuevo
+                // hay que devolverlo hasta el manager principal
+
+            }
+            else
+            {
+                this.Visible = true;
+            }
         }
 
     }

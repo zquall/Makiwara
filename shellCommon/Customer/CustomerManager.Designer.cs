@@ -38,9 +38,10 @@
             this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.cmbContacts = new DevExpress.XtraEditors.DropDownButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEditContact = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
@@ -119,45 +120,59 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.dropDownButton1);
+            this.groupControl1.Controls.Add(this.btnEditContact);
+            this.groupControl1.Controls.Add(this.cmbContacts);
             this.groupControl1.Location = new System.Drawing.Point(12, 115);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(426, 55);
             this.groupControl1.TabIndex = 9;
             this.groupControl1.Text = "Contacto Principal";
             // 
-            // dropDownButton1
+            // cmbContacts
             // 
-            this.dropDownButton1.Location = new System.Drawing.Point(5, 25);
-            this.dropDownButton1.Name = "dropDownButton1";
-            this.dropDownButton1.Size = new System.Drawing.Size(416, 23);
-            this.dropDownButton1.TabIndex = 0;
-            this.dropDownButton1.Text = "Haga click aqui para agregar un contacto nuevo";
+            this.cmbContacts.Location = new System.Drawing.Point(96, 25);
+            this.cmbContacts.Name = "cmbContacts";
+            this.cmbContacts.Size = new System.Drawing.Size(325, 23);
+            this.cmbContacts.TabIndex = 0;
+            this.cmbContacts.Text = "Haga click aqui para agregar un contacto nuevo";
             // 
-            // simpleButton1
+            // btnSave
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(282, 184);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 10;
-            this.simpleButton1.Text = "Aceptar";
+            this.btnSave.Location = new System.Drawing.Point(282, 184);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "Guardar";
             // 
-            // simpleButton2
+            // btnCancel
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(363, 184);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 11;
-            this.simpleButton2.Text = "Cerrar";
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(363, 184);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cerrar";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnEditContact
+            // 
+            this.btnEditContact.Location = new System.Drawing.Point(5, 25);
+            this.btnEditContact.Name = "btnEditContact";
+            this.btnEditContact.Size = new System.Drawing.Size(85, 23);
+            this.btnEditContact.TabIndex = 12;
+            this.btnEditContact.Text = "Editar";
+            this.btnEditContact.Click += new System.EventHandler(this.btnAddContact_Click);
             // 
             // CustomerManager
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(450, 219);
             this.ControlBox = false;
-            this.Controls.Add(this.simpleButton2);
-            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.textEdit5);
             this.Controls.Add(this.textEdit4);
@@ -194,8 +209,9 @@
         private DevExpress.XtraEditors.TextEdit textEdit4;
         private DevExpress.XtraEditors.TextEdit textEdit5;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.DropDownButton cmbContacts;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.SimpleButton btnEditContact;
     }
 }

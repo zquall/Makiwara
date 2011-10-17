@@ -1,0 +1,40 @@
+La creacion de adapter debe ser casi transparente para el sistema nuestro
+los sistema foraneos no deben ser afectados tampoco el adapter debe contener todo el desmadre.
+
+La adaptacion de un objeto de sistema viejo sera mapeada en el sistema nuevo por medio del adaptador
+y se creara una relacion en una tabla con la llave primaria de nuetro objeto con la llave del objeto viejo
+
+ Sistema Viejo               Tabla de union              Sistema Nuevo
++--------------+            +---------------+            +--------------+
+| Cli_Clientes |=---------->| Cli_Clientes  |=---------->|   Clientes   |
++----+---------+            +-------+-------+            +----+---------+
+| Id | Nombre  |            | OldId | NewId |            | Id | Nombre  |
++----+---------+            +-------+-------+            +----+---------+
+|  1 | AAAAAAA |            |   2B  |   3   |            |  1 | XXXXXXX |
++----+---------+            +-------+-------+            +----+---------+
+| 2B | BBBBBBB |            |    1  |   2   |            |  2 | AAAAAAA |
++----+---------+            +----+----------+            +----+---------+
+| C3 | CCCCCCC |                                         |  3 | BBBBBBB |
++----+---------+                                         +----+---------+
+
+Una vez echo el pegue el sistema debe trabajar como siempre lo hace, trabajando a partir de 
+la tabla de clientes, sin importarle el enlace con el sistema viejo.
+Si se diera el caso que una accion debe ser reflejada en el sistema viejo se 
+puede buscar el Id que referencia el cliente viejo y a partir de ahi crear una
+funcion que haga esa funcion especifica en el sistema viejo.
+
+Consultas:
+Las consultas se realizan normalmente,adicionando el servicio del adaptador el cual debe proveer un limite de resultado los cuales se adjuntan con los del sistema nuevo,
+Si el usuario utiliza un valor del sistema viejo, este valor debe reflejarse en el sistema nuevo
+en otras palabra se debe de hacer una copia de dicho valor en el sistema nuevo, y se crea un vinculo en la tabla de union.
+Esto crearia duplicados en las consultas, pero en realidad el servicio de adaptador
+debe revizar no entregar datos que ya se encuentren en la tabla de union, quitandole asi toda la responsabilidad a los servicio del sistema nuevo de que no se vean datos duplicados.
+
+Reportes:
+Los reportes solo se van a crear utilizando las tablas del sitema nuevo. No se debe nunca tratar de crear un reporte que tenga que presentar datos de los dos sistemas. Van jalado con esa vara.
+
+Edicion:
+La edicion de datos por lo general debe ser solo para el sistema nuevo, si se necesita una edicion en el sistema viejo, el daptador debe recibir entre los parametros que necesita, el NewId de la tabla de union y no el OldId
+El sistema nuevo jamas debe interactuar con la tabla de union solo el adaptador(Obvio).
+
+Lo unico que debe haber en el sistema nuevo, por parte de la interaccion con el adaptador es la llamada de las funciones de este. Estos metodos deben de hacer los cambios en las respuesta del sistema nuevo intrinsecamente. Los que quiero decir con esto es que el adaptador debe recibir lo que los sistemas nuevos iban a responder, pero le meten el pedaso de ellos permitiendo asi que las interaciones con el adaptador en el sistema nuevo siempre sean de solo un a linea.

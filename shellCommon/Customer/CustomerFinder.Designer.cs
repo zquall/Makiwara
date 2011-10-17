@@ -35,6 +35,7 @@
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNewCustomer = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomerControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).BeginInit();
@@ -98,6 +99,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(505, 239);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
@@ -105,12 +107,24 @@
             this.btnClose.Text = "Cerrar";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnNewCustomer
+            // 
+            this.btnNewCustomer.Location = new System.Drawing.Point(12, 239);
+            this.btnNewCustomer.Name = "btnNewCustomer";
+            this.btnNewCustomer.Size = new System.Drawing.Size(139, 23);
+            this.btnNewCustomer.TabIndex = 5;
+            this.btnNewCustomer.Text = "Agregar Cliente Nuevo";
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
+            // 
             // CustomerFinder
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 274);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(592, 273);
             this.ControlBox = false;
+            this.Controls.Add(this.btnNewCustomer);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.grdCustomerControl);
@@ -118,7 +132,7 @@
             this.Controls.Add(this.labelControl1);
             this.Name = "CustomerFinder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Buscar Cliente";
+            this.Text = "Busqueda de Cliente";
             this.Shown += new System.EventHandler(this.CustomerFinder_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomerControl)).EndInit();
@@ -137,5 +151,6 @@
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraEditors.SimpleButton btnNewCustomer;
     }
 }
