@@ -46,7 +46,7 @@
     <Compile Include="Response\CustomerResponse.cs" />
     <Compile Include="Response\FamilyResponse.cs" />
     <Compile Include="Response\ProjectResponse.cs" />
-    <Compile Include="Response\RequestBudgetResponse.cs" />
+    <Compile Include="Response\BudgetRequestResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
     <Compile Include="Response\ResourcceType.cs" />
     <Compile Include="Response\ResourceResponse.cs" />
