@@ -9,6 +9,7 @@ namespace ReplicantRepository.Response
     {
         public List<CustomerData> CustomerList { get; set; }        
     }
+
     public class CustomerData
     {
         public int Id { get; set; }
