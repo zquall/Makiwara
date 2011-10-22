@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.navBarControlDashboard = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroupProject = new DevExpress.XtraNavBar.NavBarGroup();
-            this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
+            this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).BeginInit();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             this.MinimumSize = new System.Drawing.Size(950, 600);
             this.Name = "Dashboard";
             this.Text = "Sistema Administrativo";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dashboard_FormClosed);
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).EndInit();
