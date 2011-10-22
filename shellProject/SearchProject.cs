@@ -9,11 +9,16 @@ using DevExpress.XtraEditors;
 
 namespace shellProject
 {
-    public partial class FindProject : DevExpress.XtraEditors.XtraForm
+    public partial class SearchProject : DevExpress.XtraEditors.XtraForm
     {
-        public FindProject()
+        public SearchProject()
         {
             InitializeComponent();
+        }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

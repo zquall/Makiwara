@@ -1,6 +1,6 @@
 ﻿namespace shellProject
 {
-    partial class FindProject
+    partial class SearchProject
     {
         /// <summary>
         /// Required designer variable.
@@ -54,6 +54,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 1;
             this.cmdCancel.Text = "Cancelar";
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOk
             // 
@@ -79,7 +80,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // FindProject
+            // SearchProject
             // 
             this.AcceptButton = this.cmdOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,8 +96,8 @@
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FindProject";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "SearchProject";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Buscar Proyecto";
             ((System.ComponentModel.ISupportInitialize)(this.txtFind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdFind)).EndInit();

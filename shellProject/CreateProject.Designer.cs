@@ -441,6 +441,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Cancelar";
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdSave
             // 
@@ -499,7 +500,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateProject";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Información del Proyecto";
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
             this.tabControl.ResumeLayout(false);

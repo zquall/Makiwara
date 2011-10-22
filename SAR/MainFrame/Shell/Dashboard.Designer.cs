@@ -65,6 +65,8 @@
             // 
             // MdiManager
             // 
+            this.MdiManager.FloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.False;
+            this.MdiManager.FloatOnDrag = DevExpress.Utils.DefaultBoolean.False;
             this.MdiManager.MdiParent = this;
             // 
             // Dashboard
@@ -77,6 +79,7 @@
             this.MinimumSize = new System.Drawing.Size(950, 600);
             this.Name = "Dashboard";
             this.Text = "Sistema Administrativo";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dashboard_FormClosed);
             this.Load += new System.EventHandler(this.Dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).EndInit();

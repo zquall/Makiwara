@@ -54,6 +54,8 @@ namespace MainFrame.Shell
 
         private void navBarControlDashboard_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
+            ProjectManager projectManager;
+
             switch (e.Link.ItemName)
             {
 
@@ -62,11 +64,34 @@ namespace MainFrame.Shell
                     requestBugetManager.MdiParent = this;
                     requestBugetManager.Show();
                     break;
+
+                case "CreateProject":
+                    projectManager = new ProjectManager();
+                    projectManager.MdiParent = this;
+                    projectManager.Show();
+
+                    CreateProject createProject = new CreateProject();
+                    createProject.ShowDialog();
+                    break;
+
+                case "SearchProject":
+                    projectManager = new ProjectManager();
+                    projectManager.MdiParent = this;
+                    projectManager.Show();
+
+                    SearchProject searchProject = new SearchProject();
+                    searchProject.ShowDialog();
+                    break;
+
                 default:
                     MessageBox.Show("[ " + e.Link.ItemName + " ] menu not implemented");
                     break;
             }
         }
-                
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }       
     }    
 }

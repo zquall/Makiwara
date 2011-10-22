@@ -70,11 +70,11 @@
     <Compile Include="CreateProject.Designer.cs">
       <DependentUpon>CreateProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="FindProject.cs">
+    <Compile Include="SearchProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindProject.Designer.cs">
-      <DependentUpon>FindProject.cs</DependentUpon>
+    <Compile Include="SearchProject.Designer.cs">
+      <DependentUpon>SearchProject.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectManager.cs">
       <SubType>Form</SubType>
@@ -109,8 +109,8 @@
     <EmbeddedResource Include="CreateProject.resx">
       <DependentUpon>CreateProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FindProject.resx">
-      <DependentUpon>FindProject.cs</DependentUpon>
+    <EmbeddedResource Include="SearchProject.resx">
+      <DependentUpon>SearchProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectManager.resx">
       <DependentUpon>ProjectManager.cs</DependentUpon>

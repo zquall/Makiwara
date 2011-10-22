@@ -66,6 +66,7 @@ namespace Hades.session
                 return (_LogedUser.EmployeeSession.FullName == null) ? _LogedUser.EmployeeSession.FullName : "Perfil Incompleto";
             }
         }
+
         public static int EmployeeId
         {
             get
