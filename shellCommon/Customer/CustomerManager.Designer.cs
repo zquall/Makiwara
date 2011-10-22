@@ -38,10 +38,10 @@
             this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnEditContact = new DevExpress.XtraEditors.SimpleButton();
             this.cmbContacts = new DevExpress.XtraEditors.DropDownButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnEditContact = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
@@ -128,6 +128,15 @@
             this.groupControl1.TabIndex = 9;
             this.groupControl1.Text = "Contacto Principal";
             // 
+            // btnEditContact
+            // 
+            this.btnEditContact.Location = new System.Drawing.Point(5, 25);
+            this.btnEditContact.Name = "btnEditContact";
+            this.btnEditContact.Size = new System.Drawing.Size(85, 23);
+            this.btnEditContact.TabIndex = 12;
+            this.btnEditContact.Text = "Editar";
+            this.btnEditContact.Click += new System.EventHandler(this.btnAddContact_Click);
+            // 
             // cmbContacts
             // 
             this.cmbContacts.Location = new System.Drawing.Point(96, 25);
@@ -153,15 +162,6 @@
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cerrar";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnEditContact
-            // 
-            this.btnEditContact.Location = new System.Drawing.Point(5, 25);
-            this.btnEditContact.Name = "btnEditContact";
-            this.btnEditContact.Size = new System.Drawing.Size(85, 23);
-            this.btnEditContact.TabIndex = 12;
-            this.btnEditContact.Text = "Editar";
-            this.btnEditContact.Click += new System.EventHandler(this.btnAddContact_Click);
             // 
             // CustomerManager
             // 

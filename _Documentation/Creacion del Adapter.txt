@@ -1,3 +1,4 @@
+Nombre del proyecto Interceptor.
 La creacion de adapter debe ser casi transparente para el sistema nuestro
 los sistema foraneos no deben ser afectados tampoco el adapter debe contener todo el desmadre.
 
@@ -38,3 +39,8 @@ La edicion de datos por lo general debe ser solo para el sistema nuevo, si se ne
 El sistema nuevo jamas debe interactuar con la tabla de union solo el adaptador(Obvio).
 
 Lo unico que debe haber en el sistema nuevo, por parte de la interaccion con el adaptador es la llamada de las funciones de este. Estos metodos deben de hacer los cambios en las respuesta del sistema nuevo intrinsecamente. Los que quiero decir con esto es que el adaptador debe recibir lo que los sistemas nuevos iban a responder, pero le meten el pedaso de ellos permitiendo asi que las interaciones con el adaptador en el sistema nuevo siempre sean de solo un a linea.
+
+Estructura del adapter: El adapter solo debe de interactuar con el core, ni capa de presentacion, ni los DTO deben darse cuenta de su existencia.
+-Interface: Posee la interfaces de comunicacion standarizadas para nuestro sistema, las cuales son implementadas por los controllers que el interceptor posee
+-DataBase: Posee el Entity framework de la dase datos del sistema viejo
+-Controllers: contiene carpetas con servicios los cuales posee metodos que ayudan a incorporar datos a los dto's del sistema nuevo

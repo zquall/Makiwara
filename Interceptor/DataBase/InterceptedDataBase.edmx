@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OuterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="OuterModelStoreContainer">
+          <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.Store.CLI_CLIENTES" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="CLI_CLIENTES">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="CLI_Cliente" />
+          </Key>
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="CLI_Cliente" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="CLI_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_CedulaJuridica" Type="varchar" MaxLength="15" />
+          <Property Name="CLI_Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="CLI_Fax" Type="varchar" MaxLength="20" />
+          <Property Name="CLI_Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="CLI_Contacto" Type="varchar" MaxLength="50" />
+          <Property Name="CLI_Apartado" Type="varchar" MaxLength="30" />
+          <Property Name="CLI_Mail" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_Descuento" Type="float" Nullable="false" />
+          <Property Name="VEN_Vendedor" Type="varchar" MaxLength="7" />
+          <Property Name="ZON_Codigo" Type="varchar" MaxLength="10" />
+          <Property Name="PRE_Codigo" Type="varchar" MaxLength="5" />
+          <Property Name="CLI_Saldo" Type="float" Nullable="false" />
+          <Property Name="CLI_SaldoDolar" Type="float" Nullable="false" />
+          <Property Name="CLI_MaximoCredito" Type="float" Nullable="false" />
+          <Property Name="CLI_Observaciones" Type="varchar" MaxLength="255" />
+          <Property Name="CLI_ConImpuesto" Type="smallint" Nullable="false" />
+          <Property Name="CLI_DiasCredito" Type="smallint" Nullable="false" />
+          <Property Name="CLI_SaldoReporte" Type="float" Nullable="false" />
+          <Property Name="CLI_SaldoAdelantos" Type="float" Nullable="false" />
+          <Property Name="CLI_Activo" Type="int" Nullable="false" />
+          <Property Name="CLI_Varios" Type="int" Nullable="false" />
+          <Property Name="CLI_Clase" Type="varchar" MaxLength="2" />
+          <Property Name="CLI_CredPendDolares" Type="float" Nullable="false" />
+          <Property Name="CLI_CredPendColones" Type="float" Nullable="false" />
+          <Property Name="CLI_SaldoRealColones" Type="float" Nullable="false" />
+          <Property Name="CLI_SaldoRealDolares" Type="float" Nullable="false" />
+          <Property Name="CLI_Cliente_Tomo" Type="int" />
+          <Property Name="CLI_Cliente_Folio" Type="int" />
+          <Property Name="CLI_Cliente_Asiento" Type="int" />
+          <Property Name="CLI_Representa_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_Representa_Cedula" Type="varchar" MaxLength="15" />
+          <Property Name="CLI_Representa_Ocupacion" Type="varchar" MaxLength="30" />
+          <Property Name="CLI_Representa_EstadoCivil" Type="char" MaxLength="15" />
+          <Property Name="CLI_Representa_Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="CLI_Garante_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_Garante_Cedula" Type="varchar" MaxLength="15" />
+          <Property Name="CLI_Fiador_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_Fiador_Tomo" Type="int" />
+          <Property Name="CLI_Fiador_Folio" Type="int" />
+          <Property Name="CLI_Fiador_Asiento" Type="int" />
+          <Property Name="CLI_Fiador_Representa_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="CLI_Fiador_Representa_Cedula" Type="varchar" MaxLength="15" />
+          <Property Name="VEN_Vendedor_Alquileres" Type="varchar" MaxLength="7" />
+          <Property Name="VEN_Vendedor_Servicios" Type="varchar" MaxLength="7" />
+          <Property Name="cli_Administrativo" Type="int" Nullable="false" />
+          <Property Name="cli_Judicial" Type="int" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="USR_Usuario_Modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Modificacion" Type="datetime" />
+          <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Inclusion" Type="datetime" />
+          <Property Name="CLI_Tipo" Type="varchar" MaxLength="50" />
+          <Property Name="COB_Cobrador" Type="varchar" MaxLength="7" />
+          <Property Name="CLI_Pago" Type="varchar" MaxLength="50" />
+          <Property Name="CON_DESCUENTO_AUTORIZA" Type="int" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OuterModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ForeingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.CLI_CLIENTES" />
+        </EntityContainer>
+        <EntityType Name="CLI_CLIENTES">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="CLI_Cliente" />
+          </Key>
+          <Property Name="CIA_Codigo" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Cliente" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_CedulaJuridica" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Fax" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Direccion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Contacto" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Apartado" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Mail" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Descuento" Type="Double" Nullable="false" />
+          <Property Name="VEN_Vendedor" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
+          <Property Name="ZON_Codigo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PRE_Codigo" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Saldo" Type="Double" Nullable="false" />
+          <Property Name="CLI_SaldoDolar" Type="Double" Nullable="false" />
+          <Property Name="CLI_MaximoCredito" Type="Double" Nullable="false" />
+          <Property Name="CLI_Observaciones" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_ConImpuesto" Type="Int16" Nullable="false" />
+          <Property Name="CLI_DiasCredito" Type="Int16" Nullable="false" />
+          <Property Name="CLI_SaldoReporte" Type="Double" Nullable="false" />
+          <Property Name="CLI_SaldoAdelantos" Type="Double" Nullable="false" />
+          <Property Name="CLI_Activo" Type="Int32" Nullable="false" />
+          <Property Name="CLI_Varios" Type="Int32" Nullable="false" />
+          <Property Name="CLI_Clase" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_CredPendDolares" Type="Double" Nullable="false" />
+          <Property Name="CLI_CredPendColones" Type="Double" Nullable="false" />
+          <Property Name="CLI_SaldoRealColones" Type="Double" Nullable="false" />
+          <Property Name="CLI_SaldoRealDolares" Type="Double" Nullable="false" />
+          <Property Name="CLI_Cliente_Tomo" Type="Int32" />
+          <Property Name="CLI_Cliente_Folio" Type="Int32" />
+          <Property Name="CLI_Cliente_Asiento" Type="Int32" />
+          <Property Name="CLI_Representa_Nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Representa_Cedula" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Representa_Ocupacion" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Representa_EstadoCivil" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
+          <Property Name="CLI_Representa_Direccion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Garante_Nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Garante_Cedula" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Fiador_Nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Fiador_Tomo" Type="Int32" />
+          <Property Name="CLI_Fiador_Folio" Type="Int32" />
+          <Property Name="CLI_Fiador_Asiento" Type="Int32" />
+          <Property Name="CLI_Fiador_Representa_Nombre" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Fiador_Representa_Cedula" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="VEN_Vendedor_Alquileres" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
+          <Property Name="VEN_Vendedor_Servicios" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
+          <Property Name="cli_Administrativo" Type="Int32" Nullable="false" />
+          <Property Name="cli_Judicial" Type="Int32" Nullable="false" />
+          <Property Name="timestamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="USR_Usuario_Modificacion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="USR_Fecha_Modificacion" Type="DateTime" />
+          <Property Name="USR_Usuario_Inclusion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="USR_Fecha_Inclusion" Type="DateTime" />
+          <Property Name="CLI_Tipo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="COB_Cobrador" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
+          <Property Name="CLI_Pago" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CON_DESCUENTO_AUTORIZA" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OuterModelStoreContainer" CdmEntityContainer="ForeingEntities">
+          <EntitySetMapping Name="CLI_CLIENTES"><EntityTypeMapping TypeName="OuterModel.CLI_CLIENTES"><MappingFragment StoreEntitySet="CLI_CLIENTES">
+            <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+            <ScalarProperty Name="CLI_Cliente" ColumnName="CLI_Cliente" />
+            <ScalarProperty Name="CLI_Nombre" ColumnName="CLI_Nombre" />
+            <ScalarProperty Name="CLI_CedulaJuridica" ColumnName="CLI_CedulaJuridica" />
+            <ScalarProperty Name="CLI_Telefono" ColumnName="CLI_Telefono" />
+            <ScalarProperty Name="CLI_Fax" ColumnName="CLI_Fax" />
+            <ScalarProperty Name="CLI_Direccion" ColumnName="CLI_Direccion" />
+            <ScalarProperty Name="CLI_Contacto" ColumnName="CLI_Contacto" />
+            <ScalarProperty Name="CLI_Apartado" ColumnName="CLI_Apartado" />
+            <ScalarProperty Name="CLI_Mail" ColumnName="CLI_Mail" />
+            <ScalarProperty Name="CLI_Descuento" ColumnName="CLI_Descuento" />
+            <ScalarProperty Name="VEN_Vendedor" ColumnName="VEN_Vendedor" />
+            <ScalarProperty Name="ZON_Codigo" ColumnName="ZON_Codigo" />
+            <ScalarProperty Name="PRE_Codigo" ColumnName="PRE_Codigo" />
+            <ScalarProperty Name="CLI_Saldo" ColumnName="CLI_Saldo" />
+            <ScalarProperty Name="CLI_SaldoDolar" ColumnName="CLI_SaldoDolar" />
+            <ScalarProperty Name="CLI_MaximoCredito" ColumnName="CLI_MaximoCredito" />
+            <ScalarProperty Name="CLI_Observaciones" ColumnName="CLI_Observaciones" />
+            <ScalarProperty Name="CLI_ConImpuesto" ColumnName="CLI_ConImpuesto" />
+            <ScalarProperty Name="CLI_DiasCredito" ColumnName="CLI_DiasCredito" />
+            <ScalarProperty Name="CLI_SaldoReporte" ColumnName="CLI_SaldoReporte" />
+            <ScalarProperty Name="CLI_SaldoAdelantos" ColumnName="CLI_SaldoAdelantos" />
+            <ScalarProperty Name="CLI_Activo" ColumnName="CLI_Activo" />
+            <ScalarProperty Name="CLI_Varios" ColumnName="CLI_Varios" />
+            <ScalarProperty Name="CLI_Clase" ColumnName="CLI_Clase" />
+            <ScalarProperty Name="CLI_CredPendDolares" ColumnName="CLI_CredPendDolares" />
+            <ScalarProperty Name="CLI_CredPendColones" ColumnName="CLI_CredPendColones" />
+            <ScalarProperty Name="CLI_SaldoRealColones" ColumnName="CLI_SaldoRealColones" />
+            <ScalarProperty Name="CLI_SaldoRealDolares" ColumnName="CLI_SaldoRealDolares" />
+            <ScalarProperty Name="CLI_Cliente_Tomo" ColumnName="CLI_Cliente_Tomo" />
+            <ScalarProperty Name="CLI_Cliente_Folio" ColumnName="CLI_Cliente_Folio" />
+            <ScalarProperty Name="CLI_Cliente_Asiento" ColumnName="CLI_Cliente_Asiento" />
+            <ScalarProperty Name="CLI_Representa_Nombre" ColumnName="CLI_Representa_Nombre" />
+            <ScalarProperty Name="CLI_Representa_Cedula" ColumnName="CLI_Representa_Cedula" />
+            <ScalarProperty Name="CLI_Representa_Ocupacion" ColumnName="CLI_Representa_Ocupacion" />
+            <ScalarProperty Name="CLI_Representa_EstadoCivil" ColumnName="CLI_Representa_EstadoCivil" />
+            <ScalarProperty Name="CLI_Representa_Direccion" ColumnName="CLI_Representa_Direccion" />
+            <ScalarProperty Name="CLI_Garante_Nombre" ColumnName="CLI_Garante_Nombre" />
+            <ScalarProperty Name="CLI_Garante_Cedula" ColumnName="CLI_Garante_Cedula" />
+            <ScalarProperty Name="CLI_Fiador_Nombre" ColumnName="CLI_Fiador_Nombre" />
+            <ScalarProperty Name="CLI_Fiador_Tomo" ColumnName="CLI_Fiador_Tomo" />
+            <ScalarProperty Name="CLI_Fiador_Folio" ColumnName="CLI_Fiador_Folio" />
+            <ScalarProperty Name="CLI_Fiador_Asiento" ColumnName="CLI_Fiador_Asiento" />
+            <ScalarProperty Name="CLI_Fiador_Representa_Nombre" ColumnName="CLI_Fiador_Representa_Nombre" />
+            <ScalarProperty Name="CLI_Fiador_Representa_Cedula" ColumnName="CLI_Fiador_Representa_Cedula" />
+            <ScalarProperty Name="VEN_Vendedor_Alquileres" ColumnName="VEN_Vendedor_Alquileres" />
+            <ScalarProperty Name="VEN_Vendedor_Servicios" ColumnName="VEN_Vendedor_Servicios" />
+            <ScalarProperty Name="cli_Administrativo" ColumnName="cli_Administrativo" />
+            <ScalarProperty Name="cli_Judicial" ColumnName="cli_Judicial" />
+            <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+            <ScalarProperty Name="USR_Usuario_Modificacion" ColumnName="USR_Usuario_Modificacion" />
+            <ScalarProperty Name="USR_Fecha_Modificacion" ColumnName="USR_Fecha_Modificacion" />
+            <ScalarProperty Name="USR_Usuario_Inclusion" ColumnName="USR_Usuario_Inclusion" />
+            <ScalarProperty Name="USR_Fecha_Inclusion" ColumnName="USR_Fecha_Inclusion" />
+            <ScalarProperty Name="CLI_Tipo" ColumnName="CLI_Tipo" />
+            <ScalarProperty Name="COB_Cobrador" ColumnName="COB_Cobrador" />
+            <ScalarProperty Name="CLI_Pago" ColumnName="CLI_Pago" />
+            <ScalarProperty Name="CON_DESCUENTO_AUTORIZA" ColumnName="CON_DESCUENTO_AUTORIZA" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="InterceptedDataBase" ZoomLevel="100">
+        <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
