@@ -16,6 +16,7 @@ namespace MainFrame.Shell
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SplashLoader());
+            Environment.Exit(0);
         }
     }
 }

@@ -19,7 +19,11 @@ namespace CORE.Services
         {
             var response = new BudgetRequestResponse();
             response.EmployeeName = Hades.session.SessionManager.FullName;
-            response.DateModified = DateTime.Today;                
+            response.DateModified = DateTime.Today;
+            response.Customer = new CustomerData();
+            response.Customer.Name = "";
+            response.Customer.Address = "";
+
             return response;
         }
     }

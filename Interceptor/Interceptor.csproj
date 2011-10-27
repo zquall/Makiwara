@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\CustomerAdapter.cs" />
+    <Compile Include="Adapters\Asgard.cs" />
     <Compile Include="DataBase\InterceptedDataBase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -51,7 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="Interface\" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
+      <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
+      <Name>ReplicantRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

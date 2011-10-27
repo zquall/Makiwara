@@ -230,7 +230,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="100">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="40">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
       </Diagram>
     </Diagrams>

@@ -26,7 +26,7 @@ namespace shellCommon.Customer
 
         private void CustomerFinder_Shown(object sender, EventArgs e)
         {
-            SearchCustomer("a");
+            SearchCustomer("");
         }
 
         #region Search Customers Service Calls
@@ -64,6 +64,32 @@ namespace shellCommon.Customer
                 this.Visible = true;
             }
         }
+
+        private void txtSearchQuery_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && grdCustomerView.FocusedRowHandle >= 0)
+            {                
+                grdCustomerView.Focus();
+            }
+        }
+
+        private void grdCustomerView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(grdCustomerView.FocusedRowHandle == 0){
+                if (e.KeyCode == Keys.Up )
+                {
+                    txtSearchQuery.Focus();
+                }
+            }
+            
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            var focusedRow = grdCustomerView.GetFocusedRow();
+            if (focusedRow == null) { }
+        }
+
 
     }
 }

@@ -33,6 +33,13 @@ namespace shellProject
         {
             lblEmployeeName.Text = budgetRequestResponse.EmployeeName;
             edtDate.EditValue = budgetRequestResponse.DateModified;
+            loadCustomer(budgetRequestResponse.Customer);
+        }
+
+        private void loadCustomer(CustomerData customer)
+        {
+            btnCustomerName.Text = customer.Name;
+            lblAddress.Text = customer.Address;
         }
 
         private void btnCustomerName_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

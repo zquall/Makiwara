@@ -63,7 +63,7 @@ namespace Hades.session
         {
             get
             {
-                return (_LogedUser.EmployeeSession.FullName == null) ? _LogedUser.EmployeeSession.FullName : "Perfil Incompleto";
+                return (_LogedUser.EmployeeSession.FullName == null) ? "Perfil Incompleto" : _LogedUser.EmployeeSession.FullName;
             }
         }
 

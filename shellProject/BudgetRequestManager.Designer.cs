@@ -32,7 +32,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.buttonEdit2 = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lblAddress = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCustomerName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -196,14 +196,14 @@
             this.labelControl4.TabIndex = 4;
             this.labelControl4.Text = "Proyecto:";
             // 
-            // labelControl3
+            // lblAddress
             // 
-            this.labelControl3.Location = new System.Drawing.Point(105, 51);
-            this.labelControl3.MaximumSize = new System.Drawing.Size(348, 0);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(344, 13);
-            this.labelControl3.TabIndex = 3;
-            this.labelControl3.Text = "###########################################";
+            this.lblAddress.Location = new System.Drawing.Point(105, 51);
+            this.lblAddress.MaximumSize = new System.Drawing.Size(348, 0);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(344, 13);
+            this.lblAddress.TabIndex = 3;
+            this.lblAddress.Text = "###########################################";
             // 
             // labelControl2
             // 
@@ -397,7 +397,7 @@
             this.groupControl2.Controls.Add(this.dropDownButton1);
             this.groupControl2.Controls.Add(this.labelControl4);
             this.groupControl2.Controls.Add(this.btnCustomerName);
-            this.groupControl2.Controls.Add(this.labelControl3);
+            this.groupControl2.Controls.Add(this.lblAddress);
             this.groupControl2.Controls.Add(this.labelControl2);
             this.groupControl2.Location = new System.Drawing.Point(12, 12);
             this.groupControl2.Name = "groupControl2";
@@ -449,7 +449,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Controls.Add(this.groupControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage2.Size = new System.Drawing.Size(698, 272);
             this.xtraTabPage2.Text = "Condiciones del Trabajo";
             // 
             // groupControl7
@@ -725,7 +725,7 @@
             this.xtraTabPage3.Controls.Add(this.labelControl14);
             this.xtraTabPage3.Controls.Add(this.labelControl13);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage3.Size = new System.Drawing.Size(698, 272);
             this.xtraTabPage3.Text = "Plazos y Tiempos";
             // 
             // groupControl8
@@ -887,7 +887,7 @@
             // xtraTabPage4
             // 
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage4.Size = new System.Drawing.Size(698, 272);
             this.xtraTabPage4.Text = "Documentos Adjuntos";
             // 
             // BudgetRequestManager
@@ -981,7 +981,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ButtonEdit buttonEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl lblAddress;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ButtonEdit btnCustomerName;
         private DevExpress.XtraEditors.LabelControl labelControl11;

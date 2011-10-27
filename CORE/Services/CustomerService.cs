@@ -5,6 +5,7 @@ using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using Hades.session;
+using Interceptor.Adapters;
 
 namespace CORE.Services
 {
@@ -21,6 +22,7 @@ namespace CORE.Services
             var response = new CustomerResponse();
             // Inicitialize the list of customers
             response.CustomerList = new List<CustomerData>();
+
             // Get customers from respective employee
             var tmpEmployee = Olympus._Enterprise.Employees.Where(x => x.Id == SessionManager.EmployeeId).SingleOrDefault();
             // Apply the search with the pattern given
@@ -37,6 +39,13 @@ namespace CORE.Services
                     response.CustomerList.Add(tmpCustomerData);
                 }
             }
+
+            // Intercepted Method
+            new CustomerAdapter().searchCustomer(request.SearchCustomerQuery, response.CustomerList);
+
+            // Sorted again the list
+            response.CustomerList = response.CustomerList.OrderBy(x => x.Name).ToList();
+            
             return response;
         }
     }

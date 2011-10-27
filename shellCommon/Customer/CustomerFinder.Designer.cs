@@ -56,6 +56,7 @@
             this.txtSearchQuery.Size = new System.Drawing.Size(568, 20);
             this.txtSearchQuery.TabIndex = 1;
             this.txtSearchQuery.EditValueChanged += new System.EventHandler(this.txtSearchQuery_EditValueChanged);
+            this.txtSearchQuery.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchQuery_KeyDown);
             // 
             // grdCustomerControl
             // 
@@ -80,6 +81,7 @@
             this.grdCustomerView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.grdCustomerView.OptionsView.EnableAppearanceEvenRow = true;
             this.grdCustomerView.OptionsView.ShowGroupPanel = false;
+            this.grdCustomerView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCustomerView_KeyDown);
             // 
             // colName
             // 
@@ -96,6 +98,7 @@
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "Aceptar";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnClose
             // 

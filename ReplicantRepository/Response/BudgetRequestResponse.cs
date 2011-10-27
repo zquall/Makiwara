@@ -10,5 +10,6 @@ namespace ReplicantRepository.Response
         public int? Id { get; set; }
         public DateTime DateModified { get; set; }
         public string EmployeeName { get; set; }
+        public CustomerData Customer { get; set; }
     }
 }

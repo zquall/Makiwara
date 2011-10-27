@@ -8,9 +8,9 @@ using Nexus;
 namespace CORE.Services
 {
 
-    public static class Olympus
+    internal static class Olympus
     {
-        public static NERVEntities _Nerv = new NERVEntities();
-        public static EnterpriseEntities _Enterprise = new EnterpriseEntities();
+        internal static NERVEntities _Nerv = new NERVEntities();
+        internal static EnterpriseEntities _Enterprise = new EnterpriseEntities();
     }
 }
