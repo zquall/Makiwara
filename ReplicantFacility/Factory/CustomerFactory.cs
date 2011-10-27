@@ -11,6 +11,7 @@ namespace ReplicantFacility.Factory
     public class CustomerFactory
     {
         private static CustomerService _CustomerService;
+
         public CustomerFactory()
         {
             _CustomerService = _CustomerService ?? new CustomerService();

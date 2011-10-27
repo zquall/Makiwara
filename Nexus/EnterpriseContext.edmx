@@ -1154,7 +1154,7 @@
         <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="0.75" PointY="4.125" Height="1.9210009765625067" />
         <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="6" PointY="1.125" Height="1.9210009765625102" />
         <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="3.75" PointY="13.375" Height="1.427958984374996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="8.25" PointY="6" Height="4.2218636067708246" />
+        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="2" PointX="7.75" PointY="6" Height="4.8648079427083317" />
         <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="12.75" PointY="6.5" Height="3.0714322916666674" />
         <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="10.5" PointY="2.25" Height="1.5923063151041674" />
         <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="10.5" PointY="5.625" Height="5.0436002604166674" />
@@ -1171,11 +1171,13 @@
           <ConnectorPoint PointX="5.25" PointY="8.0855004882812516" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_BudgetRequest" >
-          <ConnectorPoint PointX="3.75" PointY="9.0460009765625031" />
-          <ConnectorPoint PointX="3.75" PointY="9.7670296223958317" />
-          <ConnectorPoint PointX="4.947916666666667" PointY="9.7670296223958317" />
-          <ConnectorPoint PointX="5.114583333333333" PointY="9.7670296223958317" />
-          <ConnectorPoint PointX="8.25" PointY="9.7670296223958317" />
+          <ConnectorPoint PointX="4.5" PointY="9.297587890625" />
+          <ConnectorPoint PointX="4.875" PointY="9.672587890625" />
+          <ConnectorPoint PointX="4.875" PointY="11.239807942708332" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="11.239807942708332" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="11.239807942708332" />
+          <ConnectorPoint PointX="7.375" PointY="11.239807942708332" />
+          <ConnectorPoint PointX="7.75" PointY="10.864807942708332" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequestDetail_Measure" >
           <ConnectorPoint PointX="4.5" PointY="3.0066536458333388" />
@@ -1192,34 +1194,29 @@
           <ConnectorPoint PointX="3" PointY="5.085500488281248" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_Customer" >
-          <ConnectorPoint PointX="1.5" PointY="9.0853483072916674" />
-          <ConnectorPoint PointX="1.5" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="2.7291666666666665" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="2.8958333333333335" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="4.947916666666667" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="5.114583333333333" PointY="9.5083601302083416" />
-          <ConnectorPoint PointX="8.25" PointY="9.5083601302083416" />
+          <ConnectorPoint PointX="1.2539053125000002" PointY="9.3648893229166656" />
+          <ConnectorPoint PointX="1.2539053125000002" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="1.7369822916666668" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="1.9036489583333334" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="2.7708333333333335" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.9035953776041641" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="9.9035953776041659" />
+          <ConnectorPoint PointX="7.75" PointY="9.9035953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Person" >
           <ConnectorPoint PointX="2.25" PointY="4.542750244140624" />
           <ConnectorPoint PointX="3" PointY="4.542750244140624" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Employee_Person" >
-          <ConnectorPoint PointX="2.25" PointY="5.9836922842548139" />
-          <ConnectorPoint PointX="2.5660744349011213" PointY="6.2997667191559348" />
-          <ConnectorPoint PointX="2.6839255650988791" PointY="6.4176178493536931" />
-          <ConnectorPoint PointX="2.8125" PointY="6.5461922842548139" />
-          <ConnectorPoint PointX="2.8125" PointY="11.128326822916669" />
-          <ConnectorPoint PointX="3" PointY="11.128326822916669" />
+          <ConnectorPoint PointX="2.25" PointY="6.2352791983173068" />
+          <ConnectorPoint PointX="2.6875" PointY="6.6727791983173068" />
+          <ConnectorPoint PointX="2.6875" PointY="11.444098184895832" />
+          <ConnectorPoint PointX="3" PointY="11.444098184895832" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_Family" >
-          <ConnectorPoint PointX="7.5" PointY="5.0889794921875016" />
-          <ConnectorPoint PointX="9" PointY="5.0889794921875016" />
-          <ConnectorPoint PointX="9" PointY="6" />
+          <ConnectorPoint PointX="7.5" PointY="5.97068359375" />
+          <ConnectorPoint PointX="7.75" PointY="6" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_Measure" >
           <ConnectorPoint PointX="4.5" PointY="2.0970748229166687" />
@@ -1243,8 +1240,8 @@
           <ConnectorPoint PointX="6" PointY="1.171875" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Task_Project" >
-          <ConnectorPoint PointX="9.75" PointY="8.1109318033854123" />
-          <ConnectorPoint PointX="10.5" PointY="8.1109318033854123" />
+          <ConnectorPoint PointX="9.75" PointY="8.4324039713541659" />
+          <ConnectorPoint PointX="10.5" PointY="8.4324039713541659" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_ResourceType" >
           <ConnectorPoint PointX="12" PointY="3.0461531575520837" />
@@ -1262,11 +1259,11 @@
           <ConnectorPoint PointX="11.478461538461538" PointY="10.668600260416667" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.EmployeeXCustomer" >
-          <ConnectorPoint PointX="1.9062525" PointY="9.0853483072916674" />
-          <ConnectorPoint PointX="1.9062525" PointY="10.657910911458334" />
-          <ConnectorPoint PointX="2.7291666666666665" PointY="10.657910911458334" />
-          <ConnectorPoint PointX="2.8958333333333335" PointY="10.657910911458334" />
-          <ConnectorPoint PointX="3" PointY="10.657910911458334" />
+          <ConnectorPoint PointX="1.820315625" PointY="9.3648893229166656" />
+          <ConnectorPoint PointX="1.820315625" PointY="10.815796592447915" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="10.815796592447915" />
+          <ConnectorPoint PointX="2.7708333333333335" PointY="10.815796592447915" />
+          <ConnectorPoint PointX="3" PointY="10.815796592447915" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

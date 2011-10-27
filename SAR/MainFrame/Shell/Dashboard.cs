@@ -71,7 +71,12 @@ namespace MainFrame.Shell
                     projectManager.Show();
 
                     CreateProject createProject = new CreateProject();
-                    createProject.ShowDialog();
+
+                    if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                        projectManager.Close();
+                    else
+                        MessageBox.Show("Cargando Datos del Proyecto");
+
                     break;
 
                 case "SearchProject":
@@ -80,7 +85,12 @@ namespace MainFrame.Shell
                     projectManager.Show();
 
                     SearchProject searchProject = new SearchProject();
-                    searchProject.ShowDialog();
+
+                    if (searchProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                        projectManager.Close();
+                    else
+                        MessageBox.Show("Cargando Datos del Proyecto");
+
                     break;
 
                 default:

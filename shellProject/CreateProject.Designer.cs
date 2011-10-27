@@ -97,7 +97,7 @@
             // 
             // tabControl
             // 
-            this.tabControl.Location = new System.Drawing.Point(3, 32);
+            this.tabControl.Location = new System.Drawing.Point(7, 32);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabPage = this.tabGeneral;
             this.tabControl.Size = new System.Drawing.Size(421, 212);
@@ -436,7 +436,7 @@
             // cmdCancel
             // 
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancel.Location = new System.Drawing.Point(342, 250);
+            this.cmdCancel.Location = new System.Drawing.Point(349, 253);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
@@ -445,7 +445,7 @@
             // 
             // cmdSave
             // 
-            this.cmdSave.Location = new System.Drawing.Point(240, 250);
+            this.cmdSave.Location = new System.Drawing.Point(247, 253);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 4;
@@ -487,7 +487,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
-            this.ClientSize = new System.Drawing.Size(432, 285);
+            this.ClientSize = new System.Drawing.Size(434, 287);
             this.Controls.Add(this.dtCreateDate);
             this.Controls.Add(this.txtQuoteNumber);
             this.Controls.Add(this.lblQuoteNumber);
