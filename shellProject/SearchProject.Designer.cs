@@ -31,11 +31,11 @@
             this.txtFind = new DevExpress.XtraEditors.TextEdit();
             this.cmdCancel = new DevExpress.XtraEditors.SimpleButton();
             this.cmdOk = new DevExpress.XtraEditors.SimpleButton();
-            this.grdFind = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdProjectControl = new DevExpress.XtraGrid.GridControl();
+            this.viewProjects = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.txtFind.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProjectControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewProjects)).BeginInit();
             this.SuspendLayout();
             // 
             // txtFind
@@ -43,13 +43,14 @@
             this.txtFind.EditValue = "Dato a Buscar";
             this.txtFind.Location = new System.Drawing.Point(12, 12);
             this.txtFind.Name = "txtFind";
-            this.txtFind.Size = new System.Drawing.Size(425, 20);
+            this.txtFind.Size = new System.Drawing.Size(410, 20);
             this.txtFind.TabIndex = 0;
+            this.txtFind.EditValueChanged += new System.EventHandler(this.txtFind_EditValueChanged);
             // 
             // cmdCancel
             // 
             this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancel.Location = new System.Drawing.Point(362, 335);
+            this.cmdCancel.Location = new System.Drawing.Point(347, 256);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 1;
@@ -58,27 +59,27 @@
             // 
             // cmdOk
             // 
-            this.cmdOk.Location = new System.Drawing.Point(265, 335);
+            this.cmdOk.Location = new System.Drawing.Point(252, 256);
             this.cmdOk.Name = "cmdOk";
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
             this.cmdOk.Text = "Aceptar";
             // 
-            // grdFind
+            // grdProjectControl
             // 
-            this.grdFind.Location = new System.Drawing.Point(12, 47);
-            this.grdFind.MainView = this.gridView1;
-            this.grdFind.Name = "grdFind";
-            this.grdFind.Size = new System.Drawing.Size(425, 276);
-            this.grdFind.TabIndex = 3;
-            this.grdFind.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grdProjectControl.Location = new System.Drawing.Point(12, 47);
+            this.grdProjectControl.MainView = this.viewProjects;
+            this.grdProjectControl.Name = "grdProjectControl";
+            this.grdProjectControl.Size = new System.Drawing.Size(410, 200);
+            this.grdProjectControl.TabIndex = 3;
+            this.grdProjectControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.viewProjects});
             // 
-            // gridView1
+            // viewProjects
             // 
-            this.gridView1.GridControl = this.grdFind;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.viewProjects.GridControl = this.grdProjectControl;
+            this.viewProjects.Name = "viewProjects";
+            this.viewProjects.OptionsView.ShowGroupPanel = false;
             // 
             // SearchProject
             // 
@@ -86,8 +87,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cmdCancel;
-            this.ClientSize = new System.Drawing.Size(449, 364);
-            this.Controls.Add(this.grdFind);
+            this.ClientSize = new System.Drawing.Size(434, 287);
+            this.Controls.Add(this.grdProjectControl);
             this.Controls.Add(this.cmdOk);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.txtFind);
@@ -99,9 +100,10 @@
             this.Name = "SearchProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Buscar Proyecto";
+            this.Shown += new System.EventHandler(this.SearchProject_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.txtFind.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdFind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProjectControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewProjects)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -111,7 +113,7 @@
         private DevExpress.XtraEditors.TextEdit txtFind;
         private DevExpress.XtraEditors.SimpleButton cmdCancel;
         private DevExpress.XtraEditors.SimpleButton cmdOk;
-        private DevExpress.XtraGrid.GridControl grdFind;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl grdProjectControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView viewProjects;
     }
 }

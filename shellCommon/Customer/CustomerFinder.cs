@@ -30,6 +30,7 @@ namespace shellCommon.Customer
         }
 
         #region Search Customers Service Calls
+
         private void SearchCustomer(string query)
         {
             var request = new CustomerRequest();
@@ -41,6 +42,7 @@ namespace shellCommon.Customer
         {           
             grdCustomerControl.DataSource = searchResults;
         }
+
         #endregion
 
         private void txtSearchQuery_EditValueChanged(object sender, EventArgs e)
