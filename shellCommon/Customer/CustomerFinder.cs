@@ -49,6 +49,27 @@ namespace shellCommon.Customer
         {
             var tmpTextEdit = sender as TextEdit;
             SearchCustomer(tmpTextEdit.Text);
+        }      
+
+        // Move the focus to the grid when press Down on the search
+        private void txtSearchQuery_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && grdCustomerView.FocusedRowHandle >= 0)
+            {                
+                grdCustomerView.Focus();
+            }
+        }
+
+        // Move the focus to the search when the user press Up and is in the first row of the grid
+        private void grdCustomerView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(grdCustomerView.FocusedRowHandle == 0){
+                if (e.KeyCode == Keys.Up )
+                {
+                    txtSearchQuery.Focus();
+                }
+            }
+            
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
@@ -67,29 +88,29 @@ namespace shellCommon.Customer
             }
         }
 
-        private void txtSearchQuery_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Down && grdCustomerView.FocusedRowHandle >= 0)
-            {                
-                grdCustomerView.Focus();
-            }
-        }
-
-        private void grdCustomerView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(grdCustomerView.FocusedRowHandle == 0){
-                if (e.KeyCode == Keys.Up )
-                {
-                    txtSearchQuery.Focus();
-                }
-            }
-            
-        }
-
         private void btnOk_Click(object sender, EventArgs e)
         {
-            var focusedRow = grdCustomerView.GetFocusedRow();
-            if (focusedRow == null) { }
+            var focusedRow = grdCustomerView.GetFocusedRow() as CustomerData;
+            if (focusedRow == null) {
+                // Check if the user select a customer
+                if (focusedRow.Id > 0)
+                {
+
+                }
+                else
+                {
+                    // Check if is an imported customer
+                    if (focusedRow.Id == 0)
+                    {
+
+                    }
+                    // Check if is a new customer
+                    if (focusedRow.Id == -1)
+                    {
+
+                    }
+                }
+            }
         }
 
 

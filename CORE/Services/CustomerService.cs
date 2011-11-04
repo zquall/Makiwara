@@ -11,9 +11,10 @@ namespace CORE.Services
 {
     public class CustomerService
     {
+        protected CustomerAdapter _CustomerAdapter;
         public CustomerService()
         {
-            
+            _CustomerAdapter = new CustomerAdapter();
         }
 
         public CustomerResponse searchCustomer(CustomerRequest request)
@@ -41,11 +42,25 @@ namespace CORE.Services
             }
 
             // Intercepted Method
-            new CustomerAdapter().searchCustomer(request.SearchCustomerQuery, response.CustomerList);
+            _CustomerAdapter.searchCustomer(request.SearchCustomerQuery, response.CustomerList);
 
             // Sorted again the list
             response.CustomerList = response.CustomerList.OrderBy(x => x.Name).ToList();
             
+            return response;
+        }
+
+        public CustomerResponse getCustomer(CustomerRequest request)
+        {
+            var response = new CustomerResponse();
+            // Validate if the customer is from Nexus
+            if (request.CustomerId > 0) 
+            { 
+            }
+
+            // Intercepted Method
+            _CustomerAdapter.getCustomer(request.CustomerId,request.CustomerName, response.Customer);
+
             return response;
         }
     }

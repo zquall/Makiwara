@@ -35,6 +35,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "EmployeeXCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Customer), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee))]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BindCustomer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BindCustomer), true)]
 
 #endregion
 
@@ -309,6 +310,22 @@ namespace Nexus
             }
         }
         private ObjectSet<Task> _Tasks;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BindCustomer> BindCustomers
+        {
+            get
+            {
+                if ((_BindCustomers == null))
+                {
+                    _BindCustomers = base.CreateObjectSet<BindCustomer>("BindCustomers");
+                }
+                return _BindCustomers;
+            }
+        }
+        private ObjectSet<BindCustomer> _BindCustomers;
 
         #endregion
         #region AddTo Methods
@@ -424,6 +441,14 @@ namespace Nexus
         {
             base.AddObject("Tasks", task);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BindCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBindCustomers(BindCustomer bindCustomer)
+        {
+            base.AddObject("BindCustomers", bindCustomer);
+        }
 
         #endregion
     }
@@ -432,6 +457,131 @@ namespace Nexus
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="BindCustomer")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BindCustomer : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BindCustomer object.
+        /// </summary>
+        /// <param name="customerId">Initial value of the CustomerId property.</param>
+        /// <param name="alienId">Initial value of the AlienId property.</param>
+        public static BindCustomer CreateBindCustomer(global::System.Int32 customerId, global::System.String alienId)
+        {
+            BindCustomer bindCustomer = new BindCustomer();
+            bindCustomer.CustomerId = customerId;
+            bindCustomer.AlienId = alienId;
+            return bindCustomer;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CustomerId
+        {
+            get
+            {
+                return _CustomerId;
+            }
+            set
+            {
+                if (_CustomerId != value)
+                {
+                    OnCustomerIdChanging(value);
+                    ReportPropertyChanging("CustomerId");
+                    _CustomerId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CustomerId");
+                    OnCustomerIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CustomerId;
+        partial void OnCustomerIdChanging(global::System.Int32 value);
+        partial void OnCustomerIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String AlienId
+        {
+            get
+            {
+                return _AlienId;
+            }
+            set
+            {
+                if (_AlienId != value)
+                {
+                    OnAlienIdChanging(value);
+                    ReportPropertyChanging("AlienId");
+                    _AlienId = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("AlienId");
+                    OnAlienIdChanged();
+                }
+            }
+        }
+        private global::System.String _AlienId;
+        partial void OnAlienIdChanging(global::System.String value);
+        partial void OnAlienIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer")]
+        public Customer Customer
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_BindCustomer_Customer", "Customer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_BindCustomer_Customer", "Customer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Customer> CustomerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Customer>("EnterpriseModel.FK_BindCustomer_Customer", "Customer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("EnterpriseModel.FK_BindCustomer_Customer", "Customer", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -1080,6 +1230,28 @@ namespace Nexus
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("EnterpriseModel.EmployeeXCustomer", "Employee", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "BindCustomer")]
+        public EntityCollection<BindCustomer> BindCustomers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer", value);
                 }
             }
         }

@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InterceptedDataBase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Olympus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,10 @@
     <None Include="App.Config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nexus\Nexus.csproj">
+      <Project>{B7879F8A-7582-4D7D-8FE6-04D14C93B82F}</Project>
+      <Name>Nexus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
       <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
       <Name>ReplicantRepository</Name>
