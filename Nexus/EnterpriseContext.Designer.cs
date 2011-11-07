@@ -35,7 +35,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "EmployeeXCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Customer), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee))]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BindCustomer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BindCustomer), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BindCustomer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Nexus.BindCustomer), true)]
 
 #endregion
 
@@ -514,7 +514,7 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String AlienId
         {
@@ -524,14 +524,11 @@ namespace Nexus
             }
             set
             {
-                if (_AlienId != value)
-                {
-                    OnAlienIdChanging(value);
-                    ReportPropertyChanging("AlienId");
-                    _AlienId = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("AlienId");
-                    OnAlienIdChanged();
-                }
+                OnAlienIdChanging(value);
+                ReportPropertyChanging("AlienId");
+                _AlienId = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("AlienId");
+                OnAlienIdChanged();
             }
         }
         private global::System.String _AlienId;
@@ -1241,17 +1238,33 @@ namespace Nexus
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "BindCustomer")]
-        public EntityCollection<BindCustomer> BindCustomers
+        public BindCustomer BindCustomer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<BindCustomer> BindCustomerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer", value);
                 }
             }
         }

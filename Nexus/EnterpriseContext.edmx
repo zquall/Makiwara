@@ -6,12 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="EnterpriseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EnterpriseModelStoreContainer">
-          <EntitySet Name="BindCustomer" EntityType="EnterpriseModel.Store.BindCustomer" store:Type="Tables" store:Schema="dbo" store:Name="BindCustomer">
-            <DefiningQuery>SELECT 
-      [BindCustomer].[CustomerId] AS [CustomerId], 
-      [BindCustomer].[AlienId] AS [AlienId]
-      FROM [dbo].[BindCustomer] AS [BindCustomer]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="BindCustomer" EntityType="EnterpriseModel.Store.BindCustomer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BudgetRequest" EntityType="EnterpriseModel.Store.BudgetRequest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BudgetRequestDetail" EntityType="EnterpriseModel.Store.BudgetRequestDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="EnterpriseModel.Store.Customer" store:Type="Tables" Schema="dbo" />
@@ -104,15 +99,11 @@
             <End Role="Task1" EntitySet="Task" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'COMPANY.dbo.BindCustomer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="BindCustomer">
           <Key>
             <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="AlienId" />
           </Key>
-          <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="AlienId" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="BudgetRequest">
@@ -302,7 +293,7 @@
         </Association>
         <Association Name="FK_BindCustomer_Customer">
           <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="BindCustomer" Type="EnterpriseModel.Store.BindCustomer" Multiplicity="*" />
+          <End Role="BindCustomer" Type="EnterpriseModel.Store.BindCustomer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -632,7 +623,7 @@
           <NavigationProperty Name="CustomerContacts" Relationship="EnterpriseModel.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
           <NavigationProperty Name="Projects" Relationship="EnterpriseModel.FK_Project_Customer" FromRole="Customer" ToRole="Project" />
           <NavigationProperty Name="Employees" Relationship="EnterpriseModel.EmployeeXCustomer" FromRole="Customer" ToRole="Employee" />
-          <NavigationProperty Name="BindCustomers" Relationship="EnterpriseModel.FK_BindCustomer_Customer" FromRole="Customer" ToRole="BindCustomer" />
+          <NavigationProperty Name="BindCustomer" Relationship="EnterpriseModel.FK_BindCustomer_Customer" FromRole="Customer" ToRole="BindCustomer" />
         </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
@@ -984,15 +975,14 @@
         <EntityType Name="BindCustomer">
           <Key>
             <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="AlienId" />
           </Key>
-          <Property Type="Int32" Name="CustomerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
           <Property Type="String" Name="AlienId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_BindCustomer_Customer" FromRole="BindCustomer" ToRole="Customer" />
         </EntityType>
         <Association Name="FK_BindCustomer_Customer">
           <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="EnterpriseModel.BindCustomer" Role="BindCustomer" Multiplicity="*" />
+          <End Type="EnterpriseModel.BindCustomer" Role="BindCustomer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -1240,10 +1230,10 @@
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_BudgetRequest" >
           <ConnectorPoint PointX="3.75" PointY="9.0460009765625031" />
-          <ConnectorPoint PointX="3.75" PointY="9.980711954962068" />
-          <ConnectorPoint PointX="4.947916666666667" PointY="9.980711954962068" />
-          <ConnectorPoint PointX="5.114583333333333" PointY="9.980711954962068" />
-          <ConnectorPoint PointX="7.75" PointY="9.980711954962068" />
+          <ConnectorPoint PointX="3.75" PointY="9.9076546223958335" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="9.9076546223958335" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="9.9076546223958335" />
+          <ConnectorPoint PointX="7.75" PointY="9.9076546223958335" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequestDetail_Measure" >
           <ConnectorPoint PointX="4.5" PointY="3.0066536458333388" />
@@ -1278,8 +1268,8 @@
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Employee_Person" >
           <ConnectorPoint PointX="2.15625" PointY="6.0460009765625067" />
-          <ConnectorPoint PointX="2.15625" PointY="11.422336767578129" />
-          <ConnectorPoint PointX="3" PointY="11.422336767578129" />
+          <ConnectorPoint PointX="2.15625" PointY="11.441631170196537" />
+          <ConnectorPoint PointX="3" PointY="11.441631170196537" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_Family" >
           <ConnectorPoint PointX="7.5" PointY="5.97068359375" />
@@ -1327,12 +1317,12 @@
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.EmployeeXCustomer" >
           <ConnectorPoint PointX="1.25" PointY="9.8746956380208335" />
-          <ConnectorPoint PointX="1.25" PointY="10.804915883789064" />
-          <ConnectorPoint PointX="1.5729191666666667" PointY="10.804915883789064" />
-          <ConnectorPoint PointX="1.7395858333333332" PointY="10.804915883789064" />
-          <ConnectorPoint PointX="2.0729166666666665" PointY="10.804915883789064" />
-          <ConnectorPoint PointX="2.2395833333333335" PointY="10.804915883789064" />
-          <ConnectorPoint PointX="3" PointY="10.804915883789064" />
+          <ConnectorPoint PointX="1.25" PointY="10.814563085098268" />
+          <ConnectorPoint PointX="1.5729191666666667" PointY="10.814563085098268" />
+          <ConnectorPoint PointX="1.7395858333333332" PointY="10.814563085098268" />
+          <ConnectorPoint PointX="2.0729166666666665" PointY="10.814563085098268" />
+          <ConnectorPoint PointX="2.2395833333333335" PointY="10.814563085098268" />
+          <ConnectorPoint PointX="3" PointY="10.814563085098268" />
         </AssociationConnector>
         <EntityTypeShape EntityType="EnterpriseModel.BindCustomer" Width="1.5" PointX="2.75" PointY="16" Height="1.4279589843750031" />
         <AssociationConnector Association="EnterpriseModel.FK_BindCustomer_Customer" >

@@ -91,24 +91,21 @@ namespace shellCommon.Customer
         private void btnOk_Click(object sender, EventArgs e)
         {
             var focusedRow = grdCustomerView.GetFocusedRow() as CustomerData;
-            if (focusedRow == null) {
+            if (focusedRow != null) {
                 // Check if the user select a customer
-                if (focusedRow.Id > 0)
+                if (focusedRow.Id > -1)
                 {
+                    var request = new CustomerRequest();
+                    request.CustomerId = focusedRow.Id;
+                    request.CustomerName = focusedRow.Name;
 
+                    // This customer must be returned with contacts and project list
+                    var fullcustomer = new CustomerFactory().getCustomer(request).Customer;
                 }
                 else
                 {
-                    // Check if is an imported customer
-                    if (focusedRow.Id == 0)
-                    {
-
-                    }
                     // Check if is a new customer
-                    if (focusedRow.Id == -1)
-                    {
-
-                    }
+                   
                 }
             }
         }

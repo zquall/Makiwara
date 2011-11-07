@@ -24,6 +24,20 @@ namespace Interceptor.Adapters
 
             // Apply the search with the pattern given
             var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(SearchCustomerQuery.ToUpper())).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
+            
+            // Remove Customers that already exist on Nexus, using a reverse loop
+            for (int i = customersFounded.Count; i > 0 ; i--)
+            {
+                var customerAlienId = customersFounded[i-1].CLI_Cliente;
+                var customerBinded = Olympus._Enterprise.BindCustomers.Where(x => x.AlienId == customerAlienId).SingleOrDefault();
+                // if the procees finds the customer then it must deleted from the results of the search
+                if (customerBinded != null)
+                {
+                    customersFounded.RemoveAt(i-1);
+                }                
+            }
+
+            // add customers to the list
             if (customersFounded != null)
             {
                 // Fill the response with the customers founded
@@ -35,41 +49,59 @@ namespace Interceptor.Adapters
                     CustomerList.Add(tmpCustomerData);
                 }
             }
+
         }
 
-        public void getCustomer(int idCustomer, string customerName, CustomerData customer)
+        public void getCustomer(int idCustomer, string customerName, CustomerResponse reponse)
         {
             // Check if customers needs a binding
-            if (idCustomer == 0 && customerName != "" && customer == null)
+            if (idCustomer == 0 && customerName != "" && reponse.Customer == null)
             {                
                 // Apply the search the customer
                 var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == customerName.ToUpper()).FirstOrDefault();
                 if (customerFound != null)
                 {
-                    // Instance the customer reference
-                    customer = new CustomerData();
-
-                    // Add the Customer to Nexus
-                    var newCustomer = new Nexus.Customer() { 
-                        Name = customerFound.CLI_Nombre,
-                        Address = customerFound.CLI_Direccion
+                    
+                    // Add Person to Contact
+                    var newPerson = new Nexus.Person()
+                    {
+                        Name = customerFound.CLI_Contacto,
+                        LastName = ""                        
                     };
-                    Olympus._Enterprise.Customers.AddObject(newCustomer);
-                    Olympus._Enterprise.SaveChanges();                     
+                    // Add Contact to Customer
+                    var newCustomerContact = new Nexus.CustomerContact()
+                    {
+                        Job = "Funcionario",
+                        Person = newPerson
+                    };
 
                     // Bind the customer
-                    var binding = new Nexus.BindCustomer()
+                    var bindCustomer = new Nexus.BindCustomer()
                     {
-                        CustomerId = newCustomer.Id,
-                        AlienId = customerFound.CLI_Nombre
+                        AlienId = customerFound.CLI_Cliente
                     };
-                    Olympus._Enterprise.BindCustomers.AddObject(binding);
-                    Olympus._Enterprise.SaveChanges();
 
+
+                    // Add the Customer to Nexus
+                    var newCustomer = new Nexus.Customer()
+                    {
+                        Name = customerFound.CLI_Nombre,
+                        Address = customerFound.CLI_Direccion,
+                        BindCustomer = bindCustomer
+                    };
+
+                    newCustomer.CustomerContacts.Add(newCustomerContact);
+
+                    // First save the client to get the respective Id
+                    Olympus._Enterprise.Customers.AddObject(newCustomer); 
+                    Olympus._Enterprise.SaveChanges();
+                    
+                    // Instance the customer reference, empty for any other data
+                    reponse.Customer = new CustomerData();
                     // Mapping the Data
-                    customer.Id = newCustomer.Id;
-                    customer.Name = newCustomer.Name;
-                    customer.Address = newCustomer.Address;
+                    reponse.Customer.Id = newCustomer.Id;
+                    reponse.Customer.Name = newCustomer.Name;
+                    reponse.Customer.Address = newCustomer.Address;
                 }
             }
             else
