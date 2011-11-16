@@ -49,11 +49,26 @@
     <Compile Include="Response\ProjectResponse.cs" />
     <Compile Include="Response\BudgetRequestResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
-    <Compile Include="Response\ResourcceType.cs" />
     <Compile Include="Response\ResourceResponse.cs" />
     <Compile Include="Response\TaskResponse.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="DataTransferObjects\Hive.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Hive.txt</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataTransferObjects\Hive.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hive.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -17,6 +17,7 @@ namespace CORE.Services
             _CustomerAdapter = new CustomerAdapter();
         }
 
+        // Search Customers
         public CustomerResponse searchCustomer(CustomerRequest request)
         {
             const int maximunResultRows = 10;
@@ -31,12 +32,12 @@ namespace CORE.Services
             //var customersFounded = tmpEmployee.Customers.Where(x => x.Name.ToUpperInvariant().Contains(request.SearchCustomerQuery.ToUpperInvariant())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
 
             // Search customers without employee restriction
-            var customersFounded = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+            var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
             
-            if (customersFounded != null)
+            if (customersFound != null)
             {                
                 // Fill the response with the customers founded
-                foreach (var customer in customersFounded)
+                foreach (var customer in customersFound)
                 {
                     CustomerData tmpCustomerData = new CustomerData();
                     tmpCustomerData.Id = customer.Id;
@@ -47,7 +48,7 @@ namespace CORE.Services
             }
 
             // Intercepted Method
-            _CustomerAdapter.searchCustomer(request.SearchCustomerQuery, response.CustomerList);
+            _CustomerAdapter.searchCustomer(request, response);
 
             // Sorted again the list
             response.CustomerList = response.CustomerList.OrderBy(x => x.Name).ToList();
@@ -60,13 +61,17 @@ namespace CORE.Services
             var response = new CustomerResponse();
             // Validate if the customer is from Nexus
             if (request.CustomerId > 0) 
-            { 
-                
+            {
+                var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.CustomerId ).SingleOrDefault();
+                // Instance the customer reference, empty for any other data
+                response.Customer = new CustomerData();
+                // Mapping the Data
+                response.Customer.Id = customerFound.Id;
+                response.Customer.Name = customerFound.Name;
+                response.Customer.Address = customerFound.Address;                
             }
-
             // Intercepted Method
-            _CustomerAdapter.getCustomer(request.CustomerId,request.CustomerName, response);
-
+            _CustomerAdapter.getCustomer(request, response);
             return response;
         }
     }

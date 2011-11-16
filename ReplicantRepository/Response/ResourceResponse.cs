@@ -9,7 +9,7 @@ namespace ReplicantRepository.Response
     {
         public int? Id { get; set; }
         public int MeasureId { get; set; }
-        public int ResourceTypeId { get; set; }
+        public ResourcceType ResourceType { get; set; }
         public int TaskId { get; set; }
         public int Code { get; set; }
         public string Name { get; set; }
@@ -17,5 +17,12 @@ namespace ReplicantRepository.Response
         public double Cost { get; set; }
         public double TotalCost { get; set; }
         public float RealUsed { get; set; }
+    }
+
+    class ResourcceType
+    {
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public bool IsTaxed { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ReplicantRepository.Response;
 using Interceptor.DataBase;
+using ReplicantRepository.Request;
 
 namespace Interceptor.Adapters
 {
@@ -15,7 +16,8 @@ namespace Interceptor.Adapters
 
         }
 
-        public void searchCustomer(string SearchCustomerQuery, List<CustomerData> CustomerList)
+        // Add aditional customers to the search
+        public void searchCustomer(CustomerRequest request, CustomerResponse response)
         {
             const int maximunResultRows = 10;
 
@@ -23,7 +25,7 @@ namespace Interceptor.Adapters
             // var tmpEmployee = Asgard._Foreing.CLI_CLIENTES.Where(x => x.Id == SessionManager.EmployeeId).SingleOrDefault();
 
             // Apply the search with the pattern given
-            var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(SearchCustomerQuery.ToUpper())).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
+            var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(request.SearchCustomerQuery.ToUpper())).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
             
             // Remove Customers that already exist on Nexus, using a reverse loop
             for (int i = customersFounded.Count; i > 0 ; i--)
@@ -46,67 +48,61 @@ namespace Interceptor.Adapters
                     CustomerData tmpCustomerData = new CustomerData();
                     tmpCustomerData.Name = customer.CLI_Nombre.Trim();
                     tmpCustomerData.Address = customer.CLI_Direccion;
-                    CustomerList.Add(tmpCustomerData);
+                    response.CustomerList.Add(tmpCustomerData);
                 }
             }
 
         }
 
-        public void getCustomer(int idCustomer, string customerName, CustomerResponse reponse)
+        // Get Customer
+        public void getCustomer(CustomerRequest request, CustomerResponse response)
         {
             // Check if customers needs a binding
-            if (idCustomer == 0 && customerName != "" && reponse.Customer == null)
+            if (request.CustomerId == 0 && request.CustomerName != "" && response.Customer == null)
             {                
                 // Apply the search the customer
-                var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == customerName.ToUpper()).FirstOrDefault();
+                var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.CustomerName.ToUpper()).FirstOrDefault();
+                
                 if (customerFound != null)
-                {
-                    
-                    // Add Person to Contact
-                    var newPerson = new Nexus.Person()
-                    {
-                        Name = customerFound.CLI_Contacto,
-                        LastName = ""                        
-                    };
-                    // Add Contact to Customer
-                    var newCustomerContact = new Nexus.CustomerContact()
-                    {
-                        Job = "Funcionario",
-                        Person = newPerson
-                    };
-
-                    // Bind the customer
-                    var bindCustomer = new Nexus.BindCustomer()
-                    {
-                        AlienId = customerFound.CLI_Cliente
-                    };
-
-
+                {  
                     // Add the Customer to Nexus
                     var newCustomer = new Nexus.Customer()
                     {
                         Name = customerFound.CLI_Nombre,
                         Address = customerFound.CLI_Direccion,
-                        BindCustomer = bindCustomer
+                        BindCustomer = new Nexus.BindCustomer(){AlienId = customerFound.CLI_Cliente}
                     };
 
-                    newCustomer.CustomerContacts.Add(newCustomerContact);
+                    // Check if the Customer has a contact defined
+                    if (customerFound.CLI_Contacto != null)
+                    {
+                        // Add Person to Contact
+                        var newPerson = new Nexus.Person()
+                        {
+                            Name = customerFound.CLI_Contacto,
+                            LastName = ""
+                        };
+                        // Add Contact to Customer
+                        var newCustomerContact = new Nexus.CustomerContact()
+                        {
+                            Job = "Funcionario",
+                            Person = newPerson
+                        };
+                        newCustomer.CustomerContacts.Add(newCustomerContact);
+                    }         
 
-                    // First save the client to get the respective Id
+                    // First save the new customer
                     Olympus._Enterprise.Customers.AddObject(newCustomer); 
                     Olympus._Enterprise.SaveChanges();
                     
                     // Instance the customer reference, empty for any other data
-                    reponse.Customer = new CustomerData();
+                    response.Customer = new CustomerData();
                     // Mapping the Data
-                    reponse.Customer.Id = newCustomer.Id;
-                    reponse.Customer.Name = newCustomer.Name;
-                    reponse.Customer.Address = newCustomer.Address;
+                    response.Customer.Id = newCustomer.Id;
+                    response.Customer.Name = newCustomer.Name;
+                    response.Customer.Address = newCustomer.Address;
                 }
-            }
-            else
-            {
-            }            
+            }           
         }
     }
 }

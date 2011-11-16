@@ -99,17 +99,15 @@ namespace shellCommon.Customer
                     request.CustomerId = focusedRow.Id;
                     request.CustomerName = focusedRow.Name;
 
-                    // This customer must be returned with contacts and project list
-                    var fullcustomer = new CustomerFactory().getCustomer(request).Customer;
+                    // This customer must be returned with contacts
+                    this.Tag = new CustomerFactory().getCustomer(request).Customer;
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
                 {
-                    // Check if is a new customer
-                   
+                    // Check if is a new customer                   
                 }
             }
         }
-
-
     }
 }
