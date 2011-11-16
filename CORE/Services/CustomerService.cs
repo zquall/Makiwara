@@ -12,6 +12,7 @@ namespace CORE.Services
     public class CustomerService
     {
         protected CustomerAdapter _CustomerAdapter;
+
         public CustomerService()
         {
             _CustomerAdapter = new CustomerAdapter();
