@@ -38,7 +38,7 @@ namespace CORE.Services
                     tmpTask.ProjectId = task.ProjectId;
                     tmpTask.ParentId = task.ParentId;
                     tmpTask.Name = task.Name;
-                    tmpTask.Duration = task.Duration;
+                    tmpTask.Duration = TimeSpan.Parse(task.Duration);
                     tmpTask.PercentComplete = task.PercentComplete;
                     tmpTask.StartDateTime = task.StartDateTime;
                     tmpTask.EndDateTime = task.EndDateTime;
@@ -47,7 +47,7 @@ namespace CORE.Services
                     tmpTask.BindingListindex = task.BindingListIndex;
                     tmpTask.CompleteThrough = task.CompleteThrough;
                     tmpTask.DeadLine = task.DeadLine;
-                    tmpTask.DurationResolved = task.DurationResolved;
+                    tmpTask.DurationResolved = TimeSpan.Parse(task.DurationResolved);
                     tmpTask.EndDateTimeResolved = task.EndDateTimeResolved;
                     tmpTask.Expanded = task.Expanded;
                     tmpTask.IsRoot = task.IsRoot;

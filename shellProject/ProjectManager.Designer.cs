@@ -61,6 +61,7 @@
             this.projectGantt = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
             this.ultraCalendarInfo = new Infragistics.Win.UltraWinSchedule.UltraCalendarInfo(this.components);
             this.ultraCalendarLook = new Infragistics.Win.UltraWinSchedule.UltraCalendarLook(this.components);
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProjectName)).BeginInit();
@@ -314,6 +315,10 @@
             this.ultraCalendarInfo.DataBindingsForAppointments.BindingContextControl = this;
             this.ultraCalendarInfo.DataBindingsForOwners.BindingContextControl = this;
             // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Black";
+            // 
             // ProjectManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,5 +378,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private Infragistics.Win.UltraWinSchedule.UltraCalendarInfo ultraCalendarInfo;
         private Infragistics.Win.UltraWinSchedule.UltraCalendarLook ultraCalendarLook;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
     }
 }

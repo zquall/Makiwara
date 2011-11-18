@@ -58,6 +58,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EnterpriseContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Properties\DataSources\EnterpriseEntities.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

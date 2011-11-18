@@ -18,6 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BindCustomer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Nexus.BindCustomer), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ApplicationRequest_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequest), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BudgetRequestDetail_BudgetRequest", "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.BudgetRequest), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_BudgetRequest", "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.BudgetRequest), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
@@ -35,7 +36,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "EmployeeXCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Customer), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee))]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "BindCustomer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Nexus.BindCustomer), true)]
 
 #endregion
 
@@ -86,6 +86,22 @@ namespace Nexus
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BindCustomer> BindCustomers
+        {
+            get
+            {
+                if ((_BindCustomers == null))
+                {
+                    _BindCustomers = base.CreateObjectSet<BindCustomer>("BindCustomers");
+                }
+                return _BindCustomers;
+            }
+        }
+        private ObjectSet<BindCustomer> _BindCustomers;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -310,25 +326,17 @@ namespace Nexus
             }
         }
         private ObjectSet<Task> _Tasks;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<BindCustomer> BindCustomers
-        {
-            get
-            {
-                if ((_BindCustomers == null))
-                {
-                    _BindCustomers = base.CreateObjectSet<BindCustomer>("BindCustomers");
-                }
-                return _BindCustomers;
-            }
-        }
-        private ObjectSet<BindCustomer> _BindCustomers;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BindCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBindCustomers(BindCustomer bindCustomer)
+        {
+            base.AddObject("BindCustomers", bindCustomer);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the BudgetRequests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -440,14 +448,6 @@ namespace Nexus
         public void AddToTasks(Task task)
         {
             base.AddObject("Tasks", task);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the BindCustomers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBindCustomers(BindCustomer bindCustomer)
-        {
-            base.AddObject("BindCustomers", bindCustomer);
         }
 
         #endregion
@@ -1149,6 +1149,44 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "BindCustomer")]
+        public BindCustomer BindCustomer
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<BindCustomer> BindCustomerReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ApplicationRequest_Customer", "BudgetRequest")]
         public EntityCollection<BudgetRequest> BudgetRequests
         {
@@ -1227,44 +1265,6 @@ namespace Nexus
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Employee>("EnterpriseModel.EmployeeXCustomer", "Employee", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BindCustomer_Customer", "BindCustomer")]
-        public BindCustomer BindCustomer
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<BindCustomer> BindCustomerReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BindCustomer>("EnterpriseModel.FK_BindCustomer_Customer", "BindCustomer", value);
                 }
             }
         }
@@ -3564,7 +3564,7 @@ namespace Nexus
         /// <param name="taskLevel">Initial value of the TaskLevel property.</param>
         /// <param name="milestone">Initial value of the Milestone property.</param>
         /// <param name="milestoneResolved">Initial value of the MilestoneResolved property.</param>
-        public static Task CreateTask(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 parentId, global::System.String name, global::System.TimeSpan duration, global::System.Double percentComplete, global::System.DateTime startDateTime, global::System.DateTime endDateTime, global::System.String notes, global::System.Int32 rowNumber, global::System.Int32 bindingListIndex, global::System.DateTime completeThrough, global::System.DateTime deadLine, global::System.TimeSpan durationResolved, global::System.DateTime endDateTimeResolved, global::System.Boolean expanded, global::System.Boolean isRoot, global::System.Boolean isSumary, global::System.Int32 taskLevel, global::System.Boolean milestone, global::System.Boolean milestoneResolved)
+        public static Task CreateTask(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 parentId, global::System.String name, global::System.String duration, global::System.Double percentComplete, global::System.DateTime startDateTime, global::System.DateTime endDateTime, global::System.String notes, global::System.Int32 rowNumber, global::System.Int32 bindingListIndex, global::System.DateTime completeThrough, global::System.DateTime deadLine, global::System.String durationResolved, global::System.DateTime endDateTimeResolved, global::System.Boolean expanded, global::System.Boolean isRoot, global::System.Boolean isSumary, global::System.Int32 taskLevel, global::System.Boolean milestone, global::System.Boolean milestoneResolved)
         {
             Task task = new Task();
             task.Id = id;
@@ -3698,7 +3698,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.TimeSpan Duration
+        public global::System.String Duration
         {
             get
             {
@@ -3708,13 +3708,13 @@ namespace Nexus
             {
                 OnDurationChanging(value);
                 ReportPropertyChanging("Duration");
-                _Duration = StructuralObject.SetValidValue(value);
+                _Duration = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Duration");
                 OnDurationChanged();
             }
         }
-        private global::System.TimeSpan _Duration;
-        partial void OnDurationChanging(global::System.TimeSpan value);
+        private global::System.String _Duration;
+        partial void OnDurationChanging(global::System.String value);
         partial void OnDurationChanged();
     
         /// <summary>
@@ -3914,7 +3914,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.TimeSpan DurationResolved
+        public global::System.String DurationResolved
         {
             get
             {
@@ -3924,13 +3924,13 @@ namespace Nexus
             {
                 OnDurationResolvedChanging(value);
                 ReportPropertyChanging("DurationResolved");
-                _DurationResolved = StructuralObject.SetValidValue(value);
+                _DurationResolved = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("DurationResolved");
                 OnDurationResolvedChanged();
             }
         }
-        private global::System.TimeSpan _DurationResolved;
-        partial void OnDurationResolvedChanging(global::System.TimeSpan value);
+        private global::System.String _DurationResolved;
+        partial void OnDurationResolvedChanging(global::System.String value);
         partial void OnDurationResolvedChanged();
     
         /// <summary>
