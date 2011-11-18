@@ -14,21 +14,58 @@ namespace CORE.Services
         {
         }
 
-        public ProjectResponse searchProject(ProjectRequest request)
+        private FamilyData getFamily(Nexus.Family family)
         {
-            const int maximunResultRows = 10;
+            FamilyData tmpFamilyData = new FamilyData();
 
-            var response = new ProjectResponse();
-            // Inicitialize the list of customers
-            response.ProjectList = new List<ProjectData>();
+            tmpFamilyData.Id = family.Id;
+            tmpFamilyData.Name = family.Name;
 
-            // Get customers from respective employee
-            //var tmpEmployee = Olympus._Enterprise.Employees.Where(x => x.Id == SessionManager.EmployeeId).SingleOrDefault();
-            // Apply the search with the pattern given
-            //var customersFounded = tmpEmployee.Customers.Where(x => x.Name.ToUpperInvariant().Contains(request.SearchCustomerQuery.ToUpperInvariant())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+            return tmpFamilyData;
+        }
 
-            //var projectFounded = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
-            var projectFounded = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+        private List<TaskData> getTasks(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
+        {
+            List<TaskData> listTask = new List<TaskData>();
+
+            if (tasks != null)
+            {
+                foreach (Nexus.Task task in tasks)
+                {
+                    TaskData tmpTask = new TaskData();
+
+                    tmpTask.Id = task.Id;
+                    tmpTask.ProjectId = task.ProjectId;
+                    tmpTask.ParentId = task.ParentId;
+                    tmpTask.Name = task.Name;
+                    tmpTask.Duration = task.Duration;
+                    tmpTask.PercentComplete = task.PercentComplete;
+                    tmpTask.StartDateTime = task.StartDateTime;
+                    tmpTask.EndDateTime = task.EndDateTime;
+                    tmpTask.Notes = task.Notes;
+                    tmpTask.Rownumber = task.RowNumber;
+                    tmpTask.BindingListindex = task.BindingListIndex;
+                    tmpTask.CompleteThrough = task.CompleteThrough;
+                    tmpTask.DeadLine = task.DeadLine;
+                    tmpTask.DurationResolved = task.DurationResolved;
+                    tmpTask.EndDateTimeResolved = task.EndDateTimeResolved;
+                    tmpTask.Expanded = task.Expanded;
+                    tmpTask.IsRoot = task.IsRoot;
+                    tmpTask.IsSumary = task.IsSumary;
+                    tmpTask.TaskLevel = task.TaskLevel;
+                    tmpTask.Milestone = task.Milestone;
+                    tmpTask.MilestoneResolved = task.MilestoneResolved;
+
+                    listTask.Add(tmpTask);
+                }
+            }
+
+            return listTask;
+        }
+
+        private List<ProjectData> getProjects(List<Nexus.Project> projectFounded)
+        {
+            List<ProjectData> ProjectList = new List<ProjectData>();
 
             if (projectFounded != null)
             {
@@ -36,8 +73,9 @@ namespace CORE.Services
                 foreach (var project in projectFounded)
                 {
                     ProjectData tmpProjectData = new ProjectData();
+
                     tmpProjectData.Id = project.Id;
-                    tmpProjectData.FamilyId = project.FamilyId;
+                    tmpProjectData.Family = getFamily(project.Family);
                     tmpProjectData.Name = project.Name;
                     tmpProjectData.BudgetRequestId = project.BudgetRequestId;
                     tmpProjectData.CustumerId = project.CustumerId;
@@ -54,9 +92,33 @@ namespace CORE.Services
                     tmpProjectData.OthersRate = project.OthersRate;
                     tmpProjectData.Comments = project.Comments;
 
-                    response.ProjectList.Add(tmpProjectData);
+                    tmpProjectData.taskList = getTasks(project.Tasks);
+
+                    ProjectList.Add(tmpProjectData);
                 }
             }
+
+
+            return ProjectList;
+        }
+
+        public ProjectResponse searchProject(ProjectRequest request)
+        {
+            const int maximunResultRows = 20;
+
+            var response = new ProjectResponse();
+
+            // Inicitialize the list of customers
+            response.ProjectList = new List<ProjectData>();   
+
+            //var projectFoundedById = Olympus._Enterprise.Projects.Where(x => x.Id.Contains(request.SearchProjectQuery)).OrderBy(y => y.Id).Take(maximunResultRows).ToList();
+            var projectFoundedByName = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+            var projectFoundedByCustumer = Olympus._Enterprise.Projects.Where(x => x.Customer.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Customer.Name).Take(maximunResultRows).ToList();
+
+            response.ProjectList.AddRange(getProjects(projectFoundedByName));
+            response.ProjectList.AddRange(getProjects(projectFoundedByCustumer));
+
+            
             return response;
         }
     }

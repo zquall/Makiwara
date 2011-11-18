@@ -45,12 +45,9 @@
     <Compile Include="Request\MenuRequest.cs" />
     <Compile Include="Request\ProjectRequest.cs" />
     <Compile Include="Response\CustomerResponse.cs" />
-    <Compile Include="Response\FamilyResponse.cs" />
     <Compile Include="Response\ProjectResponse.cs" />
     <Compile Include="Response\BudgetRequestResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
-    <Compile Include="Response\ResourceResponse.cs" />
-    <Compile Include="Response\TaskResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

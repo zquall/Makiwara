@@ -16,14 +16,16 @@ namespace shellProject
 {
     public partial class SearchProject : DevExpress.XtraEditors.XtraForm
     {
+        ProjectData _project = new ProjectData();
+
+        public ProjectData projectSelected
+        {
+            get { return _project; }
+        }
+
         public SearchProject()
         {
             InitializeComponent();
-        }
-
-        private void cmdCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void FindProject(string query)
@@ -53,12 +55,12 @@ namespace shellProject
         private void gridConfiguration()
         {
             #region Hide Columns
-                //viewProjects.Columns["Id"].Visible = false;
-                viewProjects.Columns["FamilyId"].Visible = false;
+                viewProjects.Columns["Id"].Visible = true;
+                viewProjects.Columns["Family"].Visible = false;
                 viewProjects.Columns["BudgetRequestId"].Visible = false;
                 viewProjects.Columns["CustumerId"].Visible = false;
                 viewProjects.Columns["EmployeeId"].Visible = false;
-                viewProjects.Columns["FamilyId"].Visible = false;
+                viewProjects.Columns["Name"].Visible = true;
                 viewProjects.Columns["ManagementApproval"].Visible = false;
                 viewProjects.Columns["CxcApproval"].Visible = false;
                 viewProjects.Columns["CreateDate"].Visible = false;
@@ -69,6 +71,7 @@ namespace shellProject
                 viewProjects.Columns["SalesTax"].Visible = false;
                 viewProjects.Columns["OthersRate"].Visible = false;
                 viewProjects.Columns["Comments"].Visible = false;
+                //viewProjects.Columns["taskList"].Visible = false;
             #endregion
 
             #region Set Caption To Visible Columns
@@ -82,6 +85,20 @@ namespace shellProject
                 viewProjects.Columns["Name"].Width = 125;
                 viewProjects.Columns["CustumerName"].Width = 125;
             #endregion
+        }
+
+
+        private void cmdOk_Click(object sender, EventArgs e)
+        {
+
+            _project = viewProjects.GetFocusedRow() as ProjectData;
+
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

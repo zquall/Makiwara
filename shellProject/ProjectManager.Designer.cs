@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barEditProject = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemProject = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barEditName = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemProjectName = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barEditClient = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemTextEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemCustumer = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barButtonCreateProject = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonOpen = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonCopy = new DevExpress.XtraBars.BarButtonItem();
@@ -57,14 +58,16 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.clientPanel = new DevExpress.XtraEditors.PanelControl();
-            this.ultraGanttView1 = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
+            this.projectGantt = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
+            this.ultraCalendarInfo = new Infragistics.Win.UltraWinSchedule.UltraCalendarInfo(this.components);
+            this.ultraCalendarLook = new Infragistics.Win.UltraWinSchedule.UltraCalendarLook(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientPanel)).BeginInit();
             this.clientPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectGantt)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -94,51 +97,51 @@
             this.ribbonPage1,
             this.ribbonPage2});
             this.ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1,
-            this.repositoryItemTextEdit2,
-            this.repositoryItemTextEdit3});
+            this.repositoryItemProject,
+            this.repositoryItemProjectName,
+            this.repositoryItemCustumer});
             this.ribbon.SelectedPage = this.ribbonPage1;
-            this.ribbon.Size = new System.Drawing.Size(982, 143);
+            this.ribbon.Size = new System.Drawing.Size(982, 148);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // barEditProject
             // 
             this.barEditProject.Caption = "Proyecto";
-            this.barEditProject.Edit = this.repositoryItemTextEdit1;
+            this.barEditProject.Edit = this.repositoryItemProject;
             this.barEditProject.Id = 3;
             this.barEditProject.Name = "barEditProject";
             this.barEditProject.Width = 100;
             // 
-            // repositoryItemTextEdit1
+            // repositoryItemProject
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.repositoryItemProject.AutoHeight = false;
+            this.repositoryItemProject.Name = "repositoryItemProject";
             // 
             // barEditName
             // 
             this.barEditName.Caption = "Nombre  ";
-            this.barEditName.Edit = this.repositoryItemTextEdit2;
+            this.barEditName.Edit = this.repositoryItemProjectName;
             this.barEditName.Id = 4;
             this.barEditName.Name = "barEditName";
             this.barEditName.Width = 300;
             // 
-            // repositoryItemTextEdit2
+            // repositoryItemProjectName
             // 
-            this.repositoryItemTextEdit2.AutoHeight = false;
-            this.repositoryItemTextEdit2.Name = "repositoryItemTextEdit2";
+            this.repositoryItemProjectName.AutoHeight = false;
+            this.repositoryItemProjectName.Name = "repositoryItemProjectName";
             // 
             // barEditClient
             // 
             this.barEditClient.Caption = "Cliente   ";
-            this.barEditClient.Edit = this.repositoryItemTextEdit3;
+            this.barEditClient.Edit = this.repositoryItemCustumer;
             this.barEditClient.Id = 5;
             this.barEditClient.Name = "barEditClient";
             this.barEditClient.Width = 300;
             // 
-            // repositoryItemTextEdit3
+            // repositoryItemCustumer
             // 
-            this.repositoryItemTextEdit3.AutoHeight = false;
-            this.repositoryItemTextEdit3.Name = "repositoryItemTextEdit3";
+            this.repositoryItemCustumer.AutoHeight = false;
+            this.repositoryItemCustumer.Name = "repositoryItemCustumer";
             // 
             // barButtonCreateProject
             // 
@@ -278,31 +281,38 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 470);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 472);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(982, 25);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(982, 23);
             // 
             // clientPanel
             // 
             this.clientPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.clientPanel.Controls.Add(this.ultraGanttView1);
+            this.clientPanel.Controls.Add(this.projectGantt);
             this.clientPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clientPanel.Location = new System.Drawing.Point(0, 143);
+            this.clientPanel.Location = new System.Drawing.Point(0, 148);
             this.clientPanel.Name = "clientPanel";
-            this.clientPanel.Size = new System.Drawing.Size(982, 327);
+            this.clientPanel.Size = new System.Drawing.Size(982, 324);
             this.clientPanel.TabIndex = 2;
             // 
-            // ultraGanttView1
+            // projectGantt
             // 
-            this.ultraGanttView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGanttView1.GridAreaWidth = 287;
-            this.ultraGanttView1.Location = new System.Drawing.Point(0, 0);
-            this.ultraGanttView1.Name = "ultraGanttView1";
-            this.ultraGanttView1.Size = new System.Drawing.Size(982, 327);
-            this.ultraGanttView1.TabIndex = 0;
-            this.ultraGanttView1.Text = "ultraGanttView1";
-            this.ultraGanttView1.VerticalSplitterMinimumResizeWidth = 10;
+            this.projectGantt.CalendarInfo = this.ultraCalendarInfo;
+            this.projectGantt.CalendarLook = this.ultraCalendarLook;
+            this.projectGantt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.projectGantt.GridAreaWidth = 287;
+            this.projectGantt.Location = new System.Drawing.Point(0, 0);
+            this.projectGantt.Name = "projectGantt";
+            this.projectGantt.Size = new System.Drawing.Size(982, 324);
+            this.projectGantt.TabIndex = 0;
+            this.projectGantt.Text = "ultraGanttView1";
+            this.projectGantt.VerticalSplitterMinimumResizeWidth = 10;
+            // 
+            // ultraCalendarInfo
+            // 
+            this.ultraCalendarInfo.DataBindingsForAppointments.BindingContextControl = this;
+            this.ultraCalendarInfo.DataBindingsForOwners.BindingContextControl = this;
             // 
             // ProjectManager
             // 
@@ -319,12 +329,12 @@
             this.Text = "Administrador de Proyectos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientPanel)).EndInit();
             this.clientPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectGantt)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -342,12 +352,12 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribData;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.BarEditItem barEditProject;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemProject;
         private DevExpress.XtraBars.BarEditItem barEditName;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemProjectName;
         private DevExpress.XtraBars.BarEditItem barEditClient;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit3;
-        private Infragistics.Win.UltraWinGanttView.UltraGanttView ultraGanttView1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemCustumer;
+        private Infragistics.Win.UltraWinGanttView.UltraGanttView projectGantt;
         private DevExpress.XtraBars.BarButtonItem barButtonCreateProject;
         private DevExpress.XtraBars.BarButtonItem barButtonOpen;
         private DevExpress.XtraBars.BarButtonItem barButtonCopy;
@@ -361,5 +371,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
+        private Infragistics.Win.UltraWinSchedule.UltraCalendarInfo ultraCalendarInfo;
+        private Infragistics.Win.UltraWinSchedule.UltraCalendarLook ultraCalendarLook;
     }
 }

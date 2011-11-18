@@ -89,7 +89,9 @@ namespace MainFrame.Shell
                     if (searchProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
                         projectManager.Close();
                     else
-                        MessageBox.Show("Cargando Datos del Proyecto");
+                    {
+                        projectManager.chargeProject(searchProject.projectSelected);
+                    }
 
                     break;
 

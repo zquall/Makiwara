@@ -64,6 +64,7 @@
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
             this.cmdOk.Text = "Aceptar";
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // grdProjectControl
             // 
