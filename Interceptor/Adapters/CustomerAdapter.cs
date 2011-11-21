@@ -25,7 +25,7 @@ namespace Interceptor.Adapters
             // var tmpEmployee = Asgard._Foreing.CLI_CLIENTES.Where(x => x.Id == SessionManager.EmployeeId).SingleOrDefault();
 
             // Apply the search with the pattern given
-            var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(request.SearchCustomerQuery.ToUpper())).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
+            var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(request.SearchCustomerQuery.ToUpper()) & x.CLI_Activo == 1).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
             
             // Remove Customers that already exist on Nexus, using a reverse loop
             for (int i = customersFounded.Count; i > 0 ; i--)

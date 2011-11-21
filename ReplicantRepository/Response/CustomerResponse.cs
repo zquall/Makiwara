@@ -23,8 +23,12 @@ namespace ReplicantRepository.Response
     {
         public int Id { get; set; }
         public string Job { get; set; }
+        public string Email { get; set; }
         public PersonData Person { get; set; }
-        public List<PhoneData> PhoneList { get; set; }
+        public override string ToString()
+        {
+            return Person.Name + " " + Person.LastName; 
+        }
     }
 
     public class PersonData
@@ -39,7 +43,6 @@ namespace ReplicantRepository.Response
     {
         public int Id { get; set; }
         public string PhoneNumber { get; set; }
-        public int PhoneType { get; set; }
+        public PhoneTypeData PhoneType { get; set; }
     }
-
 }
