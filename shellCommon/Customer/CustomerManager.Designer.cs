@@ -38,8 +38,8 @@
             this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cmbContacts = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnEditContact = new DevExpress.XtraEditors.SimpleButton();
-            this.cmbContacts = new DevExpress.XtraEditors.DropDownButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -49,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbContacts.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -68,7 +69,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(225, 38);
+            this.labelControl2.Location = new System.Drawing.Point(258, 38);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(18, 13);
             this.labelControl2.TabIndex = 2;
@@ -84,16 +85,16 @@
             // 
             // textEdit2
             // 
-            this.textEdit2.Location = new System.Drawing.Point(249, 35);
+            this.textEdit2.Location = new System.Drawing.Point(282, 35);
             this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(100, 20);
+            this.textEdit2.Size = new System.Drawing.Size(156, 20);
             this.textEdit2.TabIndex = 4;
             // 
             // textEdit3
             // 
             this.textEdit3.Location = new System.Drawing.Point(108, 35);
             this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(100, 20);
+            this.textEdit3.Size = new System.Drawing.Size(144, 20);
             this.textEdit3.TabIndex = 5;
             // 
             // labelControl4
@@ -120,13 +121,24 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.btnEditContact);
             this.groupControl1.Controls.Add(this.cmbContacts);
+            this.groupControl1.Controls.Add(this.btnEditContact);
             this.groupControl1.Location = new System.Drawing.Point(12, 115);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(426, 55);
             this.groupControl1.TabIndex = 9;
             this.groupControl1.Text = "Contacto Principal";
+            // 
+            // cmbContacts
+            // 
+            this.cmbContacts.Location = new System.Drawing.Point(96, 26);
+            this.cmbContacts.Name = "cmbContacts";
+            this.cmbContacts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.cmbContacts.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContacts_Properties_ButtonClick);
+            this.cmbContacts.Size = new System.Drawing.Size(325, 20);
+            this.cmbContacts.TabIndex = 13;
             // 
             // btnEditContact
             // 
@@ -135,15 +147,7 @@
             this.btnEditContact.Size = new System.Drawing.Size(85, 23);
             this.btnEditContact.TabIndex = 12;
             this.btnEditContact.Text = "Editar";
-            this.btnEditContact.Click += new System.EventHandler(this.btnAddContact_Click);
-            // 
-            // cmbContacts
-            // 
-            this.cmbContacts.Location = new System.Drawing.Point(96, 25);
-            this.cmbContacts.Name = "cmbContacts";
-            this.cmbContacts.Size = new System.Drawing.Size(325, 23);
-            this.cmbContacts.TabIndex = 0;
-            this.cmbContacts.Text = "Haga click aqui para agregar un contacto nuevo";
+            this.btnEditContact.Click += new System.EventHandler(this.btnEditContact_Click);
             // 
             // btnSave
             // 
@@ -184,6 +188,7 @@
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.labelControl1);
             this.Name = "CustomerManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Gestor de Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
@@ -192,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbContacts.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,9 +215,9 @@
         private DevExpress.XtraEditors.TextEdit textEdit4;
         private DevExpress.XtraEditors.TextEdit textEdit5;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.DropDownButton cmbContacts;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnEditContact;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbContacts;
     }
 }

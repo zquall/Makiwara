@@ -6,6 +6,7 @@ using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using Hades.session;
 using Interceptor.Adapters;
+using Nexus;
 
 namespace CORE.Services
 {
@@ -74,6 +75,35 @@ namespace CORE.Services
             // Intercepted Method
             _CustomerAdapter.getCustomer(request, response);
             return response;
+        }
+
+        public void saveContact(CustomerRequest request)
+        {
+            // Validate if the contact Exist
+            if (request.Contact.Id > 0)
+            {
+                var contactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.Contact.Id ).SingleOrDefault();
+                contactFound.Person.Name = request.Contact.Person.Name;
+                contactFound.Person.LastName = request.Contact.Person.LastName;
+                contactFound.Job = request.Contact.Job;
+                foreach (var phone in request.Contact.Person.PhoneList)
+                {
+                    if (phone.Id != 0)
+                    {
+                        var tmpPhone = contactFound.Person.PersonPhones.Where(x => x.Id == phone.Id).SingleOrDefault();
+                        tmpPhone.Phone = phone.PhoneNumber;
+                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
+                    }
+                    else
+                    {
+                        var tmpPhone = new PersonPhone();
+                        tmpPhone.Phone = phone.PhoneNumber;
+                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
+                        contactFound.Person.PersonPhones.Add(tmpPhone);
+                    }
+                }
+                Olympus._Enterprise.SaveChanges();
+            }
         }
     }
 }

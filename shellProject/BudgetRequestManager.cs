@@ -22,24 +22,38 @@ namespace shellProject
         #region UI Events
 
         private void RequestBugetCell_Load(object sender, EventArgs e)
-        {
+        {            
             loadNewRequestBudgetManager();
         }
 
         private void btnCustomerName_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            var tmpCustomerName = sender as DevExpress.XtraEditors.ButtonEdit;
-            var searchCustomerDialog = new CustomerFinder();
-            if (searchCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis)
             {
-                // load the found client
-                loadCustomer(searchCustomerDialog.Tag as CustomerData);
+                // Search Customer Process
+                var tmpCustomerName = sender as DevExpress.XtraEditors.ButtonEdit;
+                var searchCustomerDialog = new CustomerFinder();
+                if (searchCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // load the found client
+                    loadCustomer(searchCustomerDialog.Tag as CustomerData);
+                }
             }
+            else
+            {
+                // Add new customer
+                var createCustomerDialog = new CustomerManager();
+                if (createCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // load the found client
+                    loadCustomer(createCustomerDialog.Tag as CustomerData);
+                }
+            }            
         } 
        
         #endregion
 
-        #region UI Load Actions
+        #region Load Actions
 
         // Request an empty BudgetRequest
         private void loadNewRequestBudgetManager()
@@ -73,7 +87,7 @@ namespace shellProject
             {
                 cmbContact.Tag = contact;
                 cmbContact.Text = contact.Person.Name + " " + contact.Person.LastName;
-                loadPhoneList(contact.PhoneList);
+                loadPhoneList(contact.Person.PhoneList);
             }
         }
 
@@ -100,7 +114,6 @@ namespace shellProject
         }
 
         #endregion
-
 
     }
 }

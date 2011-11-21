@@ -29,31 +29,34 @@
         private void InitializeComponent()
         {
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.txtLastName = new DevExpress.XtraEditors.TextEdit();
+            this.txtJob = new DevExpress.XtraEditors.TextEdit();
+            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.dropDownButton3 = new DevExpress.XtraEditors.DropDownButton();
-            this.dropDownButton2 = new DevExpress.XtraEditors.DropDownButton();
-            this.dropDownButton1 = new DevExpress.XtraEditors.DropDownButton();
+            this.cmbPhoneTypeC = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cmbPhoneTypeB = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cmbPhoneTypeA = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtPhoneC = new DevExpress.XtraEditors.TextEdit();
+            this.txtPhoneB = new DevExpress.XtraEditors.TextEdit();
+            this.txtPhoneA = new DevExpress.XtraEditors.TextEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLastName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtJob.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeB.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneB.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneA.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -64,20 +67,20 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nombre";
             // 
-            // textEdit1
+            // txtName
             // 
-            this.textEdit1.Location = new System.Drawing.Point(55, 9);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(200, 20);
-            this.textEdit1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(55, 9);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(200, 20);
+            this.txtName.TabIndex = 1;
             // 
             // labelControl2
             // 
             this.labelControl2.Location = new System.Drawing.Point(12, 38);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(37, 13);
+            this.labelControl2.Size = new System.Drawing.Size(42, 13);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "Apellido";
+            this.labelControl2.Text = "Apellidos";
             // 
             // labelControl3
             // 
@@ -95,85 +98,88 @@
             this.labelControl4.TabIndex = 4;
             this.labelControl4.Text = "E-Mail";
             // 
-            // textEdit2
+            // txtLastName
             // 
-            this.textEdit2.Location = new System.Drawing.Point(55, 35);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(200, 20);
-            this.textEdit2.TabIndex = 5;
+            this.txtLastName.Location = new System.Drawing.Point(55, 35);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(200, 20);
+            this.txtLastName.TabIndex = 5;
             // 
-            // textEdit3
+            // txtJob
             // 
-            this.textEdit3.Location = new System.Drawing.Point(55, 61);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(200, 20);
-            this.textEdit3.TabIndex = 6;
+            this.txtJob.Location = new System.Drawing.Point(55, 61);
+            this.txtJob.Name = "txtJob";
+            this.txtJob.Size = new System.Drawing.Size(200, 20);
+            this.txtJob.TabIndex = 6;
             // 
-            // textEdit4
+            // txtEmail
             // 
-            this.textEdit4.Location = new System.Drawing.Point(55, 87);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(200, 20);
-            this.textEdit4.TabIndex = 7;
+            this.txtEmail.Location = new System.Drawing.Point(55, 87);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(200, 20);
+            this.txtEmail.TabIndex = 7;
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.textEdit7);
-            this.groupControl1.Controls.Add(this.textEdit6);
-            this.groupControl1.Controls.Add(this.textEdit5);
-            this.groupControl1.Controls.Add(this.dropDownButton3);
-            this.groupControl1.Controls.Add(this.dropDownButton2);
-            this.groupControl1.Controls.Add(this.dropDownButton1);
+            this.groupControl1.Controls.Add(this.cmbPhoneTypeC);
+            this.groupControl1.Controls.Add(this.cmbPhoneTypeB);
+            this.groupControl1.Controls.Add(this.cmbPhoneTypeA);
+            this.groupControl1.Controls.Add(this.txtPhoneC);
+            this.groupControl1.Controls.Add(this.txtPhoneB);
+            this.groupControl1.Controls.Add(this.txtPhoneA);
             this.groupControl1.Location = new System.Drawing.Point(12, 122);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(243, 112);
             this.groupControl1.TabIndex = 8;
             this.groupControl1.Text = "Telefonos";
             // 
-            // textEdit7
+            // cmbPhoneTypeC
             // 
-            this.textEdit7.Location = new System.Drawing.Point(96, 85);
-            this.textEdit7.Name = "textEdit7";
-            this.textEdit7.Size = new System.Drawing.Size(142, 20);
-            this.textEdit7.TabIndex = 11;
+            this.cmbPhoneTypeC.Location = new System.Drawing.Point(5, 85);
+            this.cmbPhoneTypeC.Name = "cmbPhoneTypeC";
+            this.cmbPhoneTypeC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbPhoneTypeC.Size = new System.Drawing.Size(85, 20);
+            this.cmbPhoneTypeC.TabIndex = 14;
             // 
-            // textEdit6
+            // cmbPhoneTypeB
             // 
-            this.textEdit6.Location = new System.Drawing.Point(96, 56);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Size = new System.Drawing.Size(142, 20);
-            this.textEdit6.TabIndex = 10;
+            this.cmbPhoneTypeB.Location = new System.Drawing.Point(5, 56);
+            this.cmbPhoneTypeB.Name = "cmbPhoneTypeB";
+            this.cmbPhoneTypeB.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbPhoneTypeB.Size = new System.Drawing.Size(85, 20);
+            this.cmbPhoneTypeB.TabIndex = 13;
             // 
-            // textEdit5
+            // cmbPhoneTypeA
             // 
-            this.textEdit5.Location = new System.Drawing.Point(96, 27);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(142, 20);
-            this.textEdit5.TabIndex = 9;
+            this.cmbPhoneTypeA.Location = new System.Drawing.Point(5, 27);
+            this.cmbPhoneTypeA.Name = "cmbPhoneTypeA";
+            this.cmbPhoneTypeA.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbPhoneTypeA.Size = new System.Drawing.Size(85, 20);
+            this.cmbPhoneTypeA.TabIndex = 12;
             // 
-            // dropDownButton3
+            // txtPhoneC
             // 
-            this.dropDownButton3.Location = new System.Drawing.Point(9, 83);
-            this.dropDownButton3.Name = "dropDownButton3";
-            this.dropDownButton3.Size = new System.Drawing.Size(81, 23);
-            this.dropDownButton3.TabIndex = 2;
-            this.dropDownButton3.Text = "Casa";
+            this.txtPhoneC.Location = new System.Drawing.Point(96, 85);
+            this.txtPhoneC.Name = "txtPhoneC";
+            this.txtPhoneC.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneC.TabIndex = 11;
             // 
-            // dropDownButton2
+            // txtPhoneB
             // 
-            this.dropDownButton2.Location = new System.Drawing.Point(9, 54);
-            this.dropDownButton2.Name = "dropDownButton2";
-            this.dropDownButton2.Size = new System.Drawing.Size(81, 23);
-            this.dropDownButton2.TabIndex = 1;
-            this.dropDownButton2.Text = "Oficina";
+            this.txtPhoneB.Location = new System.Drawing.Point(96, 56);
+            this.txtPhoneB.Name = "txtPhoneB";
+            this.txtPhoneB.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneB.TabIndex = 10;
             // 
-            // dropDownButton1
+            // txtPhoneA
             // 
-            this.dropDownButton1.Location = new System.Drawing.Point(9, 25);
-            this.dropDownButton1.Name = "dropDownButton1";
-            this.dropDownButton1.Size = new System.Drawing.Size(81, 23);
-            this.dropDownButton1.TabIndex = 0;
-            this.dropDownButton1.Text = "Celular";
+            this.txtPhoneA.Location = new System.Drawing.Point(96, 27);
+            this.txtPhoneA.Name = "txtPhoneA";
+            this.txtPhoneA.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneA.TabIndex = 9;
             // 
             // btnOk
             // 
@@ -182,6 +188,7 @@
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 9;
             this.btnOk.Text = "Aceptar";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
@@ -191,6 +198,7 @@
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancelar";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ContactManager
             // 
@@ -203,25 +211,30 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.textEdit4);
-            this.Controls.Add(this.textEdit3);
-            this.Controls.Add(this.textEdit2);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtJob);
+            this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.labelControl1);
             this.Name = "ContactManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Gestor de Contactos";
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
+            this.Load += new System.EventHandler(this.ContactManager_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLastName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtJob.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeB.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbPhoneTypeA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneB.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhoneA.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,21 +243,21 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtName;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
+        private DevExpress.XtraEditors.TextEdit txtLastName;
+        private DevExpress.XtraEditors.TextEdit txtJob;
+        private DevExpress.XtraEditors.TextEdit txtEmail;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit7;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton3;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton2;
-        private DevExpress.XtraEditors.DropDownButton dropDownButton1;
+        private DevExpress.XtraEditors.TextEdit txtPhoneC;
+        private DevExpress.XtraEditors.TextEdit txtPhoneB;
+        private DevExpress.XtraEditors.TextEdit txtPhoneA;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeC;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeB;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeA;
     }
 }
