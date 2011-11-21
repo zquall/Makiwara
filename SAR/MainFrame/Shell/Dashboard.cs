@@ -72,10 +72,11 @@ namespace MainFrame.Shell
 
                     CreateProject createProject = new CreateProject();
 
-                    if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-                        projectManager.Close();
-                    else
-                        MessageBox.Show("Cargando Datos del Proyecto");
+                    createProject.ShowDialog();
+                    //if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                        //projectManager.Close();
+                    //else
+                    //    MessageBox.Show("Cargando Datos del Proyecto");
 
                     break;
 

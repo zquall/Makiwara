@@ -42,13 +42,13 @@
             this.barButtonSave = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonVoid = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonCalendar = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonNewTask = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonDeleteTask = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonMoveRight = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonMoveLeft = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonLinkTask = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonUnlinkTask = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribTask = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -84,13 +84,13 @@
             this.barButtonSave,
             this.barButtonVoid,
             this.barButtonCalendar,
-            this.barButtonItem7,
-            this.barButtonItem8,
+            this.barButtonNewTask,
+            this.barButtonDeleteTask,
             this.barButtonItem9,
-            this.barButtonItem10,
-            this.barButtonItem11,
-            this.barButtonItem12,
-            this.barButtonItem13});
+            this.barButtonMoveRight,
+            this.barButtonMoveLeft,
+            this.barButtonLinkTask,
+            this.barButtonUnlinkTask});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.MaxItemId = 21;
             this.ribbon.Name = "ribbon";
@@ -149,7 +149,7 @@
             this.barButtonCreateProject.Caption = "Nuevo";
             this.barButtonCreateProject.Id = 7;
             this.barButtonCreateProject.Name = "barButtonCreateProject";
-            this.barButtonCreateProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.barButtonCreateProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonCreateProject_ItemClick);
             // 
             // barButtonOpen
             // 
@@ -181,17 +181,19 @@
             this.barButtonCalendar.Id = 12;
             this.barButtonCalendar.Name = "barButtonCalendar";
             // 
-            // barButtonItem7
+            // barButtonNewTask
             // 
-            this.barButtonItem7.Caption = "Nueva Tarea";
-            this.barButtonItem7.Id = 13;
-            this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonNewTask.Caption = "Nueva Tarea";
+            this.barButtonNewTask.Id = 13;
+            this.barButtonNewTask.Name = "barButtonNewTask";
+            this.barButtonNewTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNewTask_ItemClick);
             // 
-            // barButtonItem8
+            // barButtonDeleteTask
             // 
-            this.barButtonItem8.Caption = "Eliminar Tarea";
-            this.barButtonItem8.Id = 14;
-            this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonDeleteTask.Caption = "Eliminar Tarea";
+            this.barButtonDeleteTask.Id = 14;
+            this.barButtonDeleteTask.Name = "barButtonDeleteTask";
+            this.barButtonDeleteTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDeleteTask_ItemClick);
             // 
             // barButtonItem9
             // 
@@ -199,29 +201,33 @@
             this.barButtonItem9.Id = 15;
             this.barButtonItem9.Name = "barButtonItem9";
             // 
-            // barButtonItem10
+            // barButtonMoveRight
             // 
-            this.barButtonItem10.Caption = "Aplicar Sangría";
-            this.barButtonItem10.Id = 16;
-            this.barButtonItem10.Name = "barButtonItem10";
+            this.barButtonMoveRight.Caption = "Aplicar Sangría";
+            this.barButtonMoveRight.Id = 16;
+            this.barButtonMoveRight.Name = "barButtonMoveRight";
+            this.barButtonMoveRight.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonMoveRight_ItemClick);
             // 
-            // barButtonItem11
+            // barButtonMoveLeft
             // 
-            this.barButtonItem11.Caption = "Anular Sangría";
-            this.barButtonItem11.Id = 17;
-            this.barButtonItem11.Name = "barButtonItem11";
+            this.barButtonMoveLeft.Caption = "Anular Sangría";
+            this.barButtonMoveLeft.Id = 17;
+            this.barButtonMoveLeft.Name = "barButtonMoveLeft";
+            this.barButtonMoveLeft.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonMoveLeft_ItemClick);
             // 
-            // barButtonItem12
+            // barButtonLinkTask
             // 
-            this.barButtonItem12.Caption = "Vincular Tareas";
-            this.barButtonItem12.Id = 18;
-            this.barButtonItem12.Name = "barButtonItem12";
+            this.barButtonLinkTask.Caption = "Vincular Tareas";
+            this.barButtonLinkTask.Id = 18;
+            this.barButtonLinkTask.Name = "barButtonLinkTask";
+            this.barButtonLinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonLinkTask_ItemClick);
             // 
-            // barButtonItem13
+            // barButtonUnlinkTask
             // 
-            this.barButtonItem13.Caption = "Desvincular Tareas";
-            this.barButtonItem13.Id = 19;
-            this.barButtonItem13.Name = "barButtonItem13";
+            this.barButtonUnlinkTask.Caption = "Desvincular Tareas";
+            this.barButtonUnlinkTask.Id = 19;
+            this.barButtonUnlinkTask.Name = "barButtonUnlinkTask";
+            this.barButtonUnlinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUnlinkTask_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -247,23 +253,23 @@
             // 
             // ribTask
             // 
-            this.ribTask.ItemLinks.Add(this.barButtonItem7);
-            this.ribTask.ItemLinks.Add(this.barButtonItem8);
+            this.ribTask.ItemLinks.Add(this.barButtonNewTask);
+            this.ribTask.ItemLinks.Add(this.barButtonDeleteTask);
             this.ribTask.ItemLinks.Add(this.barButtonItem9);
             this.ribTask.Name = "ribTask";
             this.ribTask.Text = "Tareas";
             // 
             // ribHierarchy
             // 
-            this.ribHierarchy.ItemLinks.Add(this.barButtonItem10);
-            this.ribHierarchy.ItemLinks.Add(this.barButtonItem11);
+            this.ribHierarchy.ItemLinks.Add(this.barButtonMoveRight);
+            this.ribHierarchy.ItemLinks.Add(this.barButtonMoveLeft);
             this.ribHierarchy.Name = "ribHierarchy";
             this.ribHierarchy.Text = "Jerarquía";
             // 
             // ribLink
             // 
-            this.ribLink.ItemLinks.Add(this.barButtonItem12);
-            this.ribLink.ItemLinks.Add(this.barButtonItem13);
+            this.ribLink.ItemLinks.Add(this.barButtonLinkTask);
+            this.ribLink.ItemLinks.Add(this.barButtonUnlinkTask);
             this.ribLink.Name = "ribLink";
             this.ribLink.Text = "Vincular";
             // 
@@ -302,13 +308,28 @@
             this.projectGantt.CalendarInfo = this.ultraCalendarInfo;
             this.projectGantt.CalendarLook = this.ultraCalendarLook;
             this.projectGantt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.projectGantt.GridAreaWidth = 287;
+            this.projectGantt.GridAreaWidth = 500;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Text = "Dependencias";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Width = 80;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Duration).Text = "Duración";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Duration).Width = 50;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.EndDateTime).Text = "Fin";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.EndDateTime).Width = 70;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Name).Text = "Nombre";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Name).Width = 100;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Notes).Text = "Notas";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.PercentComplete).Text = "% Completado";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Resources).Text = "Recursos";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.StartDateTime).Text = "Incio";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.StartDateTime).Width = 70;
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.RowNumber).Text = "#";
             this.projectGantt.Location = new System.Drawing.Point(0, 0);
             this.projectGantt.Name = "projectGantt";
             this.projectGantt.Size = new System.Drawing.Size(982, 324);
             this.projectGantt.TabIndex = 0;
             this.projectGantt.Text = "ultraGanttView1";
             this.projectGantt.VerticalSplitterMinimumResizeWidth = 10;
+            this.projectGantt.ActiveTaskChanging += new Infragistics.Win.UltraWinGanttView.ActiveTaskChangingHandler(this.projectGantt_ActiveTaskChanging);
             // 
             // ultraCalendarInfo
             // 
@@ -369,13 +390,13 @@
         private DevExpress.XtraBars.BarButtonItem barButtonSave;
         private DevExpress.XtraBars.BarButtonItem barButtonVoid;
         private DevExpress.XtraBars.BarButtonItem barButtonCalendar;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem barButtonNewTask;
+        private DevExpress.XtraBars.BarButtonItem barButtonDeleteTask;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem12;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem13;
+        private DevExpress.XtraBars.BarButtonItem barButtonMoveRight;
+        private DevExpress.XtraBars.BarButtonItem barButtonMoveLeft;
+        private DevExpress.XtraBars.BarButtonItem barButtonLinkTask;
+        private DevExpress.XtraBars.BarButtonItem barButtonUnlinkTask;
         private Infragistics.Win.UltraWinSchedule.UltraCalendarInfo ultraCalendarInfo;
         private Infragistics.Win.UltraWinSchedule.UltraCalendarLook ultraCalendarLook;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
