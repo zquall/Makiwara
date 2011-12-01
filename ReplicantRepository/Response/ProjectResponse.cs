@@ -41,7 +41,7 @@ namespace ReplicantRepository.Response
 
     public class TaskData
     {
-        public int Id { get; set; }
+        public Int64 Id { get; set; }
         public int ProjectId { get; set; }
         public int ParentId { get; set; }
         public string Name { get; set; }
@@ -63,6 +63,7 @@ namespace ReplicantRepository.Response
         public bool Milestone { get; set; }
         public bool MilestoneResolved { get; set; }
 
+        public List<TaskData> Dependencies { get; set; }
         public List<ResourceData> resourceList { get; set; }
     }
 

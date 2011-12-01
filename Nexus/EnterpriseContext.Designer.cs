@@ -34,7 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Project), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_ResourceType", "ResourceType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.ResourceType), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "Dependencies", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task))]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "EmployeeXCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Customer), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee))]
 
 #endregion
@@ -3015,7 +3015,7 @@ namespace Nexus
         /// <param name="cost">Initial value of the Cost property.</param>
         /// <param name="totalCost">Initial value of the TotalCost property.</param>
         /// <param name="realUsed">Initial value of the RealUsed property.</param>
-        public static Resource CreateResource(global::System.Int32 id, global::System.Int32 measureId, global::System.Int32 resourceTypeId, global::System.Int32 taskId, global::System.Int32 code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
+        public static Resource CreateResource(global::System.Int32 id, global::System.Int32 measureId, global::System.Int32 resourceTypeId, global::System.Int64 taskId, global::System.Int32 code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
         {
             Resource resource = new Resource();
             resource.Id = id;
@@ -3114,7 +3114,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 TaskId
+        public global::System.Int64 TaskId
         {
             get
             {
@@ -3129,8 +3129,8 @@ namespace Nexus
                 OnTaskIdChanged();
             }
         }
-        private global::System.Int32 _TaskId;
-        partial void OnTaskIdChanging(global::System.Int32 value);
+        private global::System.Int64 _TaskId;
+        partial void OnTaskIdChanging(global::System.Int64 value);
         partial void OnTaskIdChanged();
     
         /// <summary>
@@ -3564,7 +3564,7 @@ namespace Nexus
         /// <param name="taskLevel">Initial value of the TaskLevel property.</param>
         /// <param name="milestone">Initial value of the Milestone property.</param>
         /// <param name="milestoneResolved">Initial value of the MilestoneResolved property.</param>
-        public static Task CreateTask(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 parentId, global::System.String name, global::System.String duration, global::System.Double percentComplete, global::System.DateTime startDateTime, global::System.DateTime endDateTime, global::System.String notes, global::System.Int32 rowNumber, global::System.Int32 bindingListIndex, global::System.DateTime completeThrough, global::System.DateTime deadLine, global::System.String durationResolved, global::System.DateTime endDateTimeResolved, global::System.Boolean expanded, global::System.Boolean isRoot, global::System.Boolean isSumary, global::System.Int32 taskLevel, global::System.Boolean milestone, global::System.Boolean milestoneResolved)
+        public static Task CreateTask(global::System.Int64 id, global::System.Int32 projectId, global::System.Int32 parentId, global::System.String name, global::System.String duration, global::System.Double percentComplete, global::System.DateTime startDateTime, global::System.DateTime endDateTime, global::System.String notes, global::System.Int32 rowNumber, global::System.Int32 bindingListIndex, global::System.DateTime completeThrough, global::System.DateTime deadLine, global::System.String durationResolved, global::System.DateTime endDateTimeResolved, global::System.Boolean expanded, global::System.Boolean isRoot, global::System.Boolean isSumary, global::System.Int32 taskLevel, global::System.Boolean milestone, global::System.Boolean milestoneResolved)
         {
             Task task = new Task();
             task.Id = id;
@@ -3599,7 +3599,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Int64 Id
         {
             get
             {
@@ -3617,8 +3617,8 @@ namespace Nexus
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
         partial void OnIdChanged();
     
         /// <summary>
@@ -4171,18 +4171,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Task_Task", "Task1")]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "Dependencies", "Task1")]
         public EntityCollection<Task> Task1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Task>("EnterpriseModel.FK_Task_Task", "Task1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Task>("EnterpriseModel.Dependencies", "Task1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("EnterpriseModel.FK_Task_Task", "Task1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("EnterpriseModel.Dependencies", "Task1", value);
                 }
             }
         }
@@ -4193,34 +4193,18 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Task_Task", "Task")]
-        public Task Task2
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "Dependencies", "Task")]
+        public EntityCollection<Task> Tasks
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Task_Task", "Task").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Task_Task", "Task").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Task> Task2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Task_Task", "Task");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Task>("EnterpriseModel.Dependencies", "Task");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Task>("EnterpriseModel.FK_Task_Task", "Task", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Task>("EnterpriseModel.Dependencies", "Task", value);
                 }
             }
         }

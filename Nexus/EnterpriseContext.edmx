@@ -11,6 +11,12 @@
           <EntitySet Name="BudgetRequestDetail" EntityType="EnterpriseModel.Store.BudgetRequestDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="EnterpriseModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CustomerContact" EntityType="EnterpriseModel.Store.CustomerContact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dependencies" EntityType="EnterpriseModel.Store.Dependencies" store:Type="Tables" store:Schema="dbo" store:Name="Dependencies">
+            <DefiningQuery>SELECT 
+      [Dependencies].[idTask] AS [idTask], 
+      [Dependencies].[idDependencie] AS [idDependencie]
+      FROM [dbo].[Dependencies] AS [Dependencies]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Employee" EntityType="EnterpriseModel.Store.Employee" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EmployeeXCustomer" EntityType="EnterpriseModel.Store.EmployeeXCustomer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Family" EntityType="EnterpriseModel.Store.Family" store:Type="Tables" Schema="dbo" />
@@ -45,6 +51,14 @@
           <AssociationSet Name="FK_CustomerContact_Person" Association="EnterpriseModel.Store.FK_CustomerContact_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="CustomerContact" EntitySet="CustomerContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dependencies_Task" Association="EnterpriseModel.Store.FK_Dependencies_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Dependencies" EntitySet="Dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dependencies_Task1" Association="EnterpriseModel.Store.FK_Dependencies_Task1">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Dependencies" EntitySet="Dependencies" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Person" Association="EnterpriseModel.Store.FK_Employee_Person">
             <End Role="Person" EntitySet="Person" />
@@ -94,10 +108,6 @@
             <End Role="Project" EntitySet="Project" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Task" Association="EnterpriseModel.Store.FK_Task_Task">
-            <End Role="Task" EntitySet="Task" />
-            <End Role="Task1" EntitySet="Task" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BindCustomer">
           <Key>
@@ -141,6 +151,17 @@
           <Property Name="Job" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="PersonId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'company.dbo.Dependencies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Dependencies">
+          <Key>
+            <PropertyRef Name="idTask" />
+            <PropertyRef Name="idDependencie" />
+          </Key>
+          <Property Name="idTask" Type="bigint" Nullable="false" />
+          <Property Name="idDependencie" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -225,7 +246,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="MeasureId" Type="int" Nullable="false" />
           <Property Name="ResourceTypeId" Type="int" Nullable="false" />
-          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="TaskId" Type="bigint" Nullable="false" />
           <Property Name="Code" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Amount" Type="float" Nullable="false" />
@@ -245,7 +266,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
@@ -336,6 +357,30 @@
             </Principal>
             <Dependent Role="CustomerContact">
               <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dependencies_Task">
+          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="1" />
+          <End Role="Dependencies" Type="EnterpriseModel.Store.Dependencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dependencies">
+              <PropertyRef Name="idTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dependencies_Task1">
+          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="1" />
+          <End Role="Dependencies" Type="EnterpriseModel.Store.Dependencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dependencies">
+              <PropertyRef Name="idDependencie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -483,18 +528,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Task_Task">
-          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="1" />
-          <End Role="Task1" Type="EnterpriseModel.Store.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Task1">
-              <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -579,7 +612,7 @@
             <End Role="Task" EntitySet="Tasks" />
             <End Role="Resource" EntitySet="Resources" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Task" Association="EnterpriseModel.FK_Task_Task">
+          <AssociationSet Name="Dependencies" Association="EnterpriseModel.Dependencies">
             <End Role="Task" EntitySet="Tasks" />
             <End Role="Task1" EntitySet="Tasks" />
           </AssociationSet>
@@ -734,7 +767,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="MeasureId" Nullable="false" />
           <Property Type="Int32" Name="ResourceTypeId" Nullable="false" />
-          <Property Type="Int32" Name="TaskId" Nullable="false" />
+          <Property Type="Int64" Name="TaskId" Nullable="false" />
           <Property Type="Int32" Name="Code" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Double" Name="Amount" Nullable="false" />
@@ -758,7 +791,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
           <Property Type="Int32" Name="ParentId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -781,8 +814,8 @@
           <Property Type="Boolean" Name="MilestoneResolved" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="EnterpriseModel.FK_Task_Project" FromRole="Task" ToRole="Project" />
           <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_Task" FromRole="Task" ToRole="Resource" />
-          <NavigationProperty Name="Task1" Relationship="EnterpriseModel.FK_Task_Task" FromRole="Task" ToRole="Task1" />
-          <NavigationProperty Name="Task2" Relationship="EnterpriseModel.FK_Task_Task" FromRole="Task1" ToRole="Task" />
+          <NavigationProperty Name="Task1" Relationship="EnterpriseModel.Dependencies" FromRole="Task" ToRole="Task1" />
+          <NavigationProperty Name="Tasks" Relationship="EnterpriseModel.Dependencies" FromRole="Task1" ToRole="Task" />
         </EntityType>
         <Association Name="FK_BindCustomer_Customer">
           <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
@@ -976,17 +1009,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Task_Task">
-          <End Type="EnterpriseModel.Task" Role="Task" Multiplicity="1" />
+        <Association Name="Dependencies">
+          <End Type="EnterpriseModel.Task" Role="Task" Multiplicity="*" />
           <End Type="EnterpriseModel.Task" Role="Task1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Task1">
-              <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="EmployeeXCustomer">
           <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="*" />
@@ -1173,6 +1198,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Dependencies" TypeName="EnterpriseModel.Dependencies" StoreEntitySet="Dependencies">
+            <EndProperty Name="Task1">
+              <ScalarProperty Name="Id" ColumnName="idDependencie" />
+            </EndProperty>
+            <EndProperty Name="Task">
+              <ScalarProperty Name="Id" ColumnName="idTask" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="EmployeeXCustomer" TypeName="EnterpriseModel.EmployeeXCustomer" StoreEntitySet="EmployeeXCustomer">
             <EndProperty Name="Employee">
               <ScalarProperty Name="Id" ColumnName="EmployeeId" />
@@ -1298,7 +1331,7 @@
           <ConnectorPoint PointX="12" PointY="10.759348958333334" />
           <ConnectorPoint PointX="12.75" PointY="10.759348958333334" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Task_Task" >
+        <AssociationConnector Association="EnterpriseModel.Dependencies" >
           <ConnectorPoint PointX="11.031923076923077" PointY="13.701315104166667" />
           <ConnectorPoint PointX="11.031923076923077" PointY="13.951315104166667" />
           <ConnectorPoint PointX="11.478461538461538" PointY="13.951315104166667" />

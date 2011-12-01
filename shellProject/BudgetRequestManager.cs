@@ -100,7 +100,7 @@ namespace shellProject
                 cmbPhone.Properties.Items.Clear();
                 cmbPhone.Properties.Items.AddRange(phoneList);
                 // Load the first phone as default
-                loadPhone(phoneList[0]);            
+                loadPhone(phoneList[0]);
             }
         }
 
@@ -140,6 +140,5 @@ namespace shellProject
                 cmbContact.SelectedItem = contactManager.Tag;
             }
         }
-
     }
 }

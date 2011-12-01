@@ -24,6 +24,15 @@ namespace CORE.Services
             return tmpFamilyData;
         }
 
+        private List<TaskData> getDependencies(Nexus.Task t)
+        {
+            List<TaskData> dependencies = new List<TaskData>();
+
+            dependencies = getTasks(t.Task1);
+
+            return dependencies;
+        }
+
         private List<TaskData> getTasks(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
         {
             List<TaskData> listTask = new List<TaskData>();
@@ -55,6 +64,8 @@ namespace CORE.Services
                     tmpTask.TaskLevel = task.TaskLevel;
                     tmpTask.Milestone = task.Milestone;
                     tmpTask.MilestoneResolved = task.MilestoneResolved;
+
+                    tmpTask.Dependencies = getDependencies(task);
 
                     listTask.Add(tmpTask);
                 }
@@ -109,7 +120,7 @@ namespace CORE.Services
             var response = new ProjectResponse();
 
             // Inicitialize the list of customers
-            response.ProjectList = new List<ProjectData>();   
+            response.ProjectList = new List<ProjectData>();
 
             //var projectFoundedById = Olympus._Enterprise.Projects.Where(x => x.Id.Contains(request.SearchProjectQuery)).OrderBy(y => y.Id).Take(maximunResultRows).ToList();
             var projectFoundedByName = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
@@ -118,7 +129,6 @@ namespace CORE.Services
             response.ProjectList.AddRange(getProjects(projectFoundedByName));
             response.ProjectList.AddRange(getProjects(projectFoundedByCustumer));
 
-            
             return response;
         }
     }

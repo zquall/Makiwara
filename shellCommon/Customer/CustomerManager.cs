@@ -76,9 +76,7 @@ namespace shellCommon.Customer
             }
         }
 
-        #endregion
-
-      
+        #endregion     
        
     }
 }

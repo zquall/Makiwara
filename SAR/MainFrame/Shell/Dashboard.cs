@@ -21,10 +21,19 @@ namespace MainFrame.Shell
             InitializeComponent();
         }
 
+        #region Form Events
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
             loadNavigationBar();
         }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        #endregion
 
         #region NavigationBar Loading
 
@@ -73,10 +82,6 @@ namespace MainFrame.Shell
                     CreateProject createProject = new CreateProject();
 
                     createProject.ShowDialog();
-                    //if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-                        //projectManager.Close();
-                    //else
-                    //    MessageBox.Show("Cargando Datos del Proyecto");
 
                     break;
 
@@ -91,7 +96,7 @@ namespace MainFrame.Shell
                         projectManager.Close();
                     else
                     {
-                        projectManager.chargeProject(searchProject.projectSelected);
+                        projectManager.loadProject(searchProject.projectSelected);
                     }
 
                     break;
@@ -101,10 +106,5 @@ namespace MainFrame.Shell
                     break;
             }
         }
-
-        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }       
     }    
 }

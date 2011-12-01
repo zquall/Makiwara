@@ -35,7 +35,7 @@
             this.txtSeller = new DevExpress.XtraEditors.TextEdit();
             this.txtFamily = new DevExpress.XtraEditors.TextEdit();
             this.txtClient = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtProject = new DevExpress.XtraEditors.TextEdit();
             this.lblFamily = new DevExpress.XtraEditors.LabelControl();
             this.lblSeller = new DevExpress.XtraEditors.LabelControl();
             this.lblClient = new DevExpress.XtraEditors.LabelControl();
@@ -76,7 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSeller.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFamily.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProject.Properties)).BeginInit();
             this.tabTotals.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textOtherAmount.Properties)).BeginInit();
@@ -114,7 +114,7 @@
             this.tabGeneral.Controls.Add(this.txtSeller);
             this.tabGeneral.Controls.Add(this.txtFamily);
             this.tabGeneral.Controls.Add(this.txtClient);
-            this.tabGeneral.Controls.Add(this.textEdit1);
+            this.tabGeneral.Controls.Add(this.txtProject);
             this.tabGeneral.Controls.Add(this.lblFamily);
             this.tabGeneral.Controls.Add(this.lblSeller);
             this.tabGeneral.Controls.Add(this.lblClient);
@@ -160,12 +160,12 @@
             this.txtClient.Size = new System.Drawing.Size(303, 20);
             this.txtClient.TabIndex = 5;
             // 
-            // textEdit1
+            // txtProject
             // 
-            this.textEdit1.Location = new System.Drawing.Point(90, 12);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(303, 20);
-            this.textEdit1.TabIndex = 4;
+            this.txtProject.Location = new System.Drawing.Point(90, 12);
+            this.txtProject.Name = "txtProject";
+            this.txtProject.Size = new System.Drawing.Size(303, 20);
+            this.txtProject.TabIndex = 4;
             // 
             // lblFamily
             // 
@@ -511,7 +511,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSeller.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFamily.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProject.Properties)).EndInit();
             this.tabTotals.ResumeLayout(false);
             this.tabTotals.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).EndInit();
@@ -541,7 +541,7 @@
         private DevExpress.XtraEditors.TextEdit txtSeller;
         private DevExpress.XtraEditors.TextEdit txtFamily;
         private DevExpress.XtraEditors.TextEdit txtClient;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtProject;
         private DevExpress.XtraEditors.LabelControl lblFamily;
         private DevExpress.XtraEditors.LabelControl lblSeller;
         private DevExpress.XtraEditors.LabelControl lblClient;

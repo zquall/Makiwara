@@ -16,61 +16,120 @@ namespace shellProject
 {
     public partial class ProjectManager : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        #region Propiedades privadas de la clase
+
         /// <summary>
         /// Lista que contiene las tareas seleccionadas por un usuario
         /// </summary>
         private List<Task> selectedTask = new List<Task>();
 
+        /// <summary>
+        /// Lista de fácil acceso a las tareas
+        /// </summary>
+        private List<Task> _allTask = new List<Task>();
+
+        /// <summary>
+        /// Variable que contiene el proyecto que se esta trabajando
+        /// </summary>
         private ProjectData _project = new ProjectData();
+
+        #endregion
+
 
         public ProjectManager()
         {
             InitializeComponent();
         }
 
-        private Project getProject()
+
+        #region Métodos encargados de cargar un proyecto con sus tareas y recursos
+
+        /// <summary>
+        /// Este método se encarga de establecer las dependencias de una tarea, utilizando la lista selectedTask que ha sido 
+        /// cargada previamente con las tareas del proyecto que se esta cargando, esto debido a que el ultraCalendarinfo es 
+        /// mas complejo de recorrer ya que este en su lista de tareas contiene unicamente las tareas que son Root y las demas
+        /// tareas se encuentran dentro de este. Por este motivo se ha decidido cargar las tareas en una lista a la cual se puede
+        /// accesar facilmente.
+        /// </summary>
+        /// <param name="sourceDependencies">Lista con las dependencias de la tarea, leidas de la BD</param>
+        /// <param name="destination">Collección de tareas que el control leera como las dependencias de una tarea</param>
+        private void loadDependencies(List<TaskData> sourceDependencies, TaskDependenciesCollection destination)
         {
-            Project tmpProject = new Project();
-            tmpProject.Name = _project.Name;
-            return tmpProject;
+            foreach(TaskData t in sourceDependencies)
+            {
+                Task task = _allTask.Where(x => x.Name == t.Name).SingleOrDefault();
+                if (task != null)
+                {
+                    destination.Add(task, TaskDependencyType.FinishToStart);
+                }
+            }
         }
 
-        private void chargeTasks()
+        /// <summary>
+        /// Método encargado de mapear las propiedades de un objeto TaskData en uno de tipo Task
+        /// </summary>
+        /// <param name="source">Origen de los datos</param>
+        /// <param name="destination">Destino de los datos</param>
+        private void mappingTask(TaskData source, Task destination)
         {
-            foreach (TaskData t in _project.taskList)
+            #region Propidades no seteables
+            //destination.Id = Guid.Parse(source.Id.ToString());
+            //destination.ProjectKey = source.ProjectId;
+            //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
+            //destination.RowNumber = source.Rownumber;
+            //destination.BindingListIndex = source.BindingListindex;
+            //destination.CompleteThrough = source.CompleteThrough;
+            //destination.DurationResolved = source.DurationResolved;
+            //destination.EndDateTimeResolved = source.EndDateTimeResolved;
+            //destination.IsRoot = source.IsRoot;
+            //destination.IsSummary = source.IsSumary;
+            //destination.Level = source.TaskLevel;
+            //destination.MilestoneResolved = source.MilestoneResolved;
+            #endregion
+
+            destination.Name = source.Name;
+            destination.Duration = source.Duration;
+            destination.PercentComplete = (float)source.PercentComplete;
+            destination.StartDateTime = source.StartDateTime;
+            destination.EndDateTime = source.EndDateTime;
+            destination.Notes = source.Notes;
+            destination.Deadline = source.DeadLine;
+            destination.Expanded = source.Expanded;
+            destination.Milestone = source.Milestone;
+        }
+
+        /// <summary>
+        /// Este método se encarga de cargar las tareas traidas desde la BD al control encargado de desplegarlas al usuario
+        /// </summary>
+        private void loadTasks()
+        {
+            foreach (TaskData t in _project.taskList.OrderBy(x => x.Rownumber))
             {
                 Task tmpTask = new Task();
-                
-                //tmpTask.Id = Guid.Parse(t.Id.ToString());
-                //tmpTask.ProjectKey = t.ProjectId;
-                //tmpTask.Parent = ultraCalendarInfo.Tasks[t.ParentId];
-                tmpTask.Name = t.Name;
-                tmpTask.Duration = t.Duration;
-                tmpTask.PercentComplete = (float)t.PercentComplete;
-                tmpTask.StartDateTime = t.StartDateTime;
-                tmpTask.EndDateTime = t.EndDateTime;
-                tmpTask.Notes = t.Notes;
-                //tmpTask.RowNumber = t.Rownumber;
-                //tmpTask.BindingListIndex = t.BindingListindex;
-                //tmpTask.CompleteThrough = t.CompleteThrough;
-                tmpTask.Deadline = t.DeadLine;
-                //tmpTask.DurationResolved = t.DurationResolved;
-                //tmpTask.EndDateTimeResolved = t.EndDateTimeResolved;
-                tmpTask.Expanded = t.Expanded;
-                //tmpTask.IsRoot = t.IsRoot;
-                //tmpTask.IsSummary = t.IsSumary;
-                //tmpTask.Level = t.TaskLevel;
-                tmpTask.Milestone = t.Milestone;
-                //tmpTask.MilestoneResolved = t.MilestoneResolved;
+
+                //Se mapean las propiedades del TaskData en el Task
+                mappingTask(t, tmpTask);
+
                 ultraCalendarInfo.Tasks.Add(tmpTask);
 
+                //Se cargan todas las tareas en esta lista para usarla como lugar de fácil
+                _allTask.Add(tmpTask);
+
+                //Se incluyen las dependencias de la tarea
+                if (t.Dependencies.Count > 0)
+                    loadDependencies(t.Dependencies, tmpTask.Dependencies);
+
+                //Se agrega el nivel de la tarea 
                 for (int i = 1; i <= t.TaskLevel; i++)
                     tmpTask.Indent();
             }
-            
         }
 
-        public void chargeProject(ProjectData project)
+        /// <summary>
+        /// Método que se encarga de cargar en una variable local el proyecto que se esta trabajando.
+        /// </summary>
+        /// <param name="project"></param>
+        public void loadProject(ProjectData project)
         {
             _project = project;
 
@@ -78,11 +137,16 @@ namespace shellProject
             repositoryItemProjectName.NullText = _project.Name;
             repositoryItemCustumer.NullText = _project.CustumerName;
 
-            //projectGantt.Project = getProject();
-            chargeTasks();
+            loadTasks();
         }
 
-  
+        #endregion
+
+        #region Métodos encargados de salvar el proyecto con sus tareas y recursos
+
+
+        #endregion
+
         #region Region encargada de las operaciones del menu de opciones
 
         private void createProject()
