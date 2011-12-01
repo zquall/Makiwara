@@ -399,6 +399,7 @@
             this.cmbContact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.cmbContact.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContact_Properties_ButtonClick);
             this.cmbContact.Size = new System.Drawing.Size(171, 20);
             this.cmbContact.TabIndex = 13;
             // 
@@ -428,7 +429,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.gridControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage1.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage1.Text = "Descripcion del Trabajo";
             // 
             // gridControl1
@@ -455,7 +456,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Controls.Add(this.groupControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage2.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage2.Text = "Condiciones del Trabajo";
             // 
             // groupControl7
@@ -475,7 +476,7 @@
             this.checkEdit21.Location = new System.Drawing.Point(5, 100);
             this.checkEdit21.Name = "checkEdit21";
             this.checkEdit21.Properties.Caption = "Polvo";
-            this.checkEdit21.Size = new System.Drawing.Size(80, 18);
+            this.checkEdit21.Size = new System.Drawing.Size(80, 19);
             this.checkEdit21.TabIndex = 9;
             // 
             // checkEdit22
@@ -483,7 +484,7 @@
             this.checkEdit22.Location = new System.Drawing.Point(5, 75);
             this.checkEdit22.Name = "checkEdit22";
             this.checkEdit22.Properties.Caption = "Ruido";
-            this.checkEdit22.Size = new System.Drawing.Size(80, 18);
+            this.checkEdit22.Size = new System.Drawing.Size(80, 19);
             this.checkEdit22.TabIndex = 8;
             // 
             // checkEdit23
@@ -491,7 +492,7 @@
             this.checkEdit23.Location = new System.Drawing.Point(5, 50);
             this.checkEdit23.Name = "checkEdit23";
             this.checkEdit23.Properties.Caption = "Agua";
-            this.checkEdit23.Size = new System.Drawing.Size(84, 18);
+            this.checkEdit23.Size = new System.Drawing.Size(84, 19);
             this.checkEdit23.TabIndex = 7;
             // 
             // checkEdit24
@@ -499,7 +500,7 @@
             this.checkEdit24.Location = new System.Drawing.Point(5, 25);
             this.checkEdit24.Name = "checkEdit24";
             this.checkEdit24.Properties.Caption = "Humedad";
-            this.checkEdit24.Size = new System.Drawing.Size(84, 18);
+            this.checkEdit24.Size = new System.Drawing.Size(84, 19);
             this.checkEdit24.TabIndex = 0;
             // 
             // groupControl6
@@ -520,7 +521,7 @@
             this.checkEdit19.Location = new System.Drawing.Point(5, 125);
             this.checkEdit19.Name = "checkEdit19";
             this.checkEdit19.Properties.Caption = "Requiere Sanitarios";
-            this.checkEdit19.Size = new System.Drawing.Size(115, 18);
+            this.checkEdit19.Size = new System.Drawing.Size(115, 19);
             this.checkEdit19.TabIndex = 10;
             // 
             // checkEdit18
@@ -528,7 +529,7 @@
             this.checkEdit18.Location = new System.Drawing.Point(5, 100);
             this.checkEdit18.Name = "checkEdit18";
             this.checkEdit18.Properties.Caption = "Equipo Ventilacion";
-            this.checkEdit18.Size = new System.Drawing.Size(115, 18);
+            this.checkEdit18.Size = new System.Drawing.Size(115, 19);
             this.checkEdit18.TabIndex = 9;
             // 
             // checkEdit17
@@ -536,7 +537,7 @@
             this.checkEdit17.Location = new System.Drawing.Point(5, 75);
             this.checkEdit17.Name = "checkEdit17";
             this.checkEdit17.Properties.Caption = "Facil Acceso";
-            this.checkEdit17.Size = new System.Drawing.Size(115, 18);
+            this.checkEdit17.Size = new System.Drawing.Size(115, 19);
             this.checkEdit17.TabIndex = 8;
             // 
             // checkEdit15
@@ -544,7 +545,7 @@
             this.checkEdit15.Location = new System.Drawing.Point(5, 50);
             this.checkEdit15.Name = "checkEdit15";
             this.checkEdit15.Properties.Caption = "Trabajo Interior";
-            this.checkEdit15.Size = new System.Drawing.Size(115, 18);
+            this.checkEdit15.Size = new System.Drawing.Size(115, 19);
             this.checkEdit15.TabIndex = 7;
             // 
             // checkEdit16
@@ -552,7 +553,7 @@
             this.checkEdit16.Location = new System.Drawing.Point(5, 25);
             this.checkEdit16.Name = "checkEdit16";
             this.checkEdit16.Properties.Caption = "Trabajo Exterior";
-            this.checkEdit16.Size = new System.Drawing.Size(115, 18);
+            this.checkEdit16.Size = new System.Drawing.Size(115, 19);
             this.checkEdit16.TabIndex = 0;
             // 
             // groupControl5
@@ -570,7 +571,7 @@
             this.checkEdit12.Location = new System.Drawing.Point(114, 25);
             this.checkEdit12.Name = "checkEdit12";
             this.checkEdit12.Properties.Caption = "Hospedage";
-            this.checkEdit12.Size = new System.Drawing.Size(103, 18);
+            this.checkEdit12.Size = new System.Drawing.Size(103, 19);
             this.checkEdit12.TabIndex = 7;
             // 
             // checkEdit14
@@ -578,7 +579,7 @@
             this.checkEdit14.Location = new System.Drawing.Point(5, 25);
             this.checkEdit14.Name = "checkEdit14";
             this.checkEdit14.Properties.Caption = "Alimentacion";
-            this.checkEdit14.Size = new System.Drawing.Size(103, 18);
+            this.checkEdit14.Size = new System.Drawing.Size(103, 19);
             this.checkEdit14.TabIndex = 0;
             // 
             // groupControl4
@@ -597,7 +598,7 @@
             this.checkEdit10.Location = new System.Drawing.Point(5, 50);
             this.checkEdit10.Name = "checkEdit10";
             this.checkEdit10.Properties.Caption = "Electricidad";
-            this.checkEdit10.Size = new System.Drawing.Size(103, 18);
+            this.checkEdit10.Size = new System.Drawing.Size(103, 19);
             this.checkEdit10.TabIndex = 7;
             // 
             // checkEdit11
@@ -605,7 +606,7 @@
             this.checkEdit11.Location = new System.Drawing.Point(5, 25);
             this.checkEdit11.Name = "checkEdit11";
             this.checkEdit11.Properties.Caption = "Agua Potable";
-            this.checkEdit11.Size = new System.Drawing.Size(103, 18);
+            this.checkEdit11.Size = new System.Drawing.Size(103, 19);
             this.checkEdit11.TabIndex = 0;
             // 
             // checkEdit13
@@ -613,7 +614,7 @@
             this.checkEdit13.Location = new System.Drawing.Point(5, 75);
             this.checkEdit13.Name = "checkEdit13";
             this.checkEdit13.Properties.Caption = "Bodega Cliente";
-            this.checkEdit13.Size = new System.Drawing.Size(103, 18);
+            this.checkEdit13.Size = new System.Drawing.Size(103, 19);
             this.checkEdit13.TabIndex = 3;
             // 
             // groupControl3
@@ -631,7 +632,7 @@
             this.checkEdit2.Location = new System.Drawing.Point(50, 25);
             this.checkEdit2.Name = "checkEdit2";
             this.checkEdit2.Properties.Caption = "Noche";
-            this.checkEdit2.Size = new System.Drawing.Size(58, 18);
+            this.checkEdit2.Size = new System.Drawing.Size(58, 19);
             this.checkEdit2.TabIndex = 7;
             // 
             // checkEdit9
@@ -639,7 +640,7 @@
             this.checkEdit9.Location = new System.Drawing.Point(5, 25);
             this.checkEdit9.Name = "checkEdit9";
             this.checkEdit9.Properties.Caption = "Dia";
-            this.checkEdit9.Size = new System.Drawing.Size(44, 18);
+            this.checkEdit9.Size = new System.Drawing.Size(44, 19);
             this.checkEdit9.TabIndex = 0;
             // 
             // groupControl1
@@ -662,7 +663,7 @@
             this.checkEdit8.Location = new System.Drawing.Point(5, 50);
             this.checkEdit8.Name = "checkEdit8";
             this.checkEdit8.Properties.Caption = "Martes";
-            this.checkEdit8.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit8.Size = new System.Drawing.Size(75, 19);
             this.checkEdit8.TabIndex = 7;
             // 
             // checkEdit1
@@ -670,7 +671,7 @@
             this.checkEdit1.Location = new System.Drawing.Point(5, 25);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "Lunes";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
             this.checkEdit1.TabIndex = 0;
             // 
             // checkEdit5
@@ -678,7 +679,7 @@
             this.checkEdit5.Location = new System.Drawing.Point(5, 175);
             this.checkEdit5.Name = "checkEdit5";
             this.checkEdit5.Properties.Caption = "Domingo";
-            this.checkEdit5.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit5.Size = new System.Drawing.Size(75, 19);
             this.checkEdit5.TabIndex = 4;
             // 
             // checkEdit4
@@ -686,7 +687,7 @@
             this.checkEdit4.Location = new System.Drawing.Point(5, 75);
             this.checkEdit4.Name = "checkEdit4";
             this.checkEdit4.Properties.Caption = "Miercoles";
-            this.checkEdit4.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit4.Size = new System.Drawing.Size(75, 19);
             this.checkEdit4.TabIndex = 3;
             // 
             // checkEdit3
@@ -694,7 +695,7 @@
             this.checkEdit3.Location = new System.Drawing.Point(5, 150);
             this.checkEdit3.Name = "checkEdit3";
             this.checkEdit3.Properties.Caption = "Sabado";
-            this.checkEdit3.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit3.Size = new System.Drawing.Size(75, 19);
             this.checkEdit3.TabIndex = 2;
             // 
             // checkEdit6
@@ -702,7 +703,7 @@
             this.checkEdit6.Location = new System.Drawing.Point(5, 125);
             this.checkEdit6.Name = "checkEdit6";
             this.checkEdit6.Properties.Caption = "Viernes";
-            this.checkEdit6.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit6.Size = new System.Drawing.Size(75, 19);
             this.checkEdit6.TabIndex = 5;
             // 
             // checkEdit7
@@ -710,7 +711,7 @@
             this.checkEdit7.Location = new System.Drawing.Point(5, 100);
             this.checkEdit7.Name = "checkEdit7";
             this.checkEdit7.Properties.Caption = "Jueves";
-            this.checkEdit7.Size = new System.Drawing.Size(75, 18);
+            this.checkEdit7.Size = new System.Drawing.Size(75, 19);
             this.checkEdit7.TabIndex = 6;
             // 
             // xtraTabPage3
@@ -731,7 +732,7 @@
             this.xtraTabPage3.Controls.Add(this.labelControl14);
             this.xtraTabPage3.Controls.Add(this.labelControl13);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage3.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage3.Text = "Plazos y Tiempos";
             // 
             // groupControl8
@@ -893,7 +894,7 @@
             // xtraTabPage4
             // 
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(698, 272);
+            this.xtraTabPage4.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage4.Text = "Documentos Adjuntos";
             // 
             // simpleButton3

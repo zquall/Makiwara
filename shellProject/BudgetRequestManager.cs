@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using ReplicantRepository.Response;
 using ReplicantFacility.Factory;
 using shellCommon.Customer;
+using shellCommon.Contact;
 
 namespace shellProject
 {
@@ -114,6 +115,31 @@ namespace shellProject
         }
 
         #endregion
+
+        private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
+                    loadContactManagerAdd();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        // Add new Customer Contact
+        private void loadContactManagerAdd()
+        {
+            var contactManager = new ContactManager();
+            contactManager.ShowDialog();
+            if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                cmbContact.Properties.Items.Add(contactManager.Tag);
+                cmbContact.SelectedItem = contactManager.Tag;
+            }
+        }
 
     }
 }
