@@ -22,7 +22,6 @@ namespace CORE.Services
         // Search Customers
         public CustomerResponse searchCustomer(CustomerRequest request)
         {
-            const int maximunResultRows = 10;
             var response = new CustomerResponse();
             // Inicitialize the list of customers
             response.CustomerList = new List<CustomerData>();
@@ -34,7 +33,7 @@ namespace CORE.Services
             //var customersFounded = tmpEmployee.Customers.Where(x => x.Name.ToUpperInvariant().Contains(request.SearchCustomerQuery.ToUpperInvariant())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
 
             // Search customers without employee restriction
-            var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+            var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).ToList();
             
             if (customersFound != null)
             {                

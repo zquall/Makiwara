@@ -74,5 +74,19 @@ namespace Hades.session
                 return _LogedUser.EmployeeSession.Id;
             }
         }
+        public static string EmployeeName
+        {
+            get
+            {
+                return _LogedUser.EmployeeSession.Name;
+            }
+        }
+        public static string EmployeeLastName
+        {
+            get
+            {
+                return _LogedUser.EmployeeSession.LastName;
+            }
+        }
     }
 }

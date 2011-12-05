@@ -22,5 +22,15 @@ namespace ReplicantFacility.Factory
             return _BudgetRequestService.getNewBudgetRequest();
         }
 
+        public BudgetRequestResponse searchBudgetRequest( BudgetRequestRequest request)
+        {
+            return _BudgetRequestService.searchBudgetRequest(request);
+        }
+
+        public BudgetRequestResponse getBudgetRequest(BudgetRequestRequest request)
+        {
+            return _BudgetRequestService.getBudgetRequest(request);
+        }
+
     }
 }

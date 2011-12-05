@@ -65,9 +65,9 @@ namespace shellProject
         // Loads the BudgetRequest on the form
         private void loadBudgetRequest(BudgetRequestResponse budgetRequestResponse)
         {
-            lblEmployeeName.Text = budgetRequestResponse.EmployeeName;
-            edtDate.EditValue = budgetRequestResponse.DateModified;
-            loadCustomer(budgetRequestResponse.Customer);
+            lblEmployeeName.Text = budgetRequestResponse.BudgetRequest.Employee.Person.FullName;
+            edtDate.EditValue = budgetRequestResponse.BudgetRequest.DateModified;
+            loadCustomer(budgetRequestResponse.BudgetRequest.Customer);
         }
 
         // Load the Customer
@@ -101,6 +101,7 @@ namespace shellProject
                 cmbPhone.Properties.Items.AddRange(phoneList);
                 // Load the first phone as default
                 loadPhone(phoneList[0]);
+                loadPhone(phoneList[0]);            
             }
         }
 
@@ -114,6 +115,17 @@ namespace shellProject
             }
         }
 
+        // Load Contact Manager
+        private void loadContactManagerAdd()
+        {
+            var contactManager = new ContactManager();
+            contactManager.ShowDialog();
+            if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                cmbContact.Properties.Items.Add(contactManager.Tag);
+                cmbContact.SelectedItem = contactManager.Tag;
+            }
+        }
         #endregion
 
         private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -128,17 +140,6 @@ namespace shellProject
             }
 
         }
-
-        // Add new Customer Contact
-        private void loadContactManagerAdd()
-        {
-            var contactManager = new ContactManager();
-            contactManager.ShowDialog();
-            if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
-                cmbContact.Properties.Items.Add(contactManager.Tag);
-                cmbContact.SelectedItem = contactManager.Tag;
-            }
-        }
+        
     }
 }
