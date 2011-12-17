@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\BudgetRequestRequest.cs" />
     <Compile Include="Request\CustomerRequest.cs" />
     <Compile Include="Request\MenuRequest.cs" />
     <Compile Include="Request\ProjectRequest.cs" />
     <Compile Include="Response\CommonObjectsResponse.cs" />
+    <Compile Include="Response\EmployeeResponse.cs" />
     <Compile Include="Response\CustomerResponse.cs" />
     <Compile Include="Response\ProjectResponse.cs" />
     <Compile Include="Response\BudgetRequestResponse.cs" />
