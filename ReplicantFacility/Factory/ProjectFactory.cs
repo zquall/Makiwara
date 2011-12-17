@@ -21,5 +21,15 @@ namespace ReplicantFacility.Factory
         {
             return _ProjectService.searchProject(request);
         }
+
+        public void saveProject(ProjectRequest request)
+        {
+            _ProjectService.saveProject(request);
+        }
+
+        public int nextCode()
+        {
+            return _ProjectService.nextCode();
+        }
     }
 }

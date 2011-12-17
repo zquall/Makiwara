@@ -13,7 +13,6 @@ namespace ReplicantRepository.Response
     public class ProjectData
     {
         public int Id { get; set; }
-        public FamilyData Family { get; set; }
         public int BudgetRequestId { get; set; }
         public int CustumerId { get; set; }
         public string CustumerName { get; set; }
@@ -33,12 +32,6 @@ namespace ReplicantRepository.Response
         public List<TaskData> taskList { get; set; }
     }
 
-    public class FamilyData
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
     public class TaskData
     {
         public Int64 Id { get; set; }
@@ -50,15 +43,15 @@ namespace ReplicantRepository.Response
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public string Notes { get; set; }
-        public int Rownumber { get; set; }
-        public int BindingListindex { get; set; }
+        public int RowNumber { get; set; }
+        public int BindingListIndex { get; set; }
         public DateTime CompleteThrough { get; set; }
         public DateTime DeadLine { get; set; }
         public TimeSpan DurationResolved { get; set; }
         public DateTime EndDateTimeResolved { get; set; }
         public bool Expanded { get; set; }
         public bool IsRoot { get; set; }
-        public bool IsSumary { get; set; }
+        public bool IsSummary { get; set; }
         public int TaskLevel { get; set; }
         public bool Milestone { get; set; }
         public bool MilestoneResolved { get; set; }

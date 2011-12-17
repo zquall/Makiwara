@@ -80,6 +80,7 @@
             // 
             this.viewProjects.GridControl = this.grdProjectControl;
             this.viewProjects.Name = "viewProjects";
+            this.viewProjects.OptionsDetail.EnableMasterViewMode = false;
             this.viewProjects.OptionsView.ShowGroupPanel = false;
             // 
             // SearchProject

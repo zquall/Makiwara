@@ -27,13 +27,11 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerContact_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Employee_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee), true)]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_Family", "Family", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Family), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Measure", "Measure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Measure), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_PhoneType", "PhoneType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.PhoneType), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Project), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_ResourceType", "ResourceType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.ResourceType), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "Dependencies", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), "Task1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task))]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "EmployeeXCustomer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Customer), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Employee))]
 
@@ -182,22 +180,6 @@ namespace Nexus
             }
         }
         private ObjectSet<Employee> _Employees;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Family> Families
-        {
-            get
-            {
-                if ((_Families == null))
-                {
-                    _Families = base.CreateObjectSet<Family>("Families");
-                }
-                return _Families;
-            }
-        }
-        private ObjectSet<Family> _Families;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -376,14 +358,6 @@ namespace Nexus
         public void AddToEmployees(Employee employee)
         {
             base.AddObject("Employees", employee);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Families EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFamilies(Family family)
-        {
-            base.AddObject("Families", family);
         }
     
         /// <summary>
@@ -1657,112 +1631,6 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Family")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Family : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Family object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static Family CreateFamily(global::System.Int32 id, global::System.String name)
-        {
-            Family family = new Family();
-            family.Id = id;
-            family.Name = name;
-            return family;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_Family", "Project")]
-        public EntityCollection<Project> Projects
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("EnterpriseModel.FK_Project_Family", "Project");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("EnterpriseModel.FK_Project_Family", "Project", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="Measure")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2422,7 +2290,6 @@ namespace Nexus
         /// Create a new Project object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="familyId">Initial value of the FamilyId property.</param>
         /// <param name="budgetRequestId">Initial value of the BudgetRequestId property.</param>
         /// <param name="custumerId">Initial value of the CustumerId property.</param>
         /// <param name="employeeId">Initial value of the EmployeeId property.</param>
@@ -2437,11 +2304,10 @@ namespace Nexus
         /// <param name="salesTax">Initial value of the SalesTax property.</param>
         /// <param name="othersRate">Initial value of the OthersRate property.</param>
         /// <param name="comments">Initial value of the Comments property.</param>
-        public static Project CreateProject(global::System.Int32 id, global::System.Int32 familyId, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments)
+        public static Project CreateProject(global::System.Int32 id, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments)
         {
             Project project = new Project();
             project.Id = id;
-            project.FamilyId = familyId;
             project.BudgetRequestId = budgetRequestId;
             project.CustumerId = custumerId;
             project.EmployeeId = employeeId;
@@ -2488,30 +2354,6 @@ namespace Nexus
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 FamilyId
-        {
-            get
-            {
-                return _FamilyId;
-            }
-            set
-            {
-                OnFamilyIdChanging(value);
-                ReportPropertyChanging("FamilyId");
-                _FamilyId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("FamilyId");
-                OnFamilyIdChanged();
-            }
-        }
-        private global::System.Int32 _FamilyId;
-        partial void OnFamilyIdChanging(global::System.Int32 value);
-        partial void OnFamilyIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2935,44 +2777,6 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_Family", "Family")]
-        public Family Family
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Family>("EnterpriseModel.FK_Project_Family", "Family").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Family>("EnterpriseModel.FK_Project_Family", "Family").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Family> FamilyReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Family>("EnterpriseModel.FK_Project_Family", "Family");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Family>("EnterpriseModel.FK_Project_Family", "Family", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Task_Project", "Task")]
         public EntityCollection<Task> Tasks
         {
@@ -3356,44 +3160,6 @@ namespace Nexus
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Resource_Task", "Task")]
-        public Task Task
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Resource_Task", "Task").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Resource_Task", "Task").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Task> TaskReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Task>("EnterpriseModel.FK_Resource_Task", "Task");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Task>("EnterpriseModel.FK_Resource_Task", "Task", value);
-                }
-            }
-        }
 
         #endregion
     }
@@ -3624,7 +3390,7 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ProjectId
         {
@@ -3634,11 +3400,14 @@ namespace Nexus
             }
             set
             {
-                OnProjectIdChanging(value);
-                ReportPropertyChanging("ProjectId");
-                _ProjectId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ProjectId");
-                OnProjectIdChanged();
+                if (_ProjectId != value)
+                {
+                    OnProjectIdChanging(value);
+                    ReportPropertyChanging("ProjectId");
+                    _ProjectId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ProjectId");
+                    OnProjectIdChanged();
+                }
             }
         }
         private global::System.Int32 _ProjectId;
@@ -4139,28 +3908,6 @@ namespace Nexus
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("EnterpriseModel.FK_Task_Project", "Project", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Resource_Task", "Resource")]
-        public EntityCollection<Resource> Resources
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Resource>("EnterpriseModel.FK_Resource_Task", "Resource");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Resource>("EnterpriseModel.FK_Resource_Task", "Resource", value);
                 }
             }
         }

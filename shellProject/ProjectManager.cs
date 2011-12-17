@@ -41,6 +41,75 @@ namespace shellProject
             InitializeComponent();
         }
 
+        #region Object-mapping methods
+
+        /// <summary>
+        /// Method responsible for setting the properties of an object type TaskData in a object type Task
+        /// </summary>
+        /// <param name="source">Data source</param>
+        /// <param name="destination">Data destination</param>
+        private void mapper(TaskData source, Task destination)
+        {
+            destination.Name = source.Name;
+            destination.Duration = source.Duration;
+            destination.PercentComplete = (float)source.PercentComplete;
+            destination.StartDateTime = source.StartDateTime;
+            destination.EndDateTime = source.EndDateTime;
+            destination.Notes = source.Notes;
+            destination.Deadline = source.DeadLine;
+            destination.Expanded = source.Expanded;
+            destination.Milestone = source.Milestone;
+        }
+
+        /// <summary>
+        /// Method responsible for setting the properties of an object type Task in a object type TaskData
+        /// </summary>
+        /// <param name="source">Data source</param>
+        /// <param name="destination">Data destination</param>
+        private void mapper(Task source, TaskData destination)
+        {
+            #region Propidades no seteables
+            //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
+            #endregion
+
+            destination.ProjectId = _project.Id;
+            destination.Id = source.RowNumber;
+
+            destination.Name = source.Name;
+            destination.Duration = source.Duration;
+            destination.PercentComplete = (float)source.PercentComplete;
+            destination.StartDateTime = source.StartDateTime;
+            destination.EndDateTime = source.EndDateTime;
+            destination.Notes = source.Notes;
+            destination.DeadLine = source.Deadline;
+            destination.Expanded = source.Expanded;
+            destination.Milestone = source.Milestone;
+            destination.RowNumber = source.RowNumber;
+            destination.TaskLevel = source.Level;
+
+            #region Properties that are not necessary
+            destination.IsRoot = source.IsRoot;
+            destination.IsSummary = source.IsSummary;
+            destination.BindingListIndex = source.BindingListIndex;
+            destination.CompleteThrough = source.CompleteThrough;
+            destination.DurationResolved = source.DurationResolved;
+            destination.EndDateTimeResolved = source.EndDateTimeResolved;
+            destination.MilestoneResolved = source.MilestoneResolved;
+            #endregion
+
+            #region Save Dependencies
+
+            //foreach (TaskDependency t in source.Dependencies)
+            //{
+            //    TaskData task = new TaskData(); t.
+            //    mapper(t, task);
+            //     list.Add(task);
+            //}
+
+            #endregion
+        }
+
+        #endregion
 
         #region Métodos encargados de cargar un proyecto con sus tareas y recursos
 
@@ -66,49 +135,16 @@ namespace shellProject
         }
 
         /// <summary>
-        /// Método encargado de mapear las propiedades de un objeto TaskData en uno de tipo Task
-        /// </summary>
-        /// <param name="source">Origen de los datos</param>
-        /// <param name="destination">Destino de los datos</param>
-        private void mappingTask(TaskData source, Task destination)
-        {
-            #region Propidades no seteables
-            //destination.Id = Guid.Parse(source.Id.ToString());
-            //destination.ProjectKey = source.ProjectId;
-            //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
-            //destination.RowNumber = source.Rownumber;
-            //destination.BindingListIndex = source.BindingListindex;
-            //destination.CompleteThrough = source.CompleteThrough;
-            //destination.DurationResolved = source.DurationResolved;
-            //destination.EndDateTimeResolved = source.EndDateTimeResolved;
-            //destination.IsRoot = source.IsRoot;
-            //destination.IsSummary = source.IsSumary;
-            //destination.Level = source.TaskLevel;
-            //destination.MilestoneResolved = source.MilestoneResolved;
-            #endregion
-
-            destination.Name = source.Name;
-            destination.Duration = source.Duration;
-            destination.PercentComplete = (float)source.PercentComplete;
-            destination.StartDateTime = source.StartDateTime;
-            destination.EndDateTime = source.EndDateTime;
-            destination.Notes = source.Notes;
-            destination.Deadline = source.DeadLine;
-            destination.Expanded = source.Expanded;
-            destination.Milestone = source.Milestone;
-        }
-
-        /// <summary>
         /// Este método se encarga de cargar las tareas traidas desde la BD al control encargado de desplegarlas al usuario
         /// </summary>
         private void loadTasks()
         {
-            foreach (TaskData t in _project.taskList.OrderBy(x => x.Rownumber))
+            foreach (TaskData t in _project.taskList.OrderBy(x => x.RowNumber))
             {
                 Task tmpTask = new Task();
 
                 //Se mapean las propiedades del TaskData en el Task
-                mappingTask(t, tmpTask);
+                mapper(t, tmpTask);
 
                 ultraCalendarInfo.Tasks.Add(tmpTask);
 
@@ -144,6 +180,31 @@ namespace shellProject
 
         #region Métodos encargados de salvar el proyecto con sus tareas y recursos
 
+        /// <summary>
+        /// Este método se encarga de convertir la lista de objetos Task en objetos TaskData para poder ser guardadas junto al proyecto
+        /// </summary>
+        /// <returns>Lista de tareas del proyecto</returns>
+        private List<TaskData> saveTask()
+        {
+            List<TaskData> list = new List<TaskData>();
+
+            foreach (Task t in _allTask.OrderBy(x => x.RowNumber))
+            {
+                TaskData task = new TaskData();
+                mapper(t, task);
+                list.Add(task);
+            }
+
+            return list;
+        }
+
+        private void saveProject()
+        {
+            var request = new ProjectRequest();
+            _project.taskList = saveTask();
+            request.Project = _project;
+            new ProjectFactory().saveProject(request);
+        }
 
         #endregion
 
@@ -400,7 +461,7 @@ namespace shellProject
 
         #endregion
 
-        #region Region encargada de ejecutar las opciones del menu
+        #region UI Events
 
         private void barButtonCreateProject_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -435,6 +496,11 @@ namespace shellProject
         private void barButtonUnlinkTask_ItemClick(object sender, ItemClickEventArgs e)
         {
             unlinkTask();
+        }
+
+        private void barButtonSave_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            saveProject();
         }
 
         #endregion

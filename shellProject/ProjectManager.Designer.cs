@@ -168,6 +168,7 @@
             this.barButtonSave.Caption = "Guardar";
             this.barButtonSave.Id = 10;
             this.barButtonSave.Name = "barButtonSave";
+            this.barButtonSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSave_ItemClick);
             // 
             // barButtonVoid
             // 

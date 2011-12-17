@@ -21,6 +21,7 @@ namespace ReplicantFacility.Factory
         {
             return _CustomerService.searchCustomer(request);
         }
+
         public CustomerResponse getCustomer(CustomerRequest request)
         {
             return _CustomerService.getCustomer(request);

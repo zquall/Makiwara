@@ -28,6 +28,8 @@ namespace shellProject
             InitializeComponent();
         }
 
+        #region Search Project
+
         private void FindProject(string query)
         {
             var request = new ProjectRequest();
@@ -46,17 +48,14 @@ namespace shellProject
             FindProject("a");
         }
 
-        private void txtFind_EditValueChanged(object sender, EventArgs e)
-        {
-            var tmpTextEdit = sender as TextEdit;
-           FindProject(tmpTextEdit.Text);
-        }
+        #endregion
+
+        #region Screen Configuration
 
         private void gridConfiguration()
         {
             #region Hide Columns
                 viewProjects.Columns["Id"].Visible = true;
-                viewProjects.Columns["Family"].Visible = false;
                 viewProjects.Columns["BudgetRequestId"].Visible = false;
                 viewProjects.Columns["CustumerId"].Visible = false;
                 viewProjects.Columns["EmployeeId"].Visible = false;
@@ -85,8 +84,23 @@ namespace shellProject
                 viewProjects.Columns["Name"].Width = 125;
                 viewProjects.Columns["CustumerName"].Width = 125;
             #endregion
+
+            #region Set ReadOnly To Visible Columns
+                viewProjects.Columns["Id"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["Name"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["CustumerName"].OptionsColumn.ReadOnly = true;
+            #endregion
         }
 
+        #endregion
+
+        #region UI Events
+
+        private void txtFind_EditValueChanged(object sender, EventArgs e)
+        {
+            var tmpTextEdit = sender as TextEdit;
+            FindProject(tmpTextEdit.Text);
+        }
 
         private void cmdOk_Click(object sender, EventArgs e)
         {
@@ -100,5 +114,7 @@ namespace shellProject
         {
             this.Close();
         }
+
+        #endregion
     }
 }
