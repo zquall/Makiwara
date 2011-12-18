@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ReplicantRepository.DataTransferObjects;
 
 namespace ReplicantRepository.Response
 {
@@ -11,9 +12,5 @@ namespace ReplicantRepository.Response
         public List<EmployeeData> EmployeeList { get; set; }        
     }
 
-    public class EmployeeData
-    {
-        public int Id { get; set; }
-        public PersonData Person { get; set; }
-    }   
+
 }

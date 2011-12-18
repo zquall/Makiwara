@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTransferObjects\ContactData.cs" />
+    <Compile Include="DataTransferObjects\BudgetRequestData.cs" />
+    <Compile Include="DataTransferObjects\EmployeeData.cs" />
+    <Compile Include="DataTransferObjects\CustomerData.cs" />
+    <Compile Include="DataTransferObjects\PersonData.cs" />
+    <Compile Include="DataTransferObjects\PhoneTypeData.cs" />
+    <Compile Include="DataTransferObjects\PhoneData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\BudgetRequestRequest.cs" />
     <Compile Include="Request\CustomerRequest.cs" />
@@ -54,20 +61,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="DataTransferObjects\Hive.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hive.txt</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataTransferObjects\Hive.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hive.tt</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

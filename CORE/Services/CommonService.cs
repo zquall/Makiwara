@@ -5,6 +5,7 @@ using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using Hades.session;
+using ReplicantRepository.DataTransferObjects;
 
 namespace CORE.Services
 {

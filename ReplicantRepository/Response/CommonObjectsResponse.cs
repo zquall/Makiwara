@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ReplicantRepository.DataTransferObjects;
 
 namespace ReplicantRepository.Response
 {
@@ -11,14 +12,6 @@ namespace ReplicantRepository.Response
     {
         public List<PhoneTypeData> PhoneTypeList { get; set; }
     }
-    public class PhoneTypeData
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
+    
 
 }

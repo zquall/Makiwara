@@ -10,6 +10,7 @@ using ReplicantRepository.Response;
 using ReplicantFacility.Factory;
 using shellCommon.Customer;
 using shellCommon.Contact;
+using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {
@@ -32,13 +33,7 @@ namespace shellProject
             if (e.Button.Kind == DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis)
             {
                 // Search Customer Process
-                var tmpCustomerName = sender as DevExpress.XtraEditors.ButtonEdit;
-                var searchCustomerDialog = new CustomerFinder();
-                if (searchCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    // load the found client
-                    loadCustomer(searchCustomerDialog.Tag as CustomerData);
-                }
+                loadCustomerFinder();                
             }
             else
             {
@@ -59,15 +54,36 @@ namespace shellProject
         // Request an empty BudgetRequest
         private void loadNewRequestBudgetManager()
         {
-            loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest());
+            loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest().BudgetRequest);
+        }
+
+        private void loadBudgetRequestFinder()
+        {
+            // Search BudgetRequest Process
+            var searchBudgetRequestDialog = new BudgetRequestFinder();
+            if (searchBudgetRequestDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // load the found BudgetResquest
+                loadBudgetRequest(searchBudgetRequestDialog.Tag as BudgetRequestData);
+            }
+        }
+
+        private void loadCustomerFinder()
+        {
+            var searchCustomerDialog = new CustomerFinder();
+            if (searchCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // load the found client
+                loadCustomer(searchCustomerDialog.Tag as CustomerData);
+            }
         }
 
         // Loads the BudgetRequest on the form
-        private void loadBudgetRequest(BudgetRequestResponse budgetRequestResponse)
+        private void loadBudgetRequest(BudgetRequestData budgetRequest)
         {
-            lblEmployeeName.Text = budgetRequestResponse.BudgetRequest.Employee.Person.FullName;
-            edtDate.EditValue = budgetRequestResponse.BudgetRequest.DateModified;
-            loadCustomer(budgetRequestResponse.BudgetRequest.Customer);
+            lblEmployeeName.Text = budgetRequest.Employee.Person.FullName;
+            edtDate.EditValue = budgetRequest.DateModified;
+            loadCustomer(budgetRequest.Customer);
         }
 
         // Load the Customer
@@ -77,46 +93,45 @@ namespace shellProject
             {
                 btnCustomerName.Tag = customer;
                 btnCustomerName.Text = customer.Name;
-                lblAddress.Text = customer.Address; 
+                lblAddress.Text = customer.Address;
+                loadContactList(customer.ContactList);
             }
         }
 
-        // Load the Contact
-        private void loadContact(ContactData contact)
+        // Load the Contact List
+        private void loadContactList(List<ContactData> contactList)
         {
-            if (contact != null)
+            if (contactList != null)
             {
-                cmbContact.Tag = contact;
-                cmbContact.Text = contact.Person.Name + " " + contact.Person.LastName;
-                loadPhoneList(contact.Person.PhoneList);
+                cmbContact.Properties.Items.Clear();
+                cmbContact.Properties.Items.AddRange(contactList);
+                cmbContact.SelectedItem = contactList[0];
             }
         }
-
-        // Load the Contact deafult phone
+        
+        // Load the Contact default phone
         private void loadPhoneList(List<PhoneData> phoneList)
         {
             if (phoneList != null)
             {
                 cmbPhone.Properties.Items.Clear();
                 cmbPhone.Properties.Items.AddRange(phoneList);
-                // Load the first phone as default
-                loadPhone(phoneList[0]);
-                loadPhone(phoneList[0]);            
+                cmbPhone.SelectedIndex = 0;
             }
         }
 
-        // Load the Contact deafult phone
+        // Load the Contact default phone
         private void loadPhone(PhoneData phone)
         {
             if (phone != null)
             {
-                cmbPhone.Tag = phone;
-                cmbPhone.Text = phone.PhoneNumber;
+                cmbPhone.Properties.Items.Add(phone);
+                cmbPhone.SelectedItem = phone;
             }
         }
 
         // Load Contact Manager
-        private void loadContactManagerAdd()
+        private void loadContactManager()
         {
             var contactManager = new ContactManager();
             contactManager.ShowDialog();
@@ -125,7 +140,8 @@ namespace shellProject
                 cmbContact.Properties.Items.Add(contactManager.Tag);
                 cmbContact.SelectedItem = contactManager.Tag;
             }
-        }
+        }      
+
         #endregion
 
         private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -133,13 +149,26 @@ namespace shellProject
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
-                    loadContactManagerAdd();
+                    loadContactManager();
                     break;
                 default:
                     break;
             }
-
         }
-        
+
+        private void cmbBubgetRequest_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
+                    loadBudgetRequestFinder();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+       
+       
     }
 }

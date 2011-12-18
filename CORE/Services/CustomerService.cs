@@ -7,6 +7,8 @@ using ReplicantRepository.Request;
 using Hades.session;
 using Interceptor.Adapters;
 using Nexus;
+using ReplicantRepository.DataTransferObjects;
+using CORE.DataMapper;
 
 namespace CORE.Services
 {
@@ -60,19 +62,15 @@ namespace CORE.Services
         public CustomerResponse getCustomer(CustomerRequest request)
         {
             var response = new CustomerResponse();
+            // Intercepted Method
+            _CustomerAdapter.getCustomer(request);
             // Validate if the customer is from Nexus
             if (request.CustomerId > 0) 
             {
                 var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.CustomerId ).SingleOrDefault();
                 // Instance the customer reference, empty for any other data
-                response.Customer = new CustomerData();
-                // Mapping the Data
-                response.Customer.Id = customerFound.Id;
-                response.Customer.Name = customerFound.Name;
-                response.Customer.Address = customerFound.Address;                
+                response.Customer = Mapper.Map(customerFound);               
             }
-            // Intercepted Method
-            _CustomerAdapter.getCustomer(request, response);
             return response;
         }
 

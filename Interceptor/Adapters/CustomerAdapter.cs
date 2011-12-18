@@ -5,6 +5,7 @@ using System.Text;
 using ReplicantRepository.Response;
 using Interceptor.DataBase;
 using ReplicantRepository.Request;
+using ReplicantRepository.DataTransferObjects;
 
 namespace Interceptor.Adapters
 {
@@ -55,10 +56,10 @@ namespace Interceptor.Adapters
         }
 
         // Get Customer
-        public void getCustomer(CustomerRequest request, CustomerResponse response)
+        public void getCustomer(CustomerRequest request)
         {
             // Check if customers needs a binding
-            if (request.CustomerId == 0 && request.CustomerName != "" && response.Customer == null)
+            if (request.CustomerId == 0 && request.CustomerName != "" )
             {                
                 // Apply the search the customer
                 var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.CustomerName.ToUpper()).FirstOrDefault();
@@ -80,13 +81,14 @@ namespace Interceptor.Adapters
                         var newPerson = new Nexus.Person()
                         {
                             Name = customerFound.CLI_Contacto,
-                            LastName = ""
+                            LastName = ""                            
                         };
                         // Add Contact to Customer
                         var newCustomerContact = new Nexus.CustomerContact()
                         {
                             Job = "Funcionario",
-                            Person = newPerson
+                            Person = newPerson,
+                            Email = "email@no.disponible"
                         };
                         newCustomer.CustomerContacts.Add(newCustomerContact);
                     }         
@@ -95,12 +97,8 @@ namespace Interceptor.Adapters
                     Olympus._Enterprise.Customers.AddObject(newCustomer); 
                     Olympus._Enterprise.SaveChanges();
                     
-                    // Instance the customer reference, empty for any other data
-                    response.Customer = new CustomerData();
-                    // Mapping the Data
-                    response.Customer.Id = newCustomer.Id;
-                    response.Customer.Name = newCustomer.Name;
-                    response.Customer.Address = newCustomer.Address;
+                    // Add the customer Id
+                    request.CustomerId = newCustomer.Id;
                 }
             }           
         }

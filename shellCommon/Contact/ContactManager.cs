@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using ReplicantRepository.Response;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
+using ReplicantRepository.DataTransferObjects;
 
 namespace shellCommon.Contact
 {

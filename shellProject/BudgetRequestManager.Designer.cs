@@ -41,7 +41,7 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.buttonEdit3 = new DevExpress.XtraEditors.ButtonEdit();
+            this.cmbBubgetRequest = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.edtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
@@ -110,7 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBubgetRequest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
@@ -265,7 +265,7 @@
             // panelControl5
             // 
             this.panelControl5.Controls.Add(this.labelControl7);
-            this.panelControl5.Controls.Add(this.buttonEdit3);
+            this.panelControl5.Controls.Add(this.cmbBubgetRequest);
             this.panelControl5.Controls.Add(this.labelControl8);
             this.panelControl5.Controls.Add(this.edtDate);
             this.panelControl5.Location = new System.Drawing.Point(479, 12);
@@ -281,16 +281,17 @@
             this.labelControl7.TabIndex = 1;
             this.labelControl7.Text = "Solicitud #:";
             // 
-            // buttonEdit3
+            // cmbBubgetRequest
             // 
-            this.buttonEdit3.Location = new System.Drawing.Point(65, 7);
-            this.buttonEdit3.Name = "buttonEdit3";
-            this.buttonEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbBubgetRequest.Location = new System.Drawing.Point(65, 7);
+            this.cmbBubgetRequest.Name = "cmbBubgetRequest";
+            this.cmbBubgetRequest.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Right),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit3.Size = new System.Drawing.Size(168, 20);
-            this.buttonEdit3.TabIndex = 2;
+            this.cmbBubgetRequest.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbBubgetRequest_Properties_ButtonClick);
+            this.cmbBubgetRequest.Size = new System.Drawing.Size(168, 20);
+            this.cmbBubgetRequest.TabIndex = 2;
             // 
             // labelControl8
             // 
@@ -402,6 +403,7 @@
             this.cmbContact.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContact_Properties_ButtonClick);
             this.cmbContact.Size = new System.Drawing.Size(171, 20);
             this.cmbContact.TabIndex = 13;
+            this.cmbContact.SelectedIndexChanged += new System.EventHandler(this.cmbContact_SelectedIndexChanged);
             // 
             // cmbPhone
             // 
@@ -923,7 +925,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
             this.panelControl5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBubgetRequest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
@@ -1005,7 +1007,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit3;
+        private DevExpress.XtraEditors.ButtonEdit cmbBubgetRequest;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.DateEdit edtDate;
         private DevExpress.XtraEditors.PanelControl panelControl3;
