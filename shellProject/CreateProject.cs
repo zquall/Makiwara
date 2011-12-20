@@ -19,7 +19,7 @@ namespace shellProject
         /// Variable encargada de almacenar los datos del projecto
         /// </summary>
         private ProjectData _project = new ProjectData();
-        private BudgetRequestResponse _budgetRequest = new BudgetRequestResponse();
+        private BudgetRequestData _budgetRequest = new BudgetRequestData();
 
         public CreateProject()
         {
@@ -56,7 +56,7 @@ namespace shellProject
             spinCode.Value = getNextCode();
             txtProject.Text = "";
             txtCustumer.Text = _budgetRequest.Customer.Name;
-            txtSalesConsultant.Text = _budgetRequest.EmployeeName;
+            txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
             dtCreateDate.DateTime = System.DateTime.Now;
         }
 
@@ -79,7 +79,7 @@ namespace shellProject
             custumer.Address = "Barrio Cuba";
             _budgetRequest.Customer = custumer;
 
-            _budgetRequest.EmployeeName = "Allan Badilla";
+            _budgetRequest.Employee.Person.Name = "Allan Badilla";
             _budgetRequest.DateModified = DateTime.Today;
             
             loadBudgetRequesToProject();
