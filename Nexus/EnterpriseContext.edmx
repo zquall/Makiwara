@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EnterpriseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="EnterpriseModelStoreContainer">
-          <EntitySet Name="BindCustomer" EntityType="EnterpriseModel.Store.BindCustomer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BudgetRequest" EntityType="EnterpriseModel.Store.BudgetRequest" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="BudgetRequestDetail" EntityType="EnterpriseModel.Store.BudgetRequestDetail" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Customer" EntityType="EnterpriseModel.Store.Customer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CustomerContact" EntityType="EnterpriseModel.Store.CustomerContact" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Dependencies" EntityType="EnterpriseModel.Store.Dependencies" store:Type="Tables" store:Schema="dbo" store:Name="Dependencies">
+      <Schema Namespace="companyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="companyModelStoreContainer">
+          <EntitySet Name="BindCustomer" EntityType="companyModel.Store.BindCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BudgetRequest" EntityType="companyModel.Store.BudgetRequest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BudgetRequestDetail" EntityType="companyModel.Store.BudgetRequestDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="companyModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerContact" EntityType="companyModel.Store.CustomerContact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Dependencies" EntityType="companyModel.Store.Dependencies" store:Type="Tables" store:Schema="dbo" store:Name="Dependencies">
             <DefiningQuery>SELECT 
       [Dependencies].[idTask] AS [idTask], 
       [Dependencies].[idTaskProject] AS [idTaskProject], 
@@ -19,89 +19,89 @@
       [Dependencies].[idDependencieProject] AS [idDependencieProject]
       FROM [dbo].[Dependencies] AS [Dependencies]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Employee" EntityType="EnterpriseModel.Store.Employee" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="EmployeeXCustomer" EntityType="EnterpriseModel.Store.EmployeeXCustomer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Measure" EntityType="EnterpriseModel.Store.Measure" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Person" EntityType="EnterpriseModel.Store.Person" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PersonPhone" EntityType="EnterpriseModel.Store.PersonPhone" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PhoneType" EntityType="EnterpriseModel.Store.PhoneType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Project" EntityType="EnterpriseModel.Store.Project" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Resource" EntityType="EnterpriseModel.Store.Resource" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ResourceType" EntityType="EnterpriseModel.Store.ResourceType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Task" EntityType="EnterpriseModel.Store.Task" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_ApplicationRequest_Customer" Association="EnterpriseModel.Store.FK_ApplicationRequest_Customer">
+          <EntitySet Name="Employee" EntityType="companyModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmployeeXCustomer" EntityType="companyModel.Store.EmployeeXCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Measure" EntityType="companyModel.Store.Measure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Person" EntityType="companyModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PersonPhone" EntityType="companyModel.Store.PersonPhone" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PhoneType" EntityType="companyModel.Store.PhoneType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Project" EntityType="companyModel.Store.Project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Resource" EntityType="companyModel.Store.Resource" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ResourceType" EntityType="companyModel.Store.ResourceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Task" EntityType="companyModel.Store.Task" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ApplicationRequest_Customer" Association="companyModel.Store.FK_ApplicationRequest_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK_ApplicationRequestDetail_Measure" Association="EnterpriseModel.Store.FK_ApplicationRequestDetail_Measure">
+          <AssociationSet Name="FK_ApplicationRequestDetail_Measure" Association="companyModel.Store.FK_ApplicationRequestDetail_Measure">
             <End Role="Measure" EntitySet="Measure" />
             <End Role="BudgetRequestDetail" EntitySet="BudgetRequestDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_BindCustomer_Customer" Association="EnterpriseModel.Store.FK_BindCustomer_Customer">
+          <AssociationSet Name="FK_BindCustomer_Customer" Association="companyModel.Store.FK_BindCustomer_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="BindCustomer" EntitySet="BindCustomer" />
           </AssociationSet>
-          <AssociationSet Name="FK_BudgetRequest_Employee" Association="EnterpriseModel.Store.FK_BudgetRequest_Employee">
+          <AssociationSet Name="FK_BudgetRequest_Employee" Association="companyModel.Store.FK_BudgetRequest_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="EnterpriseModel.Store.FK_BudgetRequestDetail_BudgetRequest">
+          <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="companyModel.Store.FK_BudgetRequestDetail_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
             <End Role="BudgetRequestDetail" EntitySet="BudgetRequestDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomerContact_Customer" Association="EnterpriseModel.Store.FK_CustomerContact_Customer">
+          <AssociationSet Name="FK_CustomerContact_Customer" Association="companyModel.Store.FK_CustomerContact_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="CustomerContact" EntitySet="CustomerContact" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomerContact_Person" Association="EnterpriseModel.Store.FK_CustomerContact_Person">
+          <AssociationSet Name="FK_CustomerContact_Person" Association="companyModel.Store.FK_CustomerContact_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="CustomerContact" EntitySet="CustomerContact" />
           </AssociationSet>
-          <AssociationSet Name="FK_Dependencies_Task" Association="EnterpriseModel.Store.FK_Dependencies_Task">
+          <AssociationSet Name="FK_Dependencies_Task" Association="companyModel.Store.FK_Dependencies_Task">
             <End Role="Task" EntitySet="Task" />
             <End Role="Dependencies" EntitySet="Dependencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Dependencies_Task1" Association="EnterpriseModel.Store.FK_Dependencies_Task1">
+          <AssociationSet Name="FK_Dependencies_Task1" Association="companyModel.Store.FK_Dependencies_Task1">
             <End Role="Task" EntitySet="Task" />
             <End Role="Dependencies" EntitySet="Dependencies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_Person" Association="EnterpriseModel.Store.FK_Employee_Person">
+          <AssociationSet Name="FK_Employee_Person" Association="companyModel.Store.FK_Employee_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeXCustomer_Customer" Association="EnterpriseModel.Store.FK_EmployeeXCustomer_Customer">
+          <AssociationSet Name="FK_EmployeeXCustomer_Customer" Association="companyModel.Store.FK_EmployeeXCustomer_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="EmployeeXCustomer" EntitySet="EmployeeXCustomer" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeXCustomer_Employee" Association="EnterpriseModel.Store.FK_EmployeeXCustomer_Employee">
+          <AssociationSet Name="FK_EmployeeXCustomer_Employee" Association="companyModel.Store.FK_EmployeeXCustomer_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="EmployeeXCustomer" EntitySet="EmployeeXCustomer" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonPhone_Person" Association="EnterpriseModel.Store.FK_PersonPhone_Person">
+          <AssociationSet Name="FK_PersonPhone_Person" Association="companyModel.Store.FK_PersonPhone_Person">
             <End Role="Person" EntitySet="Person" />
             <End Role="PersonPhone" EntitySet="PersonPhone" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonPhone_PhoneType" Association="EnterpriseModel.Store.FK_PersonPhone_PhoneType">
+          <AssociationSet Name="FK_PersonPhone_PhoneType" Association="companyModel.Store.FK_PersonPhone_PhoneType">
             <End Role="PhoneType" EntitySet="PhoneType" />
             <End Role="PersonPhone" EntitySet="PersonPhone" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_BudgetRequest1" Association="EnterpriseModel.Store.FK_Project_BudgetRequest1">
+          <AssociationSet Name="FK_Project_BudgetRequest" Association="companyModel.Store.FK_Project_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_Customer" Association="EnterpriseModel.Store.FK_Project_Customer">
+          <AssociationSet Name="FK_Project_Customer" Association="companyModel.Store.FK_Project_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK_Resource_Measure" Association="EnterpriseModel.Store.FK_Resource_Measure">
+          <AssociationSet Name="FK_Resource_Measure" Association="companyModel.Store.FK_Resource_Measure">
             <End Role="Measure" EntitySet="Measure" />
             <End Role="Resource" EntitySet="Resource" />
           </AssociationSet>
-          <AssociationSet Name="FK_Resource_ResourceType" Association="EnterpriseModel.Store.FK_Resource_ResourceType">
+          <AssociationSet Name="FK_Resource_ResourceType" Association="companyModel.Store.FK_Resource_ResourceType">
             <End Role="ResourceType" EntitySet="ResourceType" />
             <End Role="Resource" EntitySet="Resource" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Project" Association="EnterpriseModel.Store.FK_Task_Project">
+          <AssociationSet Name="FK_Task_Project" Association="companyModel.Store.FK_Task_Project">
             <End Role="Project" EntitySet="Project" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
@@ -287,8 +287,8 @@
           <Property Name="MilestoneResolved" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ApplicationRequest_Customer">
-          <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="BudgetRequest" Type="EnterpriseModel.Store.BudgetRequest" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Store.Customer" Multiplicity="1" />
+          <End Role="BudgetRequest" Type="companyModel.Store.BudgetRequest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -299,8 +299,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ApplicationRequestDetail_Measure">
-          <End Role="Measure" Type="EnterpriseModel.Store.Measure" Multiplicity="1" />
-          <End Role="BudgetRequestDetail" Type="EnterpriseModel.Store.BudgetRequestDetail" Multiplicity="*" />
+          <End Role="Measure" Type="companyModel.Store.Measure" Multiplicity="1" />
+          <End Role="BudgetRequestDetail" Type="companyModel.Store.BudgetRequestDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Measure">
               <PropertyRef Name="Id" />
@@ -311,8 +311,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BindCustomer_Customer">
-          <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="BindCustomer" Type="EnterpriseModel.Store.BindCustomer" Multiplicity="0..1" />
+          <End Role="Customer" Type="companyModel.Store.Customer" Multiplicity="1" />
+          <End Role="BindCustomer" Type="companyModel.Store.BindCustomer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -323,8 +323,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BudgetRequest_Employee">
-          <End Role="Employee" Type="EnterpriseModel.Store.Employee" Multiplicity="1" />
-          <End Role="BudgetRequest" Type="EnterpriseModel.Store.BudgetRequest" Multiplicity="*" />
+          <End Role="Employee" Type="companyModel.Store.Employee" Multiplicity="1" />
+          <End Role="BudgetRequest" Type="companyModel.Store.BudgetRequest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -335,8 +335,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BudgetRequestDetail_BudgetRequest">
-          <End Role="BudgetRequest" Type="EnterpriseModel.Store.BudgetRequest" Multiplicity="1" />
-          <End Role="BudgetRequestDetail" Type="EnterpriseModel.Store.BudgetRequestDetail" Multiplicity="*" />
+          <End Role="BudgetRequest" Type="companyModel.Store.BudgetRequest" Multiplicity="1" />
+          <End Role="BudgetRequestDetail" Type="companyModel.Store.BudgetRequestDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BudgetRequest">
               <PropertyRef Name="Id" />
@@ -347,8 +347,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerContact_Customer">
-          <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="CustomerContact" Type="EnterpriseModel.Store.CustomerContact" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Store.Customer" Multiplicity="1" />
+          <End Role="CustomerContact" Type="companyModel.Store.CustomerContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -359,8 +359,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CustomerContact_Person">
-          <End Role="Person" Type="EnterpriseModel.Store.Person" Multiplicity="1" />
-          <End Role="CustomerContact" Type="EnterpriseModel.Store.CustomerContact" Multiplicity="*" />
+          <End Role="Person" Type="companyModel.Store.Person" Multiplicity="1" />
+          <End Role="CustomerContact" Type="companyModel.Store.CustomerContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -371,8 +371,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dependencies_Task">
-          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="1" />
-          <End Role="Dependencies" Type="EnterpriseModel.Store.Dependencies" Multiplicity="*" />
+          <End Role="Task" Type="companyModel.Store.Task" Multiplicity="1" />
+          <End Role="Dependencies" Type="companyModel.Store.Dependencies" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Task">
               <PropertyRef Name="Id" />
@@ -385,8 +385,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dependencies_Task1">
-          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="1" />
-          <End Role="Dependencies" Type="EnterpriseModel.Store.Dependencies" Multiplicity="*" />
+          <End Role="Task" Type="companyModel.Store.Task" Multiplicity="1" />
+          <End Role="Dependencies" Type="companyModel.Store.Dependencies" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Task">
               <PropertyRef Name="Id" />
@@ -399,8 +399,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Person">
-          <End Role="Person" Type="EnterpriseModel.Store.Person" Multiplicity="1" />
-          <End Role="Employee" Type="EnterpriseModel.Store.Employee" Multiplicity="*" />
+          <End Role="Person" Type="companyModel.Store.Person" Multiplicity="1" />
+          <End Role="Employee" Type="companyModel.Store.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -411,8 +411,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeXCustomer_Customer">
-          <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="EmployeeXCustomer" Type="EnterpriseModel.Store.EmployeeXCustomer" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Store.Customer" Multiplicity="1" />
+          <End Role="EmployeeXCustomer" Type="companyModel.Store.EmployeeXCustomer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -423,8 +423,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeXCustomer_Employee">
-          <End Role="Employee" Type="EnterpriseModel.Store.Employee" Multiplicity="1" />
-          <End Role="EmployeeXCustomer" Type="EnterpriseModel.Store.EmployeeXCustomer" Multiplicity="*" />
+          <End Role="Employee" Type="companyModel.Store.Employee" Multiplicity="1" />
+          <End Role="EmployeeXCustomer" Type="companyModel.Store.EmployeeXCustomer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -435,8 +435,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonPhone_Person">
-          <End Role="Person" Type="EnterpriseModel.Store.Person" Multiplicity="1" />
-          <End Role="PersonPhone" Type="EnterpriseModel.Store.PersonPhone" Multiplicity="*" />
+          <End Role="Person" Type="companyModel.Store.Person" Multiplicity="1" />
+          <End Role="PersonPhone" Type="companyModel.Store.PersonPhone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -447,8 +447,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonPhone_PhoneType">
-          <End Role="PhoneType" Type="EnterpriseModel.Store.PhoneType" Multiplicity="1" />
-          <End Role="PersonPhone" Type="EnterpriseModel.Store.PersonPhone" Multiplicity="*" />
+          <End Role="PhoneType" Type="companyModel.Store.PhoneType" Multiplicity="1" />
+          <End Role="PersonPhone" Type="companyModel.Store.PersonPhone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhoneType">
               <PropertyRef Name="Id" />
@@ -458,9 +458,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Project_BudgetRequest1">
-          <End Role="BudgetRequest" Type="EnterpriseModel.Store.BudgetRequest" Multiplicity="1" />
-          <End Role="Project" Type="EnterpriseModel.Store.Project" Multiplicity="*" />
+        <Association Name="FK_Project_BudgetRequest">
+          <End Role="BudgetRequest" Type="companyModel.Store.BudgetRequest" Multiplicity="1" />
+          <End Role="Project" Type="companyModel.Store.Project" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BudgetRequest">
               <PropertyRef Name="Id" />
@@ -471,8 +471,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Project_Customer">
-          <End Role="Customer" Type="EnterpriseModel.Store.Customer" Multiplicity="1" />
-          <End Role="Project" Type="EnterpriseModel.Store.Project" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Store.Customer" Multiplicity="1" />
+          <End Role="Project" Type="companyModel.Store.Project" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -483,8 +483,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resource_Measure">
-          <End Role="Measure" Type="EnterpriseModel.Store.Measure" Multiplicity="1" />
-          <End Role="Resource" Type="EnterpriseModel.Store.Resource" Multiplicity="*" />
+          <End Role="Measure" Type="companyModel.Store.Measure" Multiplicity="1" />
+          <End Role="Resource" Type="companyModel.Store.Resource" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Measure">
               <PropertyRef Name="Id" />
@@ -495,8 +495,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resource_ResourceType">
-          <End Role="ResourceType" Type="EnterpriseModel.Store.ResourceType" Multiplicity="1" />
-          <End Role="Resource" Type="EnterpriseModel.Store.Resource" Multiplicity="*" />
+          <End Role="ResourceType" Type="companyModel.Store.ResourceType" Multiplicity="1" />
+          <End Role="Resource" Type="companyModel.Store.Resource" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ResourceType">
               <PropertyRef Name="Id" />
@@ -507,8 +507,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Task_Project">
-          <End Role="Project" Type="EnterpriseModel.Store.Project" Multiplicity="1" />
-          <End Role="Task" Type="EnterpriseModel.Store.Task" Multiplicity="*" />
+          <End Role="Project" Type="companyModel.Store.Project" Multiplicity="1" />
+          <End Role="Task" Type="companyModel.Store.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="Id" />
@@ -518,276 +518,289 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EnterpriseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="companyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="EnterpriseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BindCustomers" EntityType="EnterpriseModel.BindCustomer" />
-          <EntitySet Name="BudgetRequests" EntityType="EnterpriseModel.BudgetRequest" />
-          <EntitySet Name="BudgetRequestDetails" EntityType="EnterpriseModel.BudgetRequestDetail" />
-          <EntitySet Name="Customers" EntityType="EnterpriseModel.Customer" />
-          <EntitySet Name="Employees" EntityType="EnterpriseModel.Employee" />
-          <EntitySet Name="Measures" EntityType="EnterpriseModel.Measure" />
-          <EntitySet Name="People" EntityType="EnterpriseModel.Person" />
-          <EntitySet Name="PersonPhones" EntityType="EnterpriseModel.PersonPhone" />
-          <EntitySet Name="PhoneTypes" EntityType="EnterpriseModel.PhoneType" />
-          <EntitySet Name="Projects" EntityType="EnterpriseModel.Project" />
-          <EntitySet Name="Resources" EntityType="EnterpriseModel.Resource" />
-          <EntitySet Name="ResourceTypes" EntityType="EnterpriseModel.ResourceType" />
-          <EntitySet Name="Tasks" EntityType="EnterpriseModel.Task" />
-          <AssociationSet Name="FK_BindCustomer_Customer" Association="EnterpriseModel.FK_BindCustomer_Customer">
+          <EntitySet Name="BindCustomers" EntityType="companyModel.BindCustomer" />
+          <EntitySet Name="BudgetRequests" EntityType="companyModel.BudgetRequest" />
+          <EntitySet Name="BudgetRequestDetails" EntityType="companyModel.BudgetRequestDetail" />
+          <EntitySet Name="Customers" EntityType="companyModel.Customer" />
+          <EntitySet Name="CustomerContacts" EntityType="companyModel.CustomerContact" />
+          <EntitySet Name="Employees" EntityType="companyModel.Employee" />
+          <EntitySet Name="Measures" EntityType="companyModel.Measure" />
+          <EntitySet Name="People" EntityType="companyModel.Person" />
+          <EntitySet Name="PersonPhones" EntityType="companyModel.PersonPhone" />
+          <EntitySet Name="PhoneTypes" EntityType="companyModel.PhoneType" />
+          <EntitySet Name="Projects" EntityType="companyModel.Project" />
+          <EntitySet Name="Resources" EntityType="companyModel.Resource" />
+          <EntitySet Name="ResourceTypes" EntityType="companyModel.ResourceType" />
+          <EntitySet Name="Tasks" EntityType="companyModel.Task" />
+          <AssociationSet Name="FK_BindCustomer_Customer" Association="companyModel.FK_BindCustomer_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="BindCustomer" EntitySet="BindCustomers" />
           </AssociationSet>
-          <AssociationSet Name="FK_ApplicationRequest_Customer" Association="EnterpriseModel.FK_ApplicationRequest_Customer">
+          <AssociationSet Name="FK_ApplicationRequest_Customer" Association="companyModel.FK_ApplicationRequest_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="BudgetRequest" EntitySet="BudgetRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest">
+          <AssociationSet Name="FK_BudgetRequest_Employee" Association="companyModel.FK_BudgetRequest_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BudgetRequest" EntitySet="BudgetRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="companyModel.FK_BudgetRequestDetail_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequests" />
             <End Role="BudgetRequestDetail" EntitySet="BudgetRequestDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_BudgetRequest" Association="EnterpriseModel.FK_Project_BudgetRequest">
+          <AssociationSet Name="FK_Project_BudgetRequest" Association="companyModel.FK_Project_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequests" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="FK_ApplicationRequestDetail_Measure" Association="EnterpriseModel.FK_ApplicationRequestDetail_Measure">
+          <AssociationSet Name="FK_ApplicationRequestDetail_Measure" Association="companyModel.FK_ApplicationRequestDetail_Measure">
             <End Role="Measure" EntitySet="Measures" />
             <End Role="BudgetRequestDetail" EntitySet="BudgetRequestDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Project_Customer" Association="EnterpriseModel.FK_Project_Customer">
+          <AssociationSet Name="FK_CustomerContact_Customer" Association="companyModel.FK_CustomerContact_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CustomerContact" EntitySet="CustomerContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Customer" Association="companyModel.FK_Project_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_Person" Association="EnterpriseModel.FK_Employee_Person">
+          <AssociationSet Name="FK_CustomerContact_Person" Association="companyModel.FK_CustomerContact_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="CustomerContact" EntitySet="CustomerContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Person" Association="companyModel.FK_Employee_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Resource_Measure" Association="EnterpriseModel.FK_Resource_Measure">
+          <AssociationSet Name="FK_Resource_Measure" Association="companyModel.FK_Resource_Measure">
             <End Role="Measure" EntitySet="Measures" />
             <End Role="Resource" EntitySet="Resources" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonPhone_Person" Association="EnterpriseModel.FK_PersonPhone_Person">
+          <AssociationSet Name="FK_PersonPhone_Person" Association="companyModel.FK_PersonPhone_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="PersonPhone" EntitySet="PersonPhones" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonPhone_PhoneType" Association="EnterpriseModel.FK_PersonPhone_PhoneType">
+          <AssociationSet Name="FK_PersonPhone_PhoneType" Association="companyModel.FK_PersonPhone_PhoneType">
             <End Role="PhoneType" EntitySet="PhoneTypes" />
             <End Role="PersonPhone" EntitySet="PersonPhones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Task_Project" Association="EnterpriseModel.FK_Task_Project">
+          <AssociationSet Name="FK_Task_Project" Association="companyModel.FK_Task_Project">
             <End Role="Project" EntitySet="Projects" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Resource_ResourceType" Association="EnterpriseModel.FK_Resource_ResourceType">
+          <AssociationSet Name="FK_Resource_ResourceType" Association="companyModel.FK_Resource_ResourceType">
             <End Role="ResourceType" EntitySet="ResourceTypes" />
             <End Role="Resource" EntitySet="Resources" />
           </AssociationSet>
-          <AssociationSet Name="Dependencies" Association="EnterpriseModel.Dependencies">
+          <AssociationSet Name="Dependencies" Association="companyModel.Dependencies">
             <End Role="Task" EntitySet="Tasks" />
             <End Role="Task1" EntitySet="Tasks" />
           </AssociationSet>
-          <AssociationSet Name="EmployeeXCustomer" Association="EnterpriseModel.EmployeeXCustomer">
+          <AssociationSet Name="EmployeeXCustomer" Association="companyModel.EmployeeXCustomer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BudgetRequest_Employee" Association="EnterpriseModel.FK_BudgetRequest_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="BudgetRequest" EntitySet="BudgetRequests" />
-          </AssociationSet>
-          <EntitySet Name="CustomerContacts" EntityType="EnterpriseModel.CustomerContact" />
-          <AssociationSet Name="FK_CustomerContact_Customer" Association="EnterpriseModel.FK_CustomerContact_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="CustomerContact" EntitySet="CustomerContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerContact_Person" Association="EnterpriseModel.FK_CustomerContact_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="CustomerContact" EntitySet="CustomerContacts" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BindCustomer">
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Type="Int32" Name="CustomerId" Nullable="false" />
-          <Property Type="String" Name="AlienId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_BindCustomer_Customer" FromRole="BindCustomer" ToRole="Customer" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="AlienId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Customer" Relationship="companyModel.FK_BindCustomer_Customer" FromRole="BindCustomer" ToRole="Customer" />
         </EntityType>
         <EntityType Name="BudgetRequest">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="CustomerId" Nullable="false" />
-          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_ApplicationRequest_Customer" FromRole="BudgetRequest" ToRole="Customer" />
-          <NavigationProperty Name="BudgetRequestDetails" Relationship="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" FromRole="BudgetRequest" ToRole="BudgetRequestDetail" />
-          <NavigationProperty Name="Projects" Relationship="EnterpriseModel.FK_Project_BudgetRequest" FromRole="BudgetRequest" ToRole="Project" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
-          <Property Type="DateTime" Name="DateModified" Nullable="false" />
-          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="EnterpriseModel.FK_BudgetRequest_Employee" FromRole="BudgetRequest" ToRole="Employee" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="companyModel.FK_ApplicationRequest_Customer" FromRole="BudgetRequest" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="companyModel.FK_BudgetRequest_Employee" FromRole="BudgetRequest" ToRole="Employee" />
+          <NavigationProperty Name="BudgetRequestDetails" Relationship="companyModel.FK_BudgetRequestDetail_BudgetRequest" FromRole="BudgetRequest" ToRole="BudgetRequestDetail" />
+          <NavigationProperty Name="Projects" Relationship="companyModel.FK_Project_BudgetRequest" FromRole="BudgetRequest" ToRole="Project" />
         </EntityType>
         <EntityType Name="BudgetRequestDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="ApplicationRequestId" Nullable="false" />
-          <Property Type="Int32" Name="MeasureId" Nullable="false" />
-          <Property Type="Double" Name="Quantity" Nullable="false" />
-          <Property Type="String" Name="Problem" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Solution" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BudgetRequest" Relationship="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" FromRole="BudgetRequestDetail" ToRole="BudgetRequest" />
-          <NavigationProperty Name="Measure" Relationship="EnterpriseModel.FK_ApplicationRequestDetail_Measure" FromRole="BudgetRequestDetail" ToRole="Measure" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ApplicationRequestId" Type="Int32" Nullable="false" />
+          <Property Name="MeasureId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Problem" Type="String" Nullable="false" MaxLength="75" Unicode="false" FixedLength="false" />
+          <Property Name="Solution" Type="String" Nullable="false" MaxLength="75" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BudgetRequest" Relationship="companyModel.FK_BudgetRequestDetail_BudgetRequest" FromRole="BudgetRequestDetail" ToRole="BudgetRequest" />
+          <NavigationProperty Name="Measure" Relationship="companyModel.FK_ApplicationRequestDetail_Measure" FromRole="BudgetRequestDetail" ToRole="Measure" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BindCustomer" Relationship="EnterpriseModel.FK_BindCustomer_Customer" FromRole="Customer" ToRole="BindCustomer" />
-          <NavigationProperty Name="BudgetRequests" Relationship="EnterpriseModel.FK_ApplicationRequest_Customer" FromRole="Customer" ToRole="BudgetRequest" />
-          <NavigationProperty Name="Projects" Relationship="EnterpriseModel.FK_Project_Customer" FromRole="Customer" ToRole="Project" />
-          <NavigationProperty Name="Employees" Relationship="EnterpriseModel.EmployeeXCustomer" FromRole="Customer" ToRole="Employee" />
-          <NavigationProperty Name="CustomerContacts" Relationship="EnterpriseModel.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BindCustomer" Relationship="companyModel.FK_BindCustomer_Customer" FromRole="Customer" ToRole="BindCustomer" />
+          <NavigationProperty Name="BudgetRequests" Relationship="companyModel.FK_ApplicationRequest_Customer" FromRole="Customer" ToRole="BudgetRequest" />
+          <NavigationProperty Name="CustomerContacts" Relationship="companyModel.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
+          <NavigationProperty Name="Projects" Relationship="companyModel.FK_Project_Customer" FromRole="Customer" ToRole="Project" />
+          <NavigationProperty Name="Employees" Relationship="companyModel.EmployeeXCustomer" FromRole="Customer" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="CustomerContact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="75" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Customer" Relationship="companyModel.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
+          <NavigationProperty Name="Person" Relationship="companyModel.FK_CustomerContact_Person" FromRole="CustomerContact" ToRole="Person" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="PersonId" Nullable="false" />
-          <Property Type="Int32" Name="UserAccountId" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="EnterpriseModel.FK_Employee_Person" FromRole="Employee" ToRole="Person" />
-          <NavigationProperty Name="Customers" Relationship="EnterpriseModel.EmployeeXCustomer" FromRole="Employee" ToRole="Customer" />
-          <NavigationProperty Name="BudgetRequests" Relationship="EnterpriseModel.FK_BudgetRequest_Employee" FromRole="Employee" ToRole="BudgetRequest" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="UserAccountId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BudgetRequests" Relationship="companyModel.FK_BudgetRequest_Employee" FromRole="Employee" ToRole="BudgetRequest" />
+          <NavigationProperty Name="Person" Relationship="companyModel.FK_Employee_Person" FromRole="Employee" ToRole="Person" />
+          <NavigationProperty Name="Customers" Relationship="companyModel.EmployeeXCustomer" FromRole="Employee" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Measure">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BudgetRequestDetails" Relationship="EnterpriseModel.FK_ApplicationRequestDetail_Measure" FromRole="Measure" ToRole="BudgetRequestDetail" />
-          <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_Measure" FromRole="Measure" ToRole="Resource" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BudgetRequestDetails" Relationship="companyModel.FK_ApplicationRequestDetail_Measure" FromRole="Measure" ToRole="BudgetRequestDetail" />
+          <NavigationProperty Name="Resources" Relationship="companyModel.FK_Resource_Measure" FromRole="Measure" ToRole="Resource" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Employees" Relationship="EnterpriseModel.FK_Employee_Person" FromRole="Person" ToRole="Employee" />
-          <NavigationProperty Name="PersonPhones" Relationship="EnterpriseModel.FK_PersonPhone_Person" FromRole="Person" ToRole="PersonPhone" />
-          <NavigationProperty Name="CustomerContacts" Relationship="EnterpriseModel.FK_CustomerContact_Person" FromRole="Person" ToRole="CustomerContact" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CustomerContacts" Relationship="companyModel.FK_CustomerContact_Person" FromRole="Person" ToRole="CustomerContact" />
+          <NavigationProperty Name="Employees" Relationship="companyModel.FK_Employee_Person" FromRole="Person" ToRole="Employee" />
+          <NavigationProperty Name="PersonPhones" Relationship="companyModel.FK_PersonPhone_Person" FromRole="Person" ToRole="PersonPhone" />
         </EntityType>
         <EntityType Name="PersonPhone">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Phone" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="PhoneTypeId" Nullable="false" />
-          <Property Type="Int32" Name="PersonId" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="EnterpriseModel.FK_PersonPhone_Person" FromRole="PersonPhone" ToRole="Person" />
-          <NavigationProperty Name="PhoneType" Relationship="EnterpriseModel.FK_PersonPhone_PhoneType" FromRole="PersonPhone" ToRole="PhoneType" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="companyModel.FK_PersonPhone_Person" FromRole="PersonPhone" ToRole="Person" />
+          <NavigationProperty Name="PhoneType" Relationship="companyModel.FK_PersonPhone_PhoneType" FromRole="PersonPhone" ToRole="PhoneType" />
         </EntityType>
         <EntityType Name="PhoneType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PersonPhones" Relationship="EnterpriseModel.FK_PersonPhone_PhoneType" FromRole="PhoneType" ToRole="PersonPhone" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PersonPhones" Relationship="companyModel.FK_PersonPhone_PhoneType" FromRole="PhoneType" ToRole="PersonPhone" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="BudgetRequestId" Nullable="false" />
-          <Property Type="Int32" Name="CustumerId" Nullable="false" />
-          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="ManagementApproval" Nullable="false" />
-          <Property Type="Boolean" Name="CxcApproval" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="Double" Name="ContingenciesRate" Nullable="false" />
-          <Property Type="Double" Name="GuaranteeRate" Nullable="false" />
-          <Property Type="Double" Name="TotalUtilityRate" Nullable="false" />
-          <Property Type="Double" Name="DiscountRate" Nullable="false" />
-          <Property Type="Double" Name="SalesTax" Nullable="false" />
-          <Property Type="Double" Name="OthersRate" Nullable="false" />
-          <Property Type="String" Name="Comments" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BudgetRequest" Relationship="EnterpriseModel.FK_Project_BudgetRequest" FromRole="Project" ToRole="BudgetRequest" />
-          <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_Project_Customer" FromRole="Project" ToRole="Customer" />
-          <NavigationProperty Name="Tasks" Relationship="EnterpriseModel.FK_Task_Project" FromRole="Project" ToRole="Task" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BudgetRequestId" Type="Int32" Nullable="false" />
+          <Property Name="CustumerId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ManagementApproval" Type="Boolean" Nullable="false" />
+          <Property Name="CxcApproval" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="ContingenciesRate" Type="Double" Nullable="false" />
+          <Property Name="GuaranteeRate" Type="Double" Nullable="false" />
+          <Property Name="TotalUtilityRate" Type="Double" Nullable="false" />
+          <Property Name="DiscountRate" Type="Double" Nullable="false" />
+          <Property Name="SalesTax" Type="Double" Nullable="false" />
+          <Property Name="OthersRate" Type="Double" Nullable="false" />
+          <Property Name="Comments" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="BudgetRequest" Relationship="companyModel.FK_Project_BudgetRequest" FromRole="Project" ToRole="BudgetRequest" />
+          <NavigationProperty Name="Customer" Relationship="companyModel.FK_Project_Customer" FromRole="Project" ToRole="Customer" />
+          <NavigationProperty Name="Tasks" Relationship="companyModel.FK_Task_Project" FromRole="Project" ToRole="Task" />
         </EntityType>
         <EntityType Name="Resource">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="MeasureId" Nullable="false" />
-          <Property Type="Int32" Name="ResourceTypeId" Nullable="false" />
-          <Property Type="Int64" Name="TaskId" Nullable="false" />
-          <Property Type="Int32" Name="Code" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Amount" Nullable="false" />
-          <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="Decimal" Name="TotalCost" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="Double" Name="RealUsed" Nullable="false" />
-          <NavigationProperty Name="Measure" Relationship="EnterpriseModel.FK_Resource_Measure" FromRole="Resource" ToRole="Measure" />
-          <NavigationProperty Name="ResourceType" Relationship="EnterpriseModel.FK_Resource_ResourceType" FromRole="Resource" ToRole="ResourceType" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MeasureId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="TaskId" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TotalCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="RealUsed" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Measure" Relationship="companyModel.FK_Resource_Measure" FromRole="Resource" ToRole="Measure" />
+          <NavigationProperty Name="ResourceType" Relationship="companyModel.FK_Resource_ResourceType" FromRole="Resource" ToRole="ResourceType" />
         </EntityType>
         <EntityType Name="ResourceType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="isTaxed" Nullable="false" />
-          <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_ResourceType" FromRole="ResourceType" ToRole="Resource" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="isTaxed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Resources" Relationship="companyModel.FK_Resource_ResourceType" FromRole="ResourceType" ToRole="Resource" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="ProjectId" Nullable="false" />
-          <Property Type="Int32" Name="ParentId" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Duration" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="PercentComplete" Nullable="false" />
-          <Property Type="DateTime" Name="StartDateTime" Nullable="false" />
-          <Property Type="DateTime" Name="EndDateTime" Nullable="false" />
-          <Property Type="String" Name="Notes" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="RowNumber" Nullable="false" />
-          <Property Type="Int32" Name="BindingListIndex" Nullable="false" />
-          <Property Type="DateTime" Name="CompleteThrough" Nullable="false" />
-          <Property Type="DateTime" Name="DeadLine" Nullable="false" />
-          <Property Type="String" Name="DurationResolved" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="EndDateTimeResolved" Nullable="false" />
-          <Property Type="Boolean" Name="Expanded" Nullable="false" />
-          <Property Type="Boolean" Name="IsRoot" Nullable="false" />
-          <Property Type="Boolean" Name="IsSumary" Nullable="false" />
-          <Property Type="Int32" Name="TaskLevel" Nullable="false" />
-          <Property Type="Boolean" Name="Milestone" Nullable="false" />
-          <Property Type="Boolean" Name="MilestoneResolved" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="EnterpriseModel.FK_Task_Project" FromRole="Task" ToRole="Project" />
-          <NavigationProperty Name="Task1" Relationship="EnterpriseModel.Dependencies" FromRole="Task" ToRole="Task1" />
-          <NavigationProperty Name="Tasks" Relationship="EnterpriseModel.Dependencies" FromRole="Task1" ToRole="Task" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PercentComplete" Type="Double" Nullable="false" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="BindingListIndex" Type="Int32" Nullable="false" />
+          <Property Name="CompleteThrough" Type="DateTime" Nullable="false" />
+          <Property Name="DeadLine" Type="DateTime" Nullable="false" />
+          <Property Name="DurationResolved" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EndDateTimeResolved" Type="DateTime" Nullable="false" />
+          <Property Name="Expanded" Type="Boolean" Nullable="false" />
+          <Property Name="IsRoot" Type="Boolean" Nullable="false" />
+          <Property Name="IsSumary" Type="Boolean" Nullable="false" />
+          <Property Name="TaskLevel" Type="Int32" Nullable="false" />
+          <Property Name="Milestone" Type="Boolean" Nullable="false" />
+          <Property Name="MilestoneResolved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="companyModel.FK_Task_Project" FromRole="Task" ToRole="Project" />
+          <NavigationProperty Name="Task1" Relationship="companyModel.Dependencies" FromRole="Task" ToRole="Task1" />
+          <NavigationProperty Name="Tasks" Relationship="companyModel.Dependencies" FromRole="Task1" ToRole="Task" />
         </EntityType>
         <Association Name="FK_BindCustomer_Customer">
-          <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="EnterpriseModel.BindCustomer" Role="BindCustomer" Multiplicity="0..1" />
+          <End Role="Customer" Type="companyModel.Customer" Multiplicity="1" />
+          <End Role="BindCustomer" Type="companyModel.BindCustomer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -798,8 +811,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ApplicationRequest_Customer">
-          <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="EnterpriseModel.BudgetRequest" Role="BudgetRequest" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Customer" Multiplicity="1" />
+          <End Role="BudgetRequest" Type="companyModel.BudgetRequest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -809,9 +822,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BudgetRequest_Employee">
+          <End Role="Employee" Type="companyModel.Employee" Multiplicity="1" />
+          <End Role="BudgetRequest" Type="companyModel.BudgetRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BudgetRequest">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BudgetRequestDetail_BudgetRequest">
-          <End Type="EnterpriseModel.BudgetRequest" Role="BudgetRequest" Multiplicity="1" />
-          <End Type="EnterpriseModel.BudgetRequestDetail" Role="BudgetRequestDetail" Multiplicity="*" />
+          <End Role="BudgetRequest" Type="companyModel.BudgetRequest" Multiplicity="1" />
+          <End Role="BudgetRequestDetail" Type="companyModel.BudgetRequestDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BudgetRequest">
               <PropertyRef Name="Id" />
@@ -822,8 +847,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Project_BudgetRequest">
-          <End Type="EnterpriseModel.BudgetRequest" Role="BudgetRequest" Multiplicity="1" />
-          <End Type="EnterpriseModel.Project" Role="Project" Multiplicity="*" />
+          <End Role="BudgetRequest" Type="companyModel.BudgetRequest" Multiplicity="1" />
+          <End Role="Project" Type="companyModel.Project" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BudgetRequest">
               <PropertyRef Name="Id" />
@@ -834,8 +859,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ApplicationRequestDetail_Measure">
-          <End Type="EnterpriseModel.Measure" Role="Measure" Multiplicity="1" />
-          <End Type="EnterpriseModel.BudgetRequestDetail" Role="BudgetRequestDetail" Multiplicity="*" />
+          <End Role="Measure" Type="companyModel.Measure" Multiplicity="1" />
+          <End Role="BudgetRequestDetail" Type="companyModel.BudgetRequestDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Measure">
               <PropertyRef Name="Id" />
@@ -845,9 +870,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerContact_Customer">
+          <End Role="Customer" Type="companyModel.Customer" Multiplicity="1" />
+          <End Role="CustomerContact" Type="companyModel.CustomerContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerContact">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Customer">
-          <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="EnterpriseModel.Project" Role="Project" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Customer" Multiplicity="1" />
+          <End Role="Project" Type="companyModel.Project" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="Id" />
@@ -857,9 +894,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerContact_Person">
+          <End Role="Person" Type="companyModel.Person" Multiplicity="1" />
+          <End Role="CustomerContact" Type="companyModel.CustomerContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerContact">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Person">
-          <End Type="EnterpriseModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="EnterpriseModel.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="Person" Type="companyModel.Person" Multiplicity="1" />
+          <End Role="Employee" Type="companyModel.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -870,8 +919,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resource_Measure">
-          <End Type="EnterpriseModel.Measure" Role="Measure" Multiplicity="1" />
-          <End Type="EnterpriseModel.Resource" Role="Resource" Multiplicity="*" />
+          <End Role="Measure" Type="companyModel.Measure" Multiplicity="1" />
+          <End Role="Resource" Type="companyModel.Resource" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Measure">
               <PropertyRef Name="Id" />
@@ -882,8 +931,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonPhone_Person">
-          <End Type="EnterpriseModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="EnterpriseModel.PersonPhone" Role="PersonPhone" Multiplicity="*" />
+          <End Role="Person" Type="companyModel.Person" Multiplicity="1" />
+          <End Role="PersonPhone" Type="companyModel.PersonPhone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="Id" />
@@ -894,8 +943,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonPhone_PhoneType">
-          <End Type="EnterpriseModel.PhoneType" Role="PhoneType" Multiplicity="1" />
-          <End Type="EnterpriseModel.PersonPhone" Role="PersonPhone" Multiplicity="*" />
+          <End Role="PhoneType" Type="companyModel.PhoneType" Multiplicity="1" />
+          <End Role="PersonPhone" Type="companyModel.PersonPhone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhoneType">
               <PropertyRef Name="Id" />
@@ -906,8 +955,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Task_Project">
-          <End Type="EnterpriseModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="EnterpriseModel.Task" Role="Task" Multiplicity="*" />
+          <End Role="Project" Type="companyModel.Project" Multiplicity="1" />
+          <End Role="Task" Type="companyModel.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="Id" />
@@ -918,8 +967,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Resource_ResourceType">
-          <End Type="EnterpriseModel.ResourceType" Role="ResourceType" Multiplicity="1" />
-          <End Type="EnterpriseModel.Resource" Role="Resource" Multiplicity="*" />
+          <End Role="ResourceType" Type="companyModel.ResourceType" Multiplicity="1" />
+          <End Role="Resource" Type="companyModel.Resource" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ResourceType">
               <PropertyRef Name="Id" />
@@ -930,255 +979,151 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Dependencies">
-          <End Type="EnterpriseModel.Task" Role="Task" Multiplicity="*" />
-          <End Type="EnterpriseModel.Task" Role="Task1" Multiplicity="*" />
+          <End Role="Task" Type="companyModel.Task" Multiplicity="*" />
+          <End Role="Task1" Type="companyModel.Task" Multiplicity="*" />
         </Association>
         <Association Name="EmployeeXCustomer">
-          <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="*" />
-          <End Type="EnterpriseModel.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="Customer" Type="companyModel.Customer" Multiplicity="*" />
+          <End Role="Employee" Type="companyModel.Employee" Multiplicity="*" />
         </Association>
-        <Association Name="FK_BudgetRequest_Employee">
-          <End Type="EnterpriseModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="EnterpriseModel.BudgetRequest" Role="BudgetRequest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BudgetRequest">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CustomerContact">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Job" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="PersonId" Nullable="false" />
-          <Property Type="Int32" Name="CustomerId" Nullable="false" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
-          <NavigationProperty Name="Person" Relationship="EnterpriseModel.FK_CustomerContact_Person" FromRole="CustomerContact" ToRole="Person" />
-        </EntityType>
-        <Association Name="FK_CustomerContact_Customer">
-          <End Type="EnterpriseModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="EnterpriseModel.CustomerContact" Role="CustomerContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerContact">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerContact_Person">
-          <End Type="EnterpriseModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="EnterpriseModel.CustomerContact" Role="CustomerContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerContact">
-              <PropertyRef Name="PersonId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EnterpriseModelStoreContainer" CdmEntityContainer="EnterpriseEntities">
-          <EntitySetMapping Name="BindCustomers">
-            <EntityTypeMapping TypeName="EnterpriseModel.BindCustomer">
-              <MappingFragment StoreEntitySet="BindCustomer">
-                <ScalarProperty Name="AlienId" ColumnName="AlienId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BudgetRequests">
-            <EntityTypeMapping TypeName="EnterpriseModel.BudgetRequest">
-              <MappingFragment StoreEntitySet="BudgetRequest">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BudgetRequestDetails">
-            <EntityTypeMapping TypeName="EnterpriseModel.BudgetRequestDetail">
-              <MappingFragment StoreEntitySet="BudgetRequestDetail">
-                <ScalarProperty Name="Solution" ColumnName="Solution" />
-                <ScalarProperty Name="Problem" ColumnName="Problem" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MeasureId" ColumnName="MeasureId" />
-                <ScalarProperty Name="ApplicationRequestId" ColumnName="ApplicationRequestId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="EnterpriseModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="EnterpriseModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="UserAccountId" ColumnName="UserAccountId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Measures">
-            <EntityTypeMapping TypeName="EnterpriseModel.Measure">
-              <MappingFragment StoreEntitySet="Measure">
-                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="EnterpriseModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PersonPhones">
-            <EntityTypeMapping TypeName="EnterpriseModel.PersonPhone">
-              <MappingFragment StoreEntitySet="PersonPhone">
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="PhoneTypeId" ColumnName="PhoneTypeId" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PhoneTypes">
-            <EntityTypeMapping TypeName="EnterpriseModel.PhoneType">
-              <MappingFragment StoreEntitySet="PhoneType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="EnterpriseModel.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="OthersRate" ColumnName="OthersRate" />
-                <ScalarProperty Name="SalesTax" ColumnName="SalesTax" />
-                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
-                <ScalarProperty Name="TotalUtilityRate" ColumnName="TotalUtilityRate" />
-                <ScalarProperty Name="GuaranteeRate" ColumnName="GuaranteeRate" />
-                <ScalarProperty Name="ContingenciesRate" ColumnName="ContingenciesRate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CxcApproval" ColumnName="CxcApproval" />
-                <ScalarProperty Name="ManagementApproval" ColumnName="ManagementApproval" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
-                <ScalarProperty Name="BudgetRequestId" ColumnName="BudgetRequestId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Resources">
-            <EntityTypeMapping TypeName="EnterpriseModel.Resource">
-              <MappingFragment StoreEntitySet="Resource">
-                <ScalarProperty Name="RealUsed" ColumnName="RealUsed" />
-                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
-                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
-                <ScalarProperty Name="MeasureId" ColumnName="MeasureId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ResourceTypes">
-            <EntityTypeMapping TypeName="EnterpriseModel.ResourceType">
-              <MappingFragment StoreEntitySet="ResourceType">
-                <ScalarProperty Name="isTaxed" ColumnName="isTaxed" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="EnterpriseModel.Task">
-              <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="MilestoneResolved" ColumnName="MilestoneResolved" />
-                <ScalarProperty Name="Milestone" ColumnName="Milestone" />
-                <ScalarProperty Name="TaskLevel" ColumnName="TaskLevel" />
-                <ScalarProperty Name="IsSumary" ColumnName="IsSumary" />
-                <ScalarProperty Name="IsRoot" ColumnName="IsRoot" />
-                <ScalarProperty Name="Expanded" ColumnName="Expanded" />
-                <ScalarProperty Name="EndDateTimeResolved" ColumnName="EndDateTimeResolved" />
-                <ScalarProperty Name="DurationResolved" ColumnName="DurationResolved" />
-                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
-                <ScalarProperty Name="CompleteThrough" ColumnName="CompleteThrough" />
-                <ScalarProperty Name="BindingListIndex" ColumnName="BindingListIndex" />
-                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="PercentComplete" ColumnName="PercentComplete" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Dependencies" TypeName="EnterpriseModel.Dependencies" StoreEntitySet="Dependencies">
-            <EndProperty Name="Task1">
-              <ScalarProperty Name="ProjectId" ColumnName="idDependencieProject" />
-              <ScalarProperty Name="Id" ColumnName="idDependencie" />
-            </EndProperty>
+        <EntityContainerMapping StorageEntityContainer="companyModelStoreContainer" CdmEntityContainer="EnterpriseEntities">
+          <EntitySetMapping Name="BindCustomers"><EntityTypeMapping TypeName="companyModel.BindCustomer"><MappingFragment StoreEntitySet="BindCustomer">
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="AlienId" ColumnName="AlienId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BudgetRequests"><EntityTypeMapping TypeName="companyModel.BudgetRequest"><MappingFragment StoreEntitySet="BudgetRequest">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+            <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+            <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BudgetRequestDetails"><EntityTypeMapping TypeName="companyModel.BudgetRequestDetail"><MappingFragment StoreEntitySet="BudgetRequestDetail">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ApplicationRequestId" ColumnName="ApplicationRequestId" />
+            <ScalarProperty Name="MeasureId" ColumnName="MeasureId" />
+            <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+            <ScalarProperty Name="Problem" ColumnName="Problem" />
+            <ScalarProperty Name="Solution" ColumnName="Solution" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Customers"><EntityTypeMapping TypeName="companyModel.Customer"><MappingFragment StoreEntitySet="Customer">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CustomerContacts"><EntityTypeMapping TypeName="companyModel.CustomerContact"><MappingFragment StoreEntitySet="CustomerContact">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Job" ColumnName="Job" />
+            <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+            <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Employees"><EntityTypeMapping TypeName="companyModel.Employee"><MappingFragment StoreEntitySet="Employee">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+            <ScalarProperty Name="UserAccountId" ColumnName="UserAccountId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Measures"><EntityTypeMapping TypeName="companyModel.Measure"><MappingFragment StoreEntitySet="Measure">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="People"><EntityTypeMapping TypeName="companyModel.Person"><MappingFragment StoreEntitySet="Person">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PersonPhones"><EntityTypeMapping TypeName="companyModel.PersonPhone"><MappingFragment StoreEntitySet="PersonPhone">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="PhoneTypeId" ColumnName="PhoneTypeId" />
+            <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PhoneTypes"><EntityTypeMapping TypeName="companyModel.PhoneType"><MappingFragment StoreEntitySet="PhoneType">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Projects"><EntityTypeMapping TypeName="companyModel.Project"><MappingFragment StoreEntitySet="Project">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="BudgetRequestId" ColumnName="BudgetRequestId" />
+            <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
+            <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="ManagementApproval" ColumnName="ManagementApproval" />
+            <ScalarProperty Name="CxcApproval" ColumnName="CxcApproval" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="ContingenciesRate" ColumnName="ContingenciesRate" />
+            <ScalarProperty Name="GuaranteeRate" ColumnName="GuaranteeRate" />
+            <ScalarProperty Name="TotalUtilityRate" ColumnName="TotalUtilityRate" />
+            <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+            <ScalarProperty Name="SalesTax" ColumnName="SalesTax" />
+            <ScalarProperty Name="OthersRate" ColumnName="OthersRate" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Resources"><EntityTypeMapping TypeName="companyModel.Resource"><MappingFragment StoreEntitySet="Resource">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="MeasureId" ColumnName="MeasureId" />
+            <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+            <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Amount" ColumnName="Amount" />
+            <ScalarProperty Name="Cost" ColumnName="Cost" />
+            <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+            <ScalarProperty Name="RealUsed" ColumnName="RealUsed" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ResourceTypes"><EntityTypeMapping TypeName="companyModel.ResourceType"><MappingFragment StoreEntitySet="ResourceType">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="isTaxed" ColumnName="isTaxed" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tasks"><EntityTypeMapping TypeName="companyModel.Task"><MappingFragment StoreEntitySet="Task">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Duration" ColumnName="Duration" />
+            <ScalarProperty Name="PercentComplete" ColumnName="PercentComplete" />
+            <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+            <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+            <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+            <ScalarProperty Name="BindingListIndex" ColumnName="BindingListIndex" />
+            <ScalarProperty Name="CompleteThrough" ColumnName="CompleteThrough" />
+            <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+            <ScalarProperty Name="DurationResolved" ColumnName="DurationResolved" />
+            <ScalarProperty Name="EndDateTimeResolved" ColumnName="EndDateTimeResolved" />
+            <ScalarProperty Name="Expanded" ColumnName="Expanded" />
+            <ScalarProperty Name="IsRoot" ColumnName="IsRoot" />
+            <ScalarProperty Name="IsSumary" ColumnName="IsSumary" />
+            <ScalarProperty Name="TaskLevel" ColumnName="TaskLevel" />
+            <ScalarProperty Name="Milestone" ColumnName="Milestone" />
+            <ScalarProperty Name="MilestoneResolved" ColumnName="MilestoneResolved" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="Dependencies" TypeName="companyModel.Dependencies" StoreEntitySet="Dependencies">
             <EndProperty Name="Task">
-              <ScalarProperty Name="ProjectId" ColumnName="idTaskProject" />
               <ScalarProperty Name="Id" ColumnName="idTask" />
+              <ScalarProperty Name="ProjectId" ColumnName="idTaskProject" />
+            </EndProperty>
+            <EndProperty Name="Task1">
+              <ScalarProperty Name="Id" ColumnName="idDependencie" />
+              <ScalarProperty Name="ProjectId" ColumnName="idDependencieProject" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="EmployeeXCustomer" TypeName="EnterpriseModel.EmployeeXCustomer" StoreEntitySet="EmployeeXCustomer">
-            <EndProperty Name="Employee">
-              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
-            </EndProperty>
+          <AssociationSetMapping Name="EmployeeXCustomer" TypeName="companyModel.EmployeeXCustomer" StoreEntitySet="EmployeeXCustomer">
             <EndProperty Name="Customer">
               <ScalarProperty Name="Id" ColumnName="CustomerId" />
             </EndProperty>
+            <EndProperty Name="Employee">
+              <ScalarProperty Name="Id" ColumnName="EmployeeId" />
+            </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="CustomerContacts">
-            <EntityTypeMapping TypeName="EnterpriseModel.CustomerContact">
-              <MappingFragment StoreEntitySet="CustomerContact">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="Job" ColumnName="Job" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1200,122 +1145,99 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EnterpriseContext">
-        <EntityTypeShape EntityType="EnterpriseModel.BindCustomer" Width="1.5" PointX="3" PointY="7.875" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequest" Width="1.5" PointX="3" PointY="10.25" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestDetail" Width="1.5" PointX="5.25" PointY="10" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="EnterpriseModel.Customer" Width="1.5" PointX="0.75" PointY="8.875" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="EnterpriseModel.CustomerContact" Width="1.5" PointX="6" PointY="7" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Employee" Width="1.5" PointX="3" PointY="5.125" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="EnterpriseModel.Measure" Width="1.5" PointX="3" PointY="13.375" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="0.75" PointY="5" Height="2.1725878906250102" />
-        <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="3" PointY="2" Height="2.1725878906250102" />
-        <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="0.75" PointY="2.375" Height="1.595683593749996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="8.25" PointY="8.375" Height="4.48020507812501" />
-        <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="5.25" PointY="13.625" Height="3.326396484375012" />
-        <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="3" PointY="16.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="10.5" PointY="7.875" Height="5.63401367187501" />
-        <AssociationConnector Association="EnterpriseModel.FK_BindCustomer_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="9.1728417968750016" />
-          <ConnectorPoint PointX="3" PointY="9.1728417968750016" />
+        <EntityTypeShape EntityType="companyModel.BindCustomer" Width="1.5" PointX="3" PointY="10.875" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.BudgetRequest" Width="1.5" PointX="3" PointY="7.125" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.BudgetRequestDetail" Width="1.75" PointX="5.25" PointY="6.375" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Customer" Width="1.5" PointX="0.75" PointY="10.375" Height="2.5571907552083353" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.CustomerContact" Width="1.5" PointX="3" PointY="13.5" Height="2.3648893229166639" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Employee" Width="1.5" PointX="6" PointY="10.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Measure" Width="1.5" PointX="3" PointY="3.625" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Person" Width="1.5" PointX="3.75" PointY="17.5" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.PersonPhone" Width="1.5" PointX="6" PointY="17.5" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.PhoneType" Width="1.5" PointX="3.75" PointY="20.875" Height="1.595683593749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Project" Width="1.5" PointX="8.25" PointY="7.75" Height="4.4802050781250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Resource" Width="1.5" PointX="5.25" PointY="2" Height="3.3263964843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.ResourceType" Width="1.5" PointX="3" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.Task" Width="1.5" PointX="10.5" PointY="7.25" Height="5.6340136718750031" IsExpanded="true" />
+        <AssociationConnector Association="companyModel.FK_BindCustomer_Customer" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="11.672841796875" />
+          <ConnectorPoint PointX="3" PointY="11.672841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequest_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="10.841095377604169" />
-          <ConnectorPoint PointX="3" PointY="10.841095377604169" />
+        <AssociationConnector Association="companyModel.FK_ApplicationRequest_Customer" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="10.375" />
+          <ConnectorPoint PointX="1.5" PointY="8.5958968098958337" />
+          <ConnectorPoint PointX="3" PointY="8.5958968098958337" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" >
-          <ConnectorPoint PointX="4.5" PointY="11.336293945312502" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="11.336293945312502" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="11.336293945312502" />
-          <ConnectorPoint PointX="5.25" PointY="11.336293945312502" />
+        <AssociationConnector Association="companyModel.FK_BudgetRequest_Employee" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.28125" PointY="10.5" />
+          <ConnectorPoint PointX="7.28125" PointY="9.5307421875" />
+          <ConnectorPoint PointX="4.5" PointY="9.5307421875" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Project_BudgetRequest" >
-          <ConnectorPoint PointX="3.75" PointY="12.422587890625003" />
-          <ConnectorPoint PointX="3.75" PointY="12.737447916666675" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="12.737447916666675" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="12.737447916666675" />
-          <ConnectorPoint PointX="8.25" PointY="12.737447916666675" />
+        <AssociationConnector Association="companyModel.FK_BudgetRequestDetail_BudgetRequest" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.0285953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="8.0285953776041659" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequestDetail_Measure" >
-          <ConnectorPoint PointX="4.5" PointY="13.376152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="13.001152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="10.636894972656258" />
-          <ConnectorPoint PointX="5.25" PointY="10.636894972656258" />
+        <AssociationConnector Association="companyModel.FK_Project_BudgetRequest" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.2002164713541656" />
+          <ConnectorPoint PointX="8.25" PointY="9.2002164713541656" />
         </AssociationConnector>
-          <ConnectorPoint PointX="2.25" PointY="9.7353417968750016" />
-          <ConnectorPoint PointX="7.15625" PointY="9.7353417968750016" />
-          <ConnectorPoint PointX="7.15625" PointY="9.172587890624996" />
-        <AssociationConnector Association="EnterpriseModel.FK_Project_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="9.8989208984375" />
-          <ConnectorPoint PointX="8.25" PointY="9.8989208984375" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="9.7764794921875" />
-          <ConnectorPoint PointX="8.25" PointY="9.7764794921875" />
-          <ConnectorPoint PointX="2.25" PointY="5.03125" />
-          <ConnectorPoint PointX="6.75" PointY="5.03125" />
-          <ConnectorPoint PointX="6.75" PointY="7" />
-          <ConnectorPoint PointX="2.25" PointY="5.15625" />
-          <ConnectorPoint PointX="6.75" PointY="5.15625" />
-          <ConnectorPoint PointX="6.75" PointY="7.125" />
+        <AssociationConnector Association="companyModel.FK_ApplicationRequestDetail_Measure" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.4970914713541674" />
+          <ConnectorPoint PointX="6.90625" PointY="5.4970914713541674" />
+          <ConnectorPoint PointX="6.90625" PointY="6.375" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Employee_Person" >
-          <ConnectorPoint PointX="2.25" PointY="6.1151432291666694" />
-          <ConnectorPoint PointX="3" PointY="6.1151432291666694" />
+        <AssociationConnector Association="companyModel.FK_CustomerContact_Customer" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="12.932190755208335" />
+          <ConnectorPoint PointX="1.5" PointY="14.682444661458332" />
+          <ConnectorPoint PointX="3" PointY="14.682444661458332" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Resource_Measure" >
-          <ConnectorPoint PointX="4.5" PointY="14.490143229166669" />
-          <ConnectorPoint PointX="5.25" PointY="14.490143229166669" />
+        <AssociationConnector Association="companyModel.FK_Project_Customer" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.40625" />
+          <ConnectorPoint PointX="7.197916666666667" PointY="10.40625" />
+          <ConnectorPoint PointX="7.364583333333333" PointY="10.40625" />
+          <ConnectorPoint PointX="8.25" PointY="10.40625" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_PersonPhone_Person" >
-          <ConnectorPoint PointX="2.25" PointY="5" />
-          <ConnectorPoint PointX="2.625" PointY="4.625" />
-          <ConnectorPoint PointX="2.625" PointY="3.0862939453125051" />
-          <ConnectorPoint PointX="3" PointY="3.0862939453125051" />
+        <AssociationConnector Association="companyModel.FK_CustomerContact_Person" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.125" PointY="17.5" />
+          <ConnectorPoint PointX="4.125" PointY="15.864889322916664" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_PersonPhone_PhoneType" >
-          <ConnectorPoint PointX="2.25" PointY="3.5909887695312506" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="3.59098876953125" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="3.5909887695312506" />
-          <ConnectorPoint PointX="3" PointY="3.5909887695312506" />
+        <AssociationConnector Association="companyModel.FK_Employee_Person" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="17.5" />
+          <ConnectorPoint PointX="4.90625" PointY="10.65625" />
+          <ConnectorPoint PointX="6" PointY="10.65625" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Task_Project" >
-          <ConnectorPoint PointX="9.75" PointY="10.615102539062505" />
-          <ConnectorPoint PointX="10.5" PointY="10.615102539062505" />
+        <AssociationConnector Association="companyModel.FK_Resource_Measure" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.4756982421875016" />
+          <ConnectorPoint PointX="5.25" PointY="4.4756982421875016" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_Resource_ResourceType" >
-          <ConnectorPoint PointX="4.5" PointY="16.663198242187505" />
-          <ConnectorPoint PointX="5.25" PointY="16.663198242187505" />
+        <AssociationConnector Association="companyModel.FK_PersonPhone_Person" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="18.586293945312498" />
+          <ConnectorPoint PointX="6" PointY="18.586293945312498" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.Dependencies" >
-          <ConnectorPoint PointX="11.031923076923077" PointY="13.50901367187501" />
-          <ConnectorPoint PointX="11.031923076923077" PointY="13.75901367187501" />
-          <ConnectorPoint PointX="11.478461538461538" PointY="13.75901367187501" />
-          <ConnectorPoint PointX="11.478461538461538" PointY="13.50901367187501" />
+        <AssociationConnector Association="companyModel.FK_PersonPhone_PhoneType" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="21.672841796874998" />
+          <ConnectorPoint PointX="6.75" PointY="21.672841796874998" />
+          <ConnectorPoint PointX="6.75" PointY="19.672587890624996" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.EmployeeXCustomer" >
-          <ConnectorPoint PointX="2.25" PointY="8.8761528461538468" />
-          <ConnectorPoint PointX="2.625" PointY="8.5011528461538468" />
-          <ConnectorPoint PointX="2.625" PointY="6.6414668437500044" />
-          <ConnectorPoint PointX="3" PointY="6.6414668437500044" />
+        <AssociationConnector Association="companyModel.FK_Task_Project" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="9.9901025390625016" />
+          <ConnectorPoint PointX="10.5" PointY="9.9901025390625016" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_BudgetRequest_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="7.1710009765625" />
-          <ConnectorPoint PointX="4.875" PointY="7.5460009765625" />
-          <ConnectorPoint PointX="4.875" PointY="10.001152846153847" />
-          <ConnectorPoint PointX="4.5" PointY="10.376152846153847" />
+        <AssociationConnector Association="companyModel.FK_Resource_ResourceType" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.2689925130208337" />
+          <ConnectorPoint PointX="5.25" PointY="2.2689925130208337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="EnterpriseModel.CustomerContact" Width="1.5" PointX="6" PointY="7.125" Height="2.0853483072916674" />
-        <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="5.510416666666667" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="5.677083333333333" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="7.15625" PointY="9.60221673828125" />
-          <ConnectorPoint PointX="7.15625" PointY="9.2103483072916674" />
+        <AssociationConnector Association="companyModel.Dependencies" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.031923076923077" PointY="12.884013671875003" />
+          <ConnectorPoint PointX="11.031923076923077" PointY="13.134013671875003" />
+          <ConnectorPoint PointX="11.478461538461538" PointY="13.134013671875003" />
+          <ConnectorPoint PointX="11.478461538461538" PointY="12.884013671875003" />
         </AssociationConnector>
-        <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Person" >
-          <ConnectorPoint PointX="2.25" PointY="5.15625" />
-          <ConnectorPoint PointX="6.75" PointY="5.15625" />
-          <ConnectorPoint PointX="6.75" PointY="7.125" />
+        <AssociationConnector Association="companyModel.EmployeeXCustomer" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="12.6028857421875" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="12.6028857421875" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="12.6028857421875" />
+          <ConnectorPoint PointX="6" PointY="12.6028857421875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
