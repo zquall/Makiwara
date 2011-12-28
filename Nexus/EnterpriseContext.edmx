@@ -21,6 +21,7 @@
           <EntitySet Name="Project" EntityType="EnterpriseModel.Store.Project" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Resource" EntityType="EnterpriseModel.Store.Resource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ResourceType" EntityType="EnterpriseModel.Store.ResourceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="EnterpriseModel.Store.Task" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ApplicationRequest_Customer" Association="EnterpriseModel.Store.FK_ApplicationRequest_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -248,6 +249,16 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="isTaxed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -534,6 +545,7 @@
           <EntitySet Name="Projects" EntityType="EnterpriseModel.Project" />
           <EntitySet Name="Resources" EntityType="EnterpriseModel.Resource" />
           <EntitySet Name="ResourceTypes" EntityType="EnterpriseModel.ResourceType" />
+          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.sysdiagram" />
           <EntitySet Name="Tasks" EntityType="EnterpriseModel.Task" />
           <AssociationSet Name="FK_BindCustomer_Customer" Association="EnterpriseModel.FK_BindCustomer_Customer">
             <End Role="Customer" EntitySet="Customers" />
@@ -783,6 +795,16 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="isTaxed" Nullable="false" />
           <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_ResourceType" FromRole="ResourceType" ToRole="Resource" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -1192,6 +1214,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EnterpriseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="EnterpriseModel.Task">
               <MappingFragment StoreEntitySet="Task">
@@ -1262,6 +1295,7 @@
         <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="8.25" PointY="7" Height="4.2218636067708246" />
         <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="12.75" PointY="7.625" Height="3.0714322916666674" />
         <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="10.5" PointY="3.375" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="EnterpriseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="13" Height="1.7566536458333246" />
         <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="10.5" PointY="6.625" Height="5.0436002604166674" />
         <AssociationConnector Association="EnterpriseModel.FK_BindCustomer_Customer" >
           <ConnectorPoint PointX="2.25" PointY="10.713979492187502" />

@@ -35,7 +35,7 @@
             this.lblAddress = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCustomerName = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.lblContactJob = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -230,13 +230,13 @@
             this.btnCustomerName.Size = new System.Drawing.Size(348, 20);
             this.btnCustomerName.TabIndex = 1;
             // 
-            // labelControl12
+            // lblContactJob
             // 
-            this.labelControl12.Location = new System.Drawing.Point(105, 135);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(112, 13);
-            this.labelControl12.TabIndex = 11;
-            this.labelControl12.Text = "##############";
+            this.lblContactJob.Location = new System.Drawing.Point(105, 135);
+            this.lblContactJob.Name = "lblContactJob";
+            this.lblContactJob.Size = new System.Drawing.Size(112, 13);
+            this.lblContactJob.TabIndex = 11;
+            this.lblContactJob.Text = "##############";
             // 
             // labelControl11
             // 
@@ -377,7 +377,7 @@
             // 
             this.groupControl2.Controls.Add(this.cmbContact);
             this.groupControl2.Controls.Add(this.cmbPhone);
-            this.groupControl2.Controls.Add(this.labelControl12);
+            this.groupControl2.Controls.Add(this.lblContactJob);
             this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.buttonEdit2);
             this.groupControl2.Controls.Add(this.labelControl11);
@@ -403,7 +403,6 @@
             this.cmbContact.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContact_Properties_ButtonClick);
             this.cmbContact.Size = new System.Drawing.Size(171, 20);
             this.cmbContact.TabIndex = 13;
-            this.cmbContact.SelectedIndexChanged += new System.EventHandler(this.cmbContact_SelectedIndexChanged);
             // 
             // cmbPhone
             // 
@@ -1016,7 +1015,7 @@
         private DevExpress.XtraEditors.LabelControl lblEmployeeName;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl lblContactJob;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;

@@ -45,8 +45,32 @@ namespace shellProject
                     loadCustomer(createCustomerDialog.Tag as CustomerData);
                 }
             }            
-        } 
-       
+        }
+        
+        private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
+                    loadContactManager();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void cmbBubgetRequest_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
+                    loadBudgetRequestFinder();
+                    break;
+                default:
+                    break;
+            }
+        }
+
         #endregion
 
         #region Load Actions
@@ -98,14 +122,24 @@ namespace shellProject
             }
         }
 
+        // Load the Customer
+        private void loadContact(ContactData contact)
+        {
+            if (contact != null)
+            {
+                cmbContact.SelectedItem = contact;
+                lblContactJob.Text = contact.Job;
+            }
+        }
+
         // Load the Contact List
         private void loadContactList(List<ContactData> contactList)
         {
-            if (contactList != null)
+            if (contactList.Count > 0)
             {
                 cmbContact.Properties.Items.Clear();
                 cmbContact.Properties.Items.AddRange(contactList);
-                cmbContact.SelectedItem = contactList[0];
+                loadContact(contactList[0]);
             }
         }
         
@@ -143,30 +177,6 @@ namespace shellProject
         }      
 
         #endregion
-
-        private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            switch (e.Button.Kind)
-            {
-                case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
-                    loadContactManager();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void cmbBubgetRequest_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            switch (e.Button.Kind)
-            {
-                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
-                    loadBudgetRequestFinder();
-                    break;
-                default:
-                    break;
-            }
-        }
 
        
        

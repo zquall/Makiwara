@@ -33,23 +33,22 @@ namespace shellCommon.Contact
                 loadContact(Tag as ContactData);
             }
 
-            loadDefaultPhoneTypesValues();
         }
 
         // Loads the PhoneTypes on the combos
         private void loadPhoneTypes()
         {
-            var phoneTypesList = new CommonFactory().getPhoneTypeList().PhoneTypeList;
-            cmbPhoneTypeA.Properties.Items.AddRange(phoneTypesList);
-            cmbPhoneTypeB.Properties.Items.AddRange(phoneTypesList);
-            cmbPhoneTypeC.Properties.Items.AddRange(phoneTypesList);
+            var phoneTypeList = new CommonFactory().getPhoneTypeList().PhoneTypeList;
+            loadPhoneTypeCombo(cmbPhoneTypeA, phoneTypeList ,0);
+            loadPhoneTypeCombo(cmbPhoneTypeB, phoneTypeList, 1);
+            loadPhoneTypeCombo(cmbPhoneTypeC, phoneTypeList, 2);
         }
 
-        private void loadDefaultPhoneTypesValues()
+        private void loadPhoneTypeCombo(ComboBoxEdit comboBoxEdit, List<PhoneTypeData> phoneTypeList, int defaultPhoneTypeIndex)
         {
-            cmbPhoneTypeA.SelectedItem = cmbPhoneTypeA.SelectedItem ?? cmbPhoneTypeA.Properties.Items[0];
-            cmbPhoneTypeB.SelectedItem = cmbPhoneTypeB.SelectedItem ?? cmbPhoneTypeA.Properties.Items[1];
-            cmbPhoneTypeC.SelectedItem = cmbPhoneTypeC.SelectedItem ?? cmbPhoneTypeA.Properties.Items[2];
+            comboBoxEdit.Properties.Items.Clear();
+            comboBoxEdit.Properties.Items.AddRange(phoneTypeList);
+            comboBoxEdit.SelectedItem = phoneTypeList[defaultPhoneTypeIndex];
         }
 
         // Loads the Contact on the form
@@ -59,7 +58,7 @@ namespace shellCommon.Contact
             txtLastName.Text = contactData.Person.LastName;
             txtJob.Text = contactData.Job;
             txtEmail.Text = contactData.Email;
-
+            
             if (contactData.Person.PhoneList != null)
             {
                 if (contactData.Person.PhoneList.Count > 0)
