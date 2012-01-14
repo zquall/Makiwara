@@ -143,6 +143,9 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Address" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="AddressOptional" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
@@ -666,6 +669,9 @@
           <NavigationProperty Name="CustomerContacts" Relationship="EnterpriseModel.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
           <NavigationProperty Name="Projects" Relationship="EnterpriseModel.FK_Project_Customer" FromRole="Customer" ToRole="Project" />
           <NavigationProperty Name="Employees" Relationship="EnterpriseModel.EmployeeXCustomer" FromRole="Customer" ToRole="Employee" />
+          <Property Type="String" Name="AddressOptional" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
@@ -1048,6 +1054,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="EnterpriseModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AddressOptional" ColumnName="AddressOptional" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

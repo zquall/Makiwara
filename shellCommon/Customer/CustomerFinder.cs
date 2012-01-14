@@ -97,8 +97,8 @@ namespace shellCommon.Customer
                 if (focusedRow.Id > -1)
                 {
                     var request = new CustomerRequest();
-                    request.CustomerId = focusedRow.Id;
-                    request.CustomerName = focusedRow.Name;
+                    request.Customer.Id = focusedRow.Id;
+                    request.Customer.Name = focusedRow.Name;
 
                     // This customer must be returned with contacts
                     this.Tag = new CustomerFactory().getCustomer(request).Customer;

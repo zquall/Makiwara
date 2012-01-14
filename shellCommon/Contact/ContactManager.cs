@@ -86,7 +86,7 @@ namespace shellCommon.Contact
         {
             if (Tag == null)
             {
-                Tag = new ContactData() { Person = new PersonData() };
+                Tag = new ContactData();
             }
             var ContactTag = Tag as ContactData;
             ContactTag.Person.Name = txtName.Text;

@@ -1253,6 +1253,78 @@ namespace Nexus
         private global::System.String _Address;
         partial void OnAddressChanging(global::System.String value);
         partial void OnAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AddressOptional
+        {
+            get
+            {
+                return _AddressOptional;
+            }
+            set
+            {
+                OnAddressOptionalChanging(value);
+                ReportPropertyChanging("AddressOptional");
+                _AddressOptional = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AddressOptional");
+                OnAddressOptionalChanged();
+            }
+        }
+        private global::System.String _AddressOptional;
+        partial void OnAddressOptionalChanging(global::System.String value);
+        partial void OnAddressOptionalChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Phone
+        {
+            get
+            {
+                return _Phone;
+            }
+            set
+            {
+                OnPhoneChanging(value);
+                ReportPropertyChanging("Phone");
+                _Phone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Phone");
+                OnPhoneChanged();
+            }
+        }
+        private global::System.String _Phone;
+        partial void OnPhoneChanging(global::System.String value);
+        partial void OnPhoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fax
+        {
+            get
+            {
+                return _Fax;
+            }
+            set
+            {
+                OnFaxChanging(value);
+                ReportPropertyChanging("Fax");
+                _Fax = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fax");
+                OnFaxChanged();
+            }
+        }
+        private global::System.String _Fax;
+        partial void OnFaxChanging(global::System.String value);
+        partial void OnFaxChanged();
 
         #endregion
     

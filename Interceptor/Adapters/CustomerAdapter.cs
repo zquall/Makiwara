@@ -59,10 +59,10 @@ namespace Interceptor.Adapters
         public void getCustomer(CustomerRequest request)
         {
             // Check if customers needs a binding
-            if (request.CustomerId == 0 && request.CustomerName != "" )
+            if (request.Customer.Id == 0 && request.Customer.Name != "")
             {                
                 // Apply the search the customer
-                var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.CustomerName.ToUpper()).FirstOrDefault();
+                var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.Customer.Name.ToUpper()).FirstOrDefault();
                 
                 if (customerFound != null)
                 {  
@@ -98,7 +98,7 @@ namespace Interceptor.Adapters
                     Olympus._Enterprise.SaveChanges();
                     
                     // Add the customer Id
-                    request.CustomerId = newCustomer.Id;
+                    request.Customer.Id = newCustomer.Id;
                 }
             }           
         }

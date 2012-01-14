@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using shellCommon.Contact;
 using ReplicantRepository.Response;
+using ReplicantRepository.DataTransferObjects;
+using ReplicantRepository.Request;
+using ReplicantFacility.Factory;
 
 namespace shellCommon.Customer
 {
@@ -77,6 +80,39 @@ namespace shellCommon.Customer
         }
 
         #endregion     
+
+        #region Save Process
+        private CustomerData captureCustomer()
+        {
+            // If tag is null this means that the customer is new
+            if (Tag == null)
+            {
+                Tag = new CustomerData();
+            }
+
+            // get the instance reference from the tag
+            var customerTag = Tag as CustomerData;
+            customerTag.Name = txtCustomerName.Text;
+            customerTag.Address = txtCustomerAddress.Text;
+            customerTag.AddressOptional = txtCustomerAddressOptional.Text;
+            customerTag.Phone = txtCustomerPhone.Text;
+            customerTag.Fax = txtCustomerFax.Text;
+
+            customerTag.ContactList = new List<ContactData>();
+            foreach (ContactData contact in cmbContacts.Properties.Items)
+            {
+                customerTag.ContactList.Add(contact);
+            }
+            return customerTag;
+        }
+
+        private void saveCustomer()
+        {
+            var request = new CustomerRequest();
+            request.Customer = Tag as CustomerData;
+            new CustomerFactory().saveCustomer(request);
+        }
+        #endregion
        
     }
 }

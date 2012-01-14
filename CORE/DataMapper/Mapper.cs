@@ -97,6 +97,23 @@ namespace CORE.DataMapper
             return tmpCustomerData;
         }
 
+        internal static Nexus.Customer Map(CustomerData customerData)
+        {
+            Nexus.Customer tmpCustomer = null;
+            if (customerData != null)
+            {
+                tmpCustomer = new Nexus.Customer();
+                tmpCustomer.Id = customerData.Id;
+                tmpCustomer.Name = customerData.Name;
+                tmpCustomer.Address = customerData.Address;
+                tmpCustomer.AddressOptional = customerData.AddressOptional;
+                tmpCustomer.Phone = customerData.Phone;
+                tmpCustomer.Fax = customerData.Fax;
+                //tmpCustomer.CustomerContacts = Map(customerData.ContactList);
+            }
+            return tmpCustomer;
+        }
+
         internal static EmployeeData Map(Nexus.Employee employee)
         {
             EmployeeData tmpEmployeeData = null;
