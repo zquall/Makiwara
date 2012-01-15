@@ -2,51 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Nerv;
-using Cypher;
-using Hades.averno;
-using Nexus;
+using ReplicantRepository.DataTransferObjects;
+using ReplicantFacility.Factory;
+using ReplicantRepository.Request;
+using ReplicantRepository.DataTransferObjects.NervObjects;
 
-namespace Hades.session
+namespace Hades.Session
 {   
     public static class SessionManager
     {
         // Contains the user that is in session
-        private static UserSession _LogedUser = null;
+        private static UserSessionData _LogedUser = null;
 
         // Try to login a user with the providen data
         public static bool Login(string username, string password)
         {
             bool result = false;
-            NERVEntities nervEntities = new NERVEntities();
-            var accountFounded = nervEntities.UserAccounts.Where(x => x.Account.ToUpper() == username.ToUpper()).SingleOrDefault();
-            if (accountFounded != null)
+            var request = new UserRequest();
+            request.UserName = username;
+            request.Password = password;
+            var accountFound = new UserFactory().getUserByLogin(request).UserAccount;
+            if (accountFound != null)
             {
-                var cypher = new Cryptos(Cryptos.algorithmType.DES);
-                if (cypher.Encrypt(password).Equals(accountFounded.Password))
-                {
-                    saveUserInSession(accountFounded);
-                    result = true;
-                }
+                saveUserInSession(accountFound);
+                result = true;
             }
             return result;
         }        
 
-        private static void saveUserInSession(UserAccount userAccount)
+        private static void saveUserInSession(UserAccountDto userAccount)
         {
-            _LogedUser = new UserSession(userAccount.Id);
+            _LogedUser = new UserSessionData(userAccount.Id);
             _LogedUser.EmployeeSession = getEmployeeSession(_LogedUser);
         }
 
-        private static EmployeeSession getEmployeeSession(UserSession userAccount)
+        private static EmployeeSession getEmployeeSession(UserSessionData userSession)
         {
             EmployeeSession employeeFromUser = new EmployeeSession();
-            EnterpriseEntities enterpriseEntities = new EnterpriseEntities();
-            var employeeFounded = enterpriseEntities.Employees.Where(x => x.UserAccountId == userAccount.UserId).SingleOrDefault();
-            if (employeeFounded != null) {
-                employeeFromUser.Id = employeeFounded.Id;
-                employeeFromUser.Name = employeeFounded.Person.Name;
-                employeeFromUser.LastName = employeeFounded.Person.LastName;
+            var userAccount = new UserAccountDto() { Id = userSession.UserId};
+            var request = new UserRequest() { UserAccount = userAccount };
+
+            var employeeFound = new UserFactory().getEmployeeByUserId(request).Employee;
+
+            if (employeeFound != null)
+            {
+                employeeFromUser.Id = employeeFound.Id;
+                employeeFromUser.Name = employeeFound.Person.Name;
+                employeeFromUser.LastName = employeeFound.Person.LastName;
             }
             return employeeFromUser;
         }

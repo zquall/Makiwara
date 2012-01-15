@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hades.averno
+namespace ReplicantRepository.DataTransferObjects
 {
-    class UserSession
+    public class UserSessionData
     {
         private int _UserId;
-        public UserSession (int userId)
+        public UserSessionData (int userId)
 	    {
             _UserId = userId;
 	    }
         public int UserId { get { return _UserId; } }
         public EmployeeSession EmployeeSession { get; set; }
     }
-    class EmployeeSession
+    public class EmployeeSession
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -53,15 +53,17 @@
     </Compile>
     <Compile Include="Services\BudgetRequestService.cs" />
     <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\Olympus.cs" />
     <Compile Include="Services\ProjectService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hades\Hades.csproj">
-      <Project>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</Project>
-      <Name>Hades</Name>
+    <ProjectReference Include="..\Cypher\Cypher.csproj">
+      <Project>{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}</Project>
+      <Name>Cypher</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interceptor\Interceptor.csproj">
       <Project>{776B24E4-2970-4965-8D60-D434AF3D36DB}</Project>

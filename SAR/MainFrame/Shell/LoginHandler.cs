@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
-using Hades.session;
+using Hades.Session;
 
 
 namespace MainFrame.Shell

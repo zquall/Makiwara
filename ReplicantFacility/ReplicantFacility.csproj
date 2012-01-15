@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Factory\BugetRequestFactory.cs" />
     <Compile Include="Factory\CommonFactory.cs" />
+    <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
     <Compile Include="Factory\FamilyFactory.cs" />
     <Compile Include="Factory\MenuFactory.cs" />

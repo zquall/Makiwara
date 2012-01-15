@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
-using Hades.session;
 using ReplicantRepository.DataTransferObjects;
 using CORE.DataMapper;
 
@@ -17,11 +16,11 @@ namespace CORE.Services
             
         }
 
-        public BudgetRequestResponse getNewBudgetRequest()
+        public BudgetRequestResponse getNewBudgetRequest(BudgetRequestRequest request)
         {
             var response = new BudgetRequestResponse();
             response.BudgetRequest = new BudgetRequestData();
-            var employeeFound = Olympus._Enterprise.Employees.Where(x => x.UserAccountId == Hades.session.SessionManager.EmployeeId).SingleOrDefault();
+            var employeeFound = Olympus._Enterprise.Employees.Where(x => x.UserAccountId == request.EmployeeId).SingleOrDefault();
 
             response.BudgetRequest.Employee.Id = employeeFound.Id;
             response.BudgetRequest.Employee.Person.Id = employeeFound.Person.Id;

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
-using Hades.session;
 using Interceptor.Adapters;
 using Nexus;
 using ReplicantRepository.DataTransferObjects;

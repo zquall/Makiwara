@@ -17,9 +17,9 @@ namespace ReplicantFacility.Factory
             _BudgetRequestService = _BudgetRequestService ?? new BudgetRequestService();
         }
 
-        public BudgetRequestResponse getNewBudgetRequest()
+        public BudgetRequestResponse getNewBudgetRequest( BudgetRequestRequest request)
         {
-            return _BudgetRequestService.getNewBudgetRequest();
+            return _BudgetRequestService.getNewBudgetRequest(request);
         }
 
         public BudgetRequestResponse searchBudgetRequest( BudgetRequestRequest request)

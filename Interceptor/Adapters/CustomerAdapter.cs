@@ -32,7 +32,7 @@ namespace Interceptor.Adapters
             for (int i = customersFounded.Count; i > 0 ; i--)
             {
                 var customerAlienId = customersFounded[i-1].CLI_Cliente;
-                var customerBinded = Olympus._Enterprise.BindCustomers.Where(x => x.AlienId == customerAlienId).SingleOrDefault();
+                object customerBinded = null;//Olympus._Enterprise.BindCustomers.Where(x => x.AlienId == customerAlienId).SingleOrDefault();
                 // if the procees finds the customer then it must deleted from the results of the search
                 if (customerBinded != null)
                 {
@@ -66,39 +66,39 @@ namespace Interceptor.Adapters
                 
                 if (customerFound != null)
                 {  
-                    // Add the Customer to Nexus
-                    var newCustomer = new Nexus.Customer()
-                    {
-                        Name = customerFound.CLI_Nombre,
-                        Address = customerFound.CLI_Direccion,
-                        BindCustomer = new Nexus.BindCustomer(){AlienId = customerFound.CLI_Cliente}
-                    };
+                    //// Add the Customer to Nexus
+                    //var newCustomer = new Customer()
+                    //{
+                    //    Name = customerFound.CLI_Nombre,
+                    //    Address = customerFound.CLI_Direccion,
+                    //    BindCustomer = new Nexus.BindCustomer(){AlienId = customerFound.CLI_Cliente}
+                    //};
 
-                    // Check if the Customer has a contact defined
-                    if (customerFound.CLI_Contacto != null)
-                    {
-                        // Add Person to Contact
-                        var newPerson = new Nexus.Person()
-                        {
-                            Name = customerFound.CLI_Contacto,
-                            LastName = ""                            
-                        };
-                        // Add Contact to Customer
-                        var newCustomerContact = new Nexus.CustomerContact()
-                        {
-                            Job = "Funcionario",
-                            Person = newPerson,
-                            Email = "email@no.disponible"
-                        };
-                        newCustomer.CustomerContacts.Add(newCustomerContact);
-                    }         
+                    //// Check if the Customer has a contact defined
+                    //if (customerFound.CLI_Contacto != null)
+                    //{
+                    //    // Add Person to Contact
+                    //    var newPerson = new Nexus.Person()
+                    //    {
+                    //        Name = customerFound.CLI_Contacto,
+                    //        LastName = ""                            
+                    //    };
+                    //    // Add Contact to Customer
+                    //    var newCustomerContact = new Nexus.CustomerContact()
+                    //    {
+                    //        Job = "Funcionario",
+                    //        Person = newPerson,
+                    //        Email = "email@no.disponible"
+                    //    };
+                    //    newCustomer.CustomerContacts.Add(newCustomerContact);
+                    //}         
 
-                    // First save the new customer
-                    Olympus._Enterprise.Customers.AddObject(newCustomer); 
-                    Olympus._Enterprise.SaveChanges();
+                    //// First save the new customer
+                    //Olympus._Enterprise.Customers.AddObject(newCustomer); 
+                    //Olympus._Enterprise.SaveChanges();
                     
                     // Add the customer Id
-                    request.Customer.Id = newCustomer.Id;
+                    //request.Customer.Id = newCustomer.Id;
                 }
             }           
         }

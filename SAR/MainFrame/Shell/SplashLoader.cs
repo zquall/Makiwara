@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Hades.Session;
 
 namespace MainFrame.Shell
 {
@@ -34,7 +35,7 @@ namespace MainFrame.Shell
 
         private void loadMainFrame()
         {
-            if (Hades.session.SessionManager.isLogedIn)
+            if (SessionManager.isLogedIn)
             {
                 new Dashboard().Show();
             }

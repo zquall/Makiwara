@@ -11,6 +11,8 @@ using ReplicantFacility.Factory;
 using shellCommon.Customer;
 using shellCommon.Contact;
 using ReplicantRepository.DataTransferObjects;
+using ReplicantRepository.Request;
+using Hades.Session;
 
 namespace shellProject
 {
@@ -78,7 +80,8 @@ namespace shellProject
         // Request an empty BudgetRequest
         private void loadNewRequestBudgetManager()
         {
-            loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest().BudgetRequest);
+            var request = new BudgetRequestRequest() { EmployeeId = SessionManager.EmployeeId };
+            loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest(request).BudgetRequest);
         }
 
         private void loadBudgetRequestFinder()

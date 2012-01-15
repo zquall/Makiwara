@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="averno\UserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="session\SessionManager.cs" />
+    <Compile Include="Session\SessionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,14 +44,17 @@
       <Project>{C96CCFF5-B557-4F14-9EC5-A915B88DC91F}</Project>
       <Name>Cypher</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nerv\Nerv.csproj">
-      <Project>{0F15EA41-6115-456E-B894-2E2D9F41E46D}</Project>
-      <Name>Nerv</Name>
+    <ProjectReference Include="..\ReplicantFacility\ReplicantFacility.csproj">
+      <Project>{D06CB9E6-91A5-48A2-8B26-03F93D2A5AA4}</Project>
+      <Name>ReplicantFacility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nexus\Nexus.csproj">
-      <Project>{B7879F8A-7582-4D7D-8FE6-04D14C93B82F}</Project>
-      <Name>Nexus</Name>
+    <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
+      <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
+      <Name>ReplicantRepository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Averno\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
