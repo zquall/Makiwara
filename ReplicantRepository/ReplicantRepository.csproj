@@ -54,6 +54,7 @@
     <Compile Include="DataTransferObjects\CustomerContactDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\CustomToStringMethods.cs" />
     <Compile Include="DataTransferObjects\NervObjects\CurrencyDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>

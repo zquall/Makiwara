@@ -179,6 +179,16 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 <#
         }
     }
+	
+#>
+	// Custom ToString() Method using reflection
+	// Autor: Jaime Torner
+	public override string ToString() 
+	{		
+		return CustomToStringMethods.ToString(this);
+	}
+
+<#
     region.End();
 
     region.Begin("Complex Properties");

@@ -7,7 +7,7 @@ using System.Data.Objects.DataClasses;
 
 namespace CORE.DataMapper
 {
-    internal static class Mapper
+    internal static class MapperOld
     {
         internal static PhoneData Map(Nexus.PersonPhone phone)
         {

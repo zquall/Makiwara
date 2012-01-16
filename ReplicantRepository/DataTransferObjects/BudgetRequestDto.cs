@@ -89,6 +89,13 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private int _employeeId;
+    	// Custom ToString() Method using reflection
+    	// Autor: Jaime Torner
+    	public override string ToString() 
+    	{		
+    		return CustomToStringMethods.ToString(this);
+    	}
+    
 
         #endregion
         #region Navigation Properties

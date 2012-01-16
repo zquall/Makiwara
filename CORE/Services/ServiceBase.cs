@@ -7,33 +7,17 @@ using Nerv;
 using ReplicantRepository.DataTransferObjects.NervObjects;
 using Nexus;
 using ReplicantRepository.DataTransferObjects;
+using CORE.DataMapper;
 
 namespace CORE.Services
 {
     public class ServiceBase
     {
-        private static bool _MapperStoped = true;
         public ServiceBase()
         {
-            InitializeMapper();
+            MapperPaths.InitializeMapper();
         }
 
-        private static void InitializeMapper()
-        {
-            if (_MapperStoped)
-            {
-                // Nerv Mapping
-                Mapper.CreateMap<UserAccount, UserAccountDto>();
-
-                // Company Mapping
-                Mapper.CreateMap<Employee, EmployeeDto>();
-                Mapper.CreateMap<Person, PersonDto>();
-                Mapper.CreateMap<Customer, CustomerDto>();
-
-                // Just start the mapper once
-                _MapperStoped = false;
-            }
-        }
 
     }
 }

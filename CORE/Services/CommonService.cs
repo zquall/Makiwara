@@ -5,10 +5,12 @@ using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
+using AutoMapper;
+using Nexus;
 
 namespace CORE.Services
 {
-    public class CommonService
+    public class CommonService : ServiceBase
     {
         public CommonService()
         {
@@ -19,10 +21,8 @@ namespace CORE.Services
             List<PhoneTypeDto> phoneTypeList = new List<PhoneTypeDto>();
             foreach (var tmpPhoneType in Olympus._Enterprise.PhoneTypes.ToList())
 	        {
-                PhoneTypeDto phoneType = new PhoneTypeDto();
-                phoneType.Id = tmpPhoneType.Id;
-                phoneType.Name = tmpPhoneType.Name;
-                phoneTypeList.Add(phoneType);
+                Olympus._Enterprise.Detach(tmpPhoneType);
+                phoneTypeList.Add( Mapper.Map<PhoneType, PhoneTypeDto>(tmpPhoneType));
 	        }            
             return phoneTypeList;
         }

@@ -41,7 +41,7 @@ namespace CORE.Services
                 var budgetResquestFound = Olympus._Enterprise.BudgetRequests.Where(x => x.Id == request.BudgetResquestId).SingleOrDefault();
                 if ( budgetResquestFound != null )
                 {    
-                    response.BudgetRequest = Mapper.Map(budgetResquestFound);
+                    response.BudgetRequest = MapperOld.Map(budgetResquestFound);
                 }                
             }         
             return response;

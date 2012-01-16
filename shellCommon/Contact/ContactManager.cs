@@ -177,12 +177,13 @@ namespace shellCommon.Contact
 
         private void cmbPhone_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var comboBoxEdit = sender as ComboBoxEdit;
-            var phoneType = comboBoxEdit.EditValue as PhoneTypeDto;
-            if (phoneType != null){
-                comboBoxEdit.Text = phoneType.Name;
-            }            
+            //var comboBoxEdit = sender as ComboBoxEdit;
+            //var phoneType = comboBoxEdit.EditValue as PhoneTypeDto;
+            //if (phoneType != null){
+            //    comboBoxEdit.Text = phoneType.Name;
+            //}            
         }
+          
 
     }
 }
