@@ -9,7 +9,7 @@ namespace ReplicantRepository.DataTransferObjects
     {
         public CustomerData()
         {
-            ContactList = new List<ContactData>();
+            ContactList = new List<CustomerContactDto>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,6 +17,6 @@ namespace ReplicantRepository.DataTransferObjects
         public string AddressOptional { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
-        public List<ContactData> ContactList { get; set; }
+        public List<CustomerContactDto> ContactList { get; set; }
     } 
 }

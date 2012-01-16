@@ -14,15 +14,15 @@ namespace CORE.Services
         {
         }
 
-        public List<PhoneTypeData> getPhoneTypeList()
+        public List<PhoneTypeDto> getPhoneTypeList()
         {
-            List<PhoneTypeData> phoneTypeList = new List<PhoneTypeData>();
-            foreach (var phoneType in Olympus._Enterprise.PhoneTypes.ToList())
+            List<PhoneTypeDto> phoneTypeList = new List<PhoneTypeDto>();
+            foreach (var tmpPhoneType in Olympus._Enterprise.PhoneTypes.ToList())
 	        {
-                PhoneTypeData phoneTypeData = new PhoneTypeData();
-                phoneTypeData.Id = phoneType.Id;
-                phoneTypeData.Name = phoneType.Name;
-                phoneTypeList.Add(phoneTypeData);
+                PhoneTypeDto phoneType = new PhoneTypeDto();
+                phoneType.Id = tmpPhoneType.Id;
+                phoneType.Name = tmpPhoneType.Name;
+                phoneTypeList.Add(phoneType);
 	        }            
             return phoneTypeList;
         }

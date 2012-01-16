@@ -8,7 +8,7 @@ namespace ReplicantRepository.Response
 {
     public class CustomerResponse
     {
-        public CustomerData Customer { get; set; }
+        public CustomerDto Customer { get; set; }
         public List<CustomerData> CustomerList { get; set; }        
     } 
 }

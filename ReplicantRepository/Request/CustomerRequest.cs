@@ -9,9 +9,9 @@ namespace ReplicantRepository.Request
 {
     public class CustomerRequest
     {
-        public CustomerData Customer { get; set; }
+        public CustomerDto Customer { get; set; }
         public string SearchCustomerQuery { get; set; }
-        public ContactData Contact { get; set; }
+        public CustomerContactDto Contact { get; set; }
     }
 
 }

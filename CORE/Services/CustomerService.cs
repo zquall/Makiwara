@@ -7,11 +7,11 @@ using ReplicantRepository.Request;
 using Interceptor.Adapters;
 using Nexus;
 using ReplicantRepository.DataTransferObjects;
-using CORE.DataMapper;
+using AutoMapper;
 
 namespace CORE.Services
 {
-    public class CustomerService
+    public class CustomerService : ServiceBase
     {
         protected CustomerAdapter _CustomerAdapter;
 
@@ -68,7 +68,7 @@ namespace CORE.Services
             {
                 var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.Customer.Id).SingleOrDefault();
                 // Instance the customer reference, empty for any other data
-                response.Customer = Mapper.Map(customerFound);               
+                response.Customer = Mapper.Map<Customer, CustomerDto>(customerFound);               
             }
             return response;
         }
@@ -82,20 +82,20 @@ namespace CORE.Services
                 contactFound.Person.Name = request.Contact.Person.Name;
                 contactFound.Person.LastName = request.Contact.Person.LastName;
                 contactFound.Job = request.Contact.Job;
-                foreach (var phone in request.Contact.Person.PhoneList)
+                foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
                 {
-                    if (phone.Id != 0)
+                    if (tmpPersonPhone.Id == 0)
                     {
-                        var tmpPhone = contactFound.Person.PersonPhones.Where(x => x.Id == phone.Id).SingleOrDefault();
-                        tmpPhone.Phone = phone.PhoneNumber;
-                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
+                        var tmpPhone = new PersonPhone();
+                        tmpPhone.Phone = tmpPersonPhone.Phone;
+                        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
+                        contactFound.Person.PersonPhones.Add(tmpPhone);
                     }
                     else
                     {
-                        var tmpPhone = new PersonPhone();
-                        tmpPhone.Phone = phone.PhoneNumber;
-                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
-                        contactFound.Person.PersonPhones.Add(tmpPhone);
+                        var tmpPhone = contactFound.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
+                        tmpPhone.Phone = tmpPersonPhone.Phone;
+                        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
                     }
                 }
                 Olympus._Enterprise.SaveChanges();
@@ -114,25 +114,25 @@ namespace CORE.Services
                 customer.Phone = request.Customer.Phone;
                 customer.Fax = request.Customer.Fax;
 
-
                 var contactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.Contact.Id).SingleOrDefault();
                 contactFound.Person.Name = request.Contact.Person.Name;
                 contactFound.Person.LastName = request.Contact.Person.LastName;
                 contactFound.Job = request.Contact.Job;
-                foreach (var phone in request.Contact.Person.PhoneList)
+                foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
                 {
-                    if (phone.Id != 0)
+                    if (tmpPersonPhone.Id == 0)
                     {
-                        var tmpPhone = contactFound.Person.PersonPhones.Where(x => x.Id == phone.Id).SingleOrDefault();
-                        tmpPhone.Phone = phone.PhoneNumber;
-                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
+                        var personPhone = new PersonPhone();
+                        personPhone.Phone = tmpPersonPhone.Phone;
+                        personPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
+                        contactFound.Person.PersonPhones.Add(personPhone);
                     }
                     else
                     {
-                        var tmpPhone = new PersonPhone();
-                        tmpPhone.Phone = phone.PhoneNumber;
-                        tmpPhone.PhoneTypeId = phone.PhoneType.Id;
-                        contactFound.Person.PersonPhones.Add(tmpPhone);
+                        var personPhone = contactFound.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
+                        personPhone.Phone = tmpPersonPhone.Phone;
+                        personPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
+                        
                     }
                 }
                 Olympus._Enterprise.SaveChanges();

@@ -58,31 +58,6 @@ namespace CORE.DataMapper
             return tmpPersonData;
         }
 
-        internal static ContactData Map(Nexus.CustomerContact contact)
-        {
-            ContactData tmpContactData = null;
-            if (contact != null)
-            {
-                tmpContactData = new ContactData();
-                tmpContactData.Id = contact.Id;
-                tmpContactData.Job = contact.Job;
-                tmpContactData.Email = contact.Email;
-                tmpContactData.Person = Map(contact.Person); 
-            }
-            return tmpContactData;
-        }
-
-        internal static List<ContactData> Map(EntityCollection<Nexus.CustomerContact> collection)
-        {
-            List<ContactData> list = new List<ContactData>();
-            foreach (var item in collection)
-            {
-                var mappedData = Map(item);
-                list.Add(mappedData);
-            }
-            return list;
-        }
-
         internal static CustomerData Map(Nexus.Customer customer)
         {
             CustomerData tmpCustomerData = null;
@@ -92,7 +67,6 @@ namespace CORE.DataMapper
                 tmpCustomerData.Id = customer.Id;
                 tmpCustomerData.Name = customer.Name;
                 tmpCustomerData.Address = customer.Address;
-                tmpCustomerData.ContactList = Map(customer.CustomerContacts); 
             }
             return tmpCustomerData;
         }

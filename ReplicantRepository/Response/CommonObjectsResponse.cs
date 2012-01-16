@@ -10,7 +10,7 @@ namespace ReplicantRepository.Response
 
     public class CommonObjectsResponse
     {
-        public List<PhoneTypeData> PhoneTypeList { get; set; }
+        public List<PhoneTypeDto> PhoneTypeList { get; set; }
     }
     
 

@@ -30,7 +30,7 @@ namespace shellCommon.Contact
             // Detect if is Edit or New Contact
             if(Tag != null){
                 // Must return the contact by Tag, can be saved on DB
-                loadContact(Tag as ContactData);
+                loadContact(Tag as CustomerContactDto);
             }
 
         }
@@ -39,12 +39,12 @@ namespace shellCommon.Contact
         private void loadPhoneTypes()
         {
             var phoneTypeList = new CommonFactory().getPhoneTypeList().PhoneTypeList;
-            loadPhoneTypeCombo(cmbPhoneTypeA, phoneTypeList ,0);
+            loadPhoneTypeCombo(cmbPhoneTypeA, phoneTypeList, 0);
             loadPhoneTypeCombo(cmbPhoneTypeB, phoneTypeList, 1);
             loadPhoneTypeCombo(cmbPhoneTypeC, phoneTypeList, 2);
         }
 
-        private void loadPhoneTypeCombo(ComboBoxEdit comboBoxEdit, List<PhoneTypeData> phoneTypeList, int defaultPhoneTypeIndex)
+        private void loadPhoneTypeCombo(ComboBoxEdit comboBoxEdit, List<PhoneTypeDto> phoneTypeList, int defaultPhoneTypeIndex)
         {
             comboBoxEdit.Properties.Items.Clear();
             comboBoxEdit.Properties.Items.AddRange(phoneTypeList);
@@ -52,102 +52,102 @@ namespace shellCommon.Contact
         }
 
         // Loads the Contact on the form
-        private void loadContact(ContactData contactData)
+        private void loadContact(CustomerContactDto customerContact)
         {
-            txtName.Text = contactData.Person.Name;
-            txtLastName.Text = contactData.Person.LastName;
-            txtJob.Text = contactData.Job;
-            txtEmail.Text = contactData.Email;
-            
-            if (contactData.Person.PhoneList != null)
+            txtName.Text = customerContact.Person.Name;
+            txtLastName.Text = customerContact.Person.LastName;
+            txtJob.Text = customerContact.Job;
+            txtEmail.Text = customerContact.Email;
+
+            if (customerContact.Person.PersonPhones != null)
             {
-                if (contactData.Person.PhoneList.Count > 0)
+                int index = 0;
+                foreach (var personPhone in customerContact.Person.PersonPhones)
                 {
-                    txtPhoneA.Text = contactData.Person.PhoneList[0].PhoneNumber;
-                    cmbPhoneTypeA.SelectedItem = contactData.Person.PhoneList[0].PhoneType;
-                    if (contactData.Person.PhoneList.Count > 1)
+                    switch (index)
                     {
-                        txtPhoneB.Text = contactData.Person.PhoneList[1].PhoneNumber;
-                        cmbPhoneTypeB.SelectedItem = contactData.Person.PhoneList[1].PhoneType;
-                        if (contactData.Person.PhoneList.Count > 2)
-                        {
-                            txtPhoneC.Text = contactData.Person.PhoneList[2].PhoneNumber;
-                            cmbPhoneTypeC.SelectedItem = contactData.Person.PhoneList[2].PhoneType;
-                        }
+                        case 0:
+                            txtPhoneA.Text = personPhone.Phone;
+                            cmbPhoneTypeA.SelectedItem = personPhone.PhoneType;
+                            break;
+                        case 1:
+                            txtPhoneB.Text = personPhone.Phone;
+                            cmbPhoneTypeB.SelectedItem = personPhone.PhoneType;
+                            break;
+                        case 2:
+                            txtPhoneC.Text = personPhone.Phone;
+                            cmbPhoneTypeC.SelectedItem = personPhone.PhoneType;
+                            break;
+                        default:
+                            break;
                     }
-                } 
+                    index++;
+                }             
             }
         }
         
         #endregion
 
         #region Save Process
-        private ContactData captureContact()
+
+        private CustomerContactDto captureContact()
         {
             if (Tag == null)
             {
-                Tag = new ContactData();
+                Tag = new CustomerContactDto();
             }
-            var ContactTag = Tag as ContactData;
+            var ContactTag = Tag as CustomerContactDto;
+            ContactTag.Person = new PersonDto();
             ContactTag.Person.Name = txtName.Text;
             ContactTag.Person.LastName = txtLastName.Text;
             ContactTag.Job = txtJob.Text;
             ContactTag.Email = txtEmail.Text;
-            ContactTag.Person.PhoneList = ContactTag.Person.PhoneList ?? new List<PhoneData>();
-            // Phone A
-            if (txtPhoneA.Text != null || txtPhoneA.Text != string.Empty)
+            ContactTag.Person.PersonPhones = ContactTag.Person.PersonPhones ?? new List<PersonPhoneDto>();
+
+            int index = 0;
+            foreach (var tmpPersonPhone in ContactTag.Person.PersonPhones)
             {
-                PhoneData tmpPhone = new PhoneData();
-                if (ContactTag.Person.PhoneList.Count > 0)
+                switch (index)
                 {
-                    tmpPhone = ContactTag.Person.PhoneList[0];
+                    case 0:
+                        // Phone A
+                        if (txtPhoneA.Text != null || txtPhoneA.Text != string.Empty)
+                        {
+                            tmpPersonPhone.Phone = txtPhoneA.Text;
+                            tmpPersonPhone.PhoneType = cmbPhoneTypeA.SelectedItem as PhoneTypeDto;
+                        }
+                        break;
+                    case 1:
+                        // Phone B
+                        if (txtPhoneB.Text != null || txtPhoneB.Text != string.Empty)
+                        {
+                            tmpPersonPhone.Phone = txtPhoneB.Text;
+                            tmpPersonPhone.PhoneType = cmbPhoneTypeB.SelectedItem as PhoneTypeDto;
+                        }
+                        break;
+                    case 2:
+                        // Phone A
+                        if (txtPhoneC.Text != null || txtPhoneC.Text != string.Empty)
+                        {
+                            tmpPersonPhone.Phone = txtPhoneC.Text;
+                            tmpPersonPhone.PhoneType = cmbPhoneTypeC.SelectedItem as PhoneTypeDto;
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    ContactTag.Person.PhoneList.Add(tmpPhone);
-                }
-                tmpPhone.PhoneNumber = txtPhoneA.Text;
-                tmpPhone.PhoneType = cmbPhoneTypeA.SelectedItem as PhoneTypeData;                
-            }
-            // Phone B
-            if (txtPhoneB.Text != null || txtPhoneB.Text != string.Empty)
-            {
-                PhoneData tmpPhone = new PhoneData();
-                if (ContactTag.Person.PhoneList.Count > 1)
-                {
-                    tmpPhone = ContactTag.Person.PhoneList[1];
-                }
-                else
-                {
-                    ContactTag.Person.PhoneList.Add(tmpPhone);
-                }
-                tmpPhone.PhoneNumber = txtPhoneB.Text;
-                tmpPhone.PhoneType = cmbPhoneTypeB.SelectedItem as PhoneTypeData;
-            }
-            // Phone C
-            if (txtPhoneC.Text != null || txtPhoneC.Text != string.Empty)
-            {
-                PhoneData tmpPhone = new PhoneData();
-                if (ContactTag.Person.PhoneList.Count > 2)
-                {
-                    tmpPhone = ContactTag.Person.PhoneList[2];
-                }
-                else
-                {
-                    ContactTag.Person.PhoneList.Add(tmpPhone);
-                }
-                tmpPhone.PhoneNumber = txtPhoneC.Text;
-                tmpPhone.PhoneType = cmbPhoneTypeC.SelectedItem as PhoneTypeData;
-            }
+                index++;
+            }   
             return ContactTag;
         }
 
         private void saveContact()
         {
             var request = new CustomerRequest();
-            request.Contact = Tag as ContactData;
+            request.Contact = captureContact();
             new CustomerFactory().saveContact(request);
         }
+
         #endregion
 
         #region UI Events
@@ -173,6 +173,16 @@ namespace shellCommon.Contact
             DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
         
-        #endregion        
+        #endregion              
+
+        private void cmbPhone_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBoxEdit = sender as ComboBoxEdit;
+            var phoneType = comboBoxEdit.EditValue as PhoneTypeDto;
+            if (phoneType != null){
+                comboBoxEdit.Text = phoneType.Name;
+            }            
+        }
+
     }
 }

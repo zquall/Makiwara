@@ -168,7 +168,6 @@
             this.Name = "LoginHandler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Control de Acceso";
-            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.handleLoginMini_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

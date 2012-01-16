@@ -28,6 +28,7 @@ namespace CORE.Services
                 // Company Mapping
                 Mapper.CreateMap<Employee, EmployeeDto>();
                 Mapper.CreateMap<Person, PersonDto>();
+                Mapper.CreateMap<Customer, CustomerDto>();
 
                 // Just start the mapper once
                 _MapperStoped = false;

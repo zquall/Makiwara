@@ -126,6 +126,7 @@
             this.cmbContacts.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContacts_Properties_ButtonClick);
             this.cmbContacts.Size = new System.Drawing.Size(330, 20);
             this.cmbContacts.TabIndex = 13;
+            this.cmbContacts.SelectedIndexChanged += new System.EventHandler(this.cmbContacts_SelectedIndexChanged);
             // 
             // btnSave
             // 

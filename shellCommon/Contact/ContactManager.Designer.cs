@@ -45,6 +45,7 @@
             this.txtPhoneA = new DevExpress.XtraEditors.TextEdit();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtJob.Properties)).BeginInit();
@@ -57,11 +58,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneB.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(12, 12);
+            this.labelControl1.Location = new System.Drawing.Point(17, 25);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(37, 13);
             this.labelControl1.TabIndex = 0;
@@ -69,14 +72,14 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(55, 9);
+            this.txtName.Location = new System.Drawing.Point(60, 25);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(200, 20);
             this.txtName.TabIndex = 1;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(12, 38);
+            this.labelControl2.Location = new System.Drawing.Point(12, 54);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(42, 13);
             this.labelControl2.TabIndex = 2;
@@ -84,7 +87,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(16, 64);
+            this.labelControl3.Location = new System.Drawing.Point(21, 80);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(33, 13);
             this.labelControl3.TabIndex = 3;
@@ -92,7 +95,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(21, 90);
+            this.labelControl4.Location = new System.Drawing.Point(26, 106);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(28, 13);
             this.labelControl4.TabIndex = 4;
@@ -100,21 +103,21 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(55, 35);
+            this.txtLastName.Location = new System.Drawing.Point(60, 51);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(200, 20);
             this.txtLastName.TabIndex = 5;
             // 
             // txtJob
             // 
-            this.txtJob.Location = new System.Drawing.Point(55, 61);
+            this.txtJob.Location = new System.Drawing.Point(60, 77);
             this.txtJob.Name = "txtJob";
             this.txtJob.Size = new System.Drawing.Size(200, 20);
             this.txtJob.TabIndex = 6;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(55, 87);
+            this.txtEmail.Location = new System.Drawing.Point(60, 103);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 20);
             this.txtEmail.TabIndex = 7;
@@ -127,9 +130,9 @@
             this.groupControl1.Controls.Add(this.txtPhoneC);
             this.groupControl1.Controls.Add(this.txtPhoneB);
             this.groupControl1.Controls.Add(this.txtPhoneA);
-            this.groupControl1.Location = new System.Drawing.Point(12, 122);
+            this.groupControl1.Location = new System.Drawing.Point(287, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(243, 112);
+            this.groupControl1.Size = new System.Drawing.Size(203, 131);
             this.groupControl1.TabIndex = 8;
             this.groupControl1.Text = "Telefonos";
             // 
@@ -141,6 +144,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeC.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeC.TabIndex = 14;
+            this.cmbPhoneTypeC.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // cmbPhoneTypeB
             // 
@@ -150,6 +154,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeB.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeB.TabIndex = 13;
+            this.cmbPhoneTypeB.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // cmbPhoneTypeA
             // 
@@ -159,31 +164,32 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeA.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeA.TabIndex = 12;
+            this.cmbPhoneTypeA.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // txtPhoneC
             // 
             this.txtPhoneC.Location = new System.Drawing.Point(96, 85);
             this.txtPhoneC.Name = "txtPhoneC";
-            this.txtPhoneC.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneC.Size = new System.Drawing.Size(100, 20);
             this.txtPhoneC.TabIndex = 11;
             // 
             // txtPhoneB
             // 
             this.txtPhoneB.Location = new System.Drawing.Point(96, 56);
             this.txtPhoneB.Name = "txtPhoneB";
-            this.txtPhoneB.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneB.Size = new System.Drawing.Size(100, 20);
             this.txtPhoneB.TabIndex = 10;
             // 
             // txtPhoneA
             // 
             this.txtPhoneA.Location = new System.Drawing.Point(96, 27);
             this.txtPhoneA.Name = "txtPhoneA";
-            this.txtPhoneA.Size = new System.Drawing.Size(142, 20);
+            this.txtPhoneA.Size = new System.Drawing.Size(100, 20);
             this.txtPhoneA.TabIndex = 9;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(99, 247);
+            this.btnOk.Location = new System.Drawing.Point(334, 149);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 9;
@@ -193,12 +199,28 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(180, 247);
+            this.btnCancel.Location = new System.Drawing.Point(415, 149);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.txtName);
+            this.groupControl2.Controls.Add(this.txtLastName);
+            this.groupControl2.Controls.Add(this.txtJob);
+            this.groupControl2.Controls.Add(this.txtEmail);
+            this.groupControl2.Controls.Add(this.labelControl4);
+            this.groupControl2.Controls.Add(this.labelControl1);
+            this.groupControl2.Controls.Add(this.labelControl3);
+            this.groupControl2.Controls.Add(this.labelControl2);
+            this.groupControl2.Location = new System.Drawing.Point(12, 12);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(267, 131);
+            this.groupControl2.TabIndex = 11;
+            this.groupControl2.Text = "Datos del Cliente";
             // 
             // ContactManager
             // 
@@ -206,19 +228,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(266, 282);
+            this.ClientSize = new System.Drawing.Size(501, 181);
             this.ControlBox = false;
+            this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.groupControl1);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtJob);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.labelControl1);
             this.Name = "ContactManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Gestor de Contactos";
@@ -235,8 +250,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneB.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -259,5 +276,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeC;
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeB;
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhoneTypeA;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
     }
 }

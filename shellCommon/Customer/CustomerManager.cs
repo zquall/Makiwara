@@ -82,26 +82,26 @@ namespace shellCommon.Customer
         #endregion     
 
         #region Save Process
-        private CustomerData captureCustomer()
+        private CustomerDto captureCustomer()
         {
             // If tag is null this means that the customer is new
             if (Tag == null)
             {
-                Tag = new CustomerData();
+                Tag = new CustomerDto();
             }
 
             // get the instance reference from the tag
-            var customerTag = Tag as CustomerData;
+            var customerTag = Tag as CustomerDto;
             customerTag.Name = txtCustomerName.Text;
             customerTag.Address = txtCustomerAddress.Text;
             customerTag.AddressOptional = txtCustomerAddressOptional.Text;
             customerTag.Phone = txtCustomerPhone.Text;
             customerTag.Fax = txtCustomerFax.Text;
 
-            customerTag.ContactList = new List<ContactData>();
-            foreach (ContactData contact in cmbContacts.Properties.Items)
+            customerTag.CustomerContacts = new List<CustomerContactDto>();
+            foreach (CustomerContactDto contact in cmbContacts.Properties.Items)
             {
-                customerTag.ContactList.Add(contact);
+                customerTag.CustomerContacts.Add(contact);
             }
             return customerTag;
         }
@@ -109,10 +109,20 @@ namespace shellCommon.Customer
         private void saveCustomer()
         {
             var request = new CustomerRequest();
-            request.Customer = Tag as CustomerData;
+            request.Customer = captureCustomer();
             new CustomerFactory().saveCustomer(request);
         }
         #endregion
+
+        private void cmbContacts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBoxEdit = sender as ComboBoxEdit;
+            var customerContact = comboBoxEdit.EditValue as CustomerContactDto;
+            if (customerContact != null)
+            {
+                comboBoxEdit.Text = customerContact.Person.Name + " " + customerContact.Person.LastName;
+            }   
+        }
        
     }
 }

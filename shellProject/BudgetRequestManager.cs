@@ -126,7 +126,7 @@ namespace shellProject
         }
 
         // Load the Customer
-        private void loadContact(ContactData contact)
+        private void loadContact(CustomerContactDto contact)
         {
             if (contact != null)
             {
@@ -136,7 +136,7 @@ namespace shellProject
         }
 
         // Load the Contact List
-        private void loadContactList(List<ContactData> contactList)
+        private void loadContactList(List<CustomerContactDto> contactList)
         {
             if (contactList.Count > 0)
             {
