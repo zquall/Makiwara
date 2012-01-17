@@ -21,6 +21,10 @@ namespace ReplicantRepository.DataTransferObjects
                     dynamicObject = o as CustomerContactDto;
                     result = dynamicObject.Person.Name + " " + dynamicObject.Person.LastName;
                     break;
+                case "ReplicantRepository.DataTransferObjects.PersonPhoneDto":
+                    dynamicObject = o as PersonPhoneDto;
+                    result = dynamicObject.Phone;
+                    break;
                 default:
                     result = o.GetType().ToString();
                     break;

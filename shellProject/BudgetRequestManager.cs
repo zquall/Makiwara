@@ -125,13 +125,14 @@ namespace shellProject
             }
         }
 
-        // Load the Customer
+        // Load the Contact
         private void loadContact(CustomerContactDto contact)
         {
             if (contact != null)
             {
                 cmbContact.SelectedItem = contact;
                 lblContactJob.Text = contact.Job;
+                loadPhoneList(contact.Person.PersonPhones);
             }
         }
 
@@ -150,14 +151,14 @@ namespace shellProject
         }
         
         // Load the Contact default phone
-        private void loadPhoneList(List<PhoneData> phoneList)
+        private void loadPhoneList(ICollection<PersonPhoneDto> phoneList)
         {
-            if (phoneList != null)
+            cmbPhone.Properties.Items.Clear();
+            foreach (var phone in phoneList)
             {
-                cmbPhone.Properties.Items.Clear();
-                cmbPhone.Properties.Items.AddRange(phoneList);
-                cmbPhone.SelectedIndex = 0;
+                cmbPhone.Properties.Items.Add(phone);
             }
+            cmbPhone.SelectedIndex = 0;
         }
 
         // Load the Contact default phone
@@ -183,6 +184,13 @@ namespace shellProject
         }      
 
         #endregion
+
+        private void cmbContact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBoxEdit = sender as ComboBoxEdit;
+            var contact = comboBoxEdit.SelectedItem as CustomerContactDto;
+            loadContact(contact);
+        }
 
        
        

@@ -403,6 +403,7 @@
             this.cmbContact.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContact_Properties_ButtonClick);
             this.cmbContact.Size = new System.Drawing.Size(171, 20);
             this.cmbContact.TabIndex = 13;
+            this.cmbContact.SelectedIndexChanged += new System.EventHandler(this.cmbContact_SelectedIndexChanged);
             // 
             // cmbPhone
             // 

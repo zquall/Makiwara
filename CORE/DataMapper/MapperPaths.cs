@@ -42,6 +42,11 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<List<CustomerContactDto>, List<CustomerContact>>();
                 Mapper.CreateMap<PhoneType, PhoneTypeDto>();
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
+                Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
+                Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
+                Mapper.CreateMap<Project, ProjectDto>();
+                Mapper.CreateMap<ProjectDto, Project>();
+                
 
 
                 // Just start the mapper once
