@@ -129,15 +129,19 @@
     <Compile Include="Request\BudgetRequestRequest.cs" />
     <Compile Include="Request\UserRequest.cs" />
     <Compile Include="Request\CustomerRequest.cs" />
+    <Compile Include="Request\MeasureRequest.cs" />
     <Compile Include="Request\MenuRequest.cs" />
     <Compile Include="Request\ProjectRequest.cs" />
+    <Compile Include="Request\ResourceTypeRequest.cs" />
     <Compile Include="Response\CommonObjectsResponse.cs" />
     <Compile Include="Response\UserResponse.cs" />
     <Compile Include="Response\EmployeeResponse.cs" />
     <Compile Include="Response\CustomerResponse.cs" />
+    <Compile Include="Response\MeasureResponse.cs" />
     <Compile Include="Response\ProjectResponse.cs" />
     <Compile Include="Response\BudgetRequestResponse.cs" />
     <Compile Include="Response\MenuResponse.cs" />
+    <Compile Include="Response\ResourceTypeResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

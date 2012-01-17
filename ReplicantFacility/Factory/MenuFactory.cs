@@ -11,6 +11,7 @@ namespace ReplicantFacility.Factory
     public class MenuFactory
     {
         private static MenuService _MenuService;
+
         public MenuFactory()
         {
             _MenuService = _MenuService ?? new MenuService();

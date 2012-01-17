@@ -43,11 +43,6 @@ namespace shellProject
 
         #region Object-mapping methods
 
-        /// <summary>
-        /// Method responsible for setting the properties of an object type TaskData in a object type Task
-        /// </summary>
-        /// <param name="source">Data source</param>
-        /// <param name="destination">Data destination</param>
         private void mapper(TaskData source, Task destination)
         {
             destination.Name = source.Name;
@@ -61,11 +56,6 @@ namespace shellProject
             destination.Milestone = source.Milestone;
         }
 
-        /// <summary>
-        /// Method responsible for setting the properties of an object type Task in a object type TaskData
-        /// </summary>
-        /// <param name="source">Data source</param>
-        /// <param name="destination">Data destination</param>
         private void mapper(Task source, TaskData destination)
         {
             #region Propidades no seteables
@@ -97,21 +87,11 @@ namespace shellProject
             destination.MilestoneResolved = source.MilestoneResolved;
             #endregion
 
-            #region Save Dependencies
-
-            //foreach (TaskDependency t in source.Dependencies)
-            //{
-            //    TaskData task = new TaskData(); t.
-            //    mapper(t, task);
-            //     list.Add(task);
-            //}
-
-            #endregion
         }
 
         #endregion
 
-        #region Métodos encargados de cargar un proyecto con sus tareas y recursos
+        #region Loads Methods
 
         /// <summary>
         /// Este método se encarga de establecer las dependencias de una tarea, utilizando la lista selectedTask que ha sido 
@@ -151,6 +131,10 @@ namespace shellProject
                 //Se cargan todas las tareas en esta lista para usarla como lugar de fácil
                 _allTask.Add(tmpTask);
 
+                //Se los recursos de las tareas
+                if (t.resourceList != null)
+                    tmpTask.Tag = t.resourceList;
+                
                 //Se incluyen las dependencias de la tarea
                 if (t.Dependencies.Count > 0)
                     loadDependencies(t.Dependencies, tmpTask.Dependencies);
@@ -178,7 +162,7 @@ namespace shellProject
 
         #endregion
 
-        #region Métodos encargados de salvar el proyecto con sus tareas y recursos
+        #region Save Methods
 
         /// <summary>
         /// Este método se encarga de convertir la lista de objetos Task en objetos TaskData para poder ser guardadas junto al proyecto
@@ -192,6 +176,12 @@ namespace shellProject
             {
                 TaskData task = new TaskData();
                 mapper(t, task);
+
+                if (t.Tag != null)
+                {
+                    task.resourceList = t.Tag as List<ResourceData>;
+                }
+
                 list.Add(task);
             }
 
@@ -462,6 +452,26 @@ namespace shellProject
         #endregion
 
         #region UI Events
+
+        /// <summary>
+        /// Método que se ejecuta cuando se da doble click sobre alguna tarea
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void projectGantt_TaskDialogDisplaying(object sender, Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingEventArgs e)
+        {
+            //Se saca al tarea seleccionada el ODT
+            Infragistics.Win.UltraWinGanttView.UltraGanttView ugv = sender as Infragistics.Win.UltraWinGanttView.UltraGanttView;
+            Task t = ugv.ActiveTask;
+
+            //Se instancia la pantalla donde se veran los datos de la tarea
+            TaskInfo ti = new TaskInfo();
+            ti.Tag = t;
+            ti.Project = _project;
+            ti.ShowDialog();
+            //Se cancela la pantalla por defecto que trae el control
+            e.Cancel = true;
+        }
 
         private void barButtonCreateProject_ItemClick(object sender, ItemClickEventArgs e)
         {

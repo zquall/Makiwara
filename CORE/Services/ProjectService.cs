@@ -13,182 +13,123 @@ namespace CORE.Services
         {
         }
 
-        private List<TaskData> getDependencies(Nexus.Task t)
+        #region Object Mapping Methods
+
+        private void mapper(ResourceTypeData source, Nexus.ResourceType destination)
         {
-            List<TaskData> dependencies = new List<TaskData>();
-
-            dependencies = mapper(t.Task1);
-
-            return dependencies;
-        }
-
-        private List<TaskData> mapper(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
-        {
-            List<TaskData> listTask = new List<TaskData>();
-
-            if (tasks != null)
-            {
-                foreach (Nexus.Task task in tasks)
-                {
-                    TaskData tmpTask = new TaskData();
-
-                    tmpTask.Id = task.Id;
-                    tmpTask.ProjectId = task.ProjectId;
-                    tmpTask.ParentId = task.ParentId;
-                    tmpTask.Name = task.Name;
-                    tmpTask.Duration = TimeSpan.Parse(task.Duration);
-                    tmpTask.PercentComplete = task.PercentComplete;
-                    tmpTask.StartDateTime = task.StartDateTime;
-                    tmpTask.EndDateTime = task.EndDateTime;
-                    tmpTask.Notes = task.Notes;
-                    tmpTask.RowNumber = task.RowNumber;
-                    tmpTask.BindingListIndex = task.BindingListIndex;
-                    tmpTask.CompleteThrough = task.CompleteThrough;
-                    tmpTask.DeadLine = task.DeadLine;
-                    tmpTask.DurationResolved = TimeSpan.Parse(task.DurationResolved);
-                    tmpTask.EndDateTimeResolved = task.EndDateTimeResolved;
-                    tmpTask.Expanded = task.Expanded;
-                    tmpTask.IsRoot = task.IsRoot;
-                    tmpTask.IsSummary = task.IsSumary;
-                    tmpTask.TaskLevel = task.TaskLevel;
-                    tmpTask.Milestone = task.Milestone;
-                    tmpTask.MilestoneResolved = task.MilestoneResolved;
-
-                    tmpTask.Dependencies = getDependencies(task);
-
-                    listTask.Add(tmpTask);
-                }
-            }
-
-            return listTask;
-        }
-
-        private List<ProjectData> getProjects(List<Nexus.Project> projectFounded)
-        {
-            List<ProjectData> ProjectList = new List<ProjectData>();
-
-            if (projectFounded != null)
-            {
-                // Fill the response with the customers founded
-                foreach (var project in projectFounded)
-                {
-                    ProjectData tmpProjectData = new ProjectData();
-
-                    tmpProjectData.Id = project.Id;
-                    tmpProjectData.Name = project.Name;
-                    tmpProjectData.BudgetRequestId = project.BudgetRequestId;
-                    tmpProjectData.CustumerId = project.CustumerId;
-                    tmpProjectData.CustumerName = project.Customer.Name;
-                    tmpProjectData.EmployeeId = project.EmployeeId;
-                    tmpProjectData.ManagementApproval = project.ManagementApproval;
-                    tmpProjectData.CxcApproval = project.CxcApproval;
-                    tmpProjectData.CreateDate = project.CreateDate;
-                    tmpProjectData.ContingenciesRate = project.ContingenciesRate;
-                    tmpProjectData.GuaranteeRate = project.GuaranteeRate;
-                    tmpProjectData.TotalUtilityRate = project.TotalUtilityRate;
-                    tmpProjectData.DiscountRate = project.DiscountRate;
-                    tmpProjectData.SalesTax = project.SalesTax;
-                    tmpProjectData.OthersRate = project.OthersRate;
-                    tmpProjectData.Comments = project.Comments;
-
-                    tmpProjectData.taskList = mapper(project.Tasks);
-
-                    ProjectList.Add(tmpProjectData);
-                }
-            }
-
-
-            return ProjectList;
-        }
-
-        public ProjectResponse searchProject(ProjectRequest request)
-        {
-            const int maximunResultRows = 20;
-
-            var response = new ProjectResponse();
-
-            // Inicitialize the list of customers
-            response.ProjectList = new List<ProjectData>();
-
-            //var projectFoundedById = Olympus._Enterprise.Projects.Where(x => x.Id.Contains(request.SearchProjectQuery)).OrderBy(y => y.Id).Take(maximunResultRows).ToList();
-            var projectFoundByName = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
-            var projectFoundByCustumer = Olympus._Enterprise.Projects.Where(x => x.Customer.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Customer.Name).Take(maximunResultRows).ToList();
-
-            response.ProjectList.AddRange(getProjects(projectFoundByName));
-            response.ProjectList.AddRange(getProjects(projectFoundByCustumer));
-
-            return response;
-        }
-
-        public int nextCode()
-        {
-            int code = Olympus._Enterprise.Projects.Max(x => x.Id) + 1;
-
-            return code;
-        }
-
-
-        #region Save Project
-
-        /// <summary>
-        /// Method responsible for setting the properties of an object type Nexus.Task in a object type Nexus.Task
-        /// </summary>
-        /// <param name="source">Data source</param>
-        /// <param name="destination">Data destination</param>
-        private void mapper(Nexus.Task source, Nexus.Task destination)
-        {
-            #region Propidades no seteables
-            //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
-            #endregion
-
-            destination.ProjectId = source.ProjectId;
             destination.Id = source.Id;
-
             destination.Name = source.Name;
-            destination.Duration = source.Duration.ToString();
-            destination.PercentComplete = (float)source.PercentComplete;
-            destination.StartDateTime = source.StartDateTime;
-            destination.EndDateTime = source.EndDateTime;
-            destination.Notes = source.Notes;
-            destination.DeadLine = source.DeadLine;
-            destination.Expanded = source.Expanded;
-            destination.Milestone = source.Milestone;
-            destination.RowNumber = source.RowNumber;
-            destination.TaskLevel = source.TaskLevel;
-
-            #region Properties that are not necessary
-            destination.IsRoot = source.IsRoot;
-            destination.IsSumary = source.IsSumary;
-            destination.BindingListIndex = source.BindingListIndex;
-            destination.CompleteThrough = source.CompleteThrough;
-            destination.DurationResolved = source.DurationResolved.ToString();
-            destination.EndDateTimeResolved = source.EndDateTimeResolved;
-            destination.MilestoneResolved = source.MilestoneResolved;
-            #endregion
-
-            #region Save Dependencies
-
-            //foreach (TaskDependency t in source.Dependencies)
-            //{
-            //    TaskData task = new TaskData(); t.
-            //    mapper(t, task);
-            //     list.Add(task);
-            //}
-
-            #endregion
+            destination.IsTaxed = source.IsTaxed;
         }
 
-        /// <summary>
-        /// Method responsible for setting the properties of an object type TaskData in a object type Nexus.Task
-        /// </summary>
-        /// <param name="source">Data source</param>
-        /// <param name="destination">Data destination</param>
+        private void mapper(Nexus.ResourceType source, ResourceTypeData destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.IsTaxed = source.IsTaxed;
+        }
+
+        private void mapper(Nexus.ResourceType source, Nexus.ResourceType destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.IsTaxed = source.IsTaxed;
+        }
+
+
+        private void mapper(MeasureData source, Nexus.Measure destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.Symbol = source.Symbol;
+        }
+
+        private void mapper(Nexus.Measure source, MeasureData destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.Symbol = source.Symbol;
+        }
+
+        private void mapper(Nexus.Measure source, Nexus.Measure destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.Symbol = source.Symbol;
+        }
+
+
+        private void mapper(ResourceData source, Nexus.Resource destination)
+        {
+            destination.Id = source.Id;
+            destination.ProjectId = source.ProjectId;
+            destination.TaskId = source.TaskId;
+
+            //Nexus.Measure nm = new Nexus.Measure();
+            //mapper(source.Measure, nm);
+            //destination.Measure = nm;
+            destination.MeasureId = source.Measure.Id;
+
+            //Nexus.ResourceType nrt = new Nexus.ResourceType();
+            //mapper(source.ResourceType, nrt);
+            //destination.ResourceType = nrt;
+            destination.ResourceTypeId = source.ResourceType.Id;
+
+            destination.Code = source.Code;
+            destination.Name = source.Name;
+            destination.Amount = source.Amount;
+            destination.Cost = source.Cost;
+            destination.TotalCost = source.TotalCost;
+            destination.RealUsed = source.RealUsed;
+        }
+
+        private void mapper(Nexus.Resource source, ResourceData destination)
+        {
+            destination.Id = source.Id;
+            destination.ProjectId = source.ProjectId;
+            destination.TaskId = source.TaskId;
+
+            MeasureData md = new MeasureData();
+            mapper(source.Measure, md);
+            destination.Measure = md;
+
+            ResourceTypeData rtd = new ResourceTypeData();
+            mapper(source.ResourceType, rtd);
+            destination.ResourceType = rtd;
+
+            destination.Code = source.Code;
+            destination.Name = source.Name;
+            destination.Amount = source.Amount;
+            destination.Cost = source.Cost;
+            destination.TotalCost = source.TotalCost;
+            destination.RealUsed = source.RealUsed;
+        }
+
+        private void mapper(Nexus.Resource source, Nexus.Resource destination)
+        {
+            destination.Id = source.Id;
+            destination.ProjectId = source.ProjectId;
+            destination.TaskId = source.TaskId;
+
+            Nexus.Measure nm = new Nexus.Measure();
+            mapper(source.Measure, nm);
+            destination.Measure = nm;
+
+            Nexus.ResourceType nrt = new Nexus.ResourceType();
+            mapper(source.ResourceType, nrt);
+            destination.ResourceType = nrt;
+
+            destination.Code = source.Code;
+            destination.Name = source.Name;
+            destination.Amount = source.Amount;
+            destination.Cost = source.Cost;
+            destination.TotalCost = source.TotalCost;
+            destination.RealUsed = source.RealUsed;
+        }
+
+
         private void mapper(TaskData source, Nexus.Task destination)
         {
-            #region Propidades no seteables
-            //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
-            #endregion
-
             destination.ProjectId = source.ProjectId;
             destination.Id = source.Id;
 
@@ -213,25 +154,290 @@ namespace CORE.Services
             destination.EndDateTimeResolved = source.EndDateTimeResolved;
             destination.MilestoneResolved = source.MilestoneResolved;
             #endregion
+        }
 
-            #region Save Dependencies
+        private void mapper(Nexus.Task source, TaskData destination)
+        {
+            destination.Id = source.Id;
+            destination.ProjectId = source.ProjectId;
+            destination.ParentId = source.ParentId;
+            destination.Name = source.Name;
+            destination.Duration = TimeSpan.Parse(source.Duration);
+            destination.PercentComplete = source.PercentComplete;
+            destination.StartDateTime = source.StartDateTime;
+            destination.EndDateTime = source.EndDateTime;
+            destination.Notes = source.Notes;
+            destination.RowNumber = source.RowNumber;
+            destination.BindingListIndex = source.BindingListIndex;
+            destination.CompleteThrough = source.CompleteThrough;
+            destination.DeadLine = source.DeadLine;
+            destination.DurationResolved = TimeSpan.Parse(source.DurationResolved);
+            destination.EndDateTimeResolved = source.EndDateTimeResolved;
+            destination.Expanded = source.Expanded;
+            destination.IsRoot = source.IsRoot;
+            destination.IsSummary = source.IsSumary;
+            destination.TaskLevel = source.TaskLevel;
+            destination.Milestone = source.Milestone;
+            destination.MilestoneResolved = source.MilestoneResolved;
 
-            //foreach (TaskDependency t in source.Dependencies)
-            //{
-            //    TaskData task = new TaskData(); t.
-            //    mapper(t, task);
-            //     list.Add(task);
-            //}
+            destination.Dependencies = loadDependencies(source);
+            destination.resourceList = loadResources(source);
+        }
 
-            #endregion
+
+
+        private void mapper(Nexus.Project source, ProjectData destination)
+        {
+            destination.Id = source.Id;
+            destination.Name = source.Name;
+            destination.BudgetRequestId = source.BudgetRequestId;
+            destination.CustumerId = source.CustumerId;
+            destination.CustumerName = source.Customer.Name;
+            destination.EmployeeId = source.EmployeeId;
+            destination.ManagementApproval = source.ManagementApproval;
+            destination.CxcApproval = source.CxcApproval;
+            destination.CreateDate = source.CreateDate;
+            destination.ContingenciesRate = source.ContingenciesRate;
+            destination.GuaranteeRate = source.GuaranteeRate;
+            destination.TotalUtilityRate = source.TotalUtilityRate;
+            destination.DiscountRate = source.DiscountRate;
+            destination.SalesTax = source.SalesTax;
+            destination.OthersRate = source.OthersRate;
+            destination.Comments = source.Comments;
+
+            destination.taskList = loadTasks(source.Tasks);
+        }
+
+        private void mapper(ProjectData source, Nexus.Project destination)
+        {
+            destination.Id = source.Id;
+            destination.BudgetRequestId = source.BudgetRequestId;
+            destination.CustumerId = source.CustumerId;
+            destination.EmployeeId = source.EmployeeId;
+            destination.Name = source.Name;
+            destination.ManagementApproval = source.ManagementApproval;
+            destination.CxcApproval = source.CxcApproval;
+            destination.CreateDate = source.CreateDate;
+            destination.ContingenciesRate = source.ContingenciesRate;
+            destination.GuaranteeRate = source.GuaranteeRate;
+            destination.TotalUtilityRate = source.TotalUtilityRate;
+            destination.DiscountRate = source.DiscountRate;
+            destination.SalesTax = source.SalesTax;
+            destination.OthersRate = source.OthersRate;
+            destination.Comments = source.Comments;
+        }
+
+        #endregion
+
+        #region Loads Methods
+
+        /// <summary>
+        /// Este método se encarga de cargar las dependecias de las tareas que se van cargando, es recursivo junto al 
+        /// mapper de esta clase para mapear las mismas dependencias.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        private List<TaskData> loadDependencies(Nexus.Task t)
+        {
+            List<TaskData> dependencies = new List<TaskData>();
+
+            dependencies = loadTasks(t.Task1);
+
+            return dependencies;
         }
 
         /// <summary>
-        /// Método que se encarga de obtener las tareas del proyecto que sera almacenado en la BD
+        /// Este método se encarga de obtener la lista de recursos de una tarea
+        /// </summary>
+        /// <param name="t">Tarea de la cual se va a extraer la lista de recursos</param>
+        /// <returns>La lista de recursos de la tarea</returns>
+        private List<ResourceData> loadResources(Nexus.Task t)
+        {
+            List<ResourceData> resources = new List<ResourceData>();
+
+            foreach(Nexus.Resource r in t.Resources)
+            {
+                ResourceData rd = new ResourceData();
+                mapper(r, rd);
+                resources.Add(rd);
+            }
+
+            return resources;
+        }
+
+        /// <summary>
+        /// Este método se encarga de cargar las tareas desde Nexus a una lista de TaskData
+        /// </summary>
+        /// <param name="tasks">Lista de tareas de Nexus de tipo Task</param>
+        /// <returns>Lista de tareas de tipo TaskData</returns>
+        private List<TaskData> loadTasks(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
+        {
+            List<TaskData> listTask = new List<TaskData>();
+
+            if (tasks != null)
+            {
+                foreach (Nexus.Task task in tasks)
+                {
+                    TaskData tmpTask = new TaskData();
+                    mapper(task, tmpTask);
+                    listTask.Add(tmpTask);
+                }
+            }
+
+            return listTask;
+        }
+        
+        /// <summary>
+        /// Este método se encarga de cargar los proyectos desde Nexus a una lista de ProjectData
+        /// </summary>
+        /// <param name="projectFounded">Lista de proyectos de tipo Project</param>
+        /// <returns>Lista de proyectos de tipo ProjectData</returns>
+        private List<ProjectData> loadProjects(List<Nexus.Project> projectFounded)
+        {
+            List<ProjectData> ProjectList = new List<ProjectData>();
+
+            if (projectFounded != null)
+            {
+                foreach (var project in projectFounded)
+                {
+                    ProjectData tmpProjectData = new ProjectData();
+                    mapper(project, tmpProjectData);
+                    ProjectList.Add(tmpProjectData);
+                }
+            }
+
+
+            return ProjectList;
+        }
+
+        #endregion
+
+        #region Saves Methods
+
+        private void saveResources(List<ResourceData> resources, Nexus.Task task)
+        {
+            foreach (ResourceData rd in resources)
+            {
+                Nexus.Resource resource = Olympus._Enterprise.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
+                if (resource != null)
+                {
+                    mapper(rd, resource);
+                }
+                else
+                {
+                    Nexus.Resource r = new Nexus.Resource();
+                    mapper(rd, r);
+                    Olympus._Enterprise.AddToResources(r);
+                }
+            }
+        }
+
+        private void saveTasks(List<TaskData> tasks, Nexus.Project projectFound)
+        {
+            foreach (TaskData t in tasks.OrderBy(x => x.RowNumber))
+            {
+                Nexus.Task task = Olympus._Enterprise.Tasks.Where(y => y.ProjectId == t.ProjectId).Where(x => x.Id == t.Id).SingleOrDefault();
+
+                if (task != null)
+                {
+                    mapper(t, task);
+                    //******************************************************************************************************************
+                    if (t.resourceList != null)
+                    {
+                        saveResources(t.resourceList, task);
+                    }
+                    //******************************************************************************************************************
+                }
+                else
+                {
+                    Olympus._Enterprise.AddToTasks(task);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Este método se encarga de buscar el siguinte código de proyecto
+        /// </summary>
+        /// <returns>Código de proyecto siguiente</returns>
+        public int nextCode()
+        {
+            int code = Olympus._Enterprise.Projects.Max(x => x.Id) + 1;
+
+            return code;
+        }
+
+        /// <summary>
+        /// Este método se encarga de buscar los proyectos en la Base de Datos
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public ProjectResponse searchProject(ProjectRequest request)
+        {
+            const int maximunResultRows = 20;
+
+            var response = new ProjectResponse();
+
+            // Inicitialize the list of customers
+            response.ProjectList = new List<ProjectData>();
+
+            //var projectFoundedById = Olympus._Enterprise.Projects.Where(x => x.Id.Contains(request.SearchProjectQuery)).OrderBy(y => y.Id).Take(maximunResultRows).ToList();
+            var projectFoundByName = Olympus._Enterprise.Projects.Where(x => x.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
+            var projectFoundByCustumer = Olympus._Enterprise.Projects.Where(x => x.Customer.Name.ToUpper().Contains(request.SearchProjectQuery.ToUpper())).OrderBy(y => y.Customer.Name).Take(maximunResultRows).ToList();
+
+            response.ProjectList.AddRange(loadProjects(projectFoundByName));
+            response.ProjectList.AddRange(loadProjects(projectFoundByCustumer));
+
+            return response;
+        }
+
+        /// <summary>
+        /// Método que se encarga de acomodar y guardar un projecto
+        /// </summary>
+        /// <param name="request">Objeto donde viene el proyecto a ser almacenado en BD</param>
+        public void saveProject(ProjectRequest request)
+        {
+            // Validate if the project exist
+            Nexus.Project projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
+
+            //Si el proyecto existe se actualiza el mismo, si no existe se crea uno nuevo
+            if (projectFound != null)
+            {
+                mapper(request.Project, projectFound);
+                if (request.Project.taskList != null)
+                {
+                    saveTasks(request.Project.taskList, projectFound);
+                }
+            }
+            else
+            {
+                Nexus.Project newProject = new Nexus.Project();
+                mapper(request.Project, newProject);
+                Olympus._Enterprise.AddToProjects(newProject);
+            }
+            
+            Olympus._Enterprise.SaveChanges();
+        }
+
+        #endregion
+
+
+
+
+
+
+        #region BASURA
+
+        ///ESTE METODO NO SE ESTA UTILIZANDO
+        /// <summary>
+        /// Método que se encarga de crear una lista de Nexus.Task que sera almacenada en la BD
         /// </summary>
         /// <param name="taskList">Origen de las tareas</param>
         /// <returns>Lista con las tareas a ser almacenadas en la BD</returns>
-        private System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> getTask(List<TaskData> taskList)
+        private System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> loadTask(List<TaskData> taskList)
         {
             System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks = new System.Data.Objects.DataClasses.EntityCollection<Nexus.Task>();
 
@@ -245,71 +451,49 @@ namespace CORE.Services
             return tasks;
         }
 
+        /// ESTE METODO NO SE ESTA UTILIZANDO
         /// <summary>
-        /// Se encarga de copiar los datos de un objeto ProjectData en un objeto Nexus.Project
+        /// 
         /// </summary>
-        /// <param name="project">Origen de los datos</param>
-        /// <returns>Objeto Nexus.Project con datos a ser guardados</returns>
-        private Nexus.Project mapper(ProjectData project)
+        /// <param name="task"></param>
+        private void saveResources(Nexus.Task task)
         {
-            Nexus.Project p = new Nexus.Project();
-
-            p.Id = project.Id;
-            p.BudgetRequestId = project.BudgetRequestId;
-            p.CustumerId = project.CustumerId;
-            p.EmployeeId = project.EmployeeId;
-            p.Name = project.Name;
-            p.ManagementApproval = project.ManagementApproval;
-            p.CxcApproval = project.CxcApproval;
-            p.CreateDate = project.CreateDate;
-            p.ContingenciesRate = project.ContingenciesRate;
-            p.GuaranteeRate = project.GuaranteeRate;
-            p.TotalUtilityRate = project.TotalUtilityRate;
-            p.DiscountRate = project.DiscountRate;
-            p.SalesTax = project.SalesTax;
-            p.OthersRate = project.OthersRate;
-            p.Comments = project.Comments;
-            p.Tasks = getTask(project.taskList);
-
-            return p;
-        }
-
-
-
-        /// <summary>
-        /// Método que se encarga de acomodar y guardar un projecto
-        /// </summary>
-        /// <param name="request">Objeto donde viene el proyecto a ser almacenado en BD</param>
-        public void saveProject(ProjectRequest request)
-        {
-            // Validate if the contact Exist
-            Nexus.Project projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
-
-            if (projectFound != null)
+            foreach (Nexus.Resource r in task.Resources)
             {
-                projectFound = mapper(request.Project);
-                foreach (Nexus.Task t in projectFound.Tasks)
+                Nexus.Resource resource = Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault();
+                if (resource != null)
                 {
-                    Nexus.Task task = Olympus._Enterprise.Tasks.Where(y => y.ProjectId == t.ProjectId).Where(x => x.Id == t.Id).SingleOrDefault();
-
-                    if (task != null)
-                    {
-                        mapper(t, task);
-                    }
-                    else
-                    {
-                        Olympus._Enterprise.AddToTasks(task);
-                    }
+                    mapper(r, resource);
+                }
+                else
+                {
+                    Olympus._Enterprise.AddToResources(resource);
                 }
             }
-            else
-            {
-                Nexus.Project newProject = new Nexus.Project();
-                newProject = mapper(request.Project);
-                Olympus._Enterprise.AddToProjects(newProject);
-            }
+        }
 
-            Olympus._Enterprise.SaveChanges();
+        /// ESTE METODO NO SE ESTA UTILIZANDO
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        private void mapper(Nexus.Task source, Nexus.Task destination)
+        {
+            destination.ProjectId = source.ProjectId;
+            destination.Id = source.Id;
+
+            destination.Name = source.Name;
+            destination.Duration = source.Duration;
+            destination.PercentComplete = source.PercentComplete;
+            destination.StartDateTime = source.StartDateTime;
+            destination.EndDateTime = source.EndDateTime;
+            destination.Notes = source.Notes;
+            destination.DeadLine = source.DeadLine;
+            destination.Expanded = source.Expanded;
+            destination.Milestone = source.Milestone;
+            destination.RowNumber = source.RowNumber;
+            destination.TaskLevel = source.TaskLevel;
         }
 
         #endregion

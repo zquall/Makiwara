@@ -62,22 +62,40 @@ namespace ReplicantRepository.Response
 
     public class ResourceData
     {
-        public int Id { get; set; }
-        public int MeasureId { get; set; }
-        public ResourcceTypeData ResourceType { get; set; }
-        public int TaskId { get; set; }
+        public Int64 Id { get; set; }
+        public int ProjectId { get; set; }
+        public Int64 TaskId { get; set; }
+        public MeasureData Measure { get; set; }
+        public ResourceTypeData ResourceType { get; set; }
         public int Code { get; set; }
         public string Name { get; set; }
-        public float Amount { get; set; }
-        public double Cost { get; set; }
-        public double TotalCost { get; set; }
-        public float RealUsed { get; set; }
+        public double Amount { get; set; }
+        public decimal Cost { get; set; }
+        public decimal TotalCost { get; set; }
+        public double RealUsed { get; set; }
     }
 
-    public class ResourcceTypeData
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public bool IsTaxed { get; set; }
-    }
+    //public class ResourceTypeData
+    //{
+    //    public int Id { get; set; }
+    //    public string Name { get; set; }
+    //    public bool IsTaxed { get; set; }
+
+    //    public override string ToString()
+    //    {
+    //        return Name;
+    //    }
+    //}
+
+    //public class MesureData
+    //{
+    //    public int Id { get; set; }
+    //    public string Name { get; set; }
+    //    public string Symbol { get; set; }
+
+    //    public override string ToString()
+    //    {
+    //        return Symbol;
+    //    }
+    //}
 }

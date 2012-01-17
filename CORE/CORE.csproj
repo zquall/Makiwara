@@ -57,9 +57,11 @@
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\MeasureService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\Olympus.cs" />
     <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\ResourceTypeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cypher\Cypher.csproj">

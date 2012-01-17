@@ -320,7 +320,9 @@
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Name).Width = 100;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Notes).Text = "Notas";
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.PercentComplete).Text = "% Completado";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.PercentComplete).Visible = Infragistics.Win.DefaultableBoolean.True;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Resources).Text = "Recursos";
+            this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Resources).Visible = Infragistics.Win.DefaultableBoolean.False;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.StartDateTime).Text = "Incio";
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.StartDateTime).Width = 70;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.RowNumber).Text = "#";
@@ -330,6 +332,7 @@
             this.projectGantt.TabIndex = 0;
             this.projectGantt.Text = "ultraGanttView1";
             this.projectGantt.VerticalSplitterMinimumResizeWidth = 10;
+            this.projectGantt.TaskDialogDisplaying += new Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingHandler(this.projectGantt_TaskDialogDisplaying);
             this.projectGantt.ActiveTaskChanging += new Infragistics.Win.UltraWinGanttView.ActiveTaskChangingHandler(this.projectGantt_ActiveTaskChanging);
             // 
             // ultraCalendarInfo

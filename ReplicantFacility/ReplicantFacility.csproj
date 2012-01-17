@@ -45,6 +45,7 @@
     <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
     <Compile Include="Factory\FamilyFactory.cs" />
+    <Compile Include="Factory\MeasureFactory.cs" />
     <Compile Include="Factory\MenuFactory.cs" />
     <Compile Include="Factory\ProjectFactory.cs" />
     <Compile Include="Factory\ResourceFactory.cs" />

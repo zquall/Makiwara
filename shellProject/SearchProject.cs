@@ -104,7 +104,6 @@ namespace shellProject
 
         private void cmdOk_Click(object sender, EventArgs e)
         {
-
             _project = viewProjects.GetFocusedRow() as ProjectData;
 
             this.DialogResult = DialogResult.OK;
