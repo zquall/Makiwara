@@ -30,6 +30,26 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
+        public virtual int ProjectId
+        {
+     
+    
+            get { return _projectId; }
+            set
+            {
+                if (_projectId != value)
+                {
+                    if (Task != null && Task.ProjectId != value)
+                    {
+                        Task = null;
+                    }
+                    _projectId = value;
+                }
+            }
+        }
+        private int _projectId;
+    
+    	[DataMember]
         public virtual int MeasureId
         {
      
@@ -72,9 +92,22 @@ namespace ReplicantRepository.DataTransferObjects
     	[DataMember]
         public virtual long TaskId
         {
-            get;
-            set;
+     
+    
+            get { return _taskId; }
+            set
+            {
+                if (_taskId != value)
+                {
+                    if (Task != null && Task.Id != value)
+                    {
+                        Task = null;
+                    }
+                    _taskId = value;
+                }
+            }
         }
+        private long _taskId;
     
     	[DataMember]
         public virtual int Code
@@ -159,6 +192,22 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private ResourceTypeDto _resourceType;
+    
+    	[DataMember]
+        public virtual TaskDto Task
+        {
+            get { return _task; }
+            set
+            {
+                if (!ReferenceEquals(_task, value))
+                {
+                    var previousValue = _task;
+                    _task = value;
+                    FixupTask(previousValue);
+                }
+            }
+        }
+        private TaskDto _task;
 
         #endregion
         #region Association Fixup
@@ -199,6 +248,30 @@ namespace ReplicantRepository.DataTransferObjects
                 if (ResourceTypeId != ResourceType.Id)
                 {
                     ResourceTypeId = ResourceType.Id;
+                }
+            }
+        }
+    
+        private void FixupTask(TaskDto previousValue)
+        {
+            if (previousValue != null && previousValue.Resources.Contains(this))
+            {
+                previousValue.Resources.Remove(this);
+            }
+    
+            if (Task != null)
+            {
+                if (!Task.Resources.Contains(this))
+                {
+                    Task.Resources.Add(this);
+                }
+                if (TaskId != Task.Id)
+                {
+                    TaskId = Task.Id;
+                }
+                if (ProjectId != Task.ProjectId)
+                {
+                    ProjectId = Task.ProjectId;
                 }
             }
         }

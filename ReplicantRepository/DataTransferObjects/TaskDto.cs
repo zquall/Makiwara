@@ -209,6 +209,39 @@ namespace ReplicantRepository.DataTransferObjects
         private ProjectDto _project;
     
     	[DataMember]
+        public virtual ICollection<ResourceDto> Resources
+        {
+            get
+            {
+                if (_resources == null)
+                {
+                    var newCollection = new FixupCollection<ResourceDto>();
+                    newCollection.CollectionChanged += FixupResources;
+                    _resources = newCollection;
+                }
+                return _resources;
+            }
+            set
+            {
+                if (!ReferenceEquals(_resources, value))
+                {
+                    var previousValue = _resources as FixupCollection<ResourceDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupResources;
+                    }
+                    _resources = value;
+                    var newValue = value as FixupCollection<ResourceDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupResources;
+                    }
+                }
+            }
+        }
+        private ICollection<ResourceDto> _resources;
+    
+    	[DataMember]
         public virtual ICollection<TaskDto> Task1
         {
             get
@@ -293,6 +326,28 @@ namespace ReplicantRepository.DataTransferObjects
                 if (ProjectId != Project.Id)
                 {
                     ProjectId = Project.Id;
+                }
+            }
+        }
+    
+        private void FixupResources(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ResourceDto item in e.NewItems)
+                {
+                    item.Task = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ResourceDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Task, this))
+                    {
+                        item.Task = null;
+                    }
                 }
             }
         }

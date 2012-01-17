@@ -37,7 +37,7 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual bool isTaxed
+        public virtual bool IsTaxed
         {
             get;
             set;
