@@ -21,12 +21,28 @@ namespace CORE.DataMapper
             {
                 // Nerv Mapping
                 Mapper.CreateMap<UserAccount, UserAccountDto>();
+                Mapper.CreateMap<UserAccountDto, UserAccount>();
+
+                // Nerv Reverse Mapping
 
                 // Company Mapping
                 Mapper.CreateMap<Employee, EmployeeDto>();
+                Mapper.CreateMap<EmployeeDto, Employee>();
                 Mapper.CreateMap<Person, PersonDto>();
-                Mapper.CreateMap<Customer, CustomerDto>();
+                Mapper.CreateMap<PersonDto, Person>();
+                Mapper.CreateMap<PersonPhone, PersonPhoneDto>();
+                Mapper.CreateMap<PersonPhoneDto, PersonPhone>();
                 Mapper.CreateMap<PhoneType, PhoneTypeDto>();
+                Mapper.CreateMap<PhoneTypeDto, PhoneType>();
+                Mapper.CreateMap<Customer, CustomerDto>();
+                Mapper.CreateMap<CustomerDto, Customer>();
+                Mapper.CreateMap<CustomerContact, CustomerContactDto>();
+                Mapper.CreateMap<CustomerContactDto, CustomerContact>();
+                Mapper.CreateMap<IQueryable<CustomerContact>, ICollection<CustomerContactDto>>();
+                Mapper.CreateMap<List<CustomerContactDto>, List<CustomerContact>>();
+                Mapper.CreateMap<PhoneType, PhoneTypeDto>();
+                Mapper.CreateMap<PhoneTypeDto, PhoneType>();
+
 
                 // Just start the mapper once
                 _MapperStoped = false;

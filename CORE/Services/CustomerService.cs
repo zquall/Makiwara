@@ -67,8 +67,20 @@ namespace CORE.Services
             if (request.Customer.Id > 0) 
             {
                 var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.Customer.Id).SingleOrDefault();
-                // Instance the customer reference, empty for any other data
-                response.Customer = Mapper.Map<Customer, CustomerDto>(customerFound);               
+                Olympus._Enterprise.Detach(customerFound);
+                response.Customer = Mapper.Map<CustomerDto>(customerFound);
+                response.Customer.CustomerContacts = getCustomerContacts(request).Customer.CustomerContacts;
+            }
+            return response;
+        }
+
+        public CustomerResponse getCustomerContacts(CustomerRequest request)
+        {
+            var response = new CustomerResponse();
+            if (request.Customer.Id > 0)
+            {
+                var customerContactList = Olympus._Enterprise.CustomerContacts.Where(x => x.CustomerId == request.Customer.Id);
+                response.Customer.CustomerContacts = Mapper.Map<ICollection<CustomerContactDto>>(customerContactList);
             }
             return response;
         }
@@ -102,41 +114,20 @@ namespace CORE.Services
             }
         }
 
-        public void saveCustomer(CustomerRequest request)
+        public CustomerResponse saveCustomer(CustomerRequest request)
         {
-            // Validate if saves a new customer
+            CustomerResponse response = new CustomerResponse();
+            // Check if is a new customer
             if (request.Customer.Id == 0)
             {
-                Customer customer = new Customer();
-                customer.Name = request.Customer.Name;
-                customer.Address = request.Customer.Address;
-                customer.AddressOptional = request.Customer.AddressOptional;
-                customer.Phone = request.Customer.Phone;
-                customer.Fax = request.Customer.Fax;
-
-                var contactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.Contact.Id).SingleOrDefault();
-                contactFound.Person.Name = request.Contact.Person.Name;
-                contactFound.Person.LastName = request.Contact.Person.LastName;
-                contactFound.Job = request.Contact.Job;
-                foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
-                {
-                    if (tmpPersonPhone.Id == 0)
-                    {
-                        var personPhone = new PersonPhone();
-                        personPhone.Phone = tmpPersonPhone.Phone;
-                        personPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                        contactFound.Person.PersonPhones.Add(personPhone);
-                    }
-                    else
-                    {
-                        var personPhone = contactFound.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
-                        personPhone.Phone = tmpPersonPhone.Phone;
-                        personPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                        
-                    }
-                }
+                // Map the Customer with Contacts
+                Customer customer = Mapper.Map<CustomerDto, Customer>(request.Customer);
+                Olympus._Enterprise.Customers.AddObject(customer);
                 Olympus._Enterprise.SaveChanges();
+                response.Customer = request.Customer;
+                response.Customer.Id = customer.Id;
             }
+            return response;
         }
 
     }

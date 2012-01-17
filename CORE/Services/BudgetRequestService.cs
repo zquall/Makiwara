@@ -69,7 +69,7 @@ namespace CORE.Services
                     BudgetRequestData tmpBudgetRequestData = new BudgetRequestData();
                     tmpBudgetRequestData.Id = budgetRequest.Id;
                     tmpBudgetRequestData.ProjectName = budgetRequest.ProjectName;
-                    tmpBudgetRequestData.Customer = new CustomerData();
+                    tmpBudgetRequestData.Customer = new CustomerDto();
                     tmpBudgetRequestData.Customer.Name = budgetRequest.Customer.Name;
                     tmpBudgetRequestData.DateModified = budgetRequest.DateModified;
                     tmpBudgetRequestData.Employee.Person.Name = budgetRequest.Employee.Person.Name;

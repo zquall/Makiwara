@@ -32,9 +32,9 @@ namespace ReplicantFacility.Factory
             _CustomerService.saveContact(request);
         }
 
-        public void saveCustomer(CustomerRequest request)
+        public CustomerResponse saveCustomer(CustomerRequest request)
         {
-            _CustomerService.saveContact(request);
+            return _CustomerService.saveCustomer(request);
         }
         
     }

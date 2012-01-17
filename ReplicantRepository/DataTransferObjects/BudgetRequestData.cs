@@ -10,12 +10,12 @@ namespace ReplicantRepository.DataTransferObjects
         public BudgetRequestData()
         {
             Employee = new EmployeeData();
-            Customer = new CustomerData();
+            Customer = new CustomerDto();
         }
         public int? Id { get; set; }
         public string ProjectName { get; set; }
         public DateTime DateModified { get; set; }
         public EmployeeData Employee { get; set; }
-        public CustomerData Customer { get; set; }
+        public CustomerDto Customer { get; set; }
     }
 }

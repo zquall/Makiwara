@@ -68,14 +68,17 @@ namespace shellCommon.Contact
                     {
                         case 0:
                             txtPhoneA.Text = personPhone.Phone;
+                            txtPhoneA.Tag = personPhone;
                             cmbPhoneTypeA.SelectedItem = personPhone.PhoneType;
                             break;
                         case 1:
                             txtPhoneB.Text = personPhone.Phone;
+                            txtPhoneB.Tag = personPhone;
                             cmbPhoneTypeB.SelectedItem = personPhone.PhoneType;
                             break;
                         case 2:
                             txtPhoneC.Text = personPhone.Phone;
+                            txtPhoneC.Tag = personPhone;
                             cmbPhoneTypeC.SelectedItem = personPhone.PhoneType;
                             break;
                         default:
@@ -102,43 +105,32 @@ namespace shellCommon.Contact
             ContactTag.Person.LastName = txtLastName.Text;
             ContactTag.Job = txtJob.Text;
             ContactTag.Email = txtEmail.Text;
-            ContactTag.Person.PersonPhones = ContactTag.Person.PersonPhones ?? new List<PersonPhoneDto>();
+            ContactTag.Person.PersonPhones = new List<PersonPhoneDto>();
 
-            int index = 0;
-            foreach (var tmpPersonPhone in ContactTag.Person.PersonPhones)
-            {
-                switch (index)
-                {
-                    case 0:
-                        // Phone A
-                        if (txtPhoneA.Text != null || txtPhoneA.Text != string.Empty)
-                        {
-                            tmpPersonPhone.Phone = txtPhoneA.Text;
-                            tmpPersonPhone.PhoneType = cmbPhoneTypeA.SelectedItem as PhoneTypeDto;
-                        }
-                        break;
-                    case 1:
-                        // Phone B
-                        if (txtPhoneB.Text != null || txtPhoneB.Text != string.Empty)
-                        {
-                            tmpPersonPhone.Phone = txtPhoneB.Text;
-                            tmpPersonPhone.PhoneType = cmbPhoneTypeB.SelectedItem as PhoneTypeDto;
-                        }
-                        break;
-                    case 2:
-                        // Phone A
-                        if (txtPhoneC.Text != null || txtPhoneC.Text != string.Empty)
-                        {
-                            tmpPersonPhone.Phone = txtPhoneC.Text;
-                            tmpPersonPhone.PhoneType = cmbPhoneTypeC.SelectedItem as PhoneTypeDto;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                index++;
-            }   
+            // Phone A
+            capturePersonPhone(txtPhoneA, cmbPhoneTypeA, ContactTag.Person.PersonPhones);           
+            // Phone B
+            capturePersonPhone(txtPhoneB, cmbPhoneTypeB, ContactTag.Person.PersonPhones);
+            // Phone C
+            capturePersonPhone(txtPhoneC, cmbPhoneTypeC, ContactTag.Person.PersonPhones);
+         
             return ContactTag;
+        }
+
+        private void capturePersonPhone(TextEdit txtPersonPhone, ComboBoxEdit cmbPhoneType, ICollection<PersonPhoneDto> personPhones)
+        {
+            var personPhone = txtPersonPhone.Tag as PersonPhoneDto;
+            if (txtPersonPhone.Text != null)
+            {
+                if (personPhone == null)
+                {
+                    personPhone = new PersonPhoneDto();
+                }
+                personPhone.Phone = txtPersonPhone.Text;
+                var phoneType = cmbPhoneType.SelectedItem as PhoneTypeDto;
+                personPhone.PhoneTypeId = phoneType.Id;
+                personPhones.Add(personPhone);
+            }
         }
 
         private void saveContact()
@@ -175,15 +167,7 @@ namespace shellCommon.Contact
         
         #endregion              
 
-        private void cmbPhone_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var comboBoxEdit = sender as ComboBoxEdit;
-            //var phoneType = comboBoxEdit.EditValue as PhoneTypeDto;
-            //if (phoneType != null){
-            //    comboBoxEdit.Text = phoneType.Name;
-            //}            
-        }
-          
+        
 
     }
 }

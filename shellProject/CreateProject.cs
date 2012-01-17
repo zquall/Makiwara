@@ -73,12 +73,12 @@ namespace shellProject
         private void searchBudgetRequest()
         {
             _budgetRequest.Id = 1;
-            
-            CustomerData custumer = new CustomerData();
-            custumer.Id = 1;
-            custumer.Name = "Renteco S.A.";
-            custumer.Address = "Barrio Cuba";
-            _budgetRequest.Customer = custumer;
+
+            CustomerDto customer = new CustomerDto();
+            customer.Id = 1;
+            customer.Name = "Renteco S.A.";
+            customer.Address = "Barrio Cuba";
+            _budgetRequest.Customer = customer;
 
             _budgetRequest.Employee.Person.Name = "Allan Badilla";
             _budgetRequest.DateModified = DateTime.Today;

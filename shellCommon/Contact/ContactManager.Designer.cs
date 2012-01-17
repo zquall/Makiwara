@@ -144,7 +144,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeC.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeC.TabIndex = 14;
-            this.cmbPhoneTypeC.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // cmbPhoneTypeB
             // 
@@ -154,7 +153,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeB.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeB.TabIndex = 13;
-            this.cmbPhoneTypeB.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // cmbPhoneTypeA
             // 
@@ -164,7 +162,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbPhoneTypeA.Size = new System.Drawing.Size(85, 20);
             this.cmbPhoneTypeA.TabIndex = 12;
-            this.cmbPhoneTypeA.SelectedIndexChanged += new System.EventHandler(this.cmbPhone_SelectedIndexChanged);
             // 
             // txtPhoneC
             // 

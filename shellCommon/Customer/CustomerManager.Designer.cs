@@ -122,11 +122,11 @@
             this.cmbContacts.Name = "cmbContacts";
             this.cmbContacts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
+            new DevExpress.XtraEditors.Controls.EditorButton(),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
             this.cmbContacts.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbContacts_Properties_ButtonClick);
             this.cmbContacts.Size = new System.Drawing.Size(330, 20);
             this.cmbContacts.TabIndex = 13;
-            this.cmbContacts.SelectedIndexChanged += new System.EventHandler(this.cmbContacts_SelectedIndexChanged);
             // 
             // btnSave
             // 
@@ -135,6 +135,7 @@
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Guardar";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 

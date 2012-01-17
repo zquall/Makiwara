@@ -23,6 +23,12 @@ namespace shellCommon.Customer
 
         #region UI Events
 
+        // Start the Save Process
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            saveCustomer();
+        }
+
         // Close the Manager
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -32,9 +38,7 @@ namespace shellCommon.Customer
         // Edit selected contact
         private void btnEditContact_Click(object sender, EventArgs e)
         {
-            if (cmbContacts.SelectedItem != null){
-                loadContactManagerEdit(cmbContacts.SelectedItem);
-            }
+           
         }
 
         // Contact combo actions
@@ -45,11 +49,18 @@ namespace shellCommon.Customer
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
                     loadContactManagerAdd();
                     break;
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:                  
+                    if (cmbContacts.SelectedItem != null)
+                    {
+                        loadContactManagerEdit(cmbContacts.SelectedItem);
+                    }
+                    break;
                 default:
                     break;
             }
         }
 
+      
         #endregion
 
         #region Load Process
@@ -61,6 +72,7 @@ namespace shellCommon.Customer
             contactManager.ShowDialog();
             if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
+                // Loads new contact in combo
                 cmbContacts.Properties.Items.Add(contactManager.Tag);
                 cmbContacts.SelectedItem = contactManager.Tag;
             }
@@ -90,7 +102,7 @@ namespace shellCommon.Customer
                 Tag = new CustomerDto();
             }
 
-            // get the instance reference from the tag
+            // Get the instance reference from the tag
             var customerTag = Tag as CustomerDto;
             customerTag.Name = txtCustomerName.Text;
             customerTag.Address = txtCustomerAddress.Text;
@@ -98,6 +110,7 @@ namespace shellCommon.Customer
             customerTag.Phone = txtCustomerPhone.Text;
             customerTag.Fax = txtCustomerFax.Text;
 
+            // Get the CustomerContacts
             customerTag.CustomerContacts = new List<CustomerContactDto>();
             foreach (CustomerContactDto contact in cmbContacts.Properties.Items)
             {
@@ -110,19 +123,12 @@ namespace shellCommon.Customer
         {
             var request = new CustomerRequest();
             request.Customer = captureCustomer();
-            new CustomerFactory().saveCustomer(request);
+            var customerTag = Tag as CustomerDto;
+            customerTag.Id = new CustomerFactory().saveCustomer(request).Customer.Id;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
         #endregion
 
-        private void cmbContacts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var comboBoxEdit = sender as ComboBoxEdit;
-            var customerContact = comboBoxEdit.EditValue as CustomerContactDto;
-            if (customerContact != null)
-            {
-                comboBoxEdit.Text = customerContact.Person.Name + " " + customerContact.Person.LastName;
-            }   
-        }
-       
+
     }
 }

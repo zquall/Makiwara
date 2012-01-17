@@ -9,6 +9,6 @@ namespace ReplicantRepository.Response
     public class CustomerResponse
     {
         public CustomerDto Customer { get; set; }
-        public List<CustomerData> CustomerList { get; set; }        
+        public List<CustomerData> CustomerList { get; set; }
     } 
 }

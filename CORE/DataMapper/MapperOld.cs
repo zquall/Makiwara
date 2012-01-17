@@ -108,7 +108,7 @@ namespace CORE.DataMapper
                 tmpBudgetRequestData = new BudgetRequestData();
                 tmpBudgetRequestData.Id = budgetRequest.Id;
                 tmpBudgetRequestData.DateModified = budgetRequest.DateModified;
-                tmpBudgetRequestData.Customer = Map(budgetRequest.Customer);
+                tmpBudgetRequestData.Customer = AutoMapper.Mapper.Map<CustomerDto>(budgetRequest.Customer);
                 tmpBudgetRequestData.Employee = Map(budgetRequest.Employee); 
             }
             return tmpBudgetRequestData;

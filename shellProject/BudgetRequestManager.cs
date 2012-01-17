@@ -44,7 +44,7 @@ namespace shellProject
                 if (createCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     // load the found client
-                    loadCustomer(createCustomerDialog.Tag as CustomerData);
+                    loadCustomer(createCustomerDialog.Tag as CustomerDto);
                 }
             }            
         }
@@ -101,7 +101,7 @@ namespace shellProject
             if (searchCustomerDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // load the found client
-                loadCustomer(searchCustomerDialog.Tag as CustomerData);
+                loadCustomer(searchCustomerDialog.Tag as CustomerDto);
             }
         }
 
@@ -114,14 +114,14 @@ namespace shellProject
         }
 
         // Load the Customer
-        private void loadCustomer(CustomerData customer)
+        private void loadCustomer(CustomerDto customer)
         {
             if (customer != null)
             {
                 btnCustomerName.Tag = customer;
                 btnCustomerName.Text = customer.Name;
                 lblAddress.Text = customer.Address;
-                loadContactList(customer.ContactList);
+                loadContactList(customer.CustomerContacts);
             }
         }
 
@@ -136,13 +136,16 @@ namespace shellProject
         }
 
         // Load the Contact List
-        private void loadContactList(List<CustomerContactDto> contactList)
+        private void loadContactList(ICollection<CustomerContactDto> contactList)
         {
+            cmbContact.Properties.Items.Clear();
+            foreach (var tmpCustomerContact in contactList)
+            {
+                cmbContact.Properties.Items.Add(tmpCustomerContact);
+            }
             if (contactList.Count > 0)
             {
-                cmbContact.Properties.Items.Clear();
-                cmbContact.Properties.Items.AddRange(contactList);
-                loadContact(contactList[0]);
+                cmbContact.SelectedIndex = 0;
             }
         }
         
