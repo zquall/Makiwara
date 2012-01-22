@@ -97,38 +97,39 @@ namespace shellCommon.Customer
         private CustomerDto captureCustomer()
         {
             // If tag is null this means that the customer is new
+            CustomerDto customer;
             if (Tag == null)
             {
-                Tag = new CustomerDto();
+                customer = new CustomerDto();
+            }else{
+                // Get the instance from Tag to Edit
+                customer = Tag as CustomerDto;
             }
-
-            // Get the instance reference from the tag
-            var customerTag = Tag as CustomerDto;
-            customerTag.Name = txtCustomerName.Text;
-            customerTag.Address = txtCustomerAddress.Text;
-            customerTag.AddressOptional = txtCustomerAddressOptional.Text;
-            customerTag.Phone = txtCustomerPhone.Text;
-            customerTag.Fax = txtCustomerFax.Text;
+            customer.Name = txtCustomerName.Text;
+            customer.Address = txtCustomerAddress.Text;
+            customer.AddressOptional = txtCustomerAddressOptional.Text;
+            customer.Phone = txtCustomerPhone.Text;
+            customer.Fax = txtCustomerFax.Text;
 
             // Get the CustomerContacts
-            customerTag.CustomerContacts = new List<CustomerContactDto>();
+            customer.CustomerContacts = new List<CustomerContactDto>();
             foreach (CustomerContactDto contact in cmbContacts.Properties.Items)
             {
-                customerTag.CustomerContacts.Add(contact);
+                customer.CustomerContacts.Add(contact);
             }
-            return customerTag;
+            return customer;
         }
 
         private void saveCustomer()
         {
             var request = new CustomerRequest();
             request.Customer = captureCustomer();
-            var customerTag = Tag as CustomerDto;
-            customerTag.Id = new CustomerFactory().saveCustomer(request).Customer.Id;
+            request.Customer = new CustomerFactory().saveCustomer(request).Customer;
+
+            Tag = new CustomerFactory().getCustomer(request).Customer;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
         #endregion
-
 
     }
 }

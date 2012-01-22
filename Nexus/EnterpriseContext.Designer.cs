@@ -3058,7 +3058,7 @@ namespace Nexus
         /// <param name="cost">Initial value of the Cost property.</param>
         /// <param name="totalCost">Initial value of the TotalCost property.</param>
         /// <param name="realUsed">Initial value of the RealUsed property.</param>
-        public static Resource CreateResource(global::System.Int64 id, global::System.Int32 projectId, global::System.Int32 measureId, global::System.Int32 resourceTypeId, global::System.Int64 taskId, global::System.Int32 code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
+        public static Resource CreateResource(global::System.Int64 id, global::System.Int32 projectId, global::System.Int32 measureId, global::System.Int32 resourceTypeId, global::System.Int64 taskId, global::System.String code, global::System.String name, global::System.Double amount, global::System.Decimal cost, global::System.Decimal totalCost, global::System.Double realUsed)
         {
             Resource resource = new Resource();
             resource.Id = id;
@@ -3206,7 +3206,7 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Code
+        public global::System.String Code
         {
             get
             {
@@ -3216,13 +3216,13 @@ namespace Nexus
             {
                 OnCodeChanging(value);
                 ReportPropertyChanging("Code");
-                _Code = StructuralObject.SetValidValue(value);
+                _Code = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Code");
                 OnCodeChanged();
             }
         }
-        private global::System.Int32 _Code;
-        partial void OnCodeChanging(global::System.Int32 value);
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
         partial void OnCodeChanged();
     
         /// <summary>

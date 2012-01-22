@@ -23,7 +23,7 @@ namespace ReplicantRepository.DataTransferObjects
          #region Primitive Properties
     
     	[DataMember]
-        public virtual int Id
+        public virtual long Id
         {
             get;
             set;
@@ -110,7 +110,7 @@ namespace ReplicantRepository.DataTransferObjects
         private long _taskId;
     
     	[DataMember]
-        public virtual int Code
+        public virtual string Code
         {
             get;
             set;

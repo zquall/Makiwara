@@ -124,11 +124,10 @@ namespace CORE.Services
                 Customer customer = Mapper.Map<CustomerDto, Customer>(request.Customer);
                 Olympus._Enterprise.Customers.AddObject(customer);
                 Olympus._Enterprise.SaveChanges();
-                response.Customer = request.Customer;
+                response.Customer = new CustomerDto();
                 response.Customer.Id = customer.Id;
             }
             return response;
         }
-
     }
 }

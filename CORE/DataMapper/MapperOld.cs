@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ReplicantRepository.DataTransferObjects;
 using System.Data.Objects.DataClasses;
+using CORE.Services;
 
 namespace CORE.DataMapper
 {
@@ -58,12 +59,12 @@ namespace CORE.DataMapper
             return tmpPersonData;
         }
 
-        internal static CustomerData Map(Nexus.Customer customer)
+        internal static CustomerDto Map(Nexus.Customer customer)
         {
-            CustomerData tmpCustomerData = null;
+            CustomerDto tmpCustomerData = null;
             if (customer != null)
             {
-                tmpCustomerData = new CustomerData();
+                tmpCustomerData = new CustomerDto();
                 tmpCustomerData.Id = customer.Id;
                 tmpCustomerData.Name = customer.Name;
                 tmpCustomerData.Address = customer.Address;
@@ -108,7 +109,7 @@ namespace CORE.DataMapper
                 tmpBudgetRequestData = new BudgetRequestData();
                 tmpBudgetRequestData.Id = budgetRequest.Id;
                 tmpBudgetRequestData.DateModified = budgetRequest.DateModified;
-                tmpBudgetRequestData.Customer = AutoMapper.Mapper.Map<CustomerDto>(budgetRequest.Customer);
+                tmpBudgetRequestData.Customer = Map(budgetRequest.Customer);
                 tmpBudgetRequestData.Employee = Map(budgetRequest.Employee); 
             }
             return tmpBudgetRequestData;

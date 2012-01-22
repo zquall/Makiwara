@@ -44,31 +44,34 @@
     <Compile Include="DataTransferObjects\BindCustomerDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\BudgetRequestData.cs" />
     <Compile Include="DataTransferObjects\BudgetRequestDetailDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\BudgetRequestDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\BudgetRequestData.cs" />
     <Compile Include="DataTransferObjects\CustomerContactDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\CustomerDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\CustomToStringMethods.cs" />
+    <Compile Include="DataTransferObjects\EmployeeDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\MeasureDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\NervObjects\CurrencyDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\NervObjects\CurrencyRateDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\CustomerDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataTransferObjects\EmployeeData.cs" />
     <Compile Include="DataTransferObjects\CustomerData.cs" />
-    <Compile Include="DataTransferObjects\EmployeeDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataTransferObjects\NervObjects\EnterpriseDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
@@ -77,9 +80,6 @@
     </Compile>
     <Compile Include="DataTransferObjects\NervObjects\LatchDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataTransferObjects\MeasureDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\NervObjects\Nerv.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
@@ -100,6 +100,12 @@
     </Compile>
     <Compile Include="DataTransferObjects\PhoneTypeData.cs" />
     <Compile Include="DataTransferObjects\PhoneData.cs" />
+    <Compile Include="DataTransferObjects\NervObjects\UserAccountDto.cs">
+      <DependentUpon>Nerv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\NervObjects\UserGroupDto.cs">
+      <DependentUpon>Nerv.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\PhoneTypeDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
@@ -114,12 +120,6 @@
     </Compile>
     <Compile Include="DataTransferObjects\TaskDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataTransferObjects\NervObjects\UserAccountDto.cs">
-      <DependentUpon>Nerv.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataTransferObjects\NervObjects\UserGroupDto.cs">
-      <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\UserSessionData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
