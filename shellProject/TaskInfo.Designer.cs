@@ -45,6 +45,8 @@
             this.grdResources = new DevExpress.XtraGrid.GridControl();
             this.viewResources = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repResourceTypes = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repMeasures = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repResourceCode = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.tabPredecessors = new DevExpress.XtraTab.XtraTabPage();
             this.grdPredecessors = new DevExpress.XtraGrid.GridControl();
             this.viewDependencies = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -53,7 +55,6 @@
             this.cmdDelete = new DevExpress.XtraEditors.SimpleButton();
             this.cmdOk = new DevExpress.XtraEditors.SimpleButton();
             this.cmdCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.repMeasures = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
             this.TabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
@@ -70,12 +71,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdResources)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewResources)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repResourceTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMeasures)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repResourceCode)).BeginInit();
             this.tabPredecessors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPredecessors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDependencies)).BeginInit();
             this.tabNotes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditNotes.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repMeasures)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -251,7 +253,8 @@
             this.grdResources.Name = "grdResources";
             this.grdResources.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repResourceTypes,
-            this.repMeasures});
+            this.repMeasures,
+            this.repResourceCode});
             this.grdResources.Size = new System.Drawing.Size(598, 200);
             this.grdResources.TabIndex = 0;
             this.grdResources.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -272,6 +275,21 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repResourceTypes.Name = "repResourceTypes";
             // 
+            // repMeasures
+            // 
+            this.repMeasures.AutoHeight = false;
+            this.repMeasures.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repMeasures.Name = "repMeasures";
+            // 
+            // repResourceCode
+            // 
+            this.repResourceCode.AutoHeight = false;
+            this.repResourceCode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repResourceCode.Name = "repResourceCode";
+            this.repResourceCode.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repResourceCode_ButtonClick);
+            // 
             // tabPredecessors
             // 
             this.tabPredecessors.Controls.Add(this.grdPredecessors);
@@ -284,7 +302,7 @@
             this.grdPredecessors.Location = new System.Drawing.Point(3, 3);
             this.grdPredecessors.MainView = this.viewDependencies;
             this.grdPredecessors.Name = "grdPredecessors";
-            this.grdPredecessors.Size = new System.Drawing.Size(436, 200);
+            this.grdPredecessors.Size = new System.Drawing.Size(597, 200);
             this.grdPredecessors.TabIndex = 0;
             this.grdPredecessors.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDependencies});
@@ -306,12 +324,12 @@
             // 
             this.memoEditNotes.Location = new System.Drawing.Point(3, 12);
             this.memoEditNotes.Name = "memoEditNotes";
-            this.memoEditNotes.Size = new System.Drawing.Size(436, 197);
+            this.memoEditNotes.Size = new System.Drawing.Size(597, 197);
             this.memoEditNotes.TabIndex = 0;
             // 
             // cmdDelete
             // 
-            this.cmdDelete.Location = new System.Drawing.Point(205, 258);
+            this.cmdDelete.Location = new System.Drawing.Point(366, 258);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(75, 23);
             this.cmdDelete.TabIndex = 1;
@@ -319,7 +337,7 @@
             // 
             // cmdOk
             // 
-            this.cmdOk.Location = new System.Drawing.Point(291, 258);
+            this.cmdOk.Location = new System.Drawing.Point(452, 258);
             this.cmdOk.Name = "cmdOk";
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
@@ -328,19 +346,12 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(376, 258);
+            this.cmdCancel.Location = new System.Drawing.Point(537, 258);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Cancelar";
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
-            // 
-            // repMeasures
-            // 
-            this.repMeasures.AutoHeight = false;
-            this.repMeasures.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repMeasures.Name = "repMeasures";
             // 
             // TaskInfo
             // 
@@ -375,12 +386,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdResources)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewResources)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repResourceTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repMeasures)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repResourceCode)).EndInit();
             this.tabPredecessors.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPredecessors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDependencies)).EndInit();
             this.tabNotes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEditNotes.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repMeasures)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -413,5 +425,6 @@
         private DevExpress.XtraScheduler.UI.DurationEdit drtDuration;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repResourceTypes;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repMeasures;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repResourceCode;
     }
 }

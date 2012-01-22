@@ -146,7 +146,6 @@ namespace shellProject
         //No existe método de captura de Dependencias ya que estas son solo de lectura y pueden cambiarse unicamente
         //desde el ProjectManager
 
-
         private void captureResources()
         {
             List<ResourceData> temp = new List<ResourceData>();
@@ -231,6 +230,17 @@ namespace shellProject
             viewResources.Columns["RealUsed"].Caption = "Usado";
             #endregion
 
+            #region set width columns
+            //viewResources.Columns["Measure"].Width = 50;
+            //viewResources.Columns["ResourceType"].Width = 70;
+            //viewResources.Columns["Code"].Width = 70;
+            viewResources.Columns["Name"].Width = 150;
+            //viewResources.Columns["Amount"].Width = 70;
+            //viewResources.Columns["Cost"].Width = 75;
+            //viewResources.Columns["TotalCost"].Width = 50;
+            //viewResources.Columns["RealUsed"].Width = 50;
+            #endregion
+
             #region set visible index
             viewResources.Columns["ResourceType"].VisibleIndex = 0;
             viewResources.Columns["Code"].VisibleIndex = 1;
@@ -245,6 +255,7 @@ namespace shellProject
             #region set repositories
             viewResources.Columns["ResourceType"].ColumnEdit = repResourceTypes;
             viewResources.Columns["Measure"].ColumnEdit = repMeasures;
+            viewResources.Columns["Code"].ColumnEdit = repResourceCode;
             #endregion
         }
 
@@ -310,6 +321,30 @@ namespace shellProject
 
             this.Close();
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void loadResourceSource(ResourceSourceData resourceSource)
+        {
+            viewResources.AddNewRow();
+            viewResources.MoveLast();
+            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Code"], resourceSource.Code);
+            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Name"], resourceSource.Name);
+            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Cost"], resourceSource.Cost);
+            
+            MessageBox.Show(resourceSource.Code + ": " + resourceSource.Name);
+        }
+
+        private void repResourceCode_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            SearchResource searchResource = new SearchResource();
+            ResourceSourceData rsd = new ResourceSourceData();
+            searchResource.Rtype = "PRODUCTO";
+
+            if (searchResource.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                rsd = searchResource.Tag as ResourceSourceData;
+                loadResourceSource(rsd);
+            }
         }
 
         private void drtDuration_TextChanged(object sender, EventArgs e)

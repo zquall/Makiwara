@@ -35,7 +35,6 @@ namespace shellProject
 
         #endregion
 
-
         public ProjectManager()
         {
             InitializeComponent();
@@ -193,7 +192,7 @@ namespace shellProject
             var request = new ProjectRequest();
             _project.taskList = saveTask();
             request.Project = _project;
-            new ProjectFactory().saveProject(request);
+            _project = new ProjectFactory().saveProject(request).Project;
         }
 
         #endregion

@@ -7,6 +7,7 @@ namespace ReplicantRepository.Response
 {
     public class ProjectResponse
     {
+        public ProjectData Project { get; set; }
         public List<ProjectData> ProjectList { get; set; }
     }
 

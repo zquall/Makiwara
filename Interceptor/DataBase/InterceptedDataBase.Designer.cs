@@ -80,6 +80,22 @@ namespace Interceptor.DataBase
             }
         }
         private ObjectSet<CLI_CLIENTES> _CLI_CLIENTES;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ResourceSource> ResourceSources
+        {
+            get
+            {
+                if ((_ResourceSources == null))
+                {
+                    _ResourceSources = base.CreateObjectSet<ResourceSource>("ResourceSources");
+                }
+                return _ResourceSources;
+            }
+        }
+        private ObjectSet<ResourceSource> _ResourceSources;
 
         #endregion
         #region AddTo Methods
@@ -90,6 +106,14 @@ namespace Interceptor.DataBase
         public void AddToCLI_CLIENTES(CLI_CLIENTES cLI_CLIENTES)
         {
             base.AddObject("CLI_CLIENTES", cLI_CLIENTES);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ResourceSources EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToResourceSources(ResourceSource resourceSource)
+        {
+            base.AddObject("ResourceSources", resourceSource);
         }
 
         #endregion
@@ -1555,6 +1579,201 @@ namespace Interceptor.DataBase
         private Nullable<global::System.Int32> _CON_DESCUENTO_AUTORIZA;
         partial void OnCON_DESCUENTO_AUTORIZAChanging(Nullable<global::System.Int32> value);
         partial void OnCON_DESCUENTO_AUTORIZAChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OuterModel", Name="ResourceSource")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ResourceSource : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ResourceSource object.
+        /// </summary>
+        /// <param name="code">Initial value of the Code property.</param>
+        /// <param name="balance">Initial value of the Balance property.</param>
+        /// <param name="rType">Initial value of the RType property.</param>
+        /// <param name="cost">Initial value of the Cost property.</param>
+        /// <param name="taxed">Initial value of the Taxed property.</param>
+        public static ResourceSource CreateResourceSource(global::System.String code, global::System.Double balance, global::System.String rType, global::System.Double cost, global::System.Int16 taxed)
+        {
+            ResourceSource resourceSource = new ResourceSource();
+            resourceSource.Code = code;
+            resourceSource.Balance = balance;
+            resourceSource.RType = rType;
+            resourceSource.Cost = cost;
+            resourceSource.Taxed = taxed;
+            return resourceSource;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                if (_Code != value)
+                {
+                    OnCodeChanging(value);
+                    ReportPropertyChanging("Code");
+                    _Code = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Code");
+                    OnCodeChanged();
+                }
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Balance
+        {
+            get
+            {
+                return _Balance;
+            }
+            set
+            {
+                if (_Balance != value)
+                {
+                    OnBalanceChanging(value);
+                    ReportPropertyChanging("Balance");
+                    _Balance = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Balance");
+                    OnBalanceChanged();
+                }
+            }
+        }
+        private global::System.Double _Balance;
+        partial void OnBalanceChanging(global::System.Double value);
+        partial void OnBalanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RType
+        {
+            get
+            {
+                return _RType;
+            }
+            set
+            {
+                if (_RType != value)
+                {
+                    OnRTypeChanging(value);
+                    ReportPropertyChanging("RType");
+                    _RType = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("RType");
+                    OnRTypeChanged();
+                }
+            }
+        }
+        private global::System.String _RType;
+        partial void OnRTypeChanging(global::System.String value);
+        partial void OnRTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Cost
+        {
+            get
+            {
+                return _Cost;
+            }
+            set
+            {
+                if (_Cost != value)
+                {
+                    OnCostChanging(value);
+                    ReportPropertyChanging("Cost");
+                    _Cost = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Cost");
+                    OnCostChanged();
+                }
+            }
+        }
+        private global::System.Double _Cost;
+        partial void OnCostChanging(global::System.Double value);
+        partial void OnCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 Taxed
+        {
+            get
+            {
+                return _Taxed;
+            }
+            set
+            {
+                if (_Taxed != value)
+                {
+                    OnTaxedChanging(value);
+                    ReportPropertyChanging("Taxed");
+                    _Taxed = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Taxed");
+                    OnTaxedChanged();
+                }
+            }
+        }
+        private global::System.Int16 _Taxed;
+        partial void OnTaxedChanging(global::System.Int16 value);
+        partial void OnTaxedChanged();
 
         #endregion
     

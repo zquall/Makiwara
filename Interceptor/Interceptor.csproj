@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Adapters\CustomerAdapter.cs" />
     <Compile Include="Adapters\Asgard.cs" />
+    <Compile Include="Adapters\ResourceSourceAdapter.cs" />
     <Compile Include="DataBase\InterceptedDataBase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Properties\DataSources\Interceptor.DataBase.ForeingEntities.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">

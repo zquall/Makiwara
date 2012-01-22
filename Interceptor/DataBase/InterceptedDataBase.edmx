@@ -4,9 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OuterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="OuterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="OuterModelStoreContainer">
           <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.Store.CLI_CLIENTES" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ResourceSource" EntityType="OuterModel.Store.ResourceSource" store:Type="Views" store:Schema="dbo" store:Name="ResourceSource">
+            <DefiningQuery>SELECT 
+      [ResourceSource].[Code] AS [Code], 
+      [ResourceSource].[Name] AS [Name], 
+      [ResourceSource].[Balance] AS [Balance], 
+      [ResourceSource].[RType] AS [RType], 
+      [ResourceSource].[Cost] AS [Cost], 
+      [ResourceSource].[Taxed] AS [Taxed]
+      FROM [dbo].[ResourceSource] AS [ResourceSource]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
           <Key>
@@ -72,13 +82,31 @@
           <Property Name="CLI_Pago" Type="varchar" MaxLength="50" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="int" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'dialcom.dbo.ResourceSource' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ResourceSource">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="RType" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="Taxed" />
+          </Key>
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="RType" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Cost" Type="float" Nullable="false" />
+          <Property Name="Taxed" Type="smallint" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OuterModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ForeingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.CLI_CLIENTES" />
+          <EntitySet Name="ResourceSources" EntityType="OuterModel.ResourceSource" />
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
           <Key>
@@ -143,6 +171,21 @@
           <Property Name="COB_Cobrador" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
           <Property Name="CLI_Pago" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ResourceSource">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="RType" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="Taxed" />
+          </Key>
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Balance" Nullable="false" />
+          <Property Type="String" Name="RType" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Cost" Nullable="false" />
+          <Property Type="Int16" Name="Taxed" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -210,6 +253,18 @@
             <ScalarProperty Name="CLI_Pago" ColumnName="CLI_Pago" />
             <ScalarProperty Name="CON_DESCUENTO_AUTORIZA" ColumnName="CON_DESCUENTO_AUTORIZA" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ResourceSources">
+            <EntityTypeMapping TypeName="OuterModel.ResourceSource">
+              <MappingFragment StoreEntitySet="ResourceSource">
+                <ScalarProperty Name="Taxed" ColumnName="Taxed" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="RType" ColumnName="RType" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -230,8 +285,9 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="40">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="92">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
+        <EntityTypeShape EntityType="OuterModel.ResourceSource" Width="1.5" PointX="3.375" PointY="0.75" Height="2.1725878906249996" />
       </Diagram>
     </Diagrams>
   </Designer>

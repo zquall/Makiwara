@@ -398,8 +398,10 @@ namespace CORE.Services
         /// Método que se encarga de acomodar y guardar un projecto
         /// </summary>
         /// <param name="request">Objeto donde viene el proyecto a ser almacenado en BD</param>
-        public void saveProject(ProjectRequest request)
+        public ProjectResponse saveProject(ProjectRequest request)
         {
+            ProjectResponse response = new ProjectResponse(); //--
+
             // Validate if the project exist
             Nexus.Project projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
 
@@ -418,12 +420,13 @@ namespace CORE.Services
                 mapper(request.Project, newProject);
                 Olympus._Enterprise.AddToProjects(newProject);
             }
-            
             Olympus._Enterprise.SaveChanges();
+            response.Project = request.Project;
+
+            return response;
         }
 
         #endregion
-
 
 
 

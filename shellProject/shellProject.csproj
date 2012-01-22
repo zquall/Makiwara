@@ -101,6 +101,12 @@
     <Compile Include="ResourceRepository.Designer.cs">
       <DependentUpon>ResourceRepository.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchResource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchResource.Designer.cs">
+      <DependentUpon>SearchResource.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceRepository.resx">
       <DependentUpon>ResourceRepository.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchResource.resx">
+      <DependentUpon>SearchResource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskInfo.resx">
       <DependentUpon>TaskInfo.cs</DependentUpon>
