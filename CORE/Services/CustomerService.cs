@@ -8,6 +8,7 @@ using Interceptor.Adapters;
 using Nexus;
 using ReplicantRepository.DataTransferObjects;
 using AutoMapper;
+using CORE.DataMapper;
 
 namespace CORE.Services
 {
@@ -61,15 +62,29 @@ namespace CORE.Services
         public CustomerResponse getCustomer(CustomerRequest request)
         {
             var response = new CustomerResponse();
-            // Intercepted Method
+            // *** Intercepted Method ***
             _CustomerAdapter.getCustomer(request);
+
             // Validate if the customer is from Nexus
-            if (request.Customer.Id > 0) 
+            if (request.CustomerId > 0) 
             {
-                var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.Customer.Id).SingleOrDefault();
+                var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.CustomerId).SingleOrDefault();
                 Olympus._Enterprise.Detach(customerFound);
                 response.Customer = Mapper.Map<CustomerDto>(customerFound);
-                response.Customer.CustomerContacts = getCustomerContacts(request).Customer.CustomerContacts;
+                response.Customer.CustomerContacts = getCustomerContacts(request).CustomerContacts;
+            }
+            return response;
+        }
+
+        public CustomerResponse getCustomerContact(CustomerRequest request)
+        {
+            var response = new CustomerResponse();
+            // Validate request
+            if (request.ContactId > 0)
+            {
+                var customerContactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.ContactId).SingleOrDefault();
+                Olympus._Enterprise.Detach(customerContactFound);
+                response.CustomerContact = MapperPaths.Map(customerContactFound);
             }
             return response;
         }
@@ -77,41 +92,64 @@ namespace CORE.Services
         public CustomerResponse getCustomerContacts(CustomerRequest request)
         {
             var response = new CustomerResponse();
-            if (request.Customer.Id > 0)
+            if (request.CustomerId > 0)
             {
-                var customerContactList = Olympus._Enterprise.CustomerContacts.Where(x => x.CustomerId == request.Customer.Id);
-                response.Customer.CustomerContacts = Mapper.Map<ICollection<CustomerContactDto>>(customerContactList);
+                response.CustomerContacts = new List<CustomerContactDto>();
+                var customerContactList = Olympus._Enterprise.CustomerContacts.Where(x => x.CustomerId == request.CustomerId);
+                foreach (CustomerContact customerContact in customerContactList)
+                {
+                    response.CustomerContacts.Add(MapperPaths.Map(customerContact));
+                }
             }
             return response;
         }
 
-        public void saveContact(CustomerRequest request)
+        public CustomerResponse saveContact(CustomerRequest request)
         {
-            // Validate if the contact Exist
-            if (request.Contact.Id > 0)
+            var response = new CustomerResponse();
+            // Validate if the contact has to be saved
+            if (request.CustomerContact.CustomerId > 0)
             {
-                var contactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.Contact.Id ).SingleOrDefault();
-                contactFound.Person.Name = request.Contact.Person.Name;
-                contactFound.Person.LastName = request.Contact.Person.LastName;
-                contactFound.Job = request.Contact.Job;
-                foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
+                CustomerContact contact;
+
+                // Check if Edit or Add
+                if (request.CustomerContact.Id > 0)
                 {
-                    if (tmpPersonPhone.Id == 0)
-                    {
-                        var tmpPhone = new PersonPhone();
-                        tmpPhone.Phone = tmpPersonPhone.Phone;
-                        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                        contactFound.Person.PersonPhones.Add(tmpPhone);
-                    }
-                    else
-                    {
-                        var tmpPhone = contactFound.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
-                        tmpPhone.Phone = tmpPersonPhone.Phone;
-                        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                    }
+                    // Edit
+                    contact = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.CustomerContact.Id).SingleOrDefault();
+                    Mapper.Map<CustomerContactDto, CustomerContact>(request.CustomerContact, contact);
+                }else{
+                    // Add
+                    contact = new CustomerContact();
+                    contact = Mapper.Map<CustomerContact>(request.CustomerContact);
+                    Olympus._Enterprise.CustomerContacts.AddObject(contact);
                 }
                 Olympus._Enterprise.SaveChanges();
+                response.ContactId = contact.Id;
+
+                #region Old Code
+                //contact.Person.Name = request.Contact.Person.Name;
+                //contact.Person.LastName = request.Contact.Person.LastName;
+                //contact.Job = request.Contact.Job;
+                //foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
+                //{
+                //    if (tmpPersonPhone.Id == 0)
+                //    {
+                //        var tmpPhone = new PersonPhone();
+                //        tmpPhone.Phone = tmpPersonPhone.Phone;
+                //        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
+                //        contact.Person.PersonPhones.Add(tmpPhone);
+                //    }
+                //    else
+                //    {
+                //        var tmpPhone = contact.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
+                //        tmpPhone.Phone = tmpPersonPhone.Phone;
+                //        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
+                //    }
+                //} 
+                #endregion
             }
+            return response;
         }
 
         public CustomerResponse saveCustomer(CustomerRequest request)
@@ -124,8 +162,7 @@ namespace CORE.Services
                 Customer customer = Mapper.Map<CustomerDto, Customer>(request.Customer);
                 Olympus._Enterprise.Customers.AddObject(customer);
                 Olympus._Enterprise.SaveChanges();
-                response.Customer = new CustomerDto();
-                response.Customer.Id = customer.Id;
+                response.CustomerId = customer.Id;
             }
             return response;
         }

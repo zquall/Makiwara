@@ -97,12 +97,10 @@ namespace shellCommon.Customer
                 if (focusedRow.Id > -1)
                 {
                     var request = new CustomerRequest();
-                    request.Customer.Id = focusedRow.Id;
-                    request.Customer.Name = focusedRow.Name;
+                    request.CustomerId = focusedRow.Id;
 
-                    // This customer must be returned with contacts
-                    this.Tag = new CustomerFactory().getCustomer(request).Customer;
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    Tag = new CustomerFactory().getCustomer(request).Customer;
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
                 {

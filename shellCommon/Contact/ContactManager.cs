@@ -54,38 +54,40 @@ namespace shellCommon.Contact
         // Loads the Contact on the form
         private void loadContact(CustomerContactDto customerContact)
         {
-            txtName.Text = customerContact.Person.Name;
-            txtLastName.Text = customerContact.Person.LastName;
-            txtJob.Text = customerContact.Job;
-            txtEmail.Text = customerContact.Email;
+            if (customerContact.Id > 0) { 
+                txtName.Text = customerContact.Person.Name;
+                txtLastName.Text = customerContact.Person.LastName;
+                txtJob.Text = customerContact.Job;
+                txtEmail.Text = customerContact.Email;
 
-            if (customerContact.Person.PersonPhones != null)
-            {
-                int index = 0;
-                foreach (var personPhone in customerContact.Person.PersonPhones)
+                if (customerContact.Person.PersonPhones != null)
                 {
-                    switch (index)
+                    int index = 0;
+                    foreach (var personPhone in customerContact.Person.PersonPhones)
                     {
-                        case 0:
-                            txtPhoneA.Text = personPhone.Phone;
-                            txtPhoneA.Tag = personPhone;
-                            cmbPhoneTypeA.SelectedItem = personPhone.PhoneType;
-                            break;
-                        case 1:
-                            txtPhoneB.Text = personPhone.Phone;
-                            txtPhoneB.Tag = personPhone;
-                            cmbPhoneTypeB.SelectedItem = personPhone.PhoneType;
-                            break;
-                        case 2:
-                            txtPhoneC.Text = personPhone.Phone;
-                            txtPhoneC.Tag = personPhone;
-                            cmbPhoneTypeC.SelectedItem = personPhone.PhoneType;
-                            break;
-                        default:
-                            break;
-                    }
-                    index++;
-                }             
+                        switch (index)
+                        {
+                            case 0:
+                                txtPhoneA.Text = personPhone.Phone;
+                                txtPhoneA.Tag = personPhone;
+                                cmbPhoneTypeA.SelectedItem = personPhone.PhoneType;
+                                break;
+                            case 1:
+                                txtPhoneB.Text = personPhone.Phone;
+                                txtPhoneB.Tag = personPhone;
+                                cmbPhoneTypeB.SelectedItem = personPhone.PhoneType;
+                                break;
+                            case 2:
+                                txtPhoneC.Text = personPhone.Phone;
+                                txtPhoneC.Tag = personPhone;
+                                cmbPhoneTypeC.SelectedItem = personPhone.PhoneType;
+                                break;
+                            default:
+                                break;
+                        }
+                        index++;
+                    }             
+                }
             }
         }
         
@@ -136,8 +138,9 @@ namespace shellCommon.Contact
         private void saveContact()
         {
             var request = new CustomerRequest();
-            request.Contact = captureContact();
+            request.CustomerContact = captureContact();
             new CustomerFactory().saveContact(request);
+            //new CustomerFactory().(request)
         }
 
         #endregion
@@ -145,17 +148,9 @@ namespace shellCommon.Contact
         #region UI Events
 
         private void btnOk_Click(object sender, EventArgs e)
-        {
-            // When the user click OK, Check if this contact has the Id that means that the 
-            // contact must be saved on DB before close the dialog
-            // Save the changes of the contact
-
-            // Check Edit contact
-            if (captureContact().Id != 0)
-            {
-                // Saves the contact on DB
-                saveContact();
-            }
+        {          
+            // Saves the contact on DB
+            saveContact();
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 

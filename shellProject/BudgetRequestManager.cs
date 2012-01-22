@@ -134,11 +134,18 @@ namespace shellProject
                 lblContactJob.Text = contact.Job;
                 loadPhoneList(contact.Person.PersonPhones);
             }
+            else
+            {
+                cmbContact.SelectedIndex = -1;
+                lblContactJob.Text = string.Empty;
+                loadPhoneList(null);
+            }
         }
 
         // Load the Contact List
         private void loadContactList(ICollection<CustomerContactDto> contactList)
         {
+            cmbContact.SelectedIndex = -1;
             cmbContact.Properties.Items.Clear();
             foreach (var tmpCustomerContact in contactList)
             {
@@ -153,12 +160,19 @@ namespace shellProject
         // Load the Contact default phone
         private void loadPhoneList(ICollection<PersonPhoneDto> phoneList)
         {
+            cmbPhone.SelectedIndex = -1;
             cmbPhone.Properties.Items.Clear();
-            foreach (var phone in phoneList)
+            if (phoneList != null)
             {
-                cmbPhone.Properties.Items.Add(phone);
+                foreach (var phone in phoneList)
+                {
+                    cmbPhone.Properties.Items.Add(phone);
+                }
+                if (phoneList.Count > 0)
+                {
+                    cmbPhone.SelectedIndex = 0;
+                } 
             }
-            cmbPhone.SelectedIndex = 0;
         }
 
         // Load the Contact default phone
@@ -175,11 +189,19 @@ namespace shellProject
         private void loadContactManager()
         {
             var contactManager = new ContactManager();
-            contactManager.ShowDialog();
-            if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
-                cmbContact.Properties.Items.Add(contactManager.Tag);
-                cmbContact.SelectedItem = contactManager.Tag;
+            var customer = btnCustomerName.Tag as CustomerDto;
+            // Validate if we have an customer selected
+            if (customer != null && customer.Id > 0)
+            { 
+                var newCustomerContact = new CustomerContactDto();
+                newCustomerContact.CustomerId = customer.Id;
+                contactManager.Tag = newCustomerContact;
+                contactManager.ShowDialog();
+                if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    cmbContact.Properties.Items.Add(contactManager.Tag);
+                    cmbContact.SelectedItem = contactManager.Tag;
+                }
             }
         }      
 

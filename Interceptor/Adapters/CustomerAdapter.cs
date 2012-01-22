@@ -59,7 +59,7 @@ namespace Interceptor.Adapters
         public void getCustomer(CustomerRequest request)
         {
             // Check if customers needs a binding
-            if (request.Customer.Id == 0 && request.Customer.Name != "")
+            if (request.CustomerId == 0 && request.Customer.Name != "")
             {                
                 // Apply the search the customer
                 var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.Customer.Name.ToUpper()).FirstOrDefault();

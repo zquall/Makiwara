@@ -8,6 +8,7 @@ using AutoMapper;
 using Nerv;
 using ReplicantRepository.DataTransferObjects.NervObjects;
 using Nexus;
+using CORE.Services;
 
 namespace CORE.DataMapper
 {
@@ -15,6 +16,7 @@ namespace CORE.DataMapper
     {
 
         private static bool _MapperStoped = true;
+
         internal static void InitializeMapper()
         {
             if (_MapperStoped)
@@ -38,20 +40,43 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<CustomerDto, Customer>();
                 Mapper.CreateMap<CustomerContact, CustomerContactDto>();
                 Mapper.CreateMap<CustomerContactDto, CustomerContact>();
-                Mapper.CreateMap<IQueryable<CustomerContact>, ICollection<CustomerContactDto>>();
-                Mapper.CreateMap<List<CustomerContactDto>, List<CustomerContact>>();
                 Mapper.CreateMap<PhoneType, PhoneTypeDto>();
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
                 Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
                 Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
                 Mapper.CreateMap<Project, ProjectDto>();
-                Mapper.CreateMap<ProjectDto, Project>();
-                
+                Mapper.CreateMap<ProjectDto, Project>();             
 
 
                 // Just start the mapper once
                 _MapperStoped = false;
             }
-        }      
+        }
+
+        #region Custom Mappings
+
+        internal static CustomerContactDto Map(CustomerContact customerContact)
+        {
+            // Extract
+            var contactPerson = customerContact.Person;
+            var personPhones = new List<PersonPhone>();
+            foreach (var tmpPersonPhone in contactPerson.PersonPhones.ToList())
+            {
+                Olympus._Enterprise.Detach(tmpPersonPhone);
+                personPhones.Add(tmpPersonPhone);
+            }
+
+            // Detach
+            Olympus._Enterprise.Detach(contactPerson);
+            Olympus._Enterprise.Detach(customerContact);
+
+            // Map
+            var contactDto = Mapper.Map<CustomerContactDto>(customerContact);
+            contactDto.Person = Mapper.Map<PersonDto>(contactPerson);
+            contactDto.Person.PersonPhones = Mapper.Map<List<PersonPhoneDto>>(personPhones);
+            return contactDto;
+        } 
+
+        #endregion
     }
 }
