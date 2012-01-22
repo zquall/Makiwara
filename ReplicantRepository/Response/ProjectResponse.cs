@@ -68,7 +68,7 @@ namespace ReplicantRepository.Response
         public Int64 TaskId { get; set; }
         public MeasureData Measure { get; set; }
         public ResourceTypeData ResourceType { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public double Amount { get; set; }
         public decimal Cost { get; set; }
