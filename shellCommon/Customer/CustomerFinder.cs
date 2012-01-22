@@ -98,6 +98,9 @@ namespace shellCommon.Customer
                 {
                     var request = new CustomerRequest();
                     request.CustomerId = focusedRow.Id;
+                    // Needed for Interceptor
+                    request.Customer = new CustomerDto();
+                    request.Customer.Name = focusedRow.Name;
 
                     Tag = new CustomerFactory().getCustomer(request).Customer;
                     DialogResult = System.Windows.Forms.DialogResult.OK;

@@ -30,7 +30,7 @@
         {
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.buttonEdit2 = new DevExpress.XtraEditors.ButtonEdit();
+            this.btnProjectName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.lblAddress = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -106,7 +106,7 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
@@ -182,15 +182,14 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nombre del Cliente:";
             // 
-            // buttonEdit2
+            // btnProjectName
             // 
-            this.buttonEdit2.Location = new System.Drawing.Point(105, 70);
-            this.buttonEdit2.Name = "buttonEdit2";
-            this.buttonEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.buttonEdit2.Size = new System.Drawing.Size(348, 20);
-            this.buttonEdit2.TabIndex = 5;
+            this.btnProjectName.Location = new System.Drawing.Point(105, 70);
+            this.btnProjectName.Name = "btnProjectName";
+            this.btnProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.btnProjectName.Size = new System.Drawing.Size(348, 20);
+            this.btnProjectName.TabIndex = 5;
             // 
             // labelControl4
             // 
@@ -379,7 +378,7 @@
             this.groupControl2.Controls.Add(this.cmbPhone);
             this.groupControl2.Controls.Add(this.lblContactJob);
             this.groupControl2.Controls.Add(this.labelControl6);
-            this.groupControl2.Controls.Add(this.buttonEdit2);
+            this.groupControl2.Controls.Add(this.btnProjectName);
             this.groupControl2.Controls.Add(this.labelControl11);
             this.groupControl2.Controls.Add(this.labelControl1);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -920,7 +919,7 @@
             this.Name = "BudgetRequestManager";
             this.Text = "Solicitud de Presupuesto";
             this.Load += new System.EventHandler(this.RequestBugetCell_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
@@ -999,7 +998,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit2;
+        private DevExpress.XtraEditors.ButtonEdit btnProjectName;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl lblAddress;
         private DevExpress.XtraEditors.LabelControl labelControl2;
