@@ -99,7 +99,7 @@ namespace CORE.Services
                 else
                 {
                     task = new Nexus.Task();
-                    mapper(t, task);
+                    MapperOld.mapper(t, task);
                     Olympus._Enterprise.AddToTasks(task);
                 }
             }
