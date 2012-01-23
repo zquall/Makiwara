@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
+using ReplicantRepository.DataTransferObjects;
 
 namespace CORE.Services
 {

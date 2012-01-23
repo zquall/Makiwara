@@ -188,6 +188,7 @@
             this.btnProjectName.Name = "btnProjectName";
             this.btnProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.btnProjectName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnProjectName_Properties_ButtonClick);
             this.btnProjectName.Size = new System.Drawing.Size(348, 20);
             this.btnProjectName.TabIndex = 5;
             // 

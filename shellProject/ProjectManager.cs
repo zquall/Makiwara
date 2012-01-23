@@ -11,6 +11,7 @@ using ReplicantRepository.Request;
 using ReplicantRepository.Response;
 using Infragistics.Win.UltraWinSchedule;
 using System.Linq;
+using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {

@@ -11,6 +11,7 @@ using ReplicantRepository.Request;
 using ReplicantRepository.Response;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {

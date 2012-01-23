@@ -11,6 +11,7 @@ using ReplicantRepository.Request;
 using ReplicantRepository.Response;
 using Infragistics.Win.UltraWinSchedule;
 using DevExpress.XtraGrid.Views.Base;
+using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {

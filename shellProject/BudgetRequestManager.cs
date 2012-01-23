@@ -73,6 +73,24 @@ namespace shellProject
             }
         }
 
+        private void cmbContact_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBoxEdit = sender as ComboBoxEdit;
+            var contact = comboBoxEdit.SelectedItem as CustomerContactDto;
+            loadContact(contact);
+        }
+
+        private void btnProjectName_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
+                    loadProjectFinder();
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
         #region Load Actions
@@ -104,6 +122,20 @@ namespace shellProject
                 loadCustomer(searchCustomerDialog.Tag as CustomerDto);
             }
         }
+
+        private void loadProjectFinder()
+        {
+            var searchProjectDialog = new SearchProject();
+            if (searchProjectDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var project = searchProjectDialog.Tag as ProjectDto;
+                if (project != null)
+                {
+                    btnProjectName.Text = project.Name;
+                }
+            }
+        }
+        
 
         // Loads the BudgetRequest on the form
         private void loadBudgetRequest(BudgetRequestData budgetRequest)
@@ -207,12 +239,6 @@ namespace shellProject
 
         #endregion
 
-        private void cmbContact_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var comboBoxEdit = sender as ComboBoxEdit;
-            var contact = comboBoxEdit.SelectedItem as CustomerContactDto;
-            loadContact(contact);
-        }
 
        
        
