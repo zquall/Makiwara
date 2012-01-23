@@ -11,7 +11,7 @@ using ReplicantRepository.Request;
 using ReplicantRepository.Response;
 using ReplicantRepository.DataTransferObjects;
 
-namespace shellCommon.Customer
+namespace shellProject
 {
     public partial class BudgetRequestFinder : DevExpress.XtraEditors.XtraForm
     {

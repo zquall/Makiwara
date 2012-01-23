@@ -1,4 +1,4 @@
-﻿namespace shellCommon.Customer
+﻿namespace shellProject
 {
     partial class BudgetRequestFinder
     {
