@@ -58,7 +58,11 @@ namespace CORE.Services
             foreach (Nexus.Resource r in deleteList)
             {
                 //Olympus._Enterprise.DeleteObject();
-                Olympus._Enterprise.Resources.DeleteObject(Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault());
+                //Olympus._Enterprise.Resources.DeleteObject(Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault());
+                Nexus.Resource temp = new Nexus.Resource();
+                temp = Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault();
+                Olympus._Enterprise.DeleteObject(temp);
+                //Olympus._Enterprise.DeleteObject(r);
                 Olympus._Enterprise.AcceptAllChanges();
             }
             deleteList = Olympus._Enterprise.Resources.Where(x => x.ProjectId == task.ProjectId & x.TaskId == task.Id).ToList();

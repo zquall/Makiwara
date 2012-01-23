@@ -20,6 +20,7 @@ namespace shellProject
         /// Variable encargada de almacenar los datos del projecto
         /// </summary>
         private ProjectData _project = new ProjectData();
+
         private BudgetRequestData _budgetRequest = new BudgetRequestData();
 
         public CreateProject()
@@ -61,6 +62,59 @@ namespace shellProject
             dtCreateDate.DateTime = System.DateTime.Now;
         }
 
+
+
+        private decimal calcSubtotal()
+        {
+            decimal subtotal = 0;
+
+            return subtotal;
+        }
+
+        private decimal calcDiscount()
+        {
+            decimal discount = 0;
+
+            return discount;
+        }
+
+        private decimal calcOther()
+        {
+            decimal other = 0;
+
+            return other;
+        }
+
+        private void loadProject(ProjectData p)
+        {
+            //Se carga el projecto a la variable local que almacena el projecto
+            _project = p;
+
+            //Screen One
+            txtQuoteNumber.Text = p.BudgetRequestId.ToString();
+            dtCreateDate.DateTime = p.CreateDate;
+            spinCode.Value = p.Id;
+            txtProject.Text = p.Name;
+            txtCustumer.Text = p.CustumerName;
+            txtSalesConsultant.Text = p.EmployeeId.ToString();//----------- OJO
+            chkManagementApproval.Checked = p.ManagementApproval;
+            chkCxcApproval.Checked = p.CxcApproval;
+
+            //Screen Two
+            spinContingenciesRate.Value = (decimal)p.ContingenciesRate;
+            spinGuaranteeRate.Value = (decimal)p.GuaranteeRate;
+            spinTotalUtilityRate.Value = (decimal)p.TotalUtilityRate;
+            spinSubTotal.Value = calcSubtotal();
+            spinDiscountRate.Value = (decimal)p.DiscountRate;
+            spinDiscountAmount.Value = calcDiscount();
+            spinSalesTax.Value = (decimal)p.SalesTax;
+            spinOthersRate.Value = (decimal)p.OthersRate;
+            spinOtherAmount.Value = calcOther();
+
+            //Screen Three
+            memoComments.Text = p.Comments;
+        }
+
         #endregion
 
         #region UI Events
@@ -72,16 +126,19 @@ namespace shellProject
         /// 
         private void searchBudgetRequest()
         {
-            _budgetRequest.Id = 1;
+            BudgetRequestFinder budgetRequest = new BudgetRequestFinder();
+            
 
-            CustomerDto customer = new CustomerDto();
-            customer.Id = 1;
-            customer.Name = "Renteco S.A.";
-            customer.Address = "Barrio Cuba";
-            _budgetRequest.Customer = customer;
+            //_budgetRequest.Id = 1;
 
-            _budgetRequest.Employee.Person.Name = "Allan Badilla";
-            _budgetRequest.DateModified = DateTime.Today;
+            //CustomerDto customer = new CustomerDto();
+            //customer.Id = 1;
+            //customer.Name = "Renteco S.A.";
+            //customer.Address = "Barrio Cuba";
+            //_budgetRequest.Customer = customer;
+
+            //_budgetRequest.Employee.Person.Name = "Allan Badilla";
+            //_budgetRequest.DateModified = DateTime.Today;
             
             loadBudgetRequesToProject();
         }
@@ -101,6 +158,10 @@ namespace shellProject
         private void CreateProject_Load(object sender, EventArgs e)
         {
             dtCreateDate.DateTime = System.DateTime.Today;
+            if (this.Tag != null)
+            {
+                loadProject(Tag as ProjectData);
+            }
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)

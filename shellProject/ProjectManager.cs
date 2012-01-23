@@ -515,5 +515,13 @@ namespace shellProject
         }
 
         #endregion
+
+        private void ribData_CaptionButtonClick(object sender, DevExpress.XtraBars.Ribbon.RibbonPageGroupEventArgs e)
+        {
+            CreateProject projectView = new CreateProject();
+            projectView.Tag = _project;
+            projectView.Text = "Información del Projecto";
+            projectView.ShowDialog();
+        }
     }
 }

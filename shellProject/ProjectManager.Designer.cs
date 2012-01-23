@@ -281,6 +281,7 @@
             this.ribData.ItemLinks.Add(this.barEditClient);
             this.ribData.Name = "ribData";
             this.ribData.Text = "Datos";
+            this.ribData.CaptionButtonClick += new DevExpress.XtraBars.Ribbon.RibbonPageGroupEventHandler(this.ribData_CaptionButtonClick);
             // 
             // ribbonPage2
             // 
