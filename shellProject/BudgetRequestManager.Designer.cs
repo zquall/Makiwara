@@ -205,9 +205,8 @@
             this.lblAddress.Location = new System.Drawing.Point(105, 51);
             this.lblAddress.MaximumSize = new System.Drawing.Size(348, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(344, 13);
+            this.lblAddress.Size = new System.Drawing.Size(0, 13);
             this.lblAddress.TabIndex = 3;
-            this.lblAddress.Text = "###########################################";
             // 
             // labelControl2
             // 
@@ -234,9 +233,8 @@
             // 
             this.lblContactJob.Location = new System.Drawing.Point(105, 135);
             this.lblContactJob.Name = "lblContactJob";
-            this.lblContactJob.Size = new System.Drawing.Size(112, 13);
+            this.lblContactJob.Size = new System.Drawing.Size(0, 13);
             this.lblContactJob.TabIndex = 11;
-            this.lblContactJob.Text = "##############";
             // 
             // labelControl11
             // 
@@ -334,9 +332,8 @@
             // 
             this.lblEmployeeName.Location = new System.Drawing.Point(87, 5);
             this.lblEmployeeName.Name = "lblEmployeeName";
-            this.lblEmployeeName.Size = new System.Drawing.Size(136, 13);
+            this.lblEmployeeName.Size = new System.Drawing.Size(0, 13);
             this.lblEmployeeName.TabIndex = 6;
-            this.lblEmployeeName.Text = "#################";
             // 
             // labelControl9
             // 
@@ -370,7 +367,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(761, 183);
+            this.panelControl4.Size = new System.Drawing.Size(731, 183);
             this.panelControl4.TabIndex = 3;
             // 
             // groupControl2
@@ -911,7 +908,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 573);
+            this.ClientSize = new System.Drawing.Size(731, 530);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.xtraTabControl1);

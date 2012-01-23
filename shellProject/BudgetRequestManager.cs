@@ -109,7 +109,7 @@ namespace shellProject
             if (searchBudgetRequestDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // load the found BudgetResquest
-                loadBudgetRequest(searchBudgetRequestDialog.Tag as BudgetRequestData);
+                loadBudgetRequest(searchBudgetRequestDialog.Tag as BudgetRequestDto);
             }
         }
 
@@ -138,10 +138,11 @@ namespace shellProject
         
 
         // Loads the BudgetRequest on the form
-        private void loadBudgetRequest(BudgetRequestData budgetRequest)
+        private void loadBudgetRequest(BudgetRequestDto budgetRequest)
         {
-            lblEmployeeName.Text = budgetRequest.Employee.Person.FullName;
+            lblEmployeeName.Text = budgetRequest.Employee.Person.ToString();
             edtDate.EditValue = budgetRequest.DateModified;
+            cmbBubgetRequest.Text = budgetRequest.Id.ToString();
             loadCustomer(budgetRequest.Customer);
         }
 

@@ -45,7 +45,9 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
                 Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
                 Mapper.CreateMap<Project, ProjectDto>();
-                Mapper.CreateMap<ProjectDto, Project>();             
+                Mapper.CreateMap<ProjectDto, Project>();
+                Mapper.CreateMap<BindCustomer, BindCustomerDto>();
+                Mapper.CreateMap<BindCustomerDto, BindCustomer>(); 
 
 
                 // Just start the mapper once
@@ -53,8 +55,9 @@ namespace CORE.DataMapper
             }
         }
 
-        #region Custom Mappings
+        #region Custom Mapping Extensions
 
+        // Customers Contact
         internal static CustomerContactDto Map(CustomerContact customerContact)
         {
             // Extract
@@ -75,7 +78,38 @@ namespace CORE.DataMapper
             contactDto.Person = Mapper.Map<PersonDto>(contactPerson);
             contactDto.Person.PersonPhones = Mapper.Map<List<PersonPhoneDto>>(personPhones);
             return contactDto;
-        } 
+        }
+
+        internal static BudgetRequestDto Map(BudgetRequest budgetRequest)
+        {
+            BudgetRequestDto budgetRequestDto = null;
+            if (budgetRequest != null)
+            {
+                // Customer
+                var customerEntity = budgetRequest.Customer;
+                Olympus._Enterprise.Detach(customerEntity);
+                var customer = Mapper.Map<CustomerDto>(customerEntity);
+
+                // Person
+                var personEntity = budgetRequest.Employee.Person;
+                Olympus._Enterprise.Detach(personEntity);
+                var person = Mapper.Map<PersonDto>(personEntity);
+
+                // Employee
+                var employeeEntity = budgetRequest.Employee;
+                Olympus._Enterprise.Detach(employeeEntity);
+                var employee = Mapper.Map<EmployeeDto>(employeeEntity);
+
+                // BubgetRequest
+                Olympus._Enterprise.Detach(budgetRequest);
+                budgetRequestDto = Mapper.Map<BudgetRequestDto>(budgetRequest);
+
+                budgetRequestDto.Customer = customer;
+                budgetRequestDto.Employee = employee;
+                budgetRequestDto.Employee.Person = person;
+            }
+            return budgetRequestDto;
+        }
 
         #endregion
     }

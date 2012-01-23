@@ -32,6 +32,9 @@
             this.grdControl = new DevExpress.XtraGrid.GridControl();
             this.grdCustomerView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmployee = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -39,9 +42,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.colProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEmployee = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).BeginInit();
@@ -99,6 +99,34 @@
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             this.colName.Width = 200;
+            // 
+            // colProjectName
+            // 
+            this.colProjectName.Caption = "Proyecto";
+            this.colProjectName.FieldName = "ProjectName";
+            this.colProjectName.Name = "colProjectName";
+            this.colProjectName.Visible = true;
+            this.colProjectName.VisibleIndex = 1;
+            this.colProjectName.Width = 200;
+            // 
+            // colDate
+            // 
+            this.colDate.Caption = "Fecha";
+            this.colDate.DisplayFormat.FormatString = "d";
+            this.colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDate.FieldName = "DateModified";
+            this.colDate.Name = "colDate";
+            this.colDate.Visible = true;
+            this.colDate.VisibleIndex = 2;
+            // 
+            // colEmployee
+            // 
+            this.colEmployee.Caption = "Agente";
+            this.colEmployee.FieldName = "Employee";
+            this.colEmployee.Name = "colEmployee";
+            this.colEmployee.Visible = true;
+            this.colEmployee.VisibleIndex = 3;
+            this.colEmployee.Width = 119;
             // 
             // btnOk
             // 
@@ -172,34 +200,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(657, 240);
             this.panel3.TabIndex = 7;
-            // 
-            // colProjectName
-            // 
-            this.colProjectName.Caption = "Proyecto";
-            this.colProjectName.FieldName = "ProjectName";
-            this.colProjectName.Name = "colProjectName";
-            this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 1;
-            this.colProjectName.Width = 200;
-            // 
-            // colDate
-            // 
-            this.colDate.Caption = "Fecha";
-            this.colDate.DisplayFormat.FormatString = "d";
-            this.colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colDate.FieldName = "DateModified";
-            this.colDate.Name = "colDate";
-            this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 2;
-            // 
-            // colEmployee
-            // 
-            this.colEmployee.Caption = "Agente";
-            this.colEmployee.FieldName = "Employee.Person.FullName";
-            this.colEmployee.Name = "colEmployee";
-            this.colEmployee.Visible = true;
-            this.colEmployee.VisibleIndex = 3;
-            this.colEmployee.Width = 119;
             // 
             // BudgetRequestFinder
             // 

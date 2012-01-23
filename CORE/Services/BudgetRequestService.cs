@@ -6,6 +6,7 @@ using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
 using CORE.DataMapper;
+using AutoMapper;
 
 namespace CORE.Services
 {
@@ -19,17 +20,20 @@ namespace CORE.Services
         public BudgetRequestResponse getNewBudgetRequest(BudgetRequestRequest request)
         {
             var response = new BudgetRequestResponse();
-            response.BudgetRequest = new BudgetRequestData();
+            response.BudgetRequest = new BudgetRequestDto();
             var employeeFound = Olympus._Enterprise.Employees.Where(x => x.UserAccountId == request.EmployeeId).SingleOrDefault();
+            
+            // Person
+            var personEntity = employeeFound.Person;
+            Olympus._Enterprise.Detach(personEntity);
+            var person = Mapper.Map<PersonDto>(personEntity);
 
-            response.BudgetRequest.Employee.Id = employeeFound.Id;
-            response.BudgetRequest.Employee.Person.Id = employeeFound.Person.Id;
-            response.BudgetRequest.Employee.Person.Name = employeeFound.Person.Name;
-            response.BudgetRequest.Employee.Person.LastName = employeeFound.Person.LastName;
+            // Employee
+            Olympus._Enterprise.Detach(employeeFound);
+            response.BudgetRequest.Employee = Mapper.Map<EmployeeDto>(employeeFound);
+            response.BudgetRequest.Employee.Person = person;
+            
             response.BudgetRequest.DateModified = DateTime.Today;
-            response.BudgetRequest.Customer.Name = "";
-            response.BudgetRequest.Customer.Address = "";
-
             return response;
         }
 
@@ -40,8 +44,8 @@ namespace CORE.Services
             if (request.BudgetResquestId != 0) {
                 var budgetResquestFound = Olympus._Enterprise.BudgetRequests.Where(x => x.Id == request.BudgetResquestId).SingleOrDefault();
                 if ( budgetResquestFound != null )
-                {    
-                    response.BudgetRequest = MapperOld.Map(budgetResquestFound);
+                {                    
+                    response.BudgetRequest = MapperPaths.Map(budgetResquestFound);
                 }                
             }         
             return response;
@@ -56,26 +60,18 @@ namespace CORE.Services
             var response = new BudgetRequestResponse();
             
             // Inicitialize the list
-            response.BudgetRequestList = new List<BudgetRequestData>();
+            response.BudgetRequestList = new List<BudgetRequestDto>();
 
             // Search in DB
-            var resultFound = Olympus._Enterprise.BudgetRequests.Where(x => (x.ProjectName.Contains(request.ResquestQuery) || x.Customer.Name.Contains(request.ResquestQuery))).OrderBy(y => y.Customer.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows));
+            var resultFound = Olympus._Enterprise.BudgetRequests.Where(x => (x.ProjectName.Contains(request.ResquestQuery) || x.Customer.Name.Contains(request.ResquestQuery))).OrderBy(y => y.Customer.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).ToList();
 
             if (resultFound != null)
             {
                 // Fill the response with the result found
-                foreach (var budgetRequest in resultFound)
+                foreach (var tmpBudgetRequest in resultFound)
                 {
-                    BudgetRequestData tmpBudgetRequestData = new BudgetRequestData();
-                    tmpBudgetRequestData.Id = budgetRequest.Id;
-                    tmpBudgetRequestData.ProjectName = budgetRequest.ProjectName;
-                    tmpBudgetRequestData.Customer = new CustomerDto();
-                    tmpBudgetRequestData.Customer.Name = budgetRequest.Customer.Name;
-                    tmpBudgetRequestData.DateModified = budgetRequest.DateModified;
-                    tmpBudgetRequestData.Employee.Person.Name = budgetRequest.Employee.Person.Name;
-                    tmpBudgetRequestData.Employee.Person.LastName = budgetRequest.Employee.Person.LastName;
-
-                    response.BudgetRequestList.Add(tmpBudgetRequestData);
+                    BudgetRequestDto budgetRequest = MapperPaths.Map(tmpBudgetRequest);
+                    response.BudgetRequestList.Add(budgetRequest);
                 }
             }
             return response;

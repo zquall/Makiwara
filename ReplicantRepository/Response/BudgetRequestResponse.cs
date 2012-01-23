@@ -8,13 +8,8 @@ namespace ReplicantRepository.Response
 {
     public class BudgetRequestResponse
     {
-        public BudgetRequestResponse()
-        {
-            BudgetRequest = new BudgetRequestData();
-            BudgetRequestList = new List<BudgetRequestData>();
-        }
-        public BudgetRequestData BudgetRequest { get; set; }
-        public List<BudgetRequestData> BudgetRequestList { get; set; }
+        public BudgetRequestDto BudgetRequest { get; set; }
+        public List<BudgetRequestDto> BudgetRequestList { get; set; }
     }
 
 }

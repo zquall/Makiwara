@@ -56,8 +56,9 @@ namespace Interceptor.Adapters
         }
 
         // Get Customer
-        public void getCustomer(CustomerRequest request)
+        public CustomerResponse getCustomer(CustomerRequest request)
         {
+            CustomerResponse response = new CustomerResponse();
             // Check if customers needs a binding
             if (request.CustomerId == 0 && request.Customer.Name != "")
             {                
@@ -92,18 +93,11 @@ namespace Interceptor.Adapters
                             Email = "email@no.disponible"
                         };
                         newCustomer.CustomerContacts.Add(newCustomerContact);
-                    }         
-
-                    //new CustomerFactory().
-
-                    //// First save the new customer
-                    //Olympus._Enterprise.Customers.AddObject(newCustomer); 
-                    //Olympus._Enterprise.SaveChanges();
-                    
-                    // Add the customer Id
-                    //request.Customer.Id = newCustomer.Id;
+                    }
+                    response.Customer = newCustomer;
                 }
-            }           
+            }
+            return response;
         }
     }
 }

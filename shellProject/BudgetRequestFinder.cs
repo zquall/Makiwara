@@ -62,17 +62,15 @@ namespace shellCommon.Customer
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            var focusedRow = grdCustomerView.GetFocusedRow() as BudgetRequestData;
-            if (focusedRow != null)
+            var budgetRequest = grdCustomerView.GetFocusedRow() as BudgetRequestDto;
+            if (budgetRequest != null)
             {
                 // Check if the user select a valid object
-                if (focusedRow.Id > 0)
+                if (budgetRequest.Id > 0)
                 {
-                    var request = new BudgetRequestRequest();
-                    request.BudgetResquestId = focusedRow.Id;
-
-                    // This customer must be returned with contacts
-                    this.Tag = new BudgetRequestFactory().getBudgetRequest(request).BudgetRequest;
+                    // Add the contacts to the Customer
+                    budgetRequest.Customer = new CustomerFactory().getCustomer(new CustomerRequest() { CustomerId = budgetRequest.CustomerId }).Customer;
+                    this.Tag = budgetRequest;
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
@@ -92,7 +90,7 @@ namespace shellCommon.Customer
             ShowSearchResults(new BudgetRequestFactory().searchBudgetRequest(request).BudgetRequestList);
         }
 
-        private void ShowSearchResults(List<BudgetRequestData> searchResults)
+        private void ShowSearchResults(List<BudgetRequestDto> searchResults)
         {           
             grdControl.DataSource = searchResults;
         }

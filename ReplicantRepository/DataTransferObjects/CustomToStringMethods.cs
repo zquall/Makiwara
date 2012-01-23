@@ -25,6 +25,17 @@ namespace ReplicantRepository.DataTransferObjects
                     dynamicObject = o as PersonPhoneDto;
                     result = dynamicObject.Phone;
                     break;
+                case "ReplicantRepository.DataTransferObjects.PersonDto":
+                    dynamicObject = o as PersonDto;
+                    result = dynamicObject.Name + " " + dynamicObject.LastName;
+                    break;
+                case "ReplicantRepository.DataTransferObjects.EmployeeDto":
+                    dynamicObject = o as EmployeeDto;
+                    if (dynamicObject.Person != null)
+                        result = dynamicObject.Person.ToString();
+                    else
+                        result = "Person is null";
+                    break;
                 default:
                     result = o.GetType().ToString();
                     break;

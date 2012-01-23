@@ -62,8 +62,14 @@ namespace CORE.Services
         public CustomerResponse getCustomer(CustomerRequest request)
         {
             var response = new CustomerResponse();
-            // *** Intercepted Method ***
-            _CustomerAdapter.getCustomer(request);
+           
+            #region *** Intercepted Method ***
+            // Try to bind a customer from Dialcom to Nexus
+            if (request.CustomerId == 0)
+            {
+                request.CustomerId = saveCustomer(new CustomerRequest() { Customer = _CustomerAdapter.getCustomer(request).Customer }).CustomerId;
+            }            
+            #endregion
 
             // Validate if the customer is from Nexus
             if (request.CustomerId > 0) 
@@ -155,14 +161,17 @@ namespace CORE.Services
         public CustomerResponse saveCustomer(CustomerRequest request)
         {
             CustomerResponse response = new CustomerResponse();
-            // Check if is a new customer
-            if (request.Customer.Id == 0)
+            if (request.Customer != null)
             {
-                // Map the Customer with Contacts
-                Customer customer = Mapper.Map<CustomerDto, Customer>(request.Customer);
-                Olympus._Enterprise.Customers.AddObject(customer);
-                Olympus._Enterprise.SaveChanges();
-                response.CustomerId = customer.Id;
+                // Check if is a new customer
+                if (request.Customer.Id == 0)
+                {
+                    // Map the Customer with Contacts
+                    Customer customer = Mapper.Map<CustomerDto, Customer>(request.Customer);
+                    Olympus._Enterprise.Customers.AddObject(customer);
+                    Olympus._Enterprise.SaveChanges();
+                    response.CustomerId = customer.Id;
+                }
             }
             return response;
         }
