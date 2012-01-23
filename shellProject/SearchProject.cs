@@ -107,12 +107,14 @@ namespace shellProject
         {
             _project = viewProjects.GetFocusedRow() as ProjectData;
 
+            Tag = new ProjectDto { Id = _project.Id, Name = _project.Name};
+
             this.DialogResult = DialogResult.OK;
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         #endregion

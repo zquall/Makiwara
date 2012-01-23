@@ -59,10 +59,6 @@
       <Project>{088CBC6B-CB35-43B5-BBA7-FD95CAA48222}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Interceptor\Interceptor.csproj">
-      <Project>{776B24E4-2970-4965-8D60-D434AF3D36DB}</Project>
-      <Name>Interceptor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
       <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
       <Name>ReplicantRepository</Name>

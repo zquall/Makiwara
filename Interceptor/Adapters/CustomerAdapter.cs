@@ -65,33 +65,36 @@ namespace Interceptor.Adapters
                 var customerFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper() == request.Customer.Name.ToUpper()).FirstOrDefault();
                 
                 if (customerFound != null)
-                {  
-                    //// Add the Customer to Nexus
-                    //var newCustomer = new Customer()
-                    //{
-                    //    Name = customerFound.CLI_Nombre,
-                    //    Address = customerFound.CLI_Direccion,
-                    //    BindCustomer = new Nexus.BindCustomer(){AlienId = customerFound.CLI_Cliente}
-                    //};
+                {
+                    // Add the Customer to Nexus
+                    var newCustomer = new CustomerDto()
+                    {
+                        Name = customerFound.CLI_Nombre,
+                        Address = customerFound.CLI_Direccion                      
+                    };
 
-                    //// Check if the Customer has a contact defined
-                    //if (customerFound.CLI_Contacto != null)
-                    //{
-                    //    // Add Person to Contact
-                    //    var newPerson = new Nexus.Person()
-                    //    {
-                    //        Name = customerFound.CLI_Contacto,
-                    //        LastName = ""                            
-                    //    };
-                    //    // Add Contact to Customer
-                    //    var newCustomerContact = new Nexus.CustomerContact()
-                    //    {
-                    //        Job = "Funcionario",
-                    //        Person = newPerson,
-                    //        Email = "email@no.disponible"
-                    //    };
-                    //    newCustomer.CustomerContacts.Add(newCustomerContact);
-                    //}         
+                    newCustomer.BindCustomer = new BindCustomerDto { AlienId = customerFound.CLI_Cliente };
+
+                    // Check if the Customer has a contact defined
+                    if (customerFound.CLI_Contacto != null)
+                    {
+                        // Add Person to Contact
+                        var newPerson = new PersonDto()
+                        {
+                            Name = customerFound.CLI_Contacto,
+                            LastName = ""
+                        };
+                        // Add Contact to Customer
+                        var newCustomerContact = new CustomerContactDto()
+                        {
+                            Job = "Funcionario",
+                            Person = newPerson,
+                            Email = "email@no.disponible"
+                        };
+                        newCustomer.CustomerContacts.Add(newCustomerContact);
+                    }         
+
+                    //new CustomerFactory().
 
                     //// First save the new customer
                     //Olympus._Enterprise.Customers.AddObject(newCustomer); 
