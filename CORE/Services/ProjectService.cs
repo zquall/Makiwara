@@ -314,8 +314,24 @@ namespace CORE.Services
 
         #region Saves Methods
 
+        private void saveDependencies(List<TaskData> dependencies, Nexus.Task task)
+        { 
+        }
+
         private void saveResources(List<ResourceData> resources, Nexus.Task task)
         {
+            //Se borran los recursos de la tarea
+            List<Nexus.Resource> deleteList = new List<Nexus.Resource>();
+            deleteList = Olympus._Enterprise.Resources.Where(x => x.ProjectId == task.ProjectId & x.TaskId == task.Id).ToList();
+            foreach (Nexus.Resource r in deleteList)
+            {
+                //Olympus._Enterprise.DeleteObject();
+                Olympus._Enterprise.Resources.DeleteObject(Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault());
+                Olympus._Enterprise.AcceptAllChanges();
+            }
+            deleteList = Olympus._Enterprise.Resources.Where(x => x.ProjectId == task.ProjectId & x.TaskId == task.Id).ToList();
+
+
             foreach (ResourceData rd in resources)
             {
                 Nexus.Resource resource = Olympus._Enterprise.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
@@ -350,6 +366,8 @@ namespace CORE.Services
                 }
                 else
                 {
+                    task = new Nexus.Task();
+                    mapper(t, task);
                     Olympus._Enterprise.AddToTasks(task);
                 }
             }

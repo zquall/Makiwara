@@ -267,6 +267,8 @@
             this.viewResources.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.viewResources.OptionsView.ShowGroupPanel = false;
             this.viewResources.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.viewResources_InitNewRow);
+            this.viewResources.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.viewResources_FocusedRowChanged);
+            this.viewResources.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.viewResources_CellValueChanged);
             // 
             // repResourceTypes
             // 
@@ -274,6 +276,7 @@
             this.repResourceTypes.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repResourceTypes.Name = "repResourceTypes";
+            this.repResourceTypes.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // repMeasures
             // 
@@ -281,6 +284,7 @@
             this.repMeasures.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repMeasures.Name = "repMeasures";
+            this.repMeasures.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // repResourceCode
             // 
@@ -288,6 +292,7 @@
             this.repResourceCode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repResourceCode.Name = "repResourceCode";
+            this.repResourceCode.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.repResourceCode.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repResourceCode_ButtonClick);
             // 
             // tabPredecessors
@@ -334,6 +339,7 @@
             this.cmdDelete.Size = new System.Drawing.Size(75, 23);
             this.cmdDelete.TabIndex = 1;
             this.cmdDelete.Text = "Eliminar";
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // cmdOk
             // 

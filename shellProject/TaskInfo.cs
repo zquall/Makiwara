@@ -82,7 +82,6 @@ namespace shellProject
             _resourcesCollection.Clear();
 
             List<ResourceData> l = new List<ResourceData>();
-            _task.Tag.GetType();
 
             l = _task.Tag as List<ResourceData>;
 
@@ -181,25 +180,6 @@ namespace shellProject
 
         #region UI Configuration
 
-        private void configureDependenciesGrid()
-        {
-            viewDependencies.Columns["Predecessor"].Visible = true;
-            viewDependencies.Columns["DependencyType"].Visible = true;
-            viewDependencies.Columns["Tag"].Visible = false;
-
-            viewDependencies.Columns["Predecessor"].Caption = "Nombre de la Tarea";
-            viewDependencies.Columns["DependencyType"].Caption = "Tipo de Dependencia";
-            viewDependencies.Columns["Tag"].Caption = "Info";
-
-            viewDependencies.Columns["Predecessor"].Width = 300;
-            viewDependencies.Columns["DependencyType"].Width = 136;
-            viewDependencies.Columns["Tag"].Width = 0;
-            
-            viewDependencies.Columns["Predecessor"].OptionsColumn.ReadOnly = true;
-            viewDependencies.Columns["DependencyType"].OptionsColumn.ReadOnly = true;
-            viewDependencies.Columns["Tag"].OptionsColumn.ReadOnly = true;
-        }
-
         private void configureResourcesGrid()
         {
             #region Set visible columns
@@ -252,11 +232,101 @@ namespace shellProject
             viewResources.Columns["RealUsed"].VisibleIndex = 7;
             #endregion
 
+            #region Set read only columns
+            //Todo se apaga hasta saber que tipo de recurso se va a utilizar
+            viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
+            viewResources.Columns["Code"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
+            #endregion
+
             #region set repositories
             viewResources.Columns["ResourceType"].ColumnEdit = repResourceTypes;
-            viewResources.Columns["Measure"].ColumnEdit = repMeasures;
-            viewResources.Columns["Code"].ColumnEdit = repResourceCode;
             #endregion
+        }
+
+        private void configureResourcesGrid(string rtype)
+        {
+            viewResources.Columns["Measure"].ColumnEdit = repMeasures;
+            viewResources.Columns["Code"].ColumnEdit = null;
+
+            if ((rtype == "PRODUCTO") || (rtype == "ALQUILERES") || (rtype == "PLANILLA"))
+            {
+                #region Set read only columns
+                viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
+                viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
+                viewResources.Columns["Code"].OptionsColumn.ReadOnly = false;
+                viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["Amount"].OptionsColumn.ReadOnly = false;
+                viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+                viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
+                #endregion
+
+                viewResources.Columns["Code"].ColumnEdit = repResourceCode;
+            }
+            else
+                if (rtype == "")
+                {
+                    #region Set read only columns
+                    viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["Code"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
+                    #endregion
+                }
+                else
+                {
+                    #region Set read only columns
+                    viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["Code"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["Name"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["Amount"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["Cost"].OptionsColumn.ReadOnly = false;
+                    viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+                    viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = false;
+                    #endregion
+                }
+        }
+
+        private void configureDependenciesGrid()
+        {
+            viewDependencies.Columns["Predecessor"].Visible = true;
+            viewDependencies.Columns["DependencyType"].Visible = true;
+            viewDependencies.Columns["Tag"].Visible = false;
+
+            viewDependencies.Columns["Predecessor"].Caption = "Nombre de la Tarea";
+            viewDependencies.Columns["DependencyType"].Caption = "Tipo de Dependencia";
+            viewDependencies.Columns["Tag"].Caption = "Info";
+
+            viewDependencies.Columns["Predecessor"].Width = 300;
+            viewDependencies.Columns["DependencyType"].Width = 136;
+            viewDependencies.Columns["Tag"].Width = 0;
+            
+            viewDependencies.Columns["Predecessor"].OptionsColumn.ReadOnly = true;
+            viewDependencies.Columns["DependencyType"].OptionsColumn.ReadOnly = true;
+            viewDependencies.Columns["Tag"].OptionsColumn.ReadOnly = true;
         }
 
         private bool isRoot()
@@ -284,6 +354,16 @@ namespace shellProject
         
         #region UI Events
 
+        private void TaskInfo_Load(object sender, EventArgs e)
+        {
+            loadTask();
+            configureTaskInfoForm();
+
+            //Se crea un backup de la tarea para ser restaurada en caso de que se presione el boton cancelar
+            copyTask(_task, _backupTask);
+        }
+
+
         private void viewResources_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             ColumnView view = sender as ColumnView;
@@ -294,17 +374,58 @@ namespace shellProject
             view.SetRowCellValue(e.RowHandle, view.Columns["Cost"], 0);
             view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], 0);
             view.SetRowCellValue(e.RowHandle, view.Columns["RealUsed"], 0);
+
+            configureResourcesGrid(view.EditingValue.ToString());
         }
 
-        private void TaskInfo_Load(object sender, EventArgs e)
+        private void viewResources_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            loadTask();
-            configureTaskInfoForm();
+            ColumnView view = sender as ColumnView;
 
-            //Se crea un backup de la tarea para ser restaurada en caso de que se presione el boton cancelar
-            copyTask(_task, _backupTask);
+            if (view.EditingValue != null)
+                configureResourcesGrid(view.EditingValue.ToString());
+            else
+                configureResourcesGrid("");
         }
 
+        private void viewResources_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            ColumnView view = sender as ColumnView;
+
+            if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
+            {
+                ResourceData rd = view.GetRow(e.RowHandle) as ResourceData;
+                view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
+            }
+        }
+
+        private void loadResourceSource(ResourceSourceData resourceSource)
+        {
+            if (resourceSource != null)
+            {
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], resourceSource.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], resourceSource.Name);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], resourceSource.Cost);
+            }
+        }
+
+        private void repResourceCode_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            SearchResource searchResource = new SearchResource();
+            ResourceSourceData rsd = new ResourceSourceData();
+
+            ResourceData rtd = viewResources.GetFocusedRow() as ResourceData;
+            searchResource.Rtype = rtd.ResourceType.Name;
+
+            if (searchResource.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                rsd = searchResource.Tag as ResourceSourceData;
+                loadResourceSource(rsd);
+            }
+        }
+
+
+        #region controls
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             //Se devuelve al estado original en el que fue abierta la tarea
@@ -321,30 +442,6 @@ namespace shellProject
 
             this.Close();
             this.DialogResult = DialogResult.OK;
-        }
-
-        private void loadResourceSource(ResourceSourceData resourceSource)
-        {
-            viewResources.AddNewRow();
-            viewResources.MoveLast();
-            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Code"], resourceSource.Code);
-            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Name"], resourceSource.Name);
-            viewResources.SetRowCellValue(viewResources.GetFocusedDataSourceRowIndex(), viewResources.Columns["Cost"], resourceSource.Cost);
-            
-            MessageBox.Show(resourceSource.Code + ": " + resourceSource.Name);
-        }
-
-        private void repResourceCode_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            SearchResource searchResource = new SearchResource();
-            ResourceSourceData rsd = new ResourceSourceData();
-            searchResource.Rtype = "PRODUCTO";
-
-            if (searchResource.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                rsd = searchResource.Tag as ResourceSourceData;
-                loadResourceSource(rsd);
-            }
         }
 
         private void drtDuration_TextChanged(object sender, EventArgs e)
@@ -398,6 +495,17 @@ namespace shellProject
             loadTask();
         }
 
-        #endregion        
+        #endregion
+
+        private void cmdDelete_Click(object sender, EventArgs e)
+        {
+            viewResources.DeleteRow(viewResources.FocusedRowHandle);
+        }
+
+        
+
+        #endregion
+
+        
     }
 }

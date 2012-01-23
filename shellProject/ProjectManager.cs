@@ -215,6 +215,7 @@ namespace shellProject
             t.SetDuration(new TimeSpan(1, 0, 0, 0, 0), Infragistics.Win.TimeSpanFormat.Days);
             ultraCalendarInfo.Tasks.Add(t);
             t.Name = "Tarea " + t.RowNumber;
+            _allTask.Add(t);
         }
 
         /// <summary>
