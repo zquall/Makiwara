@@ -81,6 +81,7 @@ namespace ReplicantRepository.DataTransferObjects
             return Symbol;
         }
     }
+
     public class ResourceTypeData
     {
         public int Id { get; set; }

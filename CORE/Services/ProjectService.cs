@@ -43,34 +43,34 @@ namespace CORE.Services
         }
 
         #endregion
-
+       
         #region Saves Methods
 
         private void saveDependencies(List<TaskData> dependencies, Nexus.Task task)
         { 
         }
 
+        private void deleteResources(Nexus.Task task)
+        {
+            Nexus.Task t = Olympus._Enterprise.Tasks.Where(x => x.ProjectId == task.ProjectId & x.Id == task.Id).SingleOrDefault();
+
+            List<Nexus.Resource> delete = new List<Nexus.Resource>();
+            delete = task.Resources.ToList();
+            foreach (Nexus.Resource r in delete)
+            {
+                Olympus._Enterprise.Resources.DeleteObject(r);
+            }
+        }
+
         private void saveResources(List<ResourceData> resources, Nexus.Task task)
         {
-            //Se borran los recursos de la tarea
-            List<Nexus.Resource> deleteList = new List<Nexus.Resource>();
-            deleteList = Olympus._Enterprise.Resources.Where(x => x.ProjectId == task.ProjectId & x.TaskId == task.Id).ToList();
-            foreach (Nexus.Resource r in deleteList)
-            {
-                //Olympus._Enterprise.DeleteObject();
-                //Olympus._Enterprise.Resources.DeleteObject(Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault());
-                Nexus.Resource temp = new Nexus.Resource();
-                temp = Olympus._Enterprise.Resources.Where(x => x.Id == r.Id).SingleOrDefault();
-                Olympus._Enterprise.DeleteObject(temp);
-                //Olympus._Enterprise.DeleteObject(r);
-                Olympus._Enterprise.AcceptAllChanges();
-            }
-            deleteList = Olympus._Enterprise.Resources.Where(x => x.ProjectId == task.ProjectId & x.TaskId == task.Id).ToList();
-
+           // deleteResources(task);
 
             foreach (ResourceData rd in resources)
             {
                 Nexus.Resource resource = Olympus._Enterprise.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
+                //Nexus.Resource resource = task.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
+                
                 if (resource != null)
                 {
                     MapperOld.mapper(rd, resource);
@@ -162,9 +162,7 @@ namespace CORE.Services
             {
                 MapperOld.mapper(request.Project, projectFound);
                 if (request.Project.taskList != null)
-                {
                     saveTasks(request.Project.taskList, projectFound);
-                }
             }
             else
             {

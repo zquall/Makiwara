@@ -21,7 +21,7 @@ namespace shellProject
         /// </summary>
         private ProjectData _project = new ProjectData();
 
-        private BudgetRequestData _budgetRequest = new BudgetRequestData();
+        private BudgetRequestDto _budgetRequest = new BudgetRequestDto();
 
         public CreateProject()
         {
@@ -56,7 +56,7 @@ namespace shellProject
         {
             txtQuoteNumber.Text = _budgetRequest.Id.ToString();
             spinCode.Value = getNextCode();
-            txtProject.Text = "";
+            txtProject.Text = _budgetRequest.ProjectName;
             txtCustumer.Text = _budgetRequest.Customer.Name;
             txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
             dtCreateDate.DateTime = System.DateTime.Now;
@@ -89,6 +89,9 @@ namespace shellProject
         {
             //Se carga el projecto a la variable local que almacena el projecto
             _project = p;
+
+            _budgetRequest.Id = _project.BudgetRequestId;
+            _budgetRequest.CustomerId = _project.CustumerId;
 
             //Screen One
             txtQuoteNumber.Text = p.BudgetRequestId.ToString();
@@ -127,18 +130,9 @@ namespace shellProject
         private void searchBudgetRequest()
         {
             BudgetRequestFinder budgetRequest = new BudgetRequestFinder();
-            
 
-            //_budgetRequest.Id = 1;
-
-            //CustomerDto customer = new CustomerDto();
-            //customer.Id = 1;
-            //customer.Name = "Renteco S.A.";
-            //customer.Address = "Barrio Cuba";
-            //_budgetRequest.Customer = customer;
-
-            //_budgetRequest.Employee.Person.Name = "Allan Badilla";
-            //_budgetRequest.DateModified = DateTime.Today;
+            if (budgetRequest.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                _budgetRequest = budgetRequest.Tag as BudgetRequestDto;
             
             loadBudgetRequesToProject();
         }
@@ -194,8 +188,8 @@ namespace shellProject
 
             p.Id = (int)spinCode.Value;
             p.BudgetRequestId = (int)_budgetRequest.Id;
-            p.CustumerId = _budgetRequest.Customer.Id;
-            p.EmployeeId = _budgetRequest.Customer.Id;
+            p.CustumerId = _budgetRequest.CustomerId;
+            p.EmployeeId = _budgetRequest.CustomerId;
             p.Name = txtProject.Text;
             p.ManagementApproval = chkManagementApproval.Checked;
             p.CxcApproval = chkCxcApproval.Checked;

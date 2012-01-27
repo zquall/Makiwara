@@ -258,7 +258,7 @@ namespace shellProject
             viewResources.Columns["Measure"].ColumnEdit = repMeasures;
             viewResources.Columns["Code"].ColumnEdit = null;
 
-            if ((rtype == "PRODUCTO") || (rtype == "ALQUILERES") || (rtype == "PLANILLA"))
+            if ((rtype.Equals("PRODUCTO")) || (rtype.Equals("ALQUILER")) || (rtype.Equals("PLANILLA")))
             {
                 #region Set read only columns
                 viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
@@ -277,7 +277,7 @@ namespace shellProject
                 viewResources.Columns["Code"].ColumnEdit = repResourceCode;
             }
             else
-                if (rtype == "")
+                if (rtype.Equals(""))
                 {
                     #region Set read only columns
                     viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
@@ -376,7 +376,11 @@ namespace shellProject
             view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], 0);
             view.SetRowCellValue(e.RowHandle, view.Columns["RealUsed"], 0);
 
-            configureResourcesGrid(view.EditingValue.ToString());
+            //Si se presiona el boton de agregar fila del Navegador del grid se genera un null en el EditingValue
+            if (view.EditingValue != null)
+                configureResourcesGrid(view.EditingValue.ToString());
+            else
+                configureResourcesGrid("");
         }
 
         private void viewResources_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -392,11 +396,16 @@ namespace shellProject
         private void viewResources_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             ColumnView view = sender as ColumnView;
+            ResourceData rd = view.GetRow(e.RowHandle) as ResourceData;
 
             if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
             {
-                ResourceData rd = view.GetRow(e.RowHandle) as ResourceData;
                 view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
+            }
+
+            if (e.Column.FieldName == "ResourceType")
+            {
+                configureResourcesGrid(rd.ResourceType.Name);
             }
         }
 

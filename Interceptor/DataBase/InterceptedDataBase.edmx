@@ -285,7 +285,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="81">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="41">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
         <EntityTypeShape EntityType="OuterModel.ResourceSource" Width="1.5" PointX="3.375" PointY="0.75" Height="2.1725878906249996" />
       </Diagram>

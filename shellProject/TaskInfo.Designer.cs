@@ -85,7 +85,7 @@
             this.TabControl.Location = new System.Drawing.Point(7, 7);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedTabPage = this.tabGeneral;
-            this.TabControl.Size = new System.Drawing.Size(610, 240);
+            this.TabControl.Size = new System.Drawing.Size(610, 267);
             this.TabControl.TabIndex = 0;
             this.TabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabGeneral,
@@ -103,12 +103,12 @@
             this.tabGeneral.Controls.Add(this.txtTaskName);
             this.tabGeneral.Controls.Add(this.lblTaskName);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Size = new System.Drawing.Size(603, 212);
+            this.tabGeneral.Size = new System.Drawing.Size(603, 239);
             this.tabGeneral.Text = "General";
             // 
             // drtDuration
             // 
-            this.drtDuration.Location = new System.Drawing.Point(90, 56);
+            this.drtDuration.Location = new System.Drawing.Point(90, 66);
             this.drtDuration.Name = "drtDuration";
             this.drtDuration.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -138,7 +138,7 @@
             this.grpDates.Controls.Add(this.lblEndDate);
             this.grpDates.Controls.Add(this.dtStartDate);
             this.grpDates.Controls.Add(this.lblStartDate);
-            this.grpDates.Location = new System.Drawing.Point(22, 96);
+            this.grpDates.Location = new System.Drawing.Point(22, 118);
             this.grpDates.Name = "grpDates";
             this.grpDates.Size = new System.Drawing.Size(398, 100);
             this.grpDates.TabIndex = 6;
@@ -193,7 +193,7 @@
             0,
             0,
             0});
-            this.spinCompleteRate.Location = new System.Drawing.Point(334, 56);
+            this.spinCompleteRate.Location = new System.Drawing.Point(334, 66);
             this.spinCompleteRate.Name = "spinCompleteRate";
             this.spinCompleteRate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -209,7 +209,7 @@
             // 
             // lblCompleteRate
             // 
-            this.lblCompleteRate.Location = new System.Drawing.Point(257, 59);
+            this.lblCompleteRate.Location = new System.Drawing.Point(257, 69);
             this.lblCompleteRate.Name = "lblCompleteRate";
             this.lblCompleteRate.Size = new System.Drawing.Size(71, 13);
             this.lblCompleteRate.TabIndex = 4;
@@ -217,7 +217,7 @@
             // 
             // lblDuration
             // 
-            this.lblDuration.Location = new System.Drawing.Point(22, 59);
+            this.lblDuration.Location = new System.Drawing.Point(22, 69);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(42, 13);
             this.lblDuration.TabIndex = 2;
@@ -243,7 +243,7 @@
             // 
             this.tabResources.Controls.Add(this.grdResources);
             this.tabResources.Name = "tabResources";
-            this.tabResources.Size = new System.Drawing.Size(603, 212);
+            this.tabResources.Size = new System.Drawing.Size(603, 239);
             this.tabResources.Text = "Recursos";
             // 
             // grdResources
@@ -255,7 +255,7 @@
             this.repResourceTypes,
             this.repMeasures,
             this.repResourceCode});
-            this.grdResources.Size = new System.Drawing.Size(598, 200);
+            this.grdResources.Size = new System.Drawing.Size(598, 233);
             this.grdResources.TabIndex = 0;
             this.grdResources.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewResources});
@@ -265,7 +265,6 @@
             this.viewResources.GridControl = this.grdResources;
             this.viewResources.Name = "viewResources";
             this.viewResources.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.viewResources.OptionsView.ShowGroupPanel = false;
             this.viewResources.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.viewResources_InitNewRow);
             this.viewResources.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.viewResources_FocusedRowChanged);
             this.viewResources.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.viewResources_CellValueChanged);
@@ -299,7 +298,7 @@
             // 
             this.tabPredecessors.Controls.Add(this.grdPredecessors);
             this.tabPredecessors.Name = "tabPredecessors";
-            this.tabPredecessors.Size = new System.Drawing.Size(603, 212);
+            this.tabPredecessors.Size = new System.Drawing.Size(603, 239);
             this.tabPredecessors.Text = "Predecesoras";
             // 
             // grdPredecessors
@@ -307,7 +306,7 @@
             this.grdPredecessors.Location = new System.Drawing.Point(3, 3);
             this.grdPredecessors.MainView = this.viewDependencies;
             this.grdPredecessors.Name = "grdPredecessors";
-            this.grdPredecessors.Size = new System.Drawing.Size(597, 200);
+            this.grdPredecessors.Size = new System.Drawing.Size(597, 233);
             this.grdPredecessors.TabIndex = 0;
             this.grdPredecessors.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDependencies});
@@ -322,7 +321,7 @@
             // 
             this.tabNotes.Controls.Add(this.memoEditNotes);
             this.tabNotes.Name = "tabNotes";
-            this.tabNotes.Size = new System.Drawing.Size(603, 212);
+            this.tabNotes.Size = new System.Drawing.Size(603, 239);
             this.tabNotes.Text = "Notas";
             // 
             // memoEditNotes
@@ -334,16 +333,17 @@
             // 
             // cmdDelete
             // 
-            this.cmdDelete.Location = new System.Drawing.Point(366, 258);
+            this.cmdDelete.Location = new System.Drawing.Point(366, 280);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(75, 23);
             this.cmdDelete.TabIndex = 1;
             this.cmdDelete.Text = "Eliminar";
+            this.cmdDelete.Visible = false;
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // cmdOk
             // 
-            this.cmdOk.Location = new System.Drawing.Point(452, 258);
+            this.cmdOk.Location = new System.Drawing.Point(452, 280);
             this.cmdOk.Name = "cmdOk";
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
@@ -352,7 +352,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(537, 258);
+            this.cmdCancel.Location = new System.Drawing.Point(537, 280);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
@@ -363,7 +363,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 293);
+            this.ClientSize = new System.Drawing.Size(622, 310);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOk);
             this.Controls.Add(this.cmdDelete);
