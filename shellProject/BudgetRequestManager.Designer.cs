@@ -57,6 +57,11 @@
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colProduct = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.colArea = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMeasure = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colApplication = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
             this.checkEdit21 = new DevExpress.XtraEditors.CheckEdit();
@@ -106,6 +111,7 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.cmbMeasure = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
@@ -126,6 +132,7 @@
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
             this.groupControl7.SuspendLayout();
@@ -172,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -436,6 +444,9 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmbProduct,
+            this.cmbMeasure});
             this.gridControl1.Size = new System.Drawing.Size(692, 265);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -443,8 +454,55 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colProduct,
+            this.colArea,
+            this.colMeasure,
+            this.colApplication});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            // 
+            // colProduct
+            // 
+            this.colProduct.Caption = "Producto";
+            this.colProduct.ColumnEdit = this.cmbProduct;
+            this.colProduct.Name = "colProduct";
+            this.colProduct.Visible = true;
+            this.colProduct.VisibleIndex = 0;
+            this.colProduct.Width = 200;
+            // 
+            // cmbProduct
+            // 
+            this.cmbProduct.AutoHeight = false;
+            this.cmbProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbProduct.Name = "cmbProduct";
+            // 
+            // colArea
+            // 
+            this.colArea.Caption = "Area";
+            this.colArea.Name = "colArea";
+            this.colArea.Visible = true;
+            this.colArea.VisibleIndex = 1;
+            this.colArea.Width = 41;
+            // 
+            // colMeasure
+            // 
+            this.colMeasure.Caption = "Medida";
+            this.colMeasure.ColumnEdit = this.cmbMeasure;
+            this.colMeasure.Name = "colMeasure";
+            this.colMeasure.Visible = true;
+            this.colMeasure.VisibleIndex = 2;
+            this.colMeasure.Width = 50;
+            // 
+            // colApplication
+            // 
+            this.colApplication.Caption = "Aplicacion";
+            this.colApplication.Name = "colApplication";
+            this.colApplication.Visible = true;
+            this.colApplication.VisibleIndex = 3;
+            this.colApplication.Width = 380;
             // 
             // xtraTabPage2
             // 
@@ -904,6 +962,13 @@
             this.simpleButton3.TabIndex = 9;
             this.simpleButton3.Text = "Cancelar";
             // 
+            // cmbMeasure
+            // 
+            this.cmbMeasure.AutoHeight = false;
+            this.cmbMeasure.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbMeasure.Name = "cmbMeasure";
+            // 
             // BudgetRequestManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -940,6 +1005,7 @@
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
             this.groupControl7.ResumeLayout(false);
@@ -987,6 +1053,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1070,5 +1137,11 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbContact;
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhone;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraGrid.Columns.GridColumn colProduct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbProduct;
+        private DevExpress.XtraGrid.Columns.GridColumn colArea;
+        private DevExpress.XtraGrid.Columns.GridColumn colMeasure;
+        private DevExpress.XtraGrid.Columns.GridColumn colApplication;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbMeasure;
     }
 }
