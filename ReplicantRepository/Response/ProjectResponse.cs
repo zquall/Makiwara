@@ -8,8 +8,8 @@ namespace ReplicantRepository.Response
 {
     public class ProjectResponse
     {
-        public ProjectData Project { get; set; }
-        public List<ProjectData> ProjectList { get; set; }
+        public ProjectDto Project { get; set; }
+        public List<ProjectDto> ProjectList { get; set; }
     }
 
     

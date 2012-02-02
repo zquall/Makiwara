@@ -338,7 +338,6 @@
             this.cmdDelete.Size = new System.Drawing.Size(75, 23);
             this.cmdDelete.TabIndex = 1;
             this.cmdDelete.Text = "Eliminar";
-            this.cmdDelete.Visible = false;
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // cmdOk

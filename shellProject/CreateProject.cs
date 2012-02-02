@@ -19,7 +19,7 @@ namespace shellProject
         /// <summary>
         /// Variable encargada de almacenar los datos del projecto
         /// </summary>
-        private ProjectData _project = new ProjectData();
+        private ProjectDto _project = new ProjectDto();
 
         private BudgetRequestDto _budgetRequest = new BudgetRequestDto();
 
@@ -85,7 +85,7 @@ namespace shellProject
             return other;
         }
 
-        private void loadProject(ProjectData p)
+        private void loadProject(ProjectDto p)
         {
             //Se carga el projecto a la variable local que almacena el projecto
             _project = p;
@@ -98,7 +98,7 @@ namespace shellProject
             dtCreateDate.DateTime = p.CreateDate;
             spinCode.Value = p.Id;
             txtProject.Text = p.Name;
-            txtCustumer.Text = p.CustumerName;
+            txtCustumer.Text = p.Customer.Name;
             txtSalesConsultant.Text = p.EmployeeId.ToString();//----------- OJO
             chkManagementApproval.Checked = p.ManagementApproval;
             chkCxcApproval.Checked = p.CxcApproval;
@@ -154,7 +154,7 @@ namespace shellProject
             dtCreateDate.DateTime = System.DateTime.Today;
             if (this.Tag != null)
             {
-                loadProject(Tag as ProjectData);
+                loadProject(Tag as ProjectDto);
             }
         }
 
@@ -181,10 +181,10 @@ namespace shellProject
 
         #region Save Process
 
-        private ProjectData captureProject()
+        private ProjectDto captureProject()
         {
-            ProjectData p = new ProjectData();
-            List<TaskData> tasks = new List<TaskData>();
+            ProjectDto p = new ProjectDto();
+            List<TaskDto> tasks = new List<TaskDto>();
 
             p.Id = (int)spinCode.Value;
             p.BudgetRequestId = (int)_budgetRequest.Id;
@@ -201,7 +201,7 @@ namespace shellProject
             p.SalesTax = (double)spinSalesTax.Value;
             p.OthersRate = (double)spinOthersRate.Value;
             p.Comments = memoComments.Text;
-            p.taskList = tasks;
+            p.Tasks = tasks;
 
             return p;
         }

@@ -17,9 +17,9 @@ namespace shellProject
 {
     public partial class SearchProject : DevExpress.XtraEditors.XtraForm
     {
-        ProjectData _project = new ProjectData();
+        ProjectDto _project = new ProjectDto();
 
-        public ProjectData projectSelected
+        public ProjectDto ProjectSelected
         {
             get { return _project; }
         }
@@ -38,7 +38,7 @@ namespace shellProject
             ShowSearchResults(new ProjectFactory().searchProject(request).ProjectList);
         }
 
-        private void ShowSearchResults(List<ProjectData> searchResults)
+        private void ShowSearchResults(List<ProjectDto> searchResults)
         {
             grdProjectControl.DataSource = searchResults;
             gridConfiguration();
@@ -56,40 +56,41 @@ namespace shellProject
         private void gridConfiguration()
         {
             #region Hide Columns
-                viewProjects.Columns["Id"].Visible = true;
-                viewProjects.Columns["BudgetRequestId"].Visible = false;
-                viewProjects.Columns["CustumerId"].Visible = false;
-                viewProjects.Columns["EmployeeId"].Visible = false;
-                viewProjects.Columns["Name"].Visible = true;
-                viewProjects.Columns["ManagementApproval"].Visible = false;
-                viewProjects.Columns["CxcApproval"].Visible = false;
-                viewProjects.Columns["CreateDate"].Visible = false;
-                viewProjects.Columns["ContingenciesRate"].Visible = false;
-                viewProjects.Columns["GuaranteeRate"].Visible = false;
-                viewProjects.Columns["TotalUtilityRate"].Visible = false;
-                viewProjects.Columns["DiscountRate"].Visible = false;
-                viewProjects.Columns["SalesTax"].Visible = false;
-                viewProjects.Columns["OthersRate"].Visible = false;
-                viewProjects.Columns["Comments"].Visible = false;
-                //viewProjects.Columns["taskList"].Visible = false;
+            viewProjects.Columns["Id"].Visible = true;
+            viewProjects.Columns["BudgetRequestId"].Visible = false;
+            viewProjects.Columns["CustumerId"].Visible = false;
+            viewProjects.Columns["EmployeeId"].Visible = false;
+            viewProjects.Columns["Name"].Visible = true;
+            viewProjects.Columns["ManagementApproval"].Visible = false;
+            viewProjects.Columns["CxcApproval"].Visible = false;
+            viewProjects.Columns["CreateDate"].Visible = false;
+            viewProjects.Columns["ContingenciesRate"].Visible = false;
+            viewProjects.Columns["GuaranteeRate"].Visible = false;
+            viewProjects.Columns["TotalUtilityRate"].Visible = false;
+            viewProjects.Columns["DiscountRate"].Visible = false;
+            viewProjects.Columns["SalesTax"].Visible = false;
+            viewProjects.Columns["OthersRate"].Visible = false;
+            viewProjects.Columns["Comments"].Visible = false;
+            viewProjects.Columns["Tasks"].Visible = false;
+            viewProjects.Columns["BudgetRequest"].Visible = false;
             #endregion
 
             #region Set Caption To Visible Columns
                 viewProjects.Columns["Id"].Caption = "Código";
                 viewProjects.Columns["Name"].Caption = "Nombre";
-                viewProjects.Columns["CustumerName"].Caption = "Cliente";
+                viewProjects.Columns["Customer"].Caption = "Cliente";
             #endregion
 
             #region Set With To Visible Columns
                 viewProjects.Columns["Id"].Width = 50;
                 viewProjects.Columns["Name"].Width = 125;
-                viewProjects.Columns["CustumerName"].Width = 125;
+                viewProjects.Columns["Customer"].Width = 125;
             #endregion
 
             #region Set ReadOnly To Visible Columns
                 viewProjects.Columns["Id"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Name"].OptionsColumn.ReadOnly = true;
-                viewProjects.Columns["CustumerName"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["Customer"].OptionsColumn.ReadOnly = true;
             #endregion
         }
 
@@ -105,7 +106,7 @@ namespace shellProject
 
         private void cmdOk_Click(object sender, EventArgs e)
         {
-            _project = viewProjects.GetFocusedRow() as ProjectData;
+            _project = viewProjects.GetFocusedRow() as ProjectDto;
 
             Tag = new ProjectDto { Id = _project.Id, Name = _project.Name};
 

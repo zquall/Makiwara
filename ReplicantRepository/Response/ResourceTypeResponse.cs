@@ -8,7 +8,8 @@ namespace ReplicantRepository.Response
 {
     public class ResourceTypeResponse
     {
-        public List<ResourceTypeData> ResourceTypeList { get; set; }
+        //public List<ResourceTypeData> ResourceTypeList { get; set; }
+        public List<ResourceTypeDto> ResourceTypeList { get; set; }
     }
 
 

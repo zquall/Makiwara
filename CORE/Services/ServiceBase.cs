@@ -17,7 +17,5 @@ namespace CORE.Services
         {
             MapperPaths.InitializeMapper();
         }
-
-
     }
 }

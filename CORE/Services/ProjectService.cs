@@ -6,6 +6,8 @@ using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
 using CORE.DataMapper;
+using AutoMapper;
+using Nexus;
 
 namespace CORE.Services
 {
@@ -15,103 +17,134 @@ namespace CORE.Services
         {
         }
 
-        #region Loads Methods
+        #region Load Zone
 
-
-        
         /// <summary>
         /// Este método se encarga de cargar los proyectos desde Nexus a una lista de ProjectData
         /// </summary>
         /// <param name="projectFounded">Lista de proyectos de tipo Project</param>
         /// <returns>Lista de proyectos de tipo ProjectData</returns>
-        private List<ProjectData> loadProjects(List<Nexus.Project> projectFounded)
-        {
-            List<ProjectData> ProjectList = new List<ProjectData>();
+        //private List<ProjectData> loadProjects(List<Nexus.Project> projectFounded)
+        //{
+        //    List<ProjectData> ProjectList = new List<ProjectData>();
 
-            if (projectFounded != null)
-            {
-                foreach (var project in projectFounded)
-                {
-                    ProjectData tmpProjectData = new ProjectData();
-                    MapperOld.mapper(project, tmpProjectData);
-                    ProjectList.Add(tmpProjectData);
-                }
-            }
+        //    if (projectFounded != null)
+        //    {
+        //        foreach (var project in projectFounded)
+        //        {
+        //            ProjectData tmpProjectData = new ProjectData();
+        //            MapperOld.mapper(project, tmpProjectData);
+        //            ProjectList.Add(tmpProjectData);
+        //        }
+        //    }
 
 
-            return ProjectList;
-        }
-
-        #endregion
-       
-        #region Saves Methods
-
-        private void saveDependencies(List<TaskData> dependencies, Nexus.Task task)
-        { 
-        }
-
-        private void deleteResources(Nexus.Task task)
-        {
-            Nexus.Task t = Olympus._Enterprise.Tasks.Where(x => x.ProjectId == task.ProjectId & x.Id == task.Id).SingleOrDefault();
-
-            List<Nexus.Resource> delete = new List<Nexus.Resource>();
-            delete = task.Resources.ToList();
-            foreach (Nexus.Resource r in delete)
-            {
-                Olympus._Enterprise.Resources.DeleteObject(r);
-            }
-        }
-
-        private void saveResources(List<ResourceData> resources, Nexus.Task task)
-        {
-           // deleteResources(task);
-
-            foreach (ResourceData rd in resources)
-            {
-                Nexus.Resource resource = Olympus._Enterprise.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
-                //Nexus.Resource resource = task.Resources.Where(x => x.Id == rd.Id).SingleOrDefault();
-                
-                if (resource != null)
-                {
-                    MapperOld.mapper(rd, resource);
-                }
-                else
-                {
-                    Nexus.Resource r = new Nexus.Resource();
-                    MapperOld.mapper(rd, r);
-                    Olympus._Enterprise.AddToResources(r);
-                }
-            }
-        }
-
-        private void saveTasks(List<TaskData> tasks, Nexus.Project projectFound)
-        {
-            foreach (TaskData t in tasks.OrderBy(x => x.RowNumber))
-            {
-                Nexus.Task task = Olympus._Enterprise.Tasks.Where(y => y.ProjectId == t.ProjectId).Where(x => x.Id == t.Id).SingleOrDefault();
-
-                if (task != null)
-                {
-                    MapperOld.mapper(t, task);
-                    //******************************************************************************************************************
-                    if (t.resourceList != null)
-                    {
-                        saveResources(t.resourceList, task);
-                    }
-                    //******************************************************************************************************************
-                }
-                else
-                {
-                    task = new Nexus.Task();
-                    MapperOld.mapper(t, task);
-                    Olympus._Enterprise.AddToTasks(task);
-                }
-            }
-        }
+        //    return ProjectList;
+        //}
 
         #endregion
 
-        #region Public Methods
+        #region Delete Zone
+
+        /// <summary>
+        /// Deletes all the resources of a task
+        /// </summary>
+        /// <param name="task">Task that contains the resources to eliminate</param>
+        //private void deleteAllResources(Nexus.Task task)
+        //{
+        //    Nexus.Task t = Olympus._Enterprise.Tasks.Where(x => x.ProjectId == task.ProjectId & x.Id == task.Id).SingleOrDefault();
+
+        //    List<Nexus.Resource> delete = new List<Nexus.Resource>();
+        //    delete = task.Resources.ToList();
+        //    foreach (Nexus.Resource r in delete)
+        //    {
+        //        Olympus._Enterprise.Resources.DeleteObject(r);
+        //    }
+        //}
+
+        /// <summary>
+        /// Delete a project task
+        /// </summary>
+        //private void deleteAllTasks(Nexus.Project project)
+        //{
+        //    Nexus.Project p = Olympus._Enterprise.Projects.Where(x => x.Id == project.Id).SingleOrDefault();
+
+        //    List<Nexus.Task> delete = new List<Nexus.Task>();
+        //    delete = project.Tasks.OrderByDescending(x => x.RowNumber).ToList();
+        //    foreach (Nexus.Task t in delete)
+        //    {
+        //        deleteAllResources(t);
+        //        Olympus._Enterprise.Tasks.DeleteObject(t);
+        //    }
+        //}
+
+        #endregion
+
+        #region Save Zone
+
+        //private void saveDependencies(List<TaskData> dependencies, Nexus.Task task)
+        //{ 
+        //}
+
+        /// <summary>
+        /// Save the resources of a task
+        /// </summary>
+        /// <param name="resources">List of tasks to be stored</param>
+        /// <param name="task">Task where the resources will be stored</param>
+        //private void saveResources(List<ResourceData> resources, Nexus.Task task)
+        //{
+        //    //if (task.Resources.Count > 0)
+        //    //{
+        //    //    deleteAllResources(task);
+        //    //}
+
+        //    foreach (ResourceData rd in resources)
+        //    {
+        //        Nexus.Resource r = new Nexus.Resource();
+        //        MapperOld.mapper(rd, r);
+        //        Olympus._Enterprise.Resources.AddObject(r);
+        //    }
+        //}
+
+        //private void saveTasks(List<TaskData> tasks, Nexus.Project projectFound)
+        //{
+        //    if (projectFound.Tasks.Count > 0)
+        //    {
+        //        deleteAllTasks(projectFound);
+        //    }
+        //    Olympus._Enterprise.SaveChanges();
+
+        //    foreach (TaskData t in tasks.OrderBy(x => x.RowNumber))
+        //    {
+        //        Nexus.Task task = Olympus._Enterprise.Tasks.Where(y => y.ProjectId == t.ProjectId).Where(x => x.Id == t.Id).SingleOrDefault();
+
+        //        if (task == null)
+        //        {
+        //            task = new Nexus.Task();
+        //            MapperOld.mapper(t, task);
+        //            Olympus._Enterprise.AddToTasks(task);
+        //        }
+        //    }
+        //}
+
+        #endregion
+
+        #region Public Zone
+
+        // Get one specific Project
+        public ProjectResponse  getProject(ProjectRequest request)
+        {
+            var response = new ProjectResponse();
+            if (request.ProjectId != 0)
+            {
+                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.ProjectId).SingleOrDefault();
+                if (projectFound != null)
+                {
+                    response.Project = MapperPaths.Map(projectFound);
+                }
+            }
+            return response;
+        }
 
         /// <summary>
         /// Este método se encarga de buscar el siguinte código de proyecto
@@ -132,17 +165,24 @@ namespace CORE.Services
         public ProjectResponse searchProject(ProjectRequest request)
         {
             var response = new ProjectResponse();
-            // Inicitialize the list of customers
-            response.ProjectList = new List<ProjectData>();
-            var projectListFound = Olympus._Enterprise.Projects.Where(
-                x => x.Name.Contains(request.SearchProjectQuery) ||
-                     x.Customer.Name.Contains(request.SearchProjectQuery))                     
-                     .OrderBy(y => y.Id)
-                     .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
-                     .ToList();
 
-            response.ProjectList.AddRange(loadProjects(projectListFound));
+            response.ProjectList = new List<ProjectDto>();
+            var projectFound = Olympus._Enterprise.Projects
+                                      .Where(x => x.Name.Contains(request.SearchProjectQuery) ||
+                                             x.Customer.Name.Contains(request.SearchProjectQuery))
+                                      .OrderBy(y => y.Name)
+                                      .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
+                                      .ToList();
 
+            if (projectFound != null)
+            {
+                foreach (var project in projectFound)
+                {
+                    Olympus._Enterprise.Detach(project);
+                    ProjectDto tmpResourceType = Mapper.Map<ProjectDto>(project);
+                    response.ProjectList.Add(tmpResourceType);
+                }
+            }
             return response;
         }
 
@@ -160,14 +200,14 @@ namespace CORE.Services
             //Si el proyecto existe se actualiza el mismo, si no existe se crea uno nuevo
             if (projectFound != null)
             {
-                MapperOld.mapper(request.Project, projectFound);
-                if (request.Project.taskList != null)
-                    saveTasks(request.Project.taskList, projectFound);
+                Mapper.Map<ProjectDto,Project>(request.Project,projectFound);
+                //if (request.Project.Tasks != null)
+                //    saveTasks(request.Project.Tasks, projectFound);
             }
             else
             {
                 Nexus.Project newProject = new Nexus.Project();
-                MapperOld.mapper(request.Project, newProject);
+                newProject = Mapper.Map<Project>(request.Project);
                 Olympus._Enterprise.AddToProjects(newProject);
             }
             Olympus._Enterprise.SaveChanges();

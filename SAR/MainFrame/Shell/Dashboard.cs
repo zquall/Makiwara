@@ -61,44 +61,53 @@ namespace MainFrame.Shell
 
         #endregion
 
+        #region Menu  Options
+
+        private void budgetRequest()
+        {
+            BudgetRequestManager requestBugetManager = new BudgetRequestManager();
+            requestBugetManager.MdiParent = this;
+            requestBugetManager.Show();
+        }
+
+        private void createProject()
+        {
+            ProjectManager projectManager = new ProjectManager();
+            projectManager.MdiParent = this;
+            projectManager.Show();
+
+            CreateProject createProject = new CreateProject();
+            if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                projectManager.Close();
+        }
+
+        private void searchProject()
+        {
+            ProjectManager projectManager = new ProjectManager();
+            projectManager.MdiParent = this;
+            projectManager.Show();
+
+            SearchProject searchProject = new SearchProject();
+            if (searchProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                projectManager.Close();
+            else
+            {
+                projectManager.loadProject(searchProject.ProjectSelected);
+            }
+        }
+
         private void navBarControlDashboard_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            ProjectManager projectManager;
-
             switch (e.Link.ItemName)
             {
-
                 case "BugetRequest":
-                    BudgetRequestManager requestBugetManager = new BudgetRequestManager();
-                    requestBugetManager.MdiParent = this;
-                    requestBugetManager.Show();
+                    budgetRequest();
                     break;
-
                 case "CreateProject":
-                    projectManager = new ProjectManager();
-                    projectManager.MdiParent = this;
-                    projectManager.Show();
-
-                    CreateProject createProject = new CreateProject();
-
-                    createProject.ShowDialog();
-
+                    createProject();
                     break;
-
                 case "SearchProject":
-                    projectManager = new ProjectManager();
-                    projectManager.MdiParent = this;
-                    projectManager.Show();
-
-                    SearchProject searchProject = new SearchProject();
-
-                    if (searchProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-                        projectManager.Close();
-                    else
-                    {
-                        projectManager.loadProject(searchProject.projectSelected);
-                    }
-
+                    searchProject();
                     break;
 
                 default:
@@ -106,5 +115,7 @@ namespace MainFrame.Shell
                     break;
             }
         }
+
+        #endregion
     }    
 }

@@ -25,14 +25,9 @@ namespace shellProject
         private List<Task> selectedTask = new List<Task>();
 
         /// <summary>
-        /// Lista de fácil acceso a las tareas
-        /// </summary>
-        private List<Task> _allTask = new List<Task>();
-
-        /// <summary>
         /// Variable que contiene el proyecto que se esta trabajando
         /// </summary>
-        private ProjectData _project = new ProjectData();
+        private ProjectDto _project = new ProjectDto();
 
         #endregion
 
@@ -43,10 +38,10 @@ namespace shellProject
 
         #region Object-mapping methods
 
-        private void mapper(TaskData source, Task destination)
+        private void mapper(TaskDto source, Task destination)
         {
             destination.Name = source.Name;
-            destination.Duration = source.Duration;
+            destination.Duration = TimeSpan.Parse(source.Duration);
             destination.PercentComplete = (float)source.PercentComplete;
             destination.StartDateTime = source.StartDateTime;
             destination.EndDateTime = source.EndDateTime;
@@ -56,7 +51,7 @@ namespace shellProject
             destination.Milestone = source.Milestone;
         }
 
-        private void mapper(Task source, TaskData destination)
+        private void mapper(Task source, TaskDto destination)
         {
             #region Propidades no seteables
             //destination.Parent = ultraCalendarInfo.Tasks[source.ParentId];
@@ -66,7 +61,7 @@ namespace shellProject
             destination.Id = source.RowNumber;
 
             destination.Name = source.Name;
-            destination.Duration = source.Duration;
+            destination.Duration = source.Duration.ToString();
             destination.PercentComplete = (float)source.PercentComplete;
             destination.StartDateTime = source.StartDateTime;
             destination.EndDateTime = source.EndDateTime;
@@ -79,10 +74,10 @@ namespace shellProject
 
             #region Properties that are not necessary
             destination.IsRoot = source.IsRoot;
-            destination.IsSummary = source.IsSummary;
+            destination.IsSumary = source.IsSummary;
             destination.BindingListIndex = source.BindingListIndex;
             destination.CompleteThrough = source.CompleteThrough;
-            destination.DurationResolved = source.DurationResolved;
+            destination.DurationResolved = source.DurationResolved.ToString();
             destination.EndDateTimeResolved = source.EndDateTimeResolved;
             destination.MilestoneResolved = source.MilestoneResolved;
             #endregion
@@ -94,19 +89,15 @@ namespace shellProject
         #region Loads Methods
 
         /// <summary>
-        /// Este método se encarga de establecer las dependencias de una tarea, utilizando la lista selectedTask que ha sido 
-        /// cargada previamente con las tareas del proyecto que se esta cargando, esto debido a que el ultraCalendarinfo es 
-        /// mas complejo de recorrer ya que este en su lista de tareas contiene unicamente las tareas que son Root y las demas
-        /// tareas se encuentran dentro de este. Por este motivo se ha decidido cargar las tareas en una lista a la cual se puede
-        /// accesar facilmente.
+        /// Gets the dependencies of a task
         /// </summary>
         /// <param name="sourceDependencies">Lista con las dependencias de la tarea, leidas de la BD</param>
         /// <param name="destination">Collección de tareas que el control leera como las dependencias de una tarea</param>
-        private void loadDependencies(List<TaskData> sourceDependencies, TaskDependenciesCollection destination)
+        private void loadDependencies(ICollection<TaskDto> sourceDependencies, TaskDependenciesCollection destination, List<Task> tasks)
         {
-            foreach(TaskData t in sourceDependencies)
+            foreach (TaskDto t in sourceDependencies)
             {
-                Task task = _allTask.Where(x => x.Name == t.Name).SingleOrDefault();
+                Task task = tasks.Where(x => x.Name == t.Name).SingleOrDefault();
                 if (task != null)
                 {
                     destination.Add(task, TaskDependencyType.FinishToStart);
@@ -119,28 +110,22 @@ namespace shellProject
         /// </summary>
         private void loadTasks()
         {
-            foreach (TaskData t in _project.taskList.OrderBy(x => x.RowNumber))
+            List<Task> allTask = new List<Task>();
+            foreach (var t in _project.Tasks.OrderBy(x => x.RowNumber))
             {
                 Task tmpTask = new Task();
 
-                //Se mapean las propiedades del TaskData en el Task
                 mapper(t, tmpTask);
-
                 ultraCalendarInfo.Tasks.Add(tmpTask);
+                allTask.Add(tmpTask);
 
-                //Se cargan todas las tareas en esta lista para usarla como lugar de fácil
-                _allTask.Add(tmpTask);
+                if (t.Resources != null)                                             //Se los recursos de las tareas
+                    tmpTask.Tag = t.Resources;
 
-                //Se los recursos de las tareas
-                if (t.resourceList != null)
-                    tmpTask.Tag = t.resourceList;
-                
-                //Se incluyen las dependencias de la tarea
-                if (t.Dependencies.Count > 0)
-                    loadDependencies(t.Dependencies, tmpTask.Dependencies);
+                if (t.Tasks.Count > 0)                                           //Se incluyen las dependencias de la tarea
+                    loadDependencies(t.Tasks, tmpTask.Dependencies, allTask);
 
-                //Se agrega el nivel de la tarea 
-                for (int i = 1; i <= t.TaskLevel; i++)
+                for (int i = 1; i <= t.TaskLevel; i++)                                  //Se agrega el nivel de la tarea
                     tmpTask.Indent();
             }
         }
@@ -149,13 +134,13 @@ namespace shellProject
         /// Método que se encarga de cargar en una variable local el proyecto que se esta trabajando.
         /// </summary>
         /// <param name="project"></param>
-        public void loadProject(ProjectData project)
+        public void loadProject(ProjectDto project)
         {
             _project = project;
 
             repositoryItemProject.NullText = _project.Id.ToString();
             repositoryItemProjectName.NullText = _project.Name;
-            repositoryItemCustumer.NullText = _project.CustumerName;
+            repositoryItemCustumer.NullText = _project.Customer.Name;
 
             loadTasks();
         }
@@ -165,41 +150,87 @@ namespace shellProject
         #region Save Methods
 
         /// <summary>
-        /// Este método se encarga de convertir la lista de objetos Task en objetos TaskData para poder ser guardadas junto al proyecto
+        /// Recursive method that gets all the tasks
         /// </summary>
-        /// <returns>Lista de tareas del proyecto</returns>
-        private List<TaskData> saveTask()
+        /// <param name="taskList">Lista de tareas a agregar en _allTask</param>
+        /// /// <returns>Sequential list of tasks</returns>
+        private List<Task> getTaskInCalendar(List<Task> taskList)
         {
-            List<TaskData> list = new List<TaskData>();
-
-            foreach (Task t in _allTask.OrderBy(x => x.RowNumber))
+            List<Task> ODT = new List<Task>();
+            try
             {
-                TaskData task = new TaskData();
-                mapper(t, task);
-
-                if (t.Tag != null)
+                foreach (Task t in taskList)
                 {
-                    task.resourceList = t.Tag as List<ResourceData>;
+                    ODT.Add(t);
+                    if (t.Tasks.Count > 0)
+                    {
+                        List<Task> tasks = new List<Task>();
+                        tasks = getTaskInCalendar(t.Tasks.ToList());
+                        ODT.AddRange(tasks);
+                    }
                 }
-
-                list.Add(task);
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return ODT;
+        }
 
+        /// <summary>
+        /// Gets all the tasks that will be stored in the data source
+        /// </summary>
+        /// <returns>Tasks of the project</returns>
+        private List<TaskDto> getTask()
+        {
+            List<TaskDto> list = new List<TaskDto>();
+            List<Task> ODT = new List<Task>();
+
+            try
+            {
+                ODT = getTaskInCalendar(ultraCalendarInfo.Tasks.ToList());
+
+                foreach (Task t in ODT.OrderBy(x => x.RowNumber))
+                {
+                    TaskDto task = new TaskDto();
+                    mapper(t, task);
+                    if (t.Tag != null)
+                    {
+                        task.Resources = t.Tag as List<ResourceDto>;
+                    }
+                    list.Add(task);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             return list;
         }
 
         private void saveProject()
         {
-            var request = new ProjectRequest();
-            _project.taskList = saveTask();
-            request.Project = _project;
-            _project = new ProjectFactory().saveProject(request).Project;
+            try
+            {
+                var request = new ProjectRequest();
+                _project.Tasks = getTask();
+                request.Project = _project;
+                _project = new ProjectFactory().saveProject(request).Project;
+                MessageBox.Show("Proyecto guardado exitosamente", "Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
 
-        #region Region encargada de las operaciones del menu de opciones
+        #region Operations of the Options Menu
 
+        /// <summary>
+        /// Displays the creation of projects screen
+        /// </summary>
         private void createProject()
         {
             CreateProject cp = new CreateProject();
@@ -208,92 +239,132 @@ namespace shellProject
         }
 
         /// <summary>
-        /// Agrega una tarea al Organigrama de Distribución de Tareas
+        /// Add a task to the TDO
         /// </summary>
         private void addTask()
         {
-            Task t = new Task();
-            t.SetDuration(new TimeSpan(1, 0, 0, 0, 0), Infragistics.Win.TimeSpanFormat.Days);
-            ultraCalendarInfo.Tasks.Add(t);
-            t.Name = "Tarea " + t.RowNumber;
-            _allTask.Add(t);
+            try
+            {
+                Task t = new Task();
+                t.SetDuration(new TimeSpan(1, 0, 0, 0, 0), Infragistics.Win.TimeSpanFormat.Days);
+                ultraCalendarInfo.Tasks.Add(t);
+                t.Name = "Tarea " + t.RowNumber;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
-        /// Elimina todas las tareas que se encuentren seleccionadas por parte del usuario
+        /// Deletes all the tasks that are selected by the user
         /// </summary>
         private void deleteTask()
         {
-            Task tmpTask = new Task();
-
-            foreach (Task task in selectedTask)
+            try
             {
-                if (task.Level > 0)
+                Task tmpTask = new Task();
+
+                foreach (Task task in selectedTask)
                 {
-                    tmpTask = task.Parent;
-                    tmpTask.Tasks.Remove(task);
-                }
-                else
-                    if (task.Level == 0)
+                    if (task.Level > 0)
                     {
-                        ultraCalendarInfo.Tasks.Remove(task);
+                        tmpTask = task.Parent;
+                        tmpTask.Tasks.Remove(task);
                     }
+                    else
+                        if (task.Level == 0)
+                        {
+                            ultraCalendarInfo.Tasks.Remove(task);
+                        }
+                }
+                selectedTask.Clear();
             }
-            selectedTask.Clear();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
-        /// Agrega un nivel en la jerarquía de tareas a todas las tareas seleccionadas
+        /// Add a level in the hierarchy of tasks to all the selected tasks
         /// </summary>
         private void moveRightTask()
         {
-            foreach (Task t in selectedTask)
+            try
             {
-                if (!t.Indent())
-                    MessageBox.Show("Operación no válida");
+                foreach (Task t in selectedTask)
+                {
+                    if (!t.Indent())
+                        MessageBox.Show("Operación no válida");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// Quita un nivel en la jerarquía de tareas a todas las tareas seleccionadas
+        /// Removes one level in the hierarchy of tasks to all selected tasks
         /// </summary>
         private void moveLeftTask()
         {
-            foreach (Task t in selectedTask)
+            try
             {
-                if (!t.Outdent())
-                    MessageBox.Show("Operación no válida");
+                foreach (Task t in selectedTask)
+                {
+                    if (!t.Outdent())
+                        MessageBox.Show("Operación no válida");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// Toma la lista de tareas que se encuentran en el selectedTask y las hace una dependiente de otra segun el orden 
-        /// en que aparecen en el ODT
+        /// Take the list of tasks that are in the selectedTask and makes one dependent on another in the order they appear in the ODT
         /// </summary>
         private void linkTask(TaskDependencyType tdt)
         {
-            unlinkTask();
-            if (selectedTask.Count >= 0)
+            try
             {
-                for (int i = selectedTask.Count - 1; i >= 1; i--)
+                unlinkTask();
+                if (selectedTask.Count >= 0)
                 {
-                    selectedTask[i].Dependencies.Add(selectedTask[i - 1], tdt);
+                    for (int i = selectedTask.Count - 1; i >= 1; i--)
+                    {
+                        selectedTask[i].Dependencies.Add(selectedTask[i - 1], tdt);
+                    }
                 }
+                ultraCalendarInfo.Appearances.Clear();
             }
-            ultraCalendarInfo.Appearances.Clear();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
-        /// Toma la lista de tareas que se encuentran en el selectedTask y las desliga de forma que ninguna dependa de la otra
+        /// Take the list of tasks that are in the selectedTask and disclaims any way dependent on the other
         /// </summary>
         private void unlinkTask()
         {
-            if (selectedTask.Count >= 0)
+            try
             {
-                for (int i = selectedTask.Count - 1; i >= 1; i--)
+                if (selectedTask.Count >= 0)
                 {
-                    selectedTask[i].Dependencies.Remove(selectedTask[i - 1]);
+                    for (int i = selectedTask.Count - 1; i >= 1; i--)
+                    {
+                        selectedTask[i].Dependencies.Remove(selectedTask[i - 1]);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -514,8 +585,6 @@ namespace shellProject
             saveProject();
         }
 
-        #endregion
-
         private void ribData_CaptionButtonClick(object sender, DevExpress.XtraBars.Ribbon.RibbonPageGroupEventArgs e)
         {
             CreateProject projectView = new CreateProject();
@@ -523,5 +592,7 @@ namespace shellProject
             projectView.Text = "Información del Projecto";
             projectView.ShowDialog();
         }
+
+        #endregion
     }
 }

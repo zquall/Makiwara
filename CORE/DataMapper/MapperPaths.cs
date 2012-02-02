@@ -48,12 +48,17 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<BudgetRequestConditionDto, BudgetRequestCondition>();
                 Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>();
                 Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>();
-                Mapper.CreateMap<Project, ProjectDto>();
-                Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<BindCustomer, BindCustomerDto>();
                 Mapper.CreateMap<BindCustomerDto, BindCustomer>();
-                Mapper.CreateMap<Measure, MeasureDto>();
+                //**********************************************************
+                Mapper.CreateMap<ProjectDto, Project>();
+                Mapper.CreateMap<Project, ProjectDto>();
+                Mapper.CreateMap<Task, TaskDto>();
+                Mapper.CreateMap<TaskDto, Task>();
+                Mapper.CreateMap<ResourceTypeDto, ResourceType>();
+                Mapper.CreateMap<ResourceType, ResourceTypeDto>();
                 Mapper.CreateMap<MeasureDto, Measure>();
+                Mapper.CreateMap<Measure, MeasureDto>();
 
 
                 // Just start the mapper once
@@ -121,6 +126,31 @@ namespace CORE.DataMapper
                 budgetRequestDto.BudgetRequestCondition = budgetRequestCondition;
             }
             return budgetRequestDto;
+        }
+
+        internal static List<TaskDto> Map(List<Task> tasks)
+        {
+            List<TaskDto> tasksReturned = new List<TaskDto>();
+            foreach (Task t in tasks)
+            {
+                Olympus._Enterprise.Detach(t);
+                var task = Mapper.Map<TaskDto>(t);
+                tasksReturned.Add(task);
+            }
+            return tasksReturned;
+        }
+
+        internal static ProjectDto Map(Project project)
+        {
+            ProjectDto projectDto = null;
+            if (project != null)
+            {
+                Olympus._Enterprise.Detach(project);
+                projectDto = Mapper.Map<ProjectDto>(project);
+
+                //projectDto.Tasks = ;
+            }
+            return projectDto;
         }
 
         #endregion

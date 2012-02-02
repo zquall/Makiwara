@@ -29,10 +29,10 @@ namespace shellProject
             List<TaskDependency> _dependenciesCollection = new List<TaskDependency>();
 
             //Resource list of the task
-            BindingList<ResourceData> _resourcesCollection = new BindingList<ResourceData>();
+            BindingList<ResourceDto> _resourcesCollection = new BindingList<ResourceDto>();
 
             //Project in use
-            public ProjectData Project { get; set; }
+            public ProjectDto Project { get; set; }
 
             
 
@@ -82,13 +82,13 @@ namespace shellProject
         {
             _resourcesCollection.Clear();
 
-            List<ResourceData> l = new List<ResourceData>();
+            List<ResourceDto> l = new List<ResourceDto>();
 
-            l = _task.Tag as List<ResourceData>;
+            l = _task.Tag as List<ResourceDto>;
 
             if (_task.Tag != null)
             {
-                foreach (ResourceData rd in l /*_task.Tag as List<ResourceData>*/)
+                foreach (ResourceDto rd in l /*_task.Tag as List<ResourceData>*/)
                 {
                     _resourcesCollection.Add(rd);
                 }
@@ -102,7 +102,7 @@ namespace shellProject
         {
             var request = new ResourceTypeRequest();
             repResourceTypes.Items.Clear();
-            foreach (ResourceTypeData r in new ResourceTypeFactory().searchResourceType(request).ResourceTypeList)
+            foreach (ResourceTypeDto r in new ResourceTypeFactory().searchResourceType(request).ResourceTypeList)
             {
                 repResourceTypes.Items.Add(r);
             }
@@ -112,7 +112,7 @@ namespace shellProject
         {
             var request = new MeasureRequest();
             repMeasures.Items.Clear();
-            foreach (MeasureData r in new MeasureFactory().searchMeasure(request).MeasureList)
+            foreach (MeasureDto r in new MeasureFactory().searchMeasure(request).MeasureList)
             {
                 repMeasures.Items.Add(r);
             }
@@ -148,8 +148,8 @@ namespace shellProject
 
         private void captureResources()
         {
-            List<ResourceData> temp = new List<ResourceData>();
-            foreach (ResourceData data in _resourcesCollection)
+            List<ResourceDto> temp = new List<ResourceDto>();
+            foreach (ResourceDto data in _resourcesCollection)
             {
                 temp.Add(data);
             }
@@ -396,7 +396,7 @@ namespace shellProject
         private void viewResources_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             ColumnView view = sender as ColumnView;
-            ResourceData rd = view.GetRow(e.RowHandle) as ResourceData;
+            ResourceDto rd = view.GetRow(e.RowHandle) as ResourceDto;
 
             if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
             {
@@ -424,7 +424,7 @@ namespace shellProject
             SearchResource searchResource = new SearchResource();
             ResourceSourceData rsd = new ResourceSourceData();
 
-            ResourceData rtd = viewResources.GetFocusedRow() as ResourceData;
+            ResourceDto rtd = viewResources.GetFocusedRow() as ResourceDto;
             searchResource.Rtype = rtd.ResourceType.Name;
 
             if (searchResource.ShowDialog() == System.Windows.Forms.DialogResult.OK)

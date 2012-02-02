@@ -8,8 +8,6 @@ namespace ReplicantRepository.Response
 {
     public class MeasureResponse
     {
-        public List<MeasureData> MeasureList { get; set; }
+        public List<MeasureDto> MeasureList { get; set; }
     }
-
-
 }

@@ -9,7 +9,8 @@ namespace ReplicantRepository.Request
 {
     public class ProjectRequest
     {
+        public int? ProjectId { get; set; }
         public string SearchProjectQuery { get; set; }
-        public ProjectData Project { get; set; }
+        public ProjectDto Project { get; set; }
     }
 }

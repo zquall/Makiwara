@@ -103,176 +103,9 @@ namespace CORE.DataMapper
 
 
 
-        #region Object Mapping Methods
-
-        internal static void mapper(ResourceTypeData source, Nexus.ResourceType destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.IsTaxed = source.IsTaxed;
-        }
-
-        internal static void mapper(Nexus.ResourceType source, ResourceTypeData destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.IsTaxed = source.IsTaxed;
-        }
-
-        internal static void mapper(Nexus.ResourceType source, Nexus.ResourceType destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.IsTaxed = source.IsTaxed;
-        }
 
 
-        internal static void mapper(MeasureData source, Nexus.Measure destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.Symbol = source.Symbol;
-        }
-
-        internal static void mapper(Nexus.Measure source, MeasureData destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.Symbol = source.Symbol;
-        }
-
-        internal static void mapper(Nexus.Measure source, Nexus.Measure destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.Symbol = source.Symbol;
-        }
-
-
-        internal static void mapper(ResourceData source, Nexus.Resource destination)
-        {
-            destination.Id = source.Id;
-            destination.ProjectId = source.ProjectId;
-            destination.TaskId = source.TaskId;
-
-            //Nexus.Measure nm = new Nexus.Measure();
-            //mapper(source.Measure, nm);
-            //destination.Measure = nm;
-            destination.MeasureId = source.Measure.Id;
-
-            //Nexus.ResourceType nrt = new Nexus.ResourceType();
-            //mapper(source.ResourceType, nrt);
-            //destination.ResourceType = nrt;
-            destination.ResourceTypeId = source.ResourceType.Id;
-
-            destination.Code = source.Code;
-            destination.Name = source.Name;
-            destination.Amount = source.Amount;
-            destination.Cost = source.Cost;
-            destination.TotalCost = source.TotalCost;
-            destination.RealUsed = source.RealUsed;
-        }
-
-        internal static void mapper(Nexus.Resource source, ResourceData destination)
-        {
-            destination.Id = source.Id;
-            destination.ProjectId = source.ProjectId;
-            destination.TaskId = source.TaskId;
-
-            MeasureData md = new MeasureData();
-            mapper(source.Measure, md);
-            destination.Measure = md;
-
-            ResourceTypeData rtd = new ResourceTypeData();
-            mapper(source.ResourceType, rtd);
-            destination.ResourceType = rtd;
-
-            destination.Code = source.Code;
-            destination.Name = source.Name;
-            destination.Amount = source.Amount;
-            destination.Cost = source.Cost;
-            destination.TotalCost = source.TotalCost;
-            destination.RealUsed = source.RealUsed;
-        }
-
-        internal static void mapper(Nexus.Resource source, Nexus.Resource destination)
-        {
-            destination.Id = source.Id;
-            destination.ProjectId = source.ProjectId;
-            destination.TaskId = source.TaskId;
-
-            Nexus.Measure nm = new Nexus.Measure();
-            mapper(source.Measure, nm);
-            destination.Measure = nm;
-
-            Nexus.ResourceType nrt = new Nexus.ResourceType();
-            mapper(source.ResourceType, nrt);
-            destination.ResourceType = nrt;
-
-            destination.Code = source.Code;
-            destination.Name = source.Name;
-            destination.Amount = source.Amount;
-            destination.Cost = source.Cost;
-            destination.TotalCost = source.TotalCost;
-            destination.RealUsed = source.RealUsed;
-        }
-
-
-        internal static void mapper(TaskData source, Nexus.Task destination)
-        {
-            destination.ProjectId = source.ProjectId;
-            destination.Id = source.Id;
-
-            destination.Name = source.Name;
-            destination.Duration = source.Duration.ToString();
-            destination.PercentComplete = (float)source.PercentComplete;
-            destination.StartDateTime = source.StartDateTime;
-            destination.EndDateTime = source.EndDateTime;
-            destination.Notes = source.Notes;
-            destination.DeadLine = source.DeadLine;
-            destination.Expanded = source.Expanded;
-            destination.Milestone = source.Milestone;
-            destination.RowNumber = source.RowNumber;
-            destination.TaskLevel = source.TaskLevel;
-
-            #region Properties that are not necessary
-            destination.IsRoot = source.IsRoot;
-            destination.IsSumary = source.IsSummary;
-            destination.BindingListIndex = source.BindingListIndex;
-            destination.CompleteThrough = source.CompleteThrough;
-            destination.DurationResolved = source.DurationResolved.ToString();
-            destination.EndDateTimeResolved = source.EndDateTimeResolved;
-            destination.MilestoneResolved = source.MilestoneResolved;
-            #endregion
-        }
-
-        internal static void mapper(Nexus.Task source, TaskData destination)
-        {
-            destination.Id = source.Id;
-            destination.ProjectId = source.ProjectId;
-            destination.ParentId = source.ParentId;
-            destination.Name = source.Name;
-            destination.Duration = TimeSpan.Parse(source.Duration);
-            destination.PercentComplete = source.PercentComplete;
-            destination.StartDateTime = source.StartDateTime;
-            destination.EndDateTime = source.EndDateTime;
-            destination.Notes = source.Notes;
-            destination.RowNumber = source.RowNumber;
-            destination.BindingListIndex = source.BindingListIndex;
-            destination.CompleteThrough = source.CompleteThrough;
-            destination.DeadLine = source.DeadLine;
-            destination.DurationResolved = TimeSpan.Parse(source.DurationResolved);
-            destination.EndDateTimeResolved = source.EndDateTimeResolved;
-            destination.Expanded = source.Expanded;
-            destination.IsRoot = source.IsRoot;
-            destination.IsSummary = source.IsSumary;
-            destination.TaskLevel = source.TaskLevel;
-            destination.Milestone = source.Milestone;
-            destination.MilestoneResolved = source.MilestoneResolved;
-
-            destination.Dependencies = loadDependencies(source);
-            destination.resourceList = loadResources(source);
-        }
+        #region Vortex Zone
 
         /// <summary>
         /// Este método se encarga de cargar las dependecias de las tareas que se van cargando, es recursivo junto al 
@@ -280,31 +113,30 @@ namespace CORE.DataMapper
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        private static List<TaskData> loadDependencies(Nexus.Task t)
+        private static List<TaskDto> loadDependencies(Nexus.Task t)
         {
-            List<TaskData> dependencies = new List<TaskData>();
+            List<TaskDto> dependencies = new List<TaskDto>();
 
             dependencies = loadTasks(t.Task1);
 
             return dependencies;
         }
 
-
         /// <summary>
         /// Este método se encarga de cargar las tareas desde Nexus a una lista de TaskData
         /// </summary>
         /// <param name="tasks">Lista de tareas de Nexus de tipo Task</param>
         /// <returns>Lista de tareas de tipo TaskData</returns>
-        private static List<TaskData> loadTasks(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
+        private static List<TaskDto> loadTasks(System.Data.Objects.DataClasses.EntityCollection<Nexus.Task> tasks)
         {
-            List<TaskData> listTask = new List<TaskData>();
+            List<TaskDto> listTask = new List<TaskDto>();
 
             if (tasks != null)
             {
                 foreach (Nexus.Task task in tasks)
                 {
-                    TaskData tmpTask = new TaskData();
-                    mapper(task, tmpTask);
+                    TaskDto tmpTask = new TaskDto();
+                    //mapper(task, tmpTask);
                     listTask.Add(tmpTask);
                 }
             }
@@ -317,59 +149,18 @@ namespace CORE.DataMapper
         /// </summary>
         /// <param name="t">Tarea de la cual se va a extraer la lista de recursos</param>
         /// <returns>La lista de recursos de la tarea</returns>
-        private static List<ResourceData> loadResources(Nexus.Task t)
+        private static List<ResourceDto> loadResources(Nexus.Task t)
         {
-            List<ResourceData> resources = new List<ResourceData>();
+            List<ResourceDto> resources = new List<ResourceDto>();
 
             foreach (Nexus.Resource r in t.Resources)
             {
-                ResourceData rd = new ResourceData();
-                mapper(r, rd);
+                ResourceDto rd = new ResourceDto();
+                //mapper(r, rd);
                 resources.Add(rd);
             }
 
             return resources;
-        }
-
-        internal static void mapper(Nexus.Project source, ProjectData destination)
-        {
-            destination.Id = source.Id;
-            destination.Name = source.Name;
-            destination.BudgetRequestId = source.BudgetRequestId;
-            destination.CustumerId = source.CustumerId;
-            destination.CustumerName = source.Customer.Name;
-            destination.EmployeeId = source.EmployeeId;
-            destination.ManagementApproval = source.ManagementApproval;
-            destination.CxcApproval = source.CxcApproval;
-            destination.CreateDate = source.CreateDate;
-            destination.ContingenciesRate = source.ContingenciesRate;
-            destination.GuaranteeRate = source.GuaranteeRate;
-            destination.TotalUtilityRate = source.TotalUtilityRate;
-            destination.DiscountRate = source.DiscountRate;
-            destination.SalesTax = source.SalesTax;
-            destination.OthersRate = source.OthersRate;
-            destination.Comments = source.Comments;
-
-            destination.taskList = loadTasks(source.Tasks);
-        }
-
-        internal static void mapper(ProjectData source, Nexus.Project destination)
-        {
-            destination.Id = source.Id;
-            destination.BudgetRequestId = source.BudgetRequestId;
-            destination.CustumerId = source.CustumerId;
-            destination.EmployeeId = source.EmployeeId;
-            destination.Name = source.Name;
-            destination.ManagementApproval = source.ManagementApproval;
-            destination.CxcApproval = source.CxcApproval;
-            destination.CreateDate = source.CreateDate;
-            destination.ContingenciesRate = source.ContingenciesRate;
-            destination.GuaranteeRate = source.GuaranteeRate;
-            destination.TotalUtilityRate = source.TotalUtilityRate;
-            destination.DiscountRate = source.DiscountRate;
-            destination.SalesTax = source.SalesTax;
-            destination.OthersRate = source.OthersRate;
-            destination.Comments = source.Comments;
         }
 
         #endregion
