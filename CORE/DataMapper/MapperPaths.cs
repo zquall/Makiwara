@@ -44,10 +44,16 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
                 Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
                 Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
+                Mapper.CreateMap<BudgetRequestCondition, BudgetRequestConditionDto>();
+                Mapper.CreateMap<BudgetRequestConditionDto, BudgetRequestCondition>();
+                Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>();
+                Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>();
                 Mapper.CreateMap<Project, ProjectDto>();
                 Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<BindCustomer, BindCustomerDto>();
-                Mapper.CreateMap<BindCustomerDto, BindCustomer>(); 
+                Mapper.CreateMap<BindCustomerDto, BindCustomer>();
+                Mapper.CreateMap<Measure, MeasureDto>();
+                Mapper.CreateMap<MeasureDto, Measure>();
 
 
                 // Just start the mapper once
@@ -100,6 +106,11 @@ namespace CORE.DataMapper
                 Olympus._Enterprise.Detach(employeeEntity);
                 var employee = Mapper.Map<EmployeeDto>(employeeEntity);
 
+                // BudgetRequestCondition
+                var budgetRequestConditionEntity = budgetRequest.BudgetRequestCondition;
+                Olympus._Enterprise.Detach(budgetRequestConditionEntity);
+                var budgetRequestCondition = Mapper.Map<BudgetRequestConditionDto>(budgetRequestConditionEntity);
+
                 // BubgetRequest
                 Olympus._Enterprise.Detach(budgetRequest);
                 budgetRequestDto = Mapper.Map<BudgetRequestDto>(budgetRequest);
@@ -107,6 +118,7 @@ namespace CORE.DataMapper
                 budgetRequestDto.Customer = customer;
                 budgetRequestDto.Employee = employee;
                 budgetRequestDto.Employee.Person = person;
+                budgetRequestDto.BudgetRequestCondition = budgetRequestCondition;
             }
             return budgetRequestDto;
         }

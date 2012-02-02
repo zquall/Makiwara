@@ -46,7 +46,7 @@ namespace Interceptor.Adapters
                 // Fill the response with the customers founded
                 foreach (var customer in customersFounded)
                 {
-                    CustomerData tmpCustomerData = new CustomerData();
+                    CustomerDto tmpCustomerData = new CustomerDto();
                     tmpCustomerData.Name = customer.CLI_Nombre.Trim();
                     tmpCustomerData.Address = customer.CLI_Direccion;
                     response.CustomerList.Add(tmpCustomerData);

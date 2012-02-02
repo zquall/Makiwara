@@ -23,7 +23,7 @@ namespace ReplicantRepository.DataTransferObjects
          #region Primitive Properties
     
     	[DataMember]
-        public virtual long Id
+        public virtual int Id
         {
             get;
             set;

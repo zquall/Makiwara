@@ -133,6 +133,22 @@ namespace ReplicantRepository.DataTransferObjects
         private EmployeeDto _employee;
     
     	[DataMember]
+        public virtual BudgetRequestConditionDto BudgetRequestCondition
+        {
+            get { return _budgetRequestCondition; }
+            set
+            {
+                if (!ReferenceEquals(_budgetRequestCondition, value))
+                {
+                    var previousValue = _budgetRequestCondition;
+                    _budgetRequestCondition = value;
+                    FixupBudgetRequestCondition(previousValue);
+                }
+            }
+        }
+        private BudgetRequestConditionDto _budgetRequestCondition;
+    
+    	[DataMember]
         public virtual ICollection<BudgetRequestDetailDto> BudgetRequestDetails
         {
             get
@@ -238,6 +254,19 @@ namespace ReplicantRepository.DataTransferObjects
                 {
                     EmployeeId = Employee.Id;
                 }
+            }
+        }
+    
+        private void FixupBudgetRequestCondition(BudgetRequestConditionDto previousValue)
+        {
+            if (previousValue != null && ReferenceEquals(previousValue.BudgetRequest, this))
+            {
+                previousValue.BudgetRequest = null;
+            }
+    
+            if (BudgetRequestCondition != null)
+            {
+                BudgetRequestCondition.BudgetRequest = this;
             }
         }
     

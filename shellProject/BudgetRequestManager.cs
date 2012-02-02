@@ -28,6 +28,7 @@ namespace shellProject
         private void RequestBugetCell_Load(object sender, EventArgs e)
         {            
             loadNewRequestBudgetManager();
+            loadMeasureCombo();
         }
 
         private void btnCustomerName_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -144,6 +145,58 @@ namespace shellProject
             edtDate.EditValue = budgetRequest.DateModified;
             cmbBubgetRequest.Text = budgetRequest.Id.ToString();
             loadCustomer(budgetRequest.Customer);
+            loadBudgetRequestCondition(budgetRequest.BudgetRequestCondition);
+        }
+
+        // Load the Customer
+        private void loadBudgetRequestCondition(BudgetRequestConditionDto budgetRequestCondition)
+        {
+            if (budgetRequestCondition != null)
+            {
+                #region CheckBoxes
+
+                chkMonday.Checked = budgetRequestCondition.DayTurn;
+                chkTuesday.Checked = budgetRequestCondition.DrinkableWater;
+                chkWednesday.Checked = budgetRequestCondition.DayTurn;
+                chkThursday.Checked = budgetRequestCondition.DayTurn;
+                chkFriday.Checked = budgetRequestCondition.DayTurn;
+                chkSaturday.Checked = budgetRequestCondition.DayTurn;
+                chkSunday.Checked = budgetRequestCondition.DayTurn;
+
+                chkDayTurn.Checked = budgetRequestCondition.DayTurn;
+                chkNightTurn.Checked = budgetRequestCondition.DayTurn;
+
+                chkDrinkableWater.Checked = budgetRequestCondition.DayTurn;
+                chkElectricity.Checked = budgetRequestCondition.DayTurn;
+                chkWareHouse.Checked = budgetRequestCondition.DayTurn;
+
+                chkWorkOutside.Checked = budgetRequestCondition.DayTurn;
+                chkWorkInside.Checked = budgetRequestCondition.DayTurn;
+                chkReachable.Checked = budgetRequestCondition.DayTurn;
+                chkVentilation.Checked = budgetRequestCondition.DayTurn;
+                chkToilet.Checked = budgetRequestCondition.DayTurn;
+
+                chkMoisture.Checked = budgetRequestCondition.DayTurn;
+                chkWet.Checked = budgetRequestCondition.DayTurn;
+                chkNoise.Checked = budgetRequestCondition.DayTurn;
+                chkDust.Checked = budgetRequestCondition.DayTurn;
+
+                chkFood.Checked = budgetRequestCondition.DayTurn;
+                chkLodging.Checked = budgetRequestCondition.DayTurn;
+
+                #endregion
+
+                #region Spinners and TextBox 
+                
+                spnPeriod.Value = budgetRequestCondition.Period;
+                spnWarranty.Value = budgetRequestCondition.Warranty;
+                spnSafetyCourse.Value = budgetRequestCondition.SafetyCourse;
+                spnMaximunHeight.Value = budgetRequestCondition.MaximunHeight;
+                cmbStartDate.DateTime = budgetRequestCondition.StartDate;
+                txtObservations.Text = budgetRequestCondition.Observations;
+
+                #endregion
+            }
         }
 
         // Load the Customer
@@ -218,6 +271,12 @@ namespace shellProject
             }
         }
 
+        // Load the Measures in Grid Combo
+        private void loadMeasureCombo()
+        {
+            cmbMeasure.Items.AddRange(new CommonFactory().getMeasureList().MeasureList);
+        }
+
         // Load Contact Manager
         private void loadContactManager()
         {
@@ -239,8 +298,6 @@ namespace shellProject
         }      
 
         #endregion
-
-
        
        
     }

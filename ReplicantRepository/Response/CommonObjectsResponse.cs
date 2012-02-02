@@ -11,6 +11,7 @@ namespace ReplicantRepository.Response
     public class CommonObjectsResponse
     {
         public List<PhoneTypeDto> PhoneTypeList { get; set; }
+        public List<MeasureDto> MeasureList { get; set; }
     }
     
 

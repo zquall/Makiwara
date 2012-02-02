@@ -8,8 +8,8 @@ namespace ReplicantRepository.Response
 {
     public class EmployeeResponse
     {
-        public EmployeeData Employee { get; set; }
-        public List<EmployeeData> EmployeeList { get; set; }        
+        public EmployeeDto Employee { get; set; }
+        public List<EmployeeDto> EmployeeList { get; set; }        
     }
 
 

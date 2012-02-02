@@ -72,48 +72,36 @@ namespace CORE.DataMapper
             return tmpCustomerData;
         }
 
-        internal static Nexus.Customer Map(CustomerData customerData)
-        {
-            Nexus.Customer tmpCustomer = null;
-            if (customerData != null)
-            {
-                tmpCustomer = new Nexus.Customer();
-                tmpCustomer.Id = customerData.Id;
-                tmpCustomer.Name = customerData.Name;
-                tmpCustomer.Address = customerData.Address;
-                tmpCustomer.AddressOptional = customerData.AddressOptional;
-                tmpCustomer.Phone = customerData.Phone;
-                tmpCustomer.Fax = customerData.Fax;
-                //tmpCustomer.CustomerContacts = Map(customerData.ContactList);
-            }
-            return tmpCustomer;
-        }
+        //internal static Nexus.Customer Map(CustomerData customerData)
+        //{
+        //    Nexus.Customer tmpCustomer = null;
+        //    if (customerData != null)
+        //    {
+        //        tmpCustomer = new Nexus.Customer();
+        //        tmpCustomer.Id = customerData.Id;
+        //        tmpCustomer.Name = customerData.Name;
+        //        tmpCustomer.Address = customerData.Address;
+        //        tmpCustomer.AddressOptional = customerData.AddressOptional;
+        //        tmpCustomer.Phone = customerData.Phone;
+        //        tmpCustomer.Fax = customerData.Fax;
+        //        //tmpCustomer.CustomerContacts = Map(customerData.ContactList);
+        //    }
+        //    return tmpCustomer;
+        //}
 
-        internal static EmployeeData Map(Nexus.Employee employee)
-        {
-            EmployeeData tmpEmployeeData = null;
-            if (employee != null)
-            {
-                tmpEmployeeData = new EmployeeData();
-                tmpEmployeeData.Id = employee.Id;
-                tmpEmployeeData.Person = Map(employee.Person); 
-            }
-            return tmpEmployeeData;
-        }
+        //internal static EmployeeDto Map(Nexus.Employee employee)
+        //{
+        //    EmployeeData tmpEmployeeData = null;
+        //    if (employee != null)
+        //    {
+        //        tmpEmployeeData = new EmployeeData();
+        //        tmpEmployeeData.Id = employee.Id;
+        //        tmpEmployeeData.Person = Map(employee.Person); 
+        //    }
+        //    return tmpEmployeeData;
+        //}
 
-        internal static BudgetRequestData Map(Nexus.BudgetRequest budgetRequest)
-        {
-            BudgetRequestData tmpBudgetRequestData = null;
-            if (budgetRequest != null)
-            {
-                tmpBudgetRequestData = new BudgetRequestData();
-                tmpBudgetRequestData.Id = budgetRequest.Id;
-                tmpBudgetRequestData.DateModified = budgetRequest.DateModified;
-                tmpBudgetRequestData.Customer = Map(budgetRequest.Customer);
-                tmpBudgetRequestData.Employee = Map(budgetRequest.Employee); 
-            }
-            return tmpBudgetRequestData;
-        }
+
 
         #region Object Mapping Methods
 

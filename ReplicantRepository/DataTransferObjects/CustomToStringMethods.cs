@@ -36,6 +36,10 @@ namespace ReplicantRepository.DataTransferObjects
                     else
                         result = "Person is null";
                     break;
+                case "ReplicantRepository.DataTransferObjects.MeasureDto":
+                    dynamicObject = o as MeasureDto;
+                    result = dynamicObject.Symbol;
+                    break;                    
                 default:
                     result = o.GetType().ToString();
                     break;

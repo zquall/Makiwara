@@ -44,7 +44,9 @@
     <Compile Include="DataTransferObjects\BindCustomerDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\BudgetRequestData.cs" />
+    <Compile Include="DataTransferObjects\BudgetRequestConditionDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\BudgetRequestDetailDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
@@ -71,8 +73,6 @@
     <Compile Include="DataTransferObjects\NervObjects\CurrencyRateDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\EmployeeData.cs" />
-    <Compile Include="DataTransferObjects\CustomerData.cs" />
     <Compile Include="DataTransferObjects\NervObjects\EnterpriseDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
@@ -117,6 +117,9 @@
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\ResourceTypeDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\sysdiagramDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\TaskDto.cs">

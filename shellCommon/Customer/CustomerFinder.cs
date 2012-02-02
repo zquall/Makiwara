@@ -39,7 +39,7 @@ namespace shellCommon.Customer
             ShowSearchResults(new CustomerFactory().searchCustomer(request).CustomerList);
         }
 
-        private void ShowSearchResults(List<CustomerData> searchResults)
+        private void ShowSearchResults(List<CustomerDto> searchResults)
         {           
             grdCustomerControl.DataSource = searchResults;
         }
@@ -91,7 +91,7 @@ namespace shellCommon.Customer
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            var focusedRow = grdCustomerView.GetFocusedRow() as CustomerData;
+            var focusedRow = grdCustomerView.GetFocusedRow() as CustomerDto;
             if (focusedRow != null) {
                 // Check if the user select a customer
                 if (focusedRow.Id > -1)

@@ -7,6 +7,7 @@ using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
 using CORE.DataMapper;
 using AutoMapper;
+using Nexus;
 
 namespace CORE.Services
 {
@@ -68,7 +69,7 @@ namespace CORE.Services
             if (resultFound != null)
             {
                 // Fill the response with the result found
-                foreach (var tmpBudgetRequest in resultFound)
+                foreach (BudgetRequest tmpBudgetRequest in resultFound)
                 {
                     BudgetRequestDto budgetRequest = MapperPaths.Map(tmpBudgetRequest);
                     response.BudgetRequestList.Add(budgetRequest);

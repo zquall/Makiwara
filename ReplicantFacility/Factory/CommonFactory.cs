@@ -23,5 +23,12 @@ namespace ReplicantFacility.Factory
             commonObjectsResponse.PhoneTypeList = _CommonService.getPhoneTypeList();
             return commonObjectsResponse;
         }
+
+        public CommonObjectsResponse getMeasureList()
+        {
+            CommonObjectsResponse commonObjectsResponse = new CommonObjectsResponse();
+            commonObjectsResponse.MeasureList = _CommonService.getMeasureList();
+            return commonObjectsResponse;
+        }
     }
 }

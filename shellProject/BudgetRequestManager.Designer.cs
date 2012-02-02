@@ -61,57 +61,57 @@
             this.cmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMeasure = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbMeasure = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colApplication = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit21 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit22 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit23 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit24 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkDust = new DevExpress.XtraEditors.CheckEdit();
+            this.chkNoise = new DevExpress.XtraEditors.CheckEdit();
+            this.chkWet = new DevExpress.XtraEditors.CheckEdit();
+            this.chkMoisture = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit19 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit18 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit17 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit15 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit16 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkToilet = new DevExpress.XtraEditors.CheckEdit();
+            this.chkVentilation = new DevExpress.XtraEditors.CheckEdit();
+            this.chkReachable = new DevExpress.XtraEditors.CheckEdit();
+            this.chkWorkInside = new DevExpress.XtraEditors.CheckEdit();
+            this.chkWorkOutside = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit12 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit14 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkLodging = new DevExpress.XtraEditors.CheckEdit();
+            this.chkFood = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit10 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit11 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit13 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkElectricity = new DevExpress.XtraEditors.CheckEdit();
+            this.chkDrinkableWater = new DevExpress.XtraEditors.CheckEdit();
+            this.chkWareHouse = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit9 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkNightTurn = new DevExpress.XtraEditors.CheckEdit();
+            this.chkDayTurn = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit8 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit6 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit7 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkTuesday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkMonday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkSunday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkWednesday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkSaturday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkFriday = new DevExpress.XtraEditors.CheckEdit();
+            this.chkThursday = new DevExpress.XtraEditors.CheckEdit();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtObservations = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit4 = new DevExpress.XtraEditors.SpinEdit();
+            this.spnWarranty = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.cmbStartDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spnSafetyCourse = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEdit2 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
+            this.spnPeriod = new DevExpress.XtraEditors.SpinEdit();
+            this.spnMaximunHeight = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.cmbMeasure = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
@@ -133,53 +133,53 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
             this.groupControl7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit21.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit22.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit23.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit24.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDust.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNoise.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWet.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMoisture.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit19.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit18.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit17.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit15.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit16.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkToilet.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkVentilation.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkReachable.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWorkInside.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWorkOutside.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit12.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit14.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkLodging.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkFood.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit10.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit11.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit13.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkElectricity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDrinkableWater.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWareHouse.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit9.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNightTurn.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDayTurn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit8.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit7.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTuesday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMonday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSunday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWednesday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSaturday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkFriday.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkThursday.Properties)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).BeginInit();
             this.groupControl8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObservations.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnWarranty.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbStartDate.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbStartDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnSafetyCourse.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnPeriod.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnMaximunHeight.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -272,8 +272,8 @@
             // 
             this.panelControl5.Controls.Add(this.labelControl7);
             this.panelControl5.Controls.Add(this.cmbBubgetRequest);
-            this.panelControl5.Controls.Add(this.labelControl8);
             this.panelControl5.Controls.Add(this.edtDate);
+            this.panelControl5.Controls.Add(this.labelControl8);
             this.panelControl5.Location = new System.Drawing.Point(479, 12);
             this.panelControl5.Name = "panelControl5";
             this.panelControl5.Size = new System.Drawing.Size(238, 57);
@@ -496,6 +496,13 @@
             this.colMeasure.VisibleIndex = 2;
             this.colMeasure.Width = 50;
             // 
+            // cmbMeasure
+            // 
+            this.cmbMeasure.AutoHeight = false;
+            this.cmbMeasure.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbMeasure.Name = "cmbMeasure";
+            // 
             // colApplication
             // 
             this.colApplication.Caption = "Aplicacion";
@@ -518,274 +525,275 @@
             // 
             // groupControl7
             // 
-            this.groupControl7.Controls.Add(this.checkEdit21);
-            this.groupControl7.Controls.Add(this.checkEdit22);
-            this.groupControl7.Controls.Add(this.checkEdit23);
-            this.groupControl7.Controls.Add(this.checkEdit24);
+            this.groupControl7.Controls.Add(this.chkDust);
+            this.groupControl7.Controls.Add(this.chkNoise);
+            this.groupControl7.Controls.Add(this.chkWet);
+            this.groupControl7.Controls.Add(this.chkMoisture);
             this.groupControl7.Location = new System.Drawing.Point(362, 3);
             this.groupControl7.Name = "groupControl7";
             this.groupControl7.Size = new System.Drawing.Size(89, 162);
             this.groupControl7.TabIndex = 12;
             this.groupControl7.Text = "Impedimentos";
             // 
-            // checkEdit21
+            // chkDust
             // 
-            this.checkEdit21.Location = new System.Drawing.Point(5, 100);
-            this.checkEdit21.Name = "checkEdit21";
-            this.checkEdit21.Properties.Caption = "Polvo";
-            this.checkEdit21.Size = new System.Drawing.Size(80, 19);
-            this.checkEdit21.TabIndex = 9;
+            this.chkDust.Location = new System.Drawing.Point(5, 100);
+            this.chkDust.Name = "chkDust";
+            this.chkDust.Properties.Caption = "Polvo";
+            this.chkDust.Size = new System.Drawing.Size(80, 19);
+            this.chkDust.TabIndex = 9;
             // 
-            // checkEdit22
+            // chkNoise
             // 
-            this.checkEdit22.Location = new System.Drawing.Point(5, 75);
-            this.checkEdit22.Name = "checkEdit22";
-            this.checkEdit22.Properties.Caption = "Ruido";
-            this.checkEdit22.Size = new System.Drawing.Size(80, 19);
-            this.checkEdit22.TabIndex = 8;
+            this.chkNoise.Location = new System.Drawing.Point(5, 75);
+            this.chkNoise.Name = "chkNoise";
+            this.chkNoise.Properties.Caption = "Ruido";
+            this.chkNoise.Size = new System.Drawing.Size(80, 19);
+            this.chkNoise.TabIndex = 8;
             // 
-            // checkEdit23
+            // chkWet
             // 
-            this.checkEdit23.Location = new System.Drawing.Point(5, 50);
-            this.checkEdit23.Name = "checkEdit23";
-            this.checkEdit23.Properties.Caption = "Agua";
-            this.checkEdit23.Size = new System.Drawing.Size(84, 19);
-            this.checkEdit23.TabIndex = 7;
+            this.chkWet.Location = new System.Drawing.Point(5, 50);
+            this.chkWet.Name = "chkWet";
+            this.chkWet.Properties.Caption = "Agua";
+            this.chkWet.Size = new System.Drawing.Size(84, 19);
+            this.chkWet.TabIndex = 7;
             // 
-            // checkEdit24
+            // chkMoisture
             // 
-            this.checkEdit24.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit24.Name = "checkEdit24";
-            this.checkEdit24.Properties.Caption = "Humedad";
-            this.checkEdit24.Size = new System.Drawing.Size(84, 19);
-            this.checkEdit24.TabIndex = 0;
+            this.chkMoisture.Location = new System.Drawing.Point(5, 25);
+            this.chkMoisture.Name = "chkMoisture";
+            this.chkMoisture.Properties.Caption = "Humedad";
+            this.chkMoisture.Size = new System.Drawing.Size(84, 19);
+            this.chkMoisture.TabIndex = 0;
             // 
             // groupControl6
             // 
-            this.groupControl6.Controls.Add(this.checkEdit19);
-            this.groupControl6.Controls.Add(this.checkEdit18);
-            this.groupControl6.Controls.Add(this.checkEdit17);
-            this.groupControl6.Controls.Add(this.checkEdit15);
-            this.groupControl6.Controls.Add(this.checkEdit16);
+            this.groupControl6.Controls.Add(this.chkToilet);
+            this.groupControl6.Controls.Add(this.chkVentilation);
+            this.groupControl6.Controls.Add(this.chkReachable);
+            this.groupControl6.Controls.Add(this.chkWorkInside);
+            this.groupControl6.Controls.Add(this.chkWorkOutside);
             this.groupControl6.Location = new System.Drawing.Point(222, 3);
             this.groupControl6.Name = "groupControl6";
             this.groupControl6.Size = new System.Drawing.Size(134, 162);
             this.groupControl6.TabIndex = 11;
             this.groupControl6.Text = "Area";
             // 
-            // checkEdit19
+            // chkToilet
             // 
-            this.checkEdit19.Location = new System.Drawing.Point(5, 125);
-            this.checkEdit19.Name = "checkEdit19";
-            this.checkEdit19.Properties.Caption = "Requiere Sanitarios";
-            this.checkEdit19.Size = new System.Drawing.Size(115, 19);
-            this.checkEdit19.TabIndex = 10;
+            this.chkToilet.Location = new System.Drawing.Point(5, 125);
+            this.chkToilet.Name = "chkToilet";
+            this.chkToilet.Properties.Caption = "Requiere Sanitarios";
+            this.chkToilet.Size = new System.Drawing.Size(115, 19);
+            this.chkToilet.TabIndex = 10;
             // 
-            // checkEdit18
+            // chkVentilation
             // 
-            this.checkEdit18.Location = new System.Drawing.Point(5, 100);
-            this.checkEdit18.Name = "checkEdit18";
-            this.checkEdit18.Properties.Caption = "Equipo Ventilacion";
-            this.checkEdit18.Size = new System.Drawing.Size(115, 19);
-            this.checkEdit18.TabIndex = 9;
+            this.chkVentilation.Location = new System.Drawing.Point(5, 100);
+            this.chkVentilation.Name = "chkVentilation";
+            this.chkVentilation.Properties.Caption = "Equipo Ventilacion";
+            this.chkVentilation.Size = new System.Drawing.Size(115, 19);
+            this.chkVentilation.TabIndex = 9;
             // 
-            // checkEdit17
+            // chkReachable
             // 
-            this.checkEdit17.Location = new System.Drawing.Point(5, 75);
-            this.checkEdit17.Name = "checkEdit17";
-            this.checkEdit17.Properties.Caption = "Facil Acceso";
-            this.checkEdit17.Size = new System.Drawing.Size(115, 19);
-            this.checkEdit17.TabIndex = 8;
+            this.chkReachable.Location = new System.Drawing.Point(5, 75);
+            this.chkReachable.Name = "chkReachable";
+            this.chkReachable.Properties.Caption = "Facil Acceso";
+            this.chkReachable.Size = new System.Drawing.Size(115, 19);
+            this.chkReachable.TabIndex = 8;
             // 
-            // checkEdit15
+            // chkWorkInside
             // 
-            this.checkEdit15.Location = new System.Drawing.Point(5, 50);
-            this.checkEdit15.Name = "checkEdit15";
-            this.checkEdit15.Properties.Caption = "Trabajo Interior";
-            this.checkEdit15.Size = new System.Drawing.Size(115, 19);
-            this.checkEdit15.TabIndex = 7;
+            this.chkWorkInside.Location = new System.Drawing.Point(5, 50);
+            this.chkWorkInside.Name = "chkWorkInside";
+            this.chkWorkInside.Properties.Caption = "Trabajo Interior";
+            this.chkWorkInside.Size = new System.Drawing.Size(115, 19);
+            this.chkWorkInside.TabIndex = 7;
             // 
-            // checkEdit16
+            // chkWorkOutside
             // 
-            this.checkEdit16.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit16.Name = "checkEdit16";
-            this.checkEdit16.Properties.Caption = "Trabajo Exterior";
-            this.checkEdit16.Size = new System.Drawing.Size(115, 19);
-            this.checkEdit16.TabIndex = 0;
+            this.chkWorkOutside.Location = new System.Drawing.Point(5, 25);
+            this.chkWorkOutside.Name = "chkWorkOutside";
+            this.chkWorkOutside.Properties.Caption = "Trabajo Exterior";
+            this.chkWorkOutside.Size = new System.Drawing.Size(115, 19);
+            this.chkWorkOutside.TabIndex = 0;
             // 
             // groupControl5
             // 
-            this.groupControl5.Controls.Add(this.checkEdit12);
-            this.groupControl5.Controls.Add(this.checkEdit14);
+            this.groupControl5.Controls.Add(this.chkLodging);
+            this.groupControl5.Controls.Add(this.chkFood);
             this.groupControl5.Location = new System.Drawing.Point(457, 3);
             this.groupControl5.Name = "groupControl5";
             this.groupControl5.Size = new System.Drawing.Size(199, 53);
             this.groupControl5.TabIndex = 10;
             this.groupControl5.Text = "Viaticos";
             // 
-            // checkEdit12
+            // chkLodging
             // 
-            this.checkEdit12.Location = new System.Drawing.Point(114, 25);
-            this.checkEdit12.Name = "checkEdit12";
-            this.checkEdit12.Properties.Caption = "Hospedage";
-            this.checkEdit12.Size = new System.Drawing.Size(103, 19);
-            this.checkEdit12.TabIndex = 7;
+            this.chkLodging.Location = new System.Drawing.Point(114, 25);
+            this.chkLodging.Name = "chkLodging";
+            this.chkLodging.Properties.Caption = "Hospedage";
+            this.chkLodging.Size = new System.Drawing.Size(80, 19);
+            this.chkLodging.TabIndex = 7;
             // 
-            // checkEdit14
+            // chkFood
             // 
-            this.checkEdit14.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit14.Name = "checkEdit14";
-            this.checkEdit14.Properties.Caption = "Alimentacion";
-            this.checkEdit14.Size = new System.Drawing.Size(103, 19);
-            this.checkEdit14.TabIndex = 0;
+            this.chkFood.Location = new System.Drawing.Point(5, 25);
+            this.chkFood.Name = "chkFood";
+            this.chkFood.Properties.Caption = "Alimentacion";
+            this.chkFood.Size = new System.Drawing.Size(103, 19);
+            this.chkFood.TabIndex = 0;
             // 
             // groupControl4
             // 
-            this.groupControl4.Controls.Add(this.checkEdit10);
-            this.groupControl4.Controls.Add(this.checkEdit11);
-            this.groupControl4.Controls.Add(this.checkEdit13);
+            this.groupControl4.Controls.Add(this.chkElectricity);
+            this.groupControl4.Controls.Add(this.chkDrinkableWater);
+            this.groupControl4.Controls.Add(this.chkWareHouse);
             this.groupControl4.Location = new System.Drawing.Point(103, 62);
             this.groupControl4.Name = "groupControl4";
             this.groupControl4.Size = new System.Drawing.Size(113, 103);
             this.groupControl4.TabIndex = 9;
             this.groupControl4.Text = "Recursos";
             // 
-            // checkEdit10
+            // chkElectricity
             // 
-            this.checkEdit10.Location = new System.Drawing.Point(5, 50);
-            this.checkEdit10.Name = "checkEdit10";
-            this.checkEdit10.Properties.Caption = "Electricidad";
-            this.checkEdit10.Size = new System.Drawing.Size(103, 19);
-            this.checkEdit10.TabIndex = 7;
+            this.chkElectricity.Location = new System.Drawing.Point(5, 50);
+            this.chkElectricity.Name = "chkElectricity";
+            this.chkElectricity.Properties.Caption = "Electricidad";
+            this.chkElectricity.Size = new System.Drawing.Size(103, 19);
+            this.chkElectricity.TabIndex = 7;
             // 
-            // checkEdit11
+            // chkDrinkableWater
             // 
-            this.checkEdit11.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit11.Name = "checkEdit11";
-            this.checkEdit11.Properties.Caption = "Agua Potable";
-            this.checkEdit11.Size = new System.Drawing.Size(103, 19);
-            this.checkEdit11.TabIndex = 0;
+            this.chkDrinkableWater.Location = new System.Drawing.Point(5, 25);
+            this.chkDrinkableWater.Name = "chkDrinkableWater";
+            this.chkDrinkableWater.Properties.Caption = "Agua Potable";
+            this.chkDrinkableWater.Size = new System.Drawing.Size(103, 19);
+            this.chkDrinkableWater.TabIndex = 0;
             // 
-            // checkEdit13
+            // chkWareHouse
             // 
-            this.checkEdit13.Location = new System.Drawing.Point(5, 75);
-            this.checkEdit13.Name = "checkEdit13";
-            this.checkEdit13.Properties.Caption = "Bodega Cliente";
-            this.checkEdit13.Size = new System.Drawing.Size(103, 19);
-            this.checkEdit13.TabIndex = 3;
+            this.chkWareHouse.Location = new System.Drawing.Point(5, 75);
+            this.chkWareHouse.Name = "chkWareHouse";
+            this.chkWareHouse.Properties.Caption = "Bodega Cliente";
+            this.chkWareHouse.Size = new System.Drawing.Size(103, 19);
+            this.chkWareHouse.TabIndex = 3;
             // 
             // groupControl3
             // 
-            this.groupControl3.Controls.Add(this.checkEdit2);
-            this.groupControl3.Controls.Add(this.checkEdit9);
+            this.groupControl3.Controls.Add(this.chkNightTurn);
+            this.groupControl3.Controls.Add(this.chkDayTurn);
             this.groupControl3.Location = new System.Drawing.Point(103, 3);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(113, 53);
             this.groupControl3.TabIndex = 8;
             this.groupControl3.Text = "Turno";
             // 
-            // checkEdit2
+            // chkNightTurn
             // 
-            this.checkEdit2.Location = new System.Drawing.Point(50, 25);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Caption = "Noche";
-            this.checkEdit2.Size = new System.Drawing.Size(58, 19);
-            this.checkEdit2.TabIndex = 7;
+            this.chkNightTurn.Location = new System.Drawing.Point(50, 25);
+            this.chkNightTurn.Name = "chkNightTurn";
+            this.chkNightTurn.Properties.Caption = "Noche";
+            this.chkNightTurn.Size = new System.Drawing.Size(58, 19);
+            this.chkNightTurn.TabIndex = 7;
             // 
-            // checkEdit9
+            // chkDayTurn
             // 
-            this.checkEdit9.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit9.Name = "checkEdit9";
-            this.checkEdit9.Properties.Caption = "Dia";
-            this.checkEdit9.Size = new System.Drawing.Size(44, 19);
-            this.checkEdit9.TabIndex = 0;
+            this.chkDayTurn.Location = new System.Drawing.Point(5, 25);
+            this.chkDayTurn.Name = "chkDayTurn";
+            this.chkDayTurn.Properties.Caption = "Dia";
+            this.chkDayTurn.Size = new System.Drawing.Size(44, 19);
+            this.chkDayTurn.TabIndex = 0;
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.checkEdit8);
-            this.groupControl1.Controls.Add(this.checkEdit1);
-            this.groupControl1.Controls.Add(this.checkEdit5);
-            this.groupControl1.Controls.Add(this.checkEdit4);
-            this.groupControl1.Controls.Add(this.checkEdit3);
-            this.groupControl1.Controls.Add(this.checkEdit6);
-            this.groupControl1.Controls.Add(this.checkEdit7);
+            this.groupControl1.Controls.Add(this.chkTuesday);
+            this.groupControl1.Controls.Add(this.chkMonday);
+            this.groupControl1.Controls.Add(this.chkSunday);
+            this.groupControl1.Controls.Add(this.chkWednesday);
+            this.groupControl1.Controls.Add(this.chkSaturday);
+            this.groupControl1.Controls.Add(this.chkFriday);
+            this.groupControl1.Controls.Add(this.chkThursday);
             this.groupControl1.Location = new System.Drawing.Point(3, 3);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(94, 202);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Horario";
             // 
-            // checkEdit8
+            // chkTuesday
             // 
-            this.checkEdit8.Location = new System.Drawing.Point(5, 50);
-            this.checkEdit8.Name = "checkEdit8";
-            this.checkEdit8.Properties.Caption = "Martes";
-            this.checkEdit8.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit8.TabIndex = 7;
+            this.chkTuesday.Location = new System.Drawing.Point(5, 50);
+            this.chkTuesday.Name = "chkTuesday";
+            this.chkTuesday.Properties.Caption = "Martes";
+            this.chkTuesday.Size = new System.Drawing.Size(75, 19);
+            this.chkTuesday.TabIndex = 7;
             // 
-            // checkEdit1
+            // chkMonday
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(5, 25);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Lunes";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit1.TabIndex = 0;
+            this.chkMonday.Location = new System.Drawing.Point(5, 25);
+            this.chkMonday.Name = "chkMonday";
+            this.chkMonday.Properties.Caption = "Lunes";
+            this.chkMonday.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            this.chkMonday.Size = new System.Drawing.Size(75, 19);
+            this.chkMonday.TabIndex = 0;
             // 
-            // checkEdit5
+            // chkSunday
             // 
-            this.checkEdit5.Location = new System.Drawing.Point(5, 175);
-            this.checkEdit5.Name = "checkEdit5";
-            this.checkEdit5.Properties.Caption = "Domingo";
-            this.checkEdit5.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit5.TabIndex = 4;
+            this.chkSunday.Location = new System.Drawing.Point(5, 175);
+            this.chkSunday.Name = "chkSunday";
+            this.chkSunday.Properties.Caption = "Domingo";
+            this.chkSunday.Size = new System.Drawing.Size(75, 19);
+            this.chkSunday.TabIndex = 4;
             // 
-            // checkEdit4
+            // chkWednesday
             // 
-            this.checkEdit4.Location = new System.Drawing.Point(5, 75);
-            this.checkEdit4.Name = "checkEdit4";
-            this.checkEdit4.Properties.Caption = "Miercoles";
-            this.checkEdit4.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit4.TabIndex = 3;
+            this.chkWednesday.Location = new System.Drawing.Point(5, 75);
+            this.chkWednesday.Name = "chkWednesday";
+            this.chkWednesday.Properties.Caption = "Miercoles";
+            this.chkWednesday.Size = new System.Drawing.Size(75, 19);
+            this.chkWednesday.TabIndex = 3;
             // 
-            // checkEdit3
+            // chkSaturday
             // 
-            this.checkEdit3.Location = new System.Drawing.Point(5, 150);
-            this.checkEdit3.Name = "checkEdit3";
-            this.checkEdit3.Properties.Caption = "Sabado";
-            this.checkEdit3.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit3.TabIndex = 2;
+            this.chkSaturday.Location = new System.Drawing.Point(5, 150);
+            this.chkSaturday.Name = "chkSaturday";
+            this.chkSaturday.Properties.Caption = "Sabado";
+            this.chkSaturday.Size = new System.Drawing.Size(75, 19);
+            this.chkSaturday.TabIndex = 2;
             // 
-            // checkEdit6
+            // chkFriday
             // 
-            this.checkEdit6.Location = new System.Drawing.Point(5, 125);
-            this.checkEdit6.Name = "checkEdit6";
-            this.checkEdit6.Properties.Caption = "Viernes";
-            this.checkEdit6.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit6.TabIndex = 5;
+            this.chkFriday.Location = new System.Drawing.Point(5, 125);
+            this.chkFriday.Name = "chkFriday";
+            this.chkFriday.Properties.Caption = "Viernes";
+            this.chkFriday.Size = new System.Drawing.Size(75, 19);
+            this.chkFriday.TabIndex = 5;
             // 
-            // checkEdit7
+            // chkThursday
             // 
-            this.checkEdit7.Location = new System.Drawing.Point(5, 100);
-            this.checkEdit7.Name = "checkEdit7";
-            this.checkEdit7.Properties.Caption = "Jueves";
-            this.checkEdit7.Size = new System.Drawing.Size(75, 19);
-            this.checkEdit7.TabIndex = 6;
+            this.chkThursday.Location = new System.Drawing.Point(5, 100);
+            this.chkThursday.Name = "chkThursday";
+            this.chkThursday.Properties.Caption = "Jueves";
+            this.chkThursday.Size = new System.Drawing.Size(75, 19);
+            this.chkThursday.TabIndex = 6;
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.groupControl8);
             this.xtraTabPage3.Controls.Add(this.labelControl20);
-            this.xtraTabPage3.Controls.Add(this.spinEdit4);
+            this.xtraTabPage3.Controls.Add(this.spnWarranty);
             this.xtraTabPage3.Controls.Add(this.labelControl21);
-            this.xtraTabPage3.Controls.Add(this.dateEdit2);
+            this.xtraTabPage3.Controls.Add(this.cmbStartDate);
             this.xtraTabPage3.Controls.Add(this.labelControl19);
             this.xtraTabPage3.Controls.Add(this.labelControl17);
-            this.xtraTabPage3.Controls.Add(this.spinEdit3);
+            this.xtraTabPage3.Controls.Add(this.spnSafetyCourse);
             this.xtraTabPage3.Controls.Add(this.labelControl18);
             this.xtraTabPage3.Controls.Add(this.labelControl16);
             this.xtraTabPage3.Controls.Add(this.labelControl15);
-            this.xtraTabPage3.Controls.Add(this.spinEdit2);
-            this.xtraTabPage3.Controls.Add(this.spinEdit1);
+            this.xtraTabPage3.Controls.Add(this.spnPeriod);
+            this.xtraTabPage3.Controls.Add(this.spnMaximunHeight);
             this.xtraTabPage3.Controls.Add(this.labelControl14);
             this.xtraTabPage3.Controls.Add(this.labelControl13);
             this.xtraTabPage3.Name = "xtraTabPage3";
@@ -794,19 +802,19 @@
             // 
             // groupControl8
             // 
-            this.groupControl8.Controls.Add(this.memoEdit1);
+            this.groupControl8.Controls.Add(this.txtObservations);
             this.groupControl8.Location = new System.Drawing.Point(10, 122);
             this.groupControl8.Name = "groupControl8";
             this.groupControl8.Size = new System.Drawing.Size(558, 136);
             this.groupControl8.TabIndex = 15;
             this.groupControl8.Text = "Observaciones:";
             // 
-            // memoEdit1
+            // txtObservations
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(5, 25);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(548, 106);
-            this.memoEdit1.TabIndex = 16;
+            this.txtObservations.Location = new System.Drawing.Point(5, 25);
+            this.txtObservations.Name = "txtObservations";
+            this.txtObservations.Size = new System.Drawing.Size(548, 106);
+            this.txtObservations.TabIndex = 16;
             // 
             // labelControl20
             // 
@@ -816,19 +824,19 @@
             this.labelControl20.TabIndex = 14;
             this.labelControl20.Text = "Meses";
             // 
-            // spinEdit4
+            // spnWarranty
             // 
-            this.spinEdit4.EditValue = new decimal(new int[] {
+            this.spnWarranty.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit4.Location = new System.Drawing.Point(165, 34);
-            this.spinEdit4.Name = "spinEdit4";
-            this.spinEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spnWarranty.Location = new System.Drawing.Point(165, 34);
+            this.spnWarranty.Name = "spnWarranty";
+            this.spnWarranty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit4.Size = new System.Drawing.Size(70, 20);
-            this.spinEdit4.TabIndex = 13;
+            this.spnWarranty.Size = new System.Drawing.Size(70, 20);
+            this.spnWarranty.TabIndex = 13;
             // 
             // labelControl21
             // 
@@ -838,17 +846,17 @@
             this.labelControl21.TabIndex = 12;
             this.labelControl21.Text = "Garantia Solicitada:";
             // 
-            // dateEdit2
+            // cmbStartDate
             // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(453, 8);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbStartDate.EditValue = null;
+            this.cmbStartDate.Location = new System.Drawing.Point(453, 8);
+            this.cmbStartDate.Name = "cmbStartDate";
+            this.cmbStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbStartDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dateEdit2.Size = new System.Drawing.Size(115, 20);
-            this.dateEdit2.TabIndex = 11;
+            this.cmbStartDate.Size = new System.Drawing.Size(115, 20);
+            this.cmbStartDate.TabIndex = 11;
             // 
             // labelControl19
             // 
@@ -866,19 +874,19 @@
             this.labelControl17.TabIndex = 9;
             this.labelControl17.Text = "Horas";
             // 
-            // spinEdit3
+            // spnSafetyCourse
             // 
-            this.spinEdit3.EditValue = new decimal(new int[] {
+            this.spnSafetyCourse.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit3.Location = new System.Drawing.Point(165, 60);
-            this.spinEdit3.Name = "spinEdit3";
-            this.spinEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spnSafetyCourse.Location = new System.Drawing.Point(165, 60);
+            this.spnSafetyCourse.Name = "spnSafetyCourse";
+            this.spnSafetyCourse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit3.Size = new System.Drawing.Size(70, 20);
-            this.spinEdit3.TabIndex = 8;
+            this.spnSafetyCourse.Size = new System.Drawing.Size(70, 20);
+            this.spnSafetyCourse.TabIndex = 8;
             // 
             // labelControl18
             // 
@@ -904,33 +912,33 @@
             this.labelControl15.TabIndex = 5;
             this.labelControl15.Text = "Dias";
             // 
-            // spinEdit2
+            // spnPeriod
             // 
-            this.spinEdit2.EditValue = new decimal(new int[] {
+            this.spnPeriod.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit2.Location = new System.Drawing.Point(165, 8);
-            this.spinEdit2.Name = "spinEdit2";
-            this.spinEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spnPeriod.Location = new System.Drawing.Point(165, 8);
+            this.spnPeriod.Name = "spnPeriod";
+            this.spnPeriod.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit2.Size = new System.Drawing.Size(70, 20);
-            this.spinEdit2.TabIndex = 4;
+            this.spnPeriod.Size = new System.Drawing.Size(70, 20);
+            this.spnPeriod.TabIndex = 4;
             // 
-            // spinEdit1
+            // spnMaximunHeight
             // 
-            this.spinEdit1.EditValue = new decimal(new int[] {
+            this.spnMaximunHeight.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.spinEdit1.Location = new System.Drawing.Point(165, 86);
-            this.spinEdit1.Name = "spinEdit1";
-            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.spnMaximunHeight.Location = new System.Drawing.Point(165, 86);
+            this.spnMaximunHeight.Name = "spnMaximunHeight";
+            this.spnMaximunHeight.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinEdit1.Size = new System.Drawing.Size(70, 20);
-            this.spinEdit1.TabIndex = 3;
+            this.spnMaximunHeight.Size = new System.Drawing.Size(70, 20);
+            this.spnMaximunHeight.TabIndex = 3;
             // 
             // labelControl14
             // 
@@ -961,13 +969,6 @@
             this.simpleButton3.Size = new System.Drawing.Size(104, 23);
             this.simpleButton3.TabIndex = 9;
             this.simpleButton3.Text = "Cancelar";
-            // 
-            // cmbMeasure
-            // 
-            this.cmbMeasure.AutoHeight = false;
-            this.cmbMeasure.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbMeasure.Name = "cmbMeasure";
             // 
             // BudgetRequestManager
             // 
@@ -1006,54 +1007,54 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
             this.groupControl7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit21.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit22.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit23.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit24.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDust.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNoise.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWet.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMoisture.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit19.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit18.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit17.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit15.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit16.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkToilet.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkVentilation.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkReachable.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWorkInside.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWorkOutside.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit12.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit14.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkLodging.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkFood.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit10.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit11.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit13.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkElectricity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDrinkableWater.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWareHouse.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit9.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNightTurn.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDayTurn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit8.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit7.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTuesday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMonday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSunday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkWednesday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSaturday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkFriday.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkThursday.Properties)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraTabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).EndInit();
             this.groupControl8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObservations.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnWarranty.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbStartDate.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbStartDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnSafetyCourse.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnPeriod.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spnMaximunHeight.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1090,50 +1091,50 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
-        private DevExpress.XtraEditors.CheckEdit checkEdit8;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit5;
-        private DevExpress.XtraEditors.CheckEdit checkEdit4;
-        private DevExpress.XtraEditors.CheckEdit checkEdit3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit6;
-        private DevExpress.XtraEditors.CheckEdit checkEdit7;
+        private DevExpress.XtraEditors.CheckEdit chkTuesday;
+        private DevExpress.XtraEditors.CheckEdit chkMonday;
+        private DevExpress.XtraEditors.CheckEdit chkSunday;
+        private DevExpress.XtraEditors.CheckEdit chkWednesday;
+        private DevExpress.XtraEditors.CheckEdit chkSaturday;
+        private DevExpress.XtraEditors.CheckEdit chkFriday;
+        private DevExpress.XtraEditors.CheckEdit chkThursday;
         private DevExpress.XtraEditors.GroupControl groupControl7;
-        private DevExpress.XtraEditors.CheckEdit checkEdit21;
-        private DevExpress.XtraEditors.CheckEdit checkEdit22;
-        private DevExpress.XtraEditors.CheckEdit checkEdit23;
-        private DevExpress.XtraEditors.CheckEdit checkEdit24;
+        private DevExpress.XtraEditors.CheckEdit chkDust;
+        private DevExpress.XtraEditors.CheckEdit chkNoise;
+        private DevExpress.XtraEditors.CheckEdit chkWet;
+        private DevExpress.XtraEditors.CheckEdit chkMoisture;
         private DevExpress.XtraEditors.GroupControl groupControl6;
-        private DevExpress.XtraEditors.CheckEdit checkEdit19;
-        private DevExpress.XtraEditors.CheckEdit checkEdit18;
-        private DevExpress.XtraEditors.CheckEdit checkEdit17;
-        private DevExpress.XtraEditors.CheckEdit checkEdit15;
-        private DevExpress.XtraEditors.CheckEdit checkEdit16;
+        private DevExpress.XtraEditors.CheckEdit chkToilet;
+        private DevExpress.XtraEditors.CheckEdit chkVentilation;
+        private DevExpress.XtraEditors.CheckEdit chkReachable;
+        private DevExpress.XtraEditors.CheckEdit chkWorkInside;
+        private DevExpress.XtraEditors.CheckEdit chkWorkOutside;
         private DevExpress.XtraEditors.GroupControl groupControl5;
-        private DevExpress.XtraEditors.CheckEdit checkEdit12;
-        private DevExpress.XtraEditors.CheckEdit checkEdit14;
+        private DevExpress.XtraEditors.CheckEdit chkLodging;
+        private DevExpress.XtraEditors.CheckEdit chkFood;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraEditors.CheckEdit checkEdit10;
-        private DevExpress.XtraEditors.CheckEdit checkEdit11;
-        private DevExpress.XtraEditors.CheckEdit checkEdit13;
+        private DevExpress.XtraEditors.CheckEdit chkElectricity;
+        private DevExpress.XtraEditors.CheckEdit chkDrinkableWater;
+        private DevExpress.XtraEditors.CheckEdit chkWareHouse;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit9;
+        private DevExpress.XtraEditors.CheckEdit chkNightTurn;
+        private DevExpress.XtraEditors.CheckEdit chkDayTurn;
         private DevExpress.XtraEditors.LabelControl labelControl20;
-        private DevExpress.XtraEditors.SpinEdit spinEdit4;
+        private DevExpress.XtraEditors.SpinEdit spnWarranty;
         private DevExpress.XtraEditors.LabelControl labelControl21;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private DevExpress.XtraEditors.DateEdit cmbStartDate;
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.LabelControl labelControl17;
-        private DevExpress.XtraEditors.SpinEdit spinEdit3;
+        private DevExpress.XtraEditors.SpinEdit spnSafetyCourse;
         private DevExpress.XtraEditors.LabelControl labelControl18;
         private DevExpress.XtraEditors.LabelControl labelControl16;
         private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.SpinEdit spinEdit2;
-        private DevExpress.XtraEditors.SpinEdit spinEdit1;
+        private DevExpress.XtraEditors.SpinEdit spnPeriod;
+        private DevExpress.XtraEditors.SpinEdit spnMaximunHeight;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.GroupControl groupControl8;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit txtObservations;
         private DevExpress.XtraEditors.ComboBoxEdit cmbContact;
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhone;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;

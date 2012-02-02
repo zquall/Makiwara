@@ -8,6 +8,7 @@
         <EntityContainer Name="EnterpriseModelStoreContainer">
           <EntitySet Name="BindCustomer" EntityType="EnterpriseModel.Store.BindCustomer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BudgetRequest" EntityType="EnterpriseModel.Store.BudgetRequest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BudgetRequestCondition" EntityType="EnterpriseModel.Store.BudgetRequestCondition" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BudgetRequestDetail" EntityType="EnterpriseModel.Store.BudgetRequestDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="EnterpriseModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CustomerContact" EntityType="EnterpriseModel.Store.CustomerContact" store:Type="Tables" Schema="dbo" />
@@ -28,6 +29,7 @@
           <EntitySet Name="Project" EntityType="EnterpriseModel.Store.Project" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Resource" EntityType="EnterpriseModel.Store.Resource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ResourceType" EntityType="EnterpriseModel.Store.ResourceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="EnterpriseModel.Store.Task" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ApplicationRequest_Customer" Association="EnterpriseModel.Store.FK_ApplicationRequest_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -44,6 +46,10 @@
           <AssociationSet Name="FK_BudgetRequest_Employee" Association="EnterpriseModel.Store.FK_BudgetRequest_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BudgetRequestConditions_BudgetRequest" Association="EnterpriseModel.Store.FK_BudgetRequestConditions_BudgetRequest">
+            <End Role="BudgetRequest" EntitySet="BudgetRequest" />
+            <End Role="BudgetRequestCondition" EntitySet="BudgetRequestCondition" />
           </AssociationSet>
           <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="EnterpriseModel.Store.FK_BudgetRequestDetail_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequest" />
@@ -128,11 +134,46 @@
           <Property Name="DateModified" Type="date" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BudgetRequestCondition">
+          <Key>
+            <PropertyRef Name="BudgetRequestId" />
+          </Key>
+          <Property Name="BudgetRequestId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Period" Type="decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="Warranty" Type="decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="SafetyCourse" Type="decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="MaximunHeight" Type="decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="Observations" Type="text" Nullable="false" />
+          <Property Name="Monday" Type="bit" Nullable="false" />
+          <Property Name="Tuesday" Type="bit" Nullable="false" />
+          <Property Name="Wednesday" Type="bit" Nullable="false" />
+          <Property Name="Thursday" Type="bit" Nullable="false" />
+          <Property Name="Friday" Type="bit" Nullable="false" />
+          <Property Name="Saturday" Type="bit" Nullable="false" />
+          <Property Name="Sunday" Type="bit" Nullable="false" />
+          <Property Name="DayTurn" Type="bit" Nullable="false" />
+          <Property Name="NightTurn" Type="bit" Nullable="false" />
+          <Property Name="DrinkableWater" Type="bit" Nullable="false" />
+          <Property Name="Electricity" Type="bit" Nullable="false" />
+          <Property Name="Warehouse" Type="bit" Nullable="false" />
+          <Property Name="WorkInside" Type="bit" Nullable="false" />
+          <Property Name="WorkOutside" Type="bit" Nullable="false" />
+          <Property Name="Reachable" Type="bit" Nullable="false" />
+          <Property Name="Ventilation" Type="bit" Nullable="false" />
+          <Property Name="Toilet" Type="bit" Nullable="false" />
+          <Property Name="Moisture" Type="bit" Nullable="false" />
+          <Property Name="Wet" Type="bit" Nullable="false" />
+          <Property Name="Noise" Type="bit" Nullable="false" />
+          <Property Name="Dust" Type="bit" Nullable="false" />
+          <Property Name="Lodging" Type="bit" Nullable="false" />
+          <Property Name="Food" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="BudgetRequestDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="ApplicationRequestId" Type="int" Nullable="false" />
           <Property Name="MeasureId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
@@ -197,7 +238,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Symbol" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Symbol" Type="varchar" Nullable="false" MaxLength="5" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -266,6 +307,16 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="IsTaxed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -339,6 +390,18 @@
             </Principal>
             <Dependent Role="BudgetRequest">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BudgetRequestConditions_BudgetRequest">
+          <End Role="BudgetRequest" Type="EnterpriseModel.Store.BudgetRequest" Multiplicity="1" />
+          <End Role="BudgetRequestCondition" Type="EnterpriseModel.Store.BudgetRequestCondition" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BudgetRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BudgetRequestCondition">
+              <PropertyRef Name="BudgetRequestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -547,6 +610,7 @@
         <EntityContainer Name="EnterpriseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BindCustomers" EntityType="EnterpriseModel.BindCustomer" />
           <EntitySet Name="BudgetRequests" EntityType="EnterpriseModel.BudgetRequest" />
+          <EntitySet Name="BudgetRequestConditions" EntityType="EnterpriseModel.BudgetRequestCondition" />
           <EntitySet Name="BudgetRequestDetails" EntityType="EnterpriseModel.BudgetRequestDetail" />
           <EntitySet Name="Customers" EntityType="EnterpriseModel.Customer" />
           <EntitySet Name="CustomerContacts" EntityType="EnterpriseModel.CustomerContact" />
@@ -558,6 +622,7 @@
           <EntitySet Name="Projects" EntityType="EnterpriseModel.Project" />
           <EntitySet Name="Resources" EntityType="EnterpriseModel.Resource" />
           <EntitySet Name="ResourceTypes" EntityType="EnterpriseModel.ResourceType" />
+          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.sysdiagram" />
           <EntitySet Name="Tasks" EntityType="EnterpriseModel.Task" />
           <AssociationSet Name="FK_BindCustomer_Customer" Association="EnterpriseModel.FK_BindCustomer_Customer">
             <End Role="Customer" EntitySet="Customers" />
@@ -570,6 +635,10 @@
           <AssociationSet Name="FK_BudgetRequest_Employee" Association="EnterpriseModel.FK_BudgetRequest_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="BudgetRequest" EntitySet="BudgetRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BudgetRequestConditions_BudgetRequest" Association="EnterpriseModel.FK_BudgetRequestConditions_BudgetRequest">
+            <End Role="BudgetRequest" EntitySet="BudgetRequests" />
+            <End Role="BudgetRequestCondition" EntitySet="BudgetRequestConditions" />
           </AssociationSet>
           <AssociationSet Name="FK_BudgetRequestDetail_BudgetRequest" Association="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest">
             <End Role="BudgetRequest" EntitySet="BudgetRequests" />
@@ -652,14 +721,51 @@
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="EnterpriseModel.FK_ApplicationRequest_Customer" FromRole="BudgetRequest" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="EnterpriseModel.FK_BudgetRequest_Employee" FromRole="BudgetRequest" ToRole="Employee" />
+          <NavigationProperty Name="BudgetRequestCondition" Relationship="EnterpriseModel.FK_BudgetRequestConditions_BudgetRequest" FromRole="BudgetRequest" ToRole="BudgetRequestCondition" />
           <NavigationProperty Name="BudgetRequestDetails" Relationship="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" FromRole="BudgetRequest" ToRole="BudgetRequestDetail" />
           <NavigationProperty Name="Projects" Relationship="EnterpriseModel.FK_Project_BudgetRequest" FromRole="BudgetRequest" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="BudgetRequestCondition">
+          <Key>
+            <PropertyRef Name="BudgetRequestId" />
+          </Key>
+          <Property Type="Int32" Name="BudgetRequestId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="Decimal" Name="Period" Nullable="false" Precision="4" Scale="1" />
+          <Property Type="Decimal" Name="Warranty" Nullable="false" Precision="4" Scale="1" />
+          <Property Type="Decimal" Name="SafetyCourse" Nullable="false" Precision="4" Scale="1" />
+          <Property Type="Decimal" Name="MaximunHeight" Nullable="false" Precision="4" Scale="1" />
+          <Property Type="String" Name="Observations" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Monday" Nullable="false" />
+          <Property Type="Boolean" Name="Tuesday" Nullable="false" />
+          <Property Type="Boolean" Name="Wednesday" Nullable="false" />
+          <Property Type="Boolean" Name="Thursday" Nullable="false" />
+          <Property Type="Boolean" Name="Friday" Nullable="false" />
+          <Property Type="Boolean" Name="Saturday" Nullable="false" />
+          <Property Type="Boolean" Name="Sunday" Nullable="false" />
+          <Property Type="Boolean" Name="DayTurn" Nullable="false" />
+          <Property Type="Boolean" Name="NightTurn" Nullable="false" />
+          <Property Type="Boolean" Name="DrinkableWater" Nullable="false" />
+          <Property Type="Boolean" Name="Electricity" Nullable="false" />
+          <Property Type="Boolean" Name="Warehouse" Nullable="false" />
+          <Property Type="Boolean" Name="WorkInside" Nullable="false" />
+          <Property Type="Boolean" Name="WorkOutside" Nullable="false" />
+          <Property Type="Boolean" Name="Reachable" Nullable="false" />
+          <Property Type="Boolean" Name="Ventilation" Nullable="false" />
+          <Property Type="Boolean" Name="Toilet" Nullable="false" />
+          <Property Type="Boolean" Name="Moisture" Nullable="false" />
+          <Property Type="Boolean" Name="Wet" Nullable="false" />
+          <Property Type="Boolean" Name="Noise" Nullable="false" />
+          <Property Type="Boolean" Name="Dust" Nullable="false" />
+          <Property Type="Boolean" Name="Lodging" Nullable="false" />
+          <Property Type="Boolean" Name="Food" Nullable="false" />
+          <NavigationProperty Name="BudgetRequest" Relationship="EnterpriseModel.FK_BudgetRequestConditions_BudgetRequest" FromRole="BudgetRequestCondition" ToRole="BudgetRequest" />
         </EntityType>
         <EntityType Name="BudgetRequestDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="ApplicationRequestId" Nullable="false" />
           <Property Type="Int32" Name="MeasureId" Nullable="false" />
           <Property Type="Double" Name="Quantity" Nullable="false" />
@@ -713,7 +819,7 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BudgetRequestDetails" Relationship="EnterpriseModel.FK_ApplicationRequestDetail_Measure" FromRole="Measure" ToRole="BudgetRequestDetail" />
           <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_Measure" FromRole="Measure" ToRole="Resource" />
         </EntityType>
@@ -798,6 +904,16 @@
           <Property Type="Boolean" Name="IsTaxed" Nullable="false" />
           <NavigationProperty Name="Resources" Relationship="EnterpriseModel.FK_Resource_ResourceType" FromRole="ResourceType" ToRole="Resource" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="Id" />
@@ -862,6 +978,18 @@
             </Principal>
             <Dependent Role="BudgetRequest">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BudgetRequestConditions_BudgetRequest">
+          <End Type="EnterpriseModel.BudgetRequest" Role="BudgetRequest" Multiplicity="1" />
+          <End Type="EnterpriseModel.BudgetRequestCondition" Role="BudgetRequestCondition" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BudgetRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BudgetRequestCondition">
+              <PropertyRef Name="BudgetRequestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1057,6 +1185,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BudgetRequestConditions">
+            <EntityTypeMapping TypeName="EnterpriseModel.BudgetRequestCondition">
+              <MappingFragment StoreEntitySet="BudgetRequestCondition">
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Lodging" ColumnName="Lodging" />
+                <ScalarProperty Name="Dust" ColumnName="Dust" />
+                <ScalarProperty Name="Noise" ColumnName="Noise" />
+                <ScalarProperty Name="Wet" ColumnName="Wet" />
+                <ScalarProperty Name="Moisture" ColumnName="Moisture" />
+                <ScalarProperty Name="Toilet" ColumnName="Toilet" />
+                <ScalarProperty Name="Ventilation" ColumnName="Ventilation" />
+                <ScalarProperty Name="Reachable" ColumnName="Reachable" />
+                <ScalarProperty Name="WorkOutside" ColumnName="WorkOutside" />
+                <ScalarProperty Name="WorkInside" ColumnName="WorkInside" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="Electricity" ColumnName="Electricity" />
+                <ScalarProperty Name="DrinkableWater" ColumnName="DrinkableWater" />
+                <ScalarProperty Name="NightTurn" ColumnName="NightTurn" />
+                <ScalarProperty Name="DayTurn" ColumnName="DayTurn" />
+                <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+                <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Observations" ColumnName="Observations" />
+                <ScalarProperty Name="MaximunHeight" ColumnName="MaximunHeight" />
+                <ScalarProperty Name="SafetyCourse" ColumnName="SafetyCourse" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="BudgetRequestId" ColumnName="BudgetRequestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BudgetRequestDetails">
             <EntityTypeMapping TypeName="EnterpriseModel.BudgetRequestDetail">
               <MappingFragment StoreEntitySet="BudgetRequestDetail">
@@ -1184,6 +1348,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EnterpriseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="EnterpriseModel.Task">
               <MappingFragment StoreEntitySet="Task">
@@ -1251,137 +1426,146 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EnterpriseContext">
-        <EntityTypeShape EntityType="EnterpriseModel.BindCustomer" Width="1.5" PointX="3" PointY="9.875" Height="1.4279589843750031" />
-        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequest" Width="1.5" PointX="3" PointY="6.375" Height="2.5783902994791674" />
-        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestDetail" Width="1.5" PointX="5.25" PointY="6.5" Height="2.2496956380208388" />
-        <EntityTypeShape EntityType="EnterpriseModel.Customer" Width="1.5" PointX="0.75" PointY="9.25" Height="2.7427376302083388" />
-        <EntityTypeShape EntityType="EnterpriseModel.CustomerContact" Width="1.5" PointX="3" PointY="12.625" Height="2.0853483072916674" />
-        <EntityTypeShape EntityType="EnterpriseModel.Employee" Width="1.5" PointX="6" PointY="9.625" Height="1.9210009765625031" />
-        <EntityTypeShape EntityType="EnterpriseModel.Measure" Width="1.5" PointX="3" PointY="0.75" Height="1.7566536458333388" />
-        <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="3.75" PointY="3.625" Height="1.9210009765625067" />
-        <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="6" PointY="3.625" Height="1.9210009765625102" />
-        <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="3.75" PointY="15.875" Height="1.427958984374996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="8.25" PointY="7.25" Height="3.8931689453125102" />
-        <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="12.75" PointY="7.5" Height="3.2357796223958246" />
-        <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="10.5" PointY="3.375" Height="1.5923063151041674" />
-        <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="10.5" PointY="6.625" Height="5.0436002604166674" />
+        <EntityTypeShape EntityType="EnterpriseModel.BindCustomer" Width="1.5" PointX="3" PointY="13.75" Height="1.4279589843749818" />
+        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequest" Width="1.5" PointX="3" PointY="10.125" Height="2.7427376302083246" />
+        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestCondition" Width="1.5" PointX="5.25" PointY="16.5" Height="6.0296842447916674" />
+        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestDetail" Width="1.5" PointX="5.25" PointY="10.375" Height="2.2496956380208246" />
+        <EntityTypeShape EntityType="EnterpriseModel.Customer" Width="1.5" PointX="0.75" PointY="13.125" Height="2.7427376302083246" />
+        <EntityTypeShape EntityType="EnterpriseModel.CustomerContact" Width="1.5" PointX="3" PointY="16.375" Height="2.0853483072916674" />
+        <EntityTypeShape EntityType="EnterpriseModel.Employee" Width="1.5" PointX="6" PointY="13.5" Height="1.9210009765624818" />
+        <EntityTypeShape EntityType="EnterpriseModel.Measure" Width="1.5" PointX="3" PointY="3.625" Height="1.7566536458333246" />
+        <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="3.75" PointY="6.5" Height="1.9210009765624818" />
+        <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="6" PointY="6.5" Height="1.9210009765624818" />
+        <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="3.75" PointY="0.75" Height="1.4279589843749818" />
+        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="8.25" PointY="11" Height="3.8931689453124818" />
+        <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="12.75" PointY="11.375" Height="3.2357796223958246" />
+        <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="10.5" PointY="7.125" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="EnterpriseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2" Height="1.7566536458333246" />
+        <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="10.5" PointY="10.5" Height="5.0436002604166674" />
         <AssociationConnector Association="EnterpriseModel.FK_BindCustomer_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="10.588979492187502" />
-          <ConnectorPoint PointX="3" PointY="10.588979492187502" />
+          <ConnectorPoint PointX="2.25" PointY="14.463979492187491" />
+          <ConnectorPoint PointX="3" PointY="14.463979492187491" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequest_Customer" >
-          <ConnectorPoint PointX="1.5" PointY="9.25" />
-          <ConnectorPoint PointX="1.5" PointY="7.6641951497395837" />
-          <ConnectorPoint PointX="3" PointY="7.6641951497395837" />
+          <ConnectorPoint PointX="1.5" PointY="13.125" />
+          <ConnectorPoint PointX="1.5" PointY="11.496368815104162" />
+          <ConnectorPoint PointX="3" PointY="11.496368815104162" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_BudgetRequest_Employee" >
-          <ConnectorPoint PointX="7.15625" PointY="9.625" />
-          <ConnectorPoint PointX="7.15625" PointY="8.8827929687500031" />
-          <ConnectorPoint PointX="5.083333333333333" PointY="8.8827929687500014" />
-          <ConnectorPoint PointX="4.7916691666666678" PointY="8.8827929687500031" />
-          <ConnectorPoint PointX="4.7708320833333326" PointY="8.8827929687500031" />
-          <ConnectorPoint PointX="4.6041654166666666" PointY="8.8827929687500031" />
-          <ConnectorPoint PointX="4.5" PointY="8.8827929687500031" />
+          <ConnectorPoint PointX="7.15625" PointY="13.5" />
+          <ConnectorPoint PointX="7.15625" PointY="10.21875" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="10.21875" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="10.21875" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="10.21875" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="10.21875" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="10.21875" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="10.21875" />
+          <ConnectorPoint PointX="4.5" PointY="10.21875" />
+        </AssociationConnector>
+        <AssociationConnector Association="EnterpriseModel.FK_BudgetRequestConditions_BudgetRequest" >
+          <ConnectorPoint PointX="4.5" PointY="12.867737630208325" />
+          <ConnectorPoint PointX="4.6598244349011217" PointY="13.027562065109445" />
+          <ConnectorPoint PointX="4.7776755650988791" PointY="13.145413195307203" />
+          <ConnectorPoint PointX="4.875" PointY="13.242737630208325" />
+          <ConnectorPoint PointX="4.875" PointY="19.514842122395834" />
+          <ConnectorPoint PointX="5.25" PointY="19.514842122395834" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" >
-          <ConnectorPoint PointX="4.5" PointY="7.6248478190104194" />
-          <ConnectorPoint PointX="4.6041654166666666" PointY="7.6248478190104185" />
-          <ConnectorPoint PointX="4.7708320833333326" PointY="7.6248478190104194" />
-          <ConnectorPoint PointX="4.7916691666666669" PointY="7.6248478190104185" />
-          <ConnectorPoint PointX="5.0833333333333339" PointY="7.6248478190104194" />
-          <ConnectorPoint PointX="5.25" PointY="7.6248478190104194" />
+          <ConnectorPoint PointX="4.5" PointY="11.499847819010412" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="11.499847819010412" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="11.499847819010412" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="11.499847819010412" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="11.499847819010412" />
+          <ConnectorPoint PointX="5.25" PointY="11.499847819010412" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_BudgetRequest" >
-          <ConnectorPoint PointX="4.5" PointY="6.40625" />
-          <ConnectorPoint PointX="4.6041654166666666" PointY="6.4062499999999991" />
-          <ConnectorPoint PointX="4.7708320833333326" PointY="6.40625" />
-          <ConnectorPoint PointX="4.7916691666666669" PointY="6.4062499999999991" />
-          <ConnectorPoint PointX="5.0833333333333339" PointY="6.40625" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="6.4062499999999991" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="6.40625" />
-          <ConnectorPoint PointX="9" PointY="6.40625" />
-          <ConnectorPoint PointX="9" PointY="7.25" />
+          <ConnectorPoint PointX="4.5" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="12.746214134114581" />
+          <ConnectorPoint PointX="8.25" PointY="12.746214134114581" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_ApplicationRequestDetail_Measure" >
-          <ConnectorPoint PointX="4.5" PointY="1.6283268229166694" />
-          <ConnectorPoint PointX="5.625" PointY="1.6283268229166694" />
-          <ConnectorPoint PointX="5.625" PointY="6.5" />
+          <ConnectorPoint PointX="4.5" PointY="4.6004036458333246" />
+          <ConnectorPoint PointX="5.5" PointY="4.6004036458333246" />
+          <ConnectorPoint PointX="5.5" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Customer" >
-          <ConnectorPoint PointX="1.5" PointY="11.992737630208339" />
-          <ConnectorPoint PointX="1.5" PointY="13.667674153645834" />
-          <ConnectorPoint PointX="3" PointY="13.667674153645834" />
+          <ConnectorPoint PointX="1.5" PointY="15.867737630208325" />
+          <ConnectorPoint PointX="1.5" PointY="17.417674153645834" />
+          <ConnectorPoint PointX="3" PointY="17.417674153645834" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Project_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="9.40625" />
-          <ConnectorPoint PointX="4.6041654166666666" PointY="9.40625" />
-          <ConnectorPoint PointX="4.7708320833333326" PointY="9.40625" />
-          <ConnectorPoint PointX="4.7916691666666669" PointY="9.4062499999999982" />
-          <ConnectorPoint PointX="5.0833333333333339" PointY="9.40625" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="9.40625" />
-          <ConnectorPoint PointX="7.239583333333333" PointY="9.40625" />
-          <ConnectorPoint PointX="8.25" PointY="9.40625" />
+          <ConnectorPoint PointX="2.25" PointY="13.28125" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="13.28125" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="13.28125" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="13.28125" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="13.28125" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="13.28125" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="13.28125" />
+          <ConnectorPoint PointX="8.25" PointY="13.28125" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Person" >
-          <ConnectorPoint PointX="4.8750025" PointY="5.5460009765625067" />
-          <ConnectorPoint PointX="4.8750025" PointY="13.667674153645834" />
-          <ConnectorPoint PointX="4.5" PointY="13.667674153645834" />
+          <ConnectorPoint PointX="5.03125" PointY="8.4210009765624818" />
+          <ConnectorPoint PointX="5.03125" PointY="17.417674153645834" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="17.417674153645834" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="17.417674153645834" />
+          <ConnectorPoint PointX="4.5" PointY="17.417674153645834" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Employee_Person" >
-          <ConnectorPoint PointX="4.68749875" PointY="5.5460009765625067" />
-          <ConnectorPoint PointX="4.68749875" PointY="9.71875" />
-          <ConnectorPoint PointX="4.7916691666666669" PointY="9.7187499999999982" />
-          <ConnectorPoint PointX="5.0833333333333339" PointY="9.71875" />
-          <ConnectorPoint PointX="6" PointY="9.71875" />
+          <ConnectorPoint PointX="4.71875" PointY="8.4210009765624818" />
+          <ConnectorPoint PointX="4.71875" PointY="13.59375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.593749999999998" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="13.59375" />
+          <ConnectorPoint PointX="6" PointY="13.59375" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_Measure" >
-          <ConnectorPoint PointX="4.5" PointY="2.0987427343750049" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="2.0987427343750045" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="2.0987427343750049" />
-          <ConnectorPoint PointX="13.5" PointY="2.0987427343750049" />
-          <ConnectorPoint PointX="13.5" PointY="7.5" />
+          <ConnectorPoint PointX="4.5" PointY="5.0222811458333183" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="5.0222811458333174" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="5.0222811458333183" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="5.0222811458333174" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="5.0222811458333183" />
+          <ConnectorPoint PointX="13.5" PointY="5.0222811458333183" />
+          <ConnectorPoint PointX="13.5" PointY="11.375" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_PersonPhone_Person" >
-          <ConnectorPoint PointX="5.25" PointY="4.5855004882812533" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="4.5855004882812525" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="4.5855004882812533" />
-          <ConnectorPoint PointX="6" PointY="4.5855004882812533" />
+          <ConnectorPoint PointX="5.25" PointY="7.4605004882812409" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="7.46050048828124" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="7.4605004882812409" />
+          <ConnectorPoint PointX="6" PointY="7.4605004882812409" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_PersonPhone_PhoneType" >
-          <ConnectorPoint PointX="4.5" PointY="15.875" />
-          <ConnectorPoint PointX="4.5" PointY="14.960348307291667" />
-          <ConnectorPoint PointX="5" PointY="14.960348307291667" />
-          <ConnectorPoint PointX="5" PointY="5.7960009765625067" />
-          <ConnectorPoint PointX="5.5" PointY="5.7960009765625067" />
-          <ConnectorPoint PointX="5.5" PointY="5.0970027324218758" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="5.097002732421875" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="5.0970027324218758" />
-          <ConnectorPoint PointX="6" PointY="5.0970027324218758" />
+          <ConnectorPoint PointX="5.25" PointY="1.34375" />
+          <ConnectorPoint PointX="7.40625" PointY="1.34375" />
+          <ConnectorPoint PointX="7.40625" PointY="6.5" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Task_Project" >
-          <ConnectorPoint PointX="9.75" PointY="9.1965844726562551" />
-          <ConnectorPoint PointX="10.5" PointY="9.1965844726562551" />
+          <ConnectorPoint PointX="9.75" PointY="12.946584472656241" />
+          <ConnectorPoint PointX="10.5" PointY="12.946584472656241" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_ResourceType" >
-          <ConnectorPoint PointX="12" PointY="4.1711531575520837" />
-          <ConnectorPoint PointX="13.0937475" PointY="4.1711531575520837" />
-          <ConnectorPoint PointX="13.0937475" PointY="7.5" />
+          <ConnectorPoint PointX="12" PointY="7.9211531575520837" />
+          <ConnectorPoint PointX="13.0937475" PointY="7.9211531575520837" />
+          <ConnectorPoint PointX="13.0937475" PointY="11.375" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_Task" >
-          <ConnectorPoint PointX="12" PointY="9.1178898111979123" />
-          <ConnectorPoint PointX="12.75" PointY="9.1178898111979123" />
+          <ConnectorPoint PointX="12" PointY="12.992889811197912" />
+          <ConnectorPoint PointX="12.75" PointY="12.992889811197912" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.Dependencies" >
-          <ConnectorPoint PointX="11.031923076923077" PointY="11.668600260416667" />
-          <ConnectorPoint PointX="11.031923076923077" PointY="11.918600260416667" />
-          <ConnectorPoint PointX="11.478461538461538" PointY="11.918600260416667" />
-          <ConnectorPoint PointX="11.478461538461538" PointY="11.668600260416667" />
+          <ConnectorPoint PointX="11.031923076923077" PointY="15.543600260416667" />
+          <ConnectorPoint PointX="11.031923076923077" PointY="15.793600260416667" />
+          <ConnectorPoint PointX="11.478461538461538" PointY="15.793600260416667" />
+          <ConnectorPoint PointX="11.478461538461538" PointY="15.543600260416667" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.EmployeeXCustomer" >
-          <ConnectorPoint PointX="2.25" PointY="11.455729980468753" />
-          <ConnectorPoint PointX="4.7916691666666669" PointY="11.455729980468751" />
-          <ConnectorPoint PointX="5.0833333333333339" PointY="11.455729980468753" />
-          <ConnectorPoint PointX="6" PointY="11.455729980468753" />
+          <ConnectorPoint PointX="2.25" PointY="15.330729980468732" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.33072998046873" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="15.330729980468732" />
+          <ConnectorPoint PointX="6" PointY="15.330729980468732" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

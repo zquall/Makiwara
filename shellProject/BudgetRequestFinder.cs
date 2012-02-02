@@ -68,9 +68,9 @@ namespace shellProject
                 // Check if the user select a valid object
                 if (budgetRequest.Id > 0)
                 {
-                    // Add the contacts to the Customer
-                    budgetRequest.Customer = new CustomerFactory().getCustomer(new CustomerRequest() { CustomerId = budgetRequest.CustomerId }).Customer;
-                    this.Tag = budgetRequest;
+                    // Get the complete BudgetRequest
+                    BudgetRequestDto budgetRequestTag = new BudgetRequestFactory().getBudgetRequest(new BudgetRequestRequest() { BudgetResquestId = budgetRequest.Id }).BudgetRequest;
+                    Tag = budgetRequest;
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else

@@ -26,7 +26,7 @@ namespace CORE.Services
         {
             var response = new CustomerResponse();
             // Inicitialize the list of customers
-            response.CustomerList = new List<CustomerData>();
+            response.CustomerList = new List<CustomerDto>();
 
             // *** Removed functionality ***
             // Get customers from respective employee
@@ -35,14 +35,14 @@ namespace CORE.Services
             //var customersFounded = tmpEmployee.Customers.Where(x => x.Name.ToUpperInvariant().Contains(request.SearchCustomerQuery.ToUpperInvariant())).OrderBy(y => y.Name).Take(maximunResultRows).ToList();
 
             // Search customers without employee restriction
-            var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).ToList();
+            var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).Distinct().ToList();
             
             if (customersFound != null)
             {                
                 // Fill the response with the customers founded
                 foreach (var customer in customersFound)
                 {
-                    CustomerData tmpCustomerData = new CustomerData();
+                    CustomerDto tmpCustomerData = new CustomerDto();
                     tmpCustomerData.Id = customer.Id;
                     tmpCustomerData.Name = customer.Name;
                     tmpCustomerData.Address = customer.Address;

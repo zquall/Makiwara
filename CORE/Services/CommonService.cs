@@ -26,5 +26,16 @@ namespace CORE.Services
 	        }            
             return phoneTypeList;
         }
+
+        public List<MeasureDto> getMeasureList()
+        {
+            List<MeasureDto> measureList = new List<MeasureDto>();
+            foreach (var tmpMeasure in Olympus._Enterprise.Measures.ToList())
+            {
+                Olympus._Enterprise.Detach(tmpMeasure);
+                measureList.Add(Mapper.Map<MeasureDto>(tmpMeasure));
+            }
+            return measureList;
+        }
     }
 }
