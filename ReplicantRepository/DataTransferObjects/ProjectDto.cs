@@ -152,6 +152,26 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+    
+    	[DataMember]
+        public virtual int StateId
+        {
+     
+    
+            get { return _stateId; }
+            set
+            {
+                if (_stateId != value)
+                {
+                    if (ProjectState != null && ProjectState.Id != value)
+                    {
+                        ProjectState = null;
+                    }
+                    _stateId = value;
+                }
+            }
+        }
+        private int _stateId;
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
@@ -194,6 +214,22 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private CustomerDto _customer;
+    
+    	[DataMember]
+        public virtual ProjectStateDto ProjectState
+        {
+            get { return _projectState; }
+            set
+            {
+                if (!ReferenceEquals(_projectState, value))
+                {
+                    var previousValue = _projectState;
+                    _projectState = value;
+                    FixupProjectState(previousValue);
+                }
+            }
+        }
+        private ProjectStateDto _projectState;
     
     	[DataMember]
         public virtual ICollection<TaskDto> Tasks
@@ -267,6 +303,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (CustumerId != Customer.Id)
                 {
                     CustumerId = Customer.Id;
+                }
+            }
+        }
+    
+        private void FixupProjectState(ProjectStateDto previousValue)
+        {
+            if (previousValue != null && previousValue.Projects.Contains(this))
+            {
+                previousValue.Projects.Remove(this);
+            }
+    
+            if (ProjectState != null)
+            {
+                if (!ProjectState.Projects.Contains(this))
+                {
+                    ProjectState.Projects.Add(this);
+                }
+                if (StateId != ProjectState.Id)
+                {
+                    StateId = ProjectState.Id;
                 }
             }
         }

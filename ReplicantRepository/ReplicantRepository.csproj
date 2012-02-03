@@ -44,6 +44,9 @@
     <Compile Include="DataTransferObjects\BindCustomerDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\BindItemDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\BudgetRequestConditionDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
@@ -61,6 +64,9 @@
     </Compile>
     <Compile Include="DataTransferObjects\CustomToStringMethods.cs" />
     <Compile Include="DataTransferObjects\EmployeeDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\ItemDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\MeasureDto.cs">
@@ -112,10 +118,16 @@
     <Compile Include="DataTransferObjects\ProjectDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\ProjectStateDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\ResourceDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\ResourceTypeDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\StockDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\sysdiagramDto.cs">
@@ -125,6 +137,9 @@
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\UserSessionData.cs" />
+    <Compile Include="DataTransferObjects\WarehouseDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\BudgetRequestRequest.cs" />
     <Compile Include="Request\ResourceSourceRequest.cs" />

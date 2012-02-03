@@ -30,26 +30,6 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual int ProjectId
-        {
-     
-    
-            get { return _projectId; }
-            set
-            {
-                if (_projectId != value)
-                {
-                    if (Task != null && Task.ProjectId != value)
-                    {
-                        Task = null;
-                    }
-                    _projectId = value;
-                }
-            }
-        }
-        private int _projectId;
-    
-    	[DataMember]
         public virtual int MeasureId
         {
      
@@ -268,10 +248,6 @@ namespace ReplicantRepository.DataTransferObjects
                 if (TaskId != Task.Id)
                 {
                     TaskId = Task.Id;
-                }
-                if (ProjectId != Task.ProjectId)
-                {
-                    ProjectId = Task.ProjectId;
                 }
             }
         }
