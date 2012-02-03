@@ -135,9 +135,9 @@ namespace CORE.Services
         public ProjectResponse  getProject(ProjectRequest request)
         {
             var response = new ProjectResponse();
-            if (request.ProjectId != 0)
+            if (request.Project.Id != 0)
             {
-                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.ProjectId).SingleOrDefault();
+                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
                 if (projectFound != null)
                 {
                     response.Project = MapperPaths.Map(projectFound);

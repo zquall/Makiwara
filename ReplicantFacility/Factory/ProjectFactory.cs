@@ -17,6 +17,11 @@ namespace ReplicantFacility.Factory
             _ProjectService = _ProjectService ?? new ProjectService();
         }
 
+        public ProjectResponse getProject(ProjectRequest request)
+        {
+            return _ProjectService.getProject(request);
+        }
+
         public ProjectResponse searchProject(ProjectRequest request)
         {
             return _ProjectService.searchProject(request);

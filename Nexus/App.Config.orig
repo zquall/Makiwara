@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <connectionStrings>
+<<<<<<< HEAD
+    <add name="EnterpriseEntities" connectionString="metadata=res://*/EnterpriseContext.csdl|res://*/EnterpriseContext.ssdl|res://*/EnterpriseContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=BUSHIDO\SQLEXPRESS;Initial Catalog=COMPANY;Persist Security Info=True;User ID=sa;Password=X0wq3p01;MultipleActiveResultSets=True&quot;" providerName="System.Data.EntityClient" />
+=======
+    <add name="EnterpriseEntities" connectionString="metadata=res://*/EnterpriseContext.csdl|res://*/EnterpriseContext.ssdl|res://*/EnterpriseContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=localhost\SQLEXPRESS;Initial Catalog=COMPANY;Persist Security Info=True;User ID=sa;Password=X0wq3p01;MultipleActiveResultSets=True&quot;" providerName="System.Data.EntityClient" />
+>>>>>>> Change Data by Dto
+  </connectionStrings>
+</configuration>

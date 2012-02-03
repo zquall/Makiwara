@@ -136,6 +136,9 @@ namespace shellProject
         /// <param name="project"></param>
         public void loadProject(ProjectDto project)
         {
+            var request = new ProjectRequest();
+            request.Project = project;
+            _project = new ProjectFactory().getProject(request).Project;
             _project = project;
 
             repositoryItemProject.NullText = _project.Id.ToString();

@@ -44,10 +44,18 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
                 Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
                 Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
+<<<<<<< HEAD
                 Mapper.CreateMap<BudgetRequestCondition, BudgetRequestConditionDto>();
                 Mapper.CreateMap<BudgetRequestConditionDto, BudgetRequestCondition>();
                 Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>();
                 Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>();
+                Mapper.CreateMap<Project, ProjectDto>();
+                Mapper.CreateMap<ProjectDto, Project>();
+                Mapper.CreateMap<BindCustomer, BindCustomerDto>();
+                Mapper.CreateMap<BindCustomerDto, BindCustomer>();
+                Mapper.CreateMap<Measure, MeasureDto>();
+                Mapper.CreateMap<MeasureDto, Measure>();
+=======
                 Mapper.CreateMap<BindCustomer, BindCustomerDto>();
                 Mapper.CreateMap<BindCustomerDto, BindCustomer>();
                 //**********************************************************
@@ -59,6 +67,7 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<ResourceType, ResourceTypeDto>();
                 Mapper.CreateMap<MeasureDto, Measure>();
                 Mapper.CreateMap<Measure, MeasureDto>();
+>>>>>>> Change Data by Dto
 
 
                 // Just start the mapper once
@@ -128,49 +137,16 @@ namespace CORE.DataMapper
             return budgetRequestDto;
         }
 
-
-        internal static ResourceDto Map(Resource resource)
+        internal static List<TaskDto> Map(List<Task> tasks)
         {
-            ResourceDto resourceDto = null;
-            if (resource != null)
+            List<TaskDto> tasksReturned = new List<TaskDto>();
+            foreach (Task t in tasks)
             {
-                // Resource Type
-                var resourceTypeEntity = resource.ResourceType;
-                Olympus._Enterprise.Detach(resourceTypeEntity);
-                var resoureceType = Mapper.Map<ResourceTypeDto>(resourceTypeEntity);
-
-                //Measure
-                var measureTypeEntity = resource.Measure;
-                Olympus._Enterprise.Detach(measureTypeEntity);
-                var measure = Mapper.Map<MeasureDto>(measureTypeEntity);
-
-                Olympus._Enterprise.Detach(resource);
-                resourceDto = Mapper.Map<ResourceDto>(resource);
-
-                resourceDto.Measure = measure;
-                resourceDto.ResourceType = resoureceType;
+                Olympus._Enterprise.Detach(t);
+                var task = Mapper.Map<TaskDto>(t);
+                tasksReturned.Add(task);
             }
-            return resourceDto;
-        }
-
-        internal static TaskDto Map(Task task)
-        {
-            TaskDto taskDto = null;
-            if (task != null)
-            {
-                List<ResourceDto> resourceList = new List<ResourceDto>();
-                foreach (Resource r in task.Resources.ToList())
-                {
-                    ResourceDto newResource = Map(r);
-                    resourceList.Add(newResource);
-                }
-
-                Olympus._Enterprise.Detach(task);
-                taskDto = Mapper.Map<TaskDto>(task);
-
-                taskDto.Resources = resourceList;
-            }
-            return taskDto;
+            return tasksReturned;
         }
 
         internal static ProjectDto Map(Project project)
@@ -178,37 +154,13 @@ namespace CORE.DataMapper
             ProjectDto projectDto = null;
             if (project != null)
             {
-                #region Task Charge
-                List<TaskDto> taskList = new List<TaskDto>();
-                foreach (Task tmpTask in project.Tasks.ToList())
-                {
-                    TaskDto newTask = Map(tmpTask);
-                    taskList.Add(newTask);
-                }
-                #endregion
-
-                #region Customer Charge
-                var customerTypeEntity = project.Customer;
-                Olympus._Enterprise.Detach(customerTypeEntity);
-                var customer = Mapper.Map<CustomerDto>(customerTypeEntity);
-                #endregion
-
-                #region BudgetRequest Charge
-                //var budgetRequestTypeEntity = project.BudgetRequest;
-                //Olympus._Enterprise.Detach(budgetRequestTypeEntity);
-                var budgetRequest = Map(project.BudgetRequest);
-                #endregion
-
                 Olympus._Enterprise.Detach(project);
                 projectDto = Mapper.Map<ProjectDto>(project);
 
-                projectDto.Customer = customer;
-                projectDto.BudgetRequest = budgetRequest;
-                projectDto.Tasks = taskList;
+                //projectDto.Tasks = ;
             }
             return projectDto;
         }
-
 
         #endregion
     }
