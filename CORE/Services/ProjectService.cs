@@ -17,33 +17,6 @@ namespace CORE.Services
         {
         }
 
-        #region Load Zone
-
-        /// <summary>
-        /// Este método se encarga de cargar los proyectos desde Nexus a una lista de ProjectData
-        /// </summary>
-        /// <param name="projectFounded">Lista de proyectos de tipo Project</param>
-        /// <returns>Lista de proyectos de tipo ProjectData</returns>
-        //private List<ProjectData> loadProjects(List<Nexus.Project> projectFounded)
-        //{
-        //    List<ProjectData> ProjectList = new List<ProjectData>();
-
-        //    if (projectFounded != null)
-        //    {
-        //        foreach (var project in projectFounded)
-        //        {
-        //            ProjectData tmpProjectData = new ProjectData();
-        //            MapperOld.mapper(project, tmpProjectData);
-        //            ProjectList.Add(tmpProjectData);
-        //        }
-        //    }
-
-
-        //    return ProjectList;
-        //}
-
-        #endregion
-
         #region Delete Zone
 
         /// <summary>
@@ -200,7 +173,7 @@ namespace CORE.Services
             //Si el proyecto existe se actualiza el mismo, si no existe se crea uno nuevo
             if (projectFound != null)
             {
-                Mapper.Map<ProjectDto,Project>(request.Project,projectFound);
+                Mapper.Map<ProjectDto, Project>(request.Project, projectFound);
                 //if (request.Project.Tasks != null)
                 //    saveTasks(request.Project.Tasks, projectFound);
             }

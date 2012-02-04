@@ -139,7 +139,6 @@ namespace shellProject
             var request = new ProjectRequest();
             request.Project = project;
             _project = new ProjectFactory().getProject(request).Project;
-            _project = project;
 
             repositoryItemProject.NullText = _project.Id.ToString();
             repositoryItemProjectName.NullText = _project.Name;

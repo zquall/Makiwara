@@ -55,6 +55,8 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<Project, ProjectDto>();
                 Mapper.CreateMap<Task, TaskDto>();
                 Mapper.CreateMap<TaskDto, Task>();
+                Mapper.CreateMap<Resource, ResourceDto>();
+                Mapper.CreateMap<ResourceDto, Resource>();
                 Mapper.CreateMap<ResourceTypeDto, ResourceType>();
                 Mapper.CreateMap<ResourceType, ResourceTypeDto>();
                 Mapper.CreateMap<MeasureDto, Measure>();
@@ -68,7 +70,6 @@ namespace CORE.DataMapper
 
         #region Custom Mapping Extensions
 
-        // Customers Contact
         internal static CustomerContactDto Map(CustomerContact customerContact)
         {
             // Extract
