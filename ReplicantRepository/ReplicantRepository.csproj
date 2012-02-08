@@ -44,9 +44,6 @@
     <Compile Include="DataTransferObjects\BindCustomerDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\BindItemDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataTransferObjects\BudgetRequestConditionDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
@@ -97,7 +94,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="DataTransferObjects\PersonData.cs" />
     <Compile Include="DataTransferObjects\PersonDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>

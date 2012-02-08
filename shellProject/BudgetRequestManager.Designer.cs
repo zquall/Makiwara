@@ -30,11 +30,11 @@
         {
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.btnProjectName = new DevExpress.XtraEditors.ButtonEdit();
+            this.cmbProjectName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.lblAddress = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnCustomerName = new DevExpress.XtraEditors.ButtonEdit();
+            this.cmbCustomerName = new DevExpress.XtraEditors.ButtonEdit();
             this.lblContactJob = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -42,12 +42,12 @@
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cmbBubgetRequest = new DevExpress.XtraEditors.ButtonEdit();
+            this.cmbDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.edtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.lblEmployeeName = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -55,8 +55,8 @@
             this.cmbPhone = new DevExpress.XtraEditors.ComboBoxEdit();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdBudgetRequestDetails = new DevExpress.XtraGrid.GridControl();
+            this.gridViewBudgetRequestDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colProduct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colArea = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -112,13 +112,13 @@
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProjectName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBubgetRequest.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDate.Properties.VistaTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -130,8 +130,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBudgetRequestDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewBudgetRequestDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
@@ -190,15 +190,15 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nombre del Cliente:";
             // 
-            // btnProjectName
+            // cmbProjectName
             // 
-            this.btnProjectName.Location = new System.Drawing.Point(105, 70);
-            this.btnProjectName.Name = "btnProjectName";
-            this.btnProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbProjectName.Location = new System.Drawing.Point(105, 70);
+            this.cmbProjectName.Name = "cmbProjectName";
+            this.cmbProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.btnProjectName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnProjectName_Properties_ButtonClick);
-            this.btnProjectName.Size = new System.Drawing.Size(348, 20);
-            this.btnProjectName.TabIndex = 5;
+            this.cmbProjectName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnProjectName_Properties_ButtonClick);
+            this.cmbProjectName.Size = new System.Drawing.Size(348, 20);
+            this.cmbProjectName.TabIndex = 5;
             // 
             // labelControl4
             // 
@@ -224,18 +224,18 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Direccion:";
             // 
-            // btnCustomerName
+            // cmbCustomerName
             // 
-            this.btnCustomerName.EditValue = "";
-            this.btnCustomerName.Location = new System.Drawing.Point(105, 25);
-            this.btnCustomerName.Name = "btnCustomerName";
-            this.btnCustomerName.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.btnCustomerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cmbCustomerName.EditValue = "";
+            this.cmbCustomerName.Location = new System.Drawing.Point(105, 25);
+            this.cmbCustomerName.Name = "cmbCustomerName";
+            this.cmbCustomerName.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.cmbCustomerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.btnCustomerName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnCustomerName_Properties_ButtonClick);
-            this.btnCustomerName.Size = new System.Drawing.Size(348, 20);
-            this.btnCustomerName.TabIndex = 1;
+            this.cmbCustomerName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnCustomerName_Properties_ButtonClick);
+            this.cmbCustomerName.Size = new System.Drawing.Size(348, 20);
+            this.cmbCustomerName.TabIndex = 1;
             // 
             // lblContactJob
             // 
@@ -272,7 +272,7 @@
             // 
             this.panelControl5.Controls.Add(this.labelControl7);
             this.panelControl5.Controls.Add(this.cmbBubgetRequest);
-            this.panelControl5.Controls.Add(this.edtDate);
+            this.panelControl5.Controls.Add(this.cmbDate);
             this.panelControl5.Controls.Add(this.labelControl8);
             this.panelControl5.Location = new System.Drawing.Point(479, 12);
             this.panelControl5.Name = "panelControl5";
@@ -299,6 +299,26 @@
             this.cmbBubgetRequest.Size = new System.Drawing.Size(168, 20);
             this.cmbBubgetRequest.TabIndex = 2;
             // 
+            // cmbDate
+            // 
+            this.cmbDate.EditValue = new System.DateTime(2001, 1, 28, 0, 0, 0, 0);
+            this.cmbDate.Location = new System.Drawing.Point(65, 30);
+            this.cmbDate.Name = "cmbDate";
+            this.cmbDate.Properties.Appearance.Options.UseTextOptions = true;
+            this.cmbDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.cmbDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.cmbDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cmbDate.Properties.EditFormat.FormatString = "dd/MM/yyy";
+            this.cmbDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.cmbDate.Properties.Mask.EditMask = "dd/MM/yyy";
+            this.cmbDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.cmbDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cmbDate.Size = new System.Drawing.Size(168, 20);
+            this.cmbDate.TabIndex = 3;
+            // 
             // labelControl8
             // 
             this.labelControl8.Location = new System.Drawing.Point(26, 33);
@@ -306,26 +326,6 @@
             this.labelControl8.Size = new System.Drawing.Size(33, 13);
             this.labelControl8.TabIndex = 4;
             this.labelControl8.Text = "Fecha:";
-            // 
-            // edtDate
-            // 
-            this.edtDate.EditValue = new System.DateTime(2001, 1, 28, 0, 0, 0, 0);
-            this.edtDate.Location = new System.Drawing.Point(65, 30);
-            this.edtDate.Name = "edtDate";
-            this.edtDate.Properties.Appearance.Options.UseTextOptions = true;
-            this.edtDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.edtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.edtDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.edtDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.edtDate.Properties.EditFormat.FormatString = "dd/MM/yyy";
-            this.edtDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.edtDate.Properties.Mask.EditMask = "dd/MM/yyy";
-            this.edtDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.edtDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.edtDate.Size = new System.Drawing.Size(168, 20);
-            this.edtDate.TabIndex = 3;
             // 
             // panelControl3
             // 
@@ -351,13 +351,14 @@
             this.labelControl9.TabIndex = 5;
             this.labelControl9.Text = "Asesor Tecnico:";
             // 
-            // simpleButton2
+            // btnSave
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(449, 495);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(153, 23);
-            this.simpleButton2.TabIndex = 8;
-            this.simpleButton2.Text = "Guadar Solicitud";
+            this.btnSave.Location = new System.Drawing.Point(449, 495);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(153, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Guadar Solicitud";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // simpleButton1
             // 
@@ -384,12 +385,12 @@
             this.groupControl2.Controls.Add(this.cmbPhone);
             this.groupControl2.Controls.Add(this.lblContactJob);
             this.groupControl2.Controls.Add(this.labelControl6);
-            this.groupControl2.Controls.Add(this.btnProjectName);
+            this.groupControl2.Controls.Add(this.cmbProjectName);
             this.groupControl2.Controls.Add(this.labelControl11);
             this.groupControl2.Controls.Add(this.labelControl1);
             this.groupControl2.Controls.Add(this.labelControl5);
             this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Controls.Add(this.btnCustomerName);
+            this.groupControl2.Controls.Add(this.cmbCustomerName);
             this.groupControl2.Controls.Add(this.lblAddress);
             this.groupControl2.Controls.Add(this.labelControl2);
             this.groupControl2.Location = new System.Drawing.Point(12, 12);
@@ -434,34 +435,34 @@
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.gridControl1);
+            this.xtraTabPage1.Controls.Add(this.grdBudgetRequestDetails);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(698, 271);
             this.xtraTabPage1.Text = "Descripcion del Trabajo";
             // 
-            // gridControl1
+            // grdBudgetRequestDetails
             // 
-            this.gridControl1.Location = new System.Drawing.Point(3, 3);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.grdBudgetRequestDetails.Location = new System.Drawing.Point(3, 3);
+            this.grdBudgetRequestDetails.MainView = this.gridViewBudgetRequestDetails;
+            this.grdBudgetRequestDetails.Name = "grdBudgetRequestDetails";
+            this.grdBudgetRequestDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmbProduct,
             this.cmbMeasure});
-            this.gridControl1.Size = new System.Drawing.Size(692, 265);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grdBudgetRequestDetails.Size = new System.Drawing.Size(692, 265);
+            this.grdBudgetRequestDetails.TabIndex = 0;
+            this.grdBudgetRequestDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewBudgetRequestDetails});
             // 
-            // gridView1
+            // gridViewBudgetRequestDetails
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewBudgetRequestDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colProduct,
             this.colArea,
             this.colMeasure,
             this.colApplication});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.gridViewBudgetRequestDetails.GridControl = this.grdBudgetRequestDetails;
+            this.gridViewBudgetRequestDetails.Name = "gridViewBudgetRequestDetails";
+            this.gridViewBudgetRequestDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             // 
             // colProduct
             // 
@@ -972,25 +973,26 @@
             // 
             // BudgetRequestManager
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 530);
             this.Controls.Add(this.simpleButton3);
-            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.panelControl4);
             this.Name = "BudgetRequestManager";
             this.Text = "Solicitud de Presupuesto";
             this.Load += new System.EventHandler(this.RequestBugetCell_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.btnProjectName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCustomerName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProjectName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCustomerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
             this.panelControl5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBubgetRequest.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDate.Properties.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -1004,8 +1006,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBudgetRequestDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewBudgetRequestDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
@@ -1064,19 +1066,19 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ButtonEdit btnProjectName;
+        private DevExpress.XtraEditors.ButtonEdit cmbProjectName;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl lblAddress;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ButtonEdit btnCustomerName;
+        private DevExpress.XtraEditors.ButtonEdit cmbCustomerName;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.ButtonEdit cmbBubgetRequest;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.DateEdit edtDate;
+        private DevExpress.XtraEditors.DateEdit cmbDate;
         private DevExpress.XtraEditors.PanelControl panelControl3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LabelControl lblEmployeeName;
         private DevExpress.XtraEditors.LabelControl labelControl9;
@@ -1086,8 +1088,8 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl grdBudgetRequestDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewBudgetRequestDetails;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;

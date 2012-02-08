@@ -18,6 +18,32 @@ namespace CORE.Services
             
         }
 
+        public BudgetRequestResponse saveBudgetRequest(BudgetRequestRequest request)
+        {
+            BudgetRequestResponse response = new BudgetRequestResponse();
+            if (request.BudgetRequest != null)
+            {
+                // Check if is a insert or an update
+                if (request.BudgetRequest.Id == 0)
+                {
+                    // Map the Customer with Contacts
+                    BudgetRequest budgetRequest = Mapper.Map<BudgetRequestDto, BudgetRequest>(request.BudgetRequest);
+                    Olympus._Enterprise.BudgetRequests.AddObject(budgetRequest);
+                    Olympus._Enterprise.SaveChanges();
+                    response.BudgetRequestId = budgetRequest.Id;
+                }
+                else
+                {
+                    var budgetRequestEntity = Olympus._Enterprise.BudgetRequests.Where( x => x.Id == request.BudgetRequest.Id).SingleOrDefault();
+                    BudgetRequest budgetRequest = Mapper.Map<BudgetRequestDto, BudgetRequest>(request.BudgetRequest, budgetRequestEntity);
+                    //Olympus._Enterprise.ObjectStateManager.ChangeObjectState(budgetRequestEntity, System.Data.EntityState.Modified);
+                    Olympus._Enterprise.SaveChanges();
+                    response.BudgetRequestId = budgetRequest.Id;
+                }
+            }
+            return response;
+        }
+
         public BudgetRequestResponse getNewBudgetRequest(BudgetRequestRequest request)
         {
             var response = new BudgetRequestResponse();
@@ -34,7 +60,10 @@ namespace CORE.Services
             response.BudgetRequest.Employee = Mapper.Map<EmployeeDto>(employeeFound);
             response.BudgetRequest.Employee.Person = person;
             
+            // Dates
             response.BudgetRequest.DateModified = DateTime.Today;
+            response.BudgetRequest.BudgetRequestCondition = new BudgetRequestConditionDto();
+            response.BudgetRequest.BudgetRequestCondition.StartDate = DateTime.Today;
             return response;
         }
 
@@ -46,7 +75,8 @@ namespace CORE.Services
                 var budgetResquestFound = Olympus._Enterprise.BudgetRequests.Where(x => x.Id == request.BudgetResquestId).SingleOrDefault();
                 if ( budgetResquestFound != null )
                 {                    
-                    response.BudgetRequest = MapperPaths.Map(budgetResquestFound);
+                    //response.BudgetRequest = MapperPaths.Map(budgetResquestFound);
+                    response.BudgetRequest = Mapper.Map<BudgetRequestDto>(budgetResquestFound);
                 }                
             }         
             return response;

@@ -28,28 +28,61 @@ namespace CORE.DataMapper
                 // Nerv Reverse Mapping
 
                 // Company Mapping
-                Mapper.CreateMap<Employee, EmployeeDto>();
+                Mapper.CreateMap<Employee, EmployeeDto>()
+                    .ForMember(dest => dest.BudgetRequests, opt => opt.Ignore())                     
+                    .ForMember(dest => dest.Customers, opt => opt.Ignore());
                 Mapper.CreateMap<EmployeeDto, Employee>();
-                Mapper.CreateMap<Person, PersonDto>();
+
+                Mapper.CreateMap<Person, PersonDto>()                    
+                    .ForMember(dest => dest.Employees, opt => opt.Ignore());
                 Mapper.CreateMap<PersonDto, Person>();
-                Mapper.CreateMap<PersonPhone, PersonPhoneDto>();
-                Mapper.CreateMap<PersonPhoneDto, PersonPhone>();
-                Mapper.CreateMap<PhoneType, PhoneTypeDto>();
+
+                Mapper.CreateMap<PersonPhone, PersonPhoneDto>()                    
+                    .ForMember(dest => dest.Person, opt => opt.Ignore());
+                Mapper.CreateMap<PersonPhoneDto, PersonPhone>()
+                    .ForMember(dest => dest.Person, opt => opt.Ignore());
+
+                Mapper.CreateMap<PhoneType, PhoneTypeDto>()
+                    .ForMember(dest => dest.PersonPhones, opt => opt.Ignore());
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
-                Mapper.CreateMap<Customer, CustomerDto>();
+
+                Mapper.CreateMap<Customer, CustomerDto>()
+                    .ForMember(dest => dest.BudgetRequests, opt => opt.Ignore())
+                    .ForMember(dest => dest.Projects, opt => opt.Ignore())
+                    .ForMember(dest => dest.Employees, opt => opt.Ignore());
                 Mapper.CreateMap<CustomerDto, Customer>();
+
                 Mapper.CreateMap<CustomerContact, CustomerContactDto>();
                 Mapper.CreateMap<CustomerContactDto, CustomerContact>();
-                Mapper.CreateMap<PhoneType, PhoneTypeDto>();
+
+                Mapper.CreateMap<PhoneType, PhoneTypeDto>()
+                     .ForMember(dest => dest.PersonPhones, opt => opt.Ignore());
                 Mapper.CreateMap<PhoneTypeDto, PhoneType>();
-                Mapper.CreateMap<BudgetRequest, BudgetRequestDto>();
-                Mapper.CreateMap<BudgetRequestDto, BudgetRequest>();
-                Mapper.CreateMap<BudgetRequestCondition, BudgetRequestConditionDto>();
-                Mapper.CreateMap<BudgetRequestConditionDto, BudgetRequestCondition>();
-                Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>();
-                Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>();
-                Mapper.CreateMap<BindCustomer, BindCustomerDto>();
+
+                Mapper.CreateMap<BudgetRequest, BudgetRequestDto>()
+                    .ForMember(dest => dest.Projects, opt => opt.Ignore())
+                    .ForMember(dest => dest.Employee, opt => opt.Ignore())
+                    .ForMember(dest => dest.Customer, opt => opt.Ignore());
+                    //.ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
+                Mapper.CreateMap<BudgetRequestDto, BudgetRequest>()
+                    .ForMember(dest => dest.BudgetRequestDetails, opt => opt.UseDestinationValue())
+                    .ForMember(dest => dest.Projects, opt => opt.Ignore());
+
+                Mapper.CreateMap<BudgetRequestCondition, BudgetRequestConditionDto>()
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore());
+                Mapper.CreateMap<BudgetRequestConditionDto, BudgetRequestCondition>()
+                    .ForMember(dest => dest.BudgetRequestId, opt => opt.UseDestinationValue());
+                   
+
+                Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>()
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore());
+                Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>()
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore());
+
+                Mapper.CreateMap<BindCustomer, BindCustomerDto>()
+                    .ForMember(dest => dest.Customer, opt => opt.Ignore());
                 Mapper.CreateMap<BindCustomerDto, BindCustomer>();
+
                 //**********************************************************
                 Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<Project, ProjectDto>();
@@ -63,8 +96,13 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<ResourceDto, Resource>();
                 Mapper.CreateMap<ResourceTypeDto, ResourceType>();
                 Mapper.CreateMap<ResourceType, ResourceTypeDto>();
-                Mapper.CreateMap<MeasureDto, Measure>();
-                Mapper.CreateMap<Measure, MeasureDto>();
+                Mapper.CreateMap<MeasureDto, Measure>()
+                    .ForMember(dest => dest.Resources, opt => opt.Ignore())
+                    .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
+                Mapper.CreateMap<ProjectStateDto, ProjectState>();
+                Mapper.CreateMap<ProjectState, ProjectStateDto>();
+                    .ForMember(dest => dest.Resources, opt => opt.Ignore())
+                    .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
                 Mapper.CreateMap<ProjectStateDto, ProjectState>();
                 Mapper.CreateMap<ProjectState, ProjectStateDto>();
 
@@ -98,15 +136,33 @@ namespace CORE.DataMapper
             return contactDto;
         }
 
+        internal static CustomerDto Map(Customer customer)
+        {
+            CustomerDto customerDto = null;
+            if (customer != null) {
+
+                var customerContacts = new List<CustomerContactDto>();
+                foreach (CustomerContact tmpCustomerContact in customer.CustomerContacts.ToList())
+                {
+                    customerContacts.Add(Map(tmpCustomerContact));
+                }
+
+                Olympus._Enterprise.Detach(customer);
+                customerDto = Mapper.Map<CustomerDto>(customer);
+                customerDto.CustomerContacts = customerContacts;
+            }
+
+            return customerDto;
+        }
+
         internal static BudgetRequestDto Map(BudgetRequest budgetRequest)
         {
             BudgetRequestDto budgetRequestDto = null;
             if (budgetRequest != null)
             {
+
                 // Customer
-                var customerEntity = budgetRequest.Customer;
-                Olympus._Enterprise.Detach(customerEntity);
-                var customer = Mapper.Map<CustomerDto>(customerEntity);
+                var customer = Map(budgetRequest.Customer);
 
                 // Person
                 var personEntity = budgetRequest.Employee.Person;

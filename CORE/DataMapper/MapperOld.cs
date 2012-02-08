@@ -46,18 +46,6 @@ namespace CORE.DataMapper
             return tmpPhoneTypeData;
         }
 
-        internal static PersonData Map(Nexus.Person person)
-        {
-            PersonData tmpPersonData = null;
-            if (person != null) { 
-                tmpPersonData = new PersonData();
-                tmpPersonData.Id = person.Id;
-                tmpPersonData.Name = person.Name;
-                tmpPersonData.LastName = person.LastName;
-                tmpPersonData.PhoneList = Map(person.PersonPhones);
-            }
-            return tmpPersonData;
-        }
 
         internal static CustomerDto Map(Nexus.Customer customer)
         {

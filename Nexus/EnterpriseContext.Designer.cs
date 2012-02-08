@@ -110,22 +110,6 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<BindItem> BindItems
-        {
-            get
-            {
-                if ((_BindItems == null))
-                {
-                    _BindItems = base.CreateObjectSet<BindItem>("BindItems");
-                }
-                return _BindItems;
-            }
-        }
-        private ObjectSet<BindItem> _BindItems;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<BudgetRequest> BudgetRequests
         {
             get
@@ -439,14 +423,6 @@ namespace Nexus
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the BindItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBindItems(BindItem bindItem)
-        {
-            base.AddObject("BindItems", bindItem);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the BudgetRequests EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToBudgetRequests(BudgetRequest budgetRequest)
@@ -726,61 +702,6 @@ namespace Nexus
         }
 
         #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="BindItem")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class BindItem : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new BindItem object.
-        /// </summary>
-        /// <param name="itemId">Initial value of the ItemId property.</param>
-        public static BindItem CreateBindItem(global::System.Int32 itemId)
-        {
-            BindItem bindItem = new BindItem();
-            bindItem.ItemId = itemId;
-            return bindItem;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ItemId
-        {
-            get
-            {
-                return _ItemId;
-            }
-            set
-            {
-                if (_ItemId != value)
-                {
-                    OnItemIdChanging(value);
-                    ReportPropertyChanging("ItemId");
-                    _ItemId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ItemId");
-                    OnItemIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ItemId;
-        partial void OnItemIdChanging(global::System.Int32 value);
-        partial void OnItemIdChanged();
-
-        #endregion
-    
     }
     
     /// <summary>

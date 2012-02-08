@@ -132,18 +132,18 @@ namespace shellProject
                 var project = searchProjectDialog.Tag as ProjectDto;
                 if (project != null)
                 {
-                    btnProjectName.Text = project.Name;
+                    cmbProjectName.Text = project.Name;
                 }
             }
-        }
-        
+        }        
 
         // Loads the BudgetRequest on the form
         private void loadBudgetRequest(BudgetRequestDto budgetRequest)
         {
             lblEmployeeName.Text = budgetRequest.Employee.Person.ToString();
-            edtDate.EditValue = budgetRequest.DateModified;
+            cmbDate.EditValue = budgetRequest.DateModified;
             cmbBubgetRequest.Text = budgetRequest.Id.ToString();
+            cmbProjectName.Text = budgetRequest.ProjectName;
             loadCustomer(budgetRequest.Customer);
             loadBudgetRequestCondition(budgetRequest.BudgetRequestCondition);
         }
@@ -155,34 +155,34 @@ namespace shellProject
             {
                 #region CheckBoxes
 
-                chkMonday.Checked = budgetRequestCondition.DayTurn;
-                chkTuesday.Checked = budgetRequestCondition.DrinkableWater;
-                chkWednesday.Checked = budgetRequestCondition.DayTurn;
-                chkThursday.Checked = budgetRequestCondition.DayTurn;
-                chkFriday.Checked = budgetRequestCondition.DayTurn;
-                chkSaturday.Checked = budgetRequestCondition.DayTurn;
-                chkSunday.Checked = budgetRequestCondition.DayTurn;
+                chkMonday.Checked = budgetRequestCondition.Monday;
+                chkTuesday.Checked = budgetRequestCondition.Tuesday;
+                chkWednesday.Checked = budgetRequestCondition.Wednesday;
+                chkThursday.Checked = budgetRequestCondition.Thursday;
+                chkFriday.Checked = budgetRequestCondition.Friday;
+                chkSaturday.Checked = budgetRequestCondition.Saturday;
+                chkSunday.Checked = budgetRequestCondition.Sunday;
 
                 chkDayTurn.Checked = budgetRequestCondition.DayTurn;
-                chkNightTurn.Checked = budgetRequestCondition.DayTurn;
+                chkNightTurn.Checked = budgetRequestCondition.NightTurn;
 
-                chkDrinkableWater.Checked = budgetRequestCondition.DayTurn;
-                chkElectricity.Checked = budgetRequestCondition.DayTurn;
-                chkWareHouse.Checked = budgetRequestCondition.DayTurn;
+                chkDrinkableWater.Checked = budgetRequestCondition.DrinkableWater;
+                chkElectricity.Checked = budgetRequestCondition.Electricity;
+                chkWareHouse.Checked = budgetRequestCondition.Warehouse;
 
-                chkWorkOutside.Checked = budgetRequestCondition.DayTurn;
-                chkWorkInside.Checked = budgetRequestCondition.DayTurn;
-                chkReachable.Checked = budgetRequestCondition.DayTurn;
-                chkVentilation.Checked = budgetRequestCondition.DayTurn;
-                chkToilet.Checked = budgetRequestCondition.DayTurn;
+                chkWorkOutside.Checked = budgetRequestCondition.WorkOutside;
+                chkWorkInside.Checked = budgetRequestCondition.WorkInside;
+                chkReachable.Checked = budgetRequestCondition.Reachable;
+                chkVentilation.Checked = budgetRequestCondition.Ventilation;
+                chkToilet.Checked = budgetRequestCondition.Toilet;
 
-                chkMoisture.Checked = budgetRequestCondition.DayTurn;
-                chkWet.Checked = budgetRequestCondition.DayTurn;
-                chkNoise.Checked = budgetRequestCondition.DayTurn;
-                chkDust.Checked = budgetRequestCondition.DayTurn;
+                chkMoisture.Checked = budgetRequestCondition.Moisture;
+                chkWet.Checked = budgetRequestCondition.Wet;
+                chkNoise.Checked = budgetRequestCondition.Noise;
+                chkDust.Checked = budgetRequestCondition.Dust;
 
-                chkFood.Checked = budgetRequestCondition.DayTurn;
-                chkLodging.Checked = budgetRequestCondition.DayTurn;
+                chkFood.Checked = budgetRequestCondition.Food;
+                chkLodging.Checked = budgetRequestCondition.Lodging;
 
                 #endregion
 
@@ -204,8 +204,8 @@ namespace shellProject
         {
             if (customer != null)
             {
-                btnCustomerName.Tag = customer;
-                btnCustomerName.Text = customer.Name;
+                cmbCustomerName.Tag = customer;
+                cmbCustomerName.Text = customer.Name;
                 lblAddress.Text = customer.Address;
                 loadContactList(customer.CustomerContacts);
             }
@@ -281,7 +281,7 @@ namespace shellProject
         private void loadContactManager()
         {
             var contactManager = new ContactManager();
-            var customer = btnCustomerName.Tag as CustomerDto;
+            var customer = cmbCustomerName.Tag as CustomerDto;
             // Validate if we have an customer selected
             if (customer != null && customer.Id > 0)
             { 
@@ -298,7 +298,88 @@ namespace shellProject
         }      
 
         #endregion
-       
-       
+
+        #region Save Process
+
+        private BudgetRequestDto captureBudgetRequest()
+        {
+            if (Tag == null)
+            {
+                Tag = new BudgetRequestDto() { BudgetRequestCondition = new BudgetRequestConditionDto()};
+            }
+            var BudgetRequestTag = Tag as BudgetRequestDto;
+            int bubgetRequestId = Convert.ToInt32(cmbBubgetRequest.EditValue);
+            if (bubgetRequestId > 0) {
+                BudgetRequestTag.Id = bubgetRequestId;
+            }
+            BudgetRequestTag.DateModified = cmbDate.DateTime;
+            var customer = cmbCustomerName.Tag as CustomerDto;
+            BudgetRequestTag.CustomerId = customer.Id;
+            BudgetRequestTag.ProjectName = cmbProjectName.Text;
+            BudgetRequestTag.EmployeeId = SessionManager.EmployeeId;
+
+            // Budget Request Details
+            //var d = new BudgetRequestDetailDto();
+            //d.MeasureId = 1;
+            //d.Problem = "sdfsdf";
+            //d.Quantity = 23;
+            //d.Solution = "dasdas";
+            //BudgetRequestTag.BudgetRequestDetails.Add(d); 
+
+            // Conditions
+            BudgetRequestTag.BudgetRequestCondition.Monday = chkMonday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Tuesday = chkTuesday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Wednesday = chkWednesday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Thursday = chkThursday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Friday = chkFriday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Saturday = chkSaturday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Sunday = chkSunday.Checked;
+            BudgetRequestTag.BudgetRequestCondition.DayTurn = chkDayTurn.Checked;
+            BudgetRequestTag.BudgetRequestCondition.NightTurn = chkNightTurn.Checked;
+            BudgetRequestTag.BudgetRequestCondition.DrinkableWater = chkDrinkableWater.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Electricity = chkElectricity.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Warehouse = chkWareHouse.Checked;
+            BudgetRequestTag.BudgetRequestCondition.WorkInside = chkWorkInside.Checked;
+            BudgetRequestTag.BudgetRequestCondition.WorkOutside = chkWorkOutside.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Reachable = chkReachable.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Ventilation = chkVentilation.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Toilet = chkToilet.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Moisture = chkMoisture.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Wet = chkWet.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Noise = chkNoise.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Dust = chkDust.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Food = chkFood.Checked;
+            BudgetRequestTag.BudgetRequestCondition.Lodging = chkLodging.Checked;
+
+            // Periods and Times
+            BudgetRequestTag.BudgetRequestCondition.Period = spnPeriod.Value;
+            BudgetRequestTag.BudgetRequestCondition.Warranty = spnWarranty.Value;
+            BudgetRequestTag.BudgetRequestCondition.SafetyCourse = spnSafetyCourse.Value;
+            BudgetRequestTag.BudgetRequestCondition.MaximunHeight = spnMaximunHeight.Value;
+            if (cmbStartDate.DateTime == new DateTime())
+            {
+                BudgetRequestTag.BudgetRequestCondition.StartDate = DateTime.Now;
+            }else{
+                BudgetRequestTag.BudgetRequestCondition.StartDate = cmbStartDate.DateTime;
+            }
+
+            BudgetRequestTag.BudgetRequestCondition.Observations = txtObservations.Text;
+
+            return BudgetRequestTag;
+        }
+
+        private void saveContact()
+        {
+            var request = new BudgetRequestRequest();
+            request.BudgetRequest = captureBudgetRequest();
+            new BudgetRequestFactory().saveBudgetRequest(request);
+        }
+        #endregion
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            saveContact();
+        }
+
     }
 }
