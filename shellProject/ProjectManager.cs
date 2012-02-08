@@ -58,7 +58,7 @@ namespace shellProject
             #endregion
 
             destination.ProjectId = _project.Id;
-            destination.Id = source.RowNumber;
+            //destination.Id = source.RowNumber;
 
             destination.Name = source.Name;
             destination.Duration = source.Duration.ToString();
@@ -97,7 +97,7 @@ namespace shellProject
         {
             foreach (TaskDto t in sourceDependencies)
             {
-                Task task = tasks.Where(x => x.Name == t.Name).SingleOrDefault();
+                Task task = tasks.Where(x => x.RowNumber == t.RowNumber).SingleOrDefault();
                 if (task != null)
                 {
                     destination.Add(task, TaskDependencyType.FinishToStart);
@@ -122,8 +122,8 @@ namespace shellProject
                 if (t.Resources != null)                                             //Se los recursos de las tareas
                     tmpTask.Tag = t.Resources;
 
-                if (t.Tasks.Count > 0)                                           //Se incluyen las dependencias de la tarea
-                    loadDependencies(t.Tasks, tmpTask.Dependencies, allTask);
+                if (t.Task1.Count > 0)                                           //Se incluyen las dependencias de la tarea
+                    loadDependencies(t.Task1, tmpTask.Dependencies, allTask);
 
                 for (int i = 1; i <= t.TaskLevel; i++)                                  //Se agrega el nivel de la tarea
                     tmpTask.Indent();
@@ -192,14 +192,28 @@ namespace shellProject
             {
                 ODT = getTaskInCalendar(ultraCalendarInfo.Tasks.ToList());
 
-                foreach (Task t in ODT.OrderBy(x => x.RowNumber))
+                foreach (Task tmpTask in ODT.OrderBy(x => x.RowNumber))
                 {
                     TaskDto task = new TaskDto();
-                    mapper(t, task);
-                    if (t.Tag != null)
+                    mapper(tmpTask, task);
+
+                    if (tmpTask.Tag != null)
+                        task.Resources = tmpTask.Tag as List<ResourceDto>;
+
+                    foreach (TaskDependency dependencie in tmpTask.Dependencies.ToList())
                     {
-                        task.Resources = t.Tag as List<ResourceDto>;
+                        TaskDto destination = new TaskDto();
+                        mapper(dependencie.Predecessor, destination);
+                        task.Task1.Add(destination);
                     }
+
+                    foreach(Task tmpTaskDependency in tmpTask.Tasks)
+                    {
+                        TaskDto destination = new TaskDto();
+                        mapper(tmpTaskDependency, destination);
+                        task.Tasks.Add(destination);
+                    }
+
                     list.Add(task);
                 }
             }
@@ -212,18 +226,18 @@ namespace shellProject
 
         private void saveProject()
         {
-            try
-            {
+            //try
+            //{
                 var request = new ProjectRequest();
                 _project.Tasks = getTask();
                 request.Project = _project;
                 _project = new ProjectFactory().saveProject(request).Project;
                 MessageBox.Show("Proyecto guardado exitosamente", "Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         #endregion

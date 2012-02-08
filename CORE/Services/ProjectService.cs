@@ -23,82 +23,80 @@ namespace CORE.Services
         /// Deletes all the resources of a task
         /// </summary>
         /// <param name="task">Task that contains the resources to eliminate</param>
-        //private void deleteAllResources(Nexus.Task task)
-        //{
-        //    Nexus.Task t = Olympus._Enterprise.Tasks.Where(x => x.ProjectId == task.ProjectId & x.Id == task.Id).SingleOrDefault();
+        private void deleteAllResources(Task task)
+        {
+            Task t = Olympus._Enterprise.Tasks.Where(x => x.ProjectId == task.ProjectId & x.Id == task.Id).SingleOrDefault();
 
-        //    List<Nexus.Resource> delete = new List<Nexus.Resource>();
-        //    delete = task.Resources.ToList();
-        //    foreach (Nexus.Resource r in delete)
-        //    {
-        //        Olympus._Enterprise.Resources.DeleteObject(r);
-        //    }
-        //}
+            List<Resource> delete = new List<Resource>();
+            delete = task.Resources.ToList();
+            foreach (Resource r in delete)
+            {
+                Olympus._Enterprise.Resources.DeleteObject(r);
+            }
+        }
 
         /// <summary>
         /// Delete a project task
         /// </summary>
-        //private void deleteAllTasks(Nexus.Project project)
-        //{
-        //    Nexus.Project p = Olympus._Enterprise.Projects.Where(x => x.Id == project.Id).SingleOrDefault();
+        private void deleteAllTasks(Project project)
+        {
+            Project p = Olympus._Enterprise.Projects.Where(x => x.Id == project.Id).SingleOrDefault();
 
-        //    List<Nexus.Task> delete = new List<Nexus.Task>();
-        //    delete = project.Tasks.OrderByDescending(x => x.RowNumber).ToList();
-        //    foreach (Nexus.Task t in delete)
-        //    {
-        //        deleteAllResources(t);
-        //        Olympus._Enterprise.Tasks.DeleteObject(t);
-        //    }
-        //}
+            List<Task> delete = new List<Task>();
+            delete = project.Tasks.OrderByDescending(x => x.RowNumber).ToList();
+            foreach (Task t in delete)
+            {
+                t.Task1.Clear();
+                deleteAllResources(t);
+                Olympus._Enterprise.Tasks.DeleteObject(t);
+            }
+        }
 
         #endregion
 
         #region Save Zone
 
-        //private void saveDependencies(List<TaskData> dependencies, Nexus.Task task)
-        //{ 
-        //}
+        private void saveDependencies(List<TaskDto> dependencies, Task task)
+        {
+        }
 
         /// <summary>
         /// Save the resources of a task
         /// </summary>
         /// <param name="resources">List of tasks to be stored</param>
         /// <param name="task">Task where the resources will be stored</param>
-        //private void saveResources(List<ResourceData> resources, Nexus.Task task)
-        //{
-        //    //if (task.Resources.Count > 0)
-        //    //{
-        //    //    deleteAllResources(task);
-        //    //}
+        private void saveResources(List<ResourceDto> resources, Task task)
+        {
+            if (task.Resources.Count > 0)
+            {
+                deleteAllResources(task);
+            }
 
-        //    foreach (ResourceData rd in resources)
-        //    {
-        //        Nexus.Resource r = new Nexus.Resource();
-        //        MapperOld.mapper(rd, r);
-        //        Olympus._Enterprise.Resources.AddObject(r);
-        //    }
-        //}
+            foreach (ResourceDto rd in resources)
+            {
+                Nexus.Resource r = new Nexus.Resource();
+                Mapper.Map<ResourceDto, Resource>(rd, r);
+                Olympus._Enterprise.Resources.AddObject(r);
+            }
+        }
 
-        //private void saveTasks(List<TaskData> tasks, Nexus.Project projectFound)
-        //{
-        //    if (projectFound.Tasks.Count > 0)
-        //    {
-        //        deleteAllTasks(projectFound);
-        //    }
-        //    Olympus._Enterprise.SaveChanges();
+        private void saveTasks(ICollection<TaskDto> tasks, Project projectFound)
+        {
+            if (projectFound.Tasks.Count > 0)
+            {
+                deleteAllTasks(projectFound);
+            }
+            Olympus._Enterprise.SaveChanges();
 
-        //    foreach (TaskData t in tasks.OrderBy(x => x.RowNumber))
-        //    {
-        //        Nexus.Task task = Olympus._Enterprise.Tasks.Where(y => y.ProjectId == t.ProjectId).Where(x => x.Id == t.Id).SingleOrDefault();
-
-        //        if (task == null)
-        //        {
-        //            task = new Nexus.Task();
-        //            MapperOld.mapper(t, task);
-        //            Olympus._Enterprise.AddToTasks(task);
-        //        }
-        //    }
-        //}
+            foreach (TaskDto tmpTask in tasks.OrderBy(x => x.RowNumber))
+            {
+                if (tmpTask.Task1.Count == 0)
+                {
+                    var taskEntity = Mapper.Map<TaskDto, Task>(tmpTask);
+                    Olympus._Enterprise.Tasks.AddObject(taskEntity);
+                }
+            }
+        }
 
         #endregion
 
@@ -165,21 +163,20 @@ namespace CORE.Services
         /// <param name="request">Objeto donde viene el proyecto a ser almacenado en BD</param>
         public ProjectResponse saveProject(ProjectRequest request)
         {
-            ProjectResponse response = new ProjectResponse(); //--
+            ProjectResponse response = new ProjectResponse();
 
             // Validate if the project exist
-            Nexus.Project projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
+            Project projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
 
-            //Si el proyecto existe se actualiza el mismo, si no existe se crea uno nuevo
             if (projectFound != null)
             {
-                Mapper.Map<ProjectDto, Project>(request.Project, projectFound);
-                //if (request.Project.Tasks != null)
-                //    saveTasks(request.Project.Tasks, projectFound);
+                //Mapper.Map<ProjectDto, Project>(request.Project, projectFound);
+                if (request.Project.Tasks != null)
+                    saveTasks(request.Project.Tasks, projectFound);
             }
             else
             {
-                Nexus.Project newProject = new Nexus.Project();
+                Project newProject = new Project();
                 newProject = Mapper.Map<Project>(request.Project);
                 Olympus._Enterprise.AddToProjects(newProject);
             }

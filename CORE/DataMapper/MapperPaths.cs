@@ -54,13 +54,19 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<Project, ProjectDto>();
                 Mapper.CreateMap<Task, TaskDto>();
-                Mapper.CreateMap<TaskDto, Task>();
+                Mapper.CreateMap<TaskDto, Task>()
+                    .ForMember(dest => dest.Task1, opt => opt.Ignore())
+                    .ForMember(dest => dest.Project, opt => opt.Ignore());
+                Mapper.CreateMap<List<TaskDto>, List<Task>>();
+                Mapper.CreateMap<List<Task>, List<TaskDto>>();
                 Mapper.CreateMap<Resource, ResourceDto>();
                 Mapper.CreateMap<ResourceDto, Resource>();
                 Mapper.CreateMap<ResourceTypeDto, ResourceType>();
                 Mapper.CreateMap<ResourceType, ResourceTypeDto>();
                 Mapper.CreateMap<MeasureDto, Measure>();
                 Mapper.CreateMap<Measure, MeasureDto>();
+                Mapper.CreateMap<ProjectStateDto, ProjectState>();
+                Mapper.CreateMap<ProjectState, ProjectStateDto>();
 
 
                 // Just start the mapper once
@@ -166,10 +172,19 @@ namespace CORE.DataMapper
                     resourceList.Add(newResource);
                 }
 
-                Olympus._Enterprise.Detach(task);
+                List<TaskDto> dependencies = new List<TaskDto>();
+                foreach (Task t in task.Tasks.ToList())
+                {
+                    //t.Tasks.Clear();
+                    TaskDto newTask = Map(t);
+                    dependencies.Add(newTask);
+                }
+
+                //Olympus._Enterprise.Detach(task);
                 taskDto = Mapper.Map<TaskDto>(task);
 
                 taskDto.Resources = resourceList;
+                taskDto.Tasks = dependencies;
             }
             return taskDto;
         }
@@ -200,16 +215,22 @@ namespace CORE.DataMapper
                 var budgetRequest = Map(project.BudgetRequest);
                 #endregion
 
+                #region Project State Charge
+                var projectStateTypeEntity = project.ProjectState;
+                Olympus._Enterprise.Detach(projectStateTypeEntity);
+                var projectState = Mapper.Map<ProjectStateDto>(projectStateTypeEntity);
+                #endregion
+
                 Olympus._Enterprise.Detach(project);
                 projectDto = Mapper.Map<ProjectDto>(project);
 
                 projectDto.Customer = customer;
                 projectDto.BudgetRequest = budgetRequest;
                 projectDto.Tasks = taskList;
+                projectDto.ProjectState = projectState;
             }
             return projectDto;
         }
-
 
         #endregion
     }
