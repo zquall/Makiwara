@@ -99,12 +99,11 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<MeasureDto, Measure>()
                     .ForMember(dest => dest.Resources, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
-                Mapper.CreateMap<ProjectStateDto, ProjectState>();
-                Mapper.CreateMap<ProjectState, ProjectStateDto>();
+                Mapper.CreateMap<Measure, MeasureDto>()
                     .ForMember(dest => dest.Resources, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
-                Mapper.CreateMap<ProjectStateDto, ProjectState>();
                 Mapper.CreateMap<ProjectState, ProjectStateDto>();
+                Mapper.CreateMap<ProjectStateDto, ProjectState>();
 
 
                 // Just start the mapper once
