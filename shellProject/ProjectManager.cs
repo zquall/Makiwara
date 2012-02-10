@@ -185,43 +185,32 @@ namespace shellProject
         /// <returns>Tasks of the project</returns>
         private List<TaskDto> getTask()
         {
-            List<TaskDto> list = new List<TaskDto>();
-            List<Task> ODT = new List<Task>();
+            List<TaskDto> TaskDtoListIndexes = new List<TaskDto>();
+            List<TaskDto> TaskDtoList = new List<TaskDto>();
 
-            try
+            foreach (Task tmpTask in getTaskInCalendar(ultraCalendarInfo.Tasks.ToList()))
             {
-                ODT = getTaskInCalendar(ultraCalendarInfo.Tasks.ToList());
-
-                foreach (Task tmpTask in ODT.OrderBy(x => x.RowNumber))
+                if (tmpTask.Dependencies.Count > 0)
+                {    
+                    foreach (TaskDependency tmpTaskDependency in tmpTask.Dependencies)
+                    {
+                        TaskDto taskParent = TaskDtoListIndexes.Where(x => x.RowNumber == tmpTaskDependency.Predecessor.RowNumber).SingleOrDefault();
+                        TaskDto tmpTaskDto = new TaskDto();
+                        mapper(tmpTask, tmpTaskDto);
+                        taskParent.Tasks.Add(tmpTaskDto);
+                        TaskDtoListIndexes.Add(tmpTaskDto);
+                    }
+                }
+                else
                 {
-                    TaskDto task = new TaskDto();
-                    mapper(tmpTask, task);
-
-                    if (tmpTask.Tag != null)
-                        task.Resources = tmpTask.Tag as List<ResourceDto>;
-
-                    foreach (TaskDependency dependencie in tmpTask.Dependencies.ToList())
-                    {
-                        TaskDto destination = new TaskDto();
-                        mapper(dependencie.Predecessor, destination);
-                        task.Task1.Add(destination);
-                    }
-
-                    foreach(Task tmpTaskDependency in tmpTask.Tasks)
-                    {
-                        TaskDto destination = new TaskDto();
-                        mapper(tmpTaskDependency, destination);
-                        task.Tasks.Add(destination);
-                    }
-
-                    list.Add(task);
+                    TaskDto tmpTaskDto = new TaskDto();
+                    mapper(tmpTask, tmpTaskDto);
+                    //Si la tarea no tiene dependencias se agrega normal a la lista
+                    TaskDtoList.Add(tmpTaskDto);
+                    TaskDtoListIndexes.Add(tmpTaskDto);
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return list;
+            return TaskDtoList;
         }
 
         private void saveProject()
@@ -263,6 +252,7 @@ namespace shellProject
             {
                 Task t = new Task();
                 t.SetDuration(new TimeSpan(1, 0, 0, 0, 0), Infragistics.Win.TimeSpanFormat.Days);
+                t.Deadline = DateTime.Today;
                 ultraCalendarInfo.Tasks.Add(t);
                 t.Name = "Tarea " + t.RowNumber;
             }

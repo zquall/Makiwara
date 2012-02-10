@@ -56,10 +56,6 @@ namespace CORE.Services
 
         #region Save Zone
 
-        private void saveDependencies(List<TaskDto> dependencies, Task task)
-        {
-        }
-
         /// <summary>
         /// Save the resources of a task
         /// </summary>
@@ -86,15 +82,16 @@ namespace CORE.Services
             {
                 deleteAllTasks(projectFound);
             }
+
             Olympus._Enterprise.SaveChanges();
 
             foreach (TaskDto tmpTask in tasks.OrderBy(x => x.RowNumber))
             {
-                if (tmpTask.Task1.Count == 0)
-                {
+                //if (tmpTask.Tasks.Count == 0)
+                //{
                     var taskEntity = Mapper.Map<TaskDto, Task>(tmpTask);
                     Olympus._Enterprise.Tasks.AddObject(taskEntity);
-                }
+                //}
             }
         }
 
@@ -170,7 +167,6 @@ namespace CORE.Services
 
             if (projectFound != null)
             {
-                //Mapper.Map<ProjectDto, Project>(request.Project, projectFound);
                 if (request.Project.Tasks != null)
                     saveTasks(request.Project.Tasks, projectFound);
             }

@@ -185,7 +185,7 @@ namespace shellProject
         {
             #region Set visible columns
             viewResources.Columns["Id"].Visible = false;
-            viewResources.Columns["ProjectId"].Visible = false;
+            //viewResources.Columns["ProjectId"].Visible = false;
             viewResources.Columns["TaskId"].Visible = false;
             viewResources.Columns["Measure"].Visible = true;
             viewResources.Columns["ResourceType"].Visible = true;
@@ -199,7 +199,7 @@ namespace shellProject
 
             #region set caption columns
             viewResources.Columns["Id"].Caption = "Id";
-            viewResources.Columns["ProjectId"].Caption = "Proyecto";
+            //viewResources.Columns["ProjectId"].Caption = "Proyecto";
             viewResources.Columns["TaskId"].Caption = "Tarea";
             viewResources.Columns["Measure"].Caption = "Medida";
             viewResources.Columns["ResourceType"].Caption = "Tipo";
@@ -236,7 +236,7 @@ namespace shellProject
             #region Set read only columns
             //Todo se apaga hasta saber que tipo de recurso se va a utilizar
             viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+            //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -262,7 +262,7 @@ namespace shellProject
             {
                 #region Set read only columns
                 viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                 viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                 viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
                 viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -281,7 +281,7 @@ namespace shellProject
                 {
                     #region Set read only columns
                     viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                    //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -297,7 +297,7 @@ namespace shellProject
                 {
                     #region Set read only columns
                     viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
+                    //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
                     viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;

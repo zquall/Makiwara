@@ -88,7 +88,6 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<Project, ProjectDto>();
                 Mapper.CreateMap<Task, TaskDto>();
                 Mapper.CreateMap<TaskDto, Task>()
-                    .ForMember(dest => dest.Task1, opt => opt.Ignore())
                     .ForMember(dest => dest.Project, opt => opt.Ignore());
                 Mapper.CreateMap<List<TaskDto>, List<Task>>();
                 Mapper.CreateMap<List<Task>, List<TaskDto>>();
