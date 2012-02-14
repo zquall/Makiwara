@@ -27,9 +27,14 @@ namespace ReplicantFacility.Factory
             return _CustomerService.getCustomer(request);
         }
 
-        public void saveContact(CustomerRequest request)
+        public CustomerResponse getCustomerContact(CustomerRequest request)
         {
-            _CustomerService.saveContact(request);
+            return _CustomerService.getCustomerContact(request);
+        }
+
+        public CustomerResponse saveCustomerContact(CustomerRequest request)
+        {
+            return _CustomerService.saveCustomerContact(request);
         }
 
         public CustomerResponse saveCustomer(CustomerRequest request)

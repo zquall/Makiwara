@@ -94,6 +94,39 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
+        public virtual ICollection<BudgetRequestDto> BudgetRequests
+        {
+            get
+            {
+                if (_budgetRequests == null)
+                {
+                    var newCollection = new FixupCollection<BudgetRequestDto>();
+                    newCollection.CollectionChanged += FixupBudgetRequests;
+                    _budgetRequests = newCollection;
+                }
+                return _budgetRequests;
+            }
+            set
+            {
+                if (!ReferenceEquals(_budgetRequests, value))
+                {
+                    var previousValue = _budgetRequests as FixupCollection<BudgetRequestDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupBudgetRequests;
+                    }
+                    _budgetRequests = value;
+                    var newValue = value as FixupCollection<BudgetRequestDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupBudgetRequests;
+                    }
+                }
+            }
+        }
+        private ICollection<BudgetRequestDto> _budgetRequests;
+    
+    	[DataMember]
         public virtual CustomerDto Customer
         {
             get { return _customer; }
@@ -164,6 +197,28 @@ namespace ReplicantRepository.DataTransferObjects
                 if (PersonId != Person.Id)
                 {
                     PersonId = Person.Id;
+                }
+            }
+        }
+    
+        private void FixupBudgetRequests(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (BudgetRequestDto item in e.NewItems)
+                {
+                    item.CustomerContact = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (BudgetRequestDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CustomerContact, this))
+                    {
+                        item.CustomerContact = null;
+                    }
                 }
             }
         }

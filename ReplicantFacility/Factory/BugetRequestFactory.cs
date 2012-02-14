@@ -34,7 +34,7 @@ namespace ReplicantFacility.Factory
 
         public BudgetRequestResponse saveBudgetRequest(BudgetRequestRequest request)
         {
-            return _BudgetRequestService.saveBudgetRequest(request);
+            return _BudgetRequestService.SaveBudgetRequest(request);
         }
 
     }

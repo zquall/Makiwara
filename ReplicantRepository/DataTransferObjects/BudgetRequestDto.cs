@@ -89,6 +89,46 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private int _employeeId;
+    
+    	[DataMember]
+        public virtual int CustomerContactId
+        {
+     
+    
+            get { return _customerContactId; }
+            set
+            {
+                if (_customerContactId != value)
+                {
+                    if (CustomerContact != null && CustomerContact.Id != value)
+                    {
+                        CustomerContact = null;
+                    }
+                    _customerContactId = value;
+                }
+            }
+        }
+        private int _customerContactId;
+    
+    	[DataMember]
+        public virtual int PersonPhoneId
+        {
+     
+    
+            get { return _personPhoneId; }
+            set
+            {
+                if (_personPhoneId != value)
+                {
+                    if (PersonPhone != null && PersonPhone.Id != value)
+                    {
+                        PersonPhone = null;
+                    }
+                    _personPhoneId = value;
+                }
+            }
+        }
+        private int _personPhoneId;
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
@@ -117,6 +157,22 @@ namespace ReplicantRepository.DataTransferObjects
         private CustomerDto _customer;
     
     	[DataMember]
+        public virtual CustomerContactDto CustomerContact
+        {
+            get { return _customerContact; }
+            set
+            {
+                if (!ReferenceEquals(_customerContact, value))
+                {
+                    var previousValue = _customerContact;
+                    _customerContact = value;
+                    FixupCustomerContact(previousValue);
+                }
+            }
+        }
+        private CustomerContactDto _customerContact;
+    
+    	[DataMember]
         public virtual EmployeeDto Employee
         {
             get { return _employee; }
@@ -131,6 +187,22 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private EmployeeDto _employee;
+    
+    	[DataMember]
+        public virtual PersonPhoneDto PersonPhone
+        {
+            get { return _personPhone; }
+            set
+            {
+                if (!ReferenceEquals(_personPhone, value))
+                {
+                    var previousValue = _personPhone;
+                    _personPhone = value;
+                    FixupPersonPhone(previousValue);
+                }
+            }
+        }
+        private PersonPhoneDto _personPhone;
     
     	[DataMember]
         public virtual BudgetRequestConditionDto BudgetRequestCondition
@@ -237,6 +309,26 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
     
+        private void FixupCustomerContact(CustomerContactDto previousValue)
+        {
+            if (previousValue != null && previousValue.BudgetRequests.Contains(this))
+            {
+                previousValue.BudgetRequests.Remove(this);
+            }
+    
+            if (CustomerContact != null)
+            {
+                if (!CustomerContact.BudgetRequests.Contains(this))
+                {
+                    CustomerContact.BudgetRequests.Add(this);
+                }
+                if (CustomerContactId != CustomerContact.Id)
+                {
+                    CustomerContactId = CustomerContact.Id;
+                }
+            }
+        }
+    
         private void FixupEmployee(EmployeeDto previousValue)
         {
             if (previousValue != null && previousValue.BudgetRequests.Contains(this))
@@ -253,6 +345,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (EmployeeId != Employee.Id)
                 {
                     EmployeeId = Employee.Id;
+                }
+            }
+        }
+    
+        private void FixupPersonPhone(PersonPhoneDto previousValue)
+        {
+            if (previousValue != null && previousValue.BudgetRequests.Contains(this))
+            {
+                previousValue.BudgetRequests.Remove(this);
+            }
+    
+            if (PersonPhone != null)
+            {
+                if (!PersonPhone.BudgetRequests.Contains(this))
+                {
+                    PersonPhone.BudgetRequests.Add(this);
+                }
+                if (PersonPhoneId != PersonPhone.Id)
+                {
+                    PersonPhoneId = PersonPhone.Id;
                 }
             }
         }

@@ -86,11 +86,10 @@ namespace CORE.Services
         {
             var response = new CustomerResponse();
             // Validate request
-            if (request.ContactId > 0)
+            if (request.CustomerContactId > 0)
             {
-                var customerContactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.ContactId).SingleOrDefault();
-                Olympus._Enterprise.Detach(customerContactFound);
-                response.CustomerContact = MapperPaths.Map(customerContactFound);
+                var customerContactFound = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.CustomerContactId).SingleOrDefault();
+                response.CustomerContact = Mapper.Map<CustomerContactDto>(customerContactFound);
             }
             return response;
         }
@@ -102,18 +101,17 @@ namespace CORE.Services
             {
                 response.CustomerContacts = new List<CustomerContactDto>();
                 var customerContactList = Olympus._Enterprise.CustomerContacts.Where(x => x.CustomerId == request.CustomerId);
-                foreach (CustomerContact customerContact in customerContactList)
-                {
-                    response.CustomerContacts.Add(MapperPaths.Map(customerContact));
-                }
+               
+                response.CustomerContacts = Mapper.Map<List<CustomerContactDto>>(customerContactList);
+               
             }
             return response;
         }
 
-        public CustomerResponse saveContact(CustomerRequest request)
+        public CustomerResponse saveCustomerContact(CustomerRequest request)
         {
             var response = new CustomerResponse();
-            // Validate if the contact has to be saved
+            // Validate contact has a customer related
             if (request.CustomerContact.CustomerId > 0)
             {
                 CustomerContact contact;
@@ -131,29 +129,7 @@ namespace CORE.Services
                     Olympus._Enterprise.CustomerContacts.AddObject(contact);
                 }
                 Olympus._Enterprise.SaveChanges();
-                response.ContactId = contact.Id;
-
-                #region Old Code
-                //contact.Person.Name = request.Contact.Person.Name;
-                //contact.Person.LastName = request.Contact.Person.LastName;
-                //contact.Job = request.Contact.Job;
-                //foreach (var tmpPersonPhone in request.Contact.Person.PersonPhones)
-                //{
-                //    if (tmpPersonPhone.Id == 0)
-                //    {
-                //        var tmpPhone = new PersonPhone();
-                //        tmpPhone.Phone = tmpPersonPhone.Phone;
-                //        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                //        contact.Person.PersonPhones.Add(tmpPhone);
-                //    }
-                //    else
-                //    {
-                //        var tmpPhone = contact.Person.PersonPhones.Where(x => x.Id == tmpPersonPhone.Id).SingleOrDefault();
-                //        tmpPhone.Phone = tmpPersonPhone.Phone;
-                //        tmpPhone.PhoneTypeId = tmpPersonPhone.PhoneType.Id;
-                //    }
-                //} 
-                #endregion
+                response.CustomerContactId = contact.Id;
             }
             return response;
         }

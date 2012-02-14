@@ -49,19 +49,7 @@ namespace shellProject
                 }
             }            
         }
-        
-        private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            switch (e.Button.Kind)
-            {
-                case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
-                    loadContactManager();
-                    break;
-                default:
-                    break;
-            }
-        }
-
+      
         private void cmbBubgetRequest_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             switch (e.Button.Kind)
@@ -81,6 +69,18 @@ namespace shellProject
             loadContact(contact);
         }
 
+        private void cmbContact_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Plus:
+                    loadContactManager();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
         private void btnProjectName_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             switch (e.Button.Kind)
@@ -102,6 +102,26 @@ namespace shellProject
             var request = new BudgetRequestRequest() { EmployeeId = SessionManager.EmployeeId };
             loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest(request).BudgetRequest);
         }
+    
+        // Load Contact Manager
+        private void loadContactManager()
+        {
+            var contactManager = new ContactManager();
+            var customer = cmbCustomerName.Tag as CustomerDto;
+            // Validate if we have an customer selected
+            if (customer != null && customer.Id > 0)
+            { 
+                var newCustomerContact = new CustomerContactDto();
+                newCustomerContact.Customer = customer;
+                contactManager.Tag = newCustomerContact;
+                contactManager.ShowDialog();
+                if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    cmbContact.Properties.Items.Add(contactManager.Tag);
+                    cmbContact.SelectedItem = contactManager.Tag;
+                }
+            }
+        } 
 
         private void loadBudgetRequestFinder()
         {
@@ -140,6 +160,7 @@ namespace shellProject
         // Loads the BudgetRequest on the form
         private void loadBudgetRequest(BudgetRequestDto budgetRequest)
         {
+            Tag = budgetRequest;
             lblEmployeeName.Text = budgetRequest.Employee.Person.ToString();
             cmbDate.EditValue = budgetRequest.DateModified;
             cmbBubgetRequest.Text = budgetRequest.Id.ToString();
@@ -151,7 +172,53 @@ namespace shellProject
         // Load the Customer
         private void loadBudgetRequestCondition(BudgetRequestConditionDto budgetRequestCondition)
         {
-            if (budgetRequestCondition != null)
+            if (budgetRequestCondition == null)
+            {
+                #region CheckBoxes
+
+                chkMonday.Checked = false;
+                chkTuesday.Checked = false;
+                chkWednesday.Checked = false;
+                chkThursday.Checked = false;
+                chkFriday.Checked = false;
+                chkSaturday.Checked = false;
+                chkSunday.Checked = false;
+
+                chkDayTurn.Checked = false;
+                chkNightTurn.Checked = false;
+
+                chkDrinkableWater.Checked = false;
+                chkElectricity.Checked = false;
+                chkWareHouse.Checked = false;
+
+                chkWorkOutside.Checked = false;
+                chkWorkInside.Checked = false;
+                chkReachable.Checked = false;
+                chkVentilation.Checked = false;
+                chkToilet.Checked = false;
+
+                chkMoisture.Checked = false;
+                chkWet.Checked = false;
+                chkNoise.Checked = false;
+                chkDust.Checked = false;
+
+                chkFood.Checked = false;
+                chkLodging.Checked = false;
+
+                #endregion
+
+                #region Spinners and TextBox
+
+                spnPeriod.Value = budgetRequestCondition.Period;
+                spnWarranty.Value = budgetRequestCondition.Warranty;
+                spnSafetyCourse.Value = budgetRequestCondition.SafetyCourse;
+                spnMaximunHeight.Value = budgetRequestCondition.MaximunHeight;
+                cmbStartDate.DateTime = budgetRequestCondition.StartDate;
+                txtObservations.Text = budgetRequestCondition.Observations;
+
+                #endregion
+            }
+            else
             {
                 #region CheckBoxes
 
@@ -186,8 +253,8 @@ namespace shellProject
 
                 #endregion
 
-                #region Spinners and TextBox 
-                
+                #region Spinners and TextBox
+
                 spnPeriod.Value = budgetRequestCondition.Period;
                 spnWarranty.Value = budgetRequestCondition.Warranty;
                 spnSafetyCourse.Value = budgetRequestCondition.SafetyCourse;
@@ -202,6 +269,9 @@ namespace shellProject
         // Load the Customer
         private void loadCustomer(CustomerDto customer)
         {
+            cmbCustomerName.Text = "";
+            lblAddress.Text = "";
+            loadContactList(null);
             if (customer != null)
             {
                 cmbCustomerName.Tag = customer;
@@ -214,60 +284,12 @@ namespace shellProject
         // Load the Contact
         private void loadContact(CustomerContactDto contact)
         {
+            lblContactJob.Text = string.Empty;
+            loadPhoneList(null);
             if (contact != null)
             {
-                cmbContact.SelectedItem = contact;
                 lblContactJob.Text = contact.Job;
-                loadPhoneList(contact.Person.PersonPhones);
-            }
-            else
-            {
-                cmbContact.SelectedIndex = -1;
-                lblContactJob.Text = string.Empty;
-                loadPhoneList(null);
-            }
-        }
-
-        // Load the Contact List
-        private void loadContactList(ICollection<CustomerContactDto> contactList)
-        {
-            cmbContact.SelectedIndex = -1;
-            cmbContact.Properties.Items.Clear();
-            foreach (var tmpCustomerContact in contactList)
-            {
-                cmbContact.Properties.Items.Add(tmpCustomerContact);
-            }
-            if (contactList.Count > 0)
-            {
-                cmbContact.SelectedIndex = 0;
-            }
-        }
-        
-        // Load the Contact default phone
-        private void loadPhoneList(ICollection<PersonPhoneDto> phoneList)
-        {
-            cmbPhone.SelectedIndex = -1;
-            cmbPhone.Properties.Items.Clear();
-            if (phoneList != null)
-            {
-                foreach (var phone in phoneList)
-                {
-                    cmbPhone.Properties.Items.Add(phone);
-                }
-                if (phoneList.Count > 0)
-                {
-                    cmbPhone.SelectedIndex = 0;
-                } 
-            }
-        }
-
-        // Load the Contact default phone
-        private void loadPhone(PhoneData phone)
-        {
-            if (phone != null)
-            {
-                cmbPhone.Properties.Items.Add(phone);
-                cmbPhone.SelectedItem = phone;
+                loadPhoneList(contact.Person.PersonPhones);                
             }
         }
 
@@ -277,25 +299,43 @@ namespace shellProject
             cmbMeasure.Items.AddRange(new CommonFactory().getMeasureList().MeasureList);
         }
 
-        // Load Contact Manager
-        private void loadContactManager()
+        // Load the Contact List
+        private void loadContactList(ICollection<CustomerContactDto> contactList)
         {
-            var contactManager = new ContactManager();
-            var customer = cmbCustomerName.Tag as CustomerDto;
-            // Validate if we have an customer selected
-            if (customer != null && customer.Id > 0)
-            { 
-                var newCustomerContact = new CustomerContactDto();
-                newCustomerContact.CustomerId = customer.Id;
-                contactManager.Tag = newCustomerContact;
-                contactManager.ShowDialog();
-                if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+            cmbContact.SelectedIndex = -1;
+            cmbContact.Properties.Items.Clear();
+            if (contactList != null)
+            {
+                BudgetRequestDto BudgetRequest = Tag as BudgetRequestDto;
+                foreach (var tmpCustomerContact in contactList)
                 {
-                    cmbContact.Properties.Items.Add(contactManager.Tag);
-                    cmbContact.SelectedItem = contactManager.Tag;
+                    cmbContact.Properties.Items.Add(tmpCustomerContact);
+                    if (tmpCustomerContact.Id == BudgetRequest.CustomerContactId) {
+                        cmbContact.SelectedItem = tmpCustomerContact;
+                    }
                 }
+            }            
+        }
+        
+        // Load the Contact default phone
+        private void loadPhoneList(ICollection<PersonPhoneDto> phoneList)
+        {
+            cmbPhone.SelectedIndex = -1;
+            cmbPhone.Properties.Items.Clear();
+            if (phoneList != null)
+            {
+                BudgetRequestDto BudgetRequest = Tag as BudgetRequestDto;
+                foreach (var tmpPhone in phoneList)
+                {
+                    cmbPhone.Properties.Items.Add(tmpPhone);
+                    if (tmpPhone.Id == BudgetRequest.PersonPhoneId)
+                    {
+                        cmbPhone.SelectedItem = tmpPhone;
+                    }
+                }               
             }
-        }      
+        }             
+
 
         #endregion
 
@@ -303,20 +343,21 @@ namespace shellProject
 
         private BudgetRequestDto captureBudgetRequest()
         {
-            if (Tag == null)
-            {
-                Tag = new BudgetRequestDto() { BudgetRequestCondition = new BudgetRequestConditionDto()};
-            }
             var BudgetRequestTag = Tag as BudgetRequestDto;
-            int bubgetRequestId = Convert.ToInt32(cmbBubgetRequest.EditValue);
-            if (bubgetRequestId > 0) {
-                BudgetRequestTag.Id = bubgetRequestId;
+            if (BudgetRequestTag.BudgetRequestCondition == null)
+            {
+                BudgetRequestTag.BudgetRequestCondition = new BudgetRequestConditionDto();
+
             }
-            BudgetRequestTag.DateModified = cmbDate.DateTime;
             var customer = cmbCustomerName.Tag as CustomerDto;
+            var customerContact = cmbContact.SelectedItem as CustomerContactDto;
+            var personPhone = cmbPhone.SelectedItem as PersonPhoneDto;
             BudgetRequestTag.CustomerId = customer.Id;
-            BudgetRequestTag.ProjectName = cmbProjectName.Text;
             BudgetRequestTag.EmployeeId = SessionManager.EmployeeId;
+            BudgetRequestTag.CustomerContactId = customerContact.Id;
+            BudgetRequestTag.PersonPhoneId = personPhone.Id;
+            BudgetRequestTag.ProjectName = cmbProjectName.Text;
+            BudgetRequestTag.DateModified = cmbDate.DateTime;
 
             // Budget Request Details
             //var d = new BudgetRequestDetailDto();
@@ -327,6 +368,7 @@ namespace shellProject
             //BudgetRequestTag.BudgetRequestDetails.Add(d); 
 
             // Conditions
+
             BudgetRequestTag.BudgetRequestCondition.Monday = chkMonday.Checked;
             BudgetRequestTag.BudgetRequestCondition.Tuesday = chkTuesday.Checked;
             BudgetRequestTag.BudgetRequestCondition.Wednesday = chkWednesday.Checked;
@@ -356,13 +398,7 @@ namespace shellProject
             BudgetRequestTag.BudgetRequestCondition.Warranty = spnWarranty.Value;
             BudgetRequestTag.BudgetRequestCondition.SafetyCourse = spnSafetyCourse.Value;
             BudgetRequestTag.BudgetRequestCondition.MaximunHeight = spnMaximunHeight.Value;
-            if (cmbStartDate.DateTime == new DateTime())
-            {
-                BudgetRequestTag.BudgetRequestCondition.StartDate = DateTime.Now;
-            }else{
-                BudgetRequestTag.BudgetRequestCondition.StartDate = cmbStartDate.DateTime;
-            }
-
+            BudgetRequestTag.BudgetRequestCondition.StartDate = cmbStartDate.DateTime;
             BudgetRequestTag.BudgetRequestCondition.Observations = txtObservations.Text;
 
             return BudgetRequestTag;
@@ -373,6 +409,7 @@ namespace shellProject
             var request = new BudgetRequestRequest();
             request.BudgetRequest = captureBudgetRequest();
             new BudgetRequestFactory().saveBudgetRequest(request);
+            loadNewRequestBudgetManager();
         }
         #endregion
 

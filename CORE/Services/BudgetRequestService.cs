@@ -18,7 +18,7 @@ namespace CORE.Services
             
         }
 
-        public BudgetRequestResponse saveBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse SaveBudgetRequest(BudgetRequestRequest request)
         {
             BudgetRequestResponse response = new BudgetRequestResponse();
             if (request.BudgetRequest != null)
@@ -101,7 +101,7 @@ namespace CORE.Services
                 // Fill the response with the result found
                 foreach (BudgetRequest tmpBudgetRequest in resultFound)
                 {
-                    BudgetRequestDto budgetRequest = MapperPaths.Map(tmpBudgetRequest);
+                    BudgetRequestDto budgetRequest = Mapper.Map<BudgetRequestDto>(tmpBudgetRequest);
                     response.BudgetRequestList.Add(budgetRequest);
                 }
             }

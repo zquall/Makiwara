@@ -139,8 +139,8 @@ namespace shellCommon.Contact
         {
             var request = new CustomerRequest();
             request.CustomerContact = captureContact();
-            new CustomerFactory().saveContact(request);
-            //new CustomerFactory().(request)
+            var response = new CustomerFactory().saveCustomerContact(request);
+            Tag = new CustomerFactory().getCustomerContact(new CustomerRequest { CustomerContactId = response.CustomerContactId }).CustomerContact;
         }
 
         #endregion
