@@ -13,9 +13,9 @@ using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {
-    public partial class ItemFinder : DevExpress.XtraEditors.XtraForm
+    public partial class BudgetRequestFinder : DevExpress.XtraEditors.XtraForm
     {
-        public ItemFinder()
+        public BudgetRequestFinder()
         {
             InitializeComponent();
         }

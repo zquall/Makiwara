@@ -1,6 +1,6 @@
 ﻿namespace shellProject
 {
-    partial class ItemFinder
+    partial class BudgetRequestFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,10 @@
             this.txtSearchQuery = new DevExpress.XtraEditors.TextEdit();
             this.grdControl = new DevExpress.XtraGrid.GridControl();
             this.grdCustomerView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colStock = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProjectName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmployee = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -76,10 +76,10 @@
             // grdCustomerView
             // 
             this.grdCustomerView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCode,
             this.colName,
-            this.colPrice,
-            this.colStock});
+            this.colProjectName,
+            this.colDate,
+            this.colEmployee});
             this.grdCustomerView.GridControl = this.grdControl;
             this.grdCustomerView.Name = "grdCustomerView";
             this.grdCustomerView.OptionsBehavior.Editable = false;
@@ -93,40 +93,40 @@
             // 
             // colName
             // 
-            this.colCode.Caption = "Nombre del Cliente";
-            this.colCode.FieldName = "Customer.Name";
-            this.colCode.Name = "colName";
-            this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 0;
-            this.colCode.Width = 200;
+            this.colName.Caption = "Nombre del Cliente";
+            this.colName.FieldName = "Customer.Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 0;
+            this.colName.Width = 200;
             // 
             // colProjectName
             // 
-            this.colName.Caption = "Proyecto";
-            this.colName.FieldName = "ProjectName";
-            this.colName.Name = "colProjectName";
-            this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
-            this.colName.Width = 200;
+            this.colProjectName.Caption = "Proyecto";
+            this.colProjectName.FieldName = "ProjectName";
+            this.colProjectName.Name = "colProjectName";
+            this.colProjectName.Visible = true;
+            this.colProjectName.VisibleIndex = 1;
+            this.colProjectName.Width = 200;
             // 
             // colDate
             // 
-            this.colPrice.Caption = "Fecha";
-            this.colPrice.DisplayFormat.FormatString = "d";
-            this.colPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colPrice.FieldName = "DateModified";
-            this.colPrice.Name = "colDate";
-            this.colPrice.Visible = true;
-            this.colPrice.VisibleIndex = 2;
+            this.colDate.Caption = "Fecha";
+            this.colDate.DisplayFormat.FormatString = "d";
+            this.colDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colDate.FieldName = "DateModified";
+            this.colDate.Name = "colDate";
+            this.colDate.Visible = true;
+            this.colDate.VisibleIndex = 2;
             // 
             // colEmployee
             // 
-            this.colStock.Caption = "Agente";
-            this.colStock.FieldName = "Employee";
-            this.colStock.Name = "colEmployee";
-            this.colStock.Visible = true;
-            this.colStock.VisibleIndex = 3;
-            this.colStock.Width = 119;
+            this.colEmployee.Caption = "Agente";
+            this.colEmployee.FieldName = "Employee";
+            this.colEmployee.Name = "colEmployee";
+            this.colEmployee.Visible = true;
+            this.colEmployee.VisibleIndex = 3;
+            this.colEmployee.Width = 119;
             // 
             // btnOk
             // 
