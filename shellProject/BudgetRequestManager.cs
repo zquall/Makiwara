@@ -103,7 +103,7 @@ namespace shellProject
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
-                    loadItemFinder();
+                    //loadItemFinder();
                     break;
                 default:
                     break;

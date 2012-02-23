@@ -30,6 +30,13 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
+        public virtual string Code
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
         public virtual int BudgetRequestId
         {
      

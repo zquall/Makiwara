@@ -4028,6 +4028,7 @@ namespace Nexus
         /// Create a new Project object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="code">Initial value of the Code property.</param>
         /// <param name="budgetRequestId">Initial value of the BudgetRequestId property.</param>
         /// <param name="custumerId">Initial value of the CustumerId property.</param>
         /// <param name="employeeId">Initial value of the EmployeeId property.</param>
@@ -4043,10 +4044,11 @@ namespace Nexus
         /// <param name="othersRate">Initial value of the OthersRate property.</param>
         /// <param name="comments">Initial value of the Comments property.</param>
         /// <param name="stateId">Initial value of the StateId property.</param>
-        public static Project CreateProject(global::System.Int32 id, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments, global::System.Int32 stateId)
+        public static Project CreateProject(global::System.Int32 id, global::System.String code, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments, global::System.Int32 stateId)
         {
             Project project = new Project();
             project.Id = id;
+            project.Code = code;
             project.BudgetRequestId = budgetRequestId;
             project.CustumerId = custumerId;
             project.EmployeeId = employeeId;
@@ -4094,6 +4096,30 @@ namespace Nexus
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

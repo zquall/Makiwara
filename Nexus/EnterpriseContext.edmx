@@ -295,6 +295,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nchar" Nullable="false" MaxLength="10" />
           <Property Name="BudgetRequestId" Type="int" Nullable="false" />
           <Property Name="CustumerId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
@@ -997,6 +998,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Type="Int32" Name="BudgetRequestId" Nullable="false" />
           <Property Type="Int32" Name="CustumerId" Nullable="false" />
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
@@ -1553,6 +1555,7 @@
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="CustumerId" ColumnName="CustumerId" />
                 <ScalarProperty Name="BudgetRequestId" ColumnName="BudgetRequestId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1675,7 +1678,7 @@
     <Diagrams>
       <Diagram Name="EnterpriseContext">
         <EntityTypeShape EntityType="EnterpriseModel.BindCustomer" Width="1.5" PointX="3" PointY="12.625" Height="1.4279589843750031" />
-        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequest" Width="1.5" PointX="6" PointY="11.625" Height="3.400126953124996" />
+        <EntityTypeShape EntityType="EnterpriseModel.BudgetRequest" Width="1.5" PointX="6" PointY="11.625" Height="3.4001269531250031" />
         <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestCondition" Width="1.5" PointX="8.25" PointY="13.25" Height="6.0296842447916674" />
         <EntityTypeShape EntityType="EnterpriseModel.BudgetRequestDetail" Width="1.5" PointX="8.25" PointY="10.125" Height="2.2496956380208388" />
         <EntityTypeShape EntityType="EnterpriseModel.Customer" Width="1.5" PointX="0.75" PointY="11.875" Height="2.7427376302083388" />
@@ -1686,7 +1689,7 @@
         <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="0.75" PointY="8.375" Height="1.9210009765625102" />
         <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="3.75" PointY="18.25" Height="2.0853483072916674" />
         <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="1.5" PointY="18.625" Height="1.427958984374996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="11.25" PointY="11.125" Height="4.2218636067708246" />
+        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="11.25" PointY="11.125" Height="4.386210937499996" />
         <EntityTypeShape EntityType="EnterpriseModel.ProjectState" Width="1.5" PointX="9" PointY="7.625" Height="1.427958984374996" />
         <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="15.75" PointY="11.75" Height="3.0714322916666674" />
         <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="13.5" PointY="7.5" Height="1.5923063151041674" />
@@ -1723,16 +1726,16 @@
           <ConnectorPoint PointX="4.979166666666667" PointY="16.335500488281255" />
           <ConnectorPoint PointX="5.145833333333333" PointY="16.335500488281255" />
           <ConnectorPoint PointX="6.75" PointY="16.335500488281255" />
-          <ConnectorPoint PointX="6.75" PointY="15.025126953124996" />
+          <ConnectorPoint PointX="6.75" PointY="15.025126953125003" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_BudgetRequest_PersonPhone" >
           <ConnectorPoint PointX="5.0625" PointY="18.25" />
-          <ConnectorPoint PointX="5.0625" PointY="14.57029296875" />
-          <ConnectorPoint PointX="6" PointY="14.57029296875" />
+          <ConnectorPoint PointX="5.0625" PointY="14.570292968750003" />
+          <ConnectorPoint PointX="6" PointY="14.570292968750003" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_BudgetRequestConditions_BudgetRequest" >
-          <ConnectorPoint PointX="7.5" PointY="14.137563476562498" />
-          <ConnectorPoint PointX="8.25" PointY="14.137563476562498" />
+          <ConnectorPoint PointX="7.5" PointY="14.137563476562502" />
+          <ConnectorPoint PointX="8.25" PointY="14.137563476562502" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_BudgetRequestDetail_BudgetRequest" >
           <ConnectorPoint PointX="7.5" PointY="11.999847819010419" />
@@ -1777,8 +1780,8 @@
           <ConnectorPoint PointX="10.072916666666666" PointY="12.624695638020839" />
           <ConnectorPoint PointX="10.239583333333334" PointY="12.624695638020839" />
           <ConnectorPoint PointX="10.875" PointY="12.624695638020839" />
-          <ConnectorPoint PointX="10.875" PointY="14.110857712890617" />
-          <ConnectorPoint PointX="11.25" PointY="14.110857712890617" />
+          <ConnectorPoint PointX="10.875" PointY="14.193031378255203" />
+          <ConnectorPoint PointX="11.25" PointY="14.193031378255203" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_CustomerContact_Person" >
           <ConnectorPoint PointX="2.25" PointY="9.7105004882812551" />
@@ -1820,8 +1823,8 @@
           <ConnectorPoint PointX="11.25" PointY="13.031176409505203" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Task_Project" >
-          <ConnectorPoint PointX="12.75" PointY="13.235931803385412" />
-          <ConnectorPoint PointX="13.5" PointY="13.235931803385412" />
+          <ConnectorPoint PointX="12.75" PointY="13.318105468749998" />
+          <ConnectorPoint PointX="13.5" PointY="13.318105468749998" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Resource_ResourceType" >
           <ConnectorPoint PointX="15" PointY="8.2961531575520837" />
