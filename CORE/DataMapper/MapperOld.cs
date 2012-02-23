@@ -10,43 +10,6 @@ namespace CORE.DataMapper
 {
     internal static class MapperOld
     {
-        internal static PhoneData Map(Nexus.PersonPhone phone)
-        {
-            PhoneData tmpPhoneData = null;
-            if (phone != null)
-            {
-                tmpPhoneData = new PhoneData();
-                tmpPhoneData.Id = phone.Id;
-                tmpPhoneData.PhoneNumber = phone.Phone;
-                tmpPhoneData.PhoneType = Map(phone.PhoneType); 
-            }
-            return tmpPhoneData;
-        }
-
-        internal static List<PhoneData> Map(EntityCollection<Nexus.PersonPhone> collection)
-        {
-            List<PhoneData> list = new List<PhoneData>();
-            foreach (var item in collection)
-            {
-                var mappedData = Map(item);
-                list.Add(mappedData);
-            }
-            return list;
-        }
-
-        internal static PhoneTypeData Map(Nexus.PhoneType phoneType)
-        {
-            PhoneTypeData tmpPhoneTypeData = null;
-            if (phoneType != null)
-            {
-                tmpPhoneTypeData = new PhoneTypeData();
-                tmpPhoneTypeData.Id = phoneType.Id;
-                tmpPhoneTypeData.Name = phoneType.Name; 
-            }
-            return tmpPhoneTypeData;
-        }
-
-
         internal static CustomerDto Map(Nexus.Customer customer)
         {
             CustomerDto tmpCustomerData = null;

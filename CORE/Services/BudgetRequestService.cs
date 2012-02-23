@@ -68,7 +68,7 @@ namespace CORE.Services
         }
 
         // Get one specific BudgetRequest
-        public BudgetRequestResponse getBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse GetBudgetRequest(BudgetRequestRequest request)
         {
             var response = new BudgetRequestResponse();
             if (request.BudgetResquestId != 0) {

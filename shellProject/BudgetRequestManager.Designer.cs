@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbProjectName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -58,7 +58,7 @@
             this.grdBudgetRequestDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewBudgetRequestDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colProduct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.CmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.colArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMeasure = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbMeasure = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -132,7 +132,7 @@
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBudgetRequestDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBudgetRequestDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
@@ -293,7 +293,7 @@
             this.cmbBubgetRequest.Name = "cmbBubgetRequest";
             this.cmbBubgetRequest.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Right),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.cmbBubgetRequest.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbBubgetRequest_Properties_ButtonClick);
             this.cmbBubgetRequest.Size = new System.Drawing.Size(168, 20);
@@ -437,7 +437,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.grdBudgetRequestDetails);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage1.Size = new System.Drawing.Size(698, 272);
             this.xtraTabPage1.Text = "Descripcion del Trabajo";
             // 
             // grdBudgetRequestDetails
@@ -446,7 +446,7 @@
             this.grdBudgetRequestDetails.MainView = this.gridViewBudgetRequestDetails;
             this.grdBudgetRequestDetails.Name = "grdBudgetRequestDetails";
             this.grdBudgetRequestDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.cmbProduct,
+            this.CmbProduct,
             this.cmbMeasure});
             this.grdBudgetRequestDetails.Size = new System.Drawing.Size(692, 265);
             this.grdBudgetRequestDetails.TabIndex = 0;
@@ -467,7 +467,7 @@
             // colProduct
             // 
             this.colProduct.Caption = "Producto";
-            this.colProduct.ColumnEdit = this.cmbProduct;
+            this.colProduct.ColumnEdit = this.CmbProduct;
             this.colProduct.Name = "colProduct";
             this.colProduct.Visible = true;
             this.colProduct.VisibleIndex = 0;
@@ -475,10 +475,11 @@
             // 
             // cmbProduct
             // 
-            this.cmbProduct.AutoHeight = false;
-            this.cmbProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbProduct.Name = "cmbProduct";
+            this.CmbProduct.AutoHeight = false;
+            this.CmbProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.CmbProduct.Name = "cmbProduct";
+            this.CmbProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.CmbProductButtonClick);
             // 
             // colArea
             // 
@@ -541,7 +542,7 @@
             this.chkDust.Location = new System.Drawing.Point(5, 100);
             this.chkDust.Name = "chkDust";
             this.chkDust.Properties.Caption = "Polvo";
-            this.chkDust.Size = new System.Drawing.Size(80, 19);
+            this.chkDust.Size = new System.Drawing.Size(80, 18);
             this.chkDust.TabIndex = 9;
             // 
             // chkNoise
@@ -549,7 +550,7 @@
             this.chkNoise.Location = new System.Drawing.Point(5, 75);
             this.chkNoise.Name = "chkNoise";
             this.chkNoise.Properties.Caption = "Ruido";
-            this.chkNoise.Size = new System.Drawing.Size(80, 19);
+            this.chkNoise.Size = new System.Drawing.Size(80, 18);
             this.chkNoise.TabIndex = 8;
             // 
             // chkWet
@@ -557,7 +558,7 @@
             this.chkWet.Location = new System.Drawing.Point(5, 50);
             this.chkWet.Name = "chkWet";
             this.chkWet.Properties.Caption = "Agua";
-            this.chkWet.Size = new System.Drawing.Size(84, 19);
+            this.chkWet.Size = new System.Drawing.Size(84, 18);
             this.chkWet.TabIndex = 7;
             // 
             // chkMoisture
@@ -565,7 +566,7 @@
             this.chkMoisture.Location = new System.Drawing.Point(5, 25);
             this.chkMoisture.Name = "chkMoisture";
             this.chkMoisture.Properties.Caption = "Humedad";
-            this.chkMoisture.Size = new System.Drawing.Size(84, 19);
+            this.chkMoisture.Size = new System.Drawing.Size(84, 18);
             this.chkMoisture.TabIndex = 0;
             // 
             // groupControl6
@@ -586,7 +587,7 @@
             this.chkToilet.Location = new System.Drawing.Point(5, 125);
             this.chkToilet.Name = "chkToilet";
             this.chkToilet.Properties.Caption = "Requiere Sanitarios";
-            this.chkToilet.Size = new System.Drawing.Size(115, 19);
+            this.chkToilet.Size = new System.Drawing.Size(115, 18);
             this.chkToilet.TabIndex = 10;
             // 
             // chkVentilation
@@ -594,7 +595,7 @@
             this.chkVentilation.Location = new System.Drawing.Point(5, 100);
             this.chkVentilation.Name = "chkVentilation";
             this.chkVentilation.Properties.Caption = "Equipo Ventilacion";
-            this.chkVentilation.Size = new System.Drawing.Size(115, 19);
+            this.chkVentilation.Size = new System.Drawing.Size(115, 18);
             this.chkVentilation.TabIndex = 9;
             // 
             // chkReachable
@@ -602,7 +603,7 @@
             this.chkReachable.Location = new System.Drawing.Point(5, 75);
             this.chkReachable.Name = "chkReachable";
             this.chkReachable.Properties.Caption = "Facil Acceso";
-            this.chkReachable.Size = new System.Drawing.Size(115, 19);
+            this.chkReachable.Size = new System.Drawing.Size(115, 18);
             this.chkReachable.TabIndex = 8;
             // 
             // chkWorkInside
@@ -610,7 +611,7 @@
             this.chkWorkInside.Location = new System.Drawing.Point(5, 50);
             this.chkWorkInside.Name = "chkWorkInside";
             this.chkWorkInside.Properties.Caption = "Trabajo Interior";
-            this.chkWorkInside.Size = new System.Drawing.Size(115, 19);
+            this.chkWorkInside.Size = new System.Drawing.Size(115, 18);
             this.chkWorkInside.TabIndex = 7;
             // 
             // chkWorkOutside
@@ -618,7 +619,7 @@
             this.chkWorkOutside.Location = new System.Drawing.Point(5, 25);
             this.chkWorkOutside.Name = "chkWorkOutside";
             this.chkWorkOutside.Properties.Caption = "Trabajo Exterior";
-            this.chkWorkOutside.Size = new System.Drawing.Size(115, 19);
+            this.chkWorkOutside.Size = new System.Drawing.Size(115, 18);
             this.chkWorkOutside.TabIndex = 0;
             // 
             // groupControl5
@@ -636,7 +637,7 @@
             this.chkLodging.Location = new System.Drawing.Point(114, 25);
             this.chkLodging.Name = "chkLodging";
             this.chkLodging.Properties.Caption = "Hospedage";
-            this.chkLodging.Size = new System.Drawing.Size(80, 19);
+            this.chkLodging.Size = new System.Drawing.Size(80, 18);
             this.chkLodging.TabIndex = 7;
             // 
             // chkFood
@@ -644,7 +645,7 @@
             this.chkFood.Location = new System.Drawing.Point(5, 25);
             this.chkFood.Name = "chkFood";
             this.chkFood.Properties.Caption = "Alimentacion";
-            this.chkFood.Size = new System.Drawing.Size(103, 19);
+            this.chkFood.Size = new System.Drawing.Size(103, 18);
             this.chkFood.TabIndex = 0;
             // 
             // groupControl4
@@ -663,7 +664,7 @@
             this.chkElectricity.Location = new System.Drawing.Point(5, 50);
             this.chkElectricity.Name = "chkElectricity";
             this.chkElectricity.Properties.Caption = "Electricidad";
-            this.chkElectricity.Size = new System.Drawing.Size(103, 19);
+            this.chkElectricity.Size = new System.Drawing.Size(103, 18);
             this.chkElectricity.TabIndex = 7;
             // 
             // chkDrinkableWater
@@ -671,7 +672,7 @@
             this.chkDrinkableWater.Location = new System.Drawing.Point(5, 25);
             this.chkDrinkableWater.Name = "chkDrinkableWater";
             this.chkDrinkableWater.Properties.Caption = "Agua Potable";
-            this.chkDrinkableWater.Size = new System.Drawing.Size(103, 19);
+            this.chkDrinkableWater.Size = new System.Drawing.Size(103, 18);
             this.chkDrinkableWater.TabIndex = 0;
             // 
             // chkWareHouse
@@ -679,7 +680,7 @@
             this.chkWareHouse.Location = new System.Drawing.Point(5, 75);
             this.chkWareHouse.Name = "chkWareHouse";
             this.chkWareHouse.Properties.Caption = "Bodega Cliente";
-            this.chkWareHouse.Size = new System.Drawing.Size(103, 19);
+            this.chkWareHouse.Size = new System.Drawing.Size(103, 18);
             this.chkWareHouse.TabIndex = 3;
             // 
             // groupControl3
@@ -697,7 +698,7 @@
             this.chkNightTurn.Location = new System.Drawing.Point(50, 25);
             this.chkNightTurn.Name = "chkNightTurn";
             this.chkNightTurn.Properties.Caption = "Noche";
-            this.chkNightTurn.Size = new System.Drawing.Size(58, 19);
+            this.chkNightTurn.Size = new System.Drawing.Size(58, 18);
             this.chkNightTurn.TabIndex = 7;
             // 
             // chkDayTurn
@@ -705,7 +706,7 @@
             this.chkDayTurn.Location = new System.Drawing.Point(5, 25);
             this.chkDayTurn.Name = "chkDayTurn";
             this.chkDayTurn.Properties.Caption = "Dia";
-            this.chkDayTurn.Size = new System.Drawing.Size(44, 19);
+            this.chkDayTurn.Size = new System.Drawing.Size(44, 18);
             this.chkDayTurn.TabIndex = 0;
             // 
             // groupControl1
@@ -728,7 +729,7 @@
             this.chkTuesday.Location = new System.Drawing.Point(5, 50);
             this.chkTuesday.Name = "chkTuesday";
             this.chkTuesday.Properties.Caption = "Martes";
-            this.chkTuesday.Size = new System.Drawing.Size(75, 19);
+            this.chkTuesday.Size = new System.Drawing.Size(75, 18);
             this.chkTuesday.TabIndex = 7;
             // 
             // chkMonday
@@ -737,7 +738,7 @@
             this.chkMonday.Name = "chkMonday";
             this.chkMonday.Properties.Caption = "Lunes";
             this.chkMonday.Properties.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
-            this.chkMonday.Size = new System.Drawing.Size(75, 19);
+            this.chkMonday.Size = new System.Drawing.Size(75, 18);
             this.chkMonday.TabIndex = 0;
             // 
             // chkSunday
@@ -745,7 +746,7 @@
             this.chkSunday.Location = new System.Drawing.Point(5, 175);
             this.chkSunday.Name = "chkSunday";
             this.chkSunday.Properties.Caption = "Domingo";
-            this.chkSunday.Size = new System.Drawing.Size(75, 19);
+            this.chkSunday.Size = new System.Drawing.Size(75, 18);
             this.chkSunday.TabIndex = 4;
             // 
             // chkWednesday
@@ -753,7 +754,7 @@
             this.chkWednesday.Location = new System.Drawing.Point(5, 75);
             this.chkWednesday.Name = "chkWednesday";
             this.chkWednesday.Properties.Caption = "Miercoles";
-            this.chkWednesday.Size = new System.Drawing.Size(75, 19);
+            this.chkWednesday.Size = new System.Drawing.Size(75, 18);
             this.chkWednesday.TabIndex = 3;
             // 
             // chkSaturday
@@ -761,7 +762,7 @@
             this.chkSaturday.Location = new System.Drawing.Point(5, 150);
             this.chkSaturday.Name = "chkSaturday";
             this.chkSaturday.Properties.Caption = "Sabado";
-            this.chkSaturday.Size = new System.Drawing.Size(75, 19);
+            this.chkSaturday.Size = new System.Drawing.Size(75, 18);
             this.chkSaturday.TabIndex = 2;
             // 
             // chkFriday
@@ -769,7 +770,7 @@
             this.chkFriday.Location = new System.Drawing.Point(5, 125);
             this.chkFriday.Name = "chkFriday";
             this.chkFriday.Properties.Caption = "Viernes";
-            this.chkFriday.Size = new System.Drawing.Size(75, 19);
+            this.chkFriday.Size = new System.Drawing.Size(75, 18);
             this.chkFriday.TabIndex = 5;
             // 
             // chkThursday
@@ -777,7 +778,7 @@
             this.chkThursday.Location = new System.Drawing.Point(5, 100);
             this.chkThursday.Name = "chkThursday";
             this.chkThursday.Properties.Caption = "Jueves";
-            this.chkThursday.Size = new System.Drawing.Size(75, 19);
+            this.chkThursday.Size = new System.Drawing.Size(75, 18);
             this.chkThursday.TabIndex = 6;
             // 
             // xtraTabPage3
@@ -1008,7 +1009,7 @@
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdBudgetRequestDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBudgetRequestDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMeasure)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
@@ -1141,7 +1142,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbPhone;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraGrid.Columns.GridColumn colProduct;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbProduct;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox CmbProduct;
         private DevExpress.XtraGrid.Columns.GridColumn colArea;
         private DevExpress.XtraGrid.Columns.GridColumn colMeasure;
         private DevExpress.XtraGrid.Columns.GridColumn colApplication;

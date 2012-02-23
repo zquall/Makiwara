@@ -100,8 +100,6 @@
     <Compile Include="DataTransferObjects\PersonPhoneDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\PhoneTypeData.cs" />
-    <Compile Include="DataTransferObjects\PhoneData.cs" />
     <Compile Include="DataTransferObjects\NervObjects\UserAccountDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
@@ -135,6 +133,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\BudgetRequestRequest.cs" />
+    <Compile Include="Request\ItemRequest.cs" />
     <Compile Include="Request\ResourceSourceRequest.cs" />
     <Compile Include="Request\UserRequest.cs" />
     <Compile Include="Request\CustomerRequest.cs" />
@@ -143,6 +142,7 @@
     <Compile Include="Request\ProjectRequest.cs" />
     <Compile Include="Request\ResourceTypeRequest.cs" />
     <Compile Include="Response\CommonObjectsResponse.cs" />
+    <Compile Include="Response\ItemResponse.cs" />
     <Compile Include="Response\ResourceSourceResponse.cs" />
     <Compile Include="Response\UserResponse.cs" />
     <Compile Include="Response\EmployeeResponse.cs" />

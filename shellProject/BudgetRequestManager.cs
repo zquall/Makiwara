@@ -92,6 +92,23 @@ namespace shellProject
                     break;
             }
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            saveContact();
+        }
+
+        private void CmbProductButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            switch (e.Button.Kind)
+            {
+                case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
+                    loadItemFinder();
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
         #region Load Actions
@@ -126,7 +143,7 @@ namespace shellProject
         private void loadBudgetRequestFinder()
         {
             // Search BudgetRequest Process
-            var searchBudgetRequestDialog = new BudgetRequestFinder();
+            var searchBudgetRequestDialog = new ItemFinder();
             if (searchBudgetRequestDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // load the found BudgetResquest
@@ -412,11 +429,6 @@ namespace shellProject
             loadNewRequestBudgetManager();
         }
         #endregion
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            saveContact();
-        }
 
     }
 }

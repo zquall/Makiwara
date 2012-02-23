@@ -64,6 +64,12 @@
     <Compile Include="Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemFinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemFinder.Designer.cs">
+      <DependentUpon>ItemFinder.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemFinder.resx">
+      <DependentUpon>ItemFinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateProject.resx">
       <DependentUpon>CreateProject.cs</DependentUpon>

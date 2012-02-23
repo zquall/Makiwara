@@ -1,32 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using Interceptor.Adapters;
 using Nexus;
 using ReplicantRepository.DataTransferObjects;
 using AutoMapper;
-using CORE.DataMapper;
 
 namespace CORE.Services
 {
     public class CustomerService : ServiceBase
     {
-        protected CustomerAdapter _CustomerAdapter;
+        private readonly CustomerAdapter _customerAdapter;
 
         public CustomerService()
         {
-            _CustomerAdapter = new CustomerAdapter();
+            _customerAdapter = new CustomerAdapter();
         }
 
         // Search Customers
-        public CustomerResponse searchCustomer(CustomerRequest request)
+        public CustomerResponse SearchCustomer(CustomerRequest request)
         {
-            var response = new CustomerResponse();
-            // Inicitialize the list of customers
-            response.CustomerList = new List<CustomerDto>();
+            var response = new CustomerResponse {CustomerList = new List<CustomerDto>()};
 
             // *** Removed functionality ***
             // Get customers from respective employee
@@ -37,21 +33,23 @@ namespace CORE.Services
             // Search customers without employee restriction
             var customersFound = Olympus._Enterprise.Customers.Where(x => x.Name.Contains(request.SearchCustomerQuery)).OrderBy(y => y.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).Distinct().ToList();
             
-            if (customersFound != null)
+            if (customersFound.Count > 0 )
             {                
                 // Fill the response with the customers founded
                 foreach (var customer in customersFound)
                 {
-                    CustomerDto tmpCustomerData = new CustomerDto();
-                    tmpCustomerData.Id = customer.Id;
-                    tmpCustomerData.Name = customer.Name;
-                    tmpCustomerData.Address = customer.Address;
+                    var tmpCustomerData = new CustomerDto
+                                                      {
+                                                          Id = customer.Id,
+                                                          Name = customer.Name,
+                                                          Address = customer.Address
+                                                      };
                     response.CustomerList.Add(tmpCustomerData);
                 }
             }
 
             // Intercepted Method
-            _CustomerAdapter.searchCustomer(request, response);
+            _customerAdapter.searchCustomer(request, response);
 
             // Sorted again the list
             response.CustomerList = response.CustomerList.OrderBy(x => x.Name).ToList();
@@ -59,7 +57,7 @@ namespace CORE.Services
             return response;
         }
 
-        public CustomerResponse getCustomer(CustomerRequest request)
+        public CustomerResponse GetCustomer(CustomerRequest request)
         {
             var response = new CustomerResponse();
            
@@ -67,7 +65,7 @@ namespace CORE.Services
             // Try to bind a customer from Dialcom to Nexus
             if (request.CustomerId == 0)
             {
-                request.CustomerId = saveCustomer(new CustomerRequest() { Customer = _CustomerAdapter.getCustomer(request).Customer }).CustomerId;
+                request.CustomerId = SaveCustomer(new CustomerRequest { Customer = _customerAdapter.getCustomer(request).Customer }).CustomerId;
             }            
             #endregion
 
@@ -77,12 +75,12 @@ namespace CORE.Services
                 var customerFound = Olympus._Enterprise.Customers.Where(x => x.Id == request.CustomerId).SingleOrDefault();
                 Olympus._Enterprise.Detach(customerFound);
                 response.Customer = Mapper.Map<CustomerDto>(customerFound);
-                response.Customer.CustomerContacts = getCustomerContacts(request).CustomerContacts;
+                response.Customer.CustomerContacts = GetCustomerContacts(request).CustomerContacts;
             }
             return response;
         }
 
-        public CustomerResponse getCustomerContact(CustomerRequest request)
+        public CustomerResponse GetCustomerContact(CustomerRequest request)
         {
             var response = new CustomerResponse();
             // Validate request
@@ -94,7 +92,7 @@ namespace CORE.Services
             return response;
         }
 
-        public CustomerResponse getCustomerContacts(CustomerRequest request)
+        public CustomerResponse GetCustomerContacts(CustomerRequest request)
         {
             var response = new CustomerResponse();
             if (request.CustomerId > 0)
@@ -108,7 +106,7 @@ namespace CORE.Services
             return response;
         }
 
-        public CustomerResponse saveCustomerContact(CustomerRequest request)
+        public CustomerResponse SaveCustomerContact(CustomerRequest request)
         {
             var response = new CustomerResponse();
             // Validate contact has a customer related
@@ -121,22 +119,21 @@ namespace CORE.Services
                 {
                     // Edit
                     contact = Olympus._Enterprise.CustomerContacts.Where(x => x.Id == request.CustomerContact.Id).SingleOrDefault();
-                    Mapper.Map<CustomerContactDto, CustomerContact>(request.CustomerContact, contact);
+                    Mapper.Map(request.CustomerContact, contact);
                 }else{
                     // Add
-                    contact = new CustomerContact();
                     contact = Mapper.Map<CustomerContact>(request.CustomerContact);
                     Olympus._Enterprise.CustomerContacts.AddObject(contact);
                 }
                 Olympus._Enterprise.SaveChanges();
-                response.CustomerContactId = contact.Id;
+                if (contact != null) response.CustomerContactId = contact.Id;
             }
             return response;
         }
 
-        public CustomerResponse saveCustomer(CustomerRequest request)
+        public CustomerResponse SaveCustomer(CustomerRequest request)
         {
-            CustomerResponse response = new CustomerResponse();
+            var response = new CustomerResponse();
             if (request.Customer != null)
             {
                 // Check if is a new customer

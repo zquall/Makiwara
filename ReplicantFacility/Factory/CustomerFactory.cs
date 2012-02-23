@@ -19,27 +19,27 @@ namespace ReplicantFacility.Factory
 
         public CustomerResponse searchCustomer(CustomerRequest request)
         {
-            return _CustomerService.searchCustomer(request);
+            return _CustomerService.SearchCustomer(request);
         }
 
         public CustomerResponse getCustomer(CustomerRequest request)
         {
-            return _CustomerService.getCustomer(request);
+            return _CustomerService.GetCustomer(request);
         }
 
         public CustomerResponse getCustomerContact(CustomerRequest request)
         {
-            return _CustomerService.getCustomerContact(request);
+            return _CustomerService.GetCustomerContact(request);
         }
 
         public CustomerResponse saveCustomerContact(CustomerRequest request)
         {
-            return _CustomerService.saveCustomerContact(request);
+            return _CustomerService.SaveCustomerContact(request);
         }
 
         public CustomerResponse saveCustomer(CustomerRequest request)
         {
-            return _CustomerService.saveCustomer(request);
+            return _CustomerService.SaveCustomer(request);
         }
         
     }

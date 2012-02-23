@@ -91,42 +91,43 @@
             this.grdCustomerView.OptionsView.ShowGroupPanel = false;
             this.grdCustomerView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCustomerView_KeyDown);
             // 
-            // colName
+            // colCode
             // 
-            this.colCode.Caption = "Nombre del Cliente";
-            this.colCode.FieldName = "Customer.Name";
-            this.colCode.Name = "colName";
+            this.colCode.Caption = "Codigo";
+            this.colCode.FieldName = "Code";
+            this.colCode.Name = "colCode";
             this.colCode.Visible = true;
             this.colCode.VisibleIndex = 0;
-            this.colCode.Width = 200;
+            this.colCode.Width = 115;
             // 
-            // colProjectName
+            // colName
             // 
-            this.colName.Caption = "Proyecto";
-            this.colName.FieldName = "ProjectName";
-            this.colName.Name = "colProjectName";
+            this.colName.Caption = "Nombre del Articulo";
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 1;
-            this.colName.Width = 200;
+            this.colName.Width = 300;
             // 
-            // colDate
+            // colPrice
             // 
-            this.colPrice.Caption = "Fecha";
-            this.colPrice.DisplayFormat.FormatString = "d";
-            this.colPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colPrice.FieldName = "DateModified";
-            this.colPrice.Name = "colDate";
+            this.colPrice.Caption = "Precio";
+            this.colPrice.DisplayFormat.FormatString = "C";
+            this.colPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colPrice.FieldName = "Price";
+            this.colPrice.Name = "colPrice";
             this.colPrice.Visible = true;
             this.colPrice.VisibleIndex = 2;
+            this.colPrice.Width = 110;
             // 
-            // colEmployee
+            // colStock
             // 
-            this.colStock.Caption = "Agente";
-            this.colStock.FieldName = "Employee";
-            this.colStock.Name = "colEmployee";
+            this.colStock.Caption = "Disponible";
+            this.colStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colStock.Name = "colStock";
             this.colStock.Visible = true;
             this.colStock.VisibleIndex = 3;
-            this.colStock.Width = 119;
+            this.colStock.Width = 80;
             // 
             // btnOk
             // 
@@ -201,7 +202,7 @@
             this.panel3.Size = new System.Drawing.Size(657, 240);
             this.panel3.TabIndex = 7;
             // 
-            // BudgetRequestFinder
+            // ItemFinder
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,10 +213,10 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "BudgetRequestFinder";
+            this.Name = "ItemFinder";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Busqueda de Solicitudes de Proyecto";
+            this.Text = "Busqueda de Articulos";
             this.Shown += new System.EventHandler(this.Finder_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdControl)).EndInit();
@@ -236,14 +237,14 @@
         private DevExpress.XtraGrid.Views.Grid.GridView grdCustomerView;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnClose;
-        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colCode;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
-        private DevExpress.XtraGrid.Columns.GridColumn colProjectName;
-        private DevExpress.XtraGrid.Columns.GridColumn colDate;
-        private DevExpress.XtraGrid.Columns.GridColumn colEmployee;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colStock;
     }
 }
