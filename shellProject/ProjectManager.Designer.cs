@@ -36,8 +36,6 @@
             this.repositoryItemProjectName = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barEditClient = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemCustumer = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.barButtonCreateProject = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonOpen = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonCopy = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonSave = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonVoid = new DevExpress.XtraBars.BarButtonItem();
@@ -62,6 +60,7 @@
             this.ultraCalendarInfo = new Infragistics.Win.UltraWinSchedule.UltraCalendarInfo(this.components);
             this.ultraCalendarLook = new Infragistics.Win.UltraWinSchedule.UltraCalendarLook(this.components);
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.barButtonCreateProject = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProjectName)).BeginInit();
@@ -78,8 +77,6 @@
             this.barEditProject,
             this.barEditName,
             this.barEditClient,
-            this.barButtonCreateProject,
-            this.barButtonOpen,
             this.barButtonCopy,
             this.barButtonSave,
             this.barButtonVoid,
@@ -143,19 +140,6 @@
             // 
             this.repositoryItemCustumer.AutoHeight = false;
             this.repositoryItemCustumer.Name = "repositoryItemCustumer";
-            // 
-            // barButtonCreateProject
-            // 
-            this.barButtonCreateProject.Caption = "Nuevo";
-            this.barButtonCreateProject.Id = 7;
-            this.barButtonCreateProject.Name = "barButtonCreateProject";
-            this.barButtonCreateProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonCreateProject_ItemClick);
-            // 
-            // barButtonOpen
-            // 
-            this.barButtonOpen.Caption = "Abrir";
-            this.barButtonOpen.Id = 8;
-            this.barButtonOpen.Name = "barButtonOpen";
             // 
             // barButtonCopy
             // 
@@ -243,8 +227,6 @@
             // 
             // ribProject
             // 
-            this.ribProject.ItemLinks.Add(this.barButtonCreateProject);
-            this.ribProject.ItemLinks.Add(this.barButtonOpen);
             this.ribProject.ItemLinks.Add(this.barButtonCopy);
             this.ribProject.ItemLinks.Add(this.barButtonSave);
             this.ribProject.ItemLinks.Add(this.barButtonVoid);
@@ -389,8 +371,6 @@
         private DevExpress.XtraBars.BarEditItem barEditClient;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemCustumer;
         private Infragistics.Win.UltraWinGanttView.UltraGanttView projectGantt;
-        private DevExpress.XtraBars.BarButtonItem barButtonCreateProject;
-        private DevExpress.XtraBars.BarButtonItem barButtonOpen;
         private DevExpress.XtraBars.BarButtonItem barButtonCopy;
         private DevExpress.XtraBars.BarButtonItem barButtonSave;
         private DevExpress.XtraBars.BarButtonItem barButtonVoid;
@@ -405,5 +385,6 @@
         private Infragistics.Win.UltraWinSchedule.UltraCalendarInfo ultraCalendarInfo;
         private Infragistics.Win.UltraWinSchedule.UltraCalendarLook ultraCalendarLook;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private DevExpress.XtraBars.BarButtonItem barButtonCreateProject;
     }
 }

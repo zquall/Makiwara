@@ -83,27 +83,36 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Customer, opt => opt.Ignore());
                 Mapper.CreateMap<BindCustomerDto, BindCustomer>();
 
-                //**********************************************************
+                //**************************************************************************************
                 Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<Project, ProjectDto>();
-                Mapper.CreateMap<Task, TaskDto>();
+
+                Mapper.CreateMap<Task, TaskDto>()
+                    .ForMember(dest => dest.Project, opt => opt.Ignore());
                 Mapper.CreateMap<TaskDto, Task>()
                     .ForMember(dest => dest.Project, opt => opt.Ignore());
-                Mapper.CreateMap<List<TaskDto>, List<Task>>();
-                Mapper.CreateMap<List<Task>, List<TaskDto>>();
-                Mapper.CreateMap<Resource, ResourceDto>();
-                Mapper.CreateMap<ResourceDto, Resource>();
-                Mapper.CreateMap<ResourceTypeDto, ResourceType>();
-                Mapper.CreateMap<ResourceType, ResourceTypeDto>();
+
+                Mapper.CreateMap<Resource, ResourceDto>()
+                    .ForMember(dest => dest.Task, opt => opt.Ignore());
+                Mapper.CreateMap<ResourceDto, Resource>()
+                    .ForMember(dest => dest.Task, opt => opt.Ignore());
+                
+                Mapper.CreateMap<ResourceTypeDto, ResourceType>()
+                    .ForMember(dest => dest.Resources, opt => opt.Ignore());
+                Mapper.CreateMap<ResourceType, ResourceTypeDto>()
+                    .ForMember(dest => dest.Resources, opt => opt.Ignore());
+                
                 Mapper.CreateMap<MeasureDto, Measure>()
                     .ForMember(dest => dest.Resources, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
                 Mapper.CreateMap<Measure, MeasureDto>()
                     .ForMember(dest => dest.Resources, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
-                Mapper.CreateMap<ProjectState, ProjectStateDto>();
-                Mapper.CreateMap<ProjectStateDto, ProjectState>();
 
+                Mapper.CreateMap<ProjectState, ProjectStateDto>()
+                    .ForMember(dest => dest.Projects, opt => opt.Ignore());
+                Mapper.CreateMap<ProjectStateDto, ProjectState>()
+                    .ForMember(dest => dest.Projects, opt => opt.Ignore());
 
                 // Just start the mapper once
                 _MapperStoped = false;
@@ -264,8 +273,6 @@ namespace CORE.DataMapper
                 #endregion
 
                 #region BudgetRequest Charge
-                //var budgetRequestTypeEntity = project.BudgetRequest;
-                //Olympus._Enterprise.Detach(budgetRequestTypeEntity);
                 var budgetRequest = Map(project.BudgetRequest);
                 #endregion
 

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
+using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.Request;
 using DevExpress.XtraNavBar;
 using ReplicantRepository.Response;
@@ -14,7 +11,7 @@ using shellProject;
 
 namespace MainFrame.Shell
 {
-    public partial class Dashboard : DevExpress.XtraEditors.XtraForm
+    public partial class Dashboard : XtraForm
     {
         public Dashboard()
         {
@@ -25,7 +22,7 @@ namespace MainFrame.Shell
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            loadNavigationBar();
+            LoadNavigationBar();
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -37,22 +34,21 @@ namespace MainFrame.Shell
 
         #region NavigationBar Loading
 
-        private void loadNavigationBar()
+        private void LoadNavigationBar()
         {
-            var request = new MenuRequest();
-            request.NavigationGroupCode = "Project";
+            var request = new MenuRequest {NavigationGroupCode = "Project"};
             var response = new MenuFactory().getNavigationItemList(request);
             if (response.NavigationItemList != null) 
             {
-                linkItemsWithGroups(navBarGroupProject, response.NavigationItemList);               
+                LinkItemsWithGroups(navBarGroupProject, response.NavigationItemList);               
             }
         }
 
-        private void linkItemsWithGroups(NavBarGroup navBarGroup, List<NavigationItem> navBarItemList)
+        private void LinkItemsWithGroups(NavBarGroup navBarGroup, List<NavigationItem> navBarItemList)
         {
             foreach (var item in navBarItemList)
             {
-                NavBarItem tmpNavBarItem = navBarControlDashboard.Items.Add();
+                var tmpNavBarItem = navBarControlDashboard.Items.Add();
                 tmpNavBarItem.Caption = item.Caption;
                 tmpNavBarItem.Name = item.Code;
                 navBarGroup.ItemLinks.Add(tmpNavBarItem);
@@ -63,37 +59,34 @@ namespace MainFrame.Shell
 
         #region Menu  Options
 
-        private void budgetRequest()
+        private void BudgetRequest()
         {
-            BudgetRequestManager requestBugetManager = new BudgetRequestManager();
-            requestBugetManager.MdiParent = this;
+            var requestBugetManager = new BudgetRequestManager {MdiParent = this};
             requestBugetManager.Show();
         }
 
-        private void createProject()
+        private void CreateProject()
         {
-            ProjectManager projectManager = new ProjectManager();
-            projectManager.MdiParent = this;
+            var projectManager = new ProjectManager {MdiParent = this};
             projectManager.Show();
 
-            CreateProject createProject = new CreateProject();
-            if (createProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-                projectManager.Close();
-        }
-
-        private void searchProject()
-        {
-            ProjectManager projectManager = new ProjectManager();
-            projectManager.MdiParent = this;
-            projectManager.Show();
-
-            SearchProject searchProject = new SearchProject();
-            if (searchProject.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+            var createProject = new CreateProject();
+            if (createProject.ShowDialog() == DialogResult.Cancel)
                 projectManager.Close();
             else
-            {
-                projectManager.loadProject(searchProject.ProjectSelected);
-            }
+                projectManager.LoadProject(createProject.Tag as ProjectDto);
+        }
+
+        private void SearchProject()
+        {
+            var projectManager = new ProjectManager {MdiParent = this};
+            projectManager.Show();
+
+            var searchProject = new SearchProject();
+            if (searchProject.ShowDialog() == DialogResult.Cancel)
+                projectManager.Close();
+            else
+                projectManager.LoadProject(searchProject.ProjectSelected);
         }
 
         private void navBarControlDashboard_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -101,13 +94,13 @@ namespace MainFrame.Shell
             switch (e.Link.ItemName)
             {
                 case "BugetRequest":
-                    budgetRequest();
+                    BudgetRequest();
                     break;
                 case "CreateProject":
-                    createProject();
+                    CreateProject();
                     break;
                 case "SearchProject":
-                    searchProject();
+                    SearchProject();
                     break;
 
                 default:

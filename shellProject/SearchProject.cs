@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
-using ReplicantRepository.Response;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Grid;
 using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {
-    public partial class SearchProject : DevExpress.XtraEditors.XtraForm
+    public partial class SearchProject : XtraForm
     {
         ProjectDto _project = new ProjectDto();
 
@@ -33,31 +26,28 @@ namespace shellProject
 
         private void FindProject(string query)
         {
-            var request = new ProjectRequest();
-            request.SearchProjectQuery = query;
-            ShowSearchResults(new ProjectFactory().searchProject(request).ProjectList);
+            var request = new ProjectRequest {SearchProjectQuery = query};
+            ShowSearchResults(new ProjectFactory().SearchProject(request).ProjectList);
         }
 
         private void ShowSearchResults(List<ProjectDto> searchResults)
         {
             grdProjectControl.DataSource = searchResults;
-            gridConfiguration();
+            GridConfiguration();
         }
 
-        private void SearchProject_Shown(object sender, EventArgs e)
-        {
-            FindProject("a");
-        }
+        
 
         #endregion
 
         #region Screen Configuration
 
-        private void gridConfiguration()
+        private void GridConfiguration()
         {
             #region Hide Columns
             viewProjects.Columns["Id"].Visible = true;
             viewProjects.Columns["BudgetRequestId"].Visible = false;
+            viewProjects.Columns["StateId"].Visible = false;
             viewProjects.Columns["CustumerId"].Visible = false;
             viewProjects.Columns["EmployeeId"].Visible = false;
             viewProjects.Columns["Name"].Visible = true;
@@ -76,9 +66,10 @@ namespace shellProject
             #endregion
 
             #region Set Caption To Visible Columns
-                viewProjects.Columns["Id"].Caption = "Código";
-                viewProjects.Columns["Name"].Caption = "Nombre";
-                viewProjects.Columns["Customer"].Caption = "Cliente";
+                viewProjects.Columns["Id"].Caption = @"Código";
+                viewProjects.Columns["Name"].Caption = @"Nombre";
+                viewProjects.Columns["Customer"].Caption = @"Cliente";
+                viewProjects.Columns["ProjectState"].Caption = @"Estado";
             #endregion
 
             #region Set With To Visible Columns
@@ -91,6 +82,7 @@ namespace shellProject
                 viewProjects.Columns["Id"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Name"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Customer"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["ProjectState"].OptionsColumn.ReadOnly = true;
             #endregion
         }
 
@@ -101,21 +93,26 @@ namespace shellProject
         private void txtFind_EditValueChanged(object sender, EventArgs e)
         {
             var tmpTextEdit = sender as TextEdit;
-            FindProject(tmpTextEdit.Text);
+            if (tmpTextEdit != null) FindProject(tmpTextEdit.Text);
         }
 
         private void cmdOk_Click(object sender, EventArgs e)
         {
             _project = viewProjects.GetFocusedRow() as ProjectDto;
 
-            Tag = new ProjectDto { Id = _project.Id, Name = _project.Name};
+            if (_project != null) Tag = new ProjectDto { Id = _project.Id, Name = _project.Name};
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void SearchProject_Shown(object sender, EventArgs e)
+        {
+            FindProject("a");
         }
 
         #endregion

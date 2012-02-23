@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 
@@ -10,31 +6,31 @@ namespace ReplicantFacility.Factory
 {
     public class ProjectFactory
     {
-        private static ProjectService _ProjectService;
+        private static ProjectService _projectService;
 
         public ProjectFactory()
         {
-            _ProjectService = _ProjectService ?? new ProjectService();
+            _projectService = _projectService ?? new ProjectService();
         }
 
-        public ProjectResponse getProject(ProjectRequest request)
+        public ProjectResponse GetProject(ProjectRequest request)
         {
-            return _ProjectService.getProject(request);
+            return _projectService.GetProject(request);
         }
 
-        public ProjectResponse searchProject(ProjectRequest request)
+        public ProjectResponse SearchProject(ProjectRequest request)
         {
-            return _ProjectService.searchProject(request);
+            return _projectService.SearchProject(request);
         }
 
-        public ProjectResponse saveProject(ProjectRequest request)
+        public ProjectResponse SaveProject(ProjectRequest request)
         {
-            return _ProjectService.saveProject(request);
+            return _projectService.SaveProject(request);
         }
 
-        public int nextCode()
+        public int NextCode()
         {
-            return _ProjectService.nextCode();
+            return _projectService.NextCode();
         }
     }
 }

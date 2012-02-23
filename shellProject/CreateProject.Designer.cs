@@ -139,6 +139,7 @@
             // 
             // chkCxcApproval
             // 
+            this.chkCxcApproval.Enabled = false;
             this.chkCxcApproval.Location = new System.Drawing.Point(13, 150);
             this.chkCxcApproval.Name = "chkCxcApproval";
             this.chkCxcApproval.Properties.Caption = "Aprobación CxC";
@@ -148,6 +149,7 @@
             // 
             // chkManagementApproval
             // 
+            this.chkManagementApproval.Enabled = false;
             this.chkManagementApproval.Location = new System.Drawing.Point(13, 126);
             this.chkManagementApproval.Name = "chkManagementApproval";
             this.chkManagementApproval.Properties.Caption = "Aprobación Gerencia";
@@ -482,7 +484,7 @@
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 4;
-            this.cmdSave.Text = "Guardar";
+            this.cmdSave.Text = "Aceptar";
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // lblQuoteNumber

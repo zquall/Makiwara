@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
-using ReplicantRepository.Request;
-using ReplicantRepository.Response;
-using System.Linq;
 using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
 {
     public partial class CreateProject : DevExpress.XtraEditors.XtraForm
     {
-        /// <summary>
-        /// Variable encargada de almacenar los datos del projecto
-        /// </summary>
+        #region Private Properties
+
         private ProjectDto _project = new ProjectDto();
 
         private BudgetRequestDto _budgetRequest = new BudgetRequestDto();
+
+        #endregion
 
         public CreateProject()
         {
@@ -30,15 +23,12 @@ namespace shellProject
 
         #region Validations 
 
-        private bool reviewExistData()
+        private bool ReviewExistData()
         {
-            bool x = true;
+            var x = true;
 
             if (txtQuoteNumber.Text == "" || spinCode.Value == 0 || txtProject.Text == "" || txtCustumer.Text == "" || txtSalesConsultant.Text == "")
                 x = false;
-
-            ////if (txtSubtotal.Text == "" || txtDiscountAmount.Text == "" || textOtherAmount.Text == "" || txtTotal.Text == "")
-            ////    x = false;
 
             return x;
         }
@@ -47,45 +37,47 @@ namespace shellProject
 
         #region Load Process
 
-        private int getNextCode()
+        private static int GetNextCode()
         {
-            return new ProjectFactory().nextCode();
+            return new ProjectFactory().NextCode();
         }
 
-        private void loadBudgetRequesToProject()
+        private void LoadBudgetRequesToProject()
         {
             txtQuoteNumber.Text = _budgetRequest.Id.ToString();
-            spinCode.Value = getNextCode();
+            spinCode.Value = GetNextCode();
             txtProject.Text = _budgetRequest.ProjectName;
             txtCustumer.Text = _budgetRequest.Customer.Name;
             txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
-            dtCreateDate.DateTime = System.DateTime.Now;
+            dtCreateDate.DateTime = DateTime.Now;
         }
 
-
-
-        private decimal calcSubtotal()
+        private static decimal CalcSubtotal()
         {
-            decimal subtotal = 0;
+            const decimal subtotal = 0;
 
             return subtotal;
         }
 
-        private decimal calcDiscount()
+        private static decimal CalcDiscount()
         {
-            decimal discount = 0;
+            const decimal discount = 0;
 
             return discount;
         }
 
-        private decimal calcOther()
+        private static decimal CalcOther()
         {
-            decimal other = 0;
+            const decimal other = 0;
 
             return other;
         }
 
-        private void loadProject(ProjectDto p)
+        /// <summary>
+        /// Carga los datos que se envian a la interfaz grafica
+        /// </summary>
+        /// <param name="p">Proyecto con los datos a cambiar</param>
+        private void LoadProject(ProjectDto p)
         {
             //Se carga el projecto a la variable local que almacena el projecto
             _project = p;
@@ -93,13 +85,14 @@ namespace shellProject
             _budgetRequest.Id = _project.BudgetRequestId;
             _budgetRequest.CustomerId = _project.CustumerId;
 
+
             //Screen One
             txtQuoteNumber.Text = p.BudgetRequestId.ToString();
             dtCreateDate.DateTime = p.CreateDate;
             spinCode.Value = p.Id;
             txtProject.Text = p.Name;
             txtCustumer.Text = p.Customer.Name;
-            txtSalesConsultant.Text = p.EmployeeId.ToString();//----------- OJO
+            txtSalesConsultant.Text = p.BudgetRequest.Employee.Person.Name;
             chkManagementApproval.Checked = p.ManagementApproval;
             chkCxcApproval.Checked = p.CxcApproval;
 
@@ -107,12 +100,12 @@ namespace shellProject
             spinContingenciesRate.Value = (decimal)p.ContingenciesRate;
             spinGuaranteeRate.Value = (decimal)p.GuaranteeRate;
             spinTotalUtilityRate.Value = (decimal)p.TotalUtilityRate;
-            spinSubTotal.Value = calcSubtotal();
+            spinSubTotal.Value = CalcSubtotal();
             spinDiscountRate.Value = (decimal)p.DiscountRate;
-            spinDiscountAmount.Value = calcDiscount();
+            spinDiscountAmount.Value = CalcDiscount();
             spinSalesTax.Value = (decimal)p.SalesTax;
             spinOthersRate.Value = (decimal)p.OthersRate;
-            spinOtherAmount.Value = calcOther();
+            spinOtherAmount.Value = CalcOther();
 
             //Screen Three
             memoComments.Text = p.Comments;
@@ -127,14 +120,14 @@ namespace shellProject
         /// disponible para cargarla en el Proyecto.
         /// </summary>
         /// 
-        private void searchBudgetRequest()
+        private void SearchBudgetRequest()
         {
-            BudgetRequestFinder budgetRequest = new BudgetRequestFinder();
-
-            if (budgetRequest.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var budgetRequest = new BudgetRequestFinder();
+            if (budgetRequest.ShowDialog() == DialogResult.OK)
+            {
                 _budgetRequest = budgetRequest.Tag as BudgetRequestDto;
-            
-            loadBudgetRequesToProject();
+                LoadBudgetRequesToProject();
+            }
         }
 
         private void txtQuoteNumber_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -142,7 +135,7 @@ namespace shellProject
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
-                    searchBudgetRequest();
+                    SearchBudgetRequest();
                     break;
                 default:
                     break;
@@ -151,29 +144,36 @@ namespace shellProject
 
         private void CreateProject_Load(object sender, EventArgs e)
         {
-            dtCreateDate.DateTime = System.DateTime.Today;
             if (this.Tag != null)
             {
-                loadProject(Tag as ProjectDto);
+                LoadProject(Tag as ProjectDto);
+            }
+            else
+            {
+                dtCreateDate.DateTime = System.DateTime.Today;
             }
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            if (reviewExistData())
+            if (ReviewExistData())
             {
-                _project = captureProject();
-                saveProject();
-                MessageBox.Show("Los Datos han sido guardados correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _project = CaptureProject();
+
+                if (_project.Customer == null)
+                    _project.Customer = _budgetRequest.Customer;
+
+                Tag = _project;
+                DialogResult = DialogResult.OK;
             }
-            else 
+            else
             {
-                MessageBox.Show("Faltan datos por llenar en el formulario", "Advertencia", MessageBoxButtons.OK,  MessageBoxIcon.Error);
+                MessageBox.Show(@"Faltan datos por llenar en el formulario", @"Advertencia", MessageBoxButtons.OK,  MessageBoxIcon.Error);
             }
         }
 
@@ -181,13 +181,13 @@ namespace shellProject
 
         #region Save Process
 
-        private ProjectDto captureProject()
+        private ProjectDto CaptureProject()
         {
-            ProjectDto p = new ProjectDto();
-            List<TaskDto> tasks = new List<TaskDto>();
+            var p = new ProjectDto();
+            var tasks = new List<TaskDto>();
 
             p.Id = (int)spinCode.Value;
-            p.BudgetRequestId = (int)_budgetRequest.Id;
+            p.BudgetRequestId = _budgetRequest.Id;
             p.CustumerId = _budgetRequest.CustomerId;
             p.EmployeeId = _budgetRequest.CustomerId;
             p.Name = txtProject.Text;
@@ -204,13 +204,6 @@ namespace shellProject
             p.Tasks = tasks;
 
             return p;
-        }
-
-        private void saveProject()
-        {
-            var request = new ProjectRequest();
-            request.Project = _project;
-            new ProjectFactory().saveProject(request);
         }
 
         #endregion
