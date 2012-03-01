@@ -3053,7 +3053,7 @@ namespace Nexus
         /// <param name="dateModified">Initial value of the DateModified property.</param>
         /// <param name="maximunDiscount">Initial value of the MaximunDiscount property.</param>
         /// <param name="wasDeleted">Initial value of the WasDeleted property.</param>
-        public static Item CreateItem(global::System.Int32 id, global::System.String name, global::System.String code, global::System.Decimal cost, global::System.Decimal price, global::System.Boolean isTaxed, global::System.Byte[] dateCreated, global::System.DateTime dateModified, global::System.Int32 maximunDiscount, global::System.Boolean wasDeleted)
+        public static Item CreateItem(global::System.Int32 id, global::System.String name, global::System.String code, global::System.Decimal cost, global::System.Decimal price, global::System.Boolean isTaxed, global::System.DateTime dateCreated, global::System.DateTime dateModified, global::System.Int32 maximunDiscount, global::System.Boolean wasDeleted)
         {
             Item item = new Item();
             item.Id = id;
@@ -3224,23 +3224,23 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] DateCreated
+        public global::System.DateTime DateCreated
         {
             get
             {
-                return StructuralObject.GetValidValue(_DateCreated);
+                return _DateCreated;
             }
             set
             {
                 OnDateCreatedChanging(value);
                 ReportPropertyChanging("DateCreated");
-                _DateCreated = StructuralObject.SetValidValue(value, true);
+                _DateCreated = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("DateCreated");
                 OnDateCreatedChanged();
             }
         }
-        private global::System.Byte[] _DateCreated;
-        partial void OnDateCreatedChanging(global::System.Byte[] value);
+        private global::System.DateTime _DateCreated;
+        partial void OnDateCreatedChanging(global::System.DateTime value);
         partial void OnDateCreatedChanged();
     
         /// <summary>

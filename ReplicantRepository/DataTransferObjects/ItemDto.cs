@@ -65,7 +65,7 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual byte[] DateCreated
+        public virtual System.DateTime DateCreated
         {
             get;
             set;

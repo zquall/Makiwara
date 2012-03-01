@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.txtSearchQuery = new DevExpress.XtraEditors.TextEdit();
-            this.grdControl = new DevExpress.XtraGrid.GridControl();
-            this.grdCustomerView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.GrdControl = new DevExpress.XtraGrid.GridControl();
+            this.GrdControlView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,8 +43,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdControlView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -59,37 +59,38 @@
             this.txtSearchQuery.Name = "txtSearchQuery";
             this.txtSearchQuery.Size = new System.Drawing.Size(657, 20);
             this.txtSearchQuery.TabIndex = 1;
-            this.txtSearchQuery.EditValueChanged += new System.EventHandler(this.txtSearchQuery_EditValueChanged);
-            this.txtSearchQuery.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchQuery_KeyDown);
+            this.txtSearchQuery.EditValueChanged += new System.EventHandler(this.TxtSearchQueryEditValueChanged);
+            this.txtSearchQuery.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtSearchQueryKeyDown);
             // 
-            // grdControl
+            // GrdControl
             // 
-            this.grdControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdControl.Location = new System.Drawing.Point(0, 0);
-            this.grdControl.MainView = this.grdCustomerView;
-            this.grdControl.Name = "grdControl";
-            this.grdControl.Size = new System.Drawing.Size(657, 240);
-            this.grdControl.TabIndex = 2;
-            this.grdControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grdCustomerView});
+            this.GrdControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GrdControl.Location = new System.Drawing.Point(0, 0);
+            this.GrdControl.MainView = this.GrdControlView;
+            this.GrdControl.Name = "GrdControl";
+            this.GrdControl.Size = new System.Drawing.Size(657, 240);
+            this.GrdControl.TabIndex = 2;
+            this.GrdControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.GrdControlView});
             // 
-            // grdCustomerView
+            // GrdControlView
             // 
-            this.grdCustomerView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.GrdControlView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCode,
             this.colName,
             this.colPrice,
             this.colStock});
-            this.grdCustomerView.GridControl = this.grdControl;
-            this.grdCustomerView.Name = "grdCustomerView";
-            this.grdCustomerView.OptionsBehavior.Editable = false;
-            this.grdCustomerView.OptionsBehavior.ReadOnly = true;
-            this.grdCustomerView.OptionsCustomization.AllowColumnMoving = false;
-            this.grdCustomerView.OptionsCustomization.AllowColumnResizing = false;
-            this.grdCustomerView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.grdCustomerView.OptionsView.EnableAppearanceEvenRow = true;
-            this.grdCustomerView.OptionsView.ShowGroupPanel = false;
-            this.grdCustomerView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdCustomerView_KeyDown);
+            this.GrdControlView.GridControl = this.GrdControl;
+            this.GrdControlView.Name = "GrdControlView";
+            this.GrdControlView.OptionsBehavior.Editable = false;
+            this.GrdControlView.OptionsBehavior.ReadOnly = true;
+            this.GrdControlView.OptionsCustomization.AllowColumnMoving = false;
+            this.GrdControlView.OptionsCustomization.AllowColumnResizing = false;
+            this.GrdControlView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.GrdControlView.OptionsView.EnableAppearanceEvenRow = true;
+            this.GrdControlView.OptionsView.ShowGroupPanel = false;
+            this.GrdControlView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.GrdControlViewCustomUnboundColumnData);
+            this.GrdControlView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdCustomerViewKeyDown);
             // 
             // colCode
             // 
@@ -112,7 +113,7 @@
             // colPrice
             // 
             this.colPrice.Caption = "Precio";
-            this.colPrice.DisplayFormat.FormatString = "C";
+            this.colPrice.DisplayFormat.FormatString = "$ #,##0.00";
             this.colPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colPrice.FieldName = "Price";
             this.colPrice.Name = "colPrice";
@@ -124,7 +125,9 @@
             // 
             this.colStock.Caption = "Disponible";
             this.colStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colStock.FieldName = "Stock";
             this.colStock.Name = "colStock";
+            this.colStock.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.colStock.Visible = true;
             this.colStock.VisibleIndex = 3;
             this.colStock.Width = 80;
@@ -138,7 +141,7 @@
             this.btnOk.Size = new System.Drawing.Size(84, 22);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "Aceptar";
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.Click += new System.EventHandler(this.BtnOkClick);
             // 
             // btnClose
             // 
@@ -150,7 +153,7 @@
             this.btnClose.Size = new System.Drawing.Size(68, 22);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Cerrar";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnCloseClick);
             // 
             // panel1
             // 
@@ -195,7 +198,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.grdControl);
+            this.panel3.Controls.Add(this.GrdControl);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(10, 40);
             this.panel3.Name = "panel3";
@@ -217,10 +220,10 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Busqueda de Articulos";
-            this.Shown += new System.EventHandler(this.Finder_Shown);
+            this.Shown += new System.EventHandler(this.FinderShown);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCustomerView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrdControlView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -233,8 +236,8 @@
         #endregion
 
         private DevExpress.XtraEditors.TextEdit txtSearchQuery;
-        private DevExpress.XtraGrid.GridControl grdControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView grdCustomerView;
+        private DevExpress.XtraGrid.GridControl GrdControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView GrdControlView;
         private DevExpress.XtraEditors.SimpleButton btnOk;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraGrid.Columns.GridColumn colCode;

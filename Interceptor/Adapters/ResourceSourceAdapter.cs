@@ -11,21 +11,21 @@ namespace Interceptor.Adapters
 {
     public class ResourceSourceAdapter
     {
-        private void mapper(Interceptor.DataBase.ResourceSource source, ResourceSourceData destination)
+        private void mapper(Interceptor.DataBase.INV_INVENTARIO source, ResourceSourceData destination)
         {
-            destination.Code = source.Code;
-            destination.Name = source.Name;
-            destination.Balance = source.Balance;
-            destination.RType = source.RType;
-            destination.Cost = source.Cost;
+            //destination.Code = source.Code;
+            //destination.Name = source.Name;
+            //destination.Balance = source.Balance;
+            //destination.RType = source.RType;
+            //destination.Cost = source.Cost;
 
-            if (source.Taxed == 0)
-                destination.Taxed = false;
-            else
-                destination.Taxed = true;
+            //if (source.Taxed == 0)
+            //    destination.Taxed = false;
+            //else
+            //    destination.Taxed = true;
         }
 
-        private void loadResourceSource(List<Interceptor.DataBase.ResourceSource> source, List<ResourceSourceData> destination)
+        private void loadResourceSource(IEnumerable<INV_INVENTARIO> source, List<ResourceSourceData> destination)
         {
             if (source != null)
             {
@@ -51,8 +51,8 @@ namespace Interceptor.Adapters
             // Inicitialize the list of resources
             response.ResourceSourceList = new List<ResourceSourceData>();
 
-            var ResourceSourceFoundByCode = Asgard._Foreing.ResourceSources.Where(x => x.Code.ToUpper().Contains(request.SearchResourceSourceQuery.ToUpper()) & x.RType.ToUpper().Equals(request.SearchResourceSourceType.ToUpper())).OrderBy(y => y.Code).Take(maximunResultRows).ToList();
-            var ResourceSourceFoundByName = Asgard._Foreing.ResourceSources.Where(x => x.Name.ToUpper().Contains(request.SearchResourceSourceQuery.ToUpper()) & x.RType.ToUpper().Equals(request.SearchResourceSourceType.ToUpper())).OrderBy(y => y.Code).Take(maximunResultRows).ToList();
+            var ResourceSourceFoundByCode = Asgard._Foreing.INV_INVENTARIO.Where(x => x.INV_Codigo.ToUpper().Contains(request.SearchResourceSourceQuery.ToUpper())).OrderBy(y => y.INV_Codigo).Take(maximunResultRows).ToList();
+            var ResourceSourceFoundByName = Asgard._Foreing.INV_INVENTARIO.Where(x => x.INV_Nombre.ToUpper().Contains(request.SearchResourceSourceQuery.ToUpper())).OrderBy(y => y.INV_Codigo).Take(maximunResultRows).ToList();
             
             loadResourceSource(ResourceSourceFoundByCode, ResourceSourceFound);
             loadResourceSource(ResourceSourceFoundByName, ResourceSourceFound);

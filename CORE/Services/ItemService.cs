@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
@@ -12,11 +11,11 @@ namespace CORE.Services
 {
     public class ItemService : ServiceBase
     {
-        private readonly CustomerAdapter _itemAdapter;
+        private readonly ItemAdapter _itemAdapter;
 
         public ItemService()
         {
-            _itemAdapter = new CustomerAdapter();
+            _itemAdapter = new ItemAdapter();
         }
 
         // Search Item
@@ -24,21 +23,23 @@ namespace CORE.Services
         {
             var response = new ItemResponse { ItemList = new List<ItemDto>() };
 
+            #region Search function not used by now
             // Search item
-            var itemsFound = Olympus._Enterprise.Items.Where(x => x.Name.Contains(request.SearchItemQuery) || 
-                             x.Code.Contains(request.SearchItemQuery))
-                             .OrderBy(y => y.Name)
-                             .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
-                             .Distinct()
-                             .ToList();
+            //var itemsFound = Olympus._Enterprise.Items.Where(x => x.Name.Contains(request.SearchItemQuery) || 
+            //                 x.Code.Contains(request.SearchItemQuery))
+            //                 .OrderBy(y => y.Name)
+            //                 .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
+            //                 .Distinct()
+            //                 .ToList();
 
-            if (itemsFound.Count > 0)
-            {
-                response.ItemList = Mapper.Map<List<ItemDto>>(itemsFound);
-            }
+            //if (itemsFound.Count > 0)
+            //{
+            //    response.ItemList = Mapper.Map<List<ItemDto>>(itemsFound);
+            //} 
+            #endregion
 
             // Intercepted Method
-            //_itemAdapter.searchCustomer(request, response);
+            _itemAdapter.SearchItem(request, response);
 
             // Sorted again the list
             response.ItemList = response.ItemList.OrderBy(x => x.Name).ToList();
@@ -55,7 +56,7 @@ namespace CORE.Services
             // Try to add item from AlienDB to Nexus if the item already exist then try to refresh the information
             if (request.ItemId == 0)
             {
-                //request.CustomerId = SaveCustomer(new CustomerRequest { Customer = _itemAdapter.getCustomer(request).Customer }).CustomerId;
+                request.ItemId = SaveItem(new ItemRequest { Item = _itemAdapter.GetItem(request).Item }).ItemId;
             }            
             #endregion
 

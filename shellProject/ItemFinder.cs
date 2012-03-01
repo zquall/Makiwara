@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
@@ -10,6 +11,7 @@ using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
 using ReplicantRepository.Response;
 using ReplicantRepository.DataTransferObjects;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace shellProject
 {
@@ -22,35 +24,30 @@ namespace shellProject
 
         #region UI Events
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        }
-
-        private void Finder_Shown(object sender, EventArgs e)
+        private void FinderShown(object sender, EventArgs e)
         {
             Search("");
         }
 
-        private void txtSearchQuery_EditValueChanged(object sender, EventArgs e)
+        private void TxtSearchQueryEditValueChanged(object sender, EventArgs e)
         {
             var tmpTextEdit = sender as TextEdit;
-            Search(tmpTextEdit.Text);
+            if (tmpTextEdit != null) Search(tmpTextEdit.Text);
         }
-        
+
         // Move the focus to the grid when press Down on the search
-        private void txtSearchQuery_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSearchQueryKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down && grdCustomerView.FocusedRowHandle >= 0)
+            if (e.KeyCode == Keys.Down && GrdControlView.FocusedRowHandle >= 0)
             {
-                grdCustomerView.Focus();
+                GrdControlView.Focus();
             }
         }
 
         // Move the focus to the search when the user press Up and is in the first row of the grid
-        private void grdCustomerView_KeyDown(object sender, KeyEventArgs e)
+        private void GrdCustomerViewKeyDown(object sender, KeyEventArgs e)
         {
-            if (grdCustomerView.FocusedRowHandle == 0)
+            if (GrdControlView.FocusedRowHandle == 0)
             {
                 if (e.KeyCode == Keys.Up)
                 {
@@ -60,25 +57,44 @@ namespace shellProject
 
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void BtnOkClick(object sender, EventArgs e)
         {
-            var budgetRequest = grdCustomerView.GetFocusedRow() as BudgetRequestDto;
-            if (budgetRequest != null)
+            var rowObject = GrdControlView.GetFocusedRow() as ItemDto;
+            if (rowObject != null)
             {
                 // Check if the user select a valid object
-                if (budgetRequest.Id > 0)
+                if (rowObject.Id > 0 || rowObject.Code != null)
                 {
-                    // Get the complete BudgetRequest
-                    BudgetRequestDto budgetRequestTag = new BudgetRequestFactory().getBudgetRequest(new BudgetRequestRequest() { BudgetResquestId = budgetRequest.Id }).BudgetRequest;
-                    Tag = budgetRequest;
+                    Tag = new ItemFactory().GetItem(new ItemRequest() { ItemId = rowObject.Id, Item = rowObject }).Item;
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
-                else
-                {
-                    // Check if is a new object                   
                 }
             }
         }
+
+        private void BtnCloseClick(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        // Calculate the Stock Value
+        private void GrdControlViewCustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        {
+            if (e.Column.FieldName == "Stock" && e.IsGetData)
+            {
+                var view = sender as ColumnView;
+                if (view != null)
+                {
+                    var itemDto = view.GetRow(e.RowHandle) as ItemDto;
+                    decimal quantity = 0;
+                    if (itemDto != null)
+                    {
+                        quantity = itemDto.Stocks.Aggregate(quantity, (current, stock) => current + stock.Quantity);
+                    }
+                    e.Value = quantity;
+                }
+            }
+        }
+        
 
         #endregion 
                
@@ -86,17 +102,15 @@ namespace shellProject
 
         private void Search(string query)
         {
-            var request = new BudgetRequestRequest();
-            request.ResquestQuery = query;
-            ShowSearchResults(new BudgetRequestFactory().searchBudgetRequest(request).BudgetRequestList);
+            var request = new ItemRequest {SearchItemQuery = query};
+            ShowSearchResults(new ItemFactory().SearchItem(request).ItemList);
         }
 
-        private void ShowSearchResults(List<BudgetRequestDto> searchResults)
+        private void ShowSearchResults(List<ItemDto> searchResults)
         {           
-            grdControl.DataSource = searchResults;
+            GrdControl.DataSource = searchResults;
         }
 
         #endregion
-            
     }
 }

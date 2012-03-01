@@ -247,14 +247,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Cost" Type="money" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="IsTaxed" Type="bit" Nullable="false" />
-          <Property Name="DateCreated" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
-          <Property Name="DateModified" Type="date" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
           <Property Name="MaximunDiscount" Type="int" Nullable="false" />
           <Property Name="WasDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -940,13 +940,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="Cost" Nullable="false" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
           <Property Type="Boolean" Name="IsTaxed" Nullable="false" />
-          <Property Type="Binary" Name="DateCreated" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
           <Property Type="DateTime" Name="DateModified" Nullable="false" />
           <Property Type="Int32" Name="MaximunDiscount" Nullable="false" />
           <Property Type="Boolean" Name="WasDeleted" Nullable="false" />

@@ -94,22 +94,6 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
-        public virtual ItemDto Item
-        {
-            get { return _item; }
-            set
-            {
-                if (!ReferenceEquals(_item, value))
-                {
-                    var previousValue = _item;
-                    _item = value;
-                    FixupItem(previousValue);
-                }
-            }
-        }
-        private ItemDto _item;
-    
-    	[DataMember]
         public virtual WarehouseDto Warehouse
         {
             get { return _warehouse; }
@@ -124,29 +108,25 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private WarehouseDto _warehouse;
-
-        #endregion
-        #region Association Fixup
     
-        private void FixupItem(ItemDto previousValue)
+    	[DataMember]
+        public virtual ItemDto Item
         {
-            if (previousValue != null && previousValue.Stocks.Contains(this))
+            get { return _item; }
+            set
             {
-                previousValue.Stocks.Remove(this);
-            }
-    
-            if (Item != null)
-            {
-                if (!Item.Stocks.Contains(this))
+                if (!ReferenceEquals(_item, value))
                 {
-                    Item.Stocks.Add(this);
-                }
-                if (ItemId != Item.Id)
-                {
-                    ItemId = Item.Id;
+                    var previousValue = _item;
+                    _item = value;
+                    FixupItem(previousValue);
                 }
             }
         }
+        private ItemDto _item;
+
+        #endregion
+        #region Association Fixup
     
         private void FixupWarehouse(WarehouseDto previousValue)
         {
@@ -164,6 +144,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (WarehouseId != Warehouse.Id)
                 {
                     WarehouseId = Warehouse.Id;
+                }
+            }
+        }
+    
+        private void FixupItem(ItemDto previousValue)
+        {
+            if (previousValue != null && previousValue.Stocks.Contains(this))
+            {
+                previousValue.Stocks.Remove(this);
+            }
+    
+            if (Item != null)
+            {
+                if (!Item.Stocks.Contains(this))
+                {
+                    Item.Stocks.Add(this);
+                }
+                if (ItemId != Item.Id)
+                {
+                    ItemId = Item.Id;
                 }
             }
         }

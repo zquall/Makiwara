@@ -7,16 +7,8 @@
     <Schema Namespace="OuterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="OuterModelStoreContainer">
           <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.Store.CLI_CLIENTES" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ResourceSource" EntityType="OuterModel.Store.ResourceSource" store:Type="Views" store:Schema="dbo" store:Name="ResourceSource">
-            <DefiningQuery>SELECT 
-      [ResourceSource].[Code] AS [Code], 
-      [ResourceSource].[Name] AS [Name], 
-      [ResourceSource].[Balance] AS [Balance], 
-      [ResourceSource].[RType] AS [RType], 
-      [ResourceSource].[Cost] AS [Cost], 
-      [ResourceSource].[Taxed] AS [Taxed]
-      FROM [dbo].[ResourceSource] AS [ResourceSource]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="INV_INVENTARIO" EntityType="OuterModel.Store.INV_INVENTARIO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="INV_X_BODEGA" EntityType="OuterModel.Store.INV_X_BODEGA" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
           <Key>
@@ -82,23 +74,119 @@
           <Property Name="CLI_Pago" Type="varchar" MaxLength="50" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'dialcom.dbo.ResourceSource' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="ResourceSource">
+        <EntityType Name="INV_INVENTARIO">
           <Key>
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="Balance" />
-            <PropertyRef Name="RType" />
-            <PropertyRef Name="Cost" />
-            <PropertyRef Name="Taxed" />
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="INV_Codigo" />
           </Key>
-          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Balance" Type="float" Nullable="false" />
-          <Property Name="RType" Type="varchar" Nullable="false" MaxLength="8" />
-          <Property Name="Cost" Type="float" Nullable="false" />
-          <Property Name="Taxed" Type="smallint" Nullable="false" />
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="INV_Codigo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="INV_Parte" Type="varchar" MaxLength="20" />
+          <Property Name="INV_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="CLA_Codigo" Type="varchar" MaxLength="1" />
+          <Property Name="FAM_Codigo" Type="varchar" MaxLength="5" />
+          <Property Name="DEP_Codigo" Type="varchar" MaxLength="5" />
+          <Property Name="UNI_Codigo" Type="varchar" MaxLength="5" />
+          <Property Name="INV_RutaFoto" Type="varchar" MaxLength="255" />
+          <Property Name="INV_Ubicacion" Type="varchar" MaxLength="255" />
+          <Property Name="INV_Notas" Type="varchar" MaxLength="255" />
+          <Property Name="INV_Mezcla" Type="varchar" MaxLength="50" />
+          <Property Name="INV_Con_Imp_Ventas" Type="smallint" Nullable="false" />
+          <Property Name="INV_Art_Servicio" Type="smallint" Nullable="false" />
+          <Property Name="INV_Cant_Inicial" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Inicial_Anterior" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Ent_Acum" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Sal_Acum" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Disponible" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Stock_Minimo" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Stock_Maximo" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Costo" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Porce_Utilidad" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Precio" Type="float" Nullable="false" />
+          <Property Name="INV_Precio_Colones" Type="float" Nullable="false" />
+          <Property Name="INV_Porce_Sugerido" Type="float" Nullable="false" />
+          <Property Name="INV_Sugerido" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="ENT_Numero" Type="int" Nullable="false" />
+          <Property Name="ENT_Fecha" Type="datetime" />
+          <Property Name="PRO_Codigo" Type="varchar" MaxLength="20" />
+          <Property Name="ENT_Monto" Type="float" Nullable="false" />
+          <Property Name="INV_Fisico" Type="float" Nullable="false" />
+          <Property Name="INV_Diferencia" Type="int" Nullable="false" />
+          <Property Name="INV_Ent_Ene" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Feb" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Mar" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Abr" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_May" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Jun" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Jul" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Ago" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Set" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Oct" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Nov" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Dic" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Ene" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Feb" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Mar" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Abr" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_May" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Jun" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Jul" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Ago" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Set" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Oct" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Nov" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Dic" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Ene" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Feb" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Mar" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Abr" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_May" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Jun" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Jul" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Ago" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Set" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Oct" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Nov" Type="float" Nullable="false" />
+          <Property Name="INV_Costo_Dic" Type="float" Nullable="false" />
+          <Property Name="INV_Porce_Desc_Max" Type="float" Nullable="false" />
+          <Property Name="Inv_PuntoReorden" Type="float" Nullable="false" />
+          <Property Name="Inv_Costo_Inicial" Type="float" Nullable="false" />
+          <Property Name="Inv_Costo_Inicial_Dolar" Type="float" Nullable="false" />
+          <Property Name="Peso" Type="float" Nullable="false" />
+          <Property Name="Volumen" Type="float" Nullable="false" />
+          <Property Name="Inv_Costo_Colon" Type="float" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="USR_Usuario_Modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Modificacion" Type="datetime" />
+          <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Inclusion" Type="datetime" />
+          <Property Name="INV_Cantidad_Reempaque" Type="float" Nullable="false" />
+          <Property Name="INV_Rango" Type="int" Nullable="false" />
+          <Property Name="INV_Stock_OrdenCompra" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="INV_Stock_Transito" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="ARA_Arancel" Type="varchar" MaxLength="15" />
+          <Property Name="INV_Precio_Suplidor" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="INV_Peso_Libras" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="INV_Peso_Kilos" Type="numeric" Nullable="false" Scale="2" />
+          <Property Name="INV_Reservado" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Cod_SAR" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="INV_X_BODEGA">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="BOD_Bodega" />
+            <PropertyRef Name="INV_Codigo" />
+          </Key>
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="BOD_Bodega" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="INV_Codigo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="INV_Cant_Inicial" Type="float" Nullable="false" />
+          <Property Name="INV_Ent_Acum" Type="float" Nullable="false" />
+          <Property Name="INV_Sal_Acum" Type="float" Nullable="false" />
+          <Property Name="INV_Disponible" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="INV_Fisico" Type="float" Nullable="false" />
+          <Property Name="INV_Diferencia" Type="int" Nullable="false" />
+          <Property Name="INV_Reservado" Type="numeric" Precision="10" Scale="2" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -106,7 +194,8 @@
       <Schema Namespace="OuterModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ForeingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.CLI_CLIENTES" />
-          <EntitySet Name="ResourceSources" EntityType="OuterModel.ResourceSource" />
+          <EntitySet Name="INV_INVENTARIO" EntityType="OuterModel.INV_INVENTARIO" />
+          <EntitySet Name="INV_X_BODEGA" EntityType="OuterModel.INV_X_BODEGA" />
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
           <Key>
@@ -172,20 +261,119 @@
           <Property Name="CLI_Pago" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="Int32" />
         </EntityType>
-        <EntityType Name="ResourceSource">
+        <EntityType Name="INV_INVENTARIO">
           <Key>
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="Balance" />
-            <PropertyRef Name="RType" />
-            <PropertyRef Name="Cost" />
-            <PropertyRef Name="Taxed" />
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="INV_Codigo" />
           </Key>
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Balance" Nullable="false" />
-          <Property Type="String" Name="RType" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Cost" Nullable="false" />
-          <Property Type="Int16" Name="Taxed" Nullable="false" />
+          <Property Type="String" Name="CIA_Codigo" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Codigo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Parte" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Nombre" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CLA_Codigo" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FAM_Codigo" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DEP_Codigo" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UNI_Codigo" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_RutaFoto" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Ubicacion" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Notas" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Mezcla" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="INV_Con_Imp_Ventas" Nullable="false" />
+          <Property Type="Int16" Name="INV_Art_Servicio" Nullable="false" />
+          <Property Type="Decimal" Name="INV_Cant_Inicial" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Inicial_Anterior" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Ent_Acum" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Sal_Acum" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Disponible" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Stock_Minimo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Stock_Maximo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Costo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="INV_Porce_Utilidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Double" Name="INV_Precio" Nullable="false" />
+          <Property Type="Double" Name="INV_Precio_Colones" Nullable="false" />
+          <Property Type="Double" Name="INV_Porce_Sugerido" Nullable="false" />
+          <Property Type="Decimal" Name="INV_Sugerido" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="ENT_Numero" Nullable="false" />
+          <Property Type="DateTime" Name="ENT_Fecha" />
+          <Property Type="String" Name="PRO_Codigo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="ENT_Monto" Nullable="false" />
+          <Property Type="Double" Name="INV_Fisico" Nullable="false" />
+          <Property Type="Int32" Name="INV_Diferencia" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Ene" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Feb" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Mar" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Abr" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_May" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Jun" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Jul" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Ago" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Set" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Oct" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Nov" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Dic" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Ene" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Feb" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Mar" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Abr" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_May" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Jun" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Jul" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Ago" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Set" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Oct" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Nov" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Dic" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Ene" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Feb" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Mar" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Abr" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_May" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Jun" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Jul" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Ago" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Set" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Oct" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Nov" Nullable="false" />
+          <Property Type="Double" Name="INV_Costo_Dic" Nullable="false" />
+          <Property Type="Double" Name="INV_Porce_Desc_Max" Nullable="false" />
+          <Property Type="Double" Name="Inv_PuntoReorden" Nullable="false" />
+          <Property Type="Double" Name="Inv_Costo_Inicial" Nullable="false" />
+          <Property Type="Double" Name="Inv_Costo_Inicial_Dolar" Nullable="false" />
+          <Property Type="Double" Name="Peso" Nullable="false" />
+          <Property Type="Double" Name="Volumen" Nullable="false" />
+          <Property Type="Double" Name="Inv_Costo_Colon" Nullable="false" />
+          <Property Type="Binary" Name="timestamp" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="USR_Usuario_Modificacion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Modificacion" />
+          <Property Type="String" Name="USR_Usuario_Inclusion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
+          <Property Type="Double" Name="INV_Cantidad_Reempaque" Nullable="false" />
+          <Property Type="Int32" Name="INV_Rango" Nullable="false" />
+          <Property Type="Decimal" Name="INV_Stock_OrdenCompra" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="INV_Stock_Transito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ARA_Arancel" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="INV_Precio_Suplidor" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="INV_Peso_Libras" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="INV_Peso_Kilos" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="INV_Reservado" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="Cod_SAR" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="INV_X_BODEGA">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="BOD_Bodega" />
+            <PropertyRef Name="INV_Codigo" />
+          </Key>
+          <Property Type="String" Name="CIA_Codigo" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BOD_Bodega" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_Codigo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="INV_Cant_Inicial" Nullable="false" />
+          <Property Type="Double" Name="INV_Ent_Acum" Nullable="false" />
+          <Property Type="Double" Name="INV_Sal_Acum" Nullable="false" />
+          <Property Type="Decimal" Name="INV_Disponible" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Double" Name="INV_Fisico" Nullable="false" />
+          <Property Type="Int32" Name="INV_Diferencia" Nullable="false" />
+          <Property Type="Decimal" Name="INV_Reservado" Precision="10" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -253,15 +441,116 @@
             <ScalarProperty Name="CLI_Pago" ColumnName="CLI_Pago" />
             <ScalarProperty Name="CON_DESCUENTO_AUTORIZA" ColumnName="CON_DESCUENTO_AUTORIZA" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ResourceSources">
-            <EntityTypeMapping TypeName="OuterModel.ResourceSource">
-              <MappingFragment StoreEntitySet="ResourceSource">
-                <ScalarProperty Name="Taxed" ColumnName="Taxed" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="RType" ColumnName="RType" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
+          <EntitySetMapping Name="INV_INVENTARIO">
+            <EntityTypeMapping TypeName="OuterModel.INV_INVENTARIO">
+              <MappingFragment StoreEntitySet="INV_INVENTARIO">
+                <ScalarProperty Name="Cod_SAR" ColumnName="Cod_SAR" />
+                <ScalarProperty Name="INV_Reservado" ColumnName="INV_Reservado" />
+                <ScalarProperty Name="INV_Peso_Kilos" ColumnName="INV_Peso_Kilos" />
+                <ScalarProperty Name="INV_Peso_Libras" ColumnName="INV_Peso_Libras" />
+                <ScalarProperty Name="INV_Precio_Suplidor" ColumnName="INV_Precio_Suplidor" />
+                <ScalarProperty Name="ARA_Arancel" ColumnName="ARA_Arancel" />
+                <ScalarProperty Name="INV_Stock_Transito" ColumnName="INV_Stock_Transito" />
+                <ScalarProperty Name="INV_Stock_OrdenCompra" ColumnName="INV_Stock_OrdenCompra" />
+                <ScalarProperty Name="INV_Rango" ColumnName="INV_Rango" />
+                <ScalarProperty Name="INV_Cantidad_Reempaque" ColumnName="INV_Cantidad_Reempaque" />
+                <ScalarProperty Name="USR_Fecha_Inclusion" ColumnName="USR_Fecha_Inclusion" />
+                <ScalarProperty Name="USR_Usuario_Inclusion" ColumnName="USR_Usuario_Inclusion" />
+                <ScalarProperty Name="USR_Fecha_Modificacion" ColumnName="USR_Fecha_Modificacion" />
+                <ScalarProperty Name="USR_Usuario_Modificacion" ColumnName="USR_Usuario_Modificacion" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="Inv_Costo_Colon" ColumnName="Inv_Costo_Colon" />
+                <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Inv_Costo_Inicial_Dolar" ColumnName="Inv_Costo_Inicial_Dolar" />
+                <ScalarProperty Name="Inv_Costo_Inicial" ColumnName="Inv_Costo_Inicial" />
+                <ScalarProperty Name="Inv_PuntoReorden" ColumnName="Inv_PuntoReorden" />
+                <ScalarProperty Name="INV_Porce_Desc_Max" ColumnName="INV_Porce_Desc_Max" />
+                <ScalarProperty Name="INV_Costo_Dic" ColumnName="INV_Costo_Dic" />
+                <ScalarProperty Name="INV_Costo_Nov" ColumnName="INV_Costo_Nov" />
+                <ScalarProperty Name="INV_Costo_Oct" ColumnName="INV_Costo_Oct" />
+                <ScalarProperty Name="INV_Costo_Set" ColumnName="INV_Costo_Set" />
+                <ScalarProperty Name="INV_Costo_Ago" ColumnName="INV_Costo_Ago" />
+                <ScalarProperty Name="INV_Costo_Jul" ColumnName="INV_Costo_Jul" />
+                <ScalarProperty Name="INV_Costo_Jun" ColumnName="INV_Costo_Jun" />
+                <ScalarProperty Name="INV_Costo_May" ColumnName="INV_Costo_May" />
+                <ScalarProperty Name="INV_Costo_Abr" ColumnName="INV_Costo_Abr" />
+                <ScalarProperty Name="INV_Costo_Mar" ColumnName="INV_Costo_Mar" />
+                <ScalarProperty Name="INV_Costo_Feb" ColumnName="INV_Costo_Feb" />
+                <ScalarProperty Name="INV_Costo_Ene" ColumnName="INV_Costo_Ene" />
+                <ScalarProperty Name="INV_Sal_Dic" ColumnName="INV_Sal_Dic" />
+                <ScalarProperty Name="INV_Sal_Nov" ColumnName="INV_Sal_Nov" />
+                <ScalarProperty Name="INV_Sal_Oct" ColumnName="INV_Sal_Oct" />
+                <ScalarProperty Name="INV_Sal_Set" ColumnName="INV_Sal_Set" />
+                <ScalarProperty Name="INV_Sal_Ago" ColumnName="INV_Sal_Ago" />
+                <ScalarProperty Name="INV_Sal_Jul" ColumnName="INV_Sal_Jul" />
+                <ScalarProperty Name="INV_Sal_Jun" ColumnName="INV_Sal_Jun" />
+                <ScalarProperty Name="INV_Sal_May" ColumnName="INV_Sal_May" />
+                <ScalarProperty Name="INV_Sal_Abr" ColumnName="INV_Sal_Abr" />
+                <ScalarProperty Name="INV_Sal_Mar" ColumnName="INV_Sal_Mar" />
+                <ScalarProperty Name="INV_Sal_Feb" ColumnName="INV_Sal_Feb" />
+                <ScalarProperty Name="INV_Sal_Ene" ColumnName="INV_Sal_Ene" />
+                <ScalarProperty Name="INV_Ent_Dic" ColumnName="INV_Ent_Dic" />
+                <ScalarProperty Name="INV_Ent_Nov" ColumnName="INV_Ent_Nov" />
+                <ScalarProperty Name="INV_Ent_Oct" ColumnName="INV_Ent_Oct" />
+                <ScalarProperty Name="INV_Ent_Set" ColumnName="INV_Ent_Set" />
+                <ScalarProperty Name="INV_Ent_Ago" ColumnName="INV_Ent_Ago" />
+                <ScalarProperty Name="INV_Ent_Jul" ColumnName="INV_Ent_Jul" />
+                <ScalarProperty Name="INV_Ent_Jun" ColumnName="INV_Ent_Jun" />
+                <ScalarProperty Name="INV_Ent_May" ColumnName="INV_Ent_May" />
+                <ScalarProperty Name="INV_Ent_Abr" ColumnName="INV_Ent_Abr" />
+                <ScalarProperty Name="INV_Ent_Mar" ColumnName="INV_Ent_Mar" />
+                <ScalarProperty Name="INV_Ent_Feb" ColumnName="INV_Ent_Feb" />
+                <ScalarProperty Name="INV_Ent_Ene" ColumnName="INV_Ent_Ene" />
+                <ScalarProperty Name="INV_Diferencia" ColumnName="INV_Diferencia" />
+                <ScalarProperty Name="INV_Fisico" ColumnName="INV_Fisico" />
+                <ScalarProperty Name="ENT_Monto" ColumnName="ENT_Monto" />
+                <ScalarProperty Name="PRO_Codigo" ColumnName="PRO_Codigo" />
+                <ScalarProperty Name="ENT_Fecha" ColumnName="ENT_Fecha" />
+                <ScalarProperty Name="ENT_Numero" ColumnName="ENT_Numero" />
+                <ScalarProperty Name="INV_Sugerido" ColumnName="INV_Sugerido" />
+                <ScalarProperty Name="INV_Porce_Sugerido" ColumnName="INV_Porce_Sugerido" />
+                <ScalarProperty Name="INV_Precio_Colones" ColumnName="INV_Precio_Colones" />
+                <ScalarProperty Name="INV_Precio" ColumnName="INV_Precio" />
+                <ScalarProperty Name="INV_Porce_Utilidad" ColumnName="INV_Porce_Utilidad" />
+                <ScalarProperty Name="INV_Costo" ColumnName="INV_Costo" />
+                <ScalarProperty Name="INV_Stock_Maximo" ColumnName="INV_Stock_Maximo" />
+                <ScalarProperty Name="INV_Stock_Minimo" ColumnName="INV_Stock_Minimo" />
+                <ScalarProperty Name="INV_Disponible" ColumnName="INV_Disponible" />
+                <ScalarProperty Name="INV_Sal_Acum" ColumnName="INV_Sal_Acum" />
+                <ScalarProperty Name="INV_Ent_Acum" ColumnName="INV_Ent_Acum" />
+                <ScalarProperty Name="INV_Inicial_Anterior" ColumnName="INV_Inicial_Anterior" />
+                <ScalarProperty Name="INV_Cant_Inicial" ColumnName="INV_Cant_Inicial" />
+                <ScalarProperty Name="INV_Art_Servicio" ColumnName="INV_Art_Servicio" />
+                <ScalarProperty Name="INV_Con_Imp_Ventas" ColumnName="INV_Con_Imp_Ventas" />
+                <ScalarProperty Name="INV_Mezcla" ColumnName="INV_Mezcla" />
+                <ScalarProperty Name="INV_Notas" ColumnName="INV_Notas" />
+                <ScalarProperty Name="INV_Ubicacion" ColumnName="INV_Ubicacion" />
+                <ScalarProperty Name="INV_RutaFoto" ColumnName="INV_RutaFoto" />
+                <ScalarProperty Name="UNI_Codigo" ColumnName="UNI_Codigo" />
+                <ScalarProperty Name="DEP_Codigo" ColumnName="DEP_Codigo" />
+                <ScalarProperty Name="FAM_Codigo" ColumnName="FAM_Codigo" />
+                <ScalarProperty Name="CLA_Codigo" ColumnName="CLA_Codigo" />
+                <ScalarProperty Name="INV_Nombre" ColumnName="INV_Nombre" />
+                <ScalarProperty Name="INV_Parte" ColumnName="INV_Parte" />
+                <ScalarProperty Name="INV_Codigo" ColumnName="INV_Codigo" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV_X_BODEGA">
+            <EntityTypeMapping TypeName="OuterModel.INV_X_BODEGA">
+              <MappingFragment StoreEntitySet="INV_X_BODEGA">
+                <ScalarProperty Name="INV_Reservado" ColumnName="INV_Reservado" />
+                <ScalarProperty Name="INV_Diferencia" ColumnName="INV_Diferencia" />
+                <ScalarProperty Name="INV_Fisico" ColumnName="INV_Fisico" />
+                <ScalarProperty Name="INV_Disponible" ColumnName="INV_Disponible" />
+                <ScalarProperty Name="INV_Sal_Acum" ColumnName="INV_Sal_Acum" />
+                <ScalarProperty Name="INV_Ent_Acum" ColumnName="INV_Ent_Acum" />
+                <ScalarProperty Name="INV_Cant_Inicial" ColumnName="INV_Cant_Inicial" />
+                <ScalarProperty Name="INV_Codigo" ColumnName="INV_Codigo" />
+                <ScalarProperty Name="BOD_Bodega" ColumnName="BOD_Bodega" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -285,9 +574,10 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="41">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="82">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
-        <EntityTypeShape EntityType="OuterModel.ResourceSource" Width="1.5" PointX="3.375" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="1.5" PointX="3.375" PointY="3.75" Height="15.890524088541667" />
+        <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791656" />
       </Diagram>
     </Diagrams>
   </Designer>

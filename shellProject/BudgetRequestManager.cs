@@ -55,7 +55,7 @@ namespace shellProject
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
-                    loadBudgetRequestFinder();
+                    LoadBudgetRequestFinder();
                     break;
                 default:
                     break;
@@ -103,7 +103,7 @@ namespace shellProject
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
-                    //loadItemFinder();
+                    LoadItemFinder();
                     break;
                 default:
                     break;
@@ -138,9 +138,20 @@ namespace shellProject
                     cmbContact.SelectedItem = contactManager.Tag;
                 }
             }
-        } 
+        }
 
-        private void loadBudgetRequestFinder()
+        private void LoadItemFinder()
+        {
+            var itemFinder = new ItemFinder();
+            itemFinder.ShowDialog();
+            if (itemFinder.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                var item = itemFinder.Tag as ItemDto;
+                // add the item to the row GrdBudgetRequestDetails.
+            }
+        }
+
+        private void LoadBudgetRequestFinder()
         {
             // Search BudgetRequest Process
             var searchBudgetRequestDialog = new ItemFinder();

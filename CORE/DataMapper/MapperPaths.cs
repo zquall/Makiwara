@@ -95,6 +95,15 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Customer, opt => opt.Ignore());
                 Mapper.CreateMap<BindCustomerDto, BindCustomer>();
 
+                // Item
+                Mapper.CreateMap<Item, ItemDto>();
+                Mapper.CreateMap<ItemDto, Item>();
+
+                // Stock
+                Mapper.CreateMap<Stock, StockDto>()
+                    .ForMember(dest => dest.Warehouse, opt => opt.Ignore());
+                Mapper.CreateMap<StockDto, Stock>();
+
                 //**************************************************************************************
                 Mapper.CreateMap<ProjectDto, Project>();
                 Mapper.CreateMap<Project, ProjectDto>();
