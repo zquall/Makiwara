@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 
@@ -10,16 +6,16 @@ namespace ReplicantFacility.Factory
 {
     public class ResourceTypeFactory
     {
-        private static ResourceTypeService _ResourceTypeService;
+        private static ResourceTypeService _resourceTypeService;
 
         public ResourceTypeFactory()
         {
-            _ResourceTypeService = _ResourceTypeService ?? new ResourceTypeService();
+            _resourceTypeService = _resourceTypeService ?? new ResourceTypeService();
         }
 
-        public ResourceTypeResponse searchResourceType(ResourceTypeRequest request)
+        public ResourceTypeResponse SearchResourceType(ResourceTypeRequest request)
         {
-            return _ResourceTypeService.searchResourceType(request);
+            return _resourceTypeService.SearchResourceType(request);
         }
     }
 }

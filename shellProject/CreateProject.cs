@@ -27,7 +27,7 @@ namespace shellProject
         {
             var x = true;
 
-            if (txtQuoteNumber.Text == "" || spinCode.Value == 0 || txtProject.Text == "" || txtCustumer.Text == "" || txtSalesConsultant.Text == "")
+            if (txtQuoteNumber.Text == "" || txtCode.Text == "" || txtProject.Text == "" || txtCustumer.Text == "" || txtSalesConsultant.Text == "")
                 x = false;
 
             return x;
@@ -37,7 +37,7 @@ namespace shellProject
 
         #region Load Process
 
-        private static int GetNextCode()
+        private static string GetNextCode()
         {
             return new ProjectFactory().NextCode();
         }
@@ -45,7 +45,7 @@ namespace shellProject
         private void LoadBudgetRequesToProject()
         {
             txtQuoteNumber.Text = _budgetRequest.Id.ToString();
-            spinCode.Value = GetNextCode();
+            txtCode.Text = GetNextCode();
             txtProject.Text = _budgetRequest.ProjectName;
             txtCustumer.Text = _budgetRequest.Customer.Name;
             txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
@@ -89,10 +89,13 @@ namespace shellProject
             //Screen One
             txtQuoteNumber.Text = p.BudgetRequestId.ToString();
             dtCreateDate.DateTime = p.CreateDate;
-            spinCode.Value = p.Id;
+            txtCode.Text = p.Code;
             txtProject.Text = p.Name;
             txtCustumer.Text = p.Customer.Name;
-            txtSalesConsultant.Text = p.BudgetRequest.Employee.Person.Name;
+            if (p.BudgetRequest != null)
+                txtSalesConsultant.Text = p.BudgetRequest.Employee.Person.Name;
+            else
+                txtSalesConsultant.Text = @"Verificando";
             chkManagementApproval.Checked = p.ManagementApproval;
             chkCxcApproval.Checked = p.CxcApproval;
 
@@ -130,36 +133,34 @@ namespace shellProject
             }
         }
 
-        private void txtQuoteNumber_Properties_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void TxtQuoteNumberPropertiesButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             switch (e.Button.Kind)
             {
                 case DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis:
                     SearchBudgetRequest();
                     break;
-                default:
-                    break;
             }
         }
 
-        private void CreateProject_Load(object sender, EventArgs e)
+        private void CreateProjectLoad(object sender, EventArgs e)
         {
-            if (this.Tag != null)
+            if (Tag != null)
             {
                 LoadProject(Tag as ProjectDto);
             }
             else
             {
-                dtCreateDate.DateTime = System.DateTime.Today;
+                dtCreateDate.DateTime = DateTime.Today;
             }
         }
 
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void CmdCancelClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void cmdSave_Click(object sender, EventArgs e)
+        private void CmdSaveClick(object sender, EventArgs e)
         {
             if (ReviewExistData())
             {
@@ -186,7 +187,7 @@ namespace shellProject
             var p = new ProjectDto();
             var tasks = new List<TaskDto>();
 
-            p.Id = (int)spinCode.Value;
+            p.Code = txtCode.Text;
             p.BudgetRequestId = _budgetRequest.Id;
             p.CustumerId = _budgetRequest.CustomerId;
             p.EmployeeId = _budgetRequest.CustomerId;

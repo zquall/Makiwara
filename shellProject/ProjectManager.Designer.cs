@@ -39,14 +39,15 @@
             this.barButtonCopy = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonSave = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonVoid = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonCalendar = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonClose = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonNewTask = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonDeleteTask = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonResourceStore = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonMoveRight = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonMoveLeft = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonLinkTask = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonUnlinkTask = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonCalendar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribTask = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -80,16 +81,17 @@
             this.barButtonCopy,
             this.barButtonSave,
             this.barButtonVoid,
-            this.barButtonCalendar,
+            this.barButtonClose,
             this.barButtonNewTask,
             this.barButtonDeleteTask,
-            this.barButtonItem9,
+            this.barButtonResourceStore,
             this.barButtonMoveRight,
             this.barButtonMoveLeft,
             this.barButtonLinkTask,
-            this.barButtonUnlinkTask});
+            this.barButtonUnlinkTask,
+            this.barButtonCalendar});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 21;
+            this.ribbon.MaxItemId = 22;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -114,6 +116,7 @@
             // 
             this.repositoryItemProject.AutoHeight = false;
             this.repositoryItemProject.Name = "repositoryItemProject";
+            this.repositoryItemProject.ReadOnly = true;
             // 
             // barEditName
             // 
@@ -127,6 +130,7 @@
             // 
             this.repositoryItemProjectName.AutoHeight = false;
             this.repositoryItemProjectName.Name = "repositoryItemProjectName";
+            this.repositoryItemProjectName.ReadOnly = true;
             // 
             // barEditClient
             // 
@@ -140,79 +144,103 @@
             // 
             this.repositoryItemCustumer.AutoHeight = false;
             this.repositoryItemCustumer.Name = "repositoryItemCustumer";
+            this.repositoryItemCustumer.ReadOnly = true;
             // 
             // barButtonCopy
             // 
             this.barButtonCopy.Caption = "Copiar";
             this.barButtonCopy.Id = 9;
+            this.barButtonCopy.LargeGlyph = global::shellProject.Properties.Resources.Copy_32;
             this.barButtonCopy.Name = "barButtonCopy";
+            this.barButtonCopy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonCopyItemClick);
             // 
             // barButtonSave
             // 
             this.barButtonSave.Caption = "Guardar";
             this.barButtonSave.Id = 10;
+            this.barButtonSave.LargeGlyph = global::shellProject.Properties.Resources.Save_32;
             this.barButtonSave.Name = "barButtonSave";
-            this.barButtonSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSave_ItemClick);
+            this.barButtonSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonSaveItemClick);
             // 
             // barButtonVoid
             // 
             this.barButtonVoid.Caption = "Anular";
             this.barButtonVoid.Id = 11;
+            this.barButtonVoid.LargeGlyph = global::shellProject.Properties.Resources.Null_32;
             this.barButtonVoid.Name = "barButtonVoid";
+            this.barButtonVoid.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonVoidItemClick);
             // 
-            // barButtonCalendar
+            // barButtonClose
             // 
-            this.barButtonCalendar.Caption = "Calendario";
-            this.barButtonCalendar.Id = 12;
-            this.barButtonCalendar.Name = "barButtonCalendar";
+            this.barButtonClose.Caption = "Cerrar";
+            this.barButtonClose.Id = 12;
+            this.barButtonClose.LargeGlyph = global::shellProject.Properties.Resources.Closed_Lock_32;
+            this.barButtonClose.Name = "barButtonClose";
+            this.barButtonClose.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonCloseItemClick);
             // 
             // barButtonNewTask
             // 
             this.barButtonNewTask.Caption = "Nueva Tarea";
             this.barButtonNewTask.Id = 13;
+            this.barButtonNewTask.LargeGlyph = global::shellProject.Properties.Resources.Add_2_32;
             this.barButtonNewTask.Name = "barButtonNewTask";
-            this.barButtonNewTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNewTask_ItemClick);
+            this.barButtonNewTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonNewTaskItemClick);
             // 
             // barButtonDeleteTask
             // 
             this.barButtonDeleteTask.Caption = "Eliminar Tarea";
             this.barButtonDeleteTask.Id = 14;
+            this.barButtonDeleteTask.LargeGlyph = global::shellProject.Properties.Resources.Remove_2_32;
             this.barButtonDeleteTask.Name = "barButtonDeleteTask";
-            this.barButtonDeleteTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDeleteTask_ItemClick);
+            this.barButtonDeleteTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonDeleteTaskItemClick);
             // 
-            // barButtonItem9
+            // barButtonResourceStore
             // 
-            this.barButtonItem9.Caption = "Repositorio Recursos";
-            this.barButtonItem9.Id = 15;
-            this.barButtonItem9.Name = "barButtonItem9";
+            this.barButtonResourceStore.Caption = "Almacen de Recursos";
+            this.barButtonResourceStore.Id = 15;
+            this.barButtonResourceStore.LargeGlyph = global::shellProject.Properties.Resources.Database_32;
+            this.barButtonResourceStore.Name = "barButtonResourceStore";
+            this.barButtonResourceStore.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonResourceStoreItemClick);
             // 
             // barButtonMoveRight
             // 
             this.barButtonMoveRight.Caption = "Aplicar Sangría";
             this.barButtonMoveRight.Id = 16;
+            this.barButtonMoveRight.LargeGlyph = global::shellProject.Properties.Resources.Blue_arrow_right_32;
             this.barButtonMoveRight.Name = "barButtonMoveRight";
-            this.barButtonMoveRight.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonMoveRight_ItemClick);
+            this.barButtonMoveRight.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonMoveRightItemClick);
             // 
             // barButtonMoveLeft
             // 
             this.barButtonMoveLeft.Caption = "Anular Sangría";
             this.barButtonMoveLeft.Id = 17;
+            this.barButtonMoveLeft.LargeGlyph = global::shellProject.Properties.Resources.Blue_arrow_left_32;
             this.barButtonMoveLeft.Name = "barButtonMoveLeft";
-            this.barButtonMoveLeft.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonMoveLeft_ItemClick);
+            this.barButtonMoveLeft.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonMoveLeftItemClick);
             // 
             // barButtonLinkTask
             // 
             this.barButtonLinkTask.Caption = "Vincular Tareas";
             this.barButtonLinkTask.Id = 18;
+            this.barButtonLinkTask.LargeGlyph = global::shellProject.Properties.Resources.Link_Add_32;
             this.barButtonLinkTask.Name = "barButtonLinkTask";
-            this.barButtonLinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonLinkTask_ItemClick);
+            this.barButtonLinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonLinkTaskItemClick);
             // 
             // barButtonUnlinkTask
             // 
             this.barButtonUnlinkTask.Caption = "Desvincular Tareas";
             this.barButtonUnlinkTask.Id = 19;
+            this.barButtonUnlinkTask.LargeGlyph = global::shellProject.Properties.Resources.Link_Delete_32;
             this.barButtonUnlinkTask.Name = "barButtonUnlinkTask";
-            this.barButtonUnlinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUnlinkTask_ItemClick);
+            this.barButtonUnlinkTask.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonUnlinkTaskItemClick);
+            // 
+            // barButtonCalendar
+            // 
+            this.barButtonCalendar.Caption = "Calendario";
+            this.barButtonCalendar.Id = 21;
+            this.barButtonCalendar.LargeGlyph = global::shellProject.Properties.Resources.Calender_32;
+            this.barButtonCalendar.Name = "barButtonCalendar";
+            this.barButtonCalendar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonCalendarItemClick);
             // 
             // ribbonPage1
             // 
@@ -227,10 +255,10 @@
             // 
             // ribProject
             // 
-            this.ribProject.ItemLinks.Add(this.barButtonCopy);
             this.ribProject.ItemLinks.Add(this.barButtonSave);
+            this.ribProject.ItemLinks.Add(this.barButtonCopy);
             this.ribProject.ItemLinks.Add(this.barButtonVoid);
-            this.ribProject.ItemLinks.Add(this.barButtonCalendar);
+            this.ribProject.ItemLinks.Add(this.barButtonClose);
             this.ribProject.Name = "ribProject";
             this.ribProject.Text = "Proyecto";
             // 
@@ -238,14 +266,15 @@
             // 
             this.ribTask.ItemLinks.Add(this.barButtonNewTask);
             this.ribTask.ItemLinks.Add(this.barButtonDeleteTask);
-            this.ribTask.ItemLinks.Add(this.barButtonItem9);
+            this.ribTask.ItemLinks.Add(this.barButtonResourceStore);
+            this.ribTask.ItemLinks.Add(this.barButtonCalendar);
             this.ribTask.Name = "ribTask";
             this.ribTask.Text = "Tareas";
             // 
             // ribHierarchy
             // 
-            this.ribHierarchy.ItemLinks.Add(this.barButtonMoveRight);
             this.ribHierarchy.ItemLinks.Add(this.barButtonMoveLeft);
+            this.ribHierarchy.ItemLinks.Add(this.barButtonMoveRight);
             this.ribHierarchy.Name = "ribHierarchy";
             this.ribHierarchy.Text = "Jerarquía";
             // 
@@ -263,7 +292,7 @@
             this.ribData.ItemLinks.Add(this.barEditClient);
             this.ribData.Name = "ribData";
             this.ribData.Text = "Datos";
-            this.ribData.CaptionButtonClick += new DevExpress.XtraBars.Ribbon.RibbonPageGroupEventHandler(this.ribData_CaptionButtonClick);
+            this.ribData.CaptionButtonClick += new DevExpress.XtraBars.Ribbon.RibbonPageGroupEventHandler(this.RibDataCaptionButtonClick);
             // 
             // ribbonPage2
             // 
@@ -292,7 +321,6 @@
             this.projectGantt.CalendarInfo = this.ultraCalendarInfo;
             this.projectGantt.CalendarLook = this.ultraCalendarLook;
             this.projectGantt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.projectGantt.GridAreaWidth = 500;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Text = "Dependencias";
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Width = 80;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Duration).Text = "Duración";
@@ -315,8 +343,8 @@
             this.projectGantt.TabIndex = 0;
             this.projectGantt.Text = "ultraGanttView1";
             this.projectGantt.VerticalSplitterMinimumResizeWidth = 10;
-            this.projectGantt.TaskDialogDisplaying += new Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingHandler(this.projectGantt_TaskDialogDisplaying);
-            this.projectGantt.ActiveTaskChanging += new Infragistics.Win.UltraWinGanttView.ActiveTaskChangingHandler(this.projectGantt_ActiveTaskChanging);
+            this.projectGantt.TaskDialogDisplaying += new Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingHandler(this.ProjectGanttTaskDialogDisplaying);
+            this.projectGantt.ActiveTaskChanging += new Infragistics.Win.UltraWinGanttView.ActiveTaskChangingHandler(this.ProjectGanttActiveTaskChanging);
             // 
             // ultraCalendarInfo
             // 
@@ -326,6 +354,11 @@
             // defaultLookAndFeel1
             // 
             this.defaultLookAndFeel1.LookAndFeel.SkinName = "Black";
+            // 
+            // barButtonCreateProject
+            // 
+            this.barButtonCreateProject.Id = -1;
+            this.barButtonCreateProject.Name = "barButtonCreateProject";
             // 
             // ProjectManager
             // 
@@ -374,10 +407,10 @@
         private DevExpress.XtraBars.BarButtonItem barButtonCopy;
         private DevExpress.XtraBars.BarButtonItem barButtonSave;
         private DevExpress.XtraBars.BarButtonItem barButtonVoid;
-        private DevExpress.XtraBars.BarButtonItem barButtonCalendar;
+        private DevExpress.XtraBars.BarButtonItem barButtonClose;
         private DevExpress.XtraBars.BarButtonItem barButtonNewTask;
         private DevExpress.XtraBars.BarButtonItem barButtonDeleteTask;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarButtonItem barButtonResourceStore;
         private DevExpress.XtraBars.BarButtonItem barButtonMoveRight;
         private DevExpress.XtraBars.BarButtonItem barButtonMoveLeft;
         private DevExpress.XtraBars.BarButtonItem barButtonLinkTask;
@@ -386,5 +419,6 @@
         private Infragistics.Win.UltraWinSchedule.UltraCalendarLook ultraCalendarLook;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraBars.BarButtonItem barButtonCreateProject;
+        private DevExpress.XtraBars.BarButtonItem barButtonCalendar;
     }
 }

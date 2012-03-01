@@ -16,21 +16,23 @@ namespace shellProject
         #region Propiedades privadas de la clase
 
         /// <summary>
-        /// Lista que contiene las tareas seleccionadas por un usuario
+        /// Selected Task
         /// </summary>
         private List<Task> _selectedTask = new List<Task>();
 
         /// <summary>
-        /// Variable que contiene el proyecto que se esta trabajando
+        /// Project in execution
         /// </summary>
         private ProjectDto _project = new ProjectDto();
 
         #endregion
 
+
         public ProjectManager()
         {
             InitializeComponent();
         }
+
 
         #region Object-mapping methods
 
@@ -48,6 +50,8 @@ namespace shellProject
             destination.Milestone = source.Milestone;
             destination.RowNumber = source.RowNumber;
             destination.TaskLevel = source.Level;
+
+            destination.Resources = source.Tag as List<ResourceDto>;
 
             #region Properties that are not necessary
             destination.IsRoot = source.IsRoot;
@@ -94,11 +98,19 @@ namespace shellProject
         #region Loads Methods
 
         /// <summary>
-        /// Gets the dependencies of a task
+        /// Clear the project in execution
         /// </summary>
-        /// <param name="sourceDependencies">Lista con las dependencias de la tarea, leidas de la BD</param>
-        /// <param name="destination">Collección de tareas que el control leera como las dependencias de una tarea</param>
-        /// <param name="tasks"></param>
+        private void ClearProject()
+        {
+            projectGantt.CalendarInfo.Tasks.Clear();
+        }
+
+        /// <summary>
+        /// Gets the dependencies and the type dependencie of the tasks in the project
+        /// </summary>
+        /// <param name="sourceDependencies">Task's dependencies from the DB</param>
+        /// <param name="destination">Collection of dependencies for the Dev Express control</param>
+        /// <param name="tasks">Dependencies source</param>
         private static void LoadDependencies(IEnumerable<TaskDto> sourceDependencies, TaskDependenciesCollection destination, List<Task> tasks)
         {
             foreach (var t in sourceDependencies)
@@ -112,7 +124,7 @@ namespace shellProject
         }
 
         /// <summary>
-        /// Este método se encarga de cargar las tareas traidas desde la BD al control encargado de desplegarlas al usuario
+        /// Charge the tasks in the Dev Express Control
         /// </summary>
         private void LoadTasks()
         {
@@ -125,31 +137,37 @@ namespace shellProject
                 ultraCalendarInfo.Tasks.Add(tmpTask);
                 allTask.Add(tmpTask);
 
-                if (t.Resources != null)                                             //Se los recursos de las tareas
-                    tmpTask.Tag = t.Resources;
+                if (t.Resources != null)
+                    tmpTask.Tag = t.Resources;                                      
 
-                if (t.Task1.Count > 0)                                           //Se incluyen las dependencias de la tarea
-                    LoadDependencies(t.Task1, tmpTask.Dependencies, allTask);
+                if (t.Task1.Count > 0)
+                    LoadDependencies(t.Task1, tmpTask.Dependencies, allTask);       
 
-                for (var i = 1; i <= t.TaskLevel; i++)                                  //Se agrega el nivel de la tarea
+                for (var i = 1; i <= t.TaskLevel; i++)
                     tmpTask.Indent();
             }
         }
 
         /// <summary>
-        /// Método que se encarga de cargar en una variable local el proyecto que se esta trabajando.
+        /// Charge in the project the local variable _project
         /// </summary>
-        /// <param name="project"></param>
-        public void LoadProject(ProjectDto project)
+        public void LoadProject()
         {
-            var request = new ProjectRequest {Project = project};
-            _project = new ProjectFactory().GetProject(request).Project ?? project;
-
-            repositoryItemProject.NullText = _project.Id.ToString();
+            repositoryItemProject.NullText = _project.Code;
             repositoryItemProjectName.NullText = _project.Name;
             repositoryItemCustumer.NullText = _project.Customer.Name;
 
             LoadTasks();
+        }
+
+        /// <summary>
+        /// Sets the value of the local variable _project and then load
+        /// </summary>
+        /// <param name="project"></param>
+        public void LoadProject(ProjectDto project)
+        {
+            _project = project;
+            LoadProject();
         }
 
         #endregion
@@ -183,10 +201,6 @@ namespace shellProject
             return odt;
         }
 
-        /// <summary>
-        /// Gets all the tasks that will be stored in the data source
-        /// </summary>
-        /// <returns>Tasks of the project</returns>
         private List<TaskDto> GetTask()
         {
             var taskDtoListIndexes = new List<TaskDto>();
@@ -219,23 +233,54 @@ namespace shellProject
 
         private void SaveProject()
         {
+            var request = new ProjectRequest();
+
+            _project.Tasks = GetTask();
+            request.Project = _project;
+
+            var id = new ProjectFactory().SaveProject(request).ProjectId;
+            _project = new ProjectFactory().GetProject( new ProjectRequest { ProjectId = id}).Project;
+        }
+
+        private void SaveProcess()
+        {
             try
             {
-                var request = new ProjectRequest();
-                _project.Tasks = GetTask();
-                request.Project = _project;
-                _project = new ProjectFactory().SaveProject(request).Project;
+                SaveProject();
+                ClearProject();
+                LoadProject();
                 MessageBox.Show(@"Proyecto guardado exitosamente", @"Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception e)
+            catch(Exception e)
             {
-                MessageBox.Show(e.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Se han generado errores a la hora de guardar el proyecto. " + e.Message, @"Lo siento", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         #endregion
 
         #region Operations of the Options Menu
+
+        #region Project
+
+        private static void CopyProject()
+        {
+            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private static void NullProject()
+        {
+            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private static void CloseProject()
+        {
+            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        #endregion
+
+        #region Task
 
         /// <summary>
         /// Add a task to the TDO
@@ -284,6 +329,21 @@ namespace shellProject
             }
         }
 
+        private void ResourceStore()
+        {
+            var resourceStoreView = new ResourceStore { Tag = _project };
+            resourceStoreView.ShowDialog();
+        }
+
+        private static void Calendar()
+        {
+            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        #endregion
+
+        #region Hierarchy
+
         /// <summary>
         /// Add a level in the hierarchy of tasks to all the selected tasks
         /// </summary>
@@ -321,6 +381,10 @@ namespace shellProject
                 MessageBox.Show(e.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
+
+        #region Links
 
         /// <summary>
         /// Take the list of tasks that are in the selectedTask and makes one dependent on another in the order they appear in the ODT
@@ -365,6 +429,8 @@ namespace shellProject
                 MessageBox.Show(e.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -488,11 +554,79 @@ namespace shellProject
 
         #region UI Events
 
-        private void projectGantt_ActiveTaskChanging(object sender, Infragistics.Win.UltraWinGanttView.ActiveTaskChangingEventArgs e)
+        private void BarButtonSaveItemClick(object sender, ItemClickEventArgs e)
+        {
+            SaveProcess();
+        }
+
+        private void BarButtonCopyItemClick(object sender, ItemClickEventArgs e)
+        {
+            CopyProject();
+        }
+
+        private void BarButtonVoidItemClick(object sender, ItemClickEventArgs e)
+        {
+            NullProject();
+        }
+
+        private void BarButtonCloseItemClick(object sender, ItemClickEventArgs e)
+        {
+            CloseProject();
+        }
+
+        //****************************************************************************************
+
+        private void BarButtonNewTaskItemClick(object sender, ItemClickEventArgs e)
+        {
+            AddTask();
+        }
+
+        private void BarButtonDeleteTaskItemClick(object sender, ItemClickEventArgs e)
+        {
+            DeleteTask();
+        }
+
+        private void BarButtonResourceStoreItemClick(object sender, ItemClickEventArgs e)
+        {
+            ResourceStore();
+        }
+
+        private void BarButtonCalendarItemClick(object sender, ItemClickEventArgs e)
+        {
+            Calendar();
+        }
+
+        //****************************************************************************************
+
+        private void BarButtonMoveRightItemClick(object sender, ItemClickEventArgs e)
+        {
+            MoveRightTask();
+        }
+
+        private void BarButtonMoveLeftItemClick(object sender, ItemClickEventArgs e)
+        {
+            MoveLeftTask();
+        }
+
+        //****************************************************************************************
+
+        private void BarButtonLinkTaskItemClick(object sender, ItemClickEventArgs e)
+        {
+            LinkTask(TaskDependencyType.FinishToStart);
+        }
+
+        private void BarButtonUnlinkTaskItemClick(object sender, ItemClickEventArgs e)
+        {
+            UnlinkTask();
+        }
+
+        //****************************************************************************************
+
+        private void ProjectGanttActiveTaskChanging(object sender, Infragistics.Win.UltraWinGanttView.ActiveTaskChangingEventArgs e)
         {
             //Si se selecciona una tarea mientras se mantiene control presionado, esta se agrega a una lista de
             //tareas sino se mantiene control presionado entonces se limpia la lista
-            if (Control.ModifierKeys.Equals(Keys.Control))
+            if (ModifierKeys.Equals(Keys.Control))
             {
                 //Se desactiva el dialogo de tareas.
                 projectGantt.AutoDisplayTaskDialog = Infragistics.Win.UltraWinGanttView.AutoDisplayTaskDialog.No;
@@ -513,7 +647,7 @@ namespace shellProject
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void projectGantt_TaskDialogDisplaying(object sender, Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingEventArgs e)
+        private void ProjectGanttTaskDialogDisplaying(object sender, Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingEventArgs e)
         {
             //Se saca la tarea seleccionada el ODT
             var ugv = sender as Infragistics.Win.UltraWinGanttView.UltraGanttView;
@@ -521,54 +655,24 @@ namespace shellProject
             {
                 var t = ugv.ActiveTask;
 
-                //Se instancia la pantalla donde se veran los datos de la tarea
-                var ti = new TaskInfo {Tag = t, Project = _project};
+                //Se instancia la pantalla donde se veran los datos de la tarea, por referencia los recursos quedan en el Tag de la Tarea
+                var ti = new TaskInfo { Tag = t, Project = _project };
                 ti.ShowDialog();
             }
             //Se cancela la pantalla por defecto que trae el control
             e.Cancel = true;
         }
 
-        private void barButtonNewTask_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            AddTask();
-        }
-
-        private void barButtonDeleteTask_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            DeleteTask();
-        }
-
-        private void barButtonMoveRight_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            MoveRightTask();
-        }
-
-        private void barButtonMoveLeft_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            MoveLeftTask();
-        }
-
-        private void barButtonLinkTask_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            LinkTask(TaskDependencyType.FinishToStart);
-        }
-
-        private void barButtonUnlinkTask_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            UnlinkTask();
-        }
-
-        private void barButtonSave_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            SaveProject();
-        }
-
-        private void ribData_CaptionButtonClick(object sender, DevExpress.XtraBars.Ribbon.RibbonPageGroupEventArgs e)
+        /// <summary>
+        /// Show the Information Project Screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RibDataCaptionButtonClick(object sender, DevExpress.XtraBars.Ribbon.RibbonPageGroupEventArgs e)
         {
             var projectView = new CreateProject {Tag = _project, Text = @"Información del Projecto"};
             
-            if (projectView.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (projectView.ShowDialog() == DialogResult.OK)
                 Mapper(projectView.Tag as ProjectDto, _project);
         }
 

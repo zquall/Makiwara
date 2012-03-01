@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ReplicantRepository.DataTransferObjects;
-using System.Data.Objects.DataClasses;
 using AutoMapper;
 using Nerv;
 using ReplicantRepository.DataTransferObjects.NervObjects;
@@ -15,11 +12,11 @@ namespace CORE.DataMapper
     internal static class MapperPaths
     {
 
-        private static bool _MapperStoped = true;
+        private static bool _mapperStoped = true;
 
         internal static void InitializeMapper()
         {
-            if (_MapperStoped)
+            if (_mapperStoped)
             {
                 // UserAccount
                 Mapper.CreateMap<UserAccount, UserAccountDto>();
@@ -105,18 +102,25 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<StockDto, Stock>();
 
                 //**************************************************************************************
-                Mapper.CreateMap<ProjectDto, Project>();
+                Mapper.CreateMap<ProjectDto, Project>()
+                    .ForMember(dest => dest.Customer, opt => opt.Ignore())
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
+                    .ForMember(dest => dest.ProjectState, opt => opt.Ignore())
+                    .ForMember(dest => dest.Tasks, opt => opt.Ignore());
                 Mapper.CreateMap<Project, ProjectDto>();
 
                 Mapper.CreateMap<Task, TaskDto>()
-                    .ForMember(dest => dest.Project, opt => opt.Ignore());
+                      .ForMember(dest => dest.Project, opt => opt.Ignore());
                 Mapper.CreateMap<TaskDto, Task>()
-                    .ForMember(dest => dest.Project, opt => opt.Ignore());
+                    .ForMember(dest => dest.Project, opt => opt.Ignore())
+                    .ForMember(dest => dest.Resources, opt => opt.UseDestinationValue());
 
                 Mapper.CreateMap<Resource, ResourceDto>()
                     .ForMember(dest => dest.Task, opt => opt.Ignore());
                 Mapper.CreateMap<ResourceDto, Resource>()
-                    .ForMember(dest => dest.Task, opt => opt.Ignore());
+                    .ForMember(dest => dest.Task, opt => opt.Ignore())
+                    .ForMember(dest => dest.ResourceType, opt => opt.Ignore())
+                    .ForMember(dest => dest.Measure, opt => opt.Ignore());
                 
                 Mapper.CreateMap<ResourceTypeDto, ResourceType>()
                     .ForMember(dest => dest.Resources, opt => opt.Ignore());
@@ -136,7 +140,7 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Projects, opt => opt.Ignore());
 
                 // Just start the mapper once
-                _MapperStoped = false;
+                _mapperStoped = false;
             }
         }
 
@@ -249,18 +253,18 @@ namespace CORE.DataMapper
             TaskDto taskDto = null;
             if (task != null)
             {
-                List<ResourceDto> resourceList = new List<ResourceDto>();
-                foreach (Resource r in task.Resources.ToList())
+                var resourceList = new List<ResourceDto>();
+                foreach (var r in task.Resources.ToList())
                 {
-                    ResourceDto newResource = Map(r);
+                    var newResource = Map(r);
                     resourceList.Add(newResource);
                 }
 
-                List<TaskDto> dependencies = new List<TaskDto>();
-                foreach (Task t in task.Tasks.ToList())
+                var dependencies = new List<TaskDto>();
+                foreach (var t in task.Tasks.ToList())
                 {
                     //t.Tasks.Clear();
-                    TaskDto newTask = Map(t);
+                    var newTask = Map(t);
                     dependencies.Add(newTask);
                 }
 
@@ -279,10 +283,10 @@ namespace CORE.DataMapper
             if (project != null)
             {
                 #region Task Charge
-                List<TaskDto> taskList = new List<TaskDto>();
-                foreach (Task tmpTask in project.Tasks.ToList())
+                var taskList = new List<TaskDto>();
+                foreach (var tmpTask in project.Tasks.ToList())
                 {
-                    TaskDto newTask = Map(tmpTask);
+                    var newTask = Map(tmpTask);
                     taskList.Add(newTask);
                 }
                 #endregion

@@ -10,22 +10,20 @@ namespace ReplicantFacility.Factory
 {
     public class UserFactory
     {
-        private static UserService _UserService;
+        private static UserService _userService;
 
         public UserFactory()
         {
-            _UserService = _UserService ?? new UserService();
+            _userService = _userService ?? new UserService();
         }
 
-        public UserResponse getUserByLogin(UserRequest request)
+        public UserResponse GetUserByLogin(UserRequest request)
         {
-            return _UserService.getUserByLogin(request);
+            return _userService.getUserByLogin(request);
         }
-        public UserResponse getEmployeeByUserId(UserRequest request)
+        public UserResponse GetEmployeeByUserId(UserRequest request)
         {
-            return _UserService.getEmployeeByUserId(request);
+            return _userService.getEmployeeByUserId(request);
         }
-
-        
     }
 }

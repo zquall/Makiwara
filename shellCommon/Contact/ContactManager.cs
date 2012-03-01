@@ -38,7 +38,7 @@ namespace shellCommon.Contact
         // Loads the PhoneTypes on the combos
         private void loadPhoneTypes()
         {
-            var phoneTypeList = new CommonFactory().getPhoneTypeList().PhoneTypeList;
+            var phoneTypeList = new CommonFactory().GetPhoneTypeList().PhoneTypeList;
             loadPhoneTypeCombo(cmbPhoneTypeA, phoneTypeList, 0);
             loadPhoneTypeCombo(cmbPhoneTypeB, phoneTypeList, 1);
             loadPhoneTypeCombo(cmbPhoneTypeC, phoneTypeList, 2);
@@ -139,8 +139,8 @@ namespace shellCommon.Contact
         {
             var request = new CustomerRequest();
             request.CustomerContact = captureContact();
-            var response = new CustomerFactory().saveCustomerContact(request);
-            Tag = new CustomerFactory().getCustomerContact(new CustomerRequest { CustomerContactId = response.CustomerContactId }).CustomerContact;
+            var response = new CustomerFactory().SaveCustomerContact(request);
+            Tag = new CustomerFactory().GetCustomerContact(new CustomerRequest { CustomerContactId = response.CustomerContactId }).CustomerContact;
         }
 
         #endregion

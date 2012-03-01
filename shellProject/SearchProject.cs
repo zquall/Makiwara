@@ -36,8 +36,6 @@ namespace shellProject
             GridConfiguration();
         }
 
-        
-
         #endregion
 
         #region Screen Configuration
@@ -45,7 +43,8 @@ namespace shellProject
         private void GridConfiguration()
         {
             #region Hide Columns
-            viewProjects.Columns["Id"].Visible = true;
+            viewProjects.Columns["Id"].Visible = false;
+            viewProjects.Columns["Code"].Visible = true;
             viewProjects.Columns["BudgetRequestId"].Visible = false;
             viewProjects.Columns["StateId"].Visible = false;
             viewProjects.Columns["CustumerId"].Visible = false;
@@ -66,20 +65,20 @@ namespace shellProject
             #endregion
 
             #region Set Caption To Visible Columns
-                viewProjects.Columns["Id"].Caption = @"Código";
+                viewProjects.Columns["Code"].Caption = @"Código";
                 viewProjects.Columns["Name"].Caption = @"Nombre";
                 viewProjects.Columns["Customer"].Caption = @"Cliente";
                 viewProjects.Columns["ProjectState"].Caption = @"Estado";
             #endregion
 
             #region Set With To Visible Columns
-                viewProjects.Columns["Id"].Width = 50;
+                viewProjects.Columns["Code"].Width = 70;
                 viewProjects.Columns["Name"].Width = 125;
                 viewProjects.Columns["Customer"].Width = 125;
             #endregion
 
             #region Set ReadOnly To Visible Columns
-                viewProjects.Columns["Id"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["Code"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Name"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Customer"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["ProjectState"].OptionsColumn.ReadOnly = true;
@@ -90,13 +89,13 @@ namespace shellProject
 
         #region UI Events
 
-        private void txtFind_EditValueChanged(object sender, EventArgs e)
+        private void TxtFindEditValueChanged(object sender, EventArgs e)
         {
             var tmpTextEdit = sender as TextEdit;
             if (tmpTextEdit != null) FindProject(tmpTextEdit.Text);
         }
 
-        private void cmdOk_Click(object sender, EventArgs e)
+        private void CmdOkClick(object sender, EventArgs e)
         {
             _project = viewProjects.GetFocusedRow() as ProjectDto;
 
@@ -105,12 +104,12 @@ namespace shellProject
             DialogResult = DialogResult.OK;
         }
 
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void CmdCancelClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void SearchProject_Shown(object sender, EventArgs e)
+        private void SearchProjectShown(object sender, EventArgs e)
         {
             FindProject("a");
         }

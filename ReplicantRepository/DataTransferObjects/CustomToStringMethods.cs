@@ -69,6 +69,14 @@ namespace ReplicantRepository.DataTransferObjects
                     else
                         result = "Resource Type is null";
                     break;
+
+                case "ReplicantRepository.DataTransferObjects.TaskDto":
+                    dynamicObject = o as TaskDto;
+                    if (dynamicObject != null)
+                        result = dynamicObject.Name;
+                    else
+                        result = "Task is null";
+                    break;
                 
                 default:
                     result = o.GetType().ToString();

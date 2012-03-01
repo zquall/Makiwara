@@ -45,7 +45,7 @@
             this.txtFind.Name = "txtFind";
             this.txtFind.Size = new System.Drawing.Size(410, 20);
             this.txtFind.TabIndex = 0;
-            this.txtFind.EditValueChanged += new System.EventHandler(this.txtFind_EditValueChanged);
+            this.txtFind.EditValueChanged += new System.EventHandler(this.TxtFindEditValueChanged);
             // 
             // cmdCancel
             // 
@@ -55,7 +55,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 1;
             this.cmdCancel.Text = "Cancelar";
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancelClick);
             // 
             // cmdOk
             // 
@@ -64,7 +64,7 @@
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
             this.cmdOk.Text = "Aceptar";
-            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
+            this.cmdOk.Click += new System.EventHandler(this.CmdOkClick);
             // 
             // grdProjectControl
             // 
@@ -102,7 +102,7 @@
             this.Name = "SearchProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Buscar Proyecto";
-            this.Shown += new System.EventHandler(this.SearchProject_Shown);
+            this.Shown += new System.EventHandler(this.SearchProjectShown);
             ((System.ComponentModel.ISupportInitialize)(this.txtFind.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProjectControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewProjects)).EndInit();

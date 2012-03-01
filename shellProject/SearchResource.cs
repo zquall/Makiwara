@@ -31,7 +31,7 @@ namespace shellProject
             var request = new ResourceSourceRequest();
             request.SearchResourceSourceQuery = query;
             request.SearchResourceSourceType = Rtype;
-            ShowSearchResults(new ResourceSourceFactory().searchResourceSource(request).ResourceSourceList);
+            ShowSearchResults(new ResourceSourceFactory().SearchResourceSource(request).ResourceSourceList);
         }
 
         private void ShowSearchResults(List<ResourceSourceData> searchResults)

@@ -21,7 +21,7 @@ namespace Hades.Session
             var request = new UserRequest();
             request.UserName = username;
             request.Password = password;
-            var accountFound = new UserFactory().getUserByLogin(request).UserAccount;
+            var accountFound = new UserFactory().GetUserByLogin(request).UserAccount;
             if (accountFound != null)
             {
                 saveUserInSession(accountFound);
@@ -42,7 +42,7 @@ namespace Hades.Session
             var userAccount = new UserAccountDto() { Id = userSession.UserId};
             var request = new UserRequest() { UserAccount = userAccount };
 
-            var employeeFound = new UserFactory().getEmployeeByUserId(request).Employee;
+            var employeeFound = new UserFactory().GetEmployeeByUserId(request).Employee;
 
             if (employeeFound != null)
             {

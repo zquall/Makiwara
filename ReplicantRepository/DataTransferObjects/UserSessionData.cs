@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace ReplicantRepository.DataTransferObjects
 {
     public class UserSessionData
@@ -15,6 +11,7 @@ namespace ReplicantRepository.DataTransferObjects
         public int UserId { get { return _UserId; } }
         public EmployeeSession EmployeeSession { get; set; }
     }
+
     public class EmployeeSession
     {
         public int Id { get; set; }

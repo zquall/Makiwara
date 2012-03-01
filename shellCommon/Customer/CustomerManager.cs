@@ -124,9 +124,9 @@ namespace shellCommon.Customer
         {
             var request = new CustomerRequest();
             request.Customer = captureCustomer();
-            request.CustomerId = new CustomerFactory().saveCustomer(request).CustomerId;
+            request.CustomerId = new CustomerFactory().SaveCustomer(request).CustomerId;
             // Put the new customer on Tag
-            Tag = new CustomerFactory().getCustomer(request).Customer;
+            Tag = new CustomerFactory().GetCustomer(request).Customer;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
         #endregion

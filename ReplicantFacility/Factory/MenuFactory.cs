@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 
@@ -10,16 +6,16 @@ namespace ReplicantFacility.Factory
 {
     public class MenuFactory
     {
-        private static MenuService _MenuService;
+        private static MenuService _menuService;
 
         public MenuFactory()
         {
-            _MenuService = _MenuService ?? new MenuService();
+            _menuService = _menuService ?? new MenuService();
         }
 
-        public MenuResponse getNavigationItemList(MenuRequest request)
+        public MenuResponse GetNavigationItemList(MenuRequest request)
         {
-            return _MenuService.getNavigationItemsByGroupCode(request);
+            return _menuService.getNavigationItemsByGroupCode(request);
         }
 
     }

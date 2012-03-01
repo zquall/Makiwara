@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using ReplicantRepository.DataTransferObjects;
 
 namespace ReplicantRepository.Response
@@ -11,6 +8,4 @@ namespace ReplicantRepository.Response
         //public List<ResourceTypeData> ResourceTypeList { get; set; }
         public List<ResourceTypeDto> ResourceTypeList { get; set; }
     }
-
-
 }

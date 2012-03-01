@@ -4,7 +4,6 @@ using System.Linq;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
-using CORE.DataMapper;
 using AutoMapper;
 using Nexus;
 
@@ -45,24 +44,24 @@ namespace CORE.Services
 
         #region Save Zone
 
-        /// <summary>
-        /// Delete all the resources and then put again in the task entity
-        /// </summary>
-        /// <param name="resources">The list of resources that will be added to the task entity</param>
-        /// <param name="task">Task entity that contains the resources</param>
-        private void SaveResources(IEnumerable<ResourceDto> resources, Task task)
-        {
-            if (task.Resources.Count > 0)
-            {
-                DeleteAllResources(task);
-            }
+        ///// <summary>
+        ///// Delete all the resources and then put again in the task entity
+        ///// </summary>
+        ///// <param name="resources">The list of resources that will be added to the task entity</param>
+        ///// <param name="task">Task entity that contains the resources</param>
+        //private static void SaveResources(IEnumerable<ResourceDto> resources, Task task)
+        //{
+        //    if (task.Resources.Count > 0)
+        //    {
+        //        DeleteAllResources(task);
+        //    }
 
-            foreach (var rd in resources)
-            {
-                var resourceEntity = Mapper.Map<ResourceDto, Resource>(rd);
-                Olympus._Enterprise.Resources.AddObject(resourceEntity);
-            }
-        }
+        //    foreach (var rd in resources)
+        //    {
+        //        var resourceEntity = Mapper.Map<ResourceDto, Resource>(rd);
+        //        Olympus._Enterprise.Resources.AddObject(resourceEntity);
+        //    }
+        //}
 
         /// <summary>
         /// Delete all the tasks and then put again in the project entity
@@ -91,11 +90,26 @@ namespace CORE.Services
         /// Get the next project code
         /// </summary>
         /// <returns>Code of the next project</returns>
-        public int NextCode()
+        public string NextCode()
         {
-            int code = Olympus._Enterprise.Projects.Max(x => x.Id) + 1;
+            var year = DateTime.Today.Year.ToString();
 
-            return code;
+            var month = DateTime.Today.Month.ToString();
+            if (month.Length <= 1)
+                month = "0" + month;
+
+            var code = Olympus._Enterprise.Projects.Max(x => x.Code);
+            code = code.Trim();
+
+            if ((code.Substring(4, 2) == month) && (code.Substring(0, 4) == year))
+                code = (int.Parse(code.Substring(6)) + 1).ToString();
+            else
+                code = "001";
+
+            if (code.Length <= 1)
+                code = "00" + code;
+
+            return year + month + code;
         }
 
         /// <summary>
@@ -106,12 +120,13 @@ namespace CORE.Services
         public ProjectResponse  GetProject(ProjectRequest request)
         {
             var response = new ProjectResponse();
-            if (request.Project.Id != 0)
+            if (request.ProjectId > 0)
             {
-                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
+                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.ProjectId).SingleOrDefault();
                 if (projectFound != null)
                 {
-                    response.Project = MapperPaths.Map(projectFound);
+                    //response.Project = MapperPaths.Map(projectFound);
+                    response.Project = Mapper.Map<ProjectDto>(projectFound);
                 }
             }
             return response;
@@ -141,29 +156,35 @@ namespace CORE.Services
             return response;
         }
 
-        /// <summary>
-        /// Método que se encarga de acomodar y guardar un projecto
-        /// </summary>
-        /// <param name="request">Objeto donde viene el proyecto a ser almacenado en BD</param>
         public ProjectResponse SaveProject(ProjectRequest request)
         {
             var response = new ProjectResponse();
-            var projectFound = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
 
-            if (projectFound != null)
+            if (request.Project != null)
             {
-                Mapper.Map(request.Project, projectFound);
-                if (request.Project.Tasks != null)
-                    SaveTasks(request.Project.Tasks, projectFound);
-            }
-            else
-            {
-                var newProject = Mapper.Map<Project>(request.Project);
-                Olympus._Enterprise.AddToProjects(newProject);
-            }
-            Olympus._Enterprise.SaveChanges();
-            response.Project = request.Project;
+                Project project = null;
+                // Check if Edit or Add
+                if (request.Project.Id > 0)
+                {   // Edit
+                    project = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
+                    Mapper.Map(request.Project, project);
 
+                    if (request.Project.Tasks != null)
+                        SaveTasks(request.Project.Tasks, project);
+                }
+                else
+                {   // Add
+                    if (request.Project.Code != null)
+                    {
+                        // Check some info from AlienDB
+                        project = new Project();
+                        Mapper.Map(request.Project, project);
+                        Olympus._Enterprise.Projects.AddObject(project);
+                    }
+                }
+                Olympus._Enterprise.SaveChanges();
+                if (project != null) response.ProjectId = project.Id;
+            }
             return response;
         }
 

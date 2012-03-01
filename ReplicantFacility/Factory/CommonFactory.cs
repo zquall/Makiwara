@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
-using ReplicantRepository.Request;
 
 namespace ReplicantFacility.Factory
 {
     public class CommonFactory
     {
-        private static CommonService _CommonService;
+        private static CommonService _commonService;
 
         public CommonFactory()
         {
-            _CommonService = _CommonService ?? new CommonService();
+            _commonService = _commonService ?? new CommonService();
         }
 
-        public CommonObjectsResponse getPhoneTypeList()
+        public CommonObjectsResponse GetPhoneTypeList()
         {
-            CommonObjectsResponse commonObjectsResponse = new CommonObjectsResponse();
-            commonObjectsResponse.PhoneTypeList = _CommonService.getPhoneTypeList();
+            var commonObjectsResponse = new CommonObjectsResponse {PhoneTypeList = _commonService.getPhoneTypeList()};
             return commonObjectsResponse;
         }
 
-        public CommonObjectsResponse getMeasureList()
+        public CommonObjectsResponse GetMeasureList()
         {
-            CommonObjectsResponse commonObjectsResponse = new CommonObjectsResponse();
-            commonObjectsResponse.MeasureList = _CommonService.getMeasureList();
+            var commonObjectsResponse = new CommonObjectsResponse {MeasureList = _commonService.getMeasureList()};
             return commonObjectsResponse;
         }
     }

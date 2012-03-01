@@ -66,6 +66,7 @@ namespace shellProject
                 if (rowObject.Id > 0 || rowObject.Code != null)
                 {
                     Tag = new ItemFactory().GetItem(new ItemRequest() { ItemId = rowObject.Id, Item = rowObject }).Item;
+                    BudgetRequestDto budgetRequestTag = new BudgetRequestFactory().GetBudgetRequest(new BudgetRequestRequest() { BudgetResquestId = budgetRequest.Id }).BudgetRequest;
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
             }
@@ -104,6 +105,7 @@ namespace shellProject
         {
             var request = new ItemRequest {SearchItemQuery = query};
             ShowSearchResults(new ItemFactory().SearchItem(request).ItemList);
+            ShowSearchResults(new BudgetRequestFactory().SearchBudgetRequest(request).BudgetRequestList);
         }
 
         private void ShowSearchResults(List<ItemDto> searchResults)

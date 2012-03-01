@@ -36,7 +36,7 @@ namespace shellCommon.Customer
         {
             var request = new CustomerRequest();
             request.SearchCustomerQuery = query;
-            ShowSearchResults(new CustomerFactory().searchCustomer(request).CustomerList);
+            ShowSearchResults(new CustomerFactory().SearchCustomer(request).CustomerList);
         }
 
         private void ShowSearchResults(List<CustomerDto> searchResults)
@@ -101,7 +101,7 @@ namespace shellCommon.Customer
                     // Needed for Interceptor
                     request.Customer = new CustomerDto() { Name =  focusedRow.Name};
 
-                    Tag = new CustomerFactory().getCustomer(request).Customer;
+                    Tag = new CustomerFactory().GetCustomer(request).Customer;
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else

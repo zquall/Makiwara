@@ -69,7 +69,7 @@ namespace shellProject
                 if (budgetRequest.Id > 0)
                 {
                     // Get the complete BudgetRequest
-                    BudgetRequestDto budgetRequestTag = new BudgetRequestFactory().getBudgetRequest(new BudgetRequestRequest() { BudgetResquestId = budgetRequest.Id }).BudgetRequest;
+                    BudgetRequestDto budgetRequestTag = new BudgetRequestFactory().GetBudgetRequest(new BudgetRequestRequest() { BudgetResquestId = budgetRequest.Id }).BudgetRequest;
                     Tag = budgetRequest;
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
@@ -88,7 +88,7 @@ namespace shellProject
         {
             var request = new BudgetRequestRequest();
             request.ResquestQuery = query;
-            ShowSearchResults(new BudgetRequestFactory().searchBudgetRequest(request).BudgetRequestList);
+            ShowSearchResults(new BudgetRequestFactory().SearchBudgetRequest(request).BudgetRequestList);
         }
 
         private void ShowSearchResults(List<BudgetRequestDto> searchResults)

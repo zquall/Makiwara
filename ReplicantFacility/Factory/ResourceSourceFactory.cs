@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ReplicantRepository.Response;
+﻿using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using Interceptor.Adapters;
 
@@ -10,16 +6,16 @@ namespace ReplicantFacility.Factory
 {
     public class ResourceSourceFactory
     {
-        private static ResourceSourceAdapter _ResourceSourceAdapter;
+        private static ResourceSourceAdapter _resourceSourceAdapter;
 
         public ResourceSourceFactory()
         {
-            _ResourceSourceAdapter = _ResourceSourceAdapter ?? new ResourceSourceAdapter();
+            _resourceSourceAdapter = _resourceSourceAdapter ?? new ResourceSourceAdapter();
         }
 
-        public ResourceSourceResponse searchResourceSource(ResourceSourceRequest request)
+        public ResourceSourceResponse SearchResourceSource(ResourceSourceRequest request)
         {
-            return _ResourceSourceAdapter.searchResourceSource(request);
+            return _resourceSourceAdapter.searchResourceSource(request);
         }
     }
 }

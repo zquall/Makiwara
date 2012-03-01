@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.navBarControlDashboard = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroupProject = new DevExpress.XtraNavBar.NavBarGroup();
-            this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.themeManager = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).BeginInit();
             this.SuspendLayout();

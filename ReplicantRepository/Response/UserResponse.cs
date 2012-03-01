@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ReplicantRepository.DataTransferObjects;
+﻿using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.DataTransferObjects.NervObjects;
 
 namespace ReplicantRepository.Response
@@ -12,6 +8,4 @@ namespace ReplicantRepository.Response
         public UserAccountDto UserAccount { get; set; }
         public EmployeeDto Employee { get; set; } 
     }
-
-
 }

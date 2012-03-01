@@ -117,7 +117,7 @@ namespace shellProject
         private void loadNewRequestBudgetManager()
         {
             var request = new BudgetRequestRequest() { EmployeeId = SessionManager.EmployeeId };
-            loadBudgetRequest(new BudgetRequestFactory().getNewBudgetRequest(request).BudgetRequest);
+            loadBudgetRequest(new BudgetRequestFactory().GetNewBudgetRequest(request).BudgetRequest);
         }
     
         // Load Contact Manager
@@ -324,7 +324,7 @@ namespace shellProject
         // Load the Measures in Grid Combo
         private void loadMeasureCombo()
         {
-            cmbMeasure.Items.AddRange(new CommonFactory().getMeasureList().MeasureList);
+            cmbMeasure.Items.AddRange(new CommonFactory().GetMeasureList().MeasureList);
         }
 
         // Load the Contact List
@@ -436,7 +436,7 @@ namespace shellProject
         {
             var request = new BudgetRequestRequest();
             request.BudgetRequest = captureBudgetRequest();
-            new BudgetRequestFactory().saveBudgetRequest(request);
+            new BudgetRequestFactory().SaveBudgetRequest(request);
             loadNewRequestBudgetManager();
         }
         #endregion

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
-using CORE.DataMapper;
 using AutoMapper;
 using Nexus;
 
@@ -13,14 +11,9 @@ namespace CORE.Services
 {
     public class BudgetRequestService
     {
-        public BudgetRequestService()
-        {
-            
-        }
-
         public BudgetRequestResponse SaveBudgetRequest(BudgetRequestRequest request)
         {
-            BudgetRequestResponse response = new BudgetRequestResponse();
+            var response = new BudgetRequestResponse();
             if (request.BudgetRequest != null)
             {
                 // Check if is a insert or an update
@@ -35,8 +28,7 @@ namespace CORE.Services
                 else
                 {
                     var budgetRequestEntity = Olympus._Enterprise.BudgetRequests.Where( x => x.Id == request.BudgetRequest.Id).SingleOrDefault();
-                    BudgetRequest budgetRequest = Mapper.Map<BudgetRequestDto, BudgetRequest>(request.BudgetRequest, budgetRequestEntity);
-                    //Olympus._Enterprise.ObjectStateManager.ChangeObjectState(budgetRequestEntity, System.Data.EntityState.Modified);
+                    var budgetRequest = Mapper.Map<BudgetRequestDto, BudgetRequest>(request.BudgetRequest, budgetRequestEntity);
                     Olympus._Enterprise.SaveChanges();
                     response.BudgetRequestId = budgetRequest.Id;
                 }
@@ -44,26 +36,27 @@ namespace CORE.Services
             return response;
         }
 
-        public BudgetRequestResponse getNewBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse GetNewBudgetRequest(BudgetRequestRequest request)
         {
-            var response = new BudgetRequestResponse();
-            response.BudgetRequest = new BudgetRequestDto();
+            var response = new BudgetRequestResponse {BudgetRequest = new BudgetRequestDto()};
             var employeeFound = Olympus._Enterprise.Employees.Where(x => x.UserAccountId == request.EmployeeId).SingleOrDefault();
             
             // Person
-            var personEntity = employeeFound.Person;
-            Olympus._Enterprise.Detach(personEntity);
-            var person = Mapper.Map<PersonDto>(personEntity);
+            if (employeeFound != null)
+            {
+                var personEntity = employeeFound.Person;
+                Olympus._Enterprise.Detach(personEntity);
+                var person = Mapper.Map<PersonDto>(personEntity);
 
-            // Employee
-            Olympus._Enterprise.Detach(employeeFound);
-            response.BudgetRequest.Employee = Mapper.Map<EmployeeDto>(employeeFound);
-            response.BudgetRequest.Employee.Person = person;
-            
+                // Employee
+                Olympus._Enterprise.Detach(employeeFound);
+                response.BudgetRequest.Employee = Mapper.Map<EmployeeDto>(employeeFound);
+                response.BudgetRequest.Employee.Person = person;
+            }
+
             // Dates
             response.BudgetRequest.DateModified = DateTime.Today;
-            response.BudgetRequest.BudgetRequestCondition = new BudgetRequestConditionDto();
-            response.BudgetRequest.BudgetRequestCondition.StartDate = DateTime.Today;
+            response.BudgetRequest.BudgetRequestCondition = new BudgetRequestConditionDto {StartDate = DateTime.Today};
             return response;
         }
 
@@ -86,12 +79,11 @@ namespace CORE.Services
         // The search must return just the needed data to the user and the Id
         // not the whole information of the object, at the end the user will
         // request the hole data of just one object
-        public BudgetRequestResponse searchBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse SearchBudgetRequest(BudgetRequestRequest request)
         {
-            var response = new BudgetRequestResponse();
-            
+            var response = new BudgetRequestResponse {BudgetRequestList = new List<BudgetRequestDto>()};
+
             // Inicitialize the list
-            response.BudgetRequestList = new List<BudgetRequestDto>();
 
             // Search in DB
             var resultFound = Olympus._Enterprise.BudgetRequests.Where(x => (x.ProjectName.Contains(request.ResquestQuery) || x.Customer.Name.Contains(request.ResquestQuery))).OrderBy(y => y.Customer.Name).Take(Convert.ToInt32(Properties.Resources.MaximunResultRows)).ToList();
@@ -99,9 +91,9 @@ namespace CORE.Services
             if (resultFound != null)
             {
                 // Fill the response with the result found
-                foreach (BudgetRequest tmpBudgetRequest in resultFound)
+                foreach (var tmpBudgetRequest in resultFound)
                 {
-                    BudgetRequestDto budgetRequest = Mapper.Map<BudgetRequestDto>(tmpBudgetRequest);
+                    var budgetRequest = Mapper.Map<BudgetRequestDto>(tmpBudgetRequest);
                     response.BudgetRequestList.Add(budgetRequest);
                 }
             }

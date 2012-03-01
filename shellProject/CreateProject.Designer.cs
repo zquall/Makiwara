@@ -30,7 +30,7 @@
         {
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.tabGeneral = new DevExpress.XtraTab.XtraTabPage();
-            this.spinCode = new DevExpress.XtraEditors.SpinEdit();
+            this.txtCode = new DevExpress.XtraEditors.TextEdit();
             this.chkCxcApproval = new DevExpress.XtraEditors.CheckEdit();
             this.chkManagementApproval = new DevExpress.XtraEditors.CheckEdit();
             this.txtSalesConsultant = new DevExpress.XtraEditors.TextEdit();
@@ -71,7 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCxcApproval.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkManagementApproval.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalesConsultant.Properties)).BeginInit();
@@ -109,7 +109,7 @@
             // 
             // tabGeneral
             // 
-            this.tabGeneral.Controls.Add(this.spinCode);
+            this.tabGeneral.Controls.Add(this.txtCode);
             this.tabGeneral.Controls.Add(this.chkCxcApproval);
             this.tabGeneral.Controls.Add(this.chkManagementApproval);
             this.tabGeneral.Controls.Add(this.txtSalesConsultant);
@@ -123,19 +123,12 @@
             this.tabGeneral.Size = new System.Drawing.Size(414, 184);
             this.tabGeneral.Text = "General";
             // 
-            // spinCode
+            // txtCode
             // 
-            this.spinCode.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinCode.Location = new System.Drawing.Point(90, 8);
-            this.spinCode.Name = "spinCode";
-            this.spinCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.spinCode.Size = new System.Drawing.Size(126, 20);
-            this.spinCode.TabIndex = 10;
+            this.txtCode.Location = new System.Drawing.Point(90, 8);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(126, 20);
+            this.txtCode.TabIndex = 11;
             // 
             // chkCxcApproval
             // 
@@ -476,7 +469,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Salir";
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancelClick);
             // 
             // cmdSave
             // 
@@ -485,7 +478,7 @@
             this.cmdSave.Size = new System.Drawing.Size(75, 23);
             this.cmdSave.TabIndex = 4;
             this.cmdSave.Text = "Aceptar";
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            this.cmdSave.Click += new System.EventHandler(this.CmdSaveClick);
             // 
             // lblQuoteNumber
             // 
@@ -503,7 +496,7 @@
             this.txtQuoteNumber.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtQuoteNumber.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtQuoteNumber.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtQuoteNumber_Properties_ButtonClick);
+            this.txtQuoteNumber.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TxtQuoteNumberPropertiesButtonClick);
             this.txtQuoteNumber.Size = new System.Drawing.Size(131, 20);
             this.txtQuoteNumber.TabIndex = 6;
             // 
@@ -540,12 +533,12 @@
             this.Name = "CreateProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Información del Proyecto";
-            this.Load += new System.EventHandler(this.CreateProject_Load);
+            this.Load += new System.EventHandler(this.CreateProjectLoad);
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCxcApproval.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkManagementApproval.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSalesConsultant.Properties)).EndInit();
@@ -611,9 +604,9 @@
         private DevExpress.XtraEditors.MemoEdit memoComments;
         private DevExpress.XtraEditors.CheckEdit chkCxcApproval;
         private DevExpress.XtraEditors.CheckEdit chkManagementApproval;
-        private DevExpress.XtraEditors.SpinEdit spinCode;
         private DevExpress.XtraEditors.SpinEdit spinSubTotal;
         private DevExpress.XtraEditors.SpinEdit spinOtherAmount;
         private DevExpress.XtraEditors.SpinEdit spinDiscountAmount;
+        private DevExpress.XtraEditors.TextEdit txtCode;
     }
 }

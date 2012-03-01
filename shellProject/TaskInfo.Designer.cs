@@ -130,7 +130,7 @@
             System.TimeSpan.Parse("14.00:00:00")});
             this.drtDuration.Size = new System.Drawing.Size(100, 20);
             this.drtDuration.TabIndex = 7;
-            this.drtDuration.TextChanged += new System.EventHandler(this.drtDuration_TextChanged);
+            this.drtDuration.TextChanged += new System.EventHandler(this.DrtDurationTextChanged);
             // 
             // grpDates
             // 
@@ -155,7 +155,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtEndDate.Size = new System.Drawing.Size(100, 20);
             this.dtEndDate.TabIndex = 3;
-            this.dtEndDate.EditValueChanged += new System.EventHandler(this.dtEndDate_EditValueChanged);
+            this.dtEndDate.EditValueChanged += new System.EventHandler(this.DtEndDateEditValueChanged);
             // 
             // lblEndDate
             // 
@@ -176,7 +176,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.dtStartDate.Size = new System.Drawing.Size(100, 20);
             this.dtStartDate.TabIndex = 1;
-            this.dtStartDate.EditValueChanged += new System.EventHandler(this.dtStartDate_EditValueChanged);
+            this.dtStartDate.EditValueChanged += new System.EventHandler(this.DtStartDateEditValueChanged);
             // 
             // lblStartDate
             // 
@@ -204,8 +204,8 @@
             0});
             this.spinCompleteRate.Size = new System.Drawing.Size(86, 20);
             this.spinCompleteRate.TabIndex = 5;
-            this.spinCompleteRate.EditValueChanged += new System.EventHandler(this.spinCompleteRate_EditValueChanged);
-            this.spinCompleteRate.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.spinCompleteRate_EditValueChanging);
+            this.spinCompleteRate.EditValueChanged += new System.EventHandler(this.SpinCompleteRateEditValueChanged);
+            this.spinCompleteRate.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.SpinCompleteRateEditValueChanging);
             // 
             // lblCompleteRate
             // 
@@ -229,7 +229,7 @@
             this.txtTaskName.Name = "txtTaskName";
             this.txtTaskName.Size = new System.Drawing.Size(330, 20);
             this.txtTaskName.TabIndex = 1;
-            this.txtTaskName.EditValueChanged += new System.EventHandler(this.txtTaskName_EditValueChanged);
+            this.txtTaskName.EditValueChanged += new System.EventHandler(this.TxtTaskNameEditValueChanged);
             // 
             // lblTaskName
             // 
@@ -265,9 +265,10 @@
             this.viewResources.GridControl = this.grdResources;
             this.viewResources.Name = "viewResources";
             this.viewResources.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.viewResources.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.viewResources_InitNewRow);
-            this.viewResources.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.viewResources_FocusedRowChanged);
-            this.viewResources.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.viewResources_CellValueChanged);
+            this.viewResources.OptionsView.ShowGroupPanel = false;
+            this.viewResources.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.ViewResourcesInitNewRow);
+            this.viewResources.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.ViewResourcesFocusedRowChanged);
+            this.viewResources.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.ViewResourcesCellValueChanged);
             // 
             // repResourceTypes
             // 
@@ -292,7 +293,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repResourceCode.Name = "repResourceCode";
             this.repResourceCode.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.repResourceCode.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repResourceCode_ButtonClick);
+            this.repResourceCode.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepResourceCodeButtonClick);
             // 
             // tabPredecessors
             // 
@@ -338,7 +339,7 @@
             this.cmdDelete.Size = new System.Drawing.Size(75, 23);
             this.cmdDelete.TabIndex = 1;
             this.cmdDelete.Text = "Eliminar";
-            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
+            this.cmdDelete.Click += new System.EventHandler(this.CmdDeleteClick);
             // 
             // cmdOk
             // 
@@ -347,7 +348,7 @@
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 2;
             this.cmdOk.Text = "Aceptar";
-            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
+            this.cmdOk.Click += new System.EventHandler(this.CmdOkClick);
             // 
             // cmdCancel
             // 
@@ -356,7 +357,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Cancelar";
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdCancel.Click += new System.EventHandler(this.CmdCancelClick);
             // 
             // TaskInfo
             // 
@@ -372,7 +373,7 @@
             this.Name = "TaskInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Información de la Tarea";
-            this.Load += new System.EventHandler(this.TaskInfo_Load);
+            this.Load += new System.EventHandler(this.TaskInfoLoad);
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
             this.TabControl.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);

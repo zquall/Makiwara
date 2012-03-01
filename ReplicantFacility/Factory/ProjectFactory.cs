@@ -28,7 +28,7 @@ namespace ReplicantFacility.Factory
             return _projectService.SaveProject(request);
         }
 
-        public int NextCode()
+        public string NextCode()
         {
             return _projectService.NextCode();
         }

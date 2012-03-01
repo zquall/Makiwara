@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 
@@ -10,31 +6,31 @@ namespace ReplicantFacility.Factory
 {
     public class BudgetRequestFactory
     {
-        private static BudgetRequestService _BudgetRequestService;
+        private static BudgetRequestService _budgetRequestService;
 
         public BudgetRequestFactory()
         {
-            _BudgetRequestService = _BudgetRequestService ?? new BudgetRequestService();
+            _budgetRequestService = _budgetRequestService ?? new BudgetRequestService();
         }
 
-        public BudgetRequestResponse getNewBudgetRequest( BudgetRequestRequest request)
+        public BudgetRequestResponse GetNewBudgetRequest( BudgetRequestRequest request)
         {
-            return _BudgetRequestService.getNewBudgetRequest(request);
+            return _budgetRequestService.GetNewBudgetRequest(request);
         }
 
-        public BudgetRequestResponse searchBudgetRequest( BudgetRequestRequest request)
+        public BudgetRequestResponse SearchBudgetRequest( BudgetRequestRequest request)
         {
-            return _BudgetRequestService.searchBudgetRequest(request);
+            return _budgetRequestService.SearchBudgetRequest(request);
         }
 
-        public BudgetRequestResponse getBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse GetBudgetRequest(BudgetRequestRequest request)
         {
-            return _BudgetRequestService.GetBudgetRequest(request);
+            return _budgetRequestService.GetBudgetRequest(request);
         }
 
-        public BudgetRequestResponse saveBudgetRequest(BudgetRequestRequest request)
+        public BudgetRequestResponse SaveBudgetRequest(BudgetRequestRequest request)
         {
-            return _BudgetRequestService.SaveBudgetRequest(request);
+            return _budgetRequestService.SaveBudgetRequest(request);
         }
 
     }

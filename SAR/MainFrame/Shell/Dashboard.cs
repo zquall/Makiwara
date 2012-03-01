@@ -37,7 +37,7 @@ namespace MainFrame.Shell
         private void LoadNavigationBar()
         {
             var request = new MenuRequest {NavigationGroupCode = "Project"};
-            var response = new MenuFactory().getNavigationItemList(request);
+            var response = new MenuFactory().GetNavigationItemList(request);
             if (response.NavigationItemList != null) 
             {
                 LinkItemsWithGroups(navBarGroupProject, response.NavigationItemList);               

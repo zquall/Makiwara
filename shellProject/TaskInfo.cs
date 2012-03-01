@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
 using ReplicantRepository.Response;
@@ -51,7 +47,7 @@ namespace shellProject
         /// </summary>
         /// <param name="t1">Source</param>
         /// <param name="t2">Destination</param>
-        private void copyTask(Task t1, Task t2)
+        private static void CopyTask(Task t1, Task t2)
         {
             if (!t2.IsSummary)
             {
@@ -64,7 +60,7 @@ namespace shellProject
             }
         }
 
-        private void loadDependencies()
+        private void LoadDependencies()
         {
             _dependenciesCollection.Clear();
 
@@ -74,70 +70,72 @@ namespace shellProject
             }
 
             grdPredecessors.DataSource = _dependenciesCollection;
-            configureDependenciesGrid();
+            ConfigureDependenciesGrid();
         }
 
         //Revisar para quitar la primer conversion
-        private void loadResources()
+        private void LoadResources()
         {
             _resourcesCollection.Clear();
 
-            List<ResourceDto> l = new List<ResourceDto>();
-
-            l = _task.Tag as List<ResourceDto>;
+            var l = _task.Tag as List<ResourceDto>;
 
             if (_task.Tag != null)
             {
-                foreach (ResourceDto rd in l /*_task.Tag as List<ResourceData>*/)
-                {
-                    _resourcesCollection.Add(rd);
-                }
+                if (l != null)
+                    foreach (var rd in l /*_task.Tag as List<ResourceData>*/)
+                    {
+                        _resourcesCollection.Add(rd);
+                    }
             }
 
             grdResources.DataSource = _resourcesCollection;
-            configureResourcesGrid();
+            ConfigureResourcesGrid();
         }
 
-        private void loadResourceTypes()
+        private void LoadResourceTypes()
         {
             var request = new ResourceTypeRequest();
             repResourceTypes.Items.Clear();
-            foreach (ResourceTypeDto r in new ResourceTypeFactory().searchResourceType(request).ResourceTypeList)
+            foreach (ResourceTypeDto r in new ResourceTypeFactory().SearchResourceType(request).ResourceTypeList)
             {
                 repResourceTypes.Items.Add(r);
             }
         }
 
-        private void loadMeasures()
+        private void LoadMeasures()
         {
             var request = new MeasureRequest();
             repMeasures.Items.Clear();
-            foreach (MeasureDto r in new MeasureFactory().searchMeasure(request).MeasureList)
+            foreach (MeasureDto r in new MeasureFactory().SearchMeasure(request).MeasureList)
             {
                 repMeasures.Items.Add(r);
             }
         }
 
-        private void loadTask()
+        private void LoadTask()
         {
-            _task = this.Tag as Task;
-            
-            txtTaskName.Text = _task.Name;
-            drtDuration.Duration = _task.Duration;
-            spinCompleteRate.Value = (decimal)_task.PercentComplete;
-            dtStartDate.DateTime = _task.StartDateTime;
-            dtEndDate.DateTime = _task.EndDateTimeResolved;
-            memoEditNotes.Text = _task.Notes;
+            _task = Tag as Task;
+
+            if (_task != null)
+            {
+                txtTaskName.Text = _task.Name;
+                drtDuration.Duration = _task.Duration;
+                spinCompleteRate.Value = (decimal)_task.PercentComplete;
+                dtStartDate.DateTime = _task.StartDateTime;
+                dtEndDate.DateTime = _task.EndDateTimeResolved;
+                memoEditNotes.Text = _task.Notes;
+            }
 
             //Se cargan las tareas predecesoras en el grid correspondiente
-            loadDependencies();
+            LoadDependencies();
 
             //Se cargan los recursos en el grid correspondiente, estos recursos vienen en el Tag de la tarea
-            loadResources();
+            LoadResources();
 
             //Se cargan los tipos de recursos posibles y las medidas disponibles
-            loadResourceTypes();
-            loadMeasures();
+            LoadResourceTypes();
+            LoadMeasures();
         }
 
         #endregion
@@ -146,10 +144,10 @@ namespace shellProject
         //No existe método de captura de Dependencias ya que estas son solo de lectura y pueden cambiarse unicamente
         //desde el ProjectManager
 
-        private void captureResources()
+        private void CaptureResources()
         {
-            List<ResourceDto> temp = new List<ResourceDto>();
-            foreach (ResourceDto data in _resourcesCollection)
+            var temp = new List<ResourceDto>();
+            foreach (var data in _resourcesCollection)
             {
                 temp.Add(data);
             }
@@ -160,28 +158,27 @@ namespace shellProject
         /// <summary>
         /// Este método esta de mas ya que todas las capturas se realizan en caliente
         /// </summary>
-        private void captureTask()
+        private void CaptureTask()
         {
             _task.Name = txtTaskName.Text;
             _task.Notes = memoEditNotes.Text;
 
-            if (!_task.IsRoot)
-            {
-                _task.Duration = drtDuration.Duration;
-                _task.PercentComplete = (float)spinCompleteRate.Value;
-                _task.StartDateTime = dtStartDate.DateTime;
-                _task.EndDateTime = dtEndDate.DateTime;
+            if (_task.Tasks.Count > 0) return;
 
-                //Se asignan los recursos a la tarea
-                captureResources();
-            }
+            _task.Duration = drtDuration.Duration;
+            _task.PercentComplete = (float)spinCompleteRate.Value;
+            _task.StartDateTime = dtStartDate.DateTime;
+            _task.EndDateTime = dtEndDate.DateTime;
+
+            //Se asignan los recursos a la tarea
+            CaptureResources();
         }
 
         #endregion
 
         #region UI Configuration
 
-        private void configureResourcesGrid()
+        private void ConfigureResourcesGrid()
         {
             #region Set visible columns
             viewResources.Columns["Id"].Visible = false;
@@ -195,20 +192,23 @@ namespace shellProject
             viewResources.Columns["Cost"].Visible = true;
             viewResources.Columns["TotalCost"].Visible = true;
             viewResources.Columns["RealUsed"].Visible = true;
+            viewResources.Columns["Task"].Visible = false;
+            viewResources.Columns["MeasureId"].Visible = false;
+            viewResources.Columns["ResourceTypeId"].Visible = false;
             #endregion
 
             #region set caption columns
-            viewResources.Columns["Id"].Caption = "Id";
+            viewResources.Columns["Id"].Caption = @"Id";
             //viewResources.Columns["ProjectId"].Caption = "Proyecto";
-            viewResources.Columns["TaskId"].Caption = "Tarea";
-            viewResources.Columns["Measure"].Caption = "Medida";
-            viewResources.Columns["ResourceType"].Caption = "Tipo";
-            viewResources.Columns["Code"].Caption = "Código";
-            viewResources.Columns["Name"].Caption = "Nombre";
-            viewResources.Columns["Amount"].Caption = "Cantidad";
-            viewResources.Columns["Cost"].Caption = "Costo";
-            viewResources.Columns["TotalCost"].Caption = "Total";
-            viewResources.Columns["RealUsed"].Caption = "Usado";
+            viewResources.Columns["TaskId"].Caption = @"Tarea";
+            viewResources.Columns["Measure"].Caption = @"Medida";
+            viewResources.Columns["ResourceType"].Caption = @"Tipo";
+            viewResources.Columns["Code"].Caption = @"Código";
+            viewResources.Columns["Name"].Caption = @"Nombre";
+            viewResources.Columns["Amount"].Caption = @"Cantidad";
+            viewResources.Columns["Cost"].Caption = @"Costo";
+            viewResources.Columns["TotalCost"].Caption = @"Total";
+            viewResources.Columns["RealUsed"].Caption = @"Usado";
             #endregion
 
             #region set width columns
@@ -234,7 +234,6 @@ namespace shellProject
             #endregion
 
             #region Set read only columns
-            //Todo se apaga hasta saber que tipo de recurso se va a utilizar
             viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
             //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
@@ -253,7 +252,7 @@ namespace shellProject
             #endregion
         }
 
-        private void configureResourcesGrid(string rtype)
+        private void ConfigureResourcesGrid(string rtype)
         {
             viewResources.Columns["Measure"].ColumnEdit = repMeasures;
             viewResources.Columns["Code"].ColumnEdit = null;
@@ -311,15 +310,15 @@ namespace shellProject
                 }
         }
 
-        private void configureDependenciesGrid()
+        private void ConfigureDependenciesGrid()
         {
             viewDependencies.Columns["Predecessor"].Visible = true;
             viewDependencies.Columns["DependencyType"].Visible = true;
             viewDependencies.Columns["Tag"].Visible = false;
 
-            viewDependencies.Columns["Predecessor"].Caption = "Nombre de la Tarea";
-            viewDependencies.Columns["DependencyType"].Caption = "Tipo de Dependencia";
-            viewDependencies.Columns["Tag"].Caption = "Info";
+            viewDependencies.Columns["Predecessor"].Caption = @"Nombre de la Tarea";
+            viewDependencies.Columns["DependencyType"].Caption = @"Tipo de Dependencia";
+            viewDependencies.Columns["Tag"].Caption = @"Info";
 
             viewDependencies.Columns["Predecessor"].Width = 300;
             viewDependencies.Columns["DependencyType"].Width = 136;
@@ -330,17 +329,16 @@ namespace shellProject
             viewDependencies.Columns["Tag"].OptionsColumn.ReadOnly = true;
         }
 
-        private bool isRoot()
+        private bool IsRoot()
         {
             if (_task.IsRoot)
                 return true;
-            else
-                return false;
+            return false;
         }
 
-        private void configureTaskInfoForm()
+        private void ConfigureTaskInfoForm()
         { 
-            bool readOnly = isRoot();
+            bool readOnly = IsRoot();
 
             txtTaskName.Properties.ReadOnly = false;
             memoEditNotes.Properties.ReadOnly = false;
@@ -355,61 +353,67 @@ namespace shellProject
         
         #region UI Events
 
-        private void TaskInfo_Load(object sender, EventArgs e)
+        private void TaskInfoLoad(object sender, EventArgs e)
         {
-            loadTask();
-            configureTaskInfoForm();
+            LoadTask();
+            ConfigureTaskInfoForm();
 
             //Se crea un backup de la tarea para ser restaurada en caso de que se presione el boton cancelar
-            copyTask(_task, _backupTask);
+            CopyTask(_task, _backupTask);
         }
 
-
-        private void viewResources_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        private void ViewResourcesInitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            ColumnView view = sender as ColumnView;
+            var view = sender as ColumnView;
 
-            view.SetRowCellValue(e.RowHandle, view.Columns["ProjectId"], Project.Id);
-            view.SetRowCellValue(e.RowHandle, view.Columns["TaskId"], _task.RowNumber);
-            view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], 0);
-            view.SetRowCellValue(e.RowHandle, view.Columns["Cost"], 0);
-            view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], 0);
-            view.SetRowCellValue(e.RowHandle, view.Columns["RealUsed"], 0);
-
-            //Si se presiona el boton de agregar fila del Navegador del grid se genera un null en el EditingValue
-            if (view.EditingValue != null)
-                configureResourcesGrid(view.EditingValue.ToString());
-            else
-                configureResourcesGrid("");
-        }
-
-        private void viewResources_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
-        {
-            ColumnView view = sender as ColumnView;
-
-            if (view.EditingValue != null)
-                configureResourcesGrid(view.EditingValue.ToString());
-            else
-                configureResourcesGrid("");
-        }
-
-        private void viewResources_CellValueChanged(object sender, CellValueChangedEventArgs e)
-        {
-            ColumnView view = sender as ColumnView;
-            ResourceDto rd = view.GetRow(e.RowHandle) as ResourceDto;
-
-            if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
+            if (view != null)
             {
-                view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
-            }
+                view.SetRowCellValue(e.RowHandle, view.Columns["ProjectId"], Project.Id);
+                //view.SetRowCellValue(e.RowHandle, view.Columns["TaskId"], _task.RowNumber);
+                view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], 0);
+                view.SetRowCellValue(e.RowHandle, view.Columns["Cost"], 0);
+                view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], 0);
+                view.SetRowCellValue(e.RowHandle, view.Columns["RealUsed"], 0);
 
-            if (e.Column.FieldName == "ResourceType")
-            {
-                configureResourcesGrid(rd.ResourceType.Name);
+                //Si se presiona el boton de agregar fila del Navegador del grid se genera un null en el EditingValue
+                if (view.EditingValue != null)
+                    ConfigureResourcesGrid(view.EditingValue.ToString());
+                else
+                    ConfigureResourcesGrid("");
             }
         }
 
-        private void loadResourceSource(ResourceSourceData resourceSource)
+        private void ViewResourcesFocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+            var view = sender as ColumnView;
+
+            if (view != null && view.EditingValue != null)
+                ConfigureResourcesGrid(view.EditingValue.ToString());
+            else
+                ConfigureResourcesGrid("");
+        }
+
+        private void ViewResourcesCellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            var view = sender as ColumnView;
+            if (view != null)
+            {
+                var rd = view.GetRow(e.RowHandle) as ResourceDto;
+
+                if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
+                {
+                    if (rd != null)
+                        view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
+                }
+
+                if (e.Column.FieldName == "ResourceType")
+                {
+                    if (rd != null) ConfigureResourcesGrid(rd.ResourceType.Name);
+                }
+            }
+        }
+
+        private void LoadResourceSource(ResourceSourceData resourceSource)
         {
             if (resourceSource != null)
             {
@@ -419,103 +423,93 @@ namespace shellProject
             }
         }
 
-        private void repResourceCode_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void RepResourceCodeButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            SearchResource searchResource = new SearchResource();
-            ResourceSourceData rsd = new ResourceSourceData();
+            var searchResource = new SearchResource();
 
-            ResourceDto rtd = viewResources.GetFocusedRow() as ResourceDto;
-            searchResource.Rtype = rtd.ResourceType.Name;
+            var rtd = viewResources.GetFocusedRow() as ResourceDto;
+            if (rtd != null) searchResource.Rtype = rtd.ResourceType.Name;
 
-            if (searchResource.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (searchResource.ShowDialog() == DialogResult.OK)
             {
-                rsd = searchResource.Tag as ResourceSourceData;
-                loadResourceSource(rsd);
+                var rsd = searchResource.Tag as ResourceSourceData;
+                LoadResourceSource(rsd);
             }
         }
 
-
-        #region controls
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void CmdCancelClick(object sender, EventArgs e)
         {
             //Se devuelve al estado original en el que fue abierta la tarea
-            copyTask(_backupTask, _task);
+            CopyTask(_backupTask, _task);
 
-            this.Close();
-            this.DialogResult = DialogResult.Cancel;
+            Close();
+            DialogResult = DialogResult.Cancel;
         }
 
-        private void cmdOk_Click(object sender, EventArgs e)
+        private void CmdOkClick(object sender, EventArgs e)
         {
-            captureTask();
-            //this.Tag = _task;
+            CaptureTask();
 
-            this.Close();
-            this.DialogResult = DialogResult.OK;
+            Close();
+            DialogResult = DialogResult.OK;
         }
 
-        private void drtDuration_TextChanged(object sender, EventArgs e)
+        private void DrtDurationTextChanged(object sender, EventArgs e)
         {
             if (!_task.IsSummary)
             {
                 _task.Duration = drtDuration.Duration;
-                loadTask();
+                LoadTask();
             }
         }
  
-        private void dtStartDate_EditValueChanged(object sender, EventArgs e)
+        private void DtStartDateEditValueChanged(object sender, EventArgs e)
         {
             if (!_task.IsSummary)
             {
                 _task.StartDateTime = dtStartDate.DateTime;
-                loadTask();
+                LoadTask();
             }
         }
 
-        private void dtEndDate_EditValueChanged(object sender, EventArgs e)
+        private void DtEndDateEditValueChanged(object sender, EventArgs e)
         {
             if (!_task.IsSummary)
             {
                 _task.EndDateTime = dtEndDate.DateTime.Add(TimeSpan.Parse("00:00:01"));
-                loadTask();
+                LoadTask();
             }
         }
 
-        private void spinCompleteRate_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        private void SpinCompleteRateEditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
             if (!_task.IsSummary)
             {
                 _task.PercentComplete = (float)spinCompleteRate.Value;
-                loadTask();
+                LoadTask();
             }
         }
 
-        private void spinCompleteRate_EditValueChanged(object sender, EventArgs e)
+        private void SpinCompleteRateEditValueChanged(object sender, EventArgs e)
         {
             if (!_task.IsSummary)
             {
                 _task.PercentComplete = (float)spinCompleteRate.Value;
-                loadTask();
+                LoadTask();
             }
         }
 
-        private void txtTaskName_EditValueChanged(object sender, EventArgs e)
+        private void TxtTaskNameEditValueChanged(object sender, EventArgs e)
         {
             _task.Name = txtTaskName.Text;
-            loadTask();
+            LoadTask();
         }
 
-        #endregion
-
-        private void cmdDelete_Click(object sender, EventArgs e)
+        private void CmdDeleteClick(object sender, EventArgs e)
         {
             viewResources.DeleteRow(viewResources.FocusedRowHandle);
         }
 
-        
-
         #endregion
-
-        
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CORE.Services;
+﻿using CORE.Services;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 
@@ -10,36 +6,36 @@ namespace ReplicantFacility.Factory
 {
     public class CustomerFactory
     {
-        private static CustomerService _CustomerService;
+        private static CustomerService _customerService;
 
         public CustomerFactory()
         {
-            _CustomerService = _CustomerService ?? new CustomerService();
+            _customerService = _customerService ?? new CustomerService();
         }
 
-        public CustomerResponse searchCustomer(CustomerRequest request)
+        public CustomerResponse SearchCustomer(CustomerRequest request)
         {
-            return _CustomerService.SearchCustomer(request);
+            return _customerService.SearchCustomer(request);
         }
 
-        public CustomerResponse getCustomer(CustomerRequest request)
+        public CustomerResponse GetCustomer(CustomerRequest request)
         {
-            return _CustomerService.GetCustomer(request);
+            return _customerService.GetCustomer(request);
         }
 
-        public CustomerResponse getCustomerContact(CustomerRequest request)
+        public CustomerResponse GetCustomerContact(CustomerRequest request)
         {
-            return _CustomerService.GetCustomerContact(request);
+            return _customerService.GetCustomerContact(request);
         }
 
-        public CustomerResponse saveCustomerContact(CustomerRequest request)
+        public CustomerResponse SaveCustomerContact(CustomerRequest request)
         {
-            return _CustomerService.SaveCustomerContact(request);
+            return _customerService.SaveCustomerContact(request);
         }
 
-        public CustomerResponse saveCustomer(CustomerRequest request)
+        public CustomerResponse SaveCustomer(CustomerRequest request)
         {
-            return _CustomerService.SaveCustomer(request);
+            return _customerService.SaveCustomer(request);
         }
         
     }
