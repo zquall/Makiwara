@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
-using ReplicantRepository.Response;
 using ReplicantRepository.DataTransferObjects;
 using DevExpress.XtraGrid.Views.Base;
 
 namespace shellProject
 {
-    public partial class ItemFinder : DevExpress.XtraEditors.XtraForm
+    public partial class ItemFinder : XtraForm
     {
         public ItemFinder()
         {
@@ -65,20 +60,21 @@ namespace shellProject
                 // Check if the user select a valid object
                 if (rowObject.Id > 0 || rowObject.Code != null)
                 {
-                    Tag = new ItemFactory().GetItem(new ItemRequest() { ItemId = rowObject.Id, Item = rowObject }).Item;
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                    Tag = new ItemFactory().GetItem(new ItemRequest { ItemId = rowObject.Id, Item = rowObject }).Item;
+                    DialogResult = DialogResult.OK;
                 }
             }
         }
 
         private void BtnCloseClick(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
         // Calculate the Stock Value
-        private void GrdControlViewCustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        private void GrdControlViewCustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
         {
+            if (e == null) throw new ArgumentNullException("e");
             if (e.Column.FieldName == "Stock" && e.IsGetData)
             {
                 var view = sender as ColumnView;
@@ -94,7 +90,6 @@ namespace shellProject
                 }
             }
         }
-        
 
         #endregion 
                
