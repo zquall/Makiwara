@@ -731,7 +731,7 @@
     <Diagrams>
       <Diagram Name="InterceptedDataBase" ZoomLevel="37">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
-        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="1.5" PointX="3.375" PointY="3.75" Height="15.890524088541667" />
+        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2" PointX="3.375" PointY="3.75" Height="15.890524088541667" />
         <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791656" />
         <EntityTypeShape EntityType="OuterModel.ALQ_INVENTARIO" Width="1.5" PointX="5.375" PointY="4.75" Height="8.330546875" />
       </Diagram>

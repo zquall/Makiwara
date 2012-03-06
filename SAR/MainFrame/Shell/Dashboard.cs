@@ -20,12 +20,12 @@ namespace MainFrame.Shell
 
         #region Form Events
 
-        private void Dashboard_Load(object sender, EventArgs e)
+        private void DashboardLoad(object sender, EventArgs e)
         {
             LoadNavigationBar();
         }
 
-        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        private void DashboardFormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
         }
@@ -86,10 +86,10 @@ namespace MainFrame.Shell
             if (searchProject.ShowDialog() == DialogResult.Cancel)
                 projectManager.Close();
             else
-                projectManager.LoadProject(searchProject.ProjectSelected);
+                projectManager.LoadProject(searchProject.Tag as ProjectDto);
         }
 
-        private void navBarControlDashboard_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void NavBarControlDashboardLinkClicked(object sender, NavBarLinkEventArgs e)
         {
             switch (e.Link.ItemName)
             {
@@ -104,7 +104,7 @@ namespace MainFrame.Shell
                     break;
 
                 default:
-                    MessageBox.Show("[ " + e.Link.ItemName + " ] menu not implemented");
+                    MessageBox.Show(@"[ " + e.Link.ItemName + @" ] menu not implemented");
                     break;
             }
         }

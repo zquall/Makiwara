@@ -27,12 +27,10 @@ namespace shellProject
 
         #endregion
 
-
         public ProjectManager()
         {
             InitializeComponent();
         }
-
 
         #region Object-mapping methods
 
@@ -76,21 +74,6 @@ namespace shellProject
             destination.Deadline = source.DeadLine;
             destination.Expanded = source.Expanded;
             destination.Milestone = source.Milestone;
-        }
-
-        private static void Mapper(ProjectDto source, ProjectDto destination)
-        {
-            destination.Comments = source.Comments;
-            destination.ContingenciesRate = source.ContingenciesRate;
-            destination.CreateDate = source.CreateDate;
-            destination.CxcApproval = source.CxcApproval;
-            destination.DiscountRate = source.DiscountRate;
-            destination.GuaranteeRate = source.GuaranteeRate;
-            destination.ManagementApproval = source.ManagementApproval;
-            destination.Name = source.Name;
-            destination.OthersRate = source.OthersRate;
-            destination.SalesTax = source.SalesTax;
-            destination.TotalUtilityRate = source.TotalUtilityRate;
         }
 
         #endregion
@@ -331,13 +314,15 @@ namespace shellProject
 
         private void ResourceStore()
         {
+            //_project.Tasks = GetTask().ToList();
             var resourceStoreView = new ResourceStore { Tag = _project };
             resourceStoreView.ShowDialog();
         }
 
         private static void Calendar()
         {
-            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            var calendarView = new Calendar();
+            calendarView.ShowDialog();
         }
 
         #endregion
@@ -670,10 +655,27 @@ namespace shellProject
         /// <param name="e"></param>
         private void RibDataCaptionButtonClick(object sender, DevExpress.XtraBars.Ribbon.RibbonPageGroupEventArgs e)
         {
+            #region Budget Request and State of the Project if both are null
+            if (_project.BudgetRequest == null)
+            {
+                var request = new BudgetRequestRequest {BudgetResquestId = _project.BudgetRequestId};
+                _project.BudgetRequest = new BudgetRequestFactory().GetBudgetRequest(request).BudgetRequest;
+            }
+
+            if (_project.ProjectState == null)
+            {
+                var request = new ProjectStateRequest { ProjectStateId = _project.StateId };
+                _project.ProjectState = new ProjectStateFactory().GetProjectState(request).ProjectState;
+            }
+            #endregion
+
             var projectView = new CreateProject {Tag = _project, Text = @"Información del Projecto"};
-            
+
             if (projectView.ShowDialog() == DialogResult.OK)
-                Mapper(projectView.Tag as ProjectDto, _project);
+            {
+                ClearProject();
+                LoadProject(projectView.Tag as ProjectDto);
+            }
         }
 
         #endregion

@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
-using ReplicantRepository.Response;
 using Infragistics.Win.UltraWinSchedule;
 using DevExpress.XtraGrid.Views.Base;
 using ReplicantRepository.DataTransferObjects;
@@ -76,20 +75,24 @@ namespace shellProject
         //Revisar para quitar la primer conversion
         private void LoadResources()
         {
-            _resourcesCollection.Clear();
+            //_resourcesCollection.Clear();
 
-            var l = _task.Tag as List<ResourceDto>;
+            //var l = _task.Tag as List<ResourceDto>;
 
-            if (_task.Tag != null)
-            {
-                if (l != null)
-                    foreach (var rd in l /*_task.Tag as List<ResourceData>*/)
-                    {
-                        _resourcesCollection.Add(rd);
-                    }
-            }
+            //grdResources.DataSource = _task.Tag as BindingList<ResourceDto>;
+            //if (_task.Tag != null)
+            //{
+            //    if (l != null)
+            //        foreach (var rd in l /*_task.Tag as List<ResourceData>*/)
+            //        {
+            //            _resourcesCollection.Add(rd);
+            //        }
+            //}
 
-            grdResources.DataSource = _resourcesCollection;
+            var tmpResources = _task.Tag as List<ResourceDto>;
+            grdResources.DataSource = tmpResources as BindingList<ResourceDto>;
+
+            //grdResources.DataSource = _resourcesCollection;
             ConfigureResourcesGrid();
         }
 
@@ -146,13 +149,14 @@ namespace shellProject
 
         private void CaptureResources()
         {
-            var temp = new List<ResourceDto>();
-            foreach (var data in _resourcesCollection)
-            {
-                temp.Add(data);
-            }
+            //var temp = new List<ResourceDto>();
+            //foreach (var data in _resourcesCollection)
+            //{
+            //    temp.Add(data);
+            //}
 
-            _task.Tag = temp;
+            //_task.Tag = temp;
+            _task.Tag = (List<ResourceDto>)grdResources.DataSource;
         }
 
         /// <summary>
@@ -350,7 +354,7 @@ namespace shellProject
         }
 
         #endregion
-        
+
         #region UI Events
 
         private void TaskInfoLoad(object sender, EventArgs e)
@@ -413,27 +417,27 @@ namespace shellProject
             }
         }
 
-        private void LoadResourceSource(ResourceSourceData resourceSource)
+        private void LoadItem(ItemDto item)
         {
-            if (resourceSource != null)
+            if (item != null)
             {
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], resourceSource.Code);
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], resourceSource.Name);
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], resourceSource.Cost);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], item.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], item.Name);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], item.Cost);
             }
         }
 
         private void RepResourceCodeButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            var searchResource = new SearchResource();
-
-            var rtd = viewResources.GetFocusedRow() as ResourceDto;
-            if (rtd != null) searchResource.Rtype = rtd.ResourceType.Name;
-
-            if (searchResource.ShowDialog() == DialogResult.OK)
+            var tmpResource = viewResources.GetFocusedRow() as ResourceDto;
+            if (tmpResource != null && tmpResource.ResourceType.Name == "PRODUCTO")
             {
-                var rsd = searchResource.Tag as ResourceSourceData;
-                LoadResourceSource(rsd);
+                var itemFinder = new ItemFinder();
+                if(itemFinder.ShowDialog() == DialogResult.OK)
+                {
+                    var itemDto = itemFinder.Tag as ItemDto;
+                    LoadItem(itemDto);
+                }
             }
         }
 

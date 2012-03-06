@@ -10,21 +10,14 @@ namespace shellProject
 {
     public partial class SearchProject : XtraForm
     {
-        ProjectDto _project = new ProjectDto();
-
-        public ProjectDto ProjectSelected
-        {
-            get { return _project; }
-        }
-
         public SearchProject()
         {
             InitializeComponent();
         }
 
-        #region Search Project
+        #region Search Service Calls
 
-        private void FindProject(string query)
+        private void Search(string query)
         {
             var request = new ProjectRequest {SearchProjectQuery = query};
             ShowSearchResults(new ProjectFactory().SearchProject(request).ProjectList);
@@ -89,29 +82,51 @@ namespace shellProject
 
         #region UI Events
 
-        private void TxtFindEditValueChanged(object sender, EventArgs e)
+        private void SearchProjectShown(object sender, EventArgs e)
+        {
+            Search("A");
+        }
+
+        private void TxtSearchQueryEditValueChanged(object sender, EventArgs e)
         {
             var tmpTextEdit = sender as TextEdit;
-            if (tmpTextEdit != null) FindProject(tmpTextEdit.Text);
+            if (tmpTextEdit != null) Search(tmpTextEdit.Text);
+        }
+
+        // Move the focus to the grid when press Down on the search
+        private void TxtSearchQueryKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && viewProjects.FocusedRowHandle >= 0)
+            {
+                viewProjects.Focus();
+            }
+        }
+
+        // Move the focus to the search when the user press Up and is in the first row of the grid
+        private void ViewProjectsKeyDown(object sender, KeyEventArgs e)
+        {
+            if (viewProjects.FocusedRowHandle == 0)
+            {
+                if (e.KeyCode == Keys.Up)
+                {
+                    txtSearchQuery.Focus();
+                }
+            }
         }
 
         private void CmdOkClick(object sender, EventArgs e)
         {
-            _project = viewProjects.GetFocusedRow() as ProjectDto;
-
-            if (_project != null) Tag = new ProjectDto { Id = _project.Id, Name = _project.Name};
-
+            var rowObject = viewProjects.GetFocusedRow() as ProjectDto;
+            if (rowObject == null) return;
+            // Check if the user select a valid object
+            if (rowObject.Id <= 0 && rowObject.Code == null) return;
+            Tag = new ProjectFactory().GetProject(new ProjectRequest { ProjectId = rowObject.Id, Project = rowObject }).Project;
             DialogResult = DialogResult.OK;
         }
 
         private void CmdCancelClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-        }
-
-        private void SearchProjectShown(object sender, EventArgs e)
-        {
-            FindProject("a");
         }
 
         #endregion
