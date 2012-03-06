@@ -103,6 +103,39 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
+        public virtual ICollection<BudgetRequestDetailDto> BudgetRequestDetails
+        {
+            get
+            {
+                if (_budgetRequestDetails == null)
+                {
+                    var newCollection = new FixupCollection<BudgetRequestDetailDto>();
+                    newCollection.CollectionChanged += FixupBudgetRequestDetails;
+                    _budgetRequestDetails = newCollection;
+                }
+                return _budgetRequestDetails;
+            }
+            set
+            {
+                if (!ReferenceEquals(_budgetRequestDetails, value))
+                {
+                    var previousValue = _budgetRequestDetails as FixupCollection<BudgetRequestDetailDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupBudgetRequestDetails;
+                    }
+                    _budgetRequestDetails = value;
+                    var newValue = value as FixupCollection<BudgetRequestDetailDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupBudgetRequestDetails;
+                    }
+                }
+            }
+        }
+        private ICollection<BudgetRequestDetailDto> _budgetRequestDetails;
+    
+    	[DataMember]
         public virtual ICollection<StockDto> Stocks
         {
             get
@@ -137,6 +170,28 @@ namespace ReplicantRepository.DataTransferObjects
 
         #endregion
         #region Association Fixup
+    
+        private void FixupBudgetRequestDetails(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (BudgetRequestDetailDto item in e.NewItems)
+                {
+                    item.Item = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (BudgetRequestDetailDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Item, this))
+                    {
+                        item.Item = null;
+                    }
+                }
+            }
+        }
     
         private void FixupStocks(object sender, NotifyCollectionChangedEventArgs e)
         {

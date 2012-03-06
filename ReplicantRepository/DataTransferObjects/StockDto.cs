@@ -94,22 +94,6 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
-        public virtual WarehouseDto Warehouse
-        {
-            get { return _warehouse; }
-            set
-            {
-                if (!ReferenceEquals(_warehouse, value))
-                {
-                    var previousValue = _warehouse;
-                    _warehouse = value;
-                    FixupWarehouse(previousValue);
-                }
-            }
-        }
-        private WarehouseDto _warehouse;
-    
-    	[DataMember]
         public virtual ItemDto Item
         {
             get { return _item; }
@@ -124,29 +108,25 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private ItemDto _item;
-
-        #endregion
-        #region Association Fixup
     
-        private void FixupWarehouse(WarehouseDto previousValue)
+    	[DataMember]
+        public virtual WarehouseDto Warehouse
         {
-            if (previousValue != null && previousValue.Stocks.Contains(this))
+            get { return _warehouse; }
+            set
             {
-                previousValue.Stocks.Remove(this);
-            }
-    
-            if (Warehouse != null)
-            {
-                if (!Warehouse.Stocks.Contains(this))
+                if (!ReferenceEquals(_warehouse, value))
                 {
-                    Warehouse.Stocks.Add(this);
-                }
-                if (WarehouseId != Warehouse.Id)
-                {
-                    WarehouseId = Warehouse.Id;
+                    var previousValue = _warehouse;
+                    _warehouse = value;
+                    FixupWarehouse(previousValue);
                 }
             }
         }
+        private WarehouseDto _warehouse;
+
+        #endregion
+        #region Association Fixup
     
         private void FixupItem(ItemDto previousValue)
         {
@@ -164,6 +144,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (ItemId != Item.Id)
                 {
                     ItemId = Item.Id;
+                }
+            }
+        }
+    
+        private void FixupWarehouse(WarehouseDto previousValue)
+        {
+            if (previousValue != null && previousValue.Stocks.Contains(this))
+            {
+                previousValue.Stocks.Remove(this);
+            }
+    
+            if (Warehouse != null)
+            {
+                if (!Warehouse.Stocks.Contains(this))
+                {
+                    Warehouse.Stocks.Add(this);
+                }
+                if (WarehouseId != Warehouse.Id)
+                {
+                    WarehouseId = Warehouse.Id;
                 }
             }
         }

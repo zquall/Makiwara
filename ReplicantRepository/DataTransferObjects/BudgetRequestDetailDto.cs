@@ -50,6 +50,26 @@ namespace ReplicantRepository.DataTransferObjects
         private int _applicationRequestId;
     
     	[DataMember]
+        public virtual int ItemId
+        {
+     
+    
+            get { return _itemId; }
+            set
+            {
+                if (_itemId != value)
+                {
+                    if (Item != null && Item.Id != value)
+                    {
+                        Item = null;
+                    }
+                    _itemId = value;
+                }
+            }
+        }
+        private int _itemId;
+    
+    	[DataMember]
         public virtual int MeasureId
         {
      
@@ -68,6 +88,13 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private int _measureId;
+    
+    	[DataMember]
+        public virtual string ItemName
+        {
+            get;
+            set;
+        }
     
     	[DataMember]
         public virtual double Quantity
@@ -131,6 +158,22 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private MeasureDto _measure;
+    
+    	[DataMember]
+        public virtual ItemDto Item
+        {
+            get { return _item; }
+            set
+            {
+                if (!ReferenceEquals(_item, value))
+                {
+                    var previousValue = _item;
+                    _item = value;
+                    FixupItem(previousValue);
+                }
+            }
+        }
+        private ItemDto _item;
 
         #endregion
         #region Association Fixup
@@ -171,6 +214,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (MeasureId != Measure.Id)
                 {
                     MeasureId = Measure.Id;
+                }
+            }
+        }
+    
+        private void FixupItem(ItemDto previousValue)
+        {
+            if (previousValue != null && previousValue.BudgetRequestDetails.Contains(this))
+            {
+                previousValue.BudgetRequestDetails.Remove(this);
+            }
+    
+            if (Item != null)
+            {
+                if (!Item.BudgetRequestDetails.Contains(this))
+                {
+                    Item.BudgetRequestDetails.Add(this);
+                }
+                if (ItemId != Item.Id)
+                {
+                    ItemId = Item.Id;
                 }
             }
         }

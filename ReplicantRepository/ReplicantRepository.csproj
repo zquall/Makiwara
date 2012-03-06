@@ -115,6 +115,9 @@
     <Compile Include="DataTransferObjects\ProjectStateDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\RentalItemDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\ResourceDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>

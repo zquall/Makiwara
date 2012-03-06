@@ -8,11 +8,11 @@ using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
 using DevExpress.XtraGrid.Views.Base;
 
-namespace shellProject
+namespace shellCommon.Item
 {
-    public partial class ItemFinder : XtraForm
+    public partial class RentalItemFinder : XtraForm
     {
-        public ItemFinder()
+        public RentalItemFinder()
         {
             var start = DateTime.Now;
             InitializeComponent();

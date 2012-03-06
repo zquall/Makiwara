@@ -84,9 +84,11 @@ namespace CORE.DataMapper
                    
 
                 Mapper.CreateMap<BudgetRequestDetail, BudgetRequestDetailDto>()
-                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore());
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
+                    .ForMember(dest => dest.Item, opt => opt.Ignore());
                 Mapper.CreateMap<BudgetRequestDetailDto, BudgetRequestDetail>()
-                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore());
+                    .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
+                    .ForMember(dest => dest.Item, opt => opt.Ignore());
 
                 Mapper.CreateMap<BindCustomer, BindCustomerDto>()
                     .ForMember(dest => dest.Customer, opt => opt.Ignore());

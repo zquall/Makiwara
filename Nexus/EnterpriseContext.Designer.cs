@@ -27,6 +27,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BudgetRequestDetail_BudgetRequest", "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.BudgetRequest), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_BudgetRequest", "BudgetRequest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.BudgetRequest), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ApplicationRequestDetail_Measure", "Measure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Measure), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_BudgetRequestDetail_Item", "Item", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Item), "BudgetRequestDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.BudgetRequestDetail), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerContact_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Customer), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_CustomerContact_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "CustomerContact", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.CustomerContact), true)]
@@ -320,6 +321,22 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<RentalItem> RentalItems
+        {
+            get
+            {
+                if ((_RentalItems == null))
+                {
+                    _RentalItems = base.CreateObjectSet<RentalItem>("RentalItems");
+                }
+                return _RentalItems;
+            }
+        }
+        private ObjectSet<RentalItem> _RentalItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Resource> Resources
         {
             get
@@ -510,6 +527,14 @@ namespace Nexus
         public void AddToProjectStates(ProjectState projectState)
         {
             base.AddObject("ProjectStates", projectState);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the RentalItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRentalItems(RentalItem rentalItem)
+        {
+            base.AddObject("RentalItems", rentalItem);
         }
     
         /// <summary>
@@ -2021,16 +2046,20 @@ namespace Nexus
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="applicationRequestId">Initial value of the ApplicationRequestId property.</param>
+        /// <param name="itemId">Initial value of the ItemId property.</param>
         /// <param name="measureId">Initial value of the MeasureId property.</param>
+        /// <param name="itemName">Initial value of the ItemName property.</param>
         /// <param name="quantity">Initial value of the Quantity property.</param>
         /// <param name="problem">Initial value of the Problem property.</param>
         /// <param name="solution">Initial value of the Solution property.</param>
-        public static BudgetRequestDetail CreateBudgetRequestDetail(global::System.Int32 id, global::System.Int32 applicationRequestId, global::System.Int32 measureId, global::System.Double quantity, global::System.String problem, global::System.String solution)
+        public static BudgetRequestDetail CreateBudgetRequestDetail(global::System.Int32 id, global::System.Int32 applicationRequestId, global::System.Int32 itemId, global::System.Int32 measureId, global::System.String itemName, global::System.Double quantity, global::System.String problem, global::System.String solution)
         {
             BudgetRequestDetail budgetRequestDetail = new BudgetRequestDetail();
             budgetRequestDetail.Id = id;
             budgetRequestDetail.ApplicationRequestId = applicationRequestId;
+            budgetRequestDetail.ItemId = itemId;
             budgetRequestDetail.MeasureId = measureId;
+            budgetRequestDetail.ItemName = itemName;
             budgetRequestDetail.Quantity = quantity;
             budgetRequestDetail.Problem = problem;
             budgetRequestDetail.Solution = solution;
@@ -2096,6 +2125,30 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 ItemId
+        {
+            get
+            {
+                return _ItemId;
+            }
+            set
+            {
+                OnItemIdChanging(value);
+                ReportPropertyChanging("ItemId");
+                _ItemId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ItemId");
+                OnItemIdChanged();
+            }
+        }
+        private global::System.Int32 _ItemId;
+        partial void OnItemIdChanging(global::System.Int32 value);
+        partial void OnItemIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Int32 MeasureId
         {
             get
@@ -2114,6 +2167,30 @@ namespace Nexus
         private global::System.Int32 _MeasureId;
         partial void OnMeasureIdChanging(global::System.Int32 value);
         partial void OnMeasureIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ItemName
+        {
+            get
+            {
+                return _ItemName;
+            }
+            set
+            {
+                OnItemNameChanging(value);
+                ReportPropertyChanging("ItemName");
+                _ItemName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ItemName");
+                OnItemNameChanged();
+            }
+        }
+        private global::System.String _ItemName;
+        partial void OnItemNameChanging(global::System.String value);
+        partial void OnItemNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2263,6 +2340,44 @@ namespace Nexus
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Measure>("EnterpriseModel.FK_ApplicationRequestDetail_Measure", "Measure", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BudgetRequestDetail_Item", "Item")]
+        public Item Item
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EnterpriseModel.FK_BudgetRequestDetail_Item", "Item").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EnterpriseModel.FK_BudgetRequestDetail_Item", "Item").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Item> ItemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Item>("EnterpriseModel.FK_BudgetRequestDetail_Item", "Item");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Item>("EnterpriseModel.FK_BudgetRequestDetail_Item", "Item", value);
                 }
             }
         }
@@ -3318,6 +3433,28 @@ namespace Nexus
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_BudgetRequestDetail_Item", "BudgetRequestDetail")]
+        public EntityCollection<BudgetRequestDetail> BudgetRequestDetails
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_BudgetRequestDetail_Item", "BudgetRequestDetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BudgetRequestDetail>("EnterpriseModel.FK_BudgetRequestDetail_Item", "BudgetRequestDetail", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4728,6 +4865,161 @@ namespace Nexus
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="RentalItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RentalItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new RentalItem object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="code">Initial value of the Code property.</param>
+        public static RentalItem CreateRentalItem(global::System.Int32 id, global::System.String name, global::System.String code)
+        {
+            RentalItem rentalItem = new RentalItem();
+            rentalItem.Id = id;
+            rentalItem.Name = name;
+            rentalItem.Code = code;
+            return rentalItem;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Cost
+        {
+            get
+            {
+                return _Cost;
+            }
+            set
+            {
+                OnCostChanging(value);
+                ReportPropertyChanging("Cost");
+                _Cost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Cost");
+                OnCostChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Cost;
+        partial void OnCostChanging(Nullable<global::System.Decimal> value);
+        partial void OnCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _Price;
+        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
+        partial void OnPriceChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

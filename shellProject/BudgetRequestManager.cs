@@ -13,6 +13,7 @@ using shellCommon.Contact;
 using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.Request;
 using Hades.Session;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace shellProject
 {
@@ -109,6 +110,7 @@ namespace shellProject
                     break;
             }
         }
+
         #endregion
 
         #region Load Actions
@@ -147,18 +149,26 @@ namespace shellProject
             if (itemFinder.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 var item = itemFinder.Tag as ItemDto;
-                // add the item to the row GrdBudgetRequestDetails.
+                if (item != null)
+                {
+                    gridViewBudgetRequestDetails.EditingValue = item.Name;
+                    // gridViewBudgetRequestDetails.SetRowCellValue(gridViewBudgetRequestDetails.FocusedRowHandle, gridViewBudgetRequestDetails.FocusedColumn, item.Name);
+
+                    var currentDetail = gridViewBudgetRequestDetails.GetFocusedRow() as BudgetRequestDetailDto;
+                    if (currentDetail != null) currentDetail.Item = item;
+                }
+
             }
         }
 
         private void LoadBudgetRequestFinder()
         {
             // Search BudgetRequest Process
-            var searchBudgetRequestDialog = new ItemFinder();
-            if (searchBudgetRequestDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var budgetRequestFinder = new BudgetRequestFinder();
+            if (budgetRequestFinder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // load the found BudgetResquest
-                loadBudgetRequest(searchBudgetRequestDialog.Tag as BudgetRequestDto);
+                loadBudgetRequest(budgetRequestFinder.Tag as BudgetRequestDto);
             }
         }
 
@@ -195,9 +205,10 @@ namespace shellProject
             cmbProjectName.Text = budgetRequest.ProjectName;
             loadCustomer(budgetRequest.Customer);
             loadBudgetRequestCondition(budgetRequest.BudgetRequestCondition);
+            LoadBudgetRequestDetails(budgetRequest.BudgetRequestDetails);
         }
 
-        // Load the Customer
+        // Load the Conditions
         private void loadBudgetRequestCondition(BudgetRequestConditionDto budgetRequestCondition)
         {
             if (budgetRequestCondition == null)
@@ -327,6 +338,13 @@ namespace shellProject
             cmbMeasure.Items.AddRange(new CommonFactory().GetMeasureList().MeasureList);
         }
 
+        // Load the Details on Grid
+        private void LoadBudgetRequestDetails(ICollection<BudgetRequestDetailDto> budgetRequestDetails)
+        {
+            var budgetRequestDetailList = new List<BudgetRequestDetailDto>(budgetRequestDetails);
+            GrdBudgetRequestDetails.DataSource = new BindingList<BudgetRequestDetailDto>(budgetRequestDetailList);
+        }
+
         // Load the Contact List
         private void loadContactList(ICollection<CustomerContactDto> contactList)
         {
@@ -388,12 +406,7 @@ namespace shellProject
             BudgetRequestTag.DateModified = cmbDate.DateTime;
 
             // Budget Request Details
-            //var d = new BudgetRequestDetailDto();
-            //d.MeasureId = 1;
-            //d.Problem = "sdfsdf";
-            //d.Quantity = 23;
-            //d.Solution = "dasdas";
-            //BudgetRequestTag.BudgetRequestDetails.Add(d); 
+            BudgetRequestTag.BudgetRequestDetails = (BindingList < BudgetRequestDetailDto >)GrdBudgetRequestDetails.DataSource;
 
             // Conditions
 
@@ -441,5 +454,10 @@ namespace shellProject
         }
         #endregion
 
+        private void GridViewBudgetRequestDetailsInitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            var view = sender as ColumnView;
+            if (view != null) view.SetRowCellValue(e.RowHandle, view.Columns["Quantity"], 1);
+        }
     }
 }

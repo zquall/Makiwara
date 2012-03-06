@@ -26,6 +26,11 @@ namespace ReplicantRepository.DataTransferObjects
                     result = dynamicObject.Person.Name + " " + dynamicObject.Person.LastName;
                     break;
 
+                case "ReplicantRepository.DataTransferObjects.ItemDto":
+                    dynamicObject = o as ItemDto;
+                    result = dynamicObject.Name;
+                    break;
+
                 case "ReplicantRepository.DataTransferObjects.EmployeeDto":
                     dynamicObject = o as EmployeeDto;
                     if (dynamicObject.Person != null)

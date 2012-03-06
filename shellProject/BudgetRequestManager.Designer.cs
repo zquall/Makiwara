@@ -51,6 +51,8 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.CmbProjectFamily = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cmbContact = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbPhone = new DevExpress.XtraEditors.ComboBoxEdit();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -59,10 +61,11 @@
             this.gridViewBudgetRequestDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colProduct = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbProduct = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.colArea = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMeasure = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbMeasure = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.colApplication = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProblem = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSolution = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
             this.chkDust = new DevExpress.XtraEditors.CheckEdit();
@@ -125,6 +128,7 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbProjectFamily.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbContact.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -192,7 +196,7 @@
             // 
             // cmbProjectName
             // 
-            this.cmbProjectName.Location = new System.Drawing.Point(105, 70);
+            this.cmbProjectName.Location = new System.Drawing.Point(105, 111);
             this.cmbProjectName.Name = "cmbProjectName";
             this.cmbProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -202,7 +206,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(52, 73);
+            this.labelControl4.Location = new System.Drawing.Point(52, 114);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(47, 13);
             this.labelControl4.TabIndex = 4;
@@ -210,15 +214,16 @@
             // 
             // lblAddress
             // 
-            this.lblAddress.Location = new System.Drawing.Point(105, 51);
+            this.lblAddress.Location = new System.Drawing.Point(105, 48);
             this.lblAddress.MaximumSize = new System.Drawing.Size(348, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(0, 13);
+            this.lblAddress.Size = new System.Drawing.Size(68, 13);
             this.lblAddress.TabIndex = 3;
+            this.lblAddress.Text = "Some Address";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(52, 51);
+            this.labelControl2.Location = new System.Drawing.Point(52, 48);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(47, 13);
             this.labelControl2.TabIndex = 2;
@@ -239,14 +244,15 @@
             // 
             // lblContactJob
             // 
-            this.lblContactJob.Location = new System.Drawing.Point(105, 135);
+            this.lblContactJob.Location = new System.Drawing.Point(105, 91);
             this.lblContactJob.Name = "lblContactJob";
-            this.lblContactJob.Size = new System.Drawing.Size(0, 13);
+            this.lblContactJob.Size = new System.Drawing.Size(46, 13);
             this.lblContactJob.TabIndex = 11;
+            this.lblContactJob.Text = "Some Job";
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(62, 135);
+            this.labelControl11.Location = new System.Drawing.Point(62, 91);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(37, 13);
             this.labelControl11.TabIndex = 10;
@@ -254,7 +260,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(51, 101);
+            this.labelControl5.Location = new System.Drawing.Point(51, 70);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(48, 13);
             this.labelControl5.TabIndex = 6;
@@ -262,7 +268,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(293, 101);
+            this.labelControl6.Location = new System.Drawing.Point(293, 70);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(46, 13);
             this.labelControl6.TabIndex = 7;
@@ -381,6 +387,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.CmbProjectFamily);
+            this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.cmbContact);
             this.groupControl2.Controls.Add(this.cmbPhone);
             this.groupControl2.Controls.Add(this.lblContactJob);
@@ -399,9 +407,26 @@
             this.groupControl2.TabIndex = 12;
             this.groupControl2.Text = "Datos del Cliente";
             // 
+            // CmbProjectFamily
+            // 
+            this.CmbProjectFamily.Location = new System.Drawing.Point(105, 134);
+            this.CmbProjectFamily.Name = "CmbProjectFamily";
+            this.CmbProjectFamily.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.CmbProjectFamily.Size = new System.Drawing.Size(348, 20);
+            this.CmbProjectFamily.TabIndex = 15;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(63, 137);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(36, 13);
+            this.labelControl3.TabIndex = 14;
+            this.labelControl3.Text = "Familia:";
+            // 
             // cmbContact
             // 
-            this.cmbContact.Location = new System.Drawing.Point(105, 99);
+            this.cmbContact.Location = new System.Drawing.Point(105, 67);
             this.cmbContact.Name = "cmbContact";
             this.cmbContact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
@@ -413,7 +438,7 @@
             // 
             // cmbPhone
             // 
-            this.cmbPhone.Location = new System.Drawing.Point(345, 99);
+            this.cmbPhone.Location = new System.Drawing.Point(345, 67);
             this.cmbPhone.Name = "cmbPhone";
             this.cmbPhone.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -457,17 +482,20 @@
             // 
             this.gridViewBudgetRequestDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colProduct,
-            this.colArea,
+            this.colQuantity,
             this.colMeasure,
-            this.colApplication});
+            this.colProblem,
+            this.colSolution});
             this.gridViewBudgetRequestDetails.GridControl = this.GrdBudgetRequestDetails;
             this.gridViewBudgetRequestDetails.Name = "gridViewBudgetRequestDetails";
             this.gridViewBudgetRequestDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.gridViewBudgetRequestDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.GridViewBudgetRequestDetailsInitNewRow);
             // 
             // colProduct
             // 
             this.colProduct.Caption = "Producto";
             this.colProduct.ColumnEdit = this.cmbProduct;
+            this.colProduct.FieldName = "ItemName";
             this.colProduct.Name = "colProduct";
             this.colProduct.Visible = true;
             this.colProduct.VisibleIndex = 0;
@@ -481,18 +509,20 @@
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.CmbProductButtonClick);
             // 
-            // colArea
+            // colQuantity
             // 
-            this.colArea.Caption = "Area";
-            this.colArea.Name = "colArea";
-            this.colArea.Visible = true;
-            this.colArea.VisibleIndex = 1;
-            this.colArea.Width = 41;
+            this.colQuantity.Caption = "Cant";
+            this.colQuantity.FieldName = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Visible = true;
+            this.colQuantity.VisibleIndex = 1;
+            this.colQuantity.Width = 41;
             // 
             // colMeasure
             // 
             this.colMeasure.Caption = "Medida";
             this.colMeasure.ColumnEdit = this.cmbMeasure;
+            this.colMeasure.FieldName = "Measure";
             this.colMeasure.Name = "colMeasure";
             this.colMeasure.Visible = true;
             this.colMeasure.VisibleIndex = 2;
@@ -505,13 +535,22 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMeasure.Name = "cmbMeasure";
             // 
-            // colApplication
+            // colProblem
             // 
-            this.colApplication.Caption = "Aplicacion";
-            this.colApplication.Name = "colApplication";
-            this.colApplication.Visible = true;
-            this.colApplication.VisibleIndex = 3;
-            this.colApplication.Width = 380;
+            this.colProblem.Caption = "Problema";
+            this.colProblem.FieldName = "Problem";
+            this.colProblem.Name = "colProblem";
+            this.colProblem.Visible = true;
+            this.colProblem.VisibleIndex = 4;
+            // 
+            // colSolution
+            // 
+            this.colSolution.Caption = "Solucion";
+            this.colSolution.FieldName = "Solution";
+            this.colSolution.Name = "colSolution";
+            this.colSolution.Visible = true;
+            this.colSolution.VisibleIndex = 3;
+            this.colSolution.Width = 380;
             // 
             // xtraTabPage2
             // 
@@ -1002,6 +1041,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CmbProjectFamily.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbContact.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -1143,10 +1183,13 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraGrid.Columns.GridColumn colProduct;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox CmbProduct;
-        private DevExpress.XtraGrid.Columns.GridColumn colArea;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn colMeasure;
-        private DevExpress.XtraGrid.Columns.GridColumn colApplication;
+        private DevExpress.XtraGrid.Columns.GridColumn colSolution;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbMeasure;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbProduct;
+        private DevExpress.XtraEditors.ComboBoxEdit CmbProjectFamily;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraGrid.Columns.GridColumn colProblem;
     }
 }
