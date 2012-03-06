@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using ReplicantFacility.Factory;
 using ReplicantRepository.DataTransferObjects;
+using ReplicantRepository.Request;
 
 namespace shellProject
 {
@@ -35,88 +36,76 @@ namespace shellProject
 
         #endregion
 
+        #region Calcs
+
+        private void CalcSubtotal()
+        {
+            decimal subtotal = 0;
+
+            if (_project.Tasks != null)
+            {
+                foreach(var tmpTask in _project.Tasks)
+                {
+                    foreach(var tmpResource in tmpTask.Resources)
+                    {
+                        subtotal += tmpResource.TotalCost;
+                    }
+                }
+            }
+            spinSubTotal.Value = subtotal;
+        }
+
+        private void CalcSubtotalB()
+        {
+            if (spinSubTotal.Value > 0)
+            {
+                spinSubTotalB.Value = spinSubTotal.Value + (spinSubTotal.Value * spinContingenciesRate.Value / 100)
+                                                         + (spinSubTotal.Value*spinGuaranteeRate.Value/100)
+                                                         + (spinSubTotal.Value*spinOthersRate.Value/100);
+            }
+        }
+
+        private void CalcSubtotalC()
+        {
+            if (spinSubTotal.Value > 0)
+            {
+                spinSubTotalC.Value = spinSubTotalB.Value + (spinSubTotalB.Value * spinTotalUtilityRate.Value / 100);
+            }
+        }
+
+        private void CalcDiscount()
+        {
+            if (spinSubTotalC.Value > 0)
+            {
+                spinDiscountAmount.Value = spinSubTotalC.Value * (spinDiscountRate.Value/100);
+            }
+        }
+
+        private void CalcTotal()
+        {
+            if (spinSubTotalC.Value > 0)
+            {
+                spinTotal.Value = spinSubTotalC.Value - spinDiscountAmount.Value;
+            }
+        }
+
+        private void Calcs()
+        {
+            CalcSubtotal();
+            CalcSubtotalB();
+            CalcSubtotalC();
+            CalcDiscount();
+            CalcTotal();
+        }
+
+        #endregion 
+
         #region Load Process
 
         private static string GetNextCode()
         {
             return new ProjectFactory().NextCode();
         }
-
-        private void LoadBudgetRequesToProject()
-        {
-            txtQuoteNumber.Text = _budgetRequest.Id.ToString();
-            txtCode.Text = GetNextCode();
-            txtProject.Text = _budgetRequest.ProjectName;
-            txtCustumer.Text = _budgetRequest.Customer.Name;
-            txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
-            dtCreateDate.DateTime = DateTime.Now;
-        }
-
-        private static decimal CalcSubtotal()
-        {
-            const decimal subtotal = 0;
-
-            return subtotal;
-        }
-
-        private static decimal CalcDiscount()
-        {
-            const decimal discount = 0;
-
-            return discount;
-        }
-
-        private static decimal CalcOther()
-        {
-            const decimal other = 0;
-
-            return other;
-        }
-
-        /// <summary>
-        /// Carga los datos que se envian a la interfaz grafica
-        /// </summary>
-        /// <param name="p">Proyecto con los datos a cambiar</param>
-        private void LoadProject(ProjectDto p)
-        {
-            //Se carga el projecto a la variable local que almacena el projecto
-            _project = p;
-
-            _budgetRequest.Id = _project.BudgetRequestId;
-            _budgetRequest.CustomerId = _project.CustumerId;
-
-
-            //Screen One
-            txtQuoteNumber.Text = p.BudgetRequestId.ToString();
-            dtCreateDate.DateTime = p.CreateDate;
-            txtCode.Text = p.Code;
-            txtProject.Text = p.Name;
-            txtCustumer.Text = p.Customer.Name;
-            if (p.BudgetRequest != null)
-                txtSalesConsultant.Text = p.BudgetRequest.Employee.Person.Name;
-            else
-                txtSalesConsultant.Text = @"Verificando";
-            chkManagementApproval.Checked = p.ManagementApproval;
-            chkCxcApproval.Checked = p.CxcApproval;
-
-            //Screen Two
-            spinContingenciesRate.Value = (decimal)p.ContingenciesRate;
-            spinGuaranteeRate.Value = (decimal)p.GuaranteeRate;
-            spinTotalUtilityRate.Value = (decimal)p.TotalUtilityRate;
-            spinSubTotal.Value = CalcSubtotal();
-            spinDiscountRate.Value = (decimal)p.DiscountRate;
-            spinDiscountAmount.Value = CalcDiscount();
-            spinSalesTax.Value = (decimal)p.SalesTax;
-            spinOthersRate.Value = (decimal)p.OthersRate;
-            spinOtherAmount.Value = CalcOther();
-
-            //Screen Three
-            memoComments.Text = p.Comments;
-        }
-
-        #endregion
-
-        #region UI Events
 
         /// <summary>
         /// Este método se encargara de buscar un Presupuesto de Reparación y obtener los datos del mismo para tener la info
@@ -132,6 +121,100 @@ namespace shellProject
                 LoadBudgetRequesToProject();
             }
         }
+
+        private void LoadBudgetRequesToProject()
+        {
+            txtQuoteNumber.Text = _budgetRequest.Id.ToString();
+            txtCode.Text = GetNextCode();
+            txtProject.Text = _budgetRequest.ProjectName;
+            txtCustumer.Text = _budgetRequest.Customer.Name;
+            txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
+            dtCreateDate.DateTime = DateTime.Now;
+        }
+
+        private void LoadProject()
+        {
+            dtCreateDate.DateTime = DateTime.Today;
+
+            if (_project.ProjectState == null)
+            {
+                var request = new ProjectStateRequest { ProjectStateId = 1 };
+                _project.ProjectState = new ProjectStateFactory().GetProjectState(request).ProjectState;
+                txtState.Text = _project.ProjectState.Name;
+            }
+        }
+
+        /// <summary>
+        /// Carga los datos que se envian a la interfaz grafica
+        /// </summary>
+        /// <param name="p">Proyecto con los datos a cambiar</param>
+        private void LoadProject(ProjectDto p)
+        {
+            _project = p;
+
+            _budgetRequest.Id = _project.BudgetRequestId;
+            _budgetRequest.CustomerId = _project.CustumerId;
+
+
+            //Screen One
+            txtQuoteNumber.Text = p.BudgetRequestId.ToString();
+            dtCreateDate.DateTime = p.CreateDate;
+            txtCode.Text = p.Code;
+            txtProject.Text = p.Name;
+            txtCustumer.Text = p.Customer.Name;
+            txtSalesConsultant.Text = p.BudgetRequest != null ? p.BudgetRequest.Employee.Person.Name : @"Verificando";
+            chkManagementApproval.Checked = p.ManagementApproval;
+            chkCxcApproval.Checked = p.CxcApproval;
+            txtState.Text = p.ProjectState.Name;
+
+            //Screen Two
+            spinContingenciesRate.Value = (decimal)p.ContingenciesRate;
+            spinGuaranteeRate.Value = (decimal)p.GuaranteeRate;
+            spinTotalUtilityRate.Value = (decimal)p.TotalUtilityRate;
+            spinDiscountRate.Value = (decimal)p.DiscountRate;
+            spinSubTotalB.Value = (decimal)p.SalesTax;
+            spinOthersRate.Value = (decimal)p.OthersRate;
+            Calcs();
+
+            //Screen Three
+            memoComments.Text = p.Comments;
+        }
+
+        #endregion
+
+        #region Get Data
+
+        private void CaptureProject()
+        {
+            _project.Code = txtCode.Text;
+            _project.BudgetRequestId = _budgetRequest.Id;
+            _project.CustumerId = _budgetRequest.CustomerId;
+            _project.EmployeeId = _budgetRequest.CustomerId;
+            _project.Name = txtProject.Text;
+            _project.ManagementApproval = chkManagementApproval.Checked;
+            _project.CxcApproval = chkCxcApproval.Checked;
+            _project.CreateDate = dtCreateDate.DateTime;
+            _project.ContingenciesRate = (double)spinContingenciesRate.Value;
+            _project.GuaranteeRate = (double)spinGuaranteeRate.Value;
+            _project.TotalUtilityRate = (double)spinTotalUtilityRate.Value;
+            _project.DiscountRate = (double)spinDiscountRate.Value;
+            _project.SalesTax = (double)spinSubTotalB.Value;
+            _project.OthersRate = (double)spinOthersRate.Value;
+            _project.Comments = memoComments.Text;
+
+            if (_project.StateId == 0)
+                _project.StateId = 1;
+
+            if (_project.Customer == null)
+                _project.Customer = _budgetRequest.Customer;
+
+            if (_project.Tasks == null)
+                _project.Tasks = new List<TaskDto>();
+        }
+
+        #endregion
+
+        #region UI Events
 
         private void TxtQuoteNumberPropertiesButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
@@ -151,7 +234,7 @@ namespace shellProject
             }
             else
             {
-                dtCreateDate.DateTime = DateTime.Today;
+                LoadProject();
             }
         }
 
@@ -164,11 +247,7 @@ namespace shellProject
         {
             if (ReviewExistData())
             {
-                _project = CaptureProject();
-
-                if (_project.Customer == null)
-                    _project.Customer = _budgetRequest.Customer;
-
+                CaptureProject();
                 Tag = _project;
                 DialogResult = DialogResult.OK;
             }
@@ -178,33 +257,30 @@ namespace shellProject
             }
         }
 
-        #endregion
-
-        #region Save Process
-
-        private ProjectDto CaptureProject()
+        //********************************** spin events **********************************
+        private void SpinContingenciesRateEditValueChanged(object sender, EventArgs e)
         {
-            var p = new ProjectDto();
-            var tasks = new List<TaskDto>();
+            Calcs();
+        }
 
-            p.Code = txtCode.Text;
-            p.BudgetRequestId = _budgetRequest.Id;
-            p.CustumerId = _budgetRequest.CustomerId;
-            p.EmployeeId = _budgetRequest.CustomerId;
-            p.Name = txtProject.Text;
-            p.ManagementApproval = chkManagementApproval.Checked;
-            p.CxcApproval = chkCxcApproval.Checked;
-            p.CreateDate = dtCreateDate.DateTime;
-            p.ContingenciesRate = (double)spinContingenciesRate.Value;
-            p.GuaranteeRate = (double)spinGuaranteeRate.Value;
-            p.TotalUtilityRate = (double)spinTotalUtilityRate.Value;
-            p.DiscountRate = (double)spinDiscountRate.Value;
-            p.SalesTax = (double)spinSalesTax.Value;
-            p.OthersRate = (double)spinOthersRate.Value;
-            p.Comments = memoComments.Text;
-            p.Tasks = tasks;
+        private void SpinGuaranteeRateEditValueChanged(object sender, EventArgs e)
+        {
+            Calcs();
+        }
 
-            return p;
+        private void SpinOthersRateEditValueChanged(object sender, EventArgs e)
+        {
+            Calcs();
+        }
+
+        private void SpinTotalUtilityRateEditValueChanged(object sender, EventArgs e)
+        {
+            Calcs();
+        }
+
+        private void SpinDiscountRateEditValueChanged(object sender, EventArgs e)
+        {
+            Calcs();
         }
 
         #endregion

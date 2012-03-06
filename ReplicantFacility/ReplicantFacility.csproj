@@ -43,7 +43,7 @@
     <Compile Include="Factory\BugetRequestFactory.cs" />
     <Compile Include="Factory\CommonFactory.cs" />
     <Compile Include="Factory\ItemFactory.cs" />
-    <Compile Include="Factory\ResourceSourceFactory.cs" />
+    <Compile Include="Factory\ProjectStateFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Factory\CustomerFactory.cs" />
     <Compile Include="Factory\MeasureFactory.cs" />

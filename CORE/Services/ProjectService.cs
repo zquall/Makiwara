@@ -44,25 +44,6 @@ namespace CORE.Services
 
         #region Save Zone
 
-        ///// <summary>
-        ///// Delete all the resources and then put again in the task entity
-        ///// </summary>
-        ///// <param name="resources">The list of resources that will be added to the task entity</param>
-        ///// <param name="task">Task entity that contains the resources</param>
-        //private static void SaveResources(IEnumerable<ResourceDto> resources, Task task)
-        //{
-        //    if (task.Resources.Count > 0)
-        //    {
-        //        DeleteAllResources(task);
-        //    }
-
-        //    foreach (var rd in resources)
-        //    {
-        //        var resourceEntity = Mapper.Map<ResourceDto, Resource>(rd);
-        //        Olympus._Enterprise.Resources.AddObject(resourceEntity);
-        //    }
-        //}
-
         /// <summary>
         /// Delete all the tasks and then put again in the project entity
         /// </summary>
@@ -143,8 +124,10 @@ namespace CORE.Services
 
             var projectsFound = Olympus._Enterprise.Projects
                                       .Where(x => x.Name.Contains(request.SearchProjectQuery) ||
-                                             x.Customer.Name.Contains(request.SearchProjectQuery))
-                                      .OrderBy(y => y.Name)
+                                                  x.Customer.Name.Contains(request.SearchProjectQuery) ||
+                                                  x.Code.Contains(request.SearchProjectQuery) ||
+                                                  x.ProjectState.Name.Contains(request.SearchProjectQuery))
+                                      .OrderBy(y => y.Code)
                                       .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
                                       .ToList();
 
@@ -168,7 +151,6 @@ namespace CORE.Services
                 {   // Edit
                     project = Olympus._Enterprise.Projects.Where(x => x.Id == request.Project.Id).SingleOrDefault();
                     Mapper.Map(request.Project, project);
-
                     if (request.Project.Tasks != null)
                         SaveTasks(request.Project.Tasks, project);
                 }
@@ -179,6 +161,8 @@ namespace CORE.Services
                         // Check some info from AlienDB
                         project = new Project();
                         Mapper.Map(request.Project, project);
+                        if (request.Project.Tasks != null)
+                            SaveTasks(request.Project.Tasks, project);
                         Olympus._Enterprise.Projects.AddObject(project);
                     }
                 }

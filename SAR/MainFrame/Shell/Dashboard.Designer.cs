@@ -50,7 +50,7 @@
             this.navBarControlDashboard.TabIndex = 0;
             this.navBarControlDashboard.Text = "DashBoard";
             this.navBarControlDashboard.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("Black");
-            this.navBarControlDashboard.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControlDashboard_LinkClicked);
+            this.navBarControlDashboard.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.NavBarControlDashboardLinkClicked);
             // 
             // navBarGroupProject
             // 
@@ -80,8 +80,8 @@
             this.Name = "Dashboard";
             this.Text = "Sistema Administrativo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dashboard_FormClosed);
-            this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DashboardFormClosed);
+            this.Load += new System.EventHandler(this.DashboardLoad);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControlDashboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MdiManager)).EndInit();
             this.ResumeLayout(false);

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using System.Collections.Generic;
-using DevExpress.XtraEditors.Repository;
 using ReplicantRepository.DataTransferObjects;
 
 namespace shellProject
@@ -50,14 +48,14 @@ namespace shellProject
             #endregion
 
             #region set width columns
-            //viewResources.Columns["Measure"].Width = 50;
+            viewResources.Columns["Measure"].Width = 50;
             viewResources.Columns["ResourceType"].Width = 60;
-            viewResources.Columns["Code"].Width = 60;
-            viewResources.Columns["Name"].Width = 150;
-            //viewResources.Columns["Amount"].Width = 70;
-            //viewResources.Columns["Cost"].Width = 75;
-            //viewResources.Columns["TotalCost"].Width = 50;
-            //viewResources.Columns["RealUsed"].Width = 50;
+            viewResources.Columns["Code"].Width = 70;
+            viewResources.Columns["Name"].Width = 250;
+            viewResources.Columns["Amount"].Width = 60;
+            viewResources.Columns["Cost"].Width = 60;
+            viewResources.Columns["TotalCost"].Width = 70;
+            viewResources.Columns["RealUsed"].Width = 50;
             #endregion
 
             #region set visible index
@@ -69,6 +67,17 @@ namespace shellProject
             viewResources.Columns["Cost"].VisibleIndex = 5;
             viewResources.Columns["TotalCost"].VisibleIndex = 6;
             viewResources.Columns["RealUsed"].VisibleIndex = 7;
+            #endregion
+
+            #region set mask to the numeric columns
+            viewResources.Columns["Amount"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            viewResources.Columns["Amount"].DisplayFormat.FormatString = "{0:N2}";
+            viewResources.Columns["Cost"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            viewResources.Columns["Cost"].DisplayFormat.FormatString = "{0:N2}";
+            viewResources.Columns["TotalCost"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            viewResources.Columns["TotalCost"].DisplayFormat.FormatString = "{0:N2}";
+            viewResources.Columns["RealUsed"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            viewResources.Columns["RealUsed"].DisplayFormat.FormatString = "{0:N2}";
             #endregion
 
             #region Set read only columns
@@ -84,6 +93,19 @@ namespace shellProject
             viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
             #endregion
+
+            #region Set columns summaries
+
+            viewResources.Columns["Cost"].SummaryItem.DisplayFormat = @"{0:N2}";
+            viewResources.Columns["Cost"].SummaryItem.FieldName = "Cost";
+            viewResources.Columns["Cost"].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+
+            viewResources.Columns["TotalCost"].SummaryItem.DisplayFormat = @"{0:N2}";
+            viewResources.Columns["TotalCost"].SummaryItem.FieldName = "TotalCost";
+            viewResources.Columns["TotalCost"].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+
+            #endregion
+
         }
 
         private void LoadTaskOnCombo()

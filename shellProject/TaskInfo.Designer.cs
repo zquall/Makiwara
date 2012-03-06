@@ -32,6 +32,9 @@
             this.tabGeneral = new DevExpress.XtraTab.XtraTabPage();
             this.drtDuration = new DevExpress.XtraScheduler.UI.DurationEdit();
             this.grpDates = new DevExpress.XtraEditors.GroupControl();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.dtEndDate = new DevExpress.XtraEditors.DateEdit();
             this.lblEndDate = new DevExpress.XtraEditors.LabelControl();
             this.dtStartDate = new DevExpress.XtraEditors.DateEdit();
@@ -134,6 +137,9 @@
             // 
             // grpDates
             // 
+            this.grpDates.Controls.Add(this.panel3);
+            this.grpDates.Controls.Add(this.panel2);
+            this.grpDates.Controls.Add(this.panel1);
             this.grpDates.Controls.Add(this.dtEndDate);
             this.grpDates.Controls.Add(this.lblEndDate);
             this.grpDates.Controls.Add(this.dtStartDate);
@@ -143,6 +149,27 @@
             this.grpDates.Size = new System.Drawing.Size(398, 100);
             this.grpDates.TabIndex = 6;
             this.grpDates.Text = "Fechas";
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(68, 127);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 22);
+            this.panel3.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(-24, 155);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(255, 25);
+            this.panel2.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(115, 127);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 30);
+            this.panel1.TabIndex = 4;
             // 
             // dtEndDate
             // 
@@ -363,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 310);
+            this.ClientSize = new System.Drawing.Size(622, 327);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOk);
             this.Controls.Add(this.cmdDelete);
@@ -432,5 +459,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repResourceTypes;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repMeasures;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repResourceCode;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
