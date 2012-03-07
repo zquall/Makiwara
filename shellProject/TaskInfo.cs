@@ -90,7 +90,7 @@ namespace shellProject
             //}
 
             var tmpResources = _task.Tag as List<ResourceDto>;
-            grdResources.DataSource = tmpResources as BindingList<ResourceDto>;
+            if (tmpResources != null) grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
 
             //grdResources.DataSource = _resourcesCollection;
             ConfigureResourcesGrid();
@@ -156,7 +156,8 @@ namespace shellProject
             //}
 
             //_task.Tag = temp;
-            _task.Tag = (List<ResourceDto>)grdResources.DataSource;
+            _task.Tag = (BindingList<ResourceDto>)grdResources.DataSource;
+            //BudgetRequestTag.BudgetRequestDetails = (BindingList<BudgetRequestDetailDto>)GrdBudgetRequestDetails.DataSource;
         }
 
         /// <summary>
