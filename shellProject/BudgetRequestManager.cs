@@ -126,11 +126,25 @@ namespace shellProject
         private void loadContactManager()
         {
             var contactManager = new ContactManager();
-            var customer = cmbCustomerName.Tag as CustomerDto;
+            var customerContact = cmbContact.Tag as CustomerContactDto;
             // Validate if we have an customer selected
-            if (customer != null && customer.Id > 0)
-            { 
+            if (customerContact != null && customerContact.Id > 0)
+            {
+                var customer = cmbCustomerName.Tag as CustomerDto;
+                customerContact.Customer = customer;
+                contactManager.Tag = customerContact;
+                contactManager.ShowDialog();
+                if (contactManager.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    cmbContact.Properties.Items.Remove(customerContact);
+                    cmbContact.Properties.Items.Add(contactManager.Tag);
+                    cmbContact.SelectedItem = contactManager.Tag;
+                }
+            }
+            else
+            {
                 var newCustomerContact = new CustomerContactDto();
+                var customer = cmbCustomerName.Tag as CustomerDto;
                 newCustomerContact.Customer = customer;
                 contactManager.Tag = newCustomerContact;
                 contactManager.ShowDialog();
@@ -157,7 +171,6 @@ namespace shellProject
                     var currentDetail = gridViewBudgetRequestDetails.GetFocusedRow() as BudgetRequestDetailDto;
                     if (currentDetail != null) currentDetail.Item = item;
                 }
-
             }
         }
 
@@ -323,6 +336,7 @@ namespace shellProject
         // Load the Contact
         private void loadContact(CustomerContactDto contact)
         {
+            cmbContact.Tag = contact;
             lblContactJob.Text = string.Empty;
             loadPhoneList(null);
             if (contact != null)

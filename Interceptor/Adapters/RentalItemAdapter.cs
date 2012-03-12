@@ -20,21 +20,21 @@ namespace Interceptor.Adapters
         }
 
         // Add aditional results to the search
-        public void SearchItem(ItemRequest request, ItemResponse response)
+        public void SearchRentalItem(RentalItemRequest request, RentalItemResponse response)
         {
             var maximunResultRows = Convert.ToInt32(Resources.MaximunSearchResults);
 
             // Apply the search with the pattern given
-            var searchResults = Asgard._Foreing.INV_INVENTARIO
-                .Where(x => x.INV_Nombre.ToUpper().Contains(request.SearchItemQuery.ToUpper()) || 
-                            x.INV_Codigo.ToUpper().Contains(request.SearchItemQuery.ToUpper()))
+            var searchResults = Asgard._Foreing.ALQ_INVENTARIO
+                .Where(x => x.INV_Nombre.ToUpper().Contains(request.SearchRentalItemQuery.ToUpper()) ||
+                            x.INV_Codigo.ToUpper().Contains(request.SearchRentalItemQuery.ToUpper()))
                             .OrderBy(y => y.INV_Nombre)
                             .Take(maximunResultRows).ToList();
             
             // Fill the response with the result found
             foreach (var item in searchResults)
             {
-                var itemDto = new ItemDto
+                var itemDto = new RentalItemDto
                                   {
                                       Code = item.INV_Codigo.Trim(),
                                       Name = item.INV_Nombre.Trim(),

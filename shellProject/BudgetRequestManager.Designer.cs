@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cmbProjectName = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -113,7 +113,6 @@
             this.spnMaximunHeight = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProjectName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCustomerName.Properties)).BeginInit();
@@ -201,7 +200,7 @@
             this.cmbProjectName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.cmbProjectName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnProjectName_Properties_ButtonClick);
-            this.cmbProjectName.Size = new System.Drawing.Size(348, 20);
+            this.cmbProjectName.Size = new System.Drawing.Size(462, 20);
             this.cmbProjectName.TabIndex = 5;
             // 
             // labelControl4
@@ -214,12 +213,14 @@
             // 
             // lblAddress
             // 
+            this.lblAddress.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
             this.lblAddress.Location = new System.Drawing.Point(105, 48);
-            this.lblAddress.MaximumSize = new System.Drawing.Size(348, 0);
+            this.lblAddress.MaximumSize = new System.Drawing.Size(455, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(68, 13);
+            this.lblAddress.Size = new System.Drawing.Size(455, 26);
             this.lblAddress.TabIndex = 3;
-            this.lblAddress.Text = "Some Address";
+            this.lblAddress.Text = "Some AddressSome AddressSome AddressSome AddressSome AddressSome AddressSome Addr" +
+                "essSome Address";
             // 
             // labelControl2
             // 
@@ -239,12 +240,12 @@
             new DevExpress.XtraEditors.Controls.EditorButton(),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
             this.cmbCustomerName.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnCustomerName_Properties_ButtonClick);
-            this.cmbCustomerName.Size = new System.Drawing.Size(348, 20);
+            this.cmbCustomerName.Size = new System.Drawing.Size(462, 20);
             this.cmbCustomerName.TabIndex = 1;
             // 
             // lblContactJob
             // 
-            this.lblContactJob.Location = new System.Drawing.Point(105, 91);
+            this.lblContactJob.Location = new System.Drawing.Point(325, 88);
             this.lblContactJob.Name = "lblContactJob";
             this.lblContactJob.Size = new System.Drawing.Size(46, 13);
             this.lblContactJob.TabIndex = 11;
@@ -252,7 +253,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(62, 91);
+            this.labelControl11.Location = new System.Drawing.Point(282, 88);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(37, 13);
             this.labelControl11.TabIndex = 10;
@@ -260,7 +261,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(51, 70);
+            this.labelControl5.Location = new System.Drawing.Point(51, 88);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(48, 13);
             this.labelControl5.TabIndex = 6;
@@ -268,7 +269,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(293, 70);
+            this.labelControl6.Location = new System.Drawing.Point(407, 88);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(46, 13);
             this.labelControl6.TabIndex = 7;
@@ -280,9 +281,9 @@
             this.panelControl5.Controls.Add(this.cmbBubgetRequest);
             this.panelControl5.Controls.Add(this.cmbDate);
             this.panelControl5.Controls.Add(this.labelControl8);
-            this.panelControl5.Location = new System.Drawing.Point(479, 12);
+            this.panelControl5.Location = new System.Drawing.Point(590, 12);
             this.panelControl5.Name = "panelControl5";
-            this.panelControl5.Size = new System.Drawing.Size(238, 57);
+            this.panelControl5.Size = new System.Drawing.Size(260, 57);
             this.panelControl5.TabIndex = 6;
             // 
             // labelControl7
@@ -299,7 +300,7 @@
             this.cmbBubgetRequest.Name = "cmbBubgetRequest";
             this.cmbBubgetRequest.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Right),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Left, "", -1, true, true, true, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true),
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.cmbBubgetRequest.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.cmbBubgetRequest_Properties_ButtonClick);
             this.cmbBubgetRequest.Size = new System.Drawing.Size(168, 20);
@@ -337,9 +338,9 @@
             // 
             this.panelControl3.Controls.Add(this.lblEmployeeName);
             this.panelControl3.Controls.Add(this.labelControl9);
-            this.panelControl3.Location = new System.Drawing.Point(479, 75);
+            this.panelControl3.Location = new System.Drawing.Point(590, 75);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(238, 96);
+            this.panelControl3.Size = new System.Drawing.Size(260, 96);
             this.panelControl3.TabIndex = 5;
             // 
             // lblEmployeeName
@@ -382,7 +383,7 @@
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl4.Location = new System.Drawing.Point(0, 0);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(731, 183);
+            this.panelControl4.Size = new System.Drawing.Size(862, 183);
             this.panelControl4.TabIndex = 3;
             // 
             // groupControl2
@@ -403,7 +404,7 @@
             this.groupControl2.Controls.Add(this.labelControl2);
             this.groupControl2.Location = new System.Drawing.Point(12, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(461, 159);
+            this.groupControl2.Size = new System.Drawing.Size(572, 159);
             this.groupControl2.TabIndex = 12;
             this.groupControl2.Text = "Datos del Cliente";
             // 
@@ -413,7 +414,7 @@
             this.CmbProjectFamily.Name = "CmbProjectFamily";
             this.CmbProjectFamily.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.CmbProjectFamily.Size = new System.Drawing.Size(348, 20);
+            this.CmbProjectFamily.Size = new System.Drawing.Size(462, 20);
             this.CmbProjectFamily.TabIndex = 15;
             // 
             // labelControl3
@@ -426,7 +427,7 @@
             // 
             // cmbContact
             // 
-            this.cmbContact.Location = new System.Drawing.Point(105, 67);
+            this.cmbContact.Location = new System.Drawing.Point(105, 85);
             this.cmbContact.Name = "cmbContact";
             this.cmbContact.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
@@ -438,7 +439,7 @@
             // 
             // cmbPhone
             // 
-            this.cmbPhone.Location = new System.Drawing.Point(345, 67);
+            this.cmbPhone.Location = new System.Drawing.Point(459, 85);
             this.cmbPhone.Name = "cmbPhone";
             this.cmbPhone.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -450,19 +451,18 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(12, 189);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(705, 300);
+            this.xtraTabControl1.Size = new System.Drawing.Size(838, 300);
             this.xtraTabControl1.TabIndex = 4;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2,
-            this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage3});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.GrdBudgetRequestDetails);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage1.Size = new System.Drawing.Size(831, 271);
             this.xtraTabPage1.Text = "Descripcion del Trabajo";
             // 
             // GrdBudgetRequestDetails
@@ -473,7 +473,7 @@
             this.GrdBudgetRequestDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmbProduct,
             this.cmbMeasure});
-            this.GrdBudgetRequestDetails.Size = new System.Drawing.Size(692, 265);
+            this.GrdBudgetRequestDetails.Size = new System.Drawing.Size(825, 265);
             this.GrdBudgetRequestDetails.TabIndex = 0;
             this.GrdBudgetRequestDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewBudgetRequestDetails});
@@ -561,7 +561,7 @@
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Controls.Add(this.groupControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage2.Size = new System.Drawing.Size(831, 271);
             this.xtraTabPage2.Text = "Condiciones del Trabajo";
             // 
             // groupControl7
@@ -838,7 +838,7 @@
             this.xtraTabPage3.Controls.Add(this.labelControl14);
             this.xtraTabPage3.Controls.Add(this.labelControl13);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(698, 271);
+            this.xtraTabPage3.Size = new System.Drawing.Size(831, 271);
             this.xtraTabPage3.Text = "Plazos y Tiempos";
             // 
             // groupControl8
@@ -997,12 +997,6 @@
             this.labelControl13.TabIndex = 0;
             this.labelControl13.Text = "Altura maxima del trabajo:";
             // 
-            // xtraTabPage4
-            // 
-            this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(698, 271);
-            this.xtraTabPage4.Text = "Documentos Adjuntos";
-            // 
             // simpleButton3
             // 
             this.simpleButton3.Location = new System.Drawing.Point(608, 495);
@@ -1016,7 +1010,7 @@
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 530);
+            this.ClientSize = new System.Drawing.Size(862, 530);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.xtraTabControl1);
@@ -1133,7 +1127,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewBudgetRequestDetails;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         private DevExpress.XtraEditors.CheckEdit chkTuesday;
         private DevExpress.XtraEditors.CheckEdit chkMonday;
         private DevExpress.XtraEditors.CheckEdit chkSunday;

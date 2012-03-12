@@ -32,7 +32,6 @@ namespace shellCommon.Contact
                 // Must return the contact by Tag, can be saved on DB
                 loadContact(Tag as CustomerContactDto);
             }
-
         }
 
         // Loads the PhoneTypes on the combos
@@ -54,7 +53,8 @@ namespace shellCommon.Contact
         // Loads the Contact on the form
         private void loadContact(CustomerContactDto customerContact)
         {
-            if (customerContact.Id > 0) { 
+            if (customerContact != null && customerContact.Id > 0)
+            { 
                 txtName.Text = customerContact.Person.Name;
                 txtLastName.Text = customerContact.Person.LastName;
                 txtJob.Text = customerContact.Job;
@@ -99,24 +99,29 @@ namespace shellCommon.Contact
         {
             if (Tag == null)
             {
-                Tag = new CustomerContactDto();
+                Tag = new CustomerContactDto { Person = new PersonDto() };
             }
-            var ContactTag = Tag as CustomerContactDto;
-            ContactTag.Person = new PersonDto();
-            ContactTag.Person.Name = txtName.Text;
-            ContactTag.Person.LastName = txtLastName.Text;
-            ContactTag.Job = txtJob.Text;
-            ContactTag.Email = txtEmail.Text;
-            ContactTag.Person.PersonPhones = new List<PersonPhoneDto>();
+            var contactTag = Tag as CustomerContactDto;
+            if (contactTag != null)
+            {
+                if (contactTag.Person == null)
+                {
+                    contactTag.Person = new PersonDto();
+                }
+                contactTag.Person.Name = txtName.Text;
+                contactTag.Person.LastName = txtLastName.Text;
+                contactTag.Job = txtJob.Text;
+                contactTag.Email = txtEmail.Text;
+                contactTag.Person.PersonPhones = new List<PersonPhoneDto>();
 
-            // Phone A
-            capturePersonPhone(txtPhoneA, cmbPhoneTypeA, ContactTag.Person.PersonPhones);           
-            // Phone B
-            capturePersonPhone(txtPhoneB, cmbPhoneTypeB, ContactTag.Person.PersonPhones);
-            // Phone C
-            capturePersonPhone(txtPhoneC, cmbPhoneTypeC, ContactTag.Person.PersonPhones);
-         
-            return ContactTag;
+                // Phone A
+                capturePersonPhone(txtPhoneA, cmbPhoneTypeA, contactTag.Person.PersonPhones);           
+                // Phone B
+                capturePersonPhone(txtPhoneB, cmbPhoneTypeB, contactTag.Person.PersonPhones);
+                // Phone C
+                capturePersonPhone(txtPhoneC, cmbPhoneTypeC, contactTag.Person.PersonPhones);
+            }
+            return contactTag;
         }
 
         private void capturePersonPhone(TextEdit txtPersonPhone, ComboBoxEdit cmbPhoneType, ICollection<PersonPhoneDto> personPhones)
@@ -140,7 +145,9 @@ namespace shellCommon.Contact
             var request = new CustomerRequest();
             request.CustomerContact = captureContact();
             var response = new CustomerFactory().SaveCustomerContact(request);
-            Tag = new CustomerFactory().GetCustomerContact(new CustomerRequest { CustomerContactId = response.CustomerContactId }).CustomerContact;
+            if (response.CustomerContactId > 0) {
+                Tag = new CustomerFactory().GetCustomerContact(new CustomerRequest { CustomerContactId = response.CustomerContactId }).CustomerContact;
+            }
         }
 
         #endregion

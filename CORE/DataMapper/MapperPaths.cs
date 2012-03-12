@@ -32,7 +32,9 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<Person, PersonDto>()                    
                     .ForMember(dest => dest.Employees, opt => opt.Ignore())
                     .ForMember(dest => dest.CustomerContacts, opt => opt.Ignore());
-                Mapper.CreateMap<PersonDto, Person>();
+                Mapper.CreateMap<PersonDto, Person>()
+                    .ForMember(dest => dest.CustomerContacts, opt => opt.Ignore())
+                    .ForMember(dest => dest.Employees, opt => opt.Ignore());
 
                 // PersonPhone
                 Mapper.CreateMap<PersonPhone, PersonPhoneDto>()                    

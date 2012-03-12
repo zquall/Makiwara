@@ -14,10 +14,7 @@ namespace shellCommon.Item
     {
         public RentalItemFinder()
         {
-            var start = DateTime.Now;
             InitializeComponent();
-            var end = DateTime.Now - start;
-            var sdf = DateTime.Now;
         }
 
         #region UI Events
@@ -104,7 +101,7 @@ namespace shellCommon.Item
         private void Search(string query)
         {
             var request = new ItemRequest {SearchItemQuery = query};
-            ShowSearchResults(new ItemFactory().SearchItem(request).ItemList);
+            ShowSearchResults(new RentalItemFactory().(request).ItemList);
         }
 
         private void ShowSearchResults(List<ItemDto> searchResults)

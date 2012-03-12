@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shellCommon", "..\shellComm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interceptor", "..\Interceptor\Interceptor.csproj", "{776B24E4-2970-4965-8D60-D434AF3D36DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shellCloud", "..\shellCloud\shellCloud.csproj", "{E610AD22-5A60-4349-959A-29642E99DB29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,16 @@ Global
 		{776B24E4-2970-4965-8D60-D434AF3D36DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{776B24E4-2970-4965-8D60-D434AF3D36DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{776B24E4-2970-4965-8D60-D434AF3D36DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E610AD22-5A60-4349-959A-29642E99DB29}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

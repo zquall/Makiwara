@@ -110,10 +110,9 @@ namespace CORE.Services
         {
             var response = new CustomerResponse();
             // Validate contact has a customer related
-            if (request.CustomerContact.CustomerId > 0)
+            if (request.CustomerContactId > 0)
             {
                 CustomerContact contact;
-
                 // Check if Edit or Add
                 if (request.CustomerContact.Id > 0)
                 {
