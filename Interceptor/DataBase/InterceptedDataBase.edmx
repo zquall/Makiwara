@@ -10,6 +10,12 @@
           <EntitySet Name="CLI_CLIENTES" EntityType="OuterModel.Store.CLI_CLIENTES" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="INV_INVENTARIO" EntityType="OuterModel.Store.INV_INVENTARIO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="INV_X_BODEGA" EntityType="OuterModel.Store.INV_X_BODEGA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PLA_EMPLEADOS" EntityType="OuterModel.Store.PLA_EMPLEADOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PLA_PUESTOS" EntityType="OuterModel.Store.PLA_PUESTOS" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.Store.FK_PLA_EMPLEADOS_PLA_PUESTOS">
+            <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
+            <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ALQ_INVENTARIO">
           <Key>
@@ -240,6 +246,92 @@
           <Property Name="INV_Diferencia" Type="int" Nullable="false" />
           <Property Name="INV_Reservado" Type="numeric" Precision="10" Scale="2" />
         </EntityType>
+        <EntityType Name="PLA_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CIA_Codigo" />
+          </Key>
+          <Property Name="ID" Type="float" Nullable="false" />
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="EMP_Foto" Type="varchar" MaxLength="255" />
+          <Property Name="EMP_Nombre" Type="varchar" MaxLength="75" />
+          <Property Name="EMP_Numero" Type="float" Nullable="false" />
+          <Property Name="EMP_Identificacion" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="EMP_NumeroAsegurado" Type="varchar" MaxLength="50" />
+          <Property Name="PUE_ID" Type="float" Nullable="false" />
+          <Property Name="DEP_ID" Type="float" Nullable="false" />
+          <Property Name="EMP_FechaIngreso" Type="datetime" Nullable="false" />
+          <Property Name="EMP_FechaSalida" Type="datetime" />
+          <Property Name="EMP_FechaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="EMP_SalarioXHora" Type="float" Nullable="false" />
+          <Property Name="EMP_SalarioMensual" Type="float" Nullable="false" />
+          <Property Name="EMP_SalarioDiario" Type="float" Nullable="false" />
+          <Property Name="BAN_ID" Type="float" Nullable="false" />
+          <Property Name="EMP_CuentaBancaria" Type="varchar" MaxLength="15" />
+          <Property Name="EMP_TipoCuenta" Type="int" />
+          <Property Name="EMP_NumeroOficina" Type="int" />
+          <Property Name="TIP_ID" Type="float" Nullable="false" />
+          <Property Name="EMP_AplicaCreditosRenta" Type="smallint" />
+          <Property Name="EMP_NumeroHijos" Type="int" />
+          <Property Name="EMP_Esposa" Type="smallint" />
+          <Property Name="EMP_Activo" Type="varchar" MaxLength="1" />
+          <Property Name="NAC_ID" Type="float" Nullable="false" />
+          <Property Name="EMP_Dependientes" Type="int" />
+          <Property Name="EMP_PermisoSalud" Type="int" />
+          <Property Name="EMP_DescripcionTelefono1" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_DescripcionTelefono2" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_DescripcionTelefono3" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Telefono1" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Telefono2" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Telefono3" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Sexo" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_EstadoCivil" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_TipoSangre" Type="int" />
+          <Property Name="EMP_DireccionPostal" Type="varchar" MaxLength="255" />
+          <Property Name="EMP_DireccionHabitacion" Type="varchar" MaxLength="255" />
+          <Property Name="EMP_FechaUltimoAumento" Type="datetime" />
+          <Property Name="TUR_ID" Type="float" />
+          <Property Name="EMP_CorreoElectronico" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Observaciones" Type="varchar" MaxLength="5000" />
+          <Property Name="CEC_Codigo" Type="varchar" MaxLength="10" />
+          <Property Name="EMP_SalarioXHoraAnterior" Type="float" />
+          <Property Name="EMP_SalarioDiarioAnterior" Type="float" />
+          <Property Name="EMP_SalarioMensualAnterior" Type="float" />
+          <Property Name="USR_Codigo" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="EMP_FechaModificacion" Type="datetime" />
+          <Property Name="EMP_AsociacionSolidarista" Type="tinyint" />
+          <Property Name="EMP_TIPOPAGO" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="EMP_Eliminado" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="EMP_Estatura" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_Escolaridad" Type="varchar" MaxLength="100" />
+          <Property Name="EMP_CursoBasico" Type="float" Nullable="false" />
+          <Property Name="EMP_TeoricoPractico" Type="varchar" MaxLength="1" />
+          <Property Name="EMP_PermisoPortacion" Type="float" Nullable="false" />
+          <Property Name="EMP_FechaVencePermiso" Type="datetime" />
+          <Property Name="EMP_ExamenPsicologico" Type="float" Nullable="false" />
+          <Property Name="EMP_FechaVenceExamen" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PLA_PUESTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="float" Nullable="false" />
+          <Property Name="PUE_Codigo" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="PUE_Descripcion" Type="varchar" Nullable="false" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK_PLA_EMPLEADOS_PLA_PUESTOS">
+          <End Role="PLA_PUESTOS" Type="OuterModel.Store.PLA_PUESTOS" Multiplicity="1" />
+          <End Role="PLA_EMPLEADOS" Type="OuterModel.Store.PLA_EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLA_PUESTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PLA_EMPLEADOS">
+              <PropertyRef Name="PUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -249,6 +341,12 @@
           <EntitySet Name="INV_INVENTARIO" EntityType="OuterModel.INV_INVENTARIO" />
           <EntitySet Name="INV_X_BODEGA" EntityType="OuterModel.INV_X_BODEGA" />
           <EntitySet Name="ALQ_INVENTARIO" EntityType="OuterModel.ALQ_INVENTARIO" />
+          <EntitySet Name="PLA_EMPLEADOS" EntityType="OuterModel.PLA_EMPLEADOS" />
+          <EntitySet Name="PLA_PUESTOS" EntityType="OuterModel.PLA_PUESTOS" />
+          <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS">
+            <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
+            <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
           <Key>
@@ -479,6 +577,94 @@
           <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
           <Property Type="String" Name="ARA_Arancel" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PLA_EMPLEADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CIA_Codigo" />
+          </Key>
+          <Property Type="Double" Name="ID" Nullable="false" />
+          <Property Type="String" Name="CIA_Codigo" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Foto" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Nombre" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="EMP_Numero" Nullable="false" />
+          <Property Type="String" Name="EMP_Identificacion" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_NumeroAsegurado" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PUE_ID" Nullable="false" />
+          <Property Type="Double" Name="DEP_ID" Nullable="false" />
+          <Property Type="DateTime" Name="EMP_FechaIngreso" Nullable="false" />
+          <Property Type="DateTime" Name="EMP_FechaSalida" />
+          <Property Type="DateTime" Name="EMP_FechaNacimiento" Nullable="false" />
+          <Property Type="Double" Name="EMP_SalarioXHora" Nullable="false" />
+          <Property Type="Double" Name="EMP_SalarioMensual" Nullable="false" />
+          <Property Type="Double" Name="EMP_SalarioDiario" Nullable="false" />
+          <Property Type="Double" Name="BAN_ID" Nullable="false" />
+          <Property Type="String" Name="EMP_CuentaBancaria" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EMP_TipoCuenta" />
+          <Property Type="Int32" Name="EMP_NumeroOficina" />
+          <Property Type="Double" Name="TIP_ID" Nullable="false" />
+          <Property Type="Int16" Name="EMP_AplicaCreditosRenta" />
+          <Property Type="Int32" Name="EMP_NumeroHijos" />
+          <Property Type="Int16" Name="EMP_Esposa" />
+          <Property Type="String" Name="EMP_Activo" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="NAC_ID" Nullable="false" />
+          <Property Type="Int32" Name="EMP_Dependientes" />
+          <Property Type="Int32" Name="EMP_PermisoSalud" />
+          <Property Type="String" Name="EMP_DescripcionTelefono1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_DescripcionTelefono2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_DescripcionTelefono3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Telefono1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Telefono2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Telefono3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Sexo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_EstadoCivil" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EMP_TipoSangre" />
+          <Property Type="String" Name="EMP_DireccionPostal" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_DireccionHabitacion" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="EMP_FechaUltimoAumento" />
+          <Property Type="Double" Name="TUR_ID" />
+          <Property Type="String" Name="EMP_CorreoElectronico" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Observaciones" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CEC_Codigo" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="EMP_SalarioXHoraAnterior" />
+          <Property Type="Double" Name="EMP_SalarioDiarioAnterior" />
+          <Property Type="Double" Name="EMP_SalarioMensualAnterior" />
+          <Property Type="String" Name="USR_Codigo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="USR_Nombre" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="EMP_FechaModificacion" />
+          <Property Type="Byte" Name="EMP_AsociacionSolidarista" />
+          <Property Type="String" Name="EMP_TIPOPAGO" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Eliminado" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Estatura" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EMP_Escolaridad" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="EMP_CursoBasico" Nullable="false" />
+          <Property Type="String" Name="EMP_TeoricoPractico" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="EMP_PermisoPortacion" Nullable="false" />
+          <Property Type="DateTime" Name="EMP_FechaVencePermiso" />
+          <Property Type="Double" Name="EMP_ExamenPsicologico" Nullable="false" />
+          <Property Type="DateTime" Name="EMP_FechaVenceExamen" />
+          <NavigationProperty Name="PLA_PUESTOS" Relationship="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS" FromRole="PLA_EMPLEADOS" ToRole="PLA_PUESTOS" />
+        </EntityType>
+        <EntityType Name="PLA_PUESTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Double" Name="ID" Nullable="false" />
+          <Property Type="String" Name="PUE_Codigo" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PUE_Descripcion" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PLA_EMPLEADOS" Relationship="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS" FromRole="PLA_PUESTOS" ToRole="PLA_EMPLEADOS" />
+        </EntityType>
+        <Association Name="FK_PLA_EMPLEADOS_PLA_PUESTOS">
+          <End Type="OuterModel.PLA_PUESTOS" Role="PLA_PUESTOS" Multiplicity="1" />
+          <End Type="OuterModel.PLA_EMPLEADOS" Role="PLA_EMPLEADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLA_PUESTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PLA_EMPLEADOS">
+              <PropertyRef Name="PUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -709,6 +895,81 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PLA_EMPLEADOS">
+            <EntityTypeMapping TypeName="OuterModel.PLA_EMPLEADOS">
+              <MappingFragment StoreEntitySet="PLA_EMPLEADOS">
+                <ScalarProperty Name="EMP_FechaVenceExamen" ColumnName="EMP_FechaVenceExamen" />
+                <ScalarProperty Name="EMP_ExamenPsicologico" ColumnName="EMP_ExamenPsicologico" />
+                <ScalarProperty Name="EMP_FechaVencePermiso" ColumnName="EMP_FechaVencePermiso" />
+                <ScalarProperty Name="EMP_PermisoPortacion" ColumnName="EMP_PermisoPortacion" />
+                <ScalarProperty Name="EMP_TeoricoPractico" ColumnName="EMP_TeoricoPractico" />
+                <ScalarProperty Name="EMP_CursoBasico" ColumnName="EMP_CursoBasico" />
+                <ScalarProperty Name="EMP_Escolaridad" ColumnName="EMP_Escolaridad" />
+                <ScalarProperty Name="EMP_Estatura" ColumnName="EMP_Estatura" />
+                <ScalarProperty Name="EMP_Eliminado" ColumnName="EMP_Eliminado" />
+                <ScalarProperty Name="EMP_TIPOPAGO" ColumnName="EMP_TIPOPAGO" />
+                <ScalarProperty Name="EMP_AsociacionSolidarista" ColumnName="EMP_AsociacionSolidarista" />
+                <ScalarProperty Name="EMP_FechaModificacion" ColumnName="EMP_FechaModificacion" />
+                <ScalarProperty Name="USR_Nombre" ColumnName="USR_Nombre" />
+                <ScalarProperty Name="USR_Codigo" ColumnName="USR_Codigo" />
+                <ScalarProperty Name="EMP_SalarioMensualAnterior" ColumnName="EMP_SalarioMensualAnterior" />
+                <ScalarProperty Name="EMP_SalarioDiarioAnterior" ColumnName="EMP_SalarioDiarioAnterior" />
+                <ScalarProperty Name="EMP_SalarioXHoraAnterior" ColumnName="EMP_SalarioXHoraAnterior" />
+                <ScalarProperty Name="CEC_Codigo" ColumnName="CEC_Codigo" />
+                <ScalarProperty Name="EMP_Observaciones" ColumnName="EMP_Observaciones" />
+                <ScalarProperty Name="EMP_CorreoElectronico" ColumnName="EMP_CorreoElectronico" />
+                <ScalarProperty Name="TUR_ID" ColumnName="TUR_ID" />
+                <ScalarProperty Name="EMP_FechaUltimoAumento" ColumnName="EMP_FechaUltimoAumento" />
+                <ScalarProperty Name="EMP_DireccionHabitacion" ColumnName="EMP_DireccionHabitacion" />
+                <ScalarProperty Name="EMP_DireccionPostal" ColumnName="EMP_DireccionPostal" />
+                <ScalarProperty Name="EMP_TipoSangre" ColumnName="EMP_TipoSangre" />
+                <ScalarProperty Name="EMP_EstadoCivil" ColumnName="EMP_EstadoCivil" />
+                <ScalarProperty Name="EMP_Sexo" ColumnName="EMP_Sexo" />
+                <ScalarProperty Name="EMP_Telefono3" ColumnName="EMP_Telefono3" />
+                <ScalarProperty Name="EMP_Telefono2" ColumnName="EMP_Telefono2" />
+                <ScalarProperty Name="EMP_Telefono1" ColumnName="EMP_Telefono1" />
+                <ScalarProperty Name="EMP_DescripcionTelefono3" ColumnName="EMP_DescripcionTelefono3" />
+                <ScalarProperty Name="EMP_DescripcionTelefono2" ColumnName="EMP_DescripcionTelefono2" />
+                <ScalarProperty Name="EMP_DescripcionTelefono1" ColumnName="EMP_DescripcionTelefono1" />
+                <ScalarProperty Name="EMP_PermisoSalud" ColumnName="EMP_PermisoSalud" />
+                <ScalarProperty Name="EMP_Dependientes" ColumnName="EMP_Dependientes" />
+                <ScalarProperty Name="NAC_ID" ColumnName="NAC_ID" />
+                <ScalarProperty Name="EMP_Activo" ColumnName="EMP_Activo" />
+                <ScalarProperty Name="EMP_Esposa" ColumnName="EMP_Esposa" />
+                <ScalarProperty Name="EMP_NumeroHijos" ColumnName="EMP_NumeroHijos" />
+                <ScalarProperty Name="EMP_AplicaCreditosRenta" ColumnName="EMP_AplicaCreditosRenta" />
+                <ScalarProperty Name="TIP_ID" ColumnName="TIP_ID" />
+                <ScalarProperty Name="EMP_NumeroOficina" ColumnName="EMP_NumeroOficina" />
+                <ScalarProperty Name="EMP_TipoCuenta" ColumnName="EMP_TipoCuenta" />
+                <ScalarProperty Name="EMP_CuentaBancaria" ColumnName="EMP_CuentaBancaria" />
+                <ScalarProperty Name="BAN_ID" ColumnName="BAN_ID" />
+                <ScalarProperty Name="EMP_SalarioDiario" ColumnName="EMP_SalarioDiario" />
+                <ScalarProperty Name="EMP_SalarioMensual" ColumnName="EMP_SalarioMensual" />
+                <ScalarProperty Name="EMP_SalarioXHora" ColumnName="EMP_SalarioXHora" />
+                <ScalarProperty Name="EMP_FechaNacimiento" ColumnName="EMP_FechaNacimiento" />
+                <ScalarProperty Name="EMP_FechaSalida" ColumnName="EMP_FechaSalida" />
+                <ScalarProperty Name="EMP_FechaIngreso" ColumnName="EMP_FechaIngreso" />
+                <ScalarProperty Name="DEP_ID" ColumnName="DEP_ID" />
+                <ScalarProperty Name="PUE_ID" ColumnName="PUE_ID" />
+                <ScalarProperty Name="EMP_NumeroAsegurado" ColumnName="EMP_NumeroAsegurado" />
+                <ScalarProperty Name="EMP_Identificacion" ColumnName="EMP_Identificacion" />
+                <ScalarProperty Name="EMP_Numero" ColumnName="EMP_Numero" />
+                <ScalarProperty Name="EMP_Nombre" ColumnName="EMP_Nombre" />
+                <ScalarProperty Name="EMP_Foto" ColumnName="EMP_Foto" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLA_PUESTOS">
+            <EntityTypeMapping TypeName="OuterModel.PLA_PUESTOS">
+              <MappingFragment StoreEntitySet="PLA_PUESTOS">
+                <ScalarProperty Name="PUE_Descripcion" ColumnName="PUE_Descripcion" />
+                <ScalarProperty Name="PUE_Codigo" ColumnName="PUE_Codigo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -729,11 +990,17 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="37">
-        <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.5" PointX="0.75" PointY="0.75" Height="10.467062174479166" IsExpanded="true" />
-        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2" PointX="3.375" PointY="3.75" Height="15.890524088541667" />
-        <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791656" />
-        <EntityTypeShape EntityType="OuterModel.ALQ_INVENTARIO" Width="1.5" PointX="5.375" PointY="4.75" Height="8.330546875" />
+      <Diagram Name="InterceptedDataBase" ZoomLevel="60">
+        <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.75" PointX="1.375" PointY="1.25" Height="10.467062174479166" IsExpanded="true" />
+        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2.125" PointX="3.625" PointY="1.25" Height="15.890524088541667" />
+        <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.625" PointX="6.125" PointY="1.25" Height="2.5783902994791656" />
+        <EntityTypeShape EntityType="OuterModel.ALQ_INVENTARIO" Width="1.75" PointX="8.125" PointY="1.25" Height="8.330546875" />
+        <EntityTypeShape EntityType="OuterModel.PLA_EMPLEADOS" Width="2.125" PointX="13.5" PointY="1.25" Height="10.960104166666667" />
+        <EntityTypeShape EntityType="OuterModel.PLA_PUESTOS" Width="1.625" PointX="11" PointY="5.5" Height="1.5923063151041674" />
+        <AssociationConnector Association="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS" >
+          <ConnectorPoint PointX="12.625" PointY="6.2961531575520837" />
+          <ConnectorPoint PointX="13.5" PointY="6.2961531575520837" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

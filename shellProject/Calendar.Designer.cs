@@ -285,19 +285,21 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(400, 256);
+            this.cmdCancel.Location = new System.Drawing.Point(493, 256);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 5;
             this.cmdCancel.Text = "Cancelar";
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOk
             // 
-            this.cmdOk.Location = new System.Drawing.Point(493, 256);
+            this.cmdOk.Location = new System.Drawing.Point(402, 256);
             this.cmdOk.Name = "cmdOk";
             this.cmdOk.Size = new System.Drawing.Size(75, 23);
             this.cmdOk.TabIndex = 6;
             this.cmdOk.Text = "Aceptar";
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // Calendar
             // 

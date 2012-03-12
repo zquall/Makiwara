@@ -8,8 +8,6 @@ namespace shellProject
 {
     public partial class ResourceStore : DevExpress.XtraEditors.XtraForm
     {
-        private ProjectDto _project = new ProjectDto();
-
         public ResourceStore()
         {
             InitializeComponent();
@@ -108,11 +106,12 @@ namespace shellProject
 
         }
 
-        private void LoadTaskOnCombo()
+        private void LoadTaskOnCombo(IEnumerable<TaskDto> tasks)
         {
-            foreach (var task in _project.Tasks)
+            foreach (var task in tasks)
             {
                 cmbTask.Properties.Items.Add(task, true);
+                if (task.Tasks != null) LoadTaskOnCombo(task.Tasks);
             }
         }
 
@@ -120,8 +119,8 @@ namespace shellProject
 
         private void ResourceStoreLoad(object sender, EventArgs e)
         {
-            _project = Tag as ProjectDto;
-            LoadTaskOnCombo();
+            var project = Tag as ProjectDto;
+            if (project != null) LoadTaskOnCombo(project.Tasks);
         }
 
         private void CmbTaskEditValueChanged(object sender, EventArgs e)

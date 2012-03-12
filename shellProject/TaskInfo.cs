@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using DevExpress.XtraGrid.Views.Grid;
 using ReplicantFacility.Factory;
 using ReplicantRepository.Request;
 using Infragistics.Win.UltraWinSchedule;
@@ -22,9 +23,6 @@ namespace shellProject
 
             //Dependencies list of the task
             List<TaskDependency> _dependenciesCollection = new List<TaskDependency>();
-
-            //Resource list of the task
-            BindingList<ResourceDto> _resourcesCollection = new BindingList<ResourceDto>();
 
             //Project in use
             public ProjectDto Project { get; set; }
@@ -63,7 +61,7 @@ namespace shellProject
         {
             _dependenciesCollection.Clear();
 
-            foreach (TaskDependency t in _task.Dependencies)
+            foreach (var t in _task.Dependencies)
             {
                 _dependenciesCollection.Add(t);
             }
@@ -72,28 +70,30 @@ namespace shellProject
             ConfigureDependenciesGrid();
         }
 
-        //Revisar para quitar la primer conversion
+        private void LoadResourceRoot()
+        {
+            var tmpResources = new List<ResourceDto>();
+
+            foreach(var tmpTask in _task.Tasks)
+            {
+                if (tmpTask.Tag != null)
+                {
+                    tmpResources.AddRange(tmpTask.Tag as List<ResourceDto>);
+                }
+            }
+
+            grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
+            ConfigureResourcesGrid();
+        }
+
         private void LoadResources()
         {
-            //_resourcesCollection.Clear();
-
-            //var l = _task.Tag as List<ResourceDto>;
-
-            //grdResources.DataSource = _task.Tag as BindingList<ResourceDto>;
-            //if (_task.Tag != null)
-            //{
-            //    if (l != null)
-            //        foreach (var rd in l /*_task.Tag as List<ResourceData>*/)
-            //        {
-            //            _resourcesCollection.Add(rd);
-            //        }
-            //}
-
             var tmpResources = _task.Tag as List<ResourceDto>;
-            if (tmpResources != null) grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
-
-            //grdResources.DataSource = _resourcesCollection;
-            ConfigureResourcesGrid();
+            if (tmpResources != null)
+            {
+                grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
+                ConfigureResourcesGrid();
+            }
         }
 
         private void LoadResourceTypes()
@@ -129,35 +129,42 @@ namespace shellProject
                 dtEndDate.DateTime = _task.EndDateTimeResolved;
                 memoEditNotes.Text = _task.Notes;
             }
-
-            //Se cargan las tareas predecesoras en el grid correspondiente
             LoadDependencies();
 
-            //Se cargan los recursos en el grid correspondiente, estos recursos vienen en el Tag de la tarea
-            LoadResources();
+            if (IsRoot())
+                LoadResourceRoot();
+            else
+                LoadResources();
 
-            //Se cargan los tipos de recursos posibles y las medidas disponibles
             LoadResourceTypes();
             LoadMeasures();
+        }
+
+        private void LoadItem(ItemDto item)
+        {
+            if (item != null)
+            {
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], item.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], item.Name);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], item.Cost);
+            }
         }
 
         #endregion
 
         #region Captures
-        //No existe método de captura de Dependencias ya que estas son solo de lectura y pueden cambiarse unicamente
-        //desde el ProjectManager
 
         private void CaptureResources()
         {
-            //var temp = new List<ResourceDto>();
+            var temp = new List<ResourceDto>();
             //foreach (var data in _resourcesCollection)
-            //{
-            //    temp.Add(data);
-            //}
+            foreach (var data in (BindingList<ResourceDto>)grdResources.DataSource)
+            {
+                temp.Add(data);
+            }
 
-            //_task.Tag = temp;
-            _task.Tag = (BindingList<ResourceDto>)grdResources.DataSource;
-            //BudgetRequestTag.BudgetRequestDetails = (BindingList<BudgetRequestDetailDto>)GrdBudgetRequestDetails.DataSource;
+            _task.Tag = temp;
+            //_task.Tag = (BindingList<ResourceDto>)grdResources.DataSource;
         }
 
         /// <summary>
@@ -187,7 +194,6 @@ namespace shellProject
         {
             #region Set visible columns
             viewResources.Columns["Id"].Visible = false;
-            //viewResources.Columns["ProjectId"].Visible = false;
             viewResources.Columns["TaskId"].Visible = false;
             viewResources.Columns["Measure"].Visible = true;
             viewResources.Columns["ResourceType"].Visible = true;
@@ -204,7 +210,6 @@ namespace shellProject
 
             #region set caption columns
             viewResources.Columns["Id"].Caption = @"Id";
-            //viewResources.Columns["ProjectId"].Caption = "Proyecto";
             viewResources.Columns["TaskId"].Caption = @"Tarea";
             viewResources.Columns["Measure"].Caption = @"Medida";
             viewResources.Columns["ResourceType"].Caption = @"Tipo";
@@ -240,7 +245,6 @@ namespace shellProject
 
             #region Set read only columns
             viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-            //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
             viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -266,7 +270,6 @@ namespace shellProject
             {
                 #region Set read only columns
                 viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                 viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                 viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
                 viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -285,7 +288,6 @@ namespace shellProject
                 {
                     #region Set read only columns
                     viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -301,7 +303,6 @@ namespace shellProject
                 {
                     #region Set read only columns
                     viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    //viewResources.Columns["ProjectId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
                     viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
                     viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
@@ -336,14 +337,14 @@ namespace shellProject
 
         private bool IsRoot()
         {
-            if (_task.IsRoot)
+            if ((_task.IsRoot) && (_task.Tasks.Count >0))
                 return true;
             return false;
         }
 
         private void ConfigureTaskInfoForm()
         { 
-            bool readOnly = IsRoot();
+            var readOnly = IsRoot();
 
             txtTaskName.Properties.ReadOnly = false;
             memoEditNotes.Properties.ReadOnly = false;
@@ -352,6 +353,8 @@ namespace shellProject
             spinCompleteRate.Properties.ReadOnly = readOnly;
             dtStartDate.Properties.ReadOnly = readOnly;
             dtEndDate.Properties.ReadOnly = readOnly;
+
+            if (readOnly) viewResources.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
         }
 
         #endregion
@@ -367,14 +370,13 @@ namespace shellProject
             CopyTask(_task, _backupTask);
         }
 
-        private void ViewResourcesInitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        private void ViewResourcesInitNewRow(object sender, InitNewRowEventArgs e)
         {
             var view = sender as ColumnView;
 
             if (view != null)
             {
                 view.SetRowCellValue(e.RowHandle, view.Columns["ProjectId"], Project.Id);
-                //view.SetRowCellValue(e.RowHandle, view.Columns["TaskId"], _task.RowNumber);
                 view.SetRowCellValue(e.RowHandle, view.Columns["Amount"], 0);
                 view.SetRowCellValue(e.RowHandle, view.Columns["Cost"], 0);
                 view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], 0);
@@ -418,16 +420,6 @@ namespace shellProject
             }
         }
 
-        private void LoadItem(ItemDto item)
-        {
-            if (item != null)
-            {
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], item.Code);
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], item.Name);
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], item.Cost);
-            }
-        }
-
         private void RepResourceCodeButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             var tmpResource = viewResources.GetFocusedRow() as ResourceDto;
@@ -454,8 +446,6 @@ namespace shellProject
         private void CmdOkClick(object sender, EventArgs e)
         {
             CaptureTask();
-
-            Close();
             DialogResult = DialogResult.OK;
         }
 

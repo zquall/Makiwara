@@ -1764,7 +1764,7 @@
         <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="1.5" PointY="18.875" Height="1.4279589843749818" />
         <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="11.25" PointY="11.375" Height="4.3862109374999818" />
         <EntityTypeShape EntityType="EnterpriseModel.ProjectState" Width="1.5" PointX="9" PointY="7.875" Height="1.4279589843749818" />
-        <EntityTypeShape EntityType="EnterpriseModel.RentalItem" Width="1.5" PointX="0.75" PointY="0.75" Height="1.7566536458333246" />
+        <EntityTypeShape EntityType="EnterpriseModel.RentalItem" Width="1.5" PointX="3.375" PointY="6.625" Height="1.7566536458333246" />
         <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="15.75" PointY="12" Height="3.0714322916666674" />
         <EntityTypeShape EntityType="EnterpriseModel.ResourceType" Width="1.5" PointX="13.5" PointY="7.75" Height="1.5923063151041674" />
         <EntityTypeShape EntityType="EnterpriseModel.Stock" Width="1.5" PointX="11.25" PointY="8.25" Height="2.0853483072916674" />

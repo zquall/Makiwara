@@ -61,7 +61,7 @@ namespace CORE.Services
             #endregion
 
             // Validate if the item is from Nexus
-            if (request.ItemId > 0) 
+            if (request.ItemId > 0)
             {
                 var itemFound = Olympus._Enterprise.Items.Where(x => x.Id == request.ItemId).SingleOrDefault();
                 response.Item = Mapper.Map<ItemDto>(itemFound);

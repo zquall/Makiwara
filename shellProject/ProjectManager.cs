@@ -314,7 +314,7 @@ namespace shellProject
 
         private void ResourceStore()
         {
-            //_project.Tasks = GetTask().ToList();
+            _project.Tasks = GetTask();
             var resourceStoreView = new ResourceStore { Tag = _project };
             resourceStoreView.ShowDialog();
         }
@@ -634,13 +634,10 @@ namespace shellProject
         /// <param name="e"></param>
         private void ProjectGanttTaskDialogDisplaying(object sender, Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingEventArgs e)
         {
-            //Se saca la tarea seleccionada el ODT
             var ugv = sender as Infragistics.Win.UltraWinGanttView.UltraGanttView;
             if (ugv != null)
             {
                 var t = ugv.ActiveTask;
-
-                //Se instancia la pantalla donde se veran los datos de la tarea, por referencia los recursos quedan en el Tag de la Tarea
                 var ti = new TaskInfo { Tag = t, Project = _project };
                 ti.ShowDialog();
             }
