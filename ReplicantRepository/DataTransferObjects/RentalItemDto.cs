@@ -44,14 +44,49 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual Nullable<decimal> Cost
+        public virtual decimal Cost
         {
             get;
             set;
         }
     
     	[DataMember]
-        public virtual Nullable<decimal> Price
+        public virtual decimal Price
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual bool IsTaxed
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual System.DateTime DateCreated
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual System.DateTime DateModified
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual int MaximunDiscount
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual bool WasDeleted
         {
             get;
             set;

@@ -2969,12 +2969,14 @@ namespace Nexus
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="personId">Initial value of the PersonId property.</param>
         /// <param name="userAccountId">Initial value of the UserAccountId property.</param>
-        public static Employee CreateEmployee(global::System.Int32 id, global::System.Int32 personId, global::System.Int32 userAccountId)
+        /// <param name="salaryByHour">Initial value of the SalaryByHour property.</param>
+        public static Employee CreateEmployee(global::System.Int32 id, global::System.Int32 personId, global::System.Int32 userAccountId, global::System.Decimal salaryByHour)
         {
             Employee employee = new Employee();
             employee.Id = id;
             employee.PersonId = personId;
             employee.UserAccountId = userAccountId;
+            employee.SalaryByHour = salaryByHour;
             return employee;
         }
 
@@ -3055,6 +3057,30 @@ namespace Nexus
         private global::System.Int32 _UserAccountId;
         partial void OnUserAccountIdChanging(global::System.Int32 value);
         partial void OnUserAccountIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal SalaryByHour
+        {
+            get
+            {
+                return _SalaryByHour;
+            }
+            set
+            {
+                OnSalaryByHourChanging(value);
+                ReportPropertyChanging("SalaryByHour");
+                _SalaryByHour = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SalaryByHour");
+                OnSalaryByHourChanged();
+            }
+        }
+        private global::System.Decimal _SalaryByHour;
+        partial void OnSalaryByHourChanging(global::System.Decimal value);
+        partial void OnSalaryByHourChanged();
 
         #endregion
     
@@ -4883,12 +4909,26 @@ namespace Nexus
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="code">Initial value of the Code property.</param>
-        public static RentalItem CreateRentalItem(global::System.Int32 id, global::System.String name, global::System.String code)
+        /// <param name="cost">Initial value of the Cost property.</param>
+        /// <param name="price">Initial value of the Price property.</param>
+        /// <param name="isTaxed">Initial value of the IsTaxed property.</param>
+        /// <param name="dateCreated">Initial value of the DateCreated property.</param>
+        /// <param name="dateModified">Initial value of the DateModified property.</param>
+        /// <param name="maximunDiscount">Initial value of the MaximunDiscount property.</param>
+        /// <param name="wasDeleted">Initial value of the WasDeleted property.</param>
+        public static RentalItem CreateRentalItem(global::System.Int32 id, global::System.String name, global::System.String code, global::System.Decimal cost, global::System.Decimal price, global::System.Boolean isTaxed, global::System.DateTime dateCreated, global::System.DateTime dateModified, global::System.Int32 maximunDiscount, global::System.Boolean wasDeleted)
         {
             RentalItem rentalItem = new RentalItem();
             rentalItem.Id = id;
             rentalItem.Name = name;
             rentalItem.Code = code;
+            rentalItem.Cost = cost;
+            rentalItem.Price = price;
+            rentalItem.IsTaxed = isTaxed;
+            rentalItem.DateCreated = dateCreated;
+            rentalItem.DateModified = dateModified;
+            rentalItem.MaximunDiscount = maximunDiscount;
+            rentalItem.WasDeleted = wasDeleted;
             return rentalItem;
         }
 
@@ -4973,9 +5013,9 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Cost
+        public global::System.Decimal Cost
         {
             get
             {
@@ -4990,16 +5030,16 @@ namespace Nexus
                 OnCostChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Cost;
-        partial void OnCostChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _Cost;
+        partial void OnCostChanging(global::System.Decimal value);
         partial void OnCostChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Price
+        public global::System.Decimal Price
         {
             get
             {
@@ -5014,9 +5054,129 @@ namespace Nexus
                 OnPriceChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Price;
-        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _Price;
+        partial void OnPriceChanging(global::System.Decimal value);
         partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsTaxed
+        {
+            get
+            {
+                return _IsTaxed;
+            }
+            set
+            {
+                OnIsTaxedChanging(value);
+                ReportPropertyChanging("IsTaxed");
+                _IsTaxed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsTaxed");
+                OnIsTaxedChanged();
+            }
+        }
+        private global::System.Boolean _IsTaxed;
+        partial void OnIsTaxedChanging(global::System.Boolean value);
+        partial void OnIsTaxedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateCreated
+        {
+            get
+            {
+                return _DateCreated;
+            }
+            set
+            {
+                OnDateCreatedChanging(value);
+                ReportPropertyChanging("DateCreated");
+                _DateCreated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreated");
+                OnDateCreatedChanged();
+            }
+        }
+        private global::System.DateTime _DateCreated;
+        partial void OnDateCreatedChanging(global::System.DateTime value);
+        partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateModified
+        {
+            get
+            {
+                return _DateModified;
+            }
+            set
+            {
+                OnDateModifiedChanging(value);
+                ReportPropertyChanging("DateModified");
+                _DateModified = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateModified");
+                OnDateModifiedChanged();
+            }
+        }
+        private global::System.DateTime _DateModified;
+        partial void OnDateModifiedChanging(global::System.DateTime value);
+        partial void OnDateModifiedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 MaximunDiscount
+        {
+            get
+            {
+                return _MaximunDiscount;
+            }
+            set
+            {
+                OnMaximunDiscountChanging(value);
+                ReportPropertyChanging("MaximunDiscount");
+                _MaximunDiscount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaximunDiscount");
+                OnMaximunDiscountChanged();
+            }
+        }
+        private global::System.Int32 _MaximunDiscount;
+        partial void OnMaximunDiscountChanging(global::System.Int32 value);
+        partial void OnMaximunDiscountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean WasDeleted
+        {
+            get
+            {
+                return _WasDeleted;
+            }
+            set
+            {
+                OnWasDeletedChanging(value);
+                ReportPropertyChanging("WasDeleted");
+                _WasDeleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WasDeleted");
+                OnWasDeletedChanged();
+            }
+        }
+        private global::System.Boolean _WasDeleted;
+        partial void OnWasDeletedChanging(global::System.Boolean value);
+        partial void OnWasDeletedChanged();
 
         #endregion
     

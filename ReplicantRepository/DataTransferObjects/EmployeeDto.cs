@@ -55,6 +55,13 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+    
+    	[DataMember]
+        public virtual decimal SalaryByHour
+        {
+            get;
+            set;
+        }
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
