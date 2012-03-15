@@ -91,6 +91,26 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+    
+    	[DataMember]
+        public virtual int FamilyId
+        {
+     
+    
+            get { return _familyId; }
+            set
+            {
+                if (_familyId != value)
+                {
+                    if (Family != null && Family.Id != value)
+                    {
+                        Family = null;
+                    }
+                    _familyId = value;
+                }
+            }
+        }
+        private int _familyId;
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
@@ -136,6 +156,22 @@ namespace ReplicantRepository.DataTransferObjects
         private ICollection<BudgetRequestDetailDto> _budgetRequestDetails;
     
     	[DataMember]
+        public virtual FamilyDto Family
+        {
+            get { return _family; }
+            set
+            {
+                if (!ReferenceEquals(_family, value))
+                {
+                    var previousValue = _family;
+                    _family = value;
+                    FixupFamily(previousValue);
+                }
+            }
+        }
+        private FamilyDto _family;
+    
+    	[DataMember]
         public virtual ICollection<StockDto> Stocks
         {
             get
@@ -170,6 +206,26 @@ namespace ReplicantRepository.DataTransferObjects
 
         #endregion
         #region Association Fixup
+    
+        private void FixupFamily(FamilyDto previousValue)
+        {
+            if (previousValue != null && previousValue.Items.Contains(this))
+            {
+                previousValue.Items.Remove(this);
+            }
+    
+            if (Family != null)
+            {
+                if (!Family.Items.Contains(this))
+                {
+                    Family.Items.Add(this);
+                }
+                if (FamilyId != Family.Id)
+                {
+                    FamilyId = Family.Id;
+                }
+            }
+        }
     
         private void FixupBudgetRequestDetails(object sender, NotifyCollectionChangedEventArgs e)
         {

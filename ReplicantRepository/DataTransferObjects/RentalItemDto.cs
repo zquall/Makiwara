@@ -58,6 +58,34 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
+        public virtual decimal MonthlyPrice
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual decimal FortnightPrice
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual decimal WeeklyPrice
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual decimal DailyPrice
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
         public virtual bool IsTaxed
         {
             get;
@@ -91,6 +119,26 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+    
+    	[DataMember]
+        public virtual int FamilyId
+        {
+     
+    
+            get { return _familyId; }
+            set
+            {
+                if (_familyId != value)
+                {
+                    if (Family != null && Family.Id != value)
+                    {
+                        Family = null;
+                    }
+                    _familyId = value;
+                }
+            }
+        }
+        private int _familyId;
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
@@ -98,6 +146,103 @@ namespace ReplicantRepository.DataTransferObjects
     		return CustomToStringMethods.ToString(this);
     	}
     
+
+        #endregion
+        #region Navigation Properties
+    
+    	[DataMember]
+        public virtual FamilyDto Family
+        {
+            get { return _family; }
+            set
+            {
+                if (!ReferenceEquals(_family, value))
+                {
+                    var previousValue = _family;
+                    _family = value;
+                    FixupFamily(previousValue);
+                }
+            }
+        }
+        private FamilyDto _family;
+    
+    	[DataMember]
+        public virtual ICollection<StorageDto> Storages
+        {
+            get
+            {
+                if (_storages == null)
+                {
+                    var newCollection = new FixupCollection<StorageDto>();
+                    newCollection.CollectionChanged += FixupStorages;
+                    _storages = newCollection;
+                }
+                return _storages;
+            }
+            set
+            {
+                if (!ReferenceEquals(_storages, value))
+                {
+                    var previousValue = _storages as FixupCollection<StorageDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupStorages;
+                    }
+                    _storages = value;
+                    var newValue = value as FixupCollection<StorageDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupStorages;
+                    }
+                }
+            }
+        }
+        private ICollection<StorageDto> _storages;
+
+        #endregion
+        #region Association Fixup
+    
+        private void FixupFamily(FamilyDto previousValue)
+        {
+            if (previousValue != null && previousValue.RentalItems.Contains(this))
+            {
+                previousValue.RentalItems.Remove(this);
+            }
+    
+            if (Family != null)
+            {
+                if (!Family.RentalItems.Contains(this))
+                {
+                    Family.RentalItems.Add(this);
+                }
+                if (FamilyId != Family.Id)
+                {
+                    FamilyId = Family.Id;
+                }
+            }
+        }
+    
+        private void FixupStorages(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (StorageDto item in e.NewItems)
+                {
+                    item.RentalItem = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (StorageDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.RentalItem, this))
+                    {
+                        item.RentalItem = null;
+                    }
+                }
+            }
+        }
 
         #endregion
     }

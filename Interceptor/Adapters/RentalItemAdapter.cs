@@ -32,69 +32,94 @@ namespace Interceptor.Adapters
                             .Take(maximunResultRows).ToList();
             
             // Fill the response with the result found
-            foreach (var item in searchResults)
+            foreach (var rentalItem in searchResults)
             {
-                var itemDto = new RentalItemDto
+                var rentealItemDto = new RentalItemDto
                                   {
-                                      Code = item.INV_Codigo.Trim(),
-                                      Name = item.INV_Nombre.Trim(),
-                                      Cost = item.INV_Costo,
-                                      Price = Convert.ToDecimal(item.INV_Precio),
-                                      Stocks = new Collection<StockDto>()
+                                      Code = rentalItem.INV_Codigo.Trim(),
+                                      Name = rentalItem.INV_Nombre.Trim(),
+                                      Cost = new decimal(rentalItem.INV_Costo),
+                                      Price = new decimal(rentalItem.INV_Precio),
+                                      MonthlyPrice = new decimal(rentalItem.INV_Precio_Mes),
+                                      FortnightPrice = new decimal(rentalItem.INV_Precio_Quincena),
+                                      WeeklyPrice = new decimal(rentalItem.INV_Precio_Semana),
+                                      DailyPrice = new decimal(rentalItem.INV_Precio_Dia),
+                                      MaximunDiscount = 0,
+                                      FamilyId = 0,
+                                      Storages = new Collection<StorageDto>()
                                   };
-                itemDto.Stocks.Add(new StockDto { Quantity = item.INV_Disponible });
-                response.ItemList.Add(itemDto);
+                rentealItemDto.Storages.Add(new StorageDto { Available = Convert.ToDecimal(rentalItem.INV_Disponible),
+                                                             Quantity = Convert.ToDecimal(rentalItem.INV_Existencia),
+                });
+                response.RentalItemList.Add(rentealItemDto);
             }
         }
 
-        // Get Item
-        public ItemRequest GetItem(ItemRequest request)
+        // Get Item from Alien DB
+        public RentalItemResponse GetItem(RentalItemRequest request)
         {
-            var response = new ItemRequest();
-            if (request.Item != null)
+            var response = new RentalItemResponse();
+            if (request.RentalItem != null)
             {
                 // Check for update an item
-                if (request.ItemId > 0)
+                if (request.RentalItemId > 0)
                 {
+                    #region Update Data
                     // Search the item to update data
-                    var bindedItemFound = Asgard._Foreing.INV_INVENTARIO
-                        .Where(x => x.INV_Codigo.ToUpper() == request.Item.Code.ToUpper())
+                    var bindedItemFound = Asgard._Foreing.ALQ_INVENTARIO
+                        .Where(x => x.INV_Codigo.ToUpper() == request.RentalItem.Code.ToUpper())
                         .FirstOrDefault();
 
                     if (bindedItemFound != null)
                     {
-                        response.Item.Name = bindedItemFound.INV_Nombre.Trim();
-                        response.Item.Cost = bindedItemFound.INV_Costo;
-                        response.Item.Price = Convert.ToDecimal(bindedItemFound.INV_Precio);
-                        response.Item.IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas);
-                        response.Item.DateModified = DateTime.Now;
-                        response.Item.WasDeleted = false;
-                        response.Item.Stocks = new Collection<StockDto>();
+                        response.RentalItem.Code = bindedItemFound.INV_Codigo.Trim();
+                        response.RentalItem.Name = bindedItemFound.INV_Nombre.Trim();
+                        response.RentalItem.Cost = new decimal(bindedItemFound.INV_Costo);
+                        response.RentalItem.Price = new decimal(bindedItemFound.INV_Precio);
+                        response.RentalItem.MonthlyPrice = new decimal(bindedItemFound.INV_Precio_Mes);
+                        response.RentalItem.FortnightPrice = new decimal(bindedItemFound.INV_Precio_Quincena);
+                        response.RentalItem.WeeklyPrice = new decimal(bindedItemFound.INV_Precio_Semana);
+                        response.RentalItem.DailyPrice = new decimal(bindedItemFound.INV_Precio_Dia);
+                        response.RentalItem.MaximunDiscount = 0;
+                        response.RentalItem.FamilyId = 0;
+                        response.RentalItem.IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas);
+                        //response.RentalItem.DateCreated = DateTime.Now,
+                        response.RentalItem.DateModified = DateTime.Now;
+                        response.RentalItem.WasDeleted = false;
+                        response.RentalItem.Storages = new Collection<StorageDto>();
                         // get the stocks by Warehouse
-                    }
+                    } 
+                    #endregion
                 }
                 else
                 {
-                     // Search the item
-                    var itemFound = Asgard._Foreing.INV_INVENTARIO.Where(x => x.INV_Codigo.ToUpper() == request.Item.Code.ToUpper()).
+                    #region Get Item
+                    // Search the item
+                    var itemFound = Asgard._Foreing.ALQ_INVENTARIO.Where(x => x.INV_Codigo.ToUpper() == request.RentalItem.Code.ToUpper()).
                             FirstOrDefault();
                     if (itemFound != null)
                     {
-                        response.Item = new ItemDto
+                        response.RentalItem = new RentalItemDto
                                             {
                                                 Code = itemFound.INV_Codigo.Trim(),
                                                 Name = itemFound.INV_Nombre.Trim(),
-                                                Cost = itemFound.INV_Costo,
-                                                Price = Convert.ToDecimal(itemFound.INV_Precio),
+                                                Cost = new decimal(itemFound.INV_Costo),
+                                                Price = new decimal(itemFound.INV_Precio),
+                                                MonthlyPrice = new decimal(itemFound.INV_Precio_Mes),
+                                                FortnightPrice = new decimal(itemFound.INV_Precio_Quincena),
+                                                WeeklyPrice = new decimal(itemFound.INV_Precio_Semana),
+                                                DailyPrice = new decimal(itemFound.INV_Precio_Dia),
+                                                MaximunDiscount = 0,
+                                                FamilyId = 0,
                                                 IsTaxed = Convert.ToBoolean(itemFound.INV_Con_Imp_Ventas),
                                                 DateCreated = DateTime.Now,
                                                 DateModified = DateTime.Now,
-                                                MaximunDiscount = Convert.ToInt32(itemFound.INV_Porce_Desc_Max),
                                                 WasDeleted = false,
-                                                Stocks = new Collection<StockDto>()
+                                                Storages = new Collection<StorageDto>()
                                             };
-                        // get the stocks by Warehouse
-                    }
+                        // get the storage by Warehouse
+                    } 
+                    #endregion
                 } 
             }
             return response;

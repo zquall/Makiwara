@@ -17,30 +17,30 @@ using System.Runtime.Serialization;
 namespace ReplicantRepository.DataTransferObjects
 {
     
-    [DataContract(Name = "StockDto", Namespace = "http://core.renteco.com/dto/" , IsReference = true) ]
-    public partial class StockDto
+    [DataContract(Name = "StorageDto", Namespace = "http://core.renteco.com/dto/" , IsReference = true) ]
+    public partial class StorageDto
     {
          #region Primitive Properties
     
     	[DataMember]
-        public virtual int ItemId
+        public virtual int RentalItemId
         {
      
     
-            get { return _itemId; }
+            get { return _rentalItemId; }
             set
             {
-                if (_itemId != value)
+                if (_rentalItemId != value)
                 {
-                    if (Item != null && Item.Id != value)
+                    if (RentalItem != null && RentalItem.Id != value)
                     {
-                        Item = null;
+                        RentalItem = null;
                     }
-                    _itemId = value;
+                    _rentalItemId = value;
                 }
             }
         }
-        private int _itemId;
+        private int _rentalItemId;
     
     	[DataMember]
         public virtual int WarehouseId
@@ -77,7 +77,14 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual int MinimumCount
+        public virtual int MinimunCount
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual decimal Available
         {
             get;
             set;
@@ -94,20 +101,20 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
-        public virtual ItemDto Item
+        public virtual RentalItemDto RentalItem
         {
-            get { return _item; }
+            get { return _rentalItem; }
             set
             {
-                if (!ReferenceEquals(_item, value))
+                if (!ReferenceEquals(_rentalItem, value))
                 {
-                    var previousValue = _item;
-                    _item = value;
-                    FixupItem(previousValue);
+                    var previousValue = _rentalItem;
+                    _rentalItem = value;
+                    FixupRentalItem(previousValue);
                 }
             }
         }
-        private ItemDto _item;
+        private RentalItemDto _rentalItem;
     
     	[DataMember]
         public virtual WarehouseDto Warehouse
@@ -128,38 +135,38 @@ namespace ReplicantRepository.DataTransferObjects
         #endregion
         #region Association Fixup
     
-        private void FixupItem(ItemDto previousValue)
+        private void FixupRentalItem(RentalItemDto previousValue)
         {
-            if (previousValue != null && previousValue.Stocks.Contains(this))
+            if (previousValue != null && previousValue.Storages.Contains(this))
             {
-                previousValue.Stocks.Remove(this);
+                previousValue.Storages.Remove(this);
             }
     
-            if (Item != null)
+            if (RentalItem != null)
             {
-                if (!Item.Stocks.Contains(this))
+                if (!RentalItem.Storages.Contains(this))
                 {
-                    Item.Stocks.Add(this);
+                    RentalItem.Storages.Add(this);
                 }
-                if (ItemId != Item.Id)
+                if (RentalItemId != RentalItem.Id)
                 {
-                    ItemId = Item.Id;
+                    RentalItemId = RentalItem.Id;
                 }
             }
         }
     
         private void FixupWarehouse(WarehouseDto previousValue)
         {
-            if (previousValue != null && previousValue.Stocks.Contains(this))
+            if (previousValue != null && previousValue.Storages.Contains(this))
             {
-                previousValue.Stocks.Remove(this);
+                previousValue.Storages.Remove(this);
             }
     
             if (Warehouse != null)
             {
-                if (!Warehouse.Stocks.Contains(this))
+                if (!Warehouse.Storages.Contains(this))
                 {
-                    Warehouse.Stocks.Add(this);
+                    Warehouse.Storages.Add(this);
                 }
                 if (WarehouseId != Warehouse.Id)
                 {

@@ -63,6 +63,9 @@
     <Compile Include="DataTransferObjects\EmployeeDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataTransferObjects\FamilyDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataTransferObjects\ItemDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
@@ -94,17 +97,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="DataTransferObjects\PersonDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataTransferObjects\PersonPhoneDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataTransferObjects\NervObjects\UserAccountDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\NervObjects\UserGroupDto.cs">
       <DependentUpon>Nerv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\PersonDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\PersonPhoneDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\PhoneTypeDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
@@ -125,6 +128,9 @@
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\StockDto.cs">
+      <DependentUpon>Nexus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataTransferObjects\StorageDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
     <Compile Include="DataTransferObjects\TaskDto.cs">

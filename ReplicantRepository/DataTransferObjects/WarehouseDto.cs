@@ -78,6 +78,39 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private ICollection<StockDto> _stocks;
+    
+    	[DataMember]
+        public virtual ICollection<StorageDto> Storages
+        {
+            get
+            {
+                if (_storages == null)
+                {
+                    var newCollection = new FixupCollection<StorageDto>();
+                    newCollection.CollectionChanged += FixupStorages;
+                    _storages = newCollection;
+                }
+                return _storages;
+            }
+            set
+            {
+                if (!ReferenceEquals(_storages, value))
+                {
+                    var previousValue = _storages as FixupCollection<StorageDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupStorages;
+                    }
+                    _storages = value;
+                    var newValue = value as FixupCollection<StorageDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupStorages;
+                    }
+                }
+            }
+        }
+        private ICollection<StorageDto> _storages;
 
         #endregion
         #region Association Fixup
@@ -95,6 +128,28 @@ namespace ReplicantRepository.DataTransferObjects
             if (e.OldItems != null)
             {
                 foreach (StockDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Warehouse, this))
+                    {
+                        item.Warehouse = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupStorages(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (StorageDto item in e.NewItems)
+                {
+                    item.Warehouse = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (StorageDto item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Warehouse, this))
                     {
