@@ -105,6 +105,36 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Warehouse, opt => opt.Ignore());
                 Mapper.CreateMap<StockDto, Stock>();
 
+
+                Mapper.CreateMap<RentalItem, RentalItemDto>();
+                Mapper.CreateMap<RentalItemDto, RentalItem>()
+                    .ForMember(dest => dest.Family, opt => opt.Ignore());
+
+                Mapper.CreateMap<Family, FamilyDto>()
+                    .ForMember(dest => dest.Family1, opt => opt.Ignore())
+                    .ForMember(dest => dest.Family2, opt => opt.Ignore())
+                    .ForMember(dest => dest.RentalItems, opt => opt.Ignore())
+                    .ForMember(dest => dest.Items, opt => opt.Ignore());
+                Mapper.CreateMap<FamilyDto, Family>()
+                    .ForMember(dest => dest.Family1, opt => opt.Ignore())
+                    .ForMember(dest => dest.Family2, opt => opt.Ignore())
+                    .ForMember(dest => dest.RentalItems, opt => opt.Ignore())
+                    .ForMember(dest => dest.Items, opt => opt.Ignore());
+
+                Mapper.CreateMap<Storage, StorageDto>()
+                    .ForMember(dest => dest.RentalItem, opt => opt.Ignore())
+                    .ForMember(dest => dest.Warehouse, opt => opt.Ignore());
+                Mapper.CreateMap<StorageDto, Storage>()
+                    .ForMember(dest => dest.RentalItem, opt => opt.Ignore())
+                    .ForMember(dest => dest.Warehouse, opt => opt.Ignore());
+
+                Mapper.CreateMap<Warehouse, WarehouseDto>()
+                    .ForMember(dest => dest.Stocks, opt => opt.Ignore())
+                    .ForMember(dest => dest.Storages, opt => opt.Ignore());
+                Mapper.CreateMap<WarehouseDto, Warehouse>()
+                    .ForMember(dest => dest.Stocks, opt => opt.Ignore())
+                    .ForMember(dest => dest.Storages, opt => opt.Ignore());
+
                 //**************************************************************************************
                 Mapper.CreateMap<ProjectDto, Project>()
                     .ForMember(dest => dest.Customer, opt => opt.Ignore())

@@ -21,10 +21,7 @@ namespace shellCommon.Item
 
         private void FinderShown(object sender, EventArgs e)
         {
-            var start = DateTime.Now;
             Search("");
-            var end = DateTime.Now - start;
-            var sdf = DateTime.Now;
         }
 
         private void TxtSearchQueryEditValueChanged(object sender, EventArgs e)
@@ -57,13 +54,13 @@ namespace shellCommon.Item
 
         private void BtnOkClick(object sender, EventArgs e)
         {
-            var rowObject = GrdControlView.GetFocusedRow() as ItemDto;
+            var rowObject = GrdControlView.GetFocusedRow() as RentalItemDto;
             if (rowObject != null)
             {
                 // Check if the user select a valid object
                 if (rowObject.Id > 0 || rowObject.Code != null)
                 {
-                    Tag = new ItemFactory().GetItem(new ItemRequest { ItemId = rowObject.Id, Item = rowObject }).Item;
+                    Tag = new RentalItemFactory().GetRentalItem(new RentalItemRequest { RentalItemId = rowObject.Id, RentalItem = rowObject }).RentalItem;
                     DialogResult = DialogResult.OK;
                 }
             }
@@ -100,11 +97,11 @@ namespace shellCommon.Item
 
         private void Search(string query)
         {
-            var request = new ItemRequest {SearchItemQuery = query};
-            ShowSearchResults(new RentalItemFactory().(request).ItemList);
+            var request = new RentalItemRequest { SearchRentalItemQuery = query};
+            ShowSearchResults(new RentalItemFactory().SearchRentalItem(request).RentalItemList);
         }
 
-        private void ShowSearchResults(List<ItemDto> searchResults)
+        private void ShowSearchResults(List<RentalItemDto> searchResults)
         {           
             GrdControl.DataSource = searchResults;
         }

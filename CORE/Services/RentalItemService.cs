@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
@@ -11,92 +12,92 @@ namespace CORE.Services
 {
     public class RentalItemService : ServiceBase
     {
-        private readonly ItemAdapter _rentalItemAdapter;
+        private readonly RentalItemAdapter _rentalItemAdapter;
 
         public RentalItemService()
         {
-            _rentalItemAdapter = new ItemAdapter();
+            _rentalItemAdapter = new RentalItemAdapter();
         }
 
         // Search Item
-        public RentalItemResponse SearchItem(RentalItemRequest request)
+        public RentalItemResponse SearchRentalItem(RentalItemRequest request)
         {
             var response = new RentalItemResponse { RentalItemList = new List<RentalItemDto>() };
 
             #region Search function not used by now
             // Search item
-            //var itemsFound = Olympus._Enterprise.Items.Where(x => x.Name.Contains(request.SearchItemQuery) || 
-            //                 x.Code.Contains(request.SearchItemQuery))
-            //                 .OrderBy(y => y.Name)
-            //                 .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
-            //                 .Distinct()
-            //                 .ToList();
+            var itemsFound = Olympus._Enterprise.Items.Where(x => x.Name.Contains(request.SearchRentalItemQuery) ||
+                             x.Code.Contains(request.SearchRentalItemQuery))
+                             .OrderBy(y => y.Name)
+                             .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
+                             .Distinct()
+                             .ToList();
 
-            //if (itemsFound.Count > 0)
-            //{
-            //    response.ItemList = Mapper.Map<List<ItemDto>>(itemsFound);
-            //} 
+            if (itemsFound.Count > 0)
+            {
+                response.RentalItemList = Mapper.Map<List<RentalItemDto>>(itemsFound);
+            } 
             #endregion
 
             // Intercepted Method
-            _itemAdapter.SearchItem(request, response);
+            _rentalItemAdapter.SearchRentalItem(request, response);
 
             // Sorted again the list
-            response.ItemList = response.ItemList.OrderBy(x => x.Name).ToList();
+            response.RentalItemList = response.RentalItemList.OrderBy(x => x.Name).ToList();
             
             return response;
         }
 
         // Get Item
-        public ItemResponse GetItem(ItemRequest request)
+        public RentalItemResponse GetRentalItem(RentalItemRequest request)
         {
-            var response = new ItemResponse();
+            var response = new RentalItemResponse();
            
             #region *** Intercepted Method ***
             // Try to add item from AlienDB to Nexus if the item already exist then try to refresh the information
-            if (request.ItemId == 0)
+            if (request.RentalItemId == 0)
             {
-                request.ItemId = SaveItem(new ItemRequest { Item = _itemAdapter.GetItem(request).Item }).ItemId;
+                request.RentalItemId = SaveItem(new RentalItemRequest { RentalItem = _rentalItemAdapter.GetItem(request).RentalItem }).RentalItemId;
             }            
             #endregion
 
             // Validate if the item is from Nexus
-            if (request.ItemId > 0) 
+            if (request.RentalItemId > 0) 
             {
-                var itemFound = Olympus._Enterprise.Items.Where(x => x.Id == request.ItemId).SingleOrDefault();
-                response.Item = Mapper.Map<ItemDto>(itemFound);
+                var itemFound = Olympus._Enterprise.RentalItems.Where(x => x.Id == request.RentalItemId).SingleOrDefault();
+                response.RentalItem = Mapper.Map<RentalItemDto>(itemFound);
             }
             return response;
         }
 
         // Save Item
-        public ItemResponse SaveItem(ItemRequest request)
+        public RentalItemResponse SaveRentalItem(RentalItemRequest request)
         {
-            var response = new ItemResponse();
+            var response = new RentalItemResponse();
 
-            if (request.Item != null)
+            if (request.RentalItem != null)
             {
-                Item item = null;
+                RentalItem rentalItem = null;
                 // Check if Edit or Add
-                if (request.Item.Id > 0)
+                if (request.RentalItem.Id > 0)
                 {
                     // Edit
-                    item = Olympus._Enterprise.Items.Where(x => x.Id == request.Item.Id).SingleOrDefault();
-                    Mapper.Map(request.Item, item);
+                    rentalItem = Olympus._Enterprise.RentalItems.Where(x => x.Id == request.RentalItem.Id).SingleOrDefault();
+                    Mapper.Map(request.RentalItem, rentalItem);
                 }
                 else
                 {
                     // Add
-                    if (request.Item.Code != null)
+                    if (request.RentalItem.Code != null)
                     {
                         // Check some info from AlienDB
-                        item = new Item();
-                        Mapper.Map(request.Item, item);
-                        Olympus._Enterprise.Items.AddObject(item);
+                        rentalItem = new RentalItem();
+                        Mapper.Map(request.RentalItem, rentalItem);
+                        Olympus._Enterprise.RentalItems.AddObject(rentalItem);
                     }
                 }
                 Olympus._Enterprise.SaveChanges();
-                if (item!= null) response.ItemId = item.Id; 
+                if (rentalItem != null) response.RentalItemId = rentalItem.Id; 
             }
             return response;
         }
