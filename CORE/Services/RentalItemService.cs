@@ -24,9 +24,8 @@ namespace CORE.Services
         {
             var response = new RentalItemResponse { RentalItemList = new List<RentalItemDto>() };
 
-            #region Search function not used by now
             // Search item
-            var itemsFound = Olympus._Enterprise.Items.Where(x => x.Name.Contains(request.SearchRentalItemQuery) ||
+            var itemsFound = Olympus._Enterprise.RentalItems.Where(x => x.Name.Contains(request.SearchRentalItemQuery) ||
                              x.Code.Contains(request.SearchRentalItemQuery))
                              .OrderBy(y => y.Name)
                              .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
@@ -37,7 +36,6 @@ namespace CORE.Services
             {
                 response.RentalItemList = Mapper.Map<List<RentalItemDto>>(itemsFound);
             } 
-            #endregion
 
             // Intercepted Method
             _rentalItemAdapter.SearchRentalItem(request, response);
@@ -48,17 +46,15 @@ namespace CORE.Services
             return response;
         }
 
-        // Get Item
+        // Get RentalItem
         public RentalItemResponse GetRentalItem(RentalItemRequest request)
         {
             var response = new RentalItemResponse();
            
             #region *** Intercepted Method ***
-            // Try to add item from AlienDB to Nexus if the item already exist then try to refresh the information
-            if (request.RentalItemId == 0)
-            {
-                request.RentalItemId = SaveItem(new RentalItemRequest { RentalItem = _rentalItemAdapter.GetItem(request).RentalItem }).RentalItemId;
-            }            
+            // Try to add renteditem from AlienDB to Nexus if the item already exist then try to refresh the information
+            request.RentalItemId = SaveRentalItem(new RentalItemRequest { RentalItem = _rentalItemAdapter.GetRentalItem(request).RentalItem }).RentalItemId;
+                    
             #endregion
 
             // Validate if the item is from Nexus
@@ -83,7 +79,13 @@ namespace CORE.Services
                 {
                     // Edit
                     rentalItem = Olympus._Enterprise.RentalItems.Where(x => x.Id == request.RentalItem.Id).SingleOrDefault();
-                    Mapper.Map(request.RentalItem, rentalItem);
+                    
+                    if (rentalItem != null)
+                    {
+                        // Overrides the DateCreated
+                        request.RentalItem.DateCreated = rentalItem.DateCreated;
+                        Mapper.Map(request.RentalItem, rentalItem);
+                    }
                 }
                 else
                 {

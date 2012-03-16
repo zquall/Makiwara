@@ -108,6 +108,7 @@ namespace CORE.DataMapper
 
                 Mapper.CreateMap<RentalItem, RentalItemDto>();
                 Mapper.CreateMap<RentalItemDto, RentalItem>()
+                    .ForMember(dest => dest.Storages, opt => opt.UseDestinationValue())
                     .ForMember(dest => dest.Family, opt => opt.Ignore());
 
                 Mapper.CreateMap<Family, FamilyDto>()

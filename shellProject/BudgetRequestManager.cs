@@ -14,6 +14,7 @@ using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.Request;
 using Hades.Session;
 using DevExpress.XtraGrid.Views.Base;
+using shellCommon.Item;
 
 namespace shellProject
 {
@@ -472,6 +473,20 @@ namespace shellProject
         {
             var view = sender as ColumnView;
             if (view != null) view.SetRowCellValue(e.RowHandle, view.Columns["Quantity"], 1);
+        }
+
+        private void panelControl3_Click(object sender, EventArgs e)
+        {
+            var itemFinder = new RentalItemFinder();
+            itemFinder.ShowDialog();
+            if (itemFinder.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                var item = itemFinder.Tag as RentalItemDto;
+                if (item != null)
+                {
+                   
+                }
+            }
         }
     }
 }

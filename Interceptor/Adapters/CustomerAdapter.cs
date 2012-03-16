@@ -26,30 +26,31 @@ namespace Interceptor.Adapters
             // var tmpEmployee = Asgard._Foreing.CLI_CLIENTES.Where(x => x.Id == SessionManager.EmployeeId).SingleOrDefault();
 
             // Apply the search with the pattern given
-            var customersFounded = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(request.SearchCustomerQuery.ToUpper()) & x.CLI_Activo == 1).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
+            var customersFound = Asgard._Foreing.CLI_CLIENTES.Where(x => x.CLI_Nombre.ToUpper().Contains(request.SearchCustomerQuery.ToUpper()) & x.CLI_Activo == 1).OrderBy(y => y.CLI_Nombre).Take(maximunResultRows).ToList();
             
-            // Remove Customers that already exist on Nexus, using a reverse loop
-            for (int i = customersFounded.Count; i > 0 ; i--)
+            // Add customers to the list
+            if (customersFound != null)
             {
-                var customerAlienId = customersFounded[i-1].CLI_Cliente;
-                object customerBinded = null;//Olympus._Enterprise.BindCustomers.Where(x => x.AlienId == customerAlienId).SingleOrDefault();
-                // if the procees finds the customer then it must deleted from the results of the search
-                if (customerBinded != null)
+                // Fill the response with the customers found
+                foreach (var customer in customersFound)
                 {
-                    customersFounded.RemoveAt(i-1);
-                }                
-            }
+                    // Check if the customer is already binded
+                    var bindedCustomer = response.CustomerList.Where(x => x.BindCustomer.AlienId == customer.CLI_Cliente).FirstOrDefault();
+                    if(bindedCustomer == null)
+                    {
+                        // Add customer to list
+                        var tmpCustomerData = new CustomerDto();
+                        tmpCustomerData.Name = customer.CLI_Nombre.Trim();
+                        tmpCustomerData.Address = customer.CLI_Direccion;
+                        response.CustomerList.Add(tmpCustomerData);
+                    }
+                    else
+                    {
+                        // Update customer in list
+                        bindedCustomer.Name = customer.CLI_Nombre.Trim();
+                        bindedCustomer.Address = customer.CLI_Direccion;
+                    }
 
-            // add customers to the list
-            if (customersFounded != null)
-            {
-                // Fill the response with the customers founded
-                foreach (var customer in customersFounded)
-                {
-                    CustomerDto tmpCustomerData = new CustomerDto();
-                    tmpCustomerData.Name = customer.CLI_Nombre.Trim();
-                    tmpCustomerData.Address = customer.CLI_Direccion;
-                    response.CustomerList.Add(tmpCustomerData);
                 }
             }
 

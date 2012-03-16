@@ -34,16 +34,31 @@ namespace Interceptor.Adapters
             // Fill the response with the result found
             foreach (var item in searchResults)
             {
-                var itemDto = new ItemDto
-                                  {
-                                      Code = item.INV_Codigo.Trim(),
-                                      Name = item.INV_Nombre.Trim(),
-                                      Cost = item.INV_Costo,
-                                      Price = Convert.ToDecimal(item.INV_Precio),
-                                      Stocks = new Collection<StockDto>()
-                                  };
-                itemDto.Stocks.Add(new StockDto { Quantity = item.INV_Disponible });
-                response.ItemList.Add(itemDto);
+                // Check if the item is already binded
+                var bindedItem = response.ItemList.Where(x => x.Code == item.INV_Codigo).FirstOrDefault();
+                if (bindedItem == null)
+                {
+                    // Add item to response
+                    var itemDto = new ItemDto
+                    {
+                        Code = item.INV_Codigo.Trim(),
+                        Name = item.INV_Nombre.Trim(),
+                        Cost = item.INV_Costo,
+                        Price = new decimal(item.INV_Precio),
+                        Stocks = new Collection<StockDto>()
+                    };
+                    // Todo Give a real value of the quantity in stocks
+                    itemDto.Stocks.Add(new StockDto { Quantity = item.INV_Disponible });
+                    response.ItemList.Add(itemDto);
+                }
+                else
+                {
+                    // Update item in response
+                    bindedItem.Name = item.INV_Nombre.Trim();
+                    bindedItem.Cost = item.INV_Costo;
+                    bindedItem.Stocks = new Collection<StockDto>();
+                    bindedItem.Stocks.Add(new StockDto { Quantity = item.INV_Disponible });
+                }
             }
         }
 
@@ -63,13 +78,17 @@ namespace Interceptor.Adapters
 
                     if (bindedItemFound != null)
                     {
-                        response.Item.Name = bindedItemFound.INV_Nombre.Trim();
-                        response.Item.Cost = bindedItemFound.INV_Costo;
-                        response.Item.Price = Convert.ToDecimal(bindedItemFound.INV_Precio);
-                        response.Item.IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas);
-                        response.Item.DateModified = DateTime.Now;
-                        response.Item.WasDeleted = false;
-                        response.Item.Stocks = new Collection<StockDto>();
+                        response.Item = new ItemDto
+                                            {
+                                                Id = request.ItemId,
+                                                Name = bindedItemFound.INV_Nombre.Trim(),
+                                                Cost = bindedItemFound.INV_Costo,
+                                                Price = Convert.ToDecimal(bindedItemFound.INV_Precio),
+                                                IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas),
+                                                DateModified = DateTime.Now,
+                                                WasDeleted = false,
+                                                Stocks = new Collection<StockDto>()
+                                            };
                         // get the stocks by Warehouse
                     }
                 }

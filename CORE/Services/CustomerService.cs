@@ -63,10 +63,8 @@ namespace CORE.Services
            
             #region *** Intercepted Method ***
             // Try to bind a customer from Dialcom to Nexus
-            if (request.CustomerId == 0)
-            {
-                request.CustomerId = SaveCustomer(new CustomerRequest { Customer = _customerAdapter.getCustomer(request).Customer }).CustomerId;
-            }            
+            request.CustomerId = SaveCustomer(new CustomerRequest { Customer = _customerAdapter.getCustomer(request).Customer }).CustomerId;
+                   
             #endregion
 
             // Validate if the customer is from Nexus

@@ -75,18 +75,25 @@ namespace shellCommon.Item
         private void GrdControlViewCustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
         {
             if (e == null) throw new ArgumentNullException("e");
-            if (e.Column.FieldName == "Stock" && e.IsGetData)
+            if (e.IsGetData)
             {
                 var view = sender as ColumnView;
                 if (view != null)
                 {
-                    var itemDto = view.GetRow(e.RowHandle) as ItemDto;
-                    decimal quantity = 0;
-                    if (itemDto != null)
+                    var itemDto = view.GetRow(e.RowHandle) as RentalItemDto;
+                    switch (e.Column.FieldName)
                     {
-                        quantity = itemDto.Stocks.Aggregate(quantity, (current, stock) => current + stock.Quantity);
+                        case "Available":
+                                decimal available = 0;
+                                if (itemDto != null)
+                                {
+                                    available = itemDto.Storages.Aggregate(available, (current, stock) => current + stock.Available);
+                                }
+                                e.Value = available;
+                            break;
+                        default:
+                            break;
                     }
-                    e.Value = quantity;
                 }
             }
         }

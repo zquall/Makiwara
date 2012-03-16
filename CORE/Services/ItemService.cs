@@ -54,10 +54,8 @@ namespace CORE.Services
            
             #region *** Intercepted Method ***
             // Try to add item from AlienDB to Nexus if the item already exist then try to refresh the information
-            if (request.ItemId == 0)
-            {
-                request.ItemId = SaveItem(new ItemRequest { Item = _itemAdapter.GetItem(request).Item }).ItemId;
-            }            
+            request.ItemId = SaveItem(new ItemRequest { Item = _itemAdapter.GetItem(request).Item }).ItemId;
+                      
             #endregion
 
             // Validate if the item is from Nexus

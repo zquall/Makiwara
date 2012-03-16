@@ -34,29 +34,50 @@ namespace Interceptor.Adapters
             // Fill the response with the result found
             foreach (var rentalItem in searchResults)
             {
-                var rentealItemDto = new RentalItemDto
-                                  {
-                                      Code = rentalItem.INV_Codigo.Trim(),
-                                      Name = rentalItem.INV_Nombre.Trim(),
-                                      Cost = new decimal(rentalItem.INV_Costo),
-                                      Price = new decimal(rentalItem.INV_Precio),
-                                      MonthlyPrice = new decimal(rentalItem.INV_Precio_Mes),
-                                      FortnightPrice = new decimal(rentalItem.INV_Precio_Quincena),
-                                      WeeklyPrice = new decimal(rentalItem.INV_Precio_Semana),
-                                      DailyPrice = new decimal(rentalItem.INV_Precio_Dia),
-                                      MaximunDiscount = 0,
-                                      FamilyId = 0,
-                                      Storages = new Collection<StorageDto>()
-                                  };
-                rentealItemDto.Storages.Add(new StorageDto { Available = Convert.ToDecimal(rentalItem.INV_Disponible),
-                                                             Quantity = Convert.ToDecimal(rentalItem.INV_Existencia),
-                });
-                response.RentalItemList.Add(rentealItemDto);
+                // Check if the rentalItem is already binded
+                var bindedRentalItem = response.RentalItemList.Where(x => x.Code == rentalItem.INV_Codigo).FirstOrDefault();
+                if (bindedRentalItem == null)
+                {
+                    var rentealItemDto = new RentalItemDto
+                    {
+                        Code = rentalItem.INV_Codigo.Trim(),
+                        Name = rentalItem.INV_Nombre.Trim(),
+                        Cost = Convert.ToDecimal(rentalItem.INV_Costo),
+                        Price = Convert.ToDecimal(rentalItem.INV_Precio),
+                        MonthlyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Mes),
+                        FortnightPrice = Convert.ToDecimal(rentalItem.INV_Precio_Quincena),
+                        WeeklyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Semana),
+                        DailyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Dia),
+                        MaximunDiscount = 0,
+                        FamilyId = 0,
+                        Storages = new Collection<StorageDto>()
+                    };
+                    rentealItemDto.Storages.Add(new StorageDto
+                    {
+                        Available = Convert.ToDecimal(rentalItem.INV_Disponible),
+                        Quantity = Convert.ToDecimal(rentalItem.INV_Existencia),
+                    });
+                    response.RentalItemList.Add(rentealItemDto);
+                }
+                else
+                {
+                    bindedRentalItem.Name = rentalItem.INV_Nombre.Trim();
+                    bindedRentalItem.Cost = Convert.ToDecimal(rentalItem.INV_Costo);
+                    bindedRentalItem.Price = Convert.ToDecimal(rentalItem.INV_Precio);
+                    bindedRentalItem.MonthlyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Mes);
+                    bindedRentalItem.FortnightPrice = Convert.ToDecimal(rentalItem.INV_Precio_Quincena);
+                    bindedRentalItem.WeeklyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Semana);
+                    bindedRentalItem.DailyPrice = Convert.ToDecimal(rentalItem.INV_Precio_Dia);
+                    bindedRentalItem.MaximunDiscount = 0;
+                    bindedRentalItem.FamilyId = 0;
+                    bindedRentalItem.Storages = new Collection<StorageDto>();
+                }
+              
             }
         }
 
         // Get Item from Alien DB
-        public RentalItemResponse GetItem(RentalItemRequest request)
+        public RentalItemResponse GetRentalItem(RentalItemRequest request)
         {
             var response = new RentalItemResponse();
             if (request.RentalItem != null)
@@ -72,22 +93,25 @@ namespace Interceptor.Adapters
 
                     if (bindedItemFound != null)
                     {
-                        response.RentalItem.Code = bindedItemFound.INV_Codigo.Trim();
-                        response.RentalItem.Name = bindedItemFound.INV_Nombre.Trim();
-                        response.RentalItem.Cost = new decimal(bindedItemFound.INV_Costo);
-                        response.RentalItem.Price = new decimal(bindedItemFound.INV_Precio);
-                        response.RentalItem.MonthlyPrice = new decimal(bindedItemFound.INV_Precio_Mes);
-                        response.RentalItem.FortnightPrice = new decimal(bindedItemFound.INV_Precio_Quincena);
-                        response.RentalItem.WeeklyPrice = new decimal(bindedItemFound.INV_Precio_Semana);
-                        response.RentalItem.DailyPrice = new decimal(bindedItemFound.INV_Precio_Dia);
-                        response.RentalItem.MaximunDiscount = 0;
-                        response.RentalItem.FamilyId = 0;
-                        response.RentalItem.IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas);
-                        //response.RentalItem.DateCreated = DateTime.Now,
-                        response.RentalItem.DateModified = DateTime.Now;
-                        response.RentalItem.WasDeleted = false;
-                        response.RentalItem.Storages = new Collection<StorageDto>();
-                        // get the stocks by Warehouse
+                        // Create an object to be mapped later
+                        response.RentalItem = new RentalItemDto
+                                                  {
+                                                      Id = request.RentalItemId,
+                                                      Code = bindedItemFound.INV_Codigo.Trim(),
+                                                      Name = bindedItemFound.INV_Nombre.Trim(),
+                                                      Cost = Convert.ToDecimal(bindedItemFound.INV_Costo),
+                                                      Price = Convert.ToDecimal(bindedItemFound.INV_Precio),
+                                                      MonthlyPrice = Convert.ToDecimal(bindedItemFound.INV_Precio_Mes),
+                                                      FortnightPrice = Convert.ToDecimal(bindedItemFound.INV_Precio_Quincena),
+                                                      WeeklyPrice = Convert.ToDecimal(bindedItemFound.INV_Precio_Semana),
+                                                      DailyPrice = Convert.ToDecimal(bindedItemFound.INV_Precio_Dia),
+                                                      MaximunDiscount = 0,
+                                                      FamilyId = 0,
+                                                      IsTaxed = Convert.ToBoolean(bindedItemFound.INV_Con_Imp_Ventas),
+                                                      DateModified = DateTime.Now,
+                                                      WasDeleted = false
+                                                  };
+                        // get the stocks by Warehouse missing
                     } 
                     #endregion
                 }
@@ -103,21 +127,20 @@ namespace Interceptor.Adapters
                                             {
                                                 Code = itemFound.INV_Codigo.Trim(),
                                                 Name = itemFound.INV_Nombre.Trim(),
-                                                Cost = new decimal(itemFound.INV_Costo),
-                                                Price = new decimal(itemFound.INV_Precio),
-                                                MonthlyPrice = new decimal(itemFound.INV_Precio_Mes),
-                                                FortnightPrice = new decimal(itemFound.INV_Precio_Quincena),
-                                                WeeklyPrice = new decimal(itemFound.INV_Precio_Semana),
-                                                DailyPrice = new decimal(itemFound.INV_Precio_Dia),
+                                                Cost = Convert.ToDecimal(itemFound.INV_Costo),
+                                                Price = Convert.ToDecimal(itemFound.INV_Precio),
+                                                MonthlyPrice = Convert.ToDecimal(itemFound.INV_Precio_Mes),
+                                                FortnightPrice = Convert.ToDecimal(itemFound.INV_Precio_Quincena),
+                                                WeeklyPrice = Convert.ToDecimal(itemFound.INV_Precio_Semana),
+                                                DailyPrice = Convert.ToDecimal(itemFound.INV_Precio_Dia),
                                                 MaximunDiscount = 0,
                                                 FamilyId = 0,
                                                 IsTaxed = Convert.ToBoolean(itemFound.INV_Con_Imp_Ventas),
                                                 DateCreated = DateTime.Now,
                                                 DateModified = DateTime.Now,
-                                                WasDeleted = false,
-                                                Storages = new Collection<StorageDto>()
+                                                WasDeleted = false
                                             };
-                        // get the storage by Warehouse
+                        // get the storage by Warehouse missing
                     } 
                     #endregion
                 } 

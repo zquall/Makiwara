@@ -269,7 +269,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(407, 88);
+            this.labelControl6.Location = new System.Drawing.Point(420, 88);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(46, 13);
             this.labelControl6.TabIndex = 7;
@@ -342,6 +342,7 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(260, 96);
             this.panelControl3.TabIndex = 5;
+            this.panelControl3.Click += new System.EventHandler(this.panelControl3_Click);
             // 
             // lblEmployeeName
             // 
@@ -439,11 +440,11 @@
             // 
             // cmbPhone
             // 
-            this.cmbPhone.Location = new System.Drawing.Point(459, 85);
+            this.cmbPhone.Location = new System.Drawing.Point(472, 85);
             this.cmbPhone.Name = "cmbPhone";
             this.cmbPhone.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbPhone.Size = new System.Drawing.Size(108, 20);
+            this.cmbPhone.Size = new System.Drawing.Size(95, 20);
             this.cmbPhone.TabIndex = 12;
             // 
             // xtraTabControl1
