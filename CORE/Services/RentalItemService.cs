@@ -35,7 +35,7 @@ namespace CORE.Services
             if (itemsFound.Count > 0)
             {
                 response.RentalItemList = Mapper.Map<List<RentalItemDto>>(itemsFound);
-            } 
+            }
 
             // Intercepted Method
             _rentalItemAdapter.SearchRentalItem(request, response);

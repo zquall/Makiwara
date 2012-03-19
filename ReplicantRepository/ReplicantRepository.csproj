@@ -144,7 +144,7 @@
     <Compile Include="Request\BudgetRequestRequest.cs" />
     <Compile Include="Request\RentalItemRequest.cs" />
     <Compile Include="Request\ItemRequest.cs" />
-    <Compile Include="Request\PayrollRequest.cs" />
+    <Compile Include="Request\EmployeeRequest.cs" />
     <Compile Include="Request\ProjectStateRequest.cs" />
     <Compile Include="Request\UserRequest.cs" />
     <Compile Include="Request\CustomerRequest.cs" />
@@ -155,7 +155,6 @@
     <Compile Include="Response\CommonObjectsResponse.cs" />
     <Compile Include="Response\RentalItemResponse.cs" />
     <Compile Include="Response\ItemResponse.cs" />
-    <Compile Include="Response\PayrollResponse.cs" />
     <Compile Include="Response\ProjectStateResponse.cs" />
     <Compile Include="Response\UserResponse.cs" />
     <Compile Include="Response\EmployeeResponse.cs" />

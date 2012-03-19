@@ -13,7 +13,6 @@ namespace Interceptor.Adapters
 {
     public class RentalItemAdapter
     {
-
         public RentalItemAdapter()
         {
 

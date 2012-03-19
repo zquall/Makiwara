@@ -8,5 +8,5 @@ namespace ReplicantRepository.Response
         public int RentalItemId { get; set; }
         public RentalItemDto RentalItem { get; set; }
         public List<RentalItemDto> RentalItemList { get; set; }
-    } 
+    }
 }

@@ -50,6 +50,13 @@ namespace ReplicantRepository.DataTransferObjects
         private int _personId;
     
     	[DataMember]
+        public virtual string Code
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
         public virtual int UserAccountId
         {
             get;
@@ -62,6 +69,7 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
