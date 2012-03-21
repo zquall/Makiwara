@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>About</h2>
+    <h2>Descripcion del sistema</h2>
     <p>
-        Put content here.
+        Actualmente el sistema esta en una etapa Beta y unicamente permite hacer informes diarios para proyectos.
     </p>
 </asp:Content>

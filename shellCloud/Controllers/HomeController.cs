@@ -10,7 +10,7 @@ namespace shellCloud.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Bienvenido a SkyNet";
 
             return View();
         }
