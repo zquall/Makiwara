@@ -8,7 +8,7 @@ using ReplicantRepository.Request;
 
 namespace ReplicantFacility.Factory
 {
-    class EmployeeFactory
+    public class EmployeeFactory
     {
         private static EmployeeService _employeeService;
 

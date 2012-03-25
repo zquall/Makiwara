@@ -9,6 +9,20 @@ namespace Interceptor.Adapters
 {
     public class EmployeeAdapter
     {
+        //Update the salaries for the employees in the first search
+        private static void UpdateSalariesInSearch(EmployeeResponse response)
+        {
+            foreach(var employee in response.EmployeeList)
+            {
+                var code = Convert.ToDouble(employee.Code);
+                var tmpEmployee = Asgard._Foreing.PLA_EMPLEADOS.Where(x => x.EMP_Numero.Equals(code) &&
+                                                                           x.CIA_Codigo.Equals("01") &&
+                                                                           x.EMP_Activo.Equals("S"))
+                                                               .SingleOrDefault();
+                if (tmpEmployee != null) employee.SalaryByHour = Convert.ToDecimal(tmpEmployee.EMP_SalarioXHora);
+            }
+        }
+
         // Add aditional results to the search
         public void SearchEmployee(EmployeeRequest request, EmployeeResponse response)
         {
@@ -16,10 +30,14 @@ namespace Interceptor.Adapters
 
             // Apply the search with the pattern given
             var searchResults = Asgard._Foreing.PLA_EMPLEADOS
-                .Where(x => x.EMP_Nombre.ToUpper().Contains(request.SearchEmployeeQuery.ToUpper()) ||
-                            x.ID.Equals(Convert.ToInt32(request.SearchEmployeeQuery)))
-                            .OrderBy(y => y.EMP_Nombre)
-                            .Take(maximunResultRows).ToList();
+                                .Where(x => x.EMP_Nombre.ToUpper().Contains(request.SearchEmployeeQuery.ToUpper()) &&
+                                            x.CIA_Codigo.Equals("01") &&
+                                            x.EMP_Activo.Equals("S"))
+                                .OrderBy(y => y.EMP_Nombre)
+                                .Take(maximunResultRows)
+                                .ToList();
+
+            if (request.SearchEmployeeQuery == "") UpdateSalariesInSearch(response);
 
             // Fill the response with the result found
             foreach (var employee in searchResults) //Por cada empleada encontrado en DIALCOM
@@ -44,7 +62,7 @@ namespace Interceptor.Adapters
                 else
                 {
                     bindedEmployee.SalaryByHour = Convert.ToDecimal(employee.EMP_SalarioXHora);
-                    bindedEmployee.Person.Name = employee.EMP_Nombre;
+                    //bindedEmployee.Person.Name = employee.EMP_Nombre;
                 }
             }
         }
@@ -60,10 +78,13 @@ namespace Interceptor.Adapters
                 if (request.EmployeeId > 0)
                 {
                     #region Update Data
+                    var code = Convert.ToDouble(request.Employee.Code);
+                    //var code = Convert.ToDouble(request.Employee.Code.Substring(0, request.Employee.Code.Length - 2));
+
                     // Search the item to update data
-                    var bindedEmployeeFound = Asgard._Foreing.PLA_EMPLEADOS
-                        .Where(x => Convert.ToString(x.EMP_Numero).ToUpper() == request.Employee.Code.ToUpper())
-                        .FirstOrDefault();
+                    var bindedEmployeeFound = Asgard._Foreing.PLA_EMPLEADOS.Where(x => x.EMP_Numero.Equals(code) &&
+                                                                                 x.CIA_Codigo.Equals("01") &&
+                                                                                 x.EMP_Activo.Equals("S")).FirstOrDefault();
 
                     if (bindedEmployeeFound != null)
                     {
@@ -84,8 +105,11 @@ namespace Interceptor.Adapters
                 {
                     #region Get Item
                     // Search the item
-                    var employeeFound = Asgard._Foreing.PLA_EMPLEADOS.Where(x => Convert.ToString(x.EMP_Numero).ToUpper() == request.Employee.Code.ToUpper()).
-                            FirstOrDefault();
+                    var code = Convert.ToDouble(request.Employee.Code);
+                    //var code = Convert.ToDouble(request.Employee.Code.Substring(0, request.Employee.Code.Length - 2));
+                    var employeeFound = Asgard._Foreing.PLA_EMPLEADOS.Where(x => x.EMP_Numero.Equals(code) &&
+                                                                                 x.CIA_Codigo.Equals("01") &&
+                                                                                 x.EMP_Activo.Equals("S")).FirstOrDefault();
 
                     if (employeeFound != null)
                     {
@@ -94,7 +118,7 @@ namespace Interceptor.Adapters
                             Code = Convert.ToString(employeeFound.EMP_Numero).Trim(),
                             UserAccountId = 0,
                             SalaryByHour = Convert.ToDecimal(employeeFound.EMP_SalarioXHora),
-                            Person = new PersonDto()
+                            Person = new PersonDto
                                          {
                                              Name = employeeFound.EMP_Nombre,
                                              LastName = ""

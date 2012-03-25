@@ -8,6 +8,8 @@ using ReplicantRepository.Request;
 using Infragistics.Win.UltraWinSchedule;
 using DevExpress.XtraGrid.Views.Base;
 using ReplicantRepository.DataTransferObjects;
+using shellCommon.Employee;
+using shellCommon.Item;
 
 namespace shellProject
 {
@@ -83,7 +85,6 @@ namespace shellProject
             }
 
             grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
-            ConfigureResourcesGrid();
         }
 
         private void LoadResources()
@@ -92,7 +93,6 @@ namespace shellProject
             if (tmpResources != null)
             {
                 grdResources.DataSource = new BindingList<ResourceDto>(tmpResources);
-                ConfigureResourcesGrid();
             }
         }
 
@@ -150,6 +150,26 @@ namespace shellProject
             }
         }
 
+        private void LoadRentalItem(RentalItemDto rentalItem)
+        {
+            if (rentalItem != null)
+            {
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], rentalItem.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], rentalItem.Name);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], rentalItem.Cost);
+            }
+        }
+
+        private void LoadEmployee(EmployeeDto employee)
+        {
+            if (employee != null)
+            {
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], employee.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], employee.Person.Name + employee.Person.LastName);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], employee.SalaryByHour);
+            }
+        }
+
         #endregion
 
         #region Captures
@@ -190,130 +210,17 @@ namespace shellProject
 
         #region UI Configuration
 
-        private void ConfigureResourcesGrid()
-        {
-            #region Set visible columns
-            viewResources.Columns["Id"].Visible = false;
-            viewResources.Columns["TaskId"].Visible = false;
-            viewResources.Columns["Measure"].Visible = true;
-            viewResources.Columns["ResourceType"].Visible = true;
-            viewResources.Columns["Code"].Visible = true;
-            viewResources.Columns["Name"].Visible = true;
-            viewResources.Columns["Amount"].Visible = true;
-            viewResources.Columns["Cost"].Visible = true;
-            viewResources.Columns["TotalCost"].Visible = true;
-            viewResources.Columns["RealUsed"].Visible = true;
-            viewResources.Columns["Task"].Visible = false;
-            viewResources.Columns["MeasureId"].Visible = false;
-            viewResources.Columns["ResourceTypeId"].Visible = false;
-            #endregion
-
-            #region set caption columns
-            viewResources.Columns["Id"].Caption = @"Id";
-            viewResources.Columns["TaskId"].Caption = @"Tarea";
-            viewResources.Columns["Measure"].Caption = @"Medida";
-            viewResources.Columns["ResourceType"].Caption = @"Tipo";
-            viewResources.Columns["Code"].Caption = @"Código";
-            viewResources.Columns["Name"].Caption = @"Nombre";
-            viewResources.Columns["Amount"].Caption = @"Cantidad";
-            viewResources.Columns["Cost"].Caption = @"Costo";
-            viewResources.Columns["TotalCost"].Caption = @"Total";
-            viewResources.Columns["RealUsed"].Caption = @"Usado";
-            #endregion
-
-            #region set width columns
-            //viewResources.Columns["Measure"].Width = 50;
-            //viewResources.Columns["ResourceType"].Width = 70;
-            //viewResources.Columns["Code"].Width = 70;
-            viewResources.Columns["Name"].Width = 150;
-            //viewResources.Columns["Amount"].Width = 70;
-            //viewResources.Columns["Cost"].Width = 75;
-            //viewResources.Columns["TotalCost"].Width = 50;
-            //viewResources.Columns["RealUsed"].Width = 50;
-            #endregion
-
-            #region set visible index
-            viewResources.Columns["ResourceType"].VisibleIndex = 0;
-            viewResources.Columns["Code"].VisibleIndex = 1;
-            viewResources.Columns["Name"].VisibleIndex = 2;
-            viewResources.Columns["Amount"].VisibleIndex = 3;
-            viewResources.Columns["Measure"].VisibleIndex = 4;
-            viewResources.Columns["Cost"].VisibleIndex = 5;
-            viewResources.Columns["TotalCost"].VisibleIndex = 6;
-            viewResources.Columns["RealUsed"].VisibleIndex = 7;
-            #endregion
-
-            #region Set read only columns
-            viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
-            viewResources.Columns["Code"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
-            #endregion
-
-            #region set repositories
-            viewResources.Columns["ResourceType"].ColumnEdit = repResourceTypes;
-            #endregion
-        }
-
         private void ConfigureResourcesGrid(string rtype)
         {
-            viewResources.Columns["Measure"].ColumnEdit = repMeasures;
-            viewResources.Columns["Code"].ColumnEdit = null;
+            
+            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
 
-            if ((rtype.Equals("PRODUCTO")) || (rtype.Equals("ALQUILER")) || (rtype.Equals("PLANILLA")))
+            if ((rtype.Equals("PRODUCTO")) || (rtype.Equals("ALQUILERES")) || (rtype.Equals("PLANILLA")))
             {
-                #region Set read only columns
-                viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
-                viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
-                viewResources.Columns["Code"].OptionsColumn.ReadOnly = false;
-                viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["Amount"].OptionsColumn.ReadOnly = false;
                 viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
-                #endregion
-
-                viewResources.Columns["Code"].ColumnEdit = repResourceCode;
+                viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
             }
-            else
-                if (rtype.Equals(""))
-                {
-                    #region Set read only columns
-                    viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["Measure"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["Code"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
-                    #endregion
-                }
-                else
-                {
-                    #region Set read only columns
-                    viewResources.Columns["Id"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["TaskId"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["Measure"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["Code"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["Name"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["Amount"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["Cost"].OptionsColumn.ReadOnly = false;
-                    viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
-                    viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = false;
-                    #endregion
-                }
         }
 
         private void ConfigureDependenciesGrid()
@@ -360,15 +267,6 @@ namespace shellProject
         #endregion
 
         #region UI Events
-
-        private void TaskInfoLoad(object sender, EventArgs e)
-        {
-            LoadTask();
-            ConfigureTaskInfoForm();
-
-            //Se crea un backup de la tarea para ser restaurada en caso de que se presione el boton cancelar
-            CopyTask(_task, _backupTask);
-        }
 
         private void ViewResourcesInitNewRow(object sender, InitNewRowEventArgs e)
         {
@@ -420,34 +318,49 @@ namespace shellProject
             }
         }
 
+        private void GrdResourcesKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                viewResources.DeleteRow(viewResources.FocusedRowHandle);
+            }
+        }
+
         private void RepResourceCodeButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             var tmpResource = viewResources.GetFocusedRow() as ResourceDto;
             if (tmpResource != null && tmpResource.ResourceType.Name == "PRODUCTO")
             {
                 var itemFinder = new ItemFinder();
-                if(itemFinder.ShowDialog() == DialogResult.OK)
+                if (itemFinder.ShowDialog() == DialogResult.OK)
                 {
                     var itemDto = itemFinder.Tag as ItemDto;
                     LoadItem(itemDto);
                 }
             }
+
+            if (tmpResource != null && tmpResource.ResourceType.Name == "ALQUILERES")
+            {
+                var employeeFinder = new RentalItemFinder();
+                if (employeeFinder.ShowDialog() == DialogResult.OK)
+                {
+                    var rentalItemDto = employeeFinder.Tag as RentalItemDto;
+                    LoadRentalItem(rentalItemDto);
+                }
+            }
+
+            if (tmpResource != null && tmpResource.ResourceType.Name == "PLANILLA")
+            {
+                var employeeFinder = new EmployeeFinder();
+                if (employeeFinder.ShowDialog() == DialogResult.OK)
+                {
+                    var employeeDto = employeeFinder.Tag as EmployeeDto;
+                    LoadEmployee(employeeDto);
+                }
+            }
         }
 
-        private void CmdCancelClick(object sender, EventArgs e)
-        {
-            //Se devuelve al estado original en el que fue abierta la tarea
-            CopyTask(_backupTask, _task);
-
-            Close();
-            DialogResult = DialogResult.Cancel;
-        }
-
-        private void CmdOkClick(object sender, EventArgs e)
-        {
-            CaptureTask();
-            DialogResult = DialogResult.OK;
-        }
+        //*****************************************************************************************************************************
 
         private void DrtDurationTextChanged(object sender, EventArgs e)
         {
@@ -500,10 +413,33 @@ namespace shellProject
             LoadTask();
         }
 
-        private void CmdDeleteClick(object sender, EventArgs e)
+        //*****************************************************************************************************************************
+
+        private void TaskInfoLoad(object sender, EventArgs e)
         {
-            viewResources.DeleteRow(viewResources.FocusedRowHandle);
+            LoadTask();
+            ConfigureTaskInfoForm();
+
+            //Se crea un backup de la tarea para ser restaurada en caso de que se presione el boton cancelar
+            CopyTask(_task, _backupTask);
         }
+
+        private void CmdCancelClick(object sender, EventArgs e)
+        {
+            //Se devuelve al estado original en el que fue abierta la tarea
+            CopyTask(_backupTask, _task);
+
+            Close();
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void CmdOkClick(object sender, EventArgs e)
+        {
+            CaptureTask();
+            DialogResult = DialogResult.OK;
+        }
+
+        
 
         #endregion
     }

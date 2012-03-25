@@ -26,11 +26,11 @@ namespace CORE.Services
 
             // Search employee
             var employeesFound = Olympus._Enterprise.Employees.Where(x => x.Person.Name.Contains(request.SearchEmployeeQuery) ||
-                                                                     x.Code.Contains(request.SearchEmployeeQuery))
+                                                                          x.Code.Contains(request.SearchEmployeeQuery))
                                                               .OrderBy(y => y.Person.Name)
-                             .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
-                             .Distinct()
-                             .ToList();
+                                                              .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
+                                                              .Distinct()
+                                                              .ToList();
 
             if (employeesFound.Count > 0)
             {
@@ -82,8 +82,9 @@ namespace CORE.Services
 
                     if (employee != null)
                     {
-                        // Overrides the DateCreated
-                        request.Employee.SalaryByHour = employee.SalaryByHour;
+                        // Overrides the Salary By Hour
+                        //request.Employee.SalaryByHour = employee.SalaryByHour;
+                        //Mapper.Map(request.Employee, employee);
                     }
                 }
                 else
