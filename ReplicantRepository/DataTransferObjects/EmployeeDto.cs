@@ -69,7 +69,6 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
-
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 

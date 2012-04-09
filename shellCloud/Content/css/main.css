@@ -1,0 +1,124 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+p {
+    display: block;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+h1 
+{
+    display: block;
+    font-size: 16px;
+}
+
+h2
+{
+    display: block;    
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+h3
+{
+    font-size: 12px;
+    font-weight: 200;
+}
+
+body {
+    background: #fff;
+    color: #393939;
+    font-family: "Tahoma";
+    font-size: 12px;
+    line-height: 100%;
+}
+
+#page-top-outer {
+    background: #3E3E3E;
+    border-bottom: 1px solid #7e7e7e;
+    height: 92px;
+}
+
+#page-top {
+    max-width: 1260px;
+    min-width: 850px;
+    position: relative;
+    color: #FFF;
+    display: block;
+    top: 50px;
+    padding-left: 20px;
+}
+
+#logo {
+}
+
+#logo h3 {
+    color: #9ecdff;
+    margin-top: 4px;
+}
+
+.clear {
+    clear: both;
+    font-size: 0px;
+    height: 0;
+    line-height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-outer-repeat
+{
+    
+    background: url(../images/shared/nav/repeat.jpg) repeat-x;
+    height: 38px;
+}
+
+.nav-divider {
+    background: url(../images/shared/nav/divider.jpg) top no-repeat;
+    float: left;
+    height: 40px;
+    width: 15px;
+}
+
+.nav-outer {
+    margin: 0 auto;
+    max-width: 1260px;
+    min-width: 850px;
+}
+.nav-outer a {
+    color: #FFF;    
+    font-size: 12px;
+    text-decoration: none;
+}
+#nav-right {
+    float: right;
+    min-width: 150px;
+}
+
+#nav-right a {
+}
+
+.nav-text 
+{
+    padding: 12px 8px 12px 8px;
+}
+
+.text-blue
+{
+    color: #9ecdff;
+}
+.nav-submenu {
+    background: url(../images/shared/nav/divider.jpg) top left no-repeat;
+    float: left;
+    height: 38px;
+    min-width: 100px;
+    padding: 0px 0px 0px 15px;
+}

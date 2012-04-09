@@ -62,6 +62,20 @@ namespace ReplicantRepository.DataTransferObjects
             get;
             set;
         }
+    
+    	[DataMember]
+        public virtual decimal MaximunDiscount
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
+        public virtual decimal MinimunProfit
+        {
+            get;
+            set;
+        }
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 

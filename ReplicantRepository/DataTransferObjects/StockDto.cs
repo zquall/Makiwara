@@ -70,7 +70,7 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
-        public virtual int MaximunDiscount
+        public virtual decimal MaximunDiscount
         {
             get;
             set;
