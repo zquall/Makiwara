@@ -29,7 +29,7 @@ namespace shellProject
             //Project in use
             public ProjectDto Project { get; set; }
 
-            
+            public TimeSpan TaskDurationWorkingTimePerDay { get; set; }
 
         #endregion
 
@@ -69,7 +69,6 @@ namespace shellProject
             }
 
             grdPredecessors.DataSource = _dependenciesCollection;
-            ConfigureDependenciesGrid();
         }
 
         private void LoadResourceRoot()
@@ -109,11 +108,7 @@ namespace shellProject
         private void LoadMeasures()
         {
             var request = new MeasureRequest();
-            repMeasures.Items.Clear();
-            foreach (MeasureDto r in new MeasureFactory().SearchMeasure(request).MeasureList)
-            {
-                repMeasures.Items.Add(r);
-            }
+            repMeasures.Tag = new MeasureFactory().SearchMeasure(request).MeasureList;
         }
 
         private void LoadTask()
@@ -177,14 +172,12 @@ namespace shellProject
         private void CaptureResources()
         {
             var temp = new List<ResourceDto>();
-            //foreach (var data in _resourcesCollection)
             foreach (var data in (BindingList<ResourceDto>)grdResources.DataSource)
             {
                 temp.Add(data);
             }
 
             _task.Tag = temp;
-            //_task.Tag = (BindingList<ResourceDto>)grdResources.DataSource;
         }
 
         /// <summary>
@@ -210,47 +203,26 @@ namespace shellProject
 
         #region UI Configuration
 
-        private void ConfigureResourcesGrid(string rtype)
-        {
-            
-            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
-            viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
-
-            if ((rtype.Equals("PRODUCTO")) || (rtype.Equals("ALQUILERES")) || (rtype.Equals("PLANILLA")))
-            {
-                viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
-                viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
-            }
-        }
-
-        private void ConfigureDependenciesGrid()
-        {
-            viewDependencies.Columns["Predecessor"].Visible = true;
-            viewDependencies.Columns["DependencyType"].Visible = true;
-            viewDependencies.Columns["Tag"].Visible = false;
-
-            viewDependencies.Columns["Predecessor"].Caption = @"Nombre de la Tarea";
-            viewDependencies.Columns["DependencyType"].Caption = @"Tipo de Dependencia";
-            viewDependencies.Columns["Tag"].Caption = @"Info";
-
-            viewDependencies.Columns["Predecessor"].Width = 300;
-            viewDependencies.Columns["DependencyType"].Width = 136;
-            viewDependencies.Columns["Tag"].Width = 0;
-            
-            viewDependencies.Columns["Predecessor"].OptionsColumn.ReadOnly = true;
-            viewDependencies.Columns["DependencyType"].OptionsColumn.ReadOnly = true;
-            viewDependencies.Columns["Tag"].OptionsColumn.ReadOnly = true;
-        }
-
         private bool IsRoot()
         {
-            if ((_task.IsRoot) && (_task.Tasks.Count >0))
+            if ((_task.IsRoot) && (_task.Tasks.Count > 0))
                 return true;
             return false;
         }
 
+        private void ClearRow()
+        {
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["RealUsed"], 0);
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["TotalCost"], 0);
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], 0);
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Measure"], new MeasureDto());
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], 0);
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], "");
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], "");
+        }
+
         private void ConfigureTaskInfoForm()
-        { 
+        {
             var readOnly = IsRoot();
 
             txtTaskName.Properties.ReadOnly = false;
@@ -262,6 +234,86 @@ namespace shellProject
             dtEndDate.Properties.ReadOnly = readOnly;
 
             if (readOnly) viewResources.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
+        }
+
+        private void ReadOnlyDefaultResources()
+        {
+            viewResources.Columns["Code"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Name"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["Amount"].OptionsColumn.ReadOnly = false;
+            viewResources.Columns["Cost"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = true;
+            viewResources.Columns["RealUsed"].OptionsColumn.ReadOnly = true;
+        }
+
+        private void AddMeasuresToRepMeasures(string measureType)
+        {
+            var measureDtos = repMeasures.Tag as List<MeasureDto>;
+            repMeasures.Items.Clear();
+            if (measureDtos != null)
+                switch (measureType)
+                {
+                    case "E":
+                        foreach (var r in measureDtos)
+                            if (r.Symbol.Equals("h")) repMeasures.Items.Add(r);
+                        break;
+                    default:
+                        foreach (var r in measureDtos)
+                            repMeasures.Items.Add(r);
+                        break;
+                }
+        }
+
+        private bool CheckRepeatItem(ResourceDto resource)
+        {
+            var count = 0;
+
+            if (viewResources.DataSource != null)
+                foreach (var tmpResource in (IEnumerable<ResourceDto>)viewResources.DataSource)
+                {
+                    if ((resource.Code == tmpResource.Code) && (resource.ResourceType.Id == tmpResource.ResourceType.Id))
+                        count++;
+                }
+
+            return count > 1;
+        }
+
+        private void ConfigureResourceEmployee()
+        {
+            ReadOnlyDefaultResources();
+            viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], TaskDurationWorkingTimePerDay.Hours * _task.Duration.Days);
+            AddMeasuresToRepMeasures("E");
+        }
+
+        private void ConfigureResourceItem()
+        {
+            ReadOnlyDefaultResources();
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], 0);
+            AddMeasuresToRepMeasures("I");
+        }
+
+        private void ConfigureResourceRent()
+        {
+            ReadOnlyDefaultResources();
+            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], 0);
+            AddMeasuresToRepMeasures("R");
+        }
+
+        private void ConfigureResourcesGrid(string rtype)
+        {
+            switch(rtype)
+            {
+                case "PLANILLA":
+                    ConfigureResourceEmployee();
+                    break;
+                case "PRODUCTO":
+                    ConfigureResourceItem();
+                    break;
+                case "ALQUILERES":
+                    ConfigureResourceRent();
+                    break;
+            }
         }
 
         #endregion
@@ -281,21 +333,32 @@ namespace shellProject
                 view.SetRowCellValue(e.RowHandle, view.Columns["RealUsed"], 0);
 
                 //Si se presiona el boton de agregar fila del Navegador del grid se genera un null en el EditingValue
-                if (view.EditingValue != null)
-                    ConfigureResourcesGrid(view.EditingValue.ToString());
-                else
-                    ConfigureResourcesGrid("");
+                ConfigureResourcesGrid(view.EditingValue != null ? view.EditingValue.ToString() : "");
             }
         }
 
         private void ViewResourcesFocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             var view = sender as ColumnView;
+            if (view != null)
+            {
+                var rd = view.GetRow(e.FocusedRowHandle) as ResourceDto;
+                view.Columns["ResourceType"].OptionsColumn.ReadOnly = false;
+                if (rd != null)
+                {
+                    if (e.FocusedRowHandle >= 0)
+                    {
+                        view.Columns["ResourceType"].OptionsColumn.ReadOnly = true;
+                        ConfigureResourcesGrid(rd.ResourceType.Name);
+                    }
+                    else
+                    {
+                        ClearRow();
+                        ConfigureResourcesGrid(rd.ResourceType.Name);
+                    }
 
-            if (view != null && view.EditingValue != null)
-                ConfigureResourcesGrid(view.EditingValue.ToString());
-            else
-                ConfigureResourcesGrid("");
+                }
+            }
         }
 
         private void ViewResourcesCellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -305,16 +368,32 @@ namespace shellProject
             {
                 var rd = view.GetRow(e.RowHandle) as ResourceDto;
 
-                if ((e.Column.FieldName == "Cost") || (e.Column.FieldName == "Amount"))
+                switch (e.Column.FieldName)
                 {
-                    if (rd != null)
-                        view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
-                }
+                    case "ResourceType":
+                        if (rd != null) ConfigureResourcesGrid(rd.ResourceType.Name);
+                        break;
+                    case "Cost":
+                        if (rd != null)
+                            view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
+                        break;
 
-                if (e.Column.FieldName == "ResourceType")
-                {
-                    if (rd != null) ConfigureResourcesGrid(rd.ResourceType.Name);
+                    case "Amount":
+                        if (rd != null)
+                            view.SetRowCellValue(e.RowHandle, view.Columns["TotalCost"], rd.Cost * (decimal)rd.Amount);
+                        break;
                 }
+            }
+        }
+
+        private void ViewResourcesValidateRow(object sender, ValidateRowEventArgs e)
+        {
+            var tmpResource = e.Row as ResourceDto;
+            
+            if (CheckRepeatItem(tmpResource))
+            {
+                e.ErrorText = @"El item seleccionado ya a sido utilizado en esta tarea. Cambie la cantidad en lugar de agregarlo nuevamente";
+                e.Valid = false;
             }
         }
 
@@ -438,8 +517,6 @@ namespace shellProject
             CaptureTask();
             DialogResult = DialogResult.OK;
         }
-
-        
 
         #endregion
     }

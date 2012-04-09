@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\EmployeeAdapter.cs" />
+    <Compile Include="Adapters\BudgetAdapter.cs" />
     <Compile Include="Adapters\RentalItemAdapter.cs" />
     <Compile Include="Adapters\ItemAdapter.cs" />
     <Compile Include="Adapters\CustomerAdapter.cs" />

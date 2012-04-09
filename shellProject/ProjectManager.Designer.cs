@@ -348,8 +348,10 @@
             // 
             // ultraCalendarInfo
             // 
+            this.ultraCalendarInfo.AllowAllDayEvents = false;
             this.ultraCalendarInfo.DataBindingsForAppointments.BindingContextControl = this;
             this.ultraCalendarInfo.DataBindingsForOwners.BindingContextControl = this;
+            this.ultraCalendarInfo.TaskDurationWorkingTimePerDay = System.TimeSpan.Parse("08:00:00");
             // 
             // defaultLookAndFeel1
             // 

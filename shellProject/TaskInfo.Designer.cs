@@ -72,6 +72,8 @@
             this.tabPredecessors = new DevExpress.XtraTab.XtraTabPage();
             this.grdPredecessors = new DevExpress.XtraGrid.GridControl();
             this.viewDependencies = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPredecessor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDependencyType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabNotes = new DevExpress.XtraTab.XtraTabPage();
             this.memoEditNotes = new DevExpress.XtraEditors.MemoEdit();
             this.cmdOk = new DevExpress.XtraEditors.SimpleButton();
@@ -474,6 +476,7 @@
             this.viewResources.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.ViewResourcesInitNewRow);
             this.viewResources.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.ViewResourcesFocusedRowChanged);
             this.viewResources.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.ViewResourcesCellValueChanged);
+            this.viewResources.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.ViewResourcesValidateRow);
             // 
             // colResourceType
             // 
@@ -501,7 +504,7 @@
             this.colCode.Name = "colCode";
             this.colCode.Visible = true;
             this.colCode.VisibleIndex = 1;
-            this.colCode.Width = 64;
+            this.colCode.Width = 76;
             // 
             // repResourceCode
             // 
@@ -509,7 +512,6 @@
             this.repResourceCode.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repResourceCode.Name = "repResourceCode";
-            this.repResourceCode.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.repResourceCode.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepResourceCodeButtonClick);
             // 
             // colName
@@ -519,7 +521,7 @@
             this.colName.Name = "colName";
             this.colName.Visible = true;
             this.colName.VisibleIndex = 2;
-            this.colName.Width = 177;
+            this.colName.Width = 179;
             // 
             // colAmount
             // 
@@ -530,7 +532,7 @@
             this.colAmount.Name = "colAmount";
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 3;
-            this.colAmount.Width = 79;
+            this.colAmount.Width = 77;
             // 
             // colMeasure
             // 
@@ -540,7 +542,7 @@
             this.colMeasure.Name = "colMeasure";
             this.colMeasure.Visible = true;
             this.colMeasure.VisibleIndex = 4;
-            this.colMeasure.Width = 55;
+            this.colMeasure.Width = 53;
             // 
             // repMeasures
             // 
@@ -559,7 +561,7 @@
             this.colCost.Name = "colCost";
             this.colCost.Visible = true;
             this.colCost.VisibleIndex = 5;
-            this.colCost.Width = 87;
+            this.colCost.Width = 78;
             // 
             // colTotalCost
             // 
@@ -570,7 +572,7 @@
             this.colTotalCost.Name = "colTotalCost";
             this.colTotalCost.Visible = true;
             this.colTotalCost.VisibleIndex = 6;
-            this.colTotalCost.Width = 90;
+            this.colTotalCost.Width = 79;
             // 
             // colRealUsed
             // 
@@ -581,7 +583,7 @@
             this.colRealUsed.Name = "colRealUsed";
             this.colRealUsed.Visible = true;
             this.colRealUsed.VisibleIndex = 7;
-            this.colRealUsed.Width = 61;
+            this.colRealUsed.Width = 71;
             // 
             // tabPredecessors
             // 
@@ -603,11 +605,34 @@
             // 
             // viewDependencies
             // 
+            this.viewDependencies.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPredecessor,
+            this.colDependencyType});
             this.viewDependencies.GridControl = this.grdPredecessors;
             this.viewDependencies.Name = "viewDependencies";
             this.viewDependencies.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.viewDependencies.OptionsView.EnableAppearanceOddRow = true;
             this.viewDependencies.OptionsView.ShowGroupPanel = false;
+            // 
+            // colPredecessor
+            // 
+            this.colPredecessor.Caption = "Nombre De La Tarea";
+            this.colPredecessor.FieldName = "Predecessor";
+            this.colPredecessor.Name = "colPredecessor";
+            this.colPredecessor.OptionsColumn.ReadOnly = true;
+            this.colPredecessor.Visible = true;
+            this.colPredecessor.VisibleIndex = 0;
+            this.colPredecessor.Width = 486;
+            // 
+            // colDependencyType
+            // 
+            this.colDependencyType.Caption = "Tipo";
+            this.colDependencyType.FieldName = "DependencyType";
+            this.colDependencyType.Name = "colDependencyType";
+            this.colDependencyType.OptionsColumn.ReadOnly = true;
+            this.colDependencyType.Visible = true;
+            this.colDependencyType.VisibleIndex = 1;
+            this.colDependencyType.Width = 200;
             // 
             // tabNotes
             // 
@@ -802,5 +827,7 @@
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel15;
+        private DevExpress.XtraGrid.Columns.GridColumn colPredecessor;
+        private DevExpress.XtraGrid.Columns.GridColumn colDependencyType;
     }
 }

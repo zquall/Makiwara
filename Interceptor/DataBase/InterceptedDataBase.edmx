@@ -12,9 +12,15 @@
           <EntitySet Name="INV_X_BODEGA" EntityType="OuterModel.Store.INV_X_BODEGA" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PLA_EMPLEADOS" EntityType="OuterModel.Store.PLA_EMPLEADOS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PLA_PUESTOS" EntityType="OuterModel.Store.PLA_PUESTOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRE_DETALLE" EntityType="OuterModel.Store.PRE_DETALLE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRE_PRESUPUESTOS" EntityType="OuterModel.Store.PRE_PRESUPUESTOS" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.Store.FK_PLA_EMPLEADOS_PLA_PUESTOS">
             <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
             <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1" Association="OuterModel.Store.FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="PRE_DETALLE" EntitySet="PRE_DETALLE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ALQ_INVENTARIO">
@@ -131,6 +137,7 @@
           <Property Name="COB_Cobrador" Type="varchar" MaxLength="7" />
           <Property Name="CLI_Pago" Type="varchar" MaxLength="50" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="int" />
+          <Property Name="RebillType" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="INV_INVENTARIO">
           <Key>
@@ -320,6 +327,67 @@
           <Property Name="PUE_Codigo" Type="varchar" Nullable="false" MaxLength="5" />
           <Property Name="PUE_Descripcion" Type="varchar" Nullable="false" MaxLength="40" />
         </EntityType>
+        <EntityType Name="PRE_DETALLE">
+          <Key>
+            <PropertyRef Name="PRD_ID" />
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+            <PropertyRef Name="HOP_CODIGO" />
+            <PropertyRef Name="INV_CODIGO" />
+          </Key>
+          <Property Name="PRD_ID" Type="int" Nullable="false" />
+          <Property Name="CIA_CODIGO" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="PRE_NUMERO" Type="float" Nullable="false" />
+          <Property Name="HOP_CODIGO" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="INV_CODIGO" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PRD_DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="PRD_COSTOUNITARIO" Type="float" Nullable="false" />
+          <Property Name="PRD_CANTIDAD" Type="float" Nullable="false" />
+          <Property Name="PRD_COSTOTOTAL" Type="float" Nullable="false" />
+          <Property Name="PRD_APLICARIMPVTAS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRE_PRESUPUESTOS">
+          <Key>
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+          </Key>
+          <Property Name="CIA_CODIGO" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="PRE_NUMERO" Type="float" Nullable="false" />
+          <Property Name="CLI_CLIENTE" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="SVR_CODIGO" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PRE_FECHA" Type="datetime" />
+          <Property Name="VEN_VENDEDOR" Type="varchar" Nullable="false" MaxLength="7" />
+          <Property Name="PRE_NOMBREPROYECTO" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="PRE_OBSERVACIONES" Type="varchar" MaxLength="255" />
+          <Property Name="PRE_ACTIVIDADES" Type="varchar" MaxLength="255" />
+          <Property Name="PRE_SUBTOTAL_H" Type="float" Nullable="false" />
+          <Property Name="PRE_IMPREVISTOS" Type="float" Nullable="false" />
+          <Property Name="PRE_UTILIDAD" Type="float" Nullable="false" />
+          <Property Name="PRE_GARANTIA" Type="float" Nullable="false" />
+          <Property Name="PRE_TOTALMETROS" Type="float" Nullable="false" />
+          <Property Name="PRE_TOTALSERVICIO" Type="float" Nullable="false" />
+          <Property Name="PRE_COSTOXMETRO" Type="float" Nullable="false" />
+          <Property Name="PRE_APLICADO" Type="int" Nullable="false" />
+          <Property Name="PRO_NUMERO" Type="float" />
+          <Property Name="PRE_PORC_IMPREVISTOS" Type="float" Nullable="false" />
+          <Property Name="PRE_PORC_UTILIDAD" Type="float" Nullable="false" />
+          <Property Name="PRE_PORC_GARANTIA" Type="float" Nullable="false" />
+          <Property Name="PRE_SUBTOTAL_I" Type="float" Nullable="false" />
+          <Property Name="PRE_SUBTOTAL_J" Type="float" Nullable="false" />
+          <Property Name="PRE_SUBTOTAL_K" Type="float" Nullable="false" />
+          <Property Name="PRE_PORC_MUP" Type="float" Nullable="false" />
+          <Property Name="PRE_MUP" Type="float" Nullable="false" />
+          <Property Name="PRE_PORC_UTIL_GNRL" Type="float" Nullable="false" />
+          <Property Name="PRE_UTILIDAD_GNRL" Type="float" Nullable="false" />
+          <Property Name="PRE_TOTAL_GNRL" Type="float" Nullable="false" />
+          <Property Name="FAM_Codigo" Type="numeric" />
+          <Property Name="TIP_Codigo" Type="numeric" />
+          <Property Name="SUB_Codigo" Type="numeric" />
+          <Property Name="USR_Usuario_Modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Modificacion" Type="datetime" />
+          <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Inclusion" Type="datetime" />
+        </EntityType>
         <Association Name="FK_PLA_EMPLEADOS_PLA_PUESTOS">
           <End Role="PLA_PUESTOS" Type="OuterModel.Store.PLA_PUESTOS" Multiplicity="1" />
           <End Role="PLA_EMPLEADOS" Type="OuterModel.Store.PLA_EMPLEADOS" Multiplicity="*" />
@@ -329,6 +397,20 @@
             </Principal>
             <Dependent Role="PLA_EMPLEADOS">
               <PropertyRef Name="PUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
+          <End Role="PRE_PRESUPUESTOS" Type="OuterModel.Store.PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Role="PRE_DETALLE" Type="OuterModel.Store.PRE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="PRE_DETALLE">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,6 +428,12 @@
           <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS">
             <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
             <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
+          </AssociationSet>
+          <EntitySet Name="PRE_DETALLE" EntityType="OuterModel.PRE_DETALLE" />
+          <EntitySet Name="PRE_PRESUPUESTOS" EntityType="OuterModel.PRE_PRESUPUESTOS" />
+          <AssociationSet Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1" Association="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="PRE_DETALLE" EntitySet="PRE_DETALLE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
@@ -411,6 +499,7 @@
           <Property Name="COB_Cobrador" Type="String" MaxLength="7" Unicode="false" FixedLength="false" />
           <Property Name="CLI_Pago" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="CON_DESCUENTO_AUTORIZA" Type="Int32" />
+          <Property Type="String" Name="RebillType" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="INV_INVENTARIO">
           <Key>
@@ -665,6 +754,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PRE_DETALLE">
+          <Key>
+            <PropertyRef Name="PRD_ID" />
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+            <PropertyRef Name="HOP_CODIGO" />
+            <PropertyRef Name="INV_CODIGO" />
+          </Key>
+          <Property Type="Int32" Name="PRD_ID" Nullable="false" />
+          <Property Type="String" Name="CIA_CODIGO" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRE_NUMERO" Nullable="false" />
+          <Property Type="String" Name="HOP_CODIGO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="INV_CODIGO" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PRD_DESCRIPCION" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRD_COSTOUNITARIO" Nullable="false" />
+          <Property Type="Double" Name="PRD_CANTIDAD" Nullable="false" />
+          <Property Type="Double" Name="PRD_COSTOTOTAL" Nullable="false" />
+          <Property Type="Int32" Name="PRD_APLICARIMPVTAS" Nullable="false" />
+          <NavigationProperty Name="PRE_PRESUPUESTOS" Relationship="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" FromRole="PRE_DETALLE" ToRole="PRE_PRESUPUESTOS" />
+        </EntityType>
+        <EntityType Name="PRE_PRESUPUESTOS">
+          <Key>
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+          </Key>
+          <Property Type="String" Name="CIA_CODIGO" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRE_NUMERO" Nullable="false" />
+          <Property Type="String" Name="CLI_CLIENTE" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SVR_CODIGO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PRE_FECHA" />
+          <Property Type="String" Name="VEN_VENDEDOR" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PRE_NOMBREPROYECTO" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PRE_OBSERVACIONES" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PRE_ACTIVIDADES" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRE_SUBTOTAL_H" Nullable="false" />
+          <Property Type="Double" Name="PRE_IMPREVISTOS" Nullable="false" />
+          <Property Type="Double" Name="PRE_UTILIDAD" Nullable="false" />
+          <Property Type="Double" Name="PRE_GARANTIA" Nullable="false" />
+          <Property Type="Double" Name="PRE_TOTALMETROS" Nullable="false" />
+          <Property Type="Double" Name="PRE_TOTALSERVICIO" Nullable="false" />
+          <Property Type="Double" Name="PRE_COSTOXMETRO" Nullable="false" />
+          <Property Type="Int32" Name="PRE_APLICADO" Nullable="false" />
+          <Property Type="Double" Name="PRO_NUMERO" />
+          <Property Type="Double" Name="PRE_PORC_IMPREVISTOS" Nullable="false" />
+          <Property Type="Double" Name="PRE_PORC_UTILIDAD" Nullable="false" />
+          <Property Type="Double" Name="PRE_PORC_GARANTIA" Nullable="false" />
+          <Property Type="Double" Name="PRE_SUBTOTAL_I" Nullable="false" />
+          <Property Type="Double" Name="PRE_SUBTOTAL_J" Nullable="false" />
+          <Property Type="Double" Name="PRE_SUBTOTAL_K" Nullable="false" />
+          <Property Type="Double" Name="PRE_PORC_MUP" Nullable="false" />
+          <Property Type="Double" Name="PRE_MUP" Nullable="false" />
+          <Property Type="Double" Name="PRE_PORC_UTIL_GNRL" Nullable="false" />
+          <Property Type="Double" Name="PRE_UTILIDAD_GNRL" Nullable="false" />
+          <Property Type="Double" Name="PRE_TOTAL_GNRL" Nullable="false" />
+          <Property Type="Decimal" Name="FAM_Codigo" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TIP_Codigo" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="SUB_Codigo" Precision="18" Scale="0" />
+          <Property Type="String" Name="USR_Usuario_Modificacion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Modificacion" />
+          <Property Type="String" Name="USR_Usuario_Inclusion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
+          <NavigationProperty Name="PRE_DETALLE" Relationship="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" FromRole="PRE_PRESUPUESTOS" ToRole="PRE_DETALLE" />
+        </EntityType>
+        <Association Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
+          <End Type="OuterModel.PRE_PRESUPUESTOS" Role="PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Type="OuterModel.PRE_DETALLE" Role="PRE_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="PRE_DETALLE">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -672,7 +838,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OuterModelStoreContainer" CdmEntityContainer="ForeingEntities">
           <EntitySetMapping Name="CLI_CLIENTES"><EntityTypeMapping TypeName="OuterModel.CLI_CLIENTES"><MappingFragment StoreEntitySet="CLI_CLIENTES">
-            <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+            <ScalarProperty Name="RebillType" ColumnName="RebillType" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
             <ScalarProperty Name="CLI_Cliente" ColumnName="CLI_Cliente" />
             <ScalarProperty Name="CLI_Nombre" ColumnName="CLI_Nombre" />
             <ScalarProperty Name="CLI_CedulaJuridica" ColumnName="CLI_CedulaJuridica" />
@@ -970,6 +1137,64 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PRE_DETALLE">
+            <EntityTypeMapping TypeName="OuterModel.PRE_DETALLE">
+              <MappingFragment StoreEntitySet="PRE_DETALLE">
+                <ScalarProperty Name="PRD_APLICARIMPVTAS" ColumnName="PRD_APLICARIMPVTAS" />
+                <ScalarProperty Name="PRD_COSTOTOTAL" ColumnName="PRD_COSTOTOTAL" />
+                <ScalarProperty Name="PRD_CANTIDAD" ColumnName="PRD_CANTIDAD" />
+                <ScalarProperty Name="PRD_COSTOUNITARIO" ColumnName="PRD_COSTOUNITARIO" />
+                <ScalarProperty Name="PRD_DESCRIPCION" ColumnName="PRD_DESCRIPCION" />
+                <ScalarProperty Name="INV_CODIGO" ColumnName="INV_CODIGO" />
+                <ScalarProperty Name="HOP_CODIGO" ColumnName="HOP_CODIGO" />
+                <ScalarProperty Name="PRE_NUMERO" ColumnName="PRE_NUMERO" />
+                <ScalarProperty Name="CIA_CODIGO" ColumnName="CIA_CODIGO" />
+                <ScalarProperty Name="PRD_ID" ColumnName="PRD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRE_PRESUPUESTOS">
+            <EntityTypeMapping TypeName="OuterModel.PRE_PRESUPUESTOS">
+              <MappingFragment StoreEntitySet="PRE_PRESUPUESTOS">
+                <ScalarProperty Name="USR_Fecha_Inclusion" ColumnName="USR_Fecha_Inclusion" />
+                <ScalarProperty Name="USR_Usuario_Inclusion" ColumnName="USR_Usuario_Inclusion" />
+                <ScalarProperty Name="USR_Fecha_Modificacion" ColumnName="USR_Fecha_Modificacion" />
+                <ScalarProperty Name="USR_Usuario_Modificacion" ColumnName="USR_Usuario_Modificacion" />
+                <ScalarProperty Name="SUB_Codigo" ColumnName="SUB_Codigo" />
+                <ScalarProperty Name="TIP_Codigo" ColumnName="TIP_Codigo" />
+                <ScalarProperty Name="FAM_Codigo" ColumnName="FAM_Codigo" />
+                <ScalarProperty Name="PRE_TOTAL_GNRL" ColumnName="PRE_TOTAL_GNRL" />
+                <ScalarProperty Name="PRE_UTILIDAD_GNRL" ColumnName="PRE_UTILIDAD_GNRL" />
+                <ScalarProperty Name="PRE_PORC_UTIL_GNRL" ColumnName="PRE_PORC_UTIL_GNRL" />
+                <ScalarProperty Name="PRE_MUP" ColumnName="PRE_MUP" />
+                <ScalarProperty Name="PRE_PORC_MUP" ColumnName="PRE_PORC_MUP" />
+                <ScalarProperty Name="PRE_SUBTOTAL_K" ColumnName="PRE_SUBTOTAL_K" />
+                <ScalarProperty Name="PRE_SUBTOTAL_J" ColumnName="PRE_SUBTOTAL_J" />
+                <ScalarProperty Name="PRE_SUBTOTAL_I" ColumnName="PRE_SUBTOTAL_I" />
+                <ScalarProperty Name="PRE_PORC_GARANTIA" ColumnName="PRE_PORC_GARANTIA" />
+                <ScalarProperty Name="PRE_PORC_UTILIDAD" ColumnName="PRE_PORC_UTILIDAD" />
+                <ScalarProperty Name="PRE_PORC_IMPREVISTOS" ColumnName="PRE_PORC_IMPREVISTOS" />
+                <ScalarProperty Name="PRO_NUMERO" ColumnName="PRO_NUMERO" />
+                <ScalarProperty Name="PRE_APLICADO" ColumnName="PRE_APLICADO" />
+                <ScalarProperty Name="PRE_COSTOXMETRO" ColumnName="PRE_COSTOXMETRO" />
+                <ScalarProperty Name="PRE_TOTALSERVICIO" ColumnName="PRE_TOTALSERVICIO" />
+                <ScalarProperty Name="PRE_TOTALMETROS" ColumnName="PRE_TOTALMETROS" />
+                <ScalarProperty Name="PRE_GARANTIA" ColumnName="PRE_GARANTIA" />
+                <ScalarProperty Name="PRE_UTILIDAD" ColumnName="PRE_UTILIDAD" />
+                <ScalarProperty Name="PRE_IMPREVISTOS" ColumnName="PRE_IMPREVISTOS" />
+                <ScalarProperty Name="PRE_SUBTOTAL_H" ColumnName="PRE_SUBTOTAL_H" />
+                <ScalarProperty Name="PRE_ACTIVIDADES" ColumnName="PRE_ACTIVIDADES" />
+                <ScalarProperty Name="PRE_OBSERVACIONES" ColumnName="PRE_OBSERVACIONES" />
+                <ScalarProperty Name="PRE_NOMBREPROYECTO" ColumnName="PRE_NOMBREPROYECTO" />
+                <ScalarProperty Name="VEN_VENDEDOR" ColumnName="VEN_VENDEDOR" />
+                <ScalarProperty Name="PRE_FECHA" ColumnName="PRE_FECHA" />
+                <ScalarProperty Name="SVR_CODIGO" ColumnName="SVR_CODIGO" />
+                <ScalarProperty Name="CLI_CLIENTE" ColumnName="CLI_CLIENTE" />
+                <ScalarProperty Name="PRE_NUMERO" ColumnName="PRE_NUMERO" />
+                <ScalarProperty Name="CIA_CODIGO" ColumnName="CIA_CODIGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -990,7 +1215,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="60">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="72">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.75" PointX="1.375" PointY="1.25" Height="10.467062174479166" IsExpanded="true" />
         <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2.125" PointX="3.625" PointY="1.25" Height="15.890524088541667" />
         <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.625" PointX="6.125" PointY="1.25" Height="2.5783902994791656" />
@@ -1000,6 +1225,12 @@
         <AssociationConnector Association="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS" >
           <ConnectorPoint PointX="12.625" PointY="6.2961531575520837" />
           <ConnectorPoint PointX="13.5" PointY="6.2961531575520837" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OuterModel.PRE_DETALLE" Width="1.875" PointX="9.625" PointY="12.125" Height="2.7427376302083317" />
+        <EntityTypeShape EntityType="OuterModel.PRE_PRESUPUESTOS" Width="2" PointX="6.75" PointY="10" Height="7.0157682291666692" />
+        <AssociationConnector Association="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" >
+          <ConnectorPoint PointX="8.75" PointY="13.496368815104166" />
+          <ConnectorPoint PointX="9.625" PointY="13.496368815104166" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

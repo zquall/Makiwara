@@ -141,6 +141,24 @@ namespace shellProject
             repositoryItemCustumer.NullText = _project.Customer.Name;
 
             LoadTasks();
+
+            if ((_project.StateId == 2) || (_project.StateId == 3))
+            {
+                barButtonSave.Enabled = false;
+                barButtonVoid.Enabled = false;
+                barButtonClose.Enabled = false;
+                barButtonNewTask.Enabled = false;
+                barButtonDeleteTask.Enabled = false;
+                barButtonResourceStore.Enabled = false;
+                barButtonCalendar.Enabled = false;
+                barButtonMoveLeft.Enabled = false;
+                barButtonMoveRight.Enabled = false;
+                barButtonLinkTask.Enabled = false;
+                barButtonUnlinkTask.Enabled = false;
+                barEditProject.Enabled = false;
+                barEditName.Enabled = false;
+                barEditClient.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -251,14 +269,22 @@ namespace shellProject
             MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private static void NullProject()
+        private void NullProject()
         {
-            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (MessageBox.Show(@"Esta seguro que desea ANULAR este Proyecto.", @"Importante", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                _project.StateId = 2;
+                SaveProcess();
+            }
         }
 
-        private static void CloseProject()
+        private void CloseProject()
         {
-            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (MessageBox.Show(@"Esta seguro que desea CERRAR este Proyecto.", @"Importante", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                _project.StateId = 3;
+                SaveProcess();
+            }
         }
 
         #endregion
@@ -627,18 +653,13 @@ namespace shellProject
             }
         }
 
-        /// <summary>
-        /// Método que se ejecuta cuando se da doble click sobre alguna tarea
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ProjectGanttTaskDialogDisplaying(object sender, Infragistics.Win.UltraWinGanttView.TaskDialogDisplayingEventArgs e)
         {
             var ugv = sender as Infragistics.Win.UltraWinGanttView.UltraGanttView;
             if (ugv != null)
             {
                 var t = ugv.ActiveTask;
-                var ti = new TaskInfo { Tag = t, Project = _project };
+                var ti = new TaskInfo { Tag = t, Project = _project, TaskDurationWorkingTimePerDay = ultraCalendarInfo.TaskDurationWorkingTimePerDay};
                 ti.ShowDialog();
             }
             //Se cancela la pantalla por defecto que trae el control
