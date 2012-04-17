@@ -136,11 +136,19 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Stocks, opt => opt.Ignore())
                     .ForMember(dest => dest.Storages, opt => opt.Ignore());
 
+                // Project Inform
+                Mapper.CreateMap<ProjectInform, ProjectInformDto>()
+                    .ForMember(dest => dest.State, opt => opt.Ignore())
+                    .ForMember(dest => dest.Project, opt => opt.Ignore());
+                Mapper.CreateMap<ProjectInformDto, ProjectInform>()
+                    .ForMember(dest => dest.State, opt => opt.Ignore())
+                    .ForMember(dest => dest.Project, opt => opt.Ignore());
+
                 //**************************************************************************************
                 Mapper.CreateMap<ProjectDto, Project>()
                     .ForMember(dest => dest.Customer, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
-                    .ForMember(dest => dest.ProjectState, opt => opt.Ignore())
+                    .ForMember(dest => dest.State, opt => opt.Ignore())
                     .ForMember(dest => dest.Tasks, opt => opt.Ignore());
                 Mapper.CreateMap<Project, ProjectDto>();
 
@@ -169,9 +177,11 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Resources, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequestDetails, opt => opt.Ignore());
 
-                Mapper.CreateMap<ProjectState, ProjectStateDto>()
+                Mapper.CreateMap<State, StateDto>()
+                    .ForMember(dest => dest.ProjectInforms, opt => opt.Ignore())
                     .ForMember(dest => dest.Projects, opt => opt.Ignore());
-                Mapper.CreateMap<ProjectStateDto, ProjectState>()
+                Mapper.CreateMap<StateDto, State>()
+                    .ForMember(dest => dest.ProjectInforms, opt => opt.Ignore())
                     .ForMember(dest => dest.Projects, opt => opt.Ignore());
 
                 // Just start the mapper once
@@ -337,9 +347,9 @@ namespace CORE.DataMapper
                 #endregion
 
                 #region Project State Charge
-                var projectStateTypeEntity = project.ProjectState;
+                var projectStateTypeEntity = project.State;
                 Olympus._Enterprise.Detach(projectStateTypeEntity);
-                var projectState = Mapper.Map<ProjectStateDto>(projectStateTypeEntity);
+                var projectState = Mapper.Map<StateDto>(projectStateTypeEntity);
                 #endregion
 
                 Olympus._Enterprise.Detach(project);
@@ -348,7 +358,7 @@ namespace CORE.DataMapper
                 projectDto.Customer = customer;
                 projectDto.BudgetRequest = budgetRequest;
                 projectDto.Tasks = taskList;
-                projectDto.ProjectState = projectState;
+                projectDto.State = projectState;
             }
             return projectDto;
         }

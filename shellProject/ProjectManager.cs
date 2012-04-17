@@ -680,10 +680,9 @@ namespace shellProject
                 _project.BudgetRequest = new BudgetRequestFactory().GetBudgetRequest(request).BudgetRequest;
             }
 
-            if (_project.ProjectState == null)
+            if (_project.State == null)
             {
-                var request = new ProjectStateRequest { ProjectStateId = _project.StateId };
-                _project.ProjectState = new ProjectStateFactory().GetProjectState(request).ProjectState;
+                _project.State = new CommonFactory().GetStateList().StateList.Where(x => x.Id == _project.StateId).SingleOrDefault();
             }
             #endregion
 

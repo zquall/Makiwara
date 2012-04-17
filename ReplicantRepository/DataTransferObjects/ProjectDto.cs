@@ -170,9 +170,9 @@ namespace ReplicantRepository.DataTransferObjects
             {
                 if (_stateId != value)
                 {
-                    if (ProjectState != null && ProjectState.Id != value)
+                    if (State != null && State.Id != value)
                     {
-                        ProjectState = null;
+                        State = null;
                     }
                     _stateId = value;
                 }
@@ -223,20 +223,53 @@ namespace ReplicantRepository.DataTransferObjects
         private CustomerDto _customer;
     
     	[DataMember]
-        public virtual ProjectStateDto ProjectState
+        public virtual StateDto State
         {
-            get { return _projectState; }
+            get { return _state; }
             set
             {
-                if (!ReferenceEquals(_projectState, value))
+                if (!ReferenceEquals(_state, value))
                 {
-                    var previousValue = _projectState;
-                    _projectState = value;
-                    FixupProjectState(previousValue);
+                    var previousValue = _state;
+                    _state = value;
+                    FixupState(previousValue);
                 }
             }
         }
-        private ProjectStateDto _projectState;
+        private StateDto _state;
+    
+    	[DataMember]
+        public virtual ICollection<ProjectInformDto> ProjectInforms
+        {
+            get
+            {
+                if (_projectInforms == null)
+                {
+                    var newCollection = new FixupCollection<ProjectInformDto>();
+                    newCollection.CollectionChanged += FixupProjectInforms;
+                    _projectInforms = newCollection;
+                }
+                return _projectInforms;
+            }
+            set
+            {
+                if (!ReferenceEquals(_projectInforms, value))
+                {
+                    var previousValue = _projectInforms as FixupCollection<ProjectInformDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupProjectInforms;
+                    }
+                    _projectInforms = value;
+                    var newValue = value as FixupCollection<ProjectInformDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupProjectInforms;
+                    }
+                }
+            }
+        }
+        private ICollection<ProjectInformDto> _projectInforms;
     
     	[DataMember]
         public virtual ICollection<TaskDto> Tasks
@@ -314,22 +347,44 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
     
-        private void FixupProjectState(ProjectStateDto previousValue)
+        private void FixupState(StateDto previousValue)
         {
             if (previousValue != null && previousValue.Projects.Contains(this))
             {
                 previousValue.Projects.Remove(this);
             }
     
-            if (ProjectState != null)
+            if (State != null)
             {
-                if (!ProjectState.Projects.Contains(this))
+                if (!State.Projects.Contains(this))
                 {
-                    ProjectState.Projects.Add(this);
+                    State.Projects.Add(this);
                 }
-                if (StateId != ProjectState.Id)
+                if (StateId != State.Id)
                 {
-                    StateId = ProjectState.Id;
+                    StateId = State.Id;
+                }
+            }
+        }
+    
+        private void FixupProjectInforms(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ProjectInformDto item in e.NewItems)
+                {
+                    item.Project = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ProjectInformDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Project, this))
+                    {
+                        item.Project = null;
+                    }
                 }
             }
         }

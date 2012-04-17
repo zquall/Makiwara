@@ -59,8 +59,8 @@ namespace ReplicantRepository.DataTransferObjects
                     result = dynamicObject.Name;
                     break;
 
-                case "ReplicantRepository.DataTransferObjects.ProjectStateDto":
-                    dynamicObject = o as ProjectStateDto;
+                case "ReplicantRepository.DataTransferObjects.StateDto":
+                    dynamicObject = o as StateDto;
                     if (dynamicObject != null)
                         result = dynamicObject.Name;
                     else

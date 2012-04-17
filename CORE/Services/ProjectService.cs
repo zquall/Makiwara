@@ -126,8 +126,8 @@ namespace CORE.Services
             var projectsFound = Olympus._Enterprise.Projects
                                       .Where(x => x.Name.Contains(request.SearchProjectQuery) ||
                                                   x.Customer.Name.Contains(request.SearchProjectQuery) ||
-                                                  x.Code.Contains(request.SearchProjectQuery) ||
-                                                  x.ProjectState.Name.Contains(request.SearchProjectQuery))
+                                                  x.Code.Contains(request.SearchProjectQuery) &&
+                                                  x.StateId == 1)
                                       .OrderBy(y => y.Code)
                                       .Take(Convert.ToInt32(Properties.Resources.MaximunResultRows))
                                       .ToList();

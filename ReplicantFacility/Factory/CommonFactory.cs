@@ -23,5 +23,13 @@ namespace ReplicantFacility.Factory
             var commonObjectsResponse = new CommonObjectsResponse {MeasureList = _commonService.getMeasureList()};
             return commonObjectsResponse;
         }
+
+
+        public CommonObjectsResponse GetStateList()
+        {
+            var commonObjectsResponse = new CommonObjectsResponse { StateList = _commonService.GetStateList() };
+            return commonObjectsResponse;
+        }
+
     }
 }

@@ -40,8 +40,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Measure", "Measure", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Measure), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_Person", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Person), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_PersonPhone_PhoneType", "PhoneType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.PhoneType), "PersonPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.PersonPhone), true)]
-[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_ProjectState", "ProjectState", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.ProjectState), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Project_ProjectState", "State", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.State), "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Project), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ProjectInform_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Project), "ProjectInform", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.ProjectInform), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Task_Project", "Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Project), "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Task), true)]
+[assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_ProjectInform_ProjectState", "State", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.State), "ProjectInform", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.ProjectInform), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Storage_RentalItem", "RentalItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.RentalItem), "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Storage), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_ResourceType", "ResourceType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.ResourceType), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
 [assembly: EdmRelationshipAttribute("EnterpriseModel", "FK_Resource_Task", "Task", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Nexus.Task), "Resource", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nexus.Resource), true)]
@@ -327,18 +329,18 @@ namespace Nexus
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<ProjectState> ProjectStates
+        public ObjectSet<ProjectInform> ProjectInforms
         {
             get
             {
-                if ((_ProjectStates == null))
+                if ((_ProjectInforms == null))
                 {
-                    _ProjectStates = base.CreateObjectSet<ProjectState>("ProjectStates");
+                    _ProjectInforms = base.CreateObjectSet<ProjectInform>("ProjectInforms");
                 }
-                return _ProjectStates;
+                return _ProjectInforms;
             }
         }
-        private ObjectSet<ProjectState> _ProjectStates;
+        private ObjectSet<ProjectInform> _ProjectInforms;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -387,6 +389,22 @@ namespace Nexus
             }
         }
         private ObjectSet<ResourceType> _ResourceTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<State> States
+        {
+            get
+            {
+                if ((_States == null))
+                {
+                    _States = base.CreateObjectSet<State>("States");
+                }
+                return _States;
+            }
+        }
+        private ObjectSet<State> _States;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -568,11 +586,11 @@ namespace Nexus
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the ProjectStates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ProjectInforms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToProjectStates(ProjectState projectState)
+        public void AddToProjectInforms(ProjectInform projectInform)
         {
-            base.AddObject("ProjectStates", projectState);
+            base.AddObject("ProjectInforms", projectInform);
         }
     
         /// <summary>
@@ -597,6 +615,14 @@ namespace Nexus
         public void AddToResourceTypes(ResourceType resourceType)
         {
             base.AddObject("ResourceTypes", resourceType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the States EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToStates(State state)
+        {
+            base.AddObject("States", state);
         }
     
         /// <summary>
@@ -5252,16 +5278,16 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_ProjectState", "ProjectState")]
-        public ProjectState ProjectState
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_ProjectState", "State")]
+        public State State
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectState>("EnterpriseModel.FK_Project_ProjectState", "ProjectState").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_Project_ProjectState", "State").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectState>("EnterpriseModel.FK_Project_ProjectState", "ProjectState").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_Project_ProjectState", "State").Value = value;
             }
         }
         /// <summary>
@@ -5269,17 +5295,39 @@ namespace Nexus
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<ProjectState> ProjectStateReference
+        public EntityReference<State> StateReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProjectState>("EnterpriseModel.FK_Project_ProjectState", "ProjectState");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_Project_ProjectState", "State");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProjectState>("EnterpriseModel.FK_Project_ProjectState", "ProjectState", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<State>("EnterpriseModel.FK_Project_ProjectState", "State", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ProjectInform_Project", "ProjectInform")]
+        public EntityCollection<ProjectInform> ProjectInforms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectInform>("EnterpriseModel.FK_ProjectInform_Project", "ProjectInform");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectInform>("EnterpriseModel.FK_ProjectInform_Project", "ProjectInform", value);
                 }
             }
         }
@@ -5312,24 +5360,36 @@ namespace Nexus
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="ProjectState")]
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="ProjectInform")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ProjectState : EntityObject
+    public partial class ProjectInform : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new ProjectState object.
+        /// Create a new ProjectInform object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static ProjectState CreateProjectState(global::System.Int32 id, global::System.String name)
+        /// <param name="projectId">Initial value of the ProjectId property.</param>
+        /// <param name="stateId">Initial value of the StateId property.</param>
+        /// <param name="wasDeleted">Initial value of the WasDeleted property.</param>
+        /// <param name="dateCreated">Initial value of the DateCreated property.</param>
+        /// <param name="dateModified">Initial value of the DateModified property.</param>
+        /// <param name="advanced">Initial value of the Advanced property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static ProjectInform CreateProjectInform(global::System.Int32 id, global::System.Int32 projectId, global::System.Int32 stateId, global::System.Boolean wasDeleted, global::System.DateTime dateCreated, global::System.DateTime dateModified, global::System.Decimal advanced, global::System.Int32 userId)
         {
-            ProjectState projectState = new ProjectState();
-            projectState.Id = id;
-            projectState.Name = name;
-            return projectState;
+            ProjectInform projectInform = new ProjectInform();
+            projectInform.Id = id;
+            projectInform.ProjectId = projectId;
+            projectInform.StateId = stateId;
+            projectInform.WasDeleted = wasDeleted;
+            projectInform.DateCreated = dateCreated;
+            projectInform.DateModified = dateModified;
+            projectInform.Advanced = advanced;
+            projectInform.UserId = userId;
+            return projectInform;
         }
 
         #endregion
@@ -5367,24 +5427,168 @@ namespace Nexus
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Name
+        public global::System.Int32 ProjectId
         {
             get
             {
-                return _Name;
+                return _ProjectId;
             }
             set
             {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
+                OnProjectIdChanging(value);
+                ReportPropertyChanging("ProjectId");
+                _ProjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProjectId");
+                OnProjectIdChanged();
             }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
+        private global::System.Int32 _ProjectId;
+        partial void OnProjectIdChanging(global::System.Int32 value);
+        partial void OnProjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 StateId
+        {
+            get
+            {
+                return _StateId;
+            }
+            set
+            {
+                OnStateIdChanging(value);
+                ReportPropertyChanging("StateId");
+                _StateId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StateId");
+                OnStateIdChanged();
+            }
+        }
+        private global::System.Int32 _StateId;
+        partial void OnStateIdChanging(global::System.Int32 value);
+        partial void OnStateIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean WasDeleted
+        {
+            get
+            {
+                return _WasDeleted;
+            }
+            set
+            {
+                OnWasDeletedChanging(value);
+                ReportPropertyChanging("WasDeleted");
+                _WasDeleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("WasDeleted");
+                OnWasDeletedChanged();
+            }
+        }
+        private global::System.Boolean _WasDeleted;
+        partial void OnWasDeletedChanging(global::System.Boolean value);
+        partial void OnWasDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateCreated
+        {
+            get
+            {
+                return _DateCreated;
+            }
+            set
+            {
+                OnDateCreatedChanging(value);
+                ReportPropertyChanging("DateCreated");
+                _DateCreated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreated");
+                OnDateCreatedChanged();
+            }
+        }
+        private global::System.DateTime _DateCreated;
+        partial void OnDateCreatedChanging(global::System.DateTime value);
+        partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateModified
+        {
+            get
+            {
+                return _DateModified;
+            }
+            set
+            {
+                OnDateModifiedChanging(value);
+                ReportPropertyChanging("DateModified");
+                _DateModified = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateModified");
+                OnDateModifiedChanged();
+            }
+        }
+        private global::System.DateTime _DateModified;
+        partial void OnDateModifiedChanging(global::System.DateTime value);
+        partial void OnDateModifiedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Advanced
+        {
+            get
+            {
+                return _Advanced;
+            }
+            set
+            {
+                OnAdvancedChanging(value);
+                ReportPropertyChanging("Advanced");
+                _Advanced = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Advanced");
+                OnAdvancedChanged();
+            }
+        }
+        private global::System.Decimal _Advanced;
+        partial void OnAdvancedChanging(global::System.Decimal value);
+        partial void OnAdvancedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
 
         #endregion
     
@@ -5396,18 +5600,72 @@ namespace Nexus
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_ProjectState", "Project")]
-        public EntityCollection<Project> Projects
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ProjectInform_Project", "Project")]
+        public Project Project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("EnterpriseModel.FK_Project_ProjectState", "Project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("EnterpriseModel.FK_ProjectInform_Project", "Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("EnterpriseModel.FK_ProjectInform_Project", "Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Project> ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Project>("EnterpriseModel.FK_ProjectInform_Project", "Project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("EnterpriseModel.FK_Project_ProjectState", "Project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Project>("EnterpriseModel.FK_ProjectInform_Project", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ProjectInform_ProjectState", "State")]
+        public State State
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_ProjectInform_ProjectState", "State").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_ProjectInform_ProjectState", "State").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<State> StateReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<State>("EnterpriseModel.FK_ProjectInform_ProjectState", "State");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<State>("EnterpriseModel.FK_ProjectInform_ProjectState", "State", value);
                 }
             }
         }
@@ -6428,6 +6686,134 @@ namespace Nexus
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Resource>("EnterpriseModel.FK_Resource_ResourceType", "Resource", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="EnterpriseModel", Name="State")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class State : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new State object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static State CreateState(global::System.Int32 id, global::System.String name)
+        {
+            State state = new State();
+            state.Id = id;
+            state.Name = name;
+            return state;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_Project_ProjectState", "Project")]
+        public EntityCollection<Project> Projects
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Project>("EnterpriseModel.FK_Project_ProjectState", "Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Project>("EnterpriseModel.FK_Project_ProjectState", "Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("EnterpriseModel", "FK_ProjectInform_ProjectState", "ProjectInform")]
+        public EntityCollection<ProjectInform> ProjectInforms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProjectInform>("EnterpriseModel.FK_ProjectInform_ProjectState", "ProjectInform");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProjectInform>("EnterpriseModel.FK_ProjectInform_ProjectState", "ProjectInform", value);
                 }
             }
         }

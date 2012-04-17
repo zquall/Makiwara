@@ -6,6 +6,6 @@ namespace ReplicantRepository.Request
     {
         public int ProjectStateId { get; set; }
         public string SearchProjectStateQuery { get; set; }
-        public ProjectStateDto ProjectState { get; set; }
+        public StateDto ProjectState { get; set; }
     }
 }

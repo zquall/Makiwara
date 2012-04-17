@@ -54,10 +54,10 @@
     </Compile>
     <Compile Include="Services\BudgetRequestService.cs" />
     <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\ProjectInformService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\RentalItemService.cs" />
     <Compile Include="Services\ItemService.cs" />
-    <Compile Include="Services\ProjectStateService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\CustomerService.cs" />

@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,7 @@
     <Content Include="Content\images\login\loginbox_bg.png" />
     <Content Include="Content\images\login\login_bg.jpg" />
     <Content Include="Content\images\login\submit_login.gif" />
+    <Content Include="Content\images\shared\back_submit-button.gif" />
     <Content Include="Content\images\shared\blank.gif" />
     <Content Include="Content\images\shared\border_bit.jpg" />
     <Content Include="Content\images\shared\cal_th_repeat.jpg" />
@@ -184,6 +187,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Views\Project\Index.aspx" />
+    <Content Include="Views\Project\InformManager.aspx" />
+    <Content Include="Views\Shared\NavigationUserControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -251,8 +257,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1660</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/shellCloud</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

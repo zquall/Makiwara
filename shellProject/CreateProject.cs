@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ReplicantFacility.Factory;
 using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.Request;
+using System.Linq;
 
 namespace shellProject
 {
@@ -145,11 +146,11 @@ namespace shellProject
         {
             dtCreateDate.DateTime = DateTime.Today;
 
-            if (_project.ProjectState == null)
+            if (_project.State == null)
             {
                 var request = new ProjectStateRequest { ProjectStateId = 1 };
-                _project.ProjectState = new ProjectStateFactory().GetProjectState(request).ProjectState;
-                txtState.Text = _project.ProjectState.Name;
+                _project.State = new CommonFactory().GetStateList().StateList.Where(x => x.Id == 1).SingleOrDefault();
+                if (_project.State != null) txtState.Text = _project.State.Name;
             }
         }
 
@@ -175,7 +176,7 @@ namespace shellProject
             chkManagementApproval.Checked = p.ManagementApproval;
             chkCxcApproval.Checked = p.CxcApproval;
             if (p.BudgetRequest != null) txtFamily.Text = p.BudgetRequest.Family.Name;
-            txtState.Text = p.ProjectState.Name;
+            txtState.Text = p.State.Name;
 
             //Screen Two
             if (p.BudgetRequest != null) ConfigureMinMaxValues(p.BudgetRequest.Family);

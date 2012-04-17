@@ -9,6 +9,7 @@ namespace ReplicantRepository.Response
     {
         public List<PhoneTypeDto> PhoneTypeList { get; set; }
         public List<MeasureDto> MeasureList { get; set; }
+        public List<StateDto> StateList { get; set; }
     }
     
 

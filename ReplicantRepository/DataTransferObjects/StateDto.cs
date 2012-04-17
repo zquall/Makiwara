@@ -17,8 +17,8 @@ using System.Runtime.Serialization;
 namespace ReplicantRepository.DataTransferObjects
 {
     
-    [DataContract(Name = "ProjectStateDto", Namespace = "http://core.renteco.com/dto/" , IsReference = true) ]
-    public partial class ProjectStateDto
+    [DataContract(Name = "StateDto", Namespace = "http://core.renteco.com/dto/" , IsReference = true) ]
+    public partial class StateDto
     {
          #region Primitive Properties
     
@@ -78,6 +78,39 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private ICollection<ProjectDto> _projects;
+    
+    	[DataMember]
+        public virtual ICollection<ProjectInformDto> ProjectInforms
+        {
+            get
+            {
+                if (_projectInforms == null)
+                {
+                    var newCollection = new FixupCollection<ProjectInformDto>();
+                    newCollection.CollectionChanged += FixupProjectInforms;
+                    _projectInforms = newCollection;
+                }
+                return _projectInforms;
+            }
+            set
+            {
+                if (!ReferenceEquals(_projectInforms, value))
+                {
+                    var previousValue = _projectInforms as FixupCollection<ProjectInformDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupProjectInforms;
+                    }
+                    _projectInforms = value;
+                    var newValue = value as FixupCollection<ProjectInformDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupProjectInforms;
+                    }
+                }
+            }
+        }
+        private ICollection<ProjectInformDto> _projectInforms;
 
         #endregion
         #region Association Fixup
@@ -88,7 +121,7 @@ namespace ReplicantRepository.DataTransferObjects
             {
                 foreach (ProjectDto item in e.NewItems)
                 {
-                    item.ProjectState = this;
+                    item.State = this;
                 }
             }
     
@@ -96,9 +129,31 @@ namespace ReplicantRepository.DataTransferObjects
             {
                 foreach (ProjectDto item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.ProjectState, this))
+                    if (ReferenceEquals(item.State, this))
                     {
-                        item.ProjectState = null;
+                        item.State = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupProjectInforms(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (ProjectInformDto item in e.NewItems)
+                {
+                    item.State = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ProjectInformDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.State, this))
+                    {
+                        item.State = null;
                     }
                 }
             }
