@@ -129,6 +129,26 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private int _personPhoneId;
+    
+    	[DataMember]
+        public virtual int FamilyId
+        {
+     
+    
+            get { return _familyId; }
+            set
+            {
+                if (_familyId != value)
+                {
+                    if (Family != null && Family.Id != value)
+                    {
+                        Family = null;
+                    }
+                    _familyId = value;
+                }
+            }
+        }
+        private int _familyId;
     	// Custom ToString() Method using reflection
     	// Autor: Jaime Torner
     	public override string ToString() 
@@ -187,6 +207,22 @@ namespace ReplicantRepository.DataTransferObjects
             }
         }
         private EmployeeDto _employee;
+    
+    	[DataMember]
+        public virtual FamilyDto Family
+        {
+            get { return _family; }
+            set
+            {
+                if (!ReferenceEquals(_family, value))
+                {
+                    var previousValue = _family;
+                    _family = value;
+                    FixupFamily(previousValue);
+                }
+            }
+        }
+        private FamilyDto _family;
     
     	[DataMember]
         public virtual PersonPhoneDto PersonPhone
@@ -345,6 +381,26 @@ namespace ReplicantRepository.DataTransferObjects
                 if (EmployeeId != Employee.Id)
                 {
                     EmployeeId = Employee.Id;
+                }
+            }
+        }
+    
+        private void FixupFamily(FamilyDto previousValue)
+        {
+            if (previousValue != null && previousValue.BudgetRequests.Contains(this))
+            {
+                previousValue.BudgetRequests.Remove(this);
+            }
+    
+            if (Family != null)
+            {
+                if (!Family.BudgetRequests.Contains(this))
+                {
+                    Family.BudgetRequests.Add(this);
+                }
+                if (FamilyId != Family.Id)
+                {
+                    FamilyId = Family.Id;
                 }
             }
         }

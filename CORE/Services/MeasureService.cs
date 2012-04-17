@@ -13,7 +13,7 @@ namespace CORE.Services
 {
     public class MeasureService
     {
-        public MeasureResponse searchMeasure(MeasureRequest request)
+        public MeasureResponse SearchMeasure(MeasureRequest request)
         {
             var response = new MeasureResponse();
 

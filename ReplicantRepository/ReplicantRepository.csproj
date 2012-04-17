@@ -133,9 +133,6 @@
     <Compile Include="DataTransferObjects\StorageDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataTransferObjects\sysdiagramDto.cs">
-      <DependentUpon>Nexus.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataTransferObjects\TaskDto.cs">
       <DependentUpon>Nexus.tt</DependentUpon>
     </Compile>

@@ -136,6 +136,7 @@
             this.txtFamily.Name = "txtFamily";
             this.txtFamily.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtFamily.Properties.ReadOnly = true;
             this.txtFamily.Size = new System.Drawing.Size(303, 20);
             this.txtFamily.TabIndex = 14;
             // 

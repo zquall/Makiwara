@@ -88,6 +88,39 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
+        public virtual ICollection<BudgetRequestDto> BudgetRequests
+        {
+            get
+            {
+                if (_budgetRequests == null)
+                {
+                    var newCollection = new FixupCollection<BudgetRequestDto>();
+                    newCollection.CollectionChanged += FixupBudgetRequests;
+                    _budgetRequests = newCollection;
+                }
+                return _budgetRequests;
+            }
+            set
+            {
+                if (!ReferenceEquals(_budgetRequests, value))
+                {
+                    var previousValue = _budgetRequests as FixupCollection<BudgetRequestDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupBudgetRequests;
+                    }
+                    _budgetRequests = value;
+                    var newValue = value as FixupCollection<BudgetRequestDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupBudgetRequests;
+                    }
+                }
+            }
+        }
+        private ICollection<BudgetRequestDto> _budgetRequests;
+    
+    	[DataMember]
         public virtual ICollection<ItemDto> Items
         {
             get
@@ -221,6 +254,28 @@ namespace ReplicantRepository.DataTransferObjects
                 if (FamilyId != Family2.Id)
                 {
                     FamilyId = Family2.Id;
+                }
+            }
+        }
+    
+        private void FixupBudgetRequests(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (BudgetRequestDto item in e.NewItems)
+                {
+                    item.Family = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (BudgetRequestDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Family, this))
+                    {
+                        item.Family = null;
+                    }
                 }
             }
         }

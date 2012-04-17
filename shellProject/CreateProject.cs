@@ -102,6 +102,13 @@ namespace shellProject
 
         #region Load Process
 
+        private void ConfigureMinMaxValues(FamilyDto family)
+        {
+            spinTotalUtilityRate.Properties.MinValue = family.MinimunProfit;
+            spinTotalUtilityRate.Properties.MaxValue = 100;
+            spinDiscountRate.Properties.MaxValue = family.MaximunDiscount;
+        }
+
         private static string GetNextCode()
         {
             return new ProjectFactory().NextCode();
@@ -124,11 +131,13 @@ namespace shellProject
 
         private void LoadBudgetRequesToProject()
         {
+            ConfigureMinMaxValues(_budgetRequest.Family);
             txtQuoteNumber.Text = _budgetRequest.Id.ToString();
             txtCode.Text = GetNextCode();
             txtProject.Text = _budgetRequest.ProjectName;
             txtCustumer.Text = _budgetRequest.Customer.Name;
             txtSalesConsultant.Text = _budgetRequest.Employee.Person.Name;
+            txtFamily.Text = _budgetRequest.Family.Name;
             dtCreateDate.DateTime = DateTime.Now;
         }
 
@@ -165,9 +174,11 @@ namespace shellProject
             txtSalesConsultant.Text = p.BudgetRequest != null ? p.BudgetRequest.Employee.Person.Name : @"Verificando";
             chkManagementApproval.Checked = p.ManagementApproval;
             chkCxcApproval.Checked = p.CxcApproval;
+            if (p.BudgetRequest != null) txtFamily.Text = p.BudgetRequest.Family.Name;
             txtState.Text = p.ProjectState.Name;
 
             //Screen Two
+            if (p.BudgetRequest != null) ConfigureMinMaxValues(p.BudgetRequest.Family);
             spinContingenciesRate.Value = (decimal)p.ContingenciesRate;
             spinGuaranteeRate.Value = (decimal)p.GuaranteeRate;
             spinTotalUtilityRate.Value = (decimal)p.TotalUtilityRate;
@@ -202,14 +213,9 @@ namespace shellProject
             _project.OthersRate = (double)spinOthersRate.Value;
             _project.Comments = memoComments.Text;
 
-            if (_project.StateId == 0)
-                _project.StateId = 1;
-
-            if (_project.Customer == null)
-                _project.Customer = _budgetRequest.Customer;
-
-            if (_project.Tasks == null)
-                _project.Tasks = new List<TaskDto>();
+            if (_project.StateId == 0) _project.StateId = 1;
+            if (_project.Customer == null) _project.Customer = _budgetRequest.Customer;
+            if (_project.Tasks == null) _project.Tasks = new List<TaskDto>();
         }
 
         #endregion

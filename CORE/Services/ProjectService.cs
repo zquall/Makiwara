@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ReplicantRepository.Response;
-using ReplicantRepository.Request;
-using ReplicantRepository.DataTransferObjects;
+﻿using Nexus;
+using System;
 using AutoMapper;
-using Nexus;
+using System.Linq;
+using Interceptor.Adapters;
+using System.Collections.Generic;
+using ReplicantRepository.Request;
+using ReplicantRepository.Response;
+using ReplicantRepository.DataTransferObjects;
 
 namespace CORE.Services
 {
@@ -141,8 +142,11 @@ namespace CORE.Services
 
         public ProjectResponse SaveProject(ProjectRequest request)
         {
-            var response = new ProjectResponse();
+            var budgetAdapter = new BudgetAdapter();
+            budgetAdapter.SaveBudget(request);
 
+            var response = new ProjectResponse();
+            
             if (request.Project != null)
             {
                 Project project = null;

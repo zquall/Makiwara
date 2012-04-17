@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PLA_EMPLEADOS_PLA_PUESTOS", "PLA_PUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PLA_PUESTOS), "PLA_EMPLEADOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PLA_EMPLEADOS), true)]
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PRE_DETALLE_PRE_PRESUPUESTOS1", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "PRE_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PRE_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("OuterModel", "FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.SAL_SALIDAS), "SAL_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.SAL_DETALLE), true)]
 
 #endregion
 
@@ -198,6 +199,38 @@ namespace Interceptor.DataBase
             }
         }
         private ObjectSet<PRE_PRESUPUESTOS> _PRE_PRESUPUESTOS;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SAL_DETALLE> SAL_DETALLE
+        {
+            get
+            {
+                if ((_SAL_DETALLE == null))
+                {
+                    _SAL_DETALLE = base.CreateObjectSet<SAL_DETALLE>("SAL_DETALLE");
+                }
+                return _SAL_DETALLE;
+            }
+        }
+        private ObjectSet<SAL_DETALLE> _SAL_DETALLE;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SAL_SALIDAS> SAL_SALIDAS
+        {
+            get
+            {
+                if ((_SAL_SALIDAS == null))
+                {
+                    _SAL_SALIDAS = base.CreateObjectSet<SAL_SALIDAS>("SAL_SALIDAS");
+                }
+                return _SAL_SALIDAS;
+            }
+        }
+        private ObjectSet<SAL_SALIDAS> _SAL_SALIDAS;
 
         #endregion
         #region AddTo Methods
@@ -264,6 +297,22 @@ namespace Interceptor.DataBase
         public void AddToPRE_PRESUPUESTOS(PRE_PRESUPUESTOS pRE_PRESUPUESTOS)
         {
             base.AddObject("PRE_PRESUPUESTOS", pRE_PRESUPUESTOS);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SAL_DETALLE EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSAL_DETALLE(SAL_DETALLE sAL_DETALLE)
+        {
+            base.AddObject("SAL_DETALLE", sAL_DETALLE);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SAL_SALIDAS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSAL_SALIDAS(SAL_SALIDAS sAL_SALIDAS)
+        {
+            base.AddObject("SAL_SALIDAS", sAL_SALIDAS);
         }
 
         #endregion
@@ -8580,6 +8629,973 @@ namespace Interceptor.DataBase
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRE_DETALLE>("OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1", "PRE_DETALLE", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OuterModel", Name="SAL_DETALLE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SAL_DETALLE : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SAL_DETALLE object.
+        /// </summary>
+        /// <param name="cIA_Codigo">Initial value of the CIA_Codigo property.</param>
+        /// <param name="sAL_Numero">Initial value of the SAL_Numero property.</param>
+        /// <param name="iNV_Codigo">Initial value of the INV_Codigo property.</param>
+        /// <param name="eNT_Numero">Initial value of the ENT_Numero property.</param>
+        /// <param name="sAL_Cantidad">Initial value of the SAL_Cantidad property.</param>
+        /// <param name="sAL_Costo">Initial value of the SAL_Costo property.</param>
+        /// <param name="sAL_Total">Initial value of the SAL_Total property.</param>
+        /// <param name="iNV_Con_Imp_Ventas">Initial value of the INV_Con_Imp_Ventas property.</param>
+        /// <param name="iNV_Art_Servicio">Initial value of the INV_Art_Servicio property.</param>
+        /// <param name="sAL_Costo_Colon">Initial value of the SAL_Costo_Colon property.</param>
+        /// <param name="aST_Consecutivo">Initial value of the AST_Consecutivo property.</param>
+        public static SAL_DETALLE CreateSAL_DETALLE(global::System.String cIA_Codigo, global::System.Int32 sAL_Numero, global::System.String iNV_Codigo, global::System.Int32 eNT_Numero, global::System.Double sAL_Cantidad, global::System.Double sAL_Costo, global::System.Double sAL_Total, global::System.Int16 iNV_Con_Imp_Ventas, global::System.Int16 iNV_Art_Servicio, global::System.Double sAL_Costo_Colon, global::System.Decimal aST_Consecutivo)
+        {
+            SAL_DETALLE sAL_DETALLE = new SAL_DETALLE();
+            sAL_DETALLE.CIA_Codigo = cIA_Codigo;
+            sAL_DETALLE.SAL_Numero = sAL_Numero;
+            sAL_DETALLE.INV_Codigo = iNV_Codigo;
+            sAL_DETALLE.ENT_Numero = eNT_Numero;
+            sAL_DETALLE.SAL_Cantidad = sAL_Cantidad;
+            sAL_DETALLE.SAL_Costo = sAL_Costo;
+            sAL_DETALLE.SAL_Total = sAL_Total;
+            sAL_DETALLE.INV_Con_Imp_Ventas = iNV_Con_Imp_Ventas;
+            sAL_DETALLE.INV_Art_Servicio = iNV_Art_Servicio;
+            sAL_DETALLE.SAL_Costo_Colon = sAL_Costo_Colon;
+            sAL_DETALLE.AST_Consecutivo = aST_Consecutivo;
+            return sAL_DETALLE;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CIA_Codigo
+        {
+            get
+            {
+                return _CIA_Codigo;
+            }
+            set
+            {
+                if (_CIA_Codigo != value)
+                {
+                    OnCIA_CodigoChanging(value);
+                    ReportPropertyChanging("CIA_Codigo");
+                    _CIA_Codigo = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CIA_Codigo");
+                    OnCIA_CodigoChanged();
+                }
+            }
+        }
+        private global::System.String _CIA_Codigo;
+        partial void OnCIA_CodigoChanging(global::System.String value);
+        partial void OnCIA_CodigoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SAL_Numero
+        {
+            get
+            {
+                return _SAL_Numero;
+            }
+            set
+            {
+                if (_SAL_Numero != value)
+                {
+                    OnSAL_NumeroChanging(value);
+                    ReportPropertyChanging("SAL_Numero");
+                    _SAL_Numero = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Numero");
+                    OnSAL_NumeroChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SAL_Numero;
+        partial void OnSAL_NumeroChanging(global::System.Int32 value);
+        partial void OnSAL_NumeroChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String INV_Codigo
+        {
+            get
+            {
+                return _INV_Codigo;
+            }
+            set
+            {
+                if (_INV_Codigo != value)
+                {
+                    OnINV_CodigoChanging(value);
+                    ReportPropertyChanging("INV_Codigo");
+                    _INV_Codigo = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("INV_Codigo");
+                    OnINV_CodigoChanged();
+                }
+            }
+        }
+        private global::System.String _INV_Codigo;
+        partial void OnINV_CodigoChanging(global::System.String value);
+        partial void OnINV_CodigoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ENT_Numero
+        {
+            get
+            {
+                return _ENT_Numero;
+            }
+            set
+            {
+                if (_ENT_Numero != value)
+                {
+                    OnENT_NumeroChanging(value);
+                    ReportPropertyChanging("ENT_Numero");
+                    _ENT_Numero = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ENT_Numero");
+                    OnENT_NumeroChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ENT_Numero;
+        partial void OnENT_NumeroChanging(global::System.Int32 value);
+        partial void OnENT_NumeroChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Cantidad
+        {
+            get
+            {
+                return _SAL_Cantidad;
+            }
+            set
+            {
+                if (_SAL_Cantidad != value)
+                {
+                    OnSAL_CantidadChanging(value);
+                    ReportPropertyChanging("SAL_Cantidad");
+                    _SAL_Cantidad = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Cantidad");
+                    OnSAL_CantidadChanged();
+                }
+            }
+        }
+        private global::System.Double _SAL_Cantidad;
+        partial void OnSAL_CantidadChanging(global::System.Double value);
+        partial void OnSAL_CantidadChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Costo
+        {
+            get
+            {
+                return _SAL_Costo;
+            }
+            set
+            {
+                if (_SAL_Costo != value)
+                {
+                    OnSAL_CostoChanging(value);
+                    ReportPropertyChanging("SAL_Costo");
+                    _SAL_Costo = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Costo");
+                    OnSAL_CostoChanged();
+                }
+            }
+        }
+        private global::System.Double _SAL_Costo;
+        partial void OnSAL_CostoChanging(global::System.Double value);
+        partial void OnSAL_CostoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SAL_Serie
+        {
+            get
+            {
+                return _SAL_Serie;
+            }
+            set
+            {
+                OnSAL_SerieChanging(value);
+                ReportPropertyChanging("SAL_Serie");
+                _SAL_Serie = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SAL_Serie");
+                OnSAL_SerieChanged();
+            }
+        }
+        private global::System.String _SAL_Serie;
+        partial void OnSAL_SerieChanging(global::System.String value);
+        partial void OnSAL_SerieChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Total
+        {
+            get
+            {
+                return _SAL_Total;
+            }
+            set
+            {
+                if (_SAL_Total != value)
+                {
+                    OnSAL_TotalChanging(value);
+                    ReportPropertyChanging("SAL_Total");
+                    _SAL_Total = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Total");
+                    OnSAL_TotalChanged();
+                }
+            }
+        }
+        private global::System.Double _SAL_Total;
+        partial void OnSAL_TotalChanging(global::System.Double value);
+        partial void OnSAL_TotalChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 INV_Con_Imp_Ventas
+        {
+            get
+            {
+                return _INV_Con_Imp_Ventas;
+            }
+            set
+            {
+                if (_INV_Con_Imp_Ventas != value)
+                {
+                    OnINV_Con_Imp_VentasChanging(value);
+                    ReportPropertyChanging("INV_Con_Imp_Ventas");
+                    _INV_Con_Imp_Ventas = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("INV_Con_Imp_Ventas");
+                    OnINV_Con_Imp_VentasChanged();
+                }
+            }
+        }
+        private global::System.Int16 _INV_Con_Imp_Ventas;
+        partial void OnINV_Con_Imp_VentasChanging(global::System.Int16 value);
+        partial void OnINV_Con_Imp_VentasChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 INV_Art_Servicio
+        {
+            get
+            {
+                return _INV_Art_Servicio;
+            }
+            set
+            {
+                if (_INV_Art_Servicio != value)
+                {
+                    OnINV_Art_ServicioChanging(value);
+                    ReportPropertyChanging("INV_Art_Servicio");
+                    _INV_Art_Servicio = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("INV_Art_Servicio");
+                    OnINV_Art_ServicioChanged();
+                }
+            }
+        }
+        private global::System.Int16 _INV_Art_Servicio;
+        partial void OnINV_Art_ServicioChanging(global::System.Int16 value);
+        partial void OnINV_Art_ServicioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ENT_LineaCredito
+        {
+            get
+            {
+                return _ENT_LineaCredito;
+            }
+            set
+            {
+                OnENT_LineaCreditoChanging(value);
+                ReportPropertyChanging("ENT_LineaCredito");
+                _ENT_LineaCredito = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ENT_LineaCredito");
+                OnENT_LineaCreditoChanged();
+            }
+        }
+        private global::System.String _ENT_LineaCredito;
+        partial void OnENT_LineaCreditoChanging(global::System.String value);
+        partial void OnENT_LineaCreditoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Costo_Colon
+        {
+            get
+            {
+                return _SAL_Costo_Colon;
+            }
+            set
+            {
+                if (_SAL_Costo_Colon != value)
+                {
+                    OnSAL_Costo_ColonChanging(value);
+                    ReportPropertyChanging("SAL_Costo_Colon");
+                    _SAL_Costo_Colon = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Costo_Colon");
+                    OnSAL_Costo_ColonChanged();
+                }
+            }
+        }
+        private global::System.Double _SAL_Costo_Colon;
+        partial void OnSAL_Costo_ColonChanging(global::System.Double value);
+        partial void OnSAL_Costo_ColonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal AST_Consecutivo
+        {
+            get
+            {
+                return _AST_Consecutivo;
+            }
+            set
+            {
+                if (_AST_Consecutivo != value)
+                {
+                    OnAST_ConsecutivoChanging(value);
+                    ReportPropertyChanging("AST_Consecutivo");
+                    _AST_Consecutivo = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AST_Consecutivo");
+                    OnAST_ConsecutivoChanged();
+                }
+            }
+        }
+        private global::System.Decimal _AST_Consecutivo;
+        partial void OnAST_ConsecutivoChanging(global::System.Decimal value);
+        partial void OnAST_ConsecutivoChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS")]
+        public SAL_SALIDAS SAL_SALIDAS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SAL_SALIDAS>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SAL_SALIDAS>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SAL_SALIDAS> SAL_SALIDASReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SAL_SALIDAS>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SAL_SALIDAS>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OuterModel", Name="SAL_SALIDAS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SAL_SALIDAS : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SAL_SALIDAS object.
+        /// </summary>
+        /// <param name="cIA_Codigo">Initial value of the CIA_Codigo property.</param>
+        /// <param name="sAL_Numero">Initial value of the SAL_Numero property.</param>
+        /// <param name="sAL_Factura">Initial value of the SAL_Factura property.</param>
+        /// <param name="bOD_Bodega">Initial value of the BOD_Bodega property.</param>
+        /// <param name="sAL_Fecha">Initial value of the SAL_Fecha property.</param>
+        /// <param name="sAL_Costo">Initial value of the SAL_Costo property.</param>
+        /// <param name="sAL_TipoCambio">Initial value of the SAL_TipoCambio property.</param>
+        /// <param name="sAL_Contabilizado">Initial value of the SAL_Contabilizado property.</param>
+        /// <param name="sAL_Tipo">Initial value of the SAL_Tipo property.</param>
+        /// <param name="sAL_Costo_Colon">Initial value of the SAL_Costo_Colon property.</param>
+        public static SAL_SALIDAS CreateSAL_SALIDAS(global::System.String cIA_Codigo, global::System.Int32 sAL_Numero, global::System.String sAL_Factura, global::System.String bOD_Bodega, global::System.DateTime sAL_Fecha, global::System.Double sAL_Costo, global::System.Double sAL_TipoCambio, global::System.Int32 sAL_Contabilizado, global::System.String sAL_Tipo, global::System.Double sAL_Costo_Colon)
+        {
+            SAL_SALIDAS sAL_SALIDAS = new SAL_SALIDAS();
+            sAL_SALIDAS.CIA_Codigo = cIA_Codigo;
+            sAL_SALIDAS.SAL_Numero = sAL_Numero;
+            sAL_SALIDAS.SAL_Factura = sAL_Factura;
+            sAL_SALIDAS.BOD_Bodega = bOD_Bodega;
+            sAL_SALIDAS.SAL_Fecha = sAL_Fecha;
+            sAL_SALIDAS.SAL_Costo = sAL_Costo;
+            sAL_SALIDAS.SAL_TipoCambio = sAL_TipoCambio;
+            sAL_SALIDAS.SAL_Contabilizado = sAL_Contabilizado;
+            sAL_SALIDAS.SAL_Tipo = sAL_Tipo;
+            sAL_SALIDAS.SAL_Costo_Colon = sAL_Costo_Colon;
+            return sAL_SALIDAS;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CIA_Codigo
+        {
+            get
+            {
+                return _CIA_Codigo;
+            }
+            set
+            {
+                if (_CIA_Codigo != value)
+                {
+                    OnCIA_CodigoChanging(value);
+                    ReportPropertyChanging("CIA_Codigo");
+                    _CIA_Codigo = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CIA_Codigo");
+                    OnCIA_CodigoChanged();
+                }
+            }
+        }
+        private global::System.String _CIA_Codigo;
+        partial void OnCIA_CodigoChanging(global::System.String value);
+        partial void OnCIA_CodigoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SAL_Numero
+        {
+            get
+            {
+                return _SAL_Numero;
+            }
+            set
+            {
+                if (_SAL_Numero != value)
+                {
+                    OnSAL_NumeroChanging(value);
+                    ReportPropertyChanging("SAL_Numero");
+                    _SAL_Numero = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SAL_Numero");
+                    OnSAL_NumeroChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SAL_Numero;
+        partial void OnSAL_NumeroChanging(global::System.Int32 value);
+        partial void OnSAL_NumeroChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String REE_Numero
+        {
+            get
+            {
+                return _REE_Numero;
+            }
+            set
+            {
+                OnREE_NumeroChanging(value);
+                ReportPropertyChanging("REE_Numero");
+                _REE_Numero = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("REE_Numero");
+                OnREE_NumeroChanged();
+            }
+        }
+        private global::System.String _REE_Numero;
+        partial void OnREE_NumeroChanging(global::System.String value);
+        partial void OnREE_NumeroChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SAL_Factura
+        {
+            get
+            {
+                return _SAL_Factura;
+            }
+            set
+            {
+                OnSAL_FacturaChanging(value);
+                ReportPropertyChanging("SAL_Factura");
+                _SAL_Factura = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SAL_Factura");
+                OnSAL_FacturaChanged();
+            }
+        }
+        private global::System.String _SAL_Factura;
+        partial void OnSAL_FacturaChanging(global::System.String value);
+        partial void OnSAL_FacturaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String BOD_Bodega
+        {
+            get
+            {
+                return _BOD_Bodega;
+            }
+            set
+            {
+                OnBOD_BodegaChanging(value);
+                ReportPropertyChanging("BOD_Bodega");
+                _BOD_Bodega = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("BOD_Bodega");
+                OnBOD_BodegaChanged();
+            }
+        }
+        private global::System.String _BOD_Bodega;
+        partial void OnBOD_BodegaChanging(global::System.String value);
+        partial void OnBOD_BodegaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime SAL_Fecha
+        {
+            get
+            {
+                return _SAL_Fecha;
+            }
+            set
+            {
+                OnSAL_FechaChanging(value);
+                ReportPropertyChanging("SAL_Fecha");
+                _SAL_Fecha = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SAL_Fecha");
+                OnSAL_FechaChanged();
+            }
+        }
+        private global::System.DateTime _SAL_Fecha;
+        partial void OnSAL_FechaChanging(global::System.DateTime value);
+        partial void OnSAL_FechaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Costo
+        {
+            get
+            {
+                return _SAL_Costo;
+            }
+            set
+            {
+                OnSAL_CostoChanging(value);
+                ReportPropertyChanging("SAL_Costo");
+                _SAL_Costo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SAL_Costo");
+                OnSAL_CostoChanged();
+            }
+        }
+        private global::System.Double _SAL_Costo;
+        partial void OnSAL_CostoChanging(global::System.Double value);
+        partial void OnSAL_CostoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SAL_Observacion
+        {
+            get
+            {
+                return _SAL_Observacion;
+            }
+            set
+            {
+                OnSAL_ObservacionChanging(value);
+                ReportPropertyChanging("SAL_Observacion");
+                _SAL_Observacion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SAL_Observacion");
+                OnSAL_ObservacionChanged();
+            }
+        }
+        private global::System.String _SAL_Observacion;
+        partial void OnSAL_ObservacionChanging(global::System.String value);
+        partial void OnSAL_ObservacionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_TipoCambio
+        {
+            get
+            {
+                return _SAL_TipoCambio;
+            }
+            set
+            {
+                OnSAL_TipoCambioChanging(value);
+                ReportPropertyChanging("SAL_TipoCambio");
+                _SAL_TipoCambio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SAL_TipoCambio");
+                OnSAL_TipoCambioChanged();
+            }
+        }
+        private global::System.Double _SAL_TipoCambio;
+        partial void OnSAL_TipoCambioChanging(global::System.Double value);
+        partial void OnSAL_TipoCambioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SAL_Contabilizado
+        {
+            get
+            {
+                return _SAL_Contabilizado;
+            }
+            set
+            {
+                OnSAL_ContabilizadoChanging(value);
+                ReportPropertyChanging("SAL_Contabilizado");
+                _SAL_Contabilizado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SAL_Contabilizado");
+                OnSAL_ContabilizadoChanged();
+            }
+        }
+        private global::System.Int32 _SAL_Contabilizado;
+        partial void OnSAL_ContabilizadoChanging(global::System.Int32 value);
+        partial void OnSAL_ContabilizadoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USR_Usuario
+        {
+            get
+            {
+                return _USR_Usuario;
+            }
+            set
+            {
+                OnUSR_UsuarioChanging(value);
+                ReportPropertyChanging("USR_Usuario");
+                _USR_Usuario = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USR_Usuario");
+                OnUSR_UsuarioChanged();
+            }
+        }
+        private global::System.String _USR_Usuario;
+        partial void OnUSR_UsuarioChanging(global::System.String value);
+        partial void OnUSR_UsuarioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String SAL_Tipo
+        {
+            get
+            {
+                return _SAL_Tipo;
+            }
+            set
+            {
+                OnSAL_TipoChanging(value);
+                ReportPropertyChanging("SAL_Tipo");
+                _SAL_Tipo = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("SAL_Tipo");
+                OnSAL_TipoChanged();
+            }
+        }
+        private global::System.String _SAL_Tipo;
+        partial void OnSAL_TipoChanging(global::System.String value);
+        partial void OnSAL_TipoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double SAL_Costo_Colon
+        {
+            get
+            {
+                return _SAL_Costo_Colon;
+            }
+            set
+            {
+                OnSAL_Costo_ColonChanging(value);
+                ReportPropertyChanging("SAL_Costo_Colon");
+                _SAL_Costo_Colon = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SAL_Costo_Colon");
+                OnSAL_Costo_ColonChanged();
+            }
+        }
+        private global::System.Double _SAL_Costo_Colon;
+        partial void OnSAL_Costo_ColonChanging(global::System.Double value);
+        partial void OnSAL_Costo_ColonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] timestamp
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_timestamp);
+            }
+            set
+            {
+                OntimestampChanging(value);
+                ReportPropertyChanging("timestamp");
+                _timestamp = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("timestamp");
+                OntimestampChanged();
+            }
+        }
+        private global::System.Byte[] _timestamp;
+        partial void OntimestampChanging(global::System.Byte[] value);
+        partial void OntimestampChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> idTask
+        {
+            get
+            {
+                return _idTask;
+            }
+            set
+            {
+                OnidTaskChanging(value);
+                ReportPropertyChanging("idTask");
+                _idTask = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("idTask");
+                OnidTaskChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _idTask;
+        partial void OnidTaskChanging(Nullable<global::System.Int64> value);
+        partial void OnidTaskChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USR_Usuario_Modificacion
+        {
+            get
+            {
+                return _USR_Usuario_Modificacion;
+            }
+            set
+            {
+                OnUSR_Usuario_ModificacionChanging(value);
+                ReportPropertyChanging("USR_Usuario_Modificacion");
+                _USR_Usuario_Modificacion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USR_Usuario_Modificacion");
+                OnUSR_Usuario_ModificacionChanged();
+            }
+        }
+        private global::System.String _USR_Usuario_Modificacion;
+        partial void OnUSR_Usuario_ModificacionChanging(global::System.String value);
+        partial void OnUSR_Usuario_ModificacionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> USR_Fecha_Modificacion
+        {
+            get
+            {
+                return _USR_Fecha_Modificacion;
+            }
+            set
+            {
+                OnUSR_Fecha_ModificacionChanging(value);
+                ReportPropertyChanging("USR_Fecha_Modificacion");
+                _USR_Fecha_Modificacion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("USR_Fecha_Modificacion");
+                OnUSR_Fecha_ModificacionChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _USR_Fecha_Modificacion;
+        partial void OnUSR_Fecha_ModificacionChanging(Nullable<global::System.DateTime> value);
+        partial void OnUSR_Fecha_ModificacionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String USR_Usuario_Inclusion
+        {
+            get
+            {
+                return _USR_Usuario_Inclusion;
+            }
+            set
+            {
+                OnUSR_Usuario_InclusionChanging(value);
+                ReportPropertyChanging("USR_Usuario_Inclusion");
+                _USR_Usuario_Inclusion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("USR_Usuario_Inclusion");
+                OnUSR_Usuario_InclusionChanged();
+            }
+        }
+        private global::System.String _USR_Usuario_Inclusion;
+        partial void OnUSR_Usuario_InclusionChanging(global::System.String value);
+        partial void OnUSR_Usuario_InclusionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> USR_Fecha_Inclusion
+        {
+            get
+            {
+                return _USR_Fecha_Inclusion;
+            }
+            set
+            {
+                OnUSR_Fecha_InclusionChanging(value);
+                ReportPropertyChanging("USR_Fecha_Inclusion");
+                _USR_Fecha_Inclusion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("USR_Fecha_Inclusion");
+                OnUSR_Fecha_InclusionChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _USR_Fecha_Inclusion;
+        partial void OnUSR_Fecha_InclusionChanging(Nullable<global::System.DateTime> value);
+        partial void OnUSR_Fecha_InclusionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_SAL_DETALLE_SAL_SALIDAS", "SAL_DETALLE")]
+        public EntityCollection<SAL_DETALLE> SAL_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SAL_DETALLE>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SAL_DETALLE>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_DETALLE", value);
                 }
             }
         }

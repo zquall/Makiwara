@@ -15,7 +15,7 @@ namespace ReplicantFacility.Factory
 
         public MeasureResponse SearchMeasure(MeasureRequest request)
         {
-            return _measureService.searchMeasure(request);
+            return _measureService.SearchMeasure(request);
         }
     }
 }

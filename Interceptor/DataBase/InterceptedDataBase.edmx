@@ -14,6 +14,24 @@
           <EntitySet Name="PLA_PUESTOS" EntityType="OuterModel.Store.PLA_PUESTOS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PRE_DETALLE" EntityType="OuterModel.Store.PRE_DETALLE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PRE_PRESUPUESTOS" EntityType="OuterModel.Store.PRE_PRESUPUESTOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SAL_DETALLE" EntityType="OuterModel.Store.SAL_DETALLE" store:Type="Tables" store:Schema="dbo" store:Name="SAL_DETALLE">
+            <DefiningQuery>SELECT 
+      [SAL_DETALLE].[CIA_Codigo] AS [CIA_Codigo], 
+      [SAL_DETALLE].[SAL_Numero] AS [SAL_Numero], 
+      [SAL_DETALLE].[INV_Codigo] AS [INV_Codigo], 
+      [SAL_DETALLE].[ENT_Numero] AS [ENT_Numero], 
+      [SAL_DETALLE].[SAL_Cantidad] AS [SAL_Cantidad], 
+      [SAL_DETALLE].[SAL_Costo] AS [SAL_Costo], 
+      [SAL_DETALLE].[SAL_Serie] AS [SAL_Serie], 
+      [SAL_DETALLE].[SAL_Total] AS [SAL_Total], 
+      [SAL_DETALLE].[INV_Con_Imp_Ventas] AS [INV_Con_Imp_Ventas], 
+      [SAL_DETALLE].[INV_Art_Servicio] AS [INV_Art_Servicio], 
+      [SAL_DETALLE].[ENT_LineaCredito] AS [ENT_LineaCredito], 
+      [SAL_DETALLE].[SAL_Costo_Colon] AS [SAL_Costo_Colon], 
+      [SAL_DETALLE].[AST_Consecutivo] AS [AST_Consecutivo]
+      FROM [dbo].[SAL_DETALLE] AS [SAL_DETALLE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SAL_SALIDAS" EntityType="OuterModel.Store.SAL_SALIDAS" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.Store.FK_PLA_EMPLEADOS_PLA_PUESTOS">
             <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
             <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
@@ -21,6 +39,10 @@
           <AssociationSet Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1" Association="OuterModel.Store.FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
             <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
             <End Role="PRE_DETALLE" EntitySet="PRE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAL_DETALLE_SAL_SALIDAS" Association="OuterModel.Store.FK_SAL_DETALLE_SAL_SALIDAS">
+            <End Role="SAL_SALIDAS" EntitySet="SAL_SALIDAS" />
+            <End Role="SAL_DETALLE" EntitySet="SAL_DETALLE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ALQ_INVENTARIO">
@@ -388,6 +410,62 @@
           <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
           <Property Name="USR_Fecha_Inclusion" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'dialcom.dbo.SAL_DETALLE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="SAL_DETALLE">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="SAL_Numero" />
+            <PropertyRef Name="INV_Codigo" />
+            <PropertyRef Name="ENT_Numero" />
+            <PropertyRef Name="SAL_Cantidad" />
+            <PropertyRef Name="SAL_Costo" />
+            <PropertyRef Name="SAL_Total" />
+            <PropertyRef Name="INV_Con_Imp_Ventas" />
+            <PropertyRef Name="INV_Art_Servicio" />
+            <PropertyRef Name="SAL_Costo_Colon" />
+            <PropertyRef Name="AST_Consecutivo" />
+          </Key>
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="SAL_Numero" Type="int" Nullable="false" />
+          <Property Name="INV_Codigo" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="ENT_Numero" Type="int" Nullable="false" />
+          <Property Name="SAL_Cantidad" Type="float" Nullable="false" />
+          <Property Name="SAL_Costo" Type="float" Nullable="false" />
+          <Property Name="SAL_Serie" Type="varchar" MaxLength="50" />
+          <Property Name="SAL_Total" Type="float" Nullable="false" />
+          <Property Name="INV_Con_Imp_Ventas" Type="smallint" Nullable="false" />
+          <Property Name="INV_Art_Servicio" Type="smallint" Nullable="false" />
+          <Property Name="ENT_LineaCredito" Type="varchar" MaxLength="10" />
+          <Property Name="SAL_Costo_Colon" Type="float" Nullable="false" />
+          <Property Name="AST_Consecutivo" Type="decimal" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SAL_SALIDAS">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="SAL_Numero" />
+          </Key>
+          <Property Name="CIA_Codigo" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="SAL_Numero" Type="int" Nullable="false" />
+          <Property Name="REE_Numero" Type="varchar" MaxLength="10" />
+          <Property Name="SAL_Factura" Type="varchar" Nullable="false" MaxLength="9" />
+          <Property Name="BOD_Bodega" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SAL_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="SAL_Costo" Type="float" Nullable="false" />
+          <Property Name="SAL_Observacion" Type="varchar" MaxLength="255" />
+          <Property Name="SAL_TipoCambio" Type="float" Nullable="false" />
+          <Property Name="SAL_Contabilizado" Type="int" Nullable="false" />
+          <Property Name="USR_Usuario" Type="varchar" MaxLength="20" />
+          <Property Name="SAL_Tipo" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="SAL_Costo_Colon" Type="float" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="idTask" Type="bigint" />
+          <Property Name="USR_Usuario_Modificacion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Modificacion" Type="datetime" />
+          <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
+          <Property Name="USR_Fecha_Inclusion" Type="datetime" />
+        </EntityType>
         <Association Name="FK_PLA_EMPLEADOS_PLA_PUESTOS">
           <End Role="PLA_PUESTOS" Type="OuterModel.Store.PLA_PUESTOS" Multiplicity="1" />
           <End Role="PLA_EMPLEADOS" Type="OuterModel.Store.PLA_EMPLEADOS" Multiplicity="*" />
@@ -414,6 +492,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SAL_DETALLE_SAL_SALIDAS">
+          <End Role="SAL_SALIDAS" Type="OuterModel.Store.SAL_SALIDAS" Multiplicity="1" />
+          <End Role="SAL_DETALLE" Type="OuterModel.Store.SAL_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAL_SALIDAS">
+              <PropertyRef Name="CIA_Codigo" />
+              <PropertyRef Name="SAL_Numero" />
+            </Principal>
+            <Dependent Role="SAL_DETALLE">
+              <PropertyRef Name="CIA_Codigo" />
+              <PropertyRef Name="SAL_Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -434,6 +526,12 @@
           <AssociationSet Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1" Association="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
             <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
             <End Role="PRE_DETALLE" EntitySet="PRE_DETALLE" />
+          </AssociationSet>
+          <EntitySet Name="SAL_DETALLE" EntityType="OuterModel.SAL_DETALLE" />
+          <EntitySet Name="SAL_SALIDAS" EntityType="OuterModel.SAL_SALIDAS" />
+          <AssociationSet Name="FK_SAL_DETALLE_SAL_SALIDAS" Association="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS">
+            <End Role="SAL_SALIDAS" EntitySet="SAL_SALIDAS" />
+            <End Role="SAL_DETALLE" EntitySet="SAL_DETALLE" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
@@ -831,6 +929,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SAL_DETALLE">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="SAL_Numero" />
+            <PropertyRef Name="INV_Codigo" />
+            <PropertyRef Name="ENT_Numero" />
+            <PropertyRef Name="SAL_Cantidad" />
+            <PropertyRef Name="SAL_Costo" />
+            <PropertyRef Name="SAL_Total" />
+            <PropertyRef Name="INV_Con_Imp_Ventas" />
+            <PropertyRef Name="INV_Art_Servicio" />
+            <PropertyRef Name="SAL_Costo_Colon" />
+            <PropertyRef Name="AST_Consecutivo" />
+          </Key>
+          <Property Type="String" Name="CIA_Codigo" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SAL_Numero" Nullable="false" />
+          <Property Type="String" Name="INV_Codigo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ENT_Numero" Nullable="false" />
+          <Property Type="Double" Name="SAL_Cantidad" Nullable="false" />
+          <Property Type="Double" Name="SAL_Costo" Nullable="false" />
+          <Property Type="String" Name="SAL_Serie" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="SAL_Total" Nullable="false" />
+          <Property Type="Int16" Name="INV_Con_Imp_Ventas" Nullable="false" />
+          <Property Type="Int16" Name="INV_Art_Servicio" Nullable="false" />
+          <Property Type="String" Name="ENT_LineaCredito" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="SAL_Costo_Colon" Nullable="false" />
+          <Property Type="Decimal" Name="AST_Consecutivo" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="SAL_SALIDAS" Relationship="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS" FromRole="SAL_DETALLE" ToRole="SAL_SALIDAS" />
+        </EntityType>
+        <EntityType Name="SAL_SALIDAS">
+          <Key>
+            <PropertyRef Name="CIA_Codigo" />
+            <PropertyRef Name="SAL_Numero" />
+          </Key>
+          <Property Type="String" Name="CIA_Codigo" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="SAL_Numero" Nullable="false" />
+          <Property Type="String" Name="REE_Numero" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SAL_Factura" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BOD_Bodega" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="SAL_Fecha" Nullable="false" />
+          <Property Type="Double" Name="SAL_Costo" Nullable="false" />
+          <Property Type="String" Name="SAL_Observacion" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="SAL_TipoCambio" Nullable="false" />
+          <Property Type="Int32" Name="SAL_Contabilizado" Nullable="false" />
+          <Property Type="String" Name="USR_Usuario" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SAL_Tipo" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="SAL_Costo_Colon" Nullable="false" />
+          <Property Type="Binary" Name="timestamp" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int64" Name="idTask" />
+          <Property Type="String" Name="USR_Usuario_Modificacion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Modificacion" />
+          <Property Type="String" Name="USR_Usuario_Inclusion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
+          <NavigationProperty Name="SAL_DETALLE" Relationship="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS" FromRole="SAL_SALIDAS" ToRole="SAL_DETALLE" />
+        </EntityType>
+        <Association Name="FK_SAL_DETALLE_SAL_SALIDAS">
+          <End Type="OuterModel.SAL_SALIDAS" Role="SAL_SALIDAS" Multiplicity="1" />
+          <End Type="OuterModel.SAL_DETALLE" Role="SAL_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAL_SALIDAS">
+              <PropertyRef Name="CIA_Codigo" />
+              <PropertyRef Name="SAL_Numero" />
+            </Principal>
+            <Dependent Role="SAL_DETALLE">
+              <PropertyRef Name="CIA_Codigo" />
+              <PropertyRef Name="SAL_Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1195,6 +1362,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SAL_DETALLE">
+            <EntityTypeMapping TypeName="OuterModel.SAL_DETALLE">
+              <MappingFragment StoreEntitySet="SAL_DETALLE">
+                <ScalarProperty Name="AST_Consecutivo" ColumnName="AST_Consecutivo" />
+                <ScalarProperty Name="SAL_Costo_Colon" ColumnName="SAL_Costo_Colon" />
+                <ScalarProperty Name="ENT_LineaCredito" ColumnName="ENT_LineaCredito" />
+                <ScalarProperty Name="INV_Art_Servicio" ColumnName="INV_Art_Servicio" />
+                <ScalarProperty Name="INV_Con_Imp_Ventas" ColumnName="INV_Con_Imp_Ventas" />
+                <ScalarProperty Name="SAL_Total" ColumnName="SAL_Total" />
+                <ScalarProperty Name="SAL_Serie" ColumnName="SAL_Serie" />
+                <ScalarProperty Name="SAL_Costo" ColumnName="SAL_Costo" />
+                <ScalarProperty Name="SAL_Cantidad" ColumnName="SAL_Cantidad" />
+                <ScalarProperty Name="ENT_Numero" ColumnName="ENT_Numero" />
+                <ScalarProperty Name="INV_Codigo" ColumnName="INV_Codigo" />
+                <ScalarProperty Name="SAL_Numero" ColumnName="SAL_Numero" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAL_SALIDAS">
+            <EntityTypeMapping TypeName="OuterModel.SAL_SALIDAS">
+              <MappingFragment StoreEntitySet="SAL_SALIDAS">
+                <ScalarProperty Name="USR_Fecha_Inclusion" ColumnName="USR_Fecha_Inclusion" />
+                <ScalarProperty Name="USR_Usuario_Inclusion" ColumnName="USR_Usuario_Inclusion" />
+                <ScalarProperty Name="USR_Fecha_Modificacion" ColumnName="USR_Fecha_Modificacion" />
+                <ScalarProperty Name="USR_Usuario_Modificacion" ColumnName="USR_Usuario_Modificacion" />
+                <ScalarProperty Name="idTask" ColumnName="idTask" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="SAL_Costo_Colon" ColumnName="SAL_Costo_Colon" />
+                <ScalarProperty Name="SAL_Tipo" ColumnName="SAL_Tipo" />
+                <ScalarProperty Name="USR_Usuario" ColumnName="USR_Usuario" />
+                <ScalarProperty Name="SAL_Contabilizado" ColumnName="SAL_Contabilizado" />
+                <ScalarProperty Name="SAL_TipoCambio" ColumnName="SAL_TipoCambio" />
+                <ScalarProperty Name="SAL_Observacion" ColumnName="SAL_Observacion" />
+                <ScalarProperty Name="SAL_Costo" ColumnName="SAL_Costo" />
+                <ScalarProperty Name="SAL_Fecha" ColumnName="SAL_Fecha" />
+                <ScalarProperty Name="BOD_Bodega" ColumnName="BOD_Bodega" />
+                <ScalarProperty Name="SAL_Factura" ColumnName="SAL_Factura" />
+                <ScalarProperty Name="REE_Numero" ColumnName="REE_Numero" />
+                <ScalarProperty Name="SAL_Numero" ColumnName="SAL_Numero" />
+                <ScalarProperty Name="CIA_Codigo" ColumnName="CIA_Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1232,7 +1443,13 @@
           <ConnectorPoint PointX="8.75" PointY="13.496368815104166" />
           <ConnectorPoint PointX="9.625" PointY="13.496368815104166" />
         </AssociationConnector>
-      </Diagram>
+        <EntityTypeShape EntityType="OuterModel.SAL_DETALLE" Width="1.5" PointX="15" PointY="12.625" Height="3.2357796223958317" />
+        <EntityTypeShape EntityType="OuterModel.SAL_SALIDAS" Width="1.5" PointX="12.5" PointY="12.625" Height="4.2218636067708317" />
+        <AssociationConnector Association="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS" >
+          <ConnectorPoint PointX="14" PointY="14.242889811197916" />
+          <ConnectorPoint PointX="15" PointY="14.242889811197916" />
+        </AssociationConnector>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>
