@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NERVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="NERVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="NERVModelStoreContainer">
           <EntitySet Name="Currency" EntityType="NERVModel.Store.Currency" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CurrencyRate" EntityType="NERVModel.Store.CurrencyRate" store:Type="Tables" Schema="dbo" />
@@ -211,8 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NERVModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -261,11 +260,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="true" />
-          <Property Name="IsBaseCurrency" Type="Boolean" Nullable="false" />
-          <Property Name="Mask" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Symbol" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsBaseCurrency" Nullable="false" />
+          <Property Type="String" Name="Mask" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CurrencyRates" Relationship="NERVModel.FK_CurrencyRate_Currency" FromRole="Currency" ToRole="CurrencyRate" />
           <NavigationProperty Name="CurrencyRates1" Relationship="NERVModel.FK_CurrencyRate_Currency1" FromRole="Currency" ToRole="CurrencyRate" />
           <NavigationProperty Name="Enterprises" Relationship="NERVModel.FK_Enterprise_Currency" FromRole="Currency" ToRole="Enterprise" />
@@ -274,13 +273,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
-          <Property Name="Buy" Type="Double" Nullable="false" />
-          <Property Name="Sell" Type="Double" Nullable="false" />
-          <Property Name="IssueDate" Type="DateTime" Nullable="false" />
-          <Property Name="CurrencyIdReference" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CurrencyId" Nullable="false" />
+          <Property Type="Double" Name="Buy" Nullable="false" />
+          <Property Type="Double" Name="Sell" Nullable="false" />
+          <Property Type="DateTime" Name="IssueDate" Nullable="false" />
+          <Property Type="Int32" Name="CurrencyIdReference" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
           <NavigationProperty Name="Currency" Relationship="NERVModel.FK_CurrencyRate_Currency" FromRole="CurrencyRate" ToRole="Currency" />
           <NavigationProperty Name="Currency1" Relationship="NERVModel.FK_CurrencyRate_Currency1" FromRole="CurrencyRate" ToRole="Currency" />
         </EntityType>
@@ -288,10 +287,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
-          <Property Name="DataBaseName" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CurrencyId" Nullable="false" />
+          <Property Type="String" Name="DataBaseName" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Currency" Relationship="NERVModel.FK_Enterprise_Currency" FromRole="Enterprise" ToRole="Currency" />
           <NavigationProperty Name="UserAccounts" Relationship="NERVModel.FK_UserAccount_Enterprise" FromRole="Enterprise" ToRole="UserAccount" />
         </EntityType>
@@ -299,10 +298,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserGroupId" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="LatchId" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserGroupId" Nullable="false" />
+          <Property Type="Int32" Name="Value" Nullable="false" />
+          <Property Type="Int32" Name="LatchId" Nullable="false" />
           <NavigationProperty Name="Latch" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="KeyAccess" ToRole="Latch" />
           <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_KeyAccess_UserGroup" FromRole="KeyAccess" ToRole="UserGroup" />
         </EntityType>
@@ -310,10 +309,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
-          <Property Name="LatchParent" Type="Int32" Nullable="false" />
-          <Property Name="Caption" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LatchParent" Nullable="false" />
+          <Property Type="String" Name="Caption" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_Latch" FromRole="Latch" ToRole="KeyAccess" />
           <NavigationProperty Name="Latch1" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch" ToRole="Latch1" />
           <NavigationProperty Name="Latch2" Relationship="NERVModel.FK_Latch_Latch" FromRole="Latch1" ToRole="Latch" />
@@ -322,13 +321,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Account" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="EnterpriseId" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="IsOnline" Type="Boolean" Nullable="false" />
-          <Property Name="UserGroupId" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Account" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EnterpriseId" Nullable="false" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="false" />
+          <Property Type="Int32" Name="UserGroupId" Nullable="false" />
           <NavigationProperty Name="Enterprise" Relationship="NERVModel.FK_UserAccount_Enterprise" FromRole="UserAccount" ToRole="Enterprise" />
           <NavigationProperty Name="UserGroup" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserAccount" ToRole="UserGroup" />
         </EntityType>
@@ -336,15 +335,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="KeyAccesses" Relationship="NERVModel.FK_KeyAccess_UserGroup" FromRole="UserGroup" ToRole="KeyAccess" />
           <NavigationProperty Name="UserAccounts" Relationship="NERVModel.FK_UserAccount_UserGroup" FromRole="UserGroup" ToRole="UserAccount" />
         </EntityType>
         <Association Name="FK_CurrencyRate_Currency">
-          <End Role="Currency" Type="NERVModel.Currency" Multiplicity="1" />
-          <End Role="CurrencyRate" Type="NERVModel.CurrencyRate" Multiplicity="*" />
+          <End Type="NERVModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="NERVModel.CurrencyRate" Role="CurrencyRate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currency">
               <PropertyRef Name="Id" />
@@ -355,8 +354,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CurrencyRate_Currency1">
-          <End Role="Currency" Type="NERVModel.Currency" Multiplicity="1" />
-          <End Role="CurrencyRate" Type="NERVModel.CurrencyRate" Multiplicity="*" />
+          <End Type="NERVModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="NERVModel.CurrencyRate" Role="CurrencyRate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currency">
               <PropertyRef Name="Id" />
@@ -367,8 +366,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Enterprise_Currency">
-          <End Role="Currency" Type="NERVModel.Currency" Multiplicity="1" />
-          <End Role="Enterprise" Type="NERVModel.Enterprise" Multiplicity="*" />
+          <End Type="NERVModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="NERVModel.Enterprise" Role="Enterprise" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currency">
               <PropertyRef Name="Id" />
@@ -379,8 +378,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserAccount_Enterprise">
-          <End Role="Enterprise" Type="NERVModel.Enterprise" Multiplicity="1" />
-          <End Role="UserAccount" Type="NERVModel.UserAccount" Multiplicity="*" />
+          <End Type="NERVModel.Enterprise" Role="Enterprise" Multiplicity="1" />
+          <End Type="NERVModel.UserAccount" Role="UserAccount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Enterprise">
               <PropertyRef Name="Id" />
@@ -391,8 +390,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KeyAccess_Latch">
-          <End Role="Latch" Type="NERVModel.Latch" Multiplicity="1" />
-          <End Role="KeyAccess" Type="NERVModel.KeyAccess" Multiplicity="*" />
+          <End Type="NERVModel.Latch" Role="Latch" Multiplicity="1" />
+          <End Type="NERVModel.KeyAccess" Role="KeyAccess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Latch">
               <PropertyRef Name="Id" />
@@ -403,8 +402,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KeyAccess_UserGroup">
-          <End Role="UserGroup" Type="NERVModel.UserGroup" Multiplicity="1" />
-          <End Role="KeyAccess" Type="NERVModel.KeyAccess" Multiplicity="*" />
+          <End Type="NERVModel.UserGroup" Role="UserGroup" Multiplicity="1" />
+          <End Type="NERVModel.KeyAccess" Role="KeyAccess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserGroup">
               <PropertyRef Name="Id" />
@@ -415,8 +414,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Latch_Latch">
-          <End Role="Latch" Type="NERVModel.Latch" Multiplicity="1" />
-          <End Role="Latch1" Type="NERVModel.Latch" Multiplicity="*" />
+          <End Type="NERVModel.Latch" Role="Latch" Multiplicity="1" />
+          <End Type="NERVModel.Latch" Role="Latch1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Latch">
               <PropertyRef Name="Id" />
@@ -427,8 +426,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserAccount_UserGroup">
-          <End Role="UserGroup" Type="NERVModel.UserGroup" Multiplicity="1" />
-          <End Role="UserAccount" Type="NERVModel.UserAccount" Multiplicity="*" />
+          <End Type="NERVModel.UserGroup" Role="UserGroup" Multiplicity="1" />
+          <End Type="NERVModel.UserAccount" Role="UserAccount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserGroup">
               <PropertyRef Name="Id" />
@@ -438,60 +437,88 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NERVModelStoreContainer" CdmEntityContainer="NERVEntities">
-          <EntitySetMapping Name="Currencies"><EntityTypeMapping TypeName="NERVModel.Currency"><MappingFragment StoreEntitySet="Currency">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Symbol" ColumnName="Symbol" />
-            <ScalarProperty Name="IsBaseCurrency" ColumnName="IsBaseCurrency" />
-            <ScalarProperty Name="Mask" ColumnName="Mask" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CurrencyRates"><EntityTypeMapping TypeName="NERVModel.CurrencyRate"><MappingFragment StoreEntitySet="CurrencyRate">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-            <ScalarProperty Name="Buy" ColumnName="Buy" />
-            <ScalarProperty Name="Sell" ColumnName="Sell" />
-            <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
-            <ScalarProperty Name="CurrencyIdReference" ColumnName="CurrencyIdReference" />
-            <ScalarProperty Name="UserId" ColumnName="UserId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Enterprises"><EntityTypeMapping TypeName="NERVModel.Enterprise"><MappingFragment StoreEntitySet="Enterprise">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
-            <ScalarProperty Name="DataBaseName" ColumnName="DataBaseName" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="KeyAccesses"><EntityTypeMapping TypeName="NERVModel.KeyAccess"><MappingFragment StoreEntitySet="KeyAccess">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
-            <ScalarProperty Name="Value" ColumnName="Value" />
-            <ScalarProperty Name="LatchId" ColumnName="LatchId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Latches"><EntityTypeMapping TypeName="NERVModel.Latch"><MappingFragment StoreEntitySet="Latch">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Code" ColumnName="Code" />
-            <ScalarProperty Name="LatchParent" ColumnName="LatchParent" />
-            <ScalarProperty Name="Caption" ColumnName="Caption" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UserAccounts"><EntityTypeMapping TypeName="NERVModel.UserAccount"><MappingFragment StoreEntitySet="UserAccount">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Account" ColumnName="Account" />
-            <ScalarProperty Name="Password" ColumnName="Password" />
-            <ScalarProperty Name="EnterpriseId" ColumnName="EnterpriseId" />
-            <ScalarProperty Name="Status" ColumnName="Status" />
-            <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
-            <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="UserGroups"><EntityTypeMapping TypeName="NERVModel.UserGroup"><MappingFragment StoreEntitySet="UserGroup">
-            <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="NERVModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Mask" ColumnName="Mask" />
+                <ScalarProperty Name="IsBaseCurrency" ColumnName="IsBaseCurrency" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyRates">
+            <EntityTypeMapping TypeName="NERVModel.CurrencyRate">
+              <MappingFragment StoreEntitySet="CurrencyRate">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CurrencyIdReference" ColumnName="CurrencyIdReference" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="Sell" ColumnName="Sell" />
+                <ScalarProperty Name="Buy" ColumnName="Buy" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enterprises">
+            <EntityTypeMapping TypeName="NERVModel.Enterprise">
+              <MappingFragment StoreEntitySet="Enterprise">
+                <ScalarProperty Name="DataBaseName" ColumnName="DataBaseName" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeyAccesses">
+            <EntityTypeMapping TypeName="NERVModel.KeyAccess">
+              <MappingFragment StoreEntitySet="KeyAccess">
+                <ScalarProperty Name="LatchId" ColumnName="LatchId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Latches">
+            <EntityTypeMapping TypeName="NERVModel.Latch">
+              <MappingFragment StoreEntitySet="Latch">
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="LatchParent" ColumnName="LatchParent" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccounts">
+            <EntityTypeMapping TypeName="NERVModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EnterpriseId" ColumnName="EnterpriseId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="NERVModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -514,50 +541,50 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="NERVContext">
-        <EntityTypeShape EntityType="NERVModel.Currency" Width="1.5" PointX="2.75" PointY="7" Height="2.5571907552083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.CurrencyRate" Width="1.5" PointX="5" PointY="5.375" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.Enterprise" Width="1.5" PointX="5" PointY="8.875" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.KeyAccess" Width="1.5" PointX="3" PointY="1" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.Latch" Width="1.5" PointX="0.75" PointY="1" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.UserAccount" Width="1.5" PointX="7.25" PointY="6.75" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="NERVModel.UserGroup" Width="1.5" PointX="0.75" PointY="5.125" Height="1.9802864583333317" IsExpanded="true" />
-        <AssociationConnector Association="NERVModel.FK_CurrencyRate_Currency" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="7.56224609375" />
-          <ConnectorPoint PointX="5" PointY="7.56224609375" />
+        <EntityTypeShape EntityType="NERVModel.Currency" Width="1.5" PointX="2.75" PointY="5.75" Height="2.2496956380208308" />
+        <EntityTypeShape EntityType="NERVModel.CurrencyRate" Width="1.5" PointX="5" PointY="4.375" Height="2.4140429687499996" />
+        <EntityTypeShape EntityType="NERVModel.Enterprise" Width="1.5" PointX="5" PointY="7.5" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="NERVModel.KeyAccess" Width="1.5" PointX="3" PointY="1" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="NERVModel.Latch" Width="1.5" PointX="0.75" PointY="0.875" Height="2.0853483072916674" />
+        <EntityTypeShape EntityType="NERVModel.UserAccount" Width="1.5" PointX="7.25" PointY="5.5" Height="2.414042968749996" />
+        <EntityTypeShape EntityType="NERVModel.UserGroup" Width="1.5" PointX="0.75" PointY="4.125" Height="1.7566536458333388" />
+        <AssociationConnector Association="NERVModel.FK_CurrencyRate_Currency" >
+          <ConnectorPoint PointX="4.25" PointY="6.269521484375" />
+          <ConnectorPoint PointX="5" PointY="6.269521484375" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_CurrencyRate_Currency1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="7.218623046875" />
-          <ConnectorPoint PointX="5" PointY="7.218623046875" />
+        <AssociationConnector Association="NERVModel.FK_CurrencyRate_Currency1" >
+          <ConnectorPoint PointX="4.25" PointY="5.9472607421875" />
+          <ConnectorPoint PointX="5" PointY="5.9472607421875" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_Enterprise_Currency" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="9.2160953776041659" />
-          <ConnectorPoint PointX="5" PointY="9.2160953776041659" />
+        <AssociationConnector Association="NERVModel.FK_Enterprise_Currency" >
+          <ConnectorPoint PointX="4.25" PointY="7.7498478190104159" />
+          <ConnectorPoint PointX="5" PointY="7.7498478190104159" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_UserAccount_Enterprise" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.5" PointY="9.18724609375" />
-          <ConnectorPoint PointX="7.25" PointY="9.18724609375" />
+        <AssociationConnector Association="NERVModel.FK_UserAccount_Enterprise" >
+          <ConnectorPoint PointX="6.5" PointY="7.707021484374998" />
+          <ConnectorPoint PointX="7.25" PointY="7.707021484374998" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_KeyAccess_Latch" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.0862939453125" />
-          <ConnectorPoint PointX="3" PointY="2.0862939453125" />
+        <AssociationConnector Association="NERVModel.FK_KeyAccess_Latch" >
+          <ConnectorPoint PointX="2.25" PointY="1.9605004882812498" />
+          <ConnectorPoint PointX="3" PointY="1.9605004882812498" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_KeyAccess_UserGroup" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.03125" />
-          <ConnectorPoint PointX="4.40625" PointY="6.03125" />
-          <ConnectorPoint PointX="4.40625" PointY="3.1725878906249996" />
+        <AssociationConnector Association="NERVModel.FK_KeyAccess_UserGroup" >
+          <ConnectorPoint PointX="2.25" PointY="4.90625" />
+          <ConnectorPoint PointX="4.40625" PointY="4.90625" />
+          <ConnectorPoint PointX="4.40625" PointY="2.9210009765624996" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_Latch_Latch" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.3648893229166674" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.6148893229166674" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.6148893229166674" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.3648893229166674" />
+        <AssociationConnector Association="NERVModel.FK_Latch_Latch" >
+          <ConnectorPoint PointX="1.2819230769230767" PointY="2.9603483072916674" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.2103483072916674" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.2103483072916674" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="2.9603483072916674" />
         </AssociationConnector>
-        <AssociationConnector Association="NERVModel.FK_UserAccount_UserGroup" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.21875" />
-          <ConnectorPoint PointX="4.322916666666667" PointY="5.2187499999999991" />
-          <ConnectorPoint PointX="4.489583333333333" PointY="5.21875" />
-          <ConnectorPoint PointX="8" PointY="5.21875" />
-          <ConnectorPoint PointX="8" PointY="6.75" />
+        <AssociationConnector Association="NERVModel.FK_UserAccount_UserGroup" >
+          <ConnectorPoint PointX="2.25" PointY="4.21875" />
+          <ConnectorPoint PointX="4.322916666666667" PointY="4.2187499999999991" />
+          <ConnectorPoint PointX="4.489583333333333" PointY="4.21875" />
+          <ConnectorPoint PointX="8" PointY="4.21875" />
+          <ConnectorPoint PointX="8" PointY="5.5" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
