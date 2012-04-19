@@ -175,12 +175,13 @@
     <Content Include="Content\images\table\table_icon_5.gif" />
     <Content Include="Content\images\table\table_sort_arrow.gif" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\core.js" />
     <Content Include="Scripts\custom_jquery.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.pngFix.pack.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -229,6 +230,14 @@
     <ProjectReference Include="..\Hades\Hades.csproj">
       <Project>{591EF5A3-D364-4A1E-9547-2FD0B55E628C}</Project>
       <Name>Hades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReplicantFacility\ReplicantFacility.csproj">
+      <Project>{D06CB9E6-91A5-48A2-8B26-03F93D2A5AA4}</Project>
+      <Name>ReplicantFacility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReplicantRepository\ReplicantRepository.csproj">
+      <Project>{F3BC53AC-F0B8-4D63-AD42-3560BCBC98C3}</Project>
+      <Name>ReplicantRepository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

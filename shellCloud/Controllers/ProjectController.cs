@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ReplicantFacility.Factory;
+using ReplicantRepository.Request;
+using Hades.Session;
+using shellCloud.Models;
 
 namespace shellCloud.Controllers
 {
@@ -13,7 +17,10 @@ namespace shellCloud.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var model = new ProjectInformModel();
+            var request = new ProjectInformRequest { EmployeeId = SessionManager.EmployeeId };
+            model.PendingProjectInforms = new ProjectInformFactory().GetPendingProjectInform(request).ProjectInformList;
+            return View(model);
         }
 
         //
@@ -24,13 +31,7 @@ namespace shellCloud.Controllers
             return View();
         }
 
-        //
-        // GET: /Project/Create
 
-        public ActionResult Create()
-        {
-            return View();
-        } 
 
         //
         // POST: /Project/Create

@@ -49,28 +49,40 @@ ul {
     list-style-type: none;
     list-style-position: inside;
 }
-input[type="button"]	
-{  
+
+input[type="button"]
+{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #779C19;
-	background: #94B52C;	
-	cursor: pointer;
-	display: block;
+    background: #94B52C;
+    display: block;
     color: white;
-	font-family: Tahoma;
+    font-family: Tahoma;
     font-size: 13px;
     font-weight: bold;
-	height: 30px;
-	padding: 13px;
-	}
+    height: 30px;
+    padding: 13px;
+}
+
+input[type="button"]:hover
+{    
+    background: #b1d934;
+    cursor: pointer;
+}
+	
 body {
     background: #fff;
     color: #393939;
     font-family: "Tahoma";
     font-size: 12px;
     line-height: 100%;
+}
+
+.invisible
+{
+    display: none;
 }
 
 .text-blue
