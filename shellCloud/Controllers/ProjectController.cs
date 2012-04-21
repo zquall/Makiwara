@@ -102,5 +102,10 @@ namespace shellCloud.Controllers
                 return View();
             }
         }
+
+        public ActionResult GetActiveProjects()
+        {
+            return View();
+        }
     }
 }

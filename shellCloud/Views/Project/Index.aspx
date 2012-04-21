@@ -62,10 +62,10 @@
 		    <!--  end product-table................................... -->           
         <%}%>
         <div id="buttonpanel">
-            <input id="pending-projects-button" type="button" value="Crear Nuevo"/>
+            <input id="pending-projects-button" type="button" value="Crear Informe"/>
         </div>
         <div id="pending-projects-dialog" class="invisible">
-            algos
+            
         </div>
 <% } %>
 </asp:Content>
