@@ -152,11 +152,15 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Tasks, opt => opt.Ignore());
                 Mapper.CreateMap<Project, ProjectDto>();
 
+                Mapper.CreateMap<ProjectDto, ProjectDto>();
+
                 Mapper.CreateMap<Task, TaskDto>()
                       .ForMember(dest => dest.Project, opt => opt.Ignore());
                 Mapper.CreateMap<TaskDto, Task>()
                     .ForMember(dest => dest.Project, opt => opt.Ignore())
                     .ForMember(dest => dest.Resources, opt => opt.UseDestinationValue());
+
+                Mapper.CreateMap<TaskDto, TaskDto>();
 
                 Mapper.CreateMap<Resource, ResourceDto>()
                     .ForMember(dest => dest.Task, opt => opt.Ignore());

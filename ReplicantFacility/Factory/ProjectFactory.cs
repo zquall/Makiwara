@@ -28,6 +28,11 @@ namespace ReplicantFacility.Factory
             return _projectService.SaveProject(request);
         }
 
+        public ProjectResponse CopyProject(ProjectRequest request)
+        {
+            return _projectService.CopyProject(request);
+        }
+
         public string NextCode()
         {
             return _projectService.NextCode();

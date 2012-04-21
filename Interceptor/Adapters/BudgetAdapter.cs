@@ -125,39 +125,50 @@ namespace Interceptor.Adapters
 
         #endregion
 
+        private decimal CalcSubtotal(ProjectDto project)
+        {
+            //decimal subtotal = 0;
+            var resources = new List<ResourceDto>();
+            GetResources(project.Tasks, resources);
+            return resources.Sum(x => x.TotalCost);
+        }
+
         private void Map(ProjectDto source, PRE_PRESUPUESTOS destination)
         {
             #region Map
             destination.CIA_CODIGO = "01";
             destination.PRE_NUMERO = Convert.ToDouble(source.Code);
             destination.CLI_CLIENTE = source.BudgetRequest.Customer.BindCustomer.AlienId;
-            destination.SVR_CODIGO = "00";                              // Necesario por ser llave foranea {No existe en SGP}{NO APLICA}
+            destination.SVR_CODIGO = "00";                                  // Necesario por ser llave foranea {No existe en SGP}{NO APLICA}
             destination.PRE_FECHA = DateTime.Today;
-            destination.VEN_VENDEDOR = "SGP";                           //Se utiliza un estandar, en este caso es el sitema SGP
+            destination.VEN_VENDEDOR = "SGP";                               //Se utiliza un estandar, en este caso es el sitema SGP
             destination.PRE_NOMBREPROYECTO = source.Name;
             destination.PRE_OBSERVACIONES = source.Comments;
             destination.PRE_ACTIVIDADES = "GENERADO MEDIANTE SGP";
-            destination.PRE_SUBTOTAL_H = 0.0;                           //{Pendiente}
-            destination.PRE_IMPREVISTOS = 0.0;                          //{Pendiente}
-            destination.PRE_UTILIDAD = 0.0;                             //{Pendiente}
-            destination.PRE_GARANTIA = 0.0;                             //{Pendiente}
-            destination.PRE_TOTALMETROS = 0.0;                          //{Pendiente}
-            destination.PRE_TOTALSERVICIO = 0.0;                        //{Pendiente}
-            destination.PRE_COSTOXMETRO = 0.0;                          //{Pendiente}
-            destination.PRE_APLICADO = 0;                               //{Pendiente}
+            destination.PRE_SUBTOTAL_H = 0.0;                               //{Pendiente}
+            destination.PRE_IMPREVISTOS = Convert.ToDouble(CalcSubtotal(source)) * source.ContingenciesRate / 100;
+            destination.PRE_UTILIDAD = Convert.ToDouble(CalcSubtotal(source)) * source.TotalUtilityRate / 100;
+            destination.PRE_GARANTIA = Convert.ToDouble(CalcSubtotal(source)) * source.GuaranteeRate / 100;
+            destination.PRE_TOTALMETROS = 0.0;                              //{Pendiente}
+            destination.PRE_TOTALSERVICIO = Convert.ToDouble(CalcSubtotal(source));
+            destination.PRE_COSTOXMETRO = 0.0;                              //{Pendiente}
+            destination.PRE_APLICADO = 0;                                   //{Pendiente}
             destination.PRE_PORC_IMPREVISTOS = source.ContingenciesRate;
             destination.PRE_PORC_UTILIDAD = source.TotalUtilityRate;
             destination.PRE_PORC_GARANTIA = source.GuaranteeRate;
-            destination.PRE_SUBTOTAL_I = 0.0;                           //{Pendiente}
-            destination.PRE_SUBTOTAL_J = 0.0;                           //{Pendiente}
-            destination.PRE_SUBTOTAL_K = 0.0;                           //{Pendiente}
-            destination.PRE_PORC_MUP = 0.0;                             //{Pendiente}
-            destination.PRE_PORC_UTIL_GNRL = 0.0;                       //{Pendiente}
-            destination.PRE_UTILIDAD_GNRL = 0.0;                        //{Pendiente}
-            destination.PRE_TOTAL_GNRL = 0.0;                           //{Pendiente}
-            destination.FAM_Codigo = source.BudgetRequest.Family.Id;    // Necesario por ser llave foranea
-            destination.TIP_Codigo = 33;                                // Necesario por ser llave foranea {No existe en SGP}{Otros}
-            destination.SUB_Codigo = 999;                               // Necesario por ser llave foranea {No existe en SGP}{Ninguno}
+            destination.PRE_SUBTOTAL_I = 0.0;                               //{Pendiente}
+            destination.PRE_SUBTOTAL_J = 0.0;                               //{Pendiente}
+            destination.PRE_SUBTOTAL_K = 0.0;                               //{Pendiente}
+            destination.PRE_PORC_MUP = 0.0;                                 //{Pendiente}
+            destination.PRE_PORC_UTIL_GNRL = 0.0;                           //{Pendiente}
+            destination.PRE_UTILIDAD_GNRL = 0.0;                            //{Pendiente}
+            destination.PRE_TOTAL_GNRL =    destination.PRE_TOTALSERVICIO 
+                                          + destination.PRE_IMPREVISTOS 
+                                          + destination.PRE_UTILIDAD
+                                          + destination.PRE_GARANTIA;
+            destination.FAM_Codigo = source.BudgetRequest.Family.Id;        // Necesario por ser llave foranea
+            destination.TIP_Codigo = 33;                                    // Necesario por ser llave foranea {No existe en SGP}{Otros}
+            destination.SUB_Codigo = 999;                                   // Necesario por ser llave foranea {No existe en SGP}{Ninguno}
             destination.USR_Usuario_Inclusion = "SGP";
             destination.USR_Fecha_Inclusion = DateTime.Today;
             destination.USR_Usuario_Modificacion = "SGP";

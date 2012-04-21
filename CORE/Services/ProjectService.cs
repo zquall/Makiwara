@@ -66,6 +66,32 @@ namespace CORE.Services
 
         #endregion
 
+        #region Copy Zone
+
+        private void GetListOfTask(ICollection<TaskDto> source, ICollection<TaskDto> destination)
+        {
+            foreach(var tmpTask in source)
+            {
+                destination.Add(tmpTask);
+                if (tmpTask.Tasks.Count > 0) GetListOfTask(tmpTask.Tasks, destination);
+            }
+        }
+
+        private ProjectDto CopyProject(ProjectDto project)
+        {
+            var tasks = new List<TaskDto>();
+            var tmpProject = Mapper.Map<ProjectDto, ProjectDto>(project);
+
+            GetListOfTask(project.Tasks, tasks);
+            tmpProject.Tasks.Clear();
+
+            tmpProject.Tasks = tasks;
+            return tmpProject;
+            //return Mapper.Map<ProjectDto, ProjectDto>(project);
+        }
+
+        #endregion 
+
         #region Public Zone
 
         /// <summary>
@@ -173,6 +199,13 @@ namespace CORE.Services
                 Olympus._Enterprise.SaveChanges();
                 if (project != null) response.ProjectId = project.Id;
             }
+            return response;
+        }
+
+        public ProjectResponse CopyProject(ProjectRequest request)
+        {
+            var response = new ProjectResponse {Project = CopyProject(request.Project)};
+
             return response;
         }
 

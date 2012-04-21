@@ -289,14 +289,12 @@ namespace shellProject
         private void ConfigureResourceItem()
         {
             ReadOnlyDefaultResources();
-            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], 0);
             AddMeasuresToRepMeasures("I");
         }
 
         private void ConfigureResourceRent()
         {
             ReadOnlyDefaultResources();
-            viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], 0);
             AddMeasuresToRepMeasures("R");
         }
 

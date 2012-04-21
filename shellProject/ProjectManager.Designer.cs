@@ -57,6 +57,7 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.clientPanel = new DevExpress.XtraEditors.PanelControl();
+            this.ultraGanttView1 = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
             this.projectGantt = new Infragistics.Win.UltraWinGanttView.UltraGanttView();
             this.ultraCalendarInfo = new Infragistics.Win.UltraWinSchedule.UltraCalendarInfo(this.components);
             this.ultraCalendarLook = new Infragistics.Win.UltraWinSchedule.UltraCalendarLook(this.components);
@@ -68,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientPanel)).BeginInit();
             this.clientPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectGantt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -309,6 +311,7 @@
             // clientPanel
             // 
             this.clientPanel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.clientPanel.Controls.Add(this.ultraGanttView1);
             this.clientPanel.Controls.Add(this.projectGantt);
             this.clientPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clientPanel.Location = new System.Drawing.Point(0, 148);
@@ -316,11 +319,22 @@
             this.clientPanel.Size = new System.Drawing.Size(982, 324);
             this.clientPanel.TabIndex = 2;
             // 
+            // ultraGanttView1
+            // 
+            this.ultraGanttView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraGanttView1.GridAreaWidth = 287;
+            this.ultraGanttView1.Location = new System.Drawing.Point(0, 245);
+            this.ultraGanttView1.Name = "ultraGanttView1";
+            this.ultraGanttView1.Size = new System.Drawing.Size(982, 79);
+            this.ultraGanttView1.TabIndex = 1;
+            this.ultraGanttView1.Text = "ultraGanttView1";
+            this.ultraGanttView1.VerticalSplitterMinimumResizeWidth = 10;
+            // 
             // projectGantt
             // 
             this.projectGantt.CalendarInfo = this.ultraCalendarInfo;
             this.projectGantt.CalendarLook = this.ultraCalendarLook;
-            this.projectGantt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.projectGantt.Dock = System.Windows.Forms.DockStyle.Top;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Text = "Dependencias";
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Dependencies).Width = 80;
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.Duration).Text = "Duración";
@@ -339,7 +353,7 @@
             this.projectGantt.GridSettings.ColumnSettings.GetValue(Infragistics.Win.UltraWinSchedule.TaskField.RowNumber).Text = "#";
             this.projectGantt.Location = new System.Drawing.Point(0, 0);
             this.projectGantt.Name = "projectGantt";
-            this.projectGantt.Size = new System.Drawing.Size(982, 324);
+            this.projectGantt.Size = new System.Drawing.Size(982, 245);
             this.projectGantt.TabIndex = 0;
             this.projectGantt.Text = "ultraGanttView1";
             this.projectGantt.VerticalSplitterMinimumResizeWidth = 10;
@@ -382,6 +396,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCustumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientPanel)).EndInit();
             this.clientPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGanttView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectGantt)).EndInit();
             this.ResumeLayout(false);
 
@@ -422,5 +437,6 @@
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private DevExpress.XtraBars.BarButtonItem barButtonCreateProject;
         private DevExpress.XtraBars.BarButtonItem barButtonCalendar;
+        private Infragistics.Win.UltraWinGanttView.UltraGanttView ultraGanttView1;
     }
 }

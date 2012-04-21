@@ -264,9 +264,18 @@ namespace shellProject
 
         #region Project
 
-        private static void CopyProject()
+        private void CopyProject()
         {
-            MessageBox.Show(@"Función en construcción", @"Importante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            var request = new ProjectRequest();
+            _project.Tasks = GetTask();
+            request.Project = _project;
+
+            var newProject = new ProjectFactory().CopyProject(request).Project;
+            newProject.Name = @"Copia de " + newProject.Name;
+
+            var projectManager = new ProjectManager { MdiParent = ParentForm};
+            projectManager.Show();
+            projectManager.LoadProject(newProject);
         }
 
         private void NullProject()
