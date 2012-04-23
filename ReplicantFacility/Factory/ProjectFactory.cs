@@ -33,6 +33,11 @@ namespace ReplicantFacility.Factory
             return _projectService.CopyProject(request);
         }
 
+        public ProjectResponse GetActiveProjects()
+        {
+            return _projectService.GetActiveProjects();
+        }
+
         public string NextCode()
         {
             return _projectService.NextCode();

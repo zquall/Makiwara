@@ -88,24 +88,19 @@ namespace shellCloud.Controllers
         //
         // POST: /Project/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult GetActiveProjects()
+        [HttpGet]
+        public ActionResult CreateProjectInform(int projectCode)
         {
             return View();
+        }
+
+        
+        // data GET service
+        [HttpGet]
+        public JsonResult GetActiveProjects()
+        {
+            var jsonData = new ProjectFactory().GetActiveProjects();
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
     }
 }

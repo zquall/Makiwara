@@ -19,7 +19,7 @@ namespace CORE.Services
             //_itemAdapter = new ItemAdapter();
         }
 
-        // Search Item
+        // Get Project Inform list
         public ProjectInformResponse GetPendingProjectInform(ProjectInformRequest request)
         {
             var response = new ProjectInformResponse { ProjectInformList = new List<ProjectInformDto>() };

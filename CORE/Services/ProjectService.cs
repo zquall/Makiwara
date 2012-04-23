@@ -10,7 +10,7 @@ using ReplicantRepository.DataTransferObjects;
 
 namespace CORE.Services
 {
-    public class ProjectService
+    public class ProjectService : ServiceBase
     {
         #region Delete Zone
 
@@ -209,6 +209,30 @@ namespace CORE.Services
             return response;
         }
 
+        // Get Project Inform list
+        public ProjectResponse GetActiveProjects()
+        {
+            var response = new ProjectResponse { ProjectList = new List<ProjectDto>() };
+
+            // Search active project informs
+            var projectsFound = Olympus._Enterprise.Projects.Where(x => x.StateId == (int)EnumCatalog.State.Active)
+                             .OrderByDescending(y => y.Code)
+                             .ToList();
+            if (projectsFound.Count > 0)
+            {
+                // Detach all childs before mapping to avoid 
+                // sending not needed data on the request
+                foreach (var project in projectsFound)
+                {
+                    Olympus._Enterprise.Detach(project);
+                }
+                response.ProjectList = Mapper.Map<List<Project>, List<ProjectDto>>(projectsFound);
+            }
+            return response;
+        }
+
         #endregion
+
+
     }
 }

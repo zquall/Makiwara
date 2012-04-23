@@ -63,7 +63,7 @@ input[type="button"]
     font-size: 13px;
     font-weight: bold;
     height: 30px;
-    padding: 13px;
+    padding: 0px 13px 1px;
 }
 
 input[type="button"]:hover
@@ -315,4 +315,14 @@ table {
 #buttonpanel {
     padding: 24px 0 0 0;
 }
+
+.selectable .ui-selecting { background: #FECA40; }
+.selectable .ui-selected { background: #F39814; color: white; }
+.selectable .ui-selected:hover { background: #F39814; color: white}
+.selectable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.selectable li { margin: 3px; padding: 8px 10px 2px; height: 18px; cursor: default;}
+.selectable-content { background: #EEEEEE; border: 1px solid #DDDDDD; color: #333333; }
+.selectable-content:hover { background: #DCDCDC; }
+
+.project-code{ width: 90px; display: inline-block;}
 

@@ -65,7 +65,8 @@
             <input id="pending-projects-button" type="button" value="Crear Informe"/>
         </div>
         <div id="pending-projects-dialog" class="invisible">
-            
+            <ol id="active-projects" class="selectable">
+            </ol>       
         </div>
 <% } %>
 </asp:Content>

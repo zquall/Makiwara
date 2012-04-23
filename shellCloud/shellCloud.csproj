@@ -193,6 +193,7 @@
     <Content Include="Content\js\jquery-1.7.2.min.js" />
     <Content Include="Content\js\jquery-ui-1.8.19.custom.min.js" />
     <Content Include="Content\js\modernizr-1.7.js" />
+    <Content Include="Views\Project\CreateProjectInform.aspx" />
     <Content Include="Views\Project\Index.aspx" />
     <Content Include="Views\Project\InformManager.aspx" />
     <Content Include="Views\Shared\NavigationUserControl.ascx" />
