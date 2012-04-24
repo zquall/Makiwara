@@ -17,6 +17,7 @@ function createPendingProjectsDialog() {
         },
         buttons: {
             'Seleccionar Proyecto': function () {
+                $(this).dialog('close');
                 //var projectCode = $('.ui-selected').find('.project-code').text();
             },
             Cancel: function () {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ReplicantFacility.Factory;
+using ReplicantRepository.DataTransferObjects;
 using ReplicantRepository.Request;
 using Hades.Session;
 using shellCloud.Models;
@@ -89,11 +90,31 @@ namespace shellCloud.Controllers
         // POST: /Project/Delete/5
 
         [HttpGet]
-        public ActionResult CreateProjectInform(int projectCode)
+        public ActionResult CreateProjectInform(string projectCode = "")
         {
+            // Security needed
+            if (projectCode != string.Empty)
+            {
+                var request = new ProjectRequest() { ProjectCode = projectCode };
+                var response = new ProjectFactory().GetProjectByCode(request);
+                if(response.Project != null)
+                {
+                    var model = new ProjectInformModel();
+                    model.Project = response.Project;
+                    model.DateCreated = DateTime.Now;
+                    model.DateModified = DateTime.Now;
+                    model.InspectorName = SessionManager.FullName;
+                    return View(model);
+                }
+            }
             return View();
         }
 
+        [HttpPost]
+        public ActionResult CreateProjectInform()
+        {
+            return View();
+        }
         
         // data GET service
         [HttpGet]

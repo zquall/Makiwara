@@ -18,6 +18,11 @@ namespace ReplicantFacility.Factory
             return _projectService.GetProject(request);
         }
 
+        public ProjectResponse GetProjectByCode(ProjectRequest request)
+        {
+            return _projectService.GetProjectByCode(request);
+        }
+
         public ProjectResponse SearchProject(ProjectRequest request)
         {
             return _projectService.SearchProject(request);

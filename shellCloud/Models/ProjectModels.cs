@@ -11,6 +11,11 @@ namespace shellCloud.Models
 
     public class ProjectInformModel
     {
+        public ProjectDto Project { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
+        public string InspectorName { get; set; }
+
         public List<ProjectInformDto> PendingProjectInforms { get; set; }
     }
 

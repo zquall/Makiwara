@@ -140,6 +140,21 @@ namespace CORE.Services
             return response;
         }
 
+        public ProjectResponse GetProjectByCode(ProjectRequest request)
+        {
+            var response = new ProjectResponse();
+            if (request.ProjectCode != string.Empty)
+            {
+                var projectFound = Olympus._Enterprise.Projects.Where(x => x.Code == request.ProjectCode).SingleOrDefault();
+                if (projectFound != null)
+                {
+                    //response.Project = MapperPaths.Map(projectFound);
+                    response.Project = Mapper.Map<ProjectDto>(projectFound);
+                }
+            }
+            return response;
+        }
+
         /// <summary>
         /// Searches all projects in the database
         /// </summary>

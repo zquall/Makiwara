@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ReplicantRepository.DataTransferObjects.ProjectInformDto>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<shellCloud.Models.ProjectInformModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     CreateProjectInform
@@ -6,72 +6,31 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>CreateProjectInform</h2>
+<h2>Mantenimiento de Informes</h2>
 
 
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true) %>
     <fieldset>
-        <legend>ProjectInformDto</legend>
+        <legend>Informe del Proyecto</legend>
+        <p><%: Model.Project.Name %></p>
+        <p><%: Model.Project.Code %></p>
+        <p><%: Model.Project.State %></p>
+        <p><%: Model.Project.Customer.Name %></p>
+        <p><%: Model.DateCreated %></p>
+        <p><%: Model.DateModified %></p>
+        <p><%: Model.InspectorName %></p>
 
         <div class="editor-label">
-            <%: Html.LabelFor(model => model.ProjectId) %>
+            <%: Html.LabelFor(model => model.Project.Name) %>
         </div>
         <div class="editor-field">
-            <%: Html.EditorFor(model => model.ProjectId) %>
-            <%: Html.ValidationMessageFor(model => model.ProjectId) %>
+            <%: Html.EditorFor(model => model.Project.Name)%>
+            <%: Html.ValidationMessageFor(model => model.Project.Name)%>
         </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.StateId) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.StateId) %>
-            <%: Html.ValidationMessageFor(model => model.StateId) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.WasDeleted) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.WasDeleted) %>
-            <%: Html.ValidationMessageFor(model => model.WasDeleted) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.DateCreated) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.DateCreated) %>
-            <%: Html.ValidationMessageFor(model => model.DateCreated) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.DateModified) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.DateModified) %>
-            <%: Html.ValidationMessageFor(model => model.DateModified) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.Advanced) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.Advanced) %>
-            <%: Html.ValidationMessageFor(model => model.Advanced) %>
-        </div>
-
-        <div class="editor-label">
-            <%: Html.LabelFor(model => model.UserId) %>
-        </div>
-        <div class="editor-field">
-            <%: Html.EditorFor(model => model.UserId) %>
-            <%: Html.ValidationMessageFor(model => model.UserId) %>
-        </div>
-
+        
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Guardar" />
         </p>
     </fieldset>
 <% } %>
