@@ -55,13 +55,14 @@ namespace shellProject
             viewProjects.Columns["Comments"].Visible = false;
             viewProjects.Columns["Tasks"].Visible = false;
             viewProjects.Columns["BudgetRequest"].Visible = false;
+            viewProjects.Columns["ProjectInforms"].Visible = false;
             #endregion
 
             #region Set Caption To Visible Columns
                 viewProjects.Columns["Code"].Caption = @"Código";
                 viewProjects.Columns["Name"].Caption = @"Nombre";
                 viewProjects.Columns["Customer"].Caption = @"Cliente";
-                viewProjects.Columns["ProjectState"].Caption = @"Estado";
+                viewProjects.Columns["State"].Caption = @"Estado";
             #endregion
 
             #region Set With To Visible Columns
@@ -74,7 +75,7 @@ namespace shellProject
                 viewProjects.Columns["Code"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Name"].OptionsColumn.ReadOnly = true;
                 viewProjects.Columns["Customer"].OptionsColumn.ReadOnly = true;
-                viewProjects.Columns["ProjectState"].OptionsColumn.ReadOnly = true;
+                viewProjects.Columns["State"].OptionsColumn.ReadOnly = true;
             #endregion
         }
 

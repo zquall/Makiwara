@@ -4753,9 +4753,10 @@ namespace Nexus
         /// <param name="discountRate">Initial value of the DiscountRate property.</param>
         /// <param name="salesTax">Initial value of the SalesTax property.</param>
         /// <param name="othersRate">Initial value of the OthersRate property.</param>
+        /// <param name="totalMeters">Initial value of the TotalMeters property.</param>
         /// <param name="comments">Initial value of the Comments property.</param>
         /// <param name="stateId">Initial value of the StateId property.</param>
-        public static Project CreateProject(global::System.Int32 id, global::System.String code, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.String comments, global::System.Int32 stateId)
+        public static Project CreateProject(global::System.Int32 id, global::System.String code, global::System.Int32 budgetRequestId, global::System.Int32 custumerId, global::System.Int32 employeeId, global::System.String name, global::System.Boolean managementApproval, global::System.Boolean cxcApproval, global::System.DateTime createDate, global::System.Double contingenciesRate, global::System.Double guaranteeRate, global::System.Double totalUtilityRate, global::System.Double discountRate, global::System.Double salesTax, global::System.Double othersRate, global::System.Double totalMeters, global::System.String comments, global::System.Int32 stateId)
         {
             Project project = new Project();
             project.Id = id;
@@ -4773,6 +4774,7 @@ namespace Nexus
             project.DiscountRate = discountRate;
             project.SalesTax = salesTax;
             project.OthersRate = othersRate;
+            project.TotalMeters = totalMeters;
             project.Comments = comments;
             project.StateId = stateId;
             return project;
@@ -5143,6 +5145,30 @@ namespace Nexus
         private global::System.Double _OthersRate;
         partial void OnOthersRateChanging(global::System.Double value);
         partial void OnOthersRateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double TotalMeters
+        {
+            get
+            {
+                return _TotalMeters;
+            }
+            set
+            {
+                OnTotalMetersChanging(value);
+                ReportPropertyChanging("TotalMeters");
+                _TotalMeters = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalMeters");
+                OnTotalMetersChanged();
+            }
+        }
+        private global::System.Double _TotalMeters;
+        partial void OnTotalMetersChanging(global::System.Double value);
+        partial void OnTotalMetersChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

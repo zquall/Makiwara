@@ -149,9 +149,8 @@ namespace Interceptor.Adapters
             destination.PRE_IMPREVISTOS = Convert.ToDouble(CalcSubtotal(source)) * source.ContingenciesRate / 100;
             destination.PRE_UTILIDAD = Convert.ToDouble(CalcSubtotal(source)) * source.TotalUtilityRate / 100;
             destination.PRE_GARANTIA = Convert.ToDouble(CalcSubtotal(source)) * source.GuaranteeRate / 100;
-            destination.PRE_TOTALMETROS = 0.0;                              //{Pendiente}
+            destination.PRE_TOTALMETROS = source.TotalMeters;
             destination.PRE_TOTALSERVICIO = Convert.ToDouble(CalcSubtotal(source));
-            destination.PRE_COSTOXMETRO = 0.0;                              //{Pendiente}
             destination.PRE_APLICADO = 0;                                   //{Pendiente}
             destination.PRE_PORC_IMPREVISTOS = source.ContingenciesRate;
             destination.PRE_PORC_UTILIDAD = source.TotalUtilityRate;
@@ -166,6 +165,7 @@ namespace Interceptor.Adapters
                                           + destination.PRE_IMPREVISTOS 
                                           + destination.PRE_UTILIDAD
                                           + destination.PRE_GARANTIA;
+            destination.PRE_COSTOXMETRO = destination.PRE_TOTAL_GNRL / source.TotalMeters;
             destination.FAM_Codigo = source.BudgetRequest.Family.Id;        // Necesario por ser llave foranea
             destination.TIP_Codigo = 33;                                    // Necesario por ser llave foranea {No existe en SGP}{Otros}
             destination.SUB_Codigo = 999;                                   // Necesario por ser llave foranea {No existe en SGP}{Ninguno}

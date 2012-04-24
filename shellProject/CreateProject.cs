@@ -186,6 +186,7 @@ namespace shellProject
             spinDiscountRate.Value = (decimal)p.DiscountRate;
             spinSubTotalB.Value = (decimal)p.SalesTax;
             spinOthersRate.Value = (decimal)p.OthersRate;
+            spinTotalMeters.Value = (decimal)p.TotalMeters;
             Calcs();
 
             //Screen Three
@@ -212,6 +213,7 @@ namespace shellProject
             _project.DiscountRate = (double)spinDiscountRate.Value;
             _project.SalesTax = (double)spinSubTotalB.Value;
             _project.OthersRate = (double)spinOthersRate.Value;
+            _project.TotalMeters = (double) spinTotalMeters.Value;
             _project.Comments = memoComments.Text;
 
             if (_project.StateId == 0) _project.StateId = 1;

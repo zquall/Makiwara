@@ -149,7 +149,8 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.Customer, opt => opt.Ignore())
                     .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
                     .ForMember(dest => dest.State, opt => opt.Ignore())
-                    .ForMember(dest => dest.Tasks, opt => opt.Ignore());
+                    .ForMember(dest => dest.Tasks, opt => opt.Ignore())
+                    .ForMember(dest => dest.ProjectInforms, opt => opt.Ignore());
                 Mapper.CreateMap<Project, ProjectDto>();
 
                 Mapper.CreateMap<ProjectDto, ProjectDto>();

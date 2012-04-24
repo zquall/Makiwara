@@ -44,6 +44,8 @@
             this.lblClient = new DevExpress.XtraEditors.LabelControl();
             this.lblProject = new DevExpress.XtraEditors.LabelControl();
             this.tabTotals = new DevExpress.XtraTab.XtraTabPage();
+            this.spinTotalMeters = new DevExpress.XtraEditors.SpinEdit();
+            this.lblTotalMeters = new DevExpress.XtraEditors.LabelControl();
             this.spinTotal = new DevExpress.XtraEditors.SpinEdit();
             this.spinSubTotalC = new DevExpress.XtraEditors.SpinEdit();
             this.spinDiscountAmount = new DevExpress.XtraEditors.SpinEdit();
@@ -82,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCustumer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProject.Properties)).BeginInit();
             this.tabTotals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinTotalMeters.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSubTotalC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDiscountAmount.Properties)).BeginInit();
@@ -241,6 +244,8 @@
             // 
             // tabTotals
             // 
+            this.tabTotals.Controls.Add(this.spinTotalMeters);
+            this.tabTotals.Controls.Add(this.lblTotalMeters);
             this.tabTotals.Controls.Add(this.spinTotal);
             this.tabTotals.Controls.Add(this.spinSubTotalC);
             this.tabTotals.Controls.Add(this.spinDiscountAmount);
@@ -264,6 +269,28 @@
             this.tabTotals.Name = "tabTotals";
             this.tabTotals.Size = new System.Drawing.Size(414, 220);
             this.tabTotals.Text = "Totales";
+            // 
+            // spinTotalMeters
+            // 
+            this.spinTotalMeters.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinTotalMeters.Location = new System.Drawing.Point(303, 130);
+            this.spinTotalMeters.Name = "spinTotalMeters";
+            this.spinTotalMeters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.spinTotalMeters.Size = new System.Drawing.Size(100, 20);
+            this.spinTotalMeters.TabIndex = 25;
+            // 
+            // lblTotalMeters
+            // 
+            this.lblTotalMeters.Location = new System.Drawing.Point(208, 133);
+            this.lblTotalMeters.Name = "lblTotalMeters";
+            this.lblTotalMeters.Size = new System.Drawing.Size(71, 13);
+            this.lblTotalMeters.TabIndex = 24;
+            this.lblTotalMeters.Text = "Metros Totales";
             // 
             // spinTotal
             // 
@@ -617,6 +644,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProject.Properties)).EndInit();
             this.tabTotals.ResumeLayout(false);
             this.tabTotals.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinTotalMeters.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinTotal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSubTotalC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinDiscountAmount.Properties)).EndInit();
@@ -682,5 +710,7 @@
         private DevExpress.XtraEditors.ButtonEdit txtFamily;
         private DevExpress.XtraEditors.LabelControl lblFamily;
         private DevExpress.XtraEditors.SpinEdit spinTotal;
+        private DevExpress.XtraEditors.SpinEdit spinTotalMeters;
+        private DevExpress.XtraEditors.LabelControl lblTotalMeters;
     }
 }

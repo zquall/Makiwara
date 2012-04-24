@@ -154,6 +154,13 @@ namespace ReplicantRepository.DataTransferObjects
         }
     
     	[DataMember]
+        public virtual double TotalMeters
+        {
+            get;
+            set;
+        }
+    
+    	[DataMember]
         public virtual string Comments
         {
             get;

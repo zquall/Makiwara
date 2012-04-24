@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -29,7 +29,6 @@
           <EntitySet Name="State" EntityType="EnterpriseModel.Store.State" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stock" EntityType="EnterpriseModel.Store.Stock" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Storage" EntityType="EnterpriseModel.Store.Storage" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Task" EntityType="EnterpriseModel.Store.Task" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Warehouse" EntityType="EnterpriseModel.Store.Warehouse" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ApplicationRequest_Customer" Association="EnterpriseModel.Store.FK_ApplicationRequest_Customer">
@@ -367,6 +366,7 @@
           <Property Name="DiscountRate" Type="float" Nullable="false" />
           <Property Name="SalesTax" Type="float" Nullable="false" />
           <Property Name="OthersRate" Type="float" Nullable="false" />
+          <Property Name="TotalMeters" Type="float" Nullable="false" />
           <Property Name="Comments" Type="text" Nullable="false" />
           <Property Name="StateId" Type="int" Nullable="false" />
         </EntityType>
@@ -455,16 +455,6 @@
           <Property Name="MaximunDiscount" Type="int" Nullable="false" />
           <Property Name="MinimunCount" Type="int" Nullable="false" />
           <Property Name="Available" Type="decimal" Nullable="false" Scale="6" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -945,7 +935,6 @@
           <EntitySet Name="States" EntityType="EnterpriseModel.State" />
           <EntitySet Name="Stocks" EntityType="EnterpriseModel.Stock" />
           <EntitySet Name="Storages" EntityType="EnterpriseModel.Storage" />
-          <EntitySet Name="sysdiagrams" EntityType="EnterpriseModel.sysdiagram" />
           <EntitySet Name="Tasks" EntityType="EnterpriseModel.Task" />
           <EntitySet Name="Warehouses" EntityType="EnterpriseModel.Warehouse" />
           <AssociationSet Name="FK_BindCustomer_Customer" Association="EnterpriseModel.FK_BindCustomer_Customer">
@@ -1300,6 +1289,7 @@
           <Property Type="Double" Name="DiscountRate" Nullable="false" />
           <Property Type="Double" Name="SalesTax" Nullable="false" />
           <Property Type="Double" Name="OthersRate" Nullable="false" />
+          <Property Type="Double" Name="TotalMeters" Nullable="false" />
           <Property Type="String" Name="Comments" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="StateId" Nullable="false" />
           <NavigationProperty Name="BudgetRequest" Relationship="EnterpriseModel.FK_Project_BudgetRequest" FromRole="Project" ToRole="BudgetRequest" />
@@ -1407,16 +1397,6 @@
           <Property Type="Decimal" Name="Available" Nullable="false" Precision="18" Scale="6" />
           <NavigationProperty Name="RentalItem" Relationship="EnterpriseModel.FK_Storage_RentalItem" FromRole="Storage" ToRole="RentalItem" />
           <NavigationProperty Name="Warehouse" Relationship="EnterpriseModel.FK_Storage_Warehouse" FromRole="Storage" ToRole="Warehouse" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -2020,6 +2000,7 @@
               <MappingFragment StoreEntitySet="Project">
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TotalMeters" ColumnName="TotalMeters" />
                 <ScalarProperty Name="OthersRate" ColumnName="OthersRate" />
                 <ScalarProperty Name="SalesTax" ColumnName="SalesTax" />
                 <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
@@ -2129,17 +2110,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="EnterpriseModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="EnterpriseModel.Task">
               <MappingFragment StoreEntitySet="Task">
@@ -2226,7 +2196,7 @@
         <EntityTypeShape EntityType="EnterpriseModel.Person" Width="1.5" PointX="0.75" PointY="10.625" Height="1.9210009765625102" />
         <EntityTypeShape EntityType="EnterpriseModel.PersonPhone" Width="1.5" PointX="3.75" PointY="21.25" Height="2.0853483072916674" />
         <EntityTypeShape EntityType="EnterpriseModel.PhoneType" Width="1.5" PointX="1.5" PointY="21.625" Height="1.427958984374996" />
-        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="11.25" PointY="13.25" Height="4.5505582682291674" />
+        <EntityTypeShape EntityType="EnterpriseModel.Project" Width="1.5" PointX="11.25" PointY="13.25" Height="4.7149055989583388" />
         <EntityTypeShape EntityType="EnterpriseModel.ProjectInform" Width="1.5" PointX="13.5" PointY="12.25" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="EnterpriseModel.RentalItem" Width="1.5" PointX="0.75" PointY="5.75" Height="3.7288216145833388" />
         <EntityTypeShape EntityType="EnterpriseModel.Resource" Width="1.5" PointX="15.75" PointY="17.375" Height="3.0714322916666674" />
@@ -2234,7 +2204,6 @@
         <EntityTypeShape EntityType="EnterpriseModel.State" Width="1.5" PointX="9" PointY="9.75" Height="1.5923063151041532" />
         <EntityTypeShape EntityType="EnterpriseModel.Stock" Width="1.5" PointX="8.25" PointY="6.875" Height="2.08534830729164" />
         <EntityTypeShape EntityType="EnterpriseModel.Storage" Width="1.5" PointX="3" PointY="2.5" Height="2.2496956380208246" />
-        <EntityTypeShape EntityType="EnterpriseModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" Height="1.7566536458333246" />
         <EntityTypeShape EntityType="EnterpriseModel.Task" Width="1.5" PointX="13.5" PointY="16.375" Height="5.0436002604166674" />
         <EntityTypeShape EntityType="EnterpriseModel.Warehouse" Width="1.5" PointX="0.75" PointY="2.875" Height="1.592306315104167" />
         <AssociationConnector Association="EnterpriseModel.FK_BindCustomer_Customer" >
@@ -2393,8 +2362,8 @@
           <ConnectorPoint PointX="13.5" PointY="14.039195149739584" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_Task_Project" >
-          <ConnectorPoint PointX="12.75" PointY="17.087779134114584" />
-          <ConnectorPoint PointX="13.5" PointY="17.087779134114584" />
+          <ConnectorPoint PointX="12.75" PointY="17.169952799479169" />
+          <ConnectorPoint PointX="13.5" PointY="17.169952799479169" />
         </AssociationConnector>
         <AssociationConnector Association="EnterpriseModel.FK_ProjectInform_ProjectState" >
           <ConnectorPoint PointX="10.5" PointY="10.546153157552077" />
