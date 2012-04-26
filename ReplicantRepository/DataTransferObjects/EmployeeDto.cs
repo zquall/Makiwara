@@ -37,17 +37,53 @@ namespace ReplicantRepository.DataTransferObjects
             get { return _personId; }
             set
             {
-                if (_personId != value)
+                try
                 {
-                    if (Person != null && Person.Id != value)
+                    _settingFK = true;
+                    if (_personId != value)
                     {
-                        Person = null;
+                        if (Person != null && Person.Id != value)
+                        {
+                            Person = null;
+                        }
+                        _personId = value;
                     }
-                    _personId = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
         private int _personId;
+    
+    	[DataMember]
+        public virtual Nullable<int> PostId
+        {
+     
+    
+            get { return _postId; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_postId != value)
+                    {
+                        if (Post != null && Post.Id != value)
+                        {
+                            Post = null;
+                        }
+                        _postId = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<int> _postId;
     
     	[DataMember]
         public virtual string Code
@@ -130,6 +166,22 @@ namespace ReplicantRepository.DataTransferObjects
         private PersonDto _person;
     
     	[DataMember]
+        public virtual PostDto Post
+        {
+            get { return _post; }
+            set
+            {
+                if (!ReferenceEquals(_post, value))
+                {
+                    var previousValue = _post;
+                    _post = value;
+                    FixupPost(previousValue);
+                }
+            }
+        }
+        private PostDto _post;
+    
+    	[DataMember]
         public virtual ICollection<CustomerDto> Customers
         {
             get
@@ -165,6 +217,8 @@ namespace ReplicantRepository.DataTransferObjects
         #endregion
         #region Association Fixup
     
+        private bool _settingFK = false;
+    
         private void FixupPerson(PersonDto previousValue)
         {
             if (previousValue != null && previousValue.Employees.Contains(this))
@@ -182,6 +236,30 @@ namespace ReplicantRepository.DataTransferObjects
                 {
                     PersonId = Person.Id;
                 }
+            }
+        }
+    
+        private void FixupPost(PostDto previousValue)
+        {
+            if (previousValue != null && previousValue.Employees.Contains(this))
+            {
+                previousValue.Employees.Remove(this);
+            }
+    
+            if (Post != null)
+            {
+                if (!Post.Employees.Contains(this))
+                {
+                    Post.Employees.Add(this);
+                }
+                if (PostId != Post.Id)
+                {
+                    PostId = Post.Id;
+                }
+            }
+            else if (!_settingFK)
+            {
+                PostId = null;
             }
         }
     

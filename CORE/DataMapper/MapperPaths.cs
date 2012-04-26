@@ -150,9 +150,9 @@ namespace CORE.DataMapper
                     .ForMember(dest => dest.BudgetRequest, opt => opt.Ignore())
                     .ForMember(dest => dest.State, opt => opt.Ignore())
                     .ForMember(dest => dest.Tasks, opt => opt.Ignore())
+                    .ForMember(dest => dest.RealTasks, opt => opt.Ignore())
                     .ForMember(dest => dest.ProjectInforms, opt => opt.Ignore());
                 Mapper.CreateMap<Project, ProjectDto>();
-
                 Mapper.CreateMap<ProjectDto, ProjectDto>();
 
                 Mapper.CreateMap<Task, TaskDto>()
@@ -160,7 +160,6 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<TaskDto, Task>()
                     .ForMember(dest => dest.Project, opt => opt.Ignore())
                     .ForMember(dest => dest.Resources, opt => opt.UseDestinationValue());
-
                 Mapper.CreateMap<TaskDto, TaskDto>();
 
                 Mapper.CreateMap<Resource, ResourceDto>()
@@ -188,6 +187,11 @@ namespace CORE.DataMapper
                 Mapper.CreateMap<StateDto, State>()
                     .ForMember(dest => dest.ProjectInforms, opt => opt.Ignore())
                     .ForMember(dest => dest.Projects, opt => opt.Ignore());
+
+                Mapper.CreateMap<Post, PostDto>()
+                      .ForMember(dest => dest.Employees, opt => opt.Ignore());
+                Mapper.CreateMap<PostDto, Post>()
+                      .ForMember(dest => dest.Employees, opt => opt.Ignore());
 
                 // Just start the mapper once
                 _mapperStoped = false;

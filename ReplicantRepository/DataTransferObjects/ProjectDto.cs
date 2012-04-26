@@ -279,6 +279,39 @@ namespace ReplicantRepository.DataTransferObjects
         private ICollection<ProjectInformDto> _projectInforms;
     
     	[DataMember]
+        public virtual ICollection<RealTaskDto> RealTasks
+        {
+            get
+            {
+                if (_realTasks == null)
+                {
+                    var newCollection = new FixupCollection<RealTaskDto>();
+                    newCollection.CollectionChanged += FixupRealTasks;
+                    _realTasks = newCollection;
+                }
+                return _realTasks;
+            }
+            set
+            {
+                if (!ReferenceEquals(_realTasks, value))
+                {
+                    var previousValue = _realTasks as FixupCollection<RealTaskDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRealTasks;
+                    }
+                    _realTasks = value;
+                    var newValue = value as FixupCollection<RealTaskDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRealTasks;
+                    }
+                }
+            }
+        }
+        private ICollection<RealTaskDto> _realTasks;
+    
+    	[DataMember]
         public virtual ICollection<TaskDto> Tasks
         {
             get
@@ -387,6 +420,28 @@ namespace ReplicantRepository.DataTransferObjects
             if (e.OldItems != null)
             {
                 foreach (ProjectInformDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Project, this))
+                    {
+                        item.Project = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupRealTasks(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RealTaskDto item in e.NewItems)
+                {
+                    item.Project = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RealTaskDto item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Project, this))
                     {

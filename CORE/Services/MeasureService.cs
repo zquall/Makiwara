@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ReplicantRepository.Response;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
-using CORE.DataMapper;
 using AutoMapper;
-using Nexus;
 
 namespace CORE.Services
 {
@@ -15,12 +11,12 @@ namespace CORE.Services
     {
         public MeasureResponse SearchMeasure(MeasureRequest request)
         {
-            var response = new MeasureResponse();
+            var response = new MeasureResponse {MeasureList = new List<MeasureDto>()};
 
-            response.MeasureList = new List<MeasureDto>();
             var measureFound = Olympus._Enterprise.Measures.ToList();
 
-            if (measureFound != null)
+            //if (measureFound != null)
+            if (measureFound.Count() > 0)
             {
                 foreach (var measure in measureFound)
                 {

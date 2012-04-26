@@ -168,22 +168,22 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.btnClose);
+            this.panel5.Controls.Add(this.btnOk);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(485, 10);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel5.Size = new System.Drawing.Size(78, 22);
+            this.panel5.Size = new System.Drawing.Size(94, 22);
             this.panel5.TabIndex = 6;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.btnOk);
+            this.panel4.Controls.Add(this.btnClose);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(563, 10);
+            this.panel4.Location = new System.Drawing.Point(579, 10);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel4.Size = new System.Drawing.Size(94, 22);
+            this.panel4.Size = new System.Drawing.Size(78, 22);
             this.panel4.TabIndex = 5;
             // 
             // panel2

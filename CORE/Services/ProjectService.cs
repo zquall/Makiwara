@@ -247,7 +247,5 @@ namespace CORE.Services
         }
 
         #endregion
-
-
     }
 }

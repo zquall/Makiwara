@@ -54,6 +54,39 @@ namespace ReplicantRepository.DataTransferObjects
         #region Navigation Properties
     
     	[DataMember]
+        public virtual ICollection<RealResourceDto> RealResources
+        {
+            get
+            {
+                if (_realResources == null)
+                {
+                    var newCollection = new FixupCollection<RealResourceDto>();
+                    newCollection.CollectionChanged += FixupRealResources;
+                    _realResources = newCollection;
+                }
+                return _realResources;
+            }
+            set
+            {
+                if (!ReferenceEquals(_realResources, value))
+                {
+                    var previousValue = _realResources as FixupCollection<RealResourceDto>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupRealResources;
+                    }
+                    _realResources = value;
+                    var newValue = value as FixupCollection<RealResourceDto>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupRealResources;
+                    }
+                }
+            }
+        }
+        private ICollection<RealResourceDto> _realResources;
+    
+    	[DataMember]
         public virtual ICollection<ResourceDto> Resources
         {
             get
@@ -88,6 +121,28 @@ namespace ReplicantRepository.DataTransferObjects
 
         #endregion
         #region Association Fixup
+    
+        private void FixupRealResources(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (RealResourceDto item in e.NewItems)
+                {
+                    item.ResourceType = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (RealResourceDto item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ResourceType, this))
+                    {
+                        item.ResourceType = null;
+                    }
+                }
+            }
+        }
     
         private void FixupResources(object sender, NotifyCollectionChangedEventArgs e)
         {

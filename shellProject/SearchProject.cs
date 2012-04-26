@@ -57,6 +57,7 @@ namespace shellProject
             viewProjects.Columns["BudgetRequest"].Visible = false;
             viewProjects.Columns["ProjectInforms"].Visible = false;
             viewProjects.Columns["TotalMeters"].Visible = false;
+            viewProjects.Columns["RealTasks"].Visible = false;
             #endregion
 
             #region Set Caption To Visible Columns

@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Services\BudgetRequestService.cs" />
     <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\ProjectInformService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\RentalItemService.cs" />

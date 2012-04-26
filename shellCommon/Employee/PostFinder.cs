@@ -1,38 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using ReplicantFacility.Factory;
+using System.Collections.Generic;
 using ReplicantRepository.Request;
 using ReplicantRepository.DataTransferObjects;
 
 namespace shellCommon.Employee
 {
-    public partial class EmployeeFinder : XtraForm
+    public partial class PostFinder : DevExpress.XtraEditors.XtraForm
     {
-        public EmployeeFinder()
+        public PostFinder()
         {
             InitializeComponent();
         }
 
         #region Search Service Calls
 
-        private void Search(string query)
-        {
-            var request = new EmployeeRequest { SearchEmployeeQuery = query };
-            ShowSearchResults(new EmployeeFactory().SearchEmployee(request).EmployeeList);
-        }
-
-        private void ShowSearchResults(List<EmployeeDto> searchResults)
+        private void ShowSearchResults(List<PostDto> searchResults)
         {
             grdControl.DataSource = searchResults;
+        }
+
+        private void Search(string query)
+        {
+            var request = new PostRequest { SearchPostQuery = query };
+            ShowSearchResults(new PostFactory().SearchPost(request).PostList);
         }
 
         #endregion
 
         #region UI Events
 
-        private void EmployeeFinderShown(object sender, EventArgs e)
+        private void PostFinderShown(object sender, EventArgs e)
         {
             Search("");
         }
@@ -51,7 +51,7 @@ namespace shellCommon.Employee
             }
         }
 
-        private void GrdControlViewKeyDown(object sender, KeyEventArgs e)
+        private void GrdControlKeyDown(object sender, KeyEventArgs e)
         {
             if (grdControlView.FocusedRowHandle == 0)
             {
@@ -64,13 +64,13 @@ namespace shellCommon.Employee
 
         private void CmdOkClick(object sender, EventArgs e)
         {
-            var rowObject = grdControlView.GetFocusedRow() as EmployeeDto;
+            var rowObject = grdControlView.GetFocusedRow() as PostDto;
             if (rowObject != null)
             {
                 // Check if the user select a valid object
-                if (rowObject.Id > 0 || rowObject.Code != null)
+                if (rowObject.Id > 0)
                 {
-                    Tag = new EmployeeFactory().GetEmployee(new EmployeeRequest { EmployeeId = rowObject.Id, Employee = rowObject }).Employee;
+                    Tag = new PostFactory().GetPost(new PostRequest { PostId = rowObject.Id, Post = rowObject }).Post;
                     DialogResult = DialogResult.OK;
                 }
             }
@@ -81,6 +81,6 @@ namespace shellCommon.Employee
             DialogResult = DialogResult.Cancel;
         }
 
-        #endregion  
+        #endregion
     }
 }

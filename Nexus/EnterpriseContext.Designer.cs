@@ -4901,12 +4901,14 @@ namespace Nexus
         /// Create a new Post object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="code">Initial value of the Code property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="estimatedSalary">Initial value of the EstimatedSalary property.</param>
-        public static Post CreatePost(global::System.Int32 id, global::System.String name, global::System.Decimal estimatedSalary)
+        public static Post CreatePost(global::System.Int32 id, global::System.String code, global::System.String name, global::System.Decimal estimatedSalary)
         {
             Post post = new Post();
             post.Id = id;
+            post.Code = code;
             post.Name = name;
             post.EstimatedSalary = estimatedSalary;
             return post;
@@ -4941,6 +4943,30 @@ namespace Nexus
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

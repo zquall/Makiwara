@@ -165,6 +165,16 @@ namespace shellProject
             }
         }
 
+        private void LoadPost(PostDto post)
+        {
+            if (post != null)
+            {
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], post.Code);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], post.Name);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], post.EstimatedSalary);
+            }
+        }
+
         #endregion
 
         #region Captures
@@ -281,7 +291,7 @@ namespace shellProject
         private void ConfigureResourceEmployee()
         {
             ReadOnlyDefaultResources();
-            viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
+            //viewResources.Columns["Amount"].OptionsColumn.ReadOnly = true;
             viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Amount"], TaskDurationWorkingTimePerDay.Hours * _task.Duration.Days);
             AddMeasuresToRepMeasures("E");
         }
@@ -428,11 +438,17 @@ namespace shellProject
 
             if (tmpResource != null && tmpResource.ResourceType.Name == "PLANILLA")
             {
-                var employeeFinder = new EmployeeFinder();
-                if (employeeFinder.ShowDialog() == DialogResult.OK)
+                //var employeeFinder = new EmployeeFinder();
+                //if (employeeFinder.ShowDialog() == DialogResult.OK)
+                //{
+                //    var employeeDto = employeeFinder.Tag as EmployeeDto;
+                //    LoadEmployee(employeeDto);
+                //}
+                var postFinder = new PostFinder();
+                if (postFinder.ShowDialog() == DialogResult.OK)
                 {
-                    var employeeDto = employeeFinder.Tag as EmployeeDto;
-                    LoadEmployee(employeeDto);
+                    var postDto = postFinder.Tag as PostDto;
+                    LoadPost(postDto);
                 }
             }
         }

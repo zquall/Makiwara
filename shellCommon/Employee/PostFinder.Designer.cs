@@ -1,6 +1,6 @@
 ﻿namespace shellCommon.Employee
 {
-    partial class EmployeeFinder
+    partial class PostFinder
     {
         /// <summary>
         /// Required designer variable.
@@ -38,10 +38,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.grdControl = new DevExpress.XtraGrid.GridControl();
             this.grdControlView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSalaryByHour = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEstimatedSalary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).BeginInit();
             this.panel2.SuspendLayout();
@@ -90,7 +88,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.panel5.Size = new System.Drawing.Size(94, 22);
-            this.panel5.TabIndex = 0;
+            this.panel5.TabIndex = 1;
             // 
             // cmdOk
             // 
@@ -98,7 +96,7 @@
             this.cmdOk.Location = new System.Drawing.Point(10, 0);
             this.cmdOk.Name = "cmdOk";
             this.cmdOk.Size = new System.Drawing.Size(84, 22);
-            this.cmdOk.TabIndex = 0;
+            this.cmdOk.TabIndex = 1;
             this.cmdOk.Text = "Aceptar";
             this.cmdOk.Click += new System.EventHandler(this.CmdOkClick);
             // 
@@ -118,7 +116,7 @@
             this.cmdClose.Location = new System.Drawing.Point(10, 0);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(68, 22);
-            this.cmdClose.TabIndex = 0;
+            this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Cerrar";
             this.cmdClose.Click += new System.EventHandler(this.CmdCloseClick);
             // 
@@ -141,64 +139,40 @@
             this.grdControl.TabIndex = 0;
             this.grdControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdControlView});
+            this.grdControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdControlKeyDown);
             // 
             // grdControlView
             // 
             this.grdControlView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colID,
-            this.colCode,
-            this.colSalaryByHour,
-            this.colName});
+            this.colName,
+            this.colEstimatedSalary});
             this.grdControlView.GridControl = this.grdControl;
             this.grdControlView.Name = "grdControlView";
             this.grdControlView.OptionsBehavior.Editable = false;
             this.grdControlView.OptionsBehavior.ReadOnly = true;
-            this.grdControlView.OptionsCustomization.AllowColumnMoving = false;
-            this.grdControlView.OptionsCustomization.AllowColumnResizing = false;
             this.grdControlView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.grdControlView.OptionsView.EnableAppearanceEvenRow = true;
             this.grdControlView.OptionsView.ShowGroupPanel = false;
-            this.grdControlView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GrdControlViewKeyDown);
-            // 
-            // colID
-            // 
-            this.colID.Caption = "ID";
-            this.colID.FieldName = "Id";
-            this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 0;
-            this.colID.Width = 59;
-            // 
-            // colCode
-            // 
-            this.colCode.Caption = "Código";
-            this.colCode.FieldName = "Code";
-            this.colCode.Name = "colCode";
-            this.colCode.Visible = true;
-            this.colCode.VisibleIndex = 1;
-            this.colCode.Width = 123;
-            // 
-            // colSalaryByHour
-            // 
-            this.colSalaryByHour.Caption = "Salario X Hora";
-            this.colSalaryByHour.DisplayFormat.FormatString = "{0:N2}";
-            this.colSalaryByHour.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colSalaryByHour.FieldName = "SalaryByHour";
-            this.colSalaryByHour.Name = "colSalaryByHour";
-            this.colSalaryByHour.Visible = true;
-            this.colSalaryByHour.VisibleIndex = 2;
-            this.colSalaryByHour.Width = 114;
             // 
             // colName
             // 
-            this.colName.Caption = "Nombre";
-            this.colName.FieldName = "Person";
+            this.colName.Caption = "Nombre del Puesto";
+            this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 3;
-            this.colName.Width = 340;
+            this.colName.VisibleIndex = 0;
+            this.colName.Width = 391;
             // 
-            // EmployeeFinder
+            // colEstimatedSalary
+            // 
+            this.colEstimatedSalary.Caption = "Salario Estimado";
+            this.colEstimatedSalary.FieldName = "EstimatedSalary";
+            this.colEstimatedSalary.Name = "colEstimatedSalary";
+            this.colEstimatedSalary.Visible = true;
+            this.colEstimatedSalary.VisibleIndex = 1;
+            this.colEstimatedSalary.Width = 245;
+            // 
+            // PostFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,11 +180,10 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "EmployeeFinder";
+            this.Name = "PostFinder";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EmployeeFinder";
-            this.Shown += new System.EventHandler(this.EmployeeFinderShown);
+            this.Text = "PostFinder";
+            this.Shown += new System.EventHandler(this.PostFinderShown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchQuery.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -227,17 +200,15 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraEditors.TextEdit txtSearchQuery;
         private DevExpress.XtraGrid.GridControl grdControl;
         private DevExpress.XtraGrid.Views.Grid.GridView grdControlView;
-        private DevExpress.XtraEditors.SimpleButton cmdOk;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
         private DevExpress.XtraEditors.SimpleButton cmdClose;
-        private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colCode;
-        private DevExpress.XtraGrid.Columns.GridColumn colSalaryByHour;
+        private DevExpress.XtraEditors.SimpleButton cmdOk;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colEstimatedSalary;
     }
 }
