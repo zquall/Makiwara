@@ -151,7 +151,7 @@ namespace shellProject
             {
                 viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Code"], rentalItem.Code);
                 viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Name"], rentalItem.Name);
-                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], rentalItem.Cost);
+                viewResources.SetRowCellValue(viewResources.FocusedRowHandle, viewResources.Columns["Cost"], rentalItem.DailyPrice);
             }
         }
 
@@ -305,6 +305,7 @@ namespace shellProject
         private void ConfigureResourceRent()
         {
             ReadOnlyDefaultResources();
+            viewResources.Columns["TotalCost"].OptionsColumn.ReadOnly = false;
             AddMeasuresToRepMeasures("R");
         }
 

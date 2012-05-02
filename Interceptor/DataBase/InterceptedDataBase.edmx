@@ -14,6 +14,7 @@
           <EntitySet Name="PLA_PUESTOS" EntityType="OuterModel.Store.PLA_PUESTOS" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PRE_DETALLE" EntityType="OuterModel.Store.PRE_DETALLE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PRE_PRESUPUESTOS" EntityType="OuterModel.Store.PRE_PRESUPUESTOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" EntityType="OuterModel.Store.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SAL_DETALLE" EntityType="OuterModel.Store.SAL_DETALLE" store:Type="Tables" store:Schema="dbo" store:Name="SAL_DETALLE">
             <DefiningQuery>SELECT 
       [SAL_DETALLE].[CIA_Codigo] AS [CIA_Codigo], 
@@ -39,6 +40,10 @@
           <AssociationSet Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1" Association="OuterModel.Store.FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
             <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
             <End Role="PRE_DETALLE" EntitySet="PRE_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" Association="OuterModel.Store.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" EntitySet="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
           </AssociationSet>
           <AssociationSet Name="FK_SAL_DETALLE_SAL_SALIDAS" Association="OuterModel.Store.FK_SAL_DETALLE_SAL_SALIDAS">
             <End Role="SAL_SALIDAS" EntitySet="SAL_SALIDAS" />
@@ -410,6 +415,23 @@
           <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
           <Property Name="USR_Fecha_Inclusion" Type="datetime" />
         </EntityType>
+        <EntityType Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+          <Key>
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+            <PropertyRef Name="HOP_CODIGO" />
+          </Key>
+          <Property Name="CIA_CODIGO" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="PRE_NUMERO" Type="float" Nullable="false" />
+          <Property Name="HOP_CODIGO" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="PRD_IMPUESTOVTAS" Type="float" Nullable="false" />
+          <Property Name="PRD_SUBTOTAL" Type="float" Nullable="false" />
+          <Property Name="PRD_PORC_DESC" Type="float" Nullable="false" />
+          <Property Name="PRD_MONTO_DESC" Type="float" Nullable="false" />
+          <Property Name="PRD_OTROS_PORC" Type="float" Nullable="false" />
+          <Property Name="PRD_MONTO_X_OTROS_PORC" Type="float" Nullable="false" />
+          <Property Name="PRD_MONTOTOTAL" Type="float" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'dialcom.dbo.SAL_DETALLE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -492,6 +514,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS">
+          <End Role="PRE_PRESUPUESTOS" Type="OuterModel.Store.PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Type="OuterModel.Store.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SAL_DETALLE_SAL_SALIDAS">
           <End Role="SAL_SALIDAS" Type="OuterModel.Store.SAL_SALIDAS" Multiplicity="1" />
           <End Role="SAL_DETALLE" Type="OuterModel.Store.SAL_DETALLE" Multiplicity="*" />
@@ -532,6 +568,11 @@
           <AssociationSet Name="FK_SAL_DETALLE_SAL_SALIDAS" Association="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS">
             <End Role="SAL_SALIDAS" EntitySet="SAL_SALIDAS" />
             <End Role="SAL_DETALLE" EntitySet="SAL_DETALLE" />
+          </AssociationSet>
+          <EntitySet Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" EntityType="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
+          <AssociationSet Name="FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" Association="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" EntitySet="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
@@ -914,6 +955,7 @@
           <Property Type="String" Name="USR_Usuario_Inclusion" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
           <NavigationProperty Name="PRE_DETALLE" Relationship="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" FromRole="PRE_PRESUPUESTOS" ToRole="PRE_DETALLE" />
+          <NavigationProperty Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Relationship="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" FromRole="PRE_PRESUPUESTOS" ToRole="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
         </EntityType>
         <Association Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
           <End Type="OuterModel.PRE_PRESUPUESTOS" Role="PRE_PRESUPUESTOS" Multiplicity="1" />
@@ -995,6 +1037,38 @@
             <Dependent Role="SAL_DETALLE">
               <PropertyRef Name="CIA_Codigo" />
               <PropertyRef Name="SAL_Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+          <Key>
+            <PropertyRef Name="CIA_CODIGO" />
+            <PropertyRef Name="PRE_NUMERO" />
+            <PropertyRef Name="HOP_CODIGO" />
+          </Key>
+          <Property Type="String" Name="CIA_CODIGO" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRE_NUMERO" Nullable="false" />
+          <Property Type="String" Name="HOP_CODIGO" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="PRD_IMPUESTOVTAS" Nullable="false" />
+          <Property Type="Double" Name="PRD_SUBTOTAL" Nullable="false" />
+          <Property Type="Double" Name="PRD_PORC_DESC" Nullable="false" />
+          <Property Type="Double" Name="PRD_MONTO_DESC" Nullable="false" />
+          <Property Type="Double" Name="PRD_OTROS_PORC" Nullable="false" />
+          <Property Type="Double" Name="PRD_MONTO_X_OTROS_PORC" Nullable="false" />
+          <Property Type="Double" Name="PRD_MONTOTOTAL" Nullable="false" />
+          <NavigationProperty Name="PRE_PRESUPUESTOS" Relationship="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" FromRole="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" ToRole="PRE_PRESUPUESTOS" />
+        </EntityType>
+        <Association Name="FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS">
+          <End Type="OuterModel.PRE_PRESUPUESTOS" Role="PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Type="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1406,6 +1480,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+            <EntityTypeMapping TypeName="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+              <MappingFragment StoreEntitySet="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
+                <ScalarProperty Name="PRD_MONTOTOTAL" ColumnName="PRD_MONTOTOTAL" />
+                <ScalarProperty Name="PRD_MONTO_X_OTROS_PORC" ColumnName="PRD_MONTO_X_OTROS_PORC" />
+                <ScalarProperty Name="PRD_OTROS_PORC" ColumnName="PRD_OTROS_PORC" />
+                <ScalarProperty Name="PRD_MONTO_DESC" ColumnName="PRD_MONTO_DESC" />
+                <ScalarProperty Name="PRD_PORC_DESC" ColumnName="PRD_PORC_DESC" />
+                <ScalarProperty Name="PRD_SUBTOTAL" ColumnName="PRD_SUBTOTAL" />
+                <ScalarProperty Name="PRD_IMPUESTOVTAS" ColumnName="PRD_IMPUESTOVTAS" />
+                <ScalarProperty Name="HOP_CODIGO" ColumnName="HOP_CODIGO" />
+                <ScalarProperty Name="PRE_NUMERO" ColumnName="PRE_NUMERO" />
+                <ScalarProperty Name="CIA_CODIGO" ColumnName="CIA_CODIGO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1426,7 +1516,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="72">
+      <Diagram Name="InterceptedDataBase" ZoomLevel="55">
         <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.75" PointX="1.375" PointY="1.25" Height="10.467062174479166" IsExpanded="true" />
         <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2.125" PointX="3.625" PointY="1.25" Height="15.890524088541667" />
         <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.625" PointX="6.125" PointY="1.25" Height="2.5783902994791656" />
@@ -1443,11 +1533,16 @@
           <ConnectorPoint PointX="8.75" PointY="13.496368815104166" />
           <ConnectorPoint PointX="9.625" PointY="13.496368815104166" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OuterModel.SAL_DETALLE" Width="1.5" PointX="15" PointY="12.625" Height="3.2357796223958317" />
-        <EntityTypeShape EntityType="OuterModel.SAL_SALIDAS" Width="1.5" PointX="12.5" PointY="12.625" Height="4.2218636067708317" />
+        <EntityTypeShape EntityType="OuterModel.SAL_DETALLE" Width="1.5" PointX="16.75" PointY="12.625" Height="3.2357796223958317" />
+        <EntityTypeShape EntityType="OuterModel.SAL_SALIDAS" Width="1.5" PointX="15" PointY="12.625" Height="4.2218636067708317" />
         <AssociationConnector Association="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS" >
-          <ConnectorPoint PointX="14" PointY="14.242889811197916" />
-          <ConnectorPoint PointX="15" PointY="14.242889811197916" />
+          <ConnectorPoint PointX="16.5" PointY="14.242889811197916" />
+          <ConnectorPoint PointX="16.75" PointY="14.242889811197916" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Width="3.5" PointX="10.25" PointY="15.375" Height="2.7427376302083317" />
+        <AssociationConnector Association="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" >
+          <ConnectorPoint PointX="8.75" PointY="16.277557779947919" />
+          <ConnectorPoint PointX="10.25" PointY="16.277557779947919" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

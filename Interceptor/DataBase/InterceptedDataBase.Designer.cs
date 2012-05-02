@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PLA_EMPLEADOS_PLA_PUESTOS", "PLA_PUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PLA_PUESTOS), "PLA_EMPLEADOS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PLA_EMPLEADOS), true)]
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PRE_DETALLE_PRE_PRESUPUESTOS1", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "PRE_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PRE_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.SAL_SALIDAS), "SAL_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.SAL_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("OuterModel", "FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO), true)]
 
 #endregion
 
@@ -231,6 +232,22 @@ namespace Interceptor.DataBase
             }
         }
         private ObjectSet<SAL_SALIDAS> _SAL_SALIDAS;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO> PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO
+        {
+            get
+            {
+                if ((_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO == null))
+                {
+                    _PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO = base.CreateObjectSet<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO>("PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO");
+                }
+                return _PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO;
+            }
+        }
+        private ObjectSet<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO> _PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO;
 
         #endregion
         #region AddTo Methods
@@ -313,6 +330,14 @@ namespace Interceptor.DataBase
         public void AddToSAL_SALIDAS(SAL_SALIDAS sAL_SALIDAS)
         {
             base.AddObject("SAL_SALIDAS", sAL_SALIDAS);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPRE_TOTALESDETALLE_X_HOJAPRESUPUESTO(PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO)
+        {
+            base.AddObject("PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO", pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO);
         }
 
         #endregion
@@ -8629,6 +8654,364 @@ namespace Interceptor.DataBase
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRE_DETALLE>("OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1", "PRE_DETALLE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO")]
+        public EntityCollection<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO> PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OuterModel", Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO object.
+        /// </summary>
+        /// <param name="cIA_CODIGO">Initial value of the CIA_CODIGO property.</param>
+        /// <param name="pRE_NUMERO">Initial value of the PRE_NUMERO property.</param>
+        /// <param name="hOP_CODIGO">Initial value of the HOP_CODIGO property.</param>
+        /// <param name="pRD_IMPUESTOVTAS">Initial value of the PRD_IMPUESTOVTAS property.</param>
+        /// <param name="pRD_SUBTOTAL">Initial value of the PRD_SUBTOTAL property.</param>
+        /// <param name="pRD_PORC_DESC">Initial value of the PRD_PORC_DESC property.</param>
+        /// <param name="pRD_MONTO_DESC">Initial value of the PRD_MONTO_DESC property.</param>
+        /// <param name="pRD_OTROS_PORC">Initial value of the PRD_OTROS_PORC property.</param>
+        /// <param name="pRD_MONTO_X_OTROS_PORC">Initial value of the PRD_MONTO_X_OTROS_PORC property.</param>
+        /// <param name="pRD_MONTOTOTAL">Initial value of the PRD_MONTOTOTAL property.</param>
+        public static PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO CreatePRE_TOTALESDETALLE_X_HOJAPRESUPUESTO(global::System.String cIA_CODIGO, global::System.Double pRE_NUMERO, global::System.String hOP_CODIGO, global::System.Double pRD_IMPUESTOVTAS, global::System.Double pRD_SUBTOTAL, global::System.Double pRD_PORC_DESC, global::System.Double pRD_MONTO_DESC, global::System.Double pRD_OTROS_PORC, global::System.Double pRD_MONTO_X_OTROS_PORC, global::System.Double pRD_MONTOTOTAL)
+        {
+            PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO = new PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO();
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.CIA_CODIGO = cIA_CODIGO;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRE_NUMERO = pRE_NUMERO;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.HOP_CODIGO = hOP_CODIGO;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_IMPUESTOVTAS = pRD_IMPUESTOVTAS;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_SUBTOTAL = pRD_SUBTOTAL;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_PORC_DESC = pRD_PORC_DESC;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_MONTO_DESC = pRD_MONTO_DESC;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_OTROS_PORC = pRD_OTROS_PORC;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_MONTO_X_OTROS_PORC = pRD_MONTO_X_OTROS_PORC;
+            pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO.PRD_MONTOTOTAL = pRD_MONTOTOTAL;
+            return pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CIA_CODIGO
+        {
+            get
+            {
+                return _CIA_CODIGO;
+            }
+            set
+            {
+                if (_CIA_CODIGO != value)
+                {
+                    OnCIA_CODIGOChanging(value);
+                    ReportPropertyChanging("CIA_CODIGO");
+                    _CIA_CODIGO = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("CIA_CODIGO");
+                    OnCIA_CODIGOChanged();
+                }
+            }
+        }
+        private global::System.String _CIA_CODIGO;
+        partial void OnCIA_CODIGOChanging(global::System.String value);
+        partial void OnCIA_CODIGOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRE_NUMERO
+        {
+            get
+            {
+                return _PRE_NUMERO;
+            }
+            set
+            {
+                if (_PRE_NUMERO != value)
+                {
+                    OnPRE_NUMEROChanging(value);
+                    ReportPropertyChanging("PRE_NUMERO");
+                    _PRE_NUMERO = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PRE_NUMERO");
+                    OnPRE_NUMEROChanged();
+                }
+            }
+        }
+        private global::System.Double _PRE_NUMERO;
+        partial void OnPRE_NUMEROChanging(global::System.Double value);
+        partial void OnPRE_NUMEROChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String HOP_CODIGO
+        {
+            get
+            {
+                return _HOP_CODIGO;
+            }
+            set
+            {
+                if (_HOP_CODIGO != value)
+                {
+                    OnHOP_CODIGOChanging(value);
+                    ReportPropertyChanging("HOP_CODIGO");
+                    _HOP_CODIGO = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("HOP_CODIGO");
+                    OnHOP_CODIGOChanged();
+                }
+            }
+        }
+        private global::System.String _HOP_CODIGO;
+        partial void OnHOP_CODIGOChanging(global::System.String value);
+        partial void OnHOP_CODIGOChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_IMPUESTOVTAS
+        {
+            get
+            {
+                return _PRD_IMPUESTOVTAS;
+            }
+            set
+            {
+                OnPRD_IMPUESTOVTASChanging(value);
+                ReportPropertyChanging("PRD_IMPUESTOVTAS");
+                _PRD_IMPUESTOVTAS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_IMPUESTOVTAS");
+                OnPRD_IMPUESTOVTASChanged();
+            }
+        }
+        private global::System.Double _PRD_IMPUESTOVTAS;
+        partial void OnPRD_IMPUESTOVTASChanging(global::System.Double value);
+        partial void OnPRD_IMPUESTOVTASChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_SUBTOTAL
+        {
+            get
+            {
+                return _PRD_SUBTOTAL;
+            }
+            set
+            {
+                OnPRD_SUBTOTALChanging(value);
+                ReportPropertyChanging("PRD_SUBTOTAL");
+                _PRD_SUBTOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_SUBTOTAL");
+                OnPRD_SUBTOTALChanged();
+            }
+        }
+        private global::System.Double _PRD_SUBTOTAL;
+        partial void OnPRD_SUBTOTALChanging(global::System.Double value);
+        partial void OnPRD_SUBTOTALChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_PORC_DESC
+        {
+            get
+            {
+                return _PRD_PORC_DESC;
+            }
+            set
+            {
+                OnPRD_PORC_DESCChanging(value);
+                ReportPropertyChanging("PRD_PORC_DESC");
+                _PRD_PORC_DESC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_PORC_DESC");
+                OnPRD_PORC_DESCChanged();
+            }
+        }
+        private global::System.Double _PRD_PORC_DESC;
+        partial void OnPRD_PORC_DESCChanging(global::System.Double value);
+        partial void OnPRD_PORC_DESCChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_MONTO_DESC
+        {
+            get
+            {
+                return _PRD_MONTO_DESC;
+            }
+            set
+            {
+                OnPRD_MONTO_DESCChanging(value);
+                ReportPropertyChanging("PRD_MONTO_DESC");
+                _PRD_MONTO_DESC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_MONTO_DESC");
+                OnPRD_MONTO_DESCChanged();
+            }
+        }
+        private global::System.Double _PRD_MONTO_DESC;
+        partial void OnPRD_MONTO_DESCChanging(global::System.Double value);
+        partial void OnPRD_MONTO_DESCChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_OTROS_PORC
+        {
+            get
+            {
+                return _PRD_OTROS_PORC;
+            }
+            set
+            {
+                OnPRD_OTROS_PORCChanging(value);
+                ReportPropertyChanging("PRD_OTROS_PORC");
+                _PRD_OTROS_PORC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_OTROS_PORC");
+                OnPRD_OTROS_PORCChanged();
+            }
+        }
+        private global::System.Double _PRD_OTROS_PORC;
+        partial void OnPRD_OTROS_PORCChanging(global::System.Double value);
+        partial void OnPRD_OTROS_PORCChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_MONTO_X_OTROS_PORC
+        {
+            get
+            {
+                return _PRD_MONTO_X_OTROS_PORC;
+            }
+            set
+            {
+                OnPRD_MONTO_X_OTROS_PORCChanging(value);
+                ReportPropertyChanging("PRD_MONTO_X_OTROS_PORC");
+                _PRD_MONTO_X_OTROS_PORC = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_MONTO_X_OTROS_PORC");
+                OnPRD_MONTO_X_OTROS_PORCChanged();
+            }
+        }
+        private global::System.Double _PRD_MONTO_X_OTROS_PORC;
+        partial void OnPRD_MONTO_X_OTROS_PORCChanging(global::System.Double value);
+        partial void OnPRD_MONTO_X_OTROS_PORCChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double PRD_MONTOTOTAL
+        {
+            get
+            {
+                return _PRD_MONTOTOTAL;
+            }
+            set
+            {
+                OnPRD_MONTOTOTALChanging(value);
+                ReportPropertyChanging("PRD_MONTOTOTAL");
+                _PRD_MONTOTOTAL = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRD_MONTOTOTAL");
+                OnPRD_MONTOTOTALChanged();
+            }
+        }
+        private global::System.Double _PRD_MONTOTOTAL;
+        partial void OnPRD_MONTOTOTALChanging(global::System.Double value);
+        partial void OnPRD_MONTOTOTALChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS")]
+        public PRE_PRESUPUESTOS PRE_PRESUPUESTOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRE_PRESUPUESTOS> PRE_PRESUPUESTOSReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS", value);
                 }
             }
         }

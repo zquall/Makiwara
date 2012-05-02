@@ -79,6 +79,30 @@ namespace Interceptor.Adapters
             }
         }
 
+        private void GetTotalDetail(ICollection<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO>destination, ICollection<PRE_DETALLE> detail)
+        {
+            var listTypes = detail.Select(x => x.HOP_CODIGO).Distinct();
+            destination.Clear();
+
+            foreach(var tmpType in listTypes)
+            {
+                var preDetalle = new PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO
+                                     {
+                                         CIA_CODIGO = "01",
+                                         //preDetalle.PRE_NUMERO = 0,;
+                                         HOP_CODIGO = tmpType,
+                                         PRD_IMPUESTOVTAS = 0,
+                                         PRD_SUBTOTAL = detail.Where(x => x.HOP_CODIGO.Equals(tmpType)).Sum(x => x.PRD_COSTOTOTAL),
+                                         PRD_PORC_DESC = 0,
+                                         PRD_MONTO_DESC = 0,
+                                         PRD_OTROS_PORC = 0,
+                                         PRD_MONTO_X_OTROS_PORC = 0,
+                                         PRD_MONTOTOTAL = detail.Where(x => x.HOP_CODIGO.Equals(tmpType)).Sum(x => x.PRD_COSTOTOTAL)
+                                     };
+                destination.Add(preDetalle);
+            }
+        }
+
         /// <summary>
         /// Conversion Table
         /// M-O     =   Mano de Obra
@@ -104,6 +128,14 @@ namespace Interceptor.Adapters
                     return "V-MAR";
                 case "PLANILLA":
                     return "M-O";
+                case "SUBCONTRATOS":
+                    return "SUBCT";
+                case "TRANSPORTES":
+                    return "TRANS";
+                case "IMPORTADOS":
+                    return "V-MAT";
+                case "OTROS":
+                    return "O-MAT";
                 default:
                     return "ERROR";
             }
@@ -125,9 +157,13 @@ namespace Interceptor.Adapters
 
         #endregion
 
+        /// <summary>
+        /// Return the sumary of the resources cost
+        /// </summary>
+        /// <param name="project">The Project with resources</param>
+        /// <returns>The sum of the cost</returns>
         private decimal CalcSubtotal(ProjectDto project)
         {
-            //decimal subtotal = 0;
             var resources = new List<ResourceDto>();
             GetResources(project.Tasks, resources);
             return resources.Sum(x => x.TotalCost);
@@ -136,36 +172,45 @@ namespace Interceptor.Adapters
         private void Map(ProjectDto source, PRE_PRESUPUESTOS destination)
         {
             #region Map
-            destination.CIA_CODIGO = "01";
-            destination.PRE_NUMERO = Convert.ToDouble(source.Code);
-            destination.CLI_CLIENTE = source.BudgetRequest.Customer.BindCustomer.AlienId;
-            destination.SVR_CODIGO = "00";                                  // Necesario por ser llave foranea {No existe en SGP}{NO APLICA}
-            destination.PRE_FECHA = DateTime.Today;
-            destination.VEN_VENDEDOR = "SGP";                               //Se utiliza un estandar, en este caso es el sitema SGP
-            destination.PRE_NOMBREPROYECTO = source.Name;
-            destination.PRE_OBSERVACIONES = source.Comments;
-            destination.PRE_ACTIVIDADES = "GENERADO MEDIANTE SGP";
-            destination.PRE_SUBTOTAL_H = 0.0;                               //{Pendiente}
-            destination.PRE_IMPREVISTOS = Convert.ToDouble(CalcSubtotal(source)) * source.ContingenciesRate / 100;
-            destination.PRE_UTILIDAD = Convert.ToDouble(CalcSubtotal(source)) * source.TotalUtilityRate / 100;
-            destination.PRE_GARANTIA = Convert.ToDouble(CalcSubtotal(source)) * source.GuaranteeRate / 100;
-            destination.PRE_TOTALMETROS = source.TotalMeters;
-            destination.PRE_TOTALSERVICIO = Convert.ToDouble(CalcSubtotal(source));
-            destination.PRE_APLICADO = 0;                                   //{Pendiente}
-            destination.PRE_PORC_IMPREVISTOS = source.ContingenciesRate;
-            destination.PRE_PORC_UTILIDAD = source.TotalUtilityRate;
-            destination.PRE_PORC_GARANTIA = source.GuaranteeRate;
-            destination.PRE_SUBTOTAL_I = 0.0;                               //{Pendiente}
-            destination.PRE_SUBTOTAL_J = 0.0;                               //{Pendiente}
-            destination.PRE_SUBTOTAL_K = 0.0;                               //{Pendiente}
-            destination.PRE_PORC_MUP = 0.0;                                 //{Pendiente}
-            destination.PRE_PORC_UTIL_GNRL = 0.0;                           //{Pendiente}
-            destination.PRE_UTILIDAD_GNRL = 0.0;                            //{Pendiente}
-            destination.PRE_TOTAL_GNRL =    destination.PRE_TOTALSERVICIO 
-                                          + destination.PRE_IMPREVISTOS 
-                                          + destination.PRE_UTILIDAD
-                                          + destination.PRE_GARANTIA;
-            destination.PRE_COSTOXMETRO = destination.PRE_TOTAL_GNRL / source.TotalMeters;
+            destination.CIA_CODIGO          = "01";
+            destination.PRE_NUMERO          = Convert.ToDouble(source.Code);
+            destination.CLI_CLIENTE         = source.BudgetRequest.Customer.BindCustomer.AlienId;
+            destination.SVR_CODIGO          = "00";                         // Necesario por ser llave foranea {No existe en SGP}{NO APLICA}
+            destination.PRE_FECHA           = DateTime.Today;
+            destination.VEN_VENDEDOR        = "SGP";                        //Se utiliza un estandar, en este caso es el sitema SGP
+            destination.PRE_NOMBREPROYECTO  = source.Name;
+            destination.PRE_OBSERVACIONES   = source.Comments;
+            destination.PRE_ACTIVIDADES     = "GENERADO MEDIANTE SGP";
+            destination.PRE_TOTALMETROS     = source.TotalMeters;
+
+            destination.PRE_SUBTOTAL_H          = 0.0;                      //{Pendiente}
+            destination.PRE_SUBTOTAL_I          = 0.0;                      //{Pendiente}
+            destination.PRE_SUBTOTAL_J          = 0.0;                      //{Pendiente}
+            destination.PRE_APLICADO            = 0;                        //{Pendiente}
+            destination.PRE_PORC_UTILIDAD       = 0.0;
+            destination.PRE_UTILIDAD            = 0.0;
+            destination.PRE_PORC_MUP            = 0.0;
+
+            destination.PRE_SUBTOTAL_K          = Convert.ToDouble(CalcSubtotal(source));
+            destination.PRE_PORC_IMPREVISTOS    = source.ContingenciesRate;
+            destination.PRE_IMPREVISTOS         = destination.PRE_SUBTOTAL_K * destination.PRE_PORC_IMPREVISTOS / 100;
+            destination.PRE_PORC_GARANTIA       = source.GuaranteeRate;
+            destination.PRE_GARANTIA            = destination.PRE_SUBTOTAL_K * destination.PRE_PORC_GARANTIA / 100;
+
+            var other = destination.PRE_SUBTOTAL_K * source.OthersRate / 100; // + % Otros que no aparece en dialcom
+
+            destination.PRE_TOTALSERVICIO       = destination.PRE_SUBTOTAL_K + destination.PRE_IMPREVISTOS + destination.PRE_GARANTIA + other;
+            destination.PRE_PORC_UTIL_GNRL      = source.TotalUtilityRate;
+            destination.PRE_UTILIDAD_GNRL       = destination.PRE_TOTALSERVICIO * destination.PRE_PORC_UTIL_GNRL / 100;
+
+            var discount = (destination.PRE_TOTALSERVICIO + destination.PRE_UTILIDAD_GNRL) * source.DiscountRate / 100;
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /**/ destination.PRE_TOTAL_GNRL = destination.PRE_TOTALSERVICIO + destination.PRE_UTILIDAD_GNRL - discount;/**/
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            destination.PRE_COSTOXMETRO = destination.PRE_TOTAL_GNRL / destination.PRE_TOTALMETROS;
+
             destination.FAM_Codigo = source.BudgetRequest.Family.Id;        // Necesario por ser llave foranea
             destination.TIP_Codigo = 33;                                    // Necesario por ser llave foranea {No existe en SGP}{Otros}
             destination.SUB_Codigo = 999;                                   // Necesario por ser llave foranea {No existe en SGP}{Ninguno}
@@ -176,6 +221,7 @@ namespace Interceptor.Adapters
             #endregion
 
             GetBudgetDetail(source.Tasks, destination.PRE_DETALLE);
+            GetTotalDetail(destination.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO, destination.PRE_DETALLE);
         }
 
         // Save Budget
