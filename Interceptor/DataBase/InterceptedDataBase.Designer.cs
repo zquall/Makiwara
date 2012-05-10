@@ -22,6 +22,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PRE_DETALLE_PRE_PRESUPUESTOS1", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "PRE_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PRE_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_SAL_DETALLE_SAL_SALIDAS", "SAL_SALIDAS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.SAL_SALIDAS), "SAL_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.SAL_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("OuterModel", "FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO), true)]
+[assembly: EdmRelationshipAttribute("OuterModel", "FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Interceptor.DataBase.PRE_PRESUPUESTOS), "TaskByBudget", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Interceptor.DataBase.TaskByBudget), true)]
 
 #endregion
 
@@ -248,6 +249,22 @@ namespace Interceptor.DataBase
             }
         }
         private ObjectSet<PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO> _PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TaskByBudget> TaskByBudgets
+        {
+            get
+            {
+                if ((_TaskByBudgets == null))
+                {
+                    _TaskByBudgets = base.CreateObjectSet<TaskByBudget>("TaskByBudgets");
+                }
+                return _TaskByBudgets;
+            }
+        }
+        private ObjectSet<TaskByBudget> _TaskByBudgets;
 
         #endregion
         #region AddTo Methods
@@ -338,6 +355,14 @@ namespace Interceptor.DataBase
         public void AddToPRE_TOTALESDETALLE_X_HOJAPRESUPUESTO(PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO)
         {
             base.AddObject("PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO", pRE_TOTALESDETALLE_X_HOJAPRESUPUESTO);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TaskByBudgets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTaskByBudgets(TaskByBudget taskByBudget)
+        {
+            base.AddObject("TaskByBudgets", taskByBudget);
         }
 
         #endregion
@@ -8679,6 +8704,28 @@ namespace Interceptor.DataBase
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_TaskByBudget_PRE_PRESUPUESTOS", "TaskByBudget")]
+        public EntityCollection<TaskByBudget> TaskByBudgets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TaskByBudget>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "TaskByBudget");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TaskByBudget>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "TaskByBudget", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -9979,6 +10026,186 @@ namespace Interceptor.DataBase
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SAL_DETALLE>("OuterModel.FK_SAL_DETALLE_SAL_SALIDAS", "SAL_DETALLE", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="OuterModel", Name="TaskByBudget")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TaskByBudget : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TaskByBudget object.
+        /// </summary>
+        /// <param name="company">Initial value of the Company property.</param>
+        /// <param name="idBudget">Initial value of the IdBudget property.</param>
+        /// <param name="idTask">Initial value of the IdTask property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static TaskByBudget CreateTaskByBudget(global::System.String company, global::System.Double idBudget, global::System.Int64 idTask, global::System.String name)
+        {
+            TaskByBudget taskByBudget = new TaskByBudget();
+            taskByBudget.Company = company;
+            taskByBudget.IdBudget = idBudget;
+            taskByBudget.IdTask = idTask;
+            taskByBudget.Name = name;
+            return taskByBudget;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Company
+        {
+            get
+            {
+                return _Company;
+            }
+            set
+            {
+                if (_Company != value)
+                {
+                    OnCompanyChanging(value);
+                    ReportPropertyChanging("Company");
+                    _Company = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Company");
+                    OnCompanyChanged();
+                }
+            }
+        }
+        private global::System.String _Company;
+        partial void OnCompanyChanging(global::System.String value);
+        partial void OnCompanyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double IdBudget
+        {
+            get
+            {
+                return _IdBudget;
+            }
+            set
+            {
+                if (_IdBudget != value)
+                {
+                    OnIdBudgetChanging(value);
+                    ReportPropertyChanging("IdBudget");
+                    _IdBudget = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IdBudget");
+                    OnIdBudgetChanged();
+                }
+            }
+        }
+        private global::System.Double _IdBudget;
+        partial void OnIdBudgetChanging(global::System.Double value);
+        partial void OnIdBudgetChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 IdTask
+        {
+            get
+            {
+                return _IdTask;
+            }
+            set
+            {
+                if (_IdTask != value)
+                {
+                    OnIdTaskChanging(value);
+                    ReportPropertyChanging("IdTask");
+                    _IdTask = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IdTask");
+                    OnIdTaskChanged();
+                }
+            }
+        }
+        private global::System.Int64 _IdTask;
+        partial void OnIdTaskChanging(global::System.Int64 value);
+        partial void OnIdTaskChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("OuterModel", "FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS")]
+        public PRE_PRESUPUESTOS PRE_PRESUPUESTOS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRE_PRESUPUESTOS> PRE_PRESUPUESTOSReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRE_PRESUPUESTOS>("OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS", "PRE_PRESUPUESTOS", value);
                 }
             }
         }

@@ -245,17 +245,17 @@ namespace shellProject
 
         private void SaveProcess()
         {
-            try
-            {
+            //try
+            //{
                 SaveProject();
                 ClearProject();
                 LoadProject();
                 MessageBox.Show(@"Proyecto guardado exitosamente", @"Felicidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(@"Se han generado errores a la hora de guardar el proyecto. " + e.Message, @"Lo siento", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch(Exception e)
+            //{
+                //MessageBox.Show(@"Se han generado errores a la hora de guardar el proyecto. " + e.Message, @"Lo siento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         #endregion

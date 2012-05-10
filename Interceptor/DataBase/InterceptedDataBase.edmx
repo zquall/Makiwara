@@ -33,6 +33,7 @@
       FROM [dbo].[SAL_DETALLE] AS [SAL_DETALLE]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SAL_SALIDAS" EntityType="OuterModel.Store.SAL_SALIDAS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TaskByBudget" EntityType="OuterModel.Store.TaskByBudget" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_PLA_EMPLEADOS_PLA_PUESTOS" Association="OuterModel.Store.FK_PLA_EMPLEADOS_PLA_PUESTOS">
             <End Role="PLA_PUESTOS" EntitySet="PLA_PUESTOS" />
             <End Role="PLA_EMPLEADOS" EntitySet="PLA_EMPLEADOS" />
@@ -48,6 +49,10 @@
           <AssociationSet Name="FK_SAL_DETALLE_SAL_SALIDAS" Association="OuterModel.Store.FK_SAL_DETALLE_SAL_SALIDAS">
             <End Role="SAL_SALIDAS" EntitySet="SAL_SALIDAS" />
             <End Role="SAL_DETALLE" EntitySet="SAL_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskByBudget_PRE_PRESUPUESTOS" Association="OuterModel.Store.FK_TaskByBudget_PRE_PRESUPUESTOS">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="TaskByBudget" EntitySet="TaskByBudget" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ALQ_INVENTARIO">
@@ -488,6 +493,17 @@
           <Property Name="USR_Usuario_Inclusion" Type="varchar" MaxLength="20" />
           <Property Name="USR_Fecha_Inclusion" Type="datetime" />
         </EntityType>
+        <EntityType Name="TaskByBudget">
+          <Key>
+            <PropertyRef Name="Company" />
+            <PropertyRef Name="IdBudget" />
+            <PropertyRef Name="IdTask" />
+          </Key>
+          <Property Name="Company" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="IdBudget" Type="float" Nullable="false" />
+          <Property Name="IdTask" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
         <Association Name="FK_PLA_EMPLEADOS_PLA_PUESTOS">
           <End Role="PLA_PUESTOS" Type="OuterModel.Store.PLA_PUESTOS" Multiplicity="1" />
           <End Role="PLA_EMPLEADOS" Type="OuterModel.Store.PLA_EMPLEADOS" Multiplicity="*" />
@@ -542,6 +558,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TaskByBudget_PRE_PRESUPUESTOS">
+          <End Role="PRE_PRESUPUESTOS" Type="OuterModel.Store.PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Role="TaskByBudget" Type="OuterModel.Store.TaskByBudget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="TaskByBudget">
+              <PropertyRef Name="Company" />
+              <PropertyRef Name="IdBudget" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -573,6 +603,11 @@
           <AssociationSet Name="FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" Association="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS">
             <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
             <End Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" EntitySet="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
+          </AssociationSet>
+          <EntitySet Name="TaskByBudgets" EntityType="OuterModel.TaskByBudget" />
+          <AssociationSet Name="FK_TaskByBudget_PRE_PRESUPUESTOS" Association="OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS">
+            <End Role="PRE_PRESUPUESTOS" EntitySet="PRE_PRESUPUESTOS" />
+            <End Role="TaskByBudget" EntitySet="TaskByBudgets" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CLI_CLIENTES">
@@ -956,6 +991,7 @@
           <Property Type="DateTime" Name="USR_Fecha_Inclusion" />
           <NavigationProperty Name="PRE_DETALLE" Relationship="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" FromRole="PRE_PRESUPUESTOS" ToRole="PRE_DETALLE" />
           <NavigationProperty Name="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Relationship="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" FromRole="PRE_PRESUPUESTOS" ToRole="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" />
+          <NavigationProperty Name="TaskByBudgets" Relationship="OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS" FromRole="PRE_PRESUPUESTOS" ToRole="TaskByBudget" />
         </EntityType>
         <Association Name="FK_PRE_DETALLE_PRE_PRESUPUESTOS1">
           <End Type="OuterModel.PRE_PRESUPUESTOS" Role="PRE_PRESUPUESTOS" Multiplicity="1" />
@@ -1069,6 +1105,32 @@
             <Dependent Role="PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO">
               <PropertyRef Name="CIA_CODIGO" />
               <PropertyRef Name="PRE_NUMERO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TaskByBudget">
+          <Key>
+            <PropertyRef Name="Company" />
+            <PropertyRef Name="IdBudget" />
+            <PropertyRef Name="IdTask" />
+          </Key>
+          <Property Type="String" Name="Company" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="IdBudget" Nullable="false" />
+          <Property Type="Int64" Name="IdTask" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRE_PRESUPUESTOS" Relationship="OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS" FromRole="TaskByBudget" ToRole="PRE_PRESUPUESTOS" />
+        </EntityType>
+        <Association Name="FK_TaskByBudget_PRE_PRESUPUESTOS">
+          <End Type="OuterModel.PRE_PRESUPUESTOS" Role="PRE_PRESUPUESTOS" Multiplicity="1" />
+          <End Type="OuterModel.TaskByBudget" Role="TaskByBudget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRE_PRESUPUESTOS">
+              <PropertyRef Name="CIA_CODIGO" />
+              <PropertyRef Name="PRE_NUMERO" />
+            </Principal>
+            <Dependent Role="TaskByBudget">
+              <PropertyRef Name="Company" />
+              <PropertyRef Name="IdBudget" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1496,6 +1558,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TaskByBudgets">
+            <EntityTypeMapping TypeName="OuterModel.TaskByBudget">
+              <MappingFragment StoreEntitySet="TaskByBudget">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdTask" ColumnName="IdTask" />
+                <ScalarProperty Name="IdBudget" ColumnName="IdBudget" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1516,33 +1588,38 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="InterceptedDataBase" ZoomLevel="55">
-        <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.75" PointX="1.375" PointY="1.25" Height="10.467062174479166" IsExpanded="true" />
-        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2.125" PointX="3.625" PointY="1.25" Height="15.890524088541667" />
-        <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.625" PointX="6.125" PointY="1.25" Height="2.5783902994791656" />
-        <EntityTypeShape EntityType="OuterModel.ALQ_INVENTARIO" Width="1.75" PointX="8.125" PointY="1.25" Height="8.330546875" />
-        <EntityTypeShape EntityType="OuterModel.PLA_EMPLEADOS" Width="2.125" PointX="13.5" PointY="1.25" Height="10.960104166666667" />
-        <EntityTypeShape EntityType="OuterModel.PLA_PUESTOS" Width="1.625" PointX="11" PointY="5.5" Height="1.5923063151041674" />
+      <Diagram Name="InterceptedDataBase" ZoomLevel="72">
+        <EntityTypeShape EntityType="OuterModel.CLI_CLIENTES" Width="1.75" PointX="0.5" PointY="0.5" Height="10.631409505208332" IsExpanded="true" />
+        <EntityTypeShape EntityType="OuterModel.INV_INVENTARIO" Width="2.125" PointX="3.25" PointY="0.5" Height="15.890524088541667" />
+        <EntityTypeShape EntityType="OuterModel.INV_X_BODEGA" Width="1.625" PointX="5.625" PointY="0.5" Height="2.5783902994791656" />
+        <EntityTypeShape EntityType="OuterModel.ALQ_INVENTARIO" Width="1.75" PointX="7.5" PointY="0.5" Height="8.330546875" />
+        <EntityTypeShape EntityType="OuterModel.PLA_EMPLEADOS" Width="2.125" PointX="9.75" PointY="0.5" Height="10.960104166666667" />
+        <EntityTypeShape EntityType="OuterModel.PLA_PUESTOS" Width="1.625" PointX="12.375" PointY="0.5" Height="1.5923063151041674" />
         <AssociationConnector Association="OuterModel.FK_PLA_EMPLEADOS_PLA_PUESTOS" >
-          <ConnectorPoint PointX="12.625" PointY="6.2961531575520837" />
-          <ConnectorPoint PointX="13.5" PointY="6.2961531575520837" />
+          <ConnectorPoint PointX="12.375" PointY="1.2961531575520837" />
+          <ConnectorPoint PointX="11.875" PointY="1.2961531575520837" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OuterModel.PRE_DETALLE" Width="1.875" PointX="9.625" PointY="12.125" Height="2.7427376302083317" />
-        <EntityTypeShape EntityType="OuterModel.PRE_PRESUPUESTOS" Width="2" PointX="6.75" PointY="10" Height="7.0157682291666692" />
+        <EntityTypeShape EntityType="OuterModel.PRE_DETALLE" Width="1.875" PointX="14.375" PointY="0.5" Height="2.7427376302083317" />
+        <EntityTypeShape EntityType="OuterModel.PRE_PRESUPUESTOS" Width="2" PointX="16.75" PointY="0.5" Height="7.1801155598958353" />
         <AssociationConnector Association="OuterModel.FK_PRE_DETALLE_PRE_PRESUPUESTOS1" >
-          <ConnectorPoint PointX="8.75" PointY="13.496368815104166" />
-          <ConnectorPoint PointX="9.625" PointY="13.496368815104166" />
+          <ConnectorPoint PointX="16.75" PointY="1.8713688151041659" />
+          <ConnectorPoint PointX="16.25" PointY="1.8713688151041659" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OuterModel.SAL_DETALLE" Width="1.5" PointX="16.75" PointY="12.625" Height="3.2357796223958317" />
-        <EntityTypeShape EntityType="OuterModel.SAL_SALIDAS" Width="1.5" PointX="15" PointY="12.625" Height="4.2218636067708317" />
+        <EntityTypeShape EntityType="OuterModel.SAL_DETALLE" Width="1.5" PointX="17.25" PointY="8.625" Height="3.2357796223958317" />
+        <EntityTypeShape EntityType="OuterModel.SAL_SALIDAS" Width="1.5" PointX="15.25" PointY="8.625" Height="4.2218636067708317" />
         <AssociationConnector Association="OuterModel.FK_SAL_DETALLE_SAL_SALIDAS" >
-          <ConnectorPoint PointX="16.5" PointY="14.242889811197916" />
-          <ConnectorPoint PointX="16.75" PointY="14.242889811197916" />
+          <ConnectorPoint PointX="16.75" PointY="10.242889811197916" />
+          <ConnectorPoint PointX="17.25" PointY="10.242889811197916" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Width="3.5" PointX="10.25" PointY="15.375" Height="2.7427376302083317" />
+        <EntityTypeShape EntityType="OuterModel.PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO" Width="3.5" PointX="12.75" PointY="3.5" Height="2.7427376302083317" />
         <AssociationConnector Association="OuterModel.FK_PRE_TOTALESDETALLE_X_HOJAPRESUPUESTO_PRE_PRESUPUESTOS" >
-          <ConnectorPoint PointX="8.75" PointY="16.277557779947919" />
-          <ConnectorPoint PointX="10.25" PointY="16.277557779947919" />
+          <ConnectorPoint PointX="16.75" PointY="4.8713688151041659" />
+          <ConnectorPoint PointX="16.25" PointY="4.8713688151041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="OuterModel.TaskByBudget" Width="1.5" PointX="14.625" PointY="6.5" Height="1.7566536458333388" />
+        <AssociationConnector Association="OuterModel.FK_TaskByBudget_PRE_PRESUPUESTOS" >
+          <ConnectorPoint PointX="16.75" PointY="7.1722314453125" />
+          <ConnectorPoint PointX="16.125" PointY="7.1722314453125" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

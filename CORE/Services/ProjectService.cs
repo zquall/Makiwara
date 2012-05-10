@@ -68,7 +68,7 @@ namespace CORE.Services
 
         #region Copy Zone
 
-        private void GetListOfTask(ICollection<TaskDto> source, ICollection<TaskDto> destination)
+        private void GetListOfTask(IEnumerable<TaskDto> source, ICollection<TaskDto> destination)
         {
             foreach(var tmpTask in source)
             {
@@ -120,12 +120,24 @@ namespace CORE.Services
             return year + month + code;
         }
 
-        /// <summary>
-        /// Get one specific Project
-        /// </summary>
-        /// <param name="request">The project request</param>
-        /// <returns>The project response</returns>
-        public ProjectResponse  GetProject(ProjectRequest request)
+        public ProjectResponse SearchTask(int projectId)
+        {
+            var response = new ProjectResponse { TaskList = new List<TaskDto>() };
+
+            var tasksFound = Olympus._Enterprise.Tasks
+                                      .Where(x => x.ProjectId == projectId)
+                                      .OrderBy(y => y.RowNumber)
+                                      .ToList();
+
+            foreach (var task in tasksFound)
+            {
+                var tmpTask = Mapper.Map<TaskDto>(task);
+                response.TaskList.Add(tmpTask);
+            }
+            return response;
+        }
+
+        public ProjectResponse GetProject(ProjectRequest request)
         {
             var response = new ProjectResponse();
             if (request.ProjectId > 0)
@@ -155,11 +167,6 @@ namespace CORE.Services
             return response;
         }
 
-        /// <summary>
-        /// Searches all projects in the database
-        /// </summary>
-        /// <param name="request">Project request with search parameters</param>
-        /// <returns>Project response with list of projects</returns>
         public ProjectResponse SearchProject(ProjectRequest request)
         {
             var response = new ProjectResponse {ProjectList = new List<ProjectDto>()};
@@ -184,7 +191,6 @@ namespace CORE.Services
         public ProjectResponse SaveProject(ProjectRequest request)
         {
             var budgetAdapter = new BudgetAdapter();
-            budgetAdapter.SaveBudget(request);
 
             var response = new ProjectResponse();
             
@@ -202,8 +208,7 @@ namespace CORE.Services
                 else
                 {   // Add
                     if (request.Project.Code != null)
-                    {
-                        // Check some info from AlienDB
+                    {   // Check some info from AlienDB
                         project = new Project();
                         Mapper.Map(request.Project, project);
                         if (request.Project.Tasks != null)
@@ -212,7 +217,15 @@ namespace CORE.Services
                     }
                 }
                 Olympus._Enterprise.SaveChanges();
-                if (project != null) response.ProjectId = project.Id;
+
+                if (project != null) //Save the Budget in DIALCOM
+                {
+                    response.ProjectId = project.Id;
+                    var tmpTaskList = SearchTask(project.Id).TaskList;
+                    request.ProjectId = project.Id;
+                    var tmpProject = GetProject(request).Project;
+                    budgetAdapter.SaveBudget(tmpProject, tmpTaskList);
+                }
             }
             return response;
         }

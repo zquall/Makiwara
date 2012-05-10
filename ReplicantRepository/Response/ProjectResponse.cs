@@ -8,5 +8,6 @@ namespace ReplicantRepository.Response
         public int ProjectId { get; set; }
         public ProjectDto Project { get; set; }
         public List<ProjectDto> ProjectList { get; set; }
+        public List<TaskDto> TaskList { get; set; } 
     }
 }
